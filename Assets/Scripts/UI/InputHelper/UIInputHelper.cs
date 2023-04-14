@@ -15,7 +15,8 @@ public class UIInputHelper : MonoBehaviour
     private Vector2 _initialScale;
     [SerializeField] private Image _imageIcon;
     [SerializeField] private Image _imageInput;
-    private InputActionReference _input;
+    private InputActionReference _inputActionReference;
+    [SerializeField] InputActionIcons inputActionIcons;
     private static Canvas _canvas;
     public static UIInputHelper CreateInputHelper(GameObject prefab, Transform transformTarget,Sprite image, InputActionReference input = default)
     {
@@ -29,8 +30,15 @@ public class UIInputHelper : MonoBehaviour
         var inputHelperObject = Instantiate(prefab, Vector3.zero, Quaternion.identity, _canvas.transform);
         // Setup
         component = inputHelperObject.GetComponentInChildren<UIInputHelper>();
-        component._input = input;
-        component._imageIcon.sprite = image;
+        component._inputActionReference = input;
+        if (image != null)
+        {
+            component._imageIcon.sprite = image;
+        }
+        else
+        {
+            component._imageIcon.gameObject.SetActive(false);
+        }
         component._targetTransform = transformTarget;
         return component;
     }
@@ -70,13 +78,13 @@ public class UIInputHelper : MonoBehaviour
     }
     private void UpdateInputIcon()
     {
-        if (_input != null)
+        if (_inputActionReference != null)
         {
-            for (int i = 0; i < _input.action.bindings.Count; i++)
+            for (int i = 0; i < _inputActionReference.action.bindings.Count; i++)
             {
-                if (_input.action.bindings[i].groups == bindingGroup)
+                if (_inputActionReference.action.bindings[i].groups == bindingGroup)
                 {
-                    _imageInput.sprite = InputActionIcons.dictionaryInputsIcons[_input.action.bindings[i].path];
+                    _imageInput.sprite = inputActionIcons.dictionaryInputsIcons[_inputActionReference.action.bindings[i].path];
                     break;
                 }
             }

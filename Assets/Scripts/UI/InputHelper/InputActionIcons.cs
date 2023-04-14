@@ -21,8 +21,8 @@ public class InputActionIcons : ScriptableObject
     public InputActionAsset inputActionAsset;
     public List<InputActionIcon> inputActionIcons = new List<InputActionIcon>();
 
-    public static Dictionary<string, Sprite> dictionaryInputsIcons = new Dictionary<string, Sprite>();
-
+    public Dictionary<string, Sprite> dictionaryInputsIcons = new Dictionary<string, Sprite>();
+    
     private void OnValidate()
     {
         if (inputActionAsset != null)

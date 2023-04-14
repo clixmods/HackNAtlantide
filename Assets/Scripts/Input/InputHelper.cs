@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
 
-public class CreateInputHelper : MonoBehaviour
+public class InputHelper : MonoBehaviour
 {
     [SerializeField] private Sprite _iconObject;
     [SerializeField] private InputActionReference _inputActionReference;
