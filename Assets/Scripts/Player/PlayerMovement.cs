@@ -21,6 +21,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float _smoothTimeAccelerationDash;
     [SerializeField] private float _dashTime;
     [SerializeField] private float _dashSpeed;
+    [SerializeField] private float _dashReloadTime;
+    private bool _canDash;
     private bool _isDashing;
 
     private Collider[] _buffer = new Collider[8];
@@ -34,6 +36,7 @@ public class PlayerMovement : MonoBehaviour
         _camera = Camera.main;
         collider = GetComponent<CapsuleCollider>();
         _speed = _moveSpeed;
+        _canDash = true;
     }
     void OnEnable()
     {
@@ -59,12 +62,16 @@ public class PlayerMovement : MonoBehaviour
         Move();
         ExtractFromColliders();
     }
+    private void Update()
+    {
+        GetComponentInChildren<MeshRenderer>().material.color = _isDashing?Color.yellow:Color.blue;
+    }
     private void Move()
     {
         //direction in which player wants to move
         Vector3 targetmoveAmount = _moveDirection * _speed * Time.fixedDeltaTime;
 
-        //calcultaed direction based of his movedirection of the precedent fralme
+        //calculated direction based of his movedirection of the precedent frame, different smooth time if he is dashing.
         _moveAmount = Vector3.SmoothDamp(_moveAmount, targetmoveAmount, ref _smoothMoveVelocity, _isDashing?_smoothTimeAccelerationDash:_smoothTimeAcceleration);
 
         //Move the object with the RigidBody
@@ -123,16 +130,28 @@ public class PlayerMovement : MonoBehaviour
 
     private void Dash(bool value)
     {
-        _speed = _dashSpeed;
-        _isDashing = true;
-        StartCoroutine(CancelDash());
+        if (_canDash)
+        {
+            _speed = _dashSpeed;
+            _isDashing = true;
+            _canDash = false;
+            StartCoroutine(CancelDash());
+        }
     }
-    
+
+    //sets the speeds value to dash
     IEnumerator CancelDash()
     {
         yield return new WaitForSeconds(_dashTime);
         _speed = _moveSpeed;
         _isDashing = false;
+        StartCoroutine(ReloadDash());
     }
 
+    //allows player to dash again
+    IEnumerator ReloadDash()
+    {
+        yield return new WaitForSeconds(_dashReloadTime);
+        _canDash = true;
+    }
 }
