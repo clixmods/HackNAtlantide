@@ -2,13 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//TODO : Mettre RequireComponent pour le show/hide Icon
+[RequireComponent(typeof(CreateInputHelper))]
 public class InteractBehaviour : MonoBehaviour, IInteractable
 {
-    [SerializeField] Rigidbody rb;
+    [SerializeField] Rigidbody _rigidBody;
+    CreateInputHelper inputHelper;
+    bool _hasInteract;
+    private void Awake()
+    {
+        _rigidBody = GetComponent<Rigidbody>();
+        inputHelper = GetComponent<CreateInputHelper>();
+        _hasInteract = false;
+    }
     public void Interact()
     {
-        Debug.Log("Interact");
-        rb.AddForce(Vector3.up * 1000,ForceMode.Impulse);
+        if (!_hasInteract)
+        {
+            _rigidBody.AddForce((new Vector3(0.5f - Random.value, 0.5f - Random.value, 0.5f - Random.value)+Vector3.up).normalized * 30, ForceMode.Impulse);
+            inputHelper.enabled = false;
+            _hasInteract = true;
+        }
+        
     }
 }

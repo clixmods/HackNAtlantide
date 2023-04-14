@@ -7,6 +7,7 @@ public class InputManager : MonoBehaviour
     [SerializeField] private InputButtonScriptableObject _interact;
     [SerializeField] private InputButtonScriptableObject _dash;
     [SerializeField] private InputVectorScriptableObject _move;
+    [SerializeField] private InputActionIcon _actionIcon;
     void Awake()
     {
         _input = new PlayerControls();

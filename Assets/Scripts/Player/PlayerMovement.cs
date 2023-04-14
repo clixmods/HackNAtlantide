@@ -147,7 +147,6 @@ public class PlayerMovement : MonoBehaviour
     {
         if (direction.magnitude > 0.001f)
         {
-            Debug.Log("rotate");
             _targetRotation = Quaternion.LookRotation(direction, transform.up);
             transform.rotation = Quaternion.Slerp(transform.rotation, _targetRotation, speed * Time.deltaTime);
         }

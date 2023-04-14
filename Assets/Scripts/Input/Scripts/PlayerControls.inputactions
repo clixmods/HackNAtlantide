@@ -58,6 +58,17 @@
                 },
                 {
                     "name": "",
+                    "id": "cc13820f-1b8e-4f6c-b080-aca5cfdcd76b",
+                    "path": "<DualShockGamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "f9b6b0f9-dc94-4b6a-bad2-bcb51c81d8fb",
                     "path": "<Gamepad>/leftStick",
                     "interactions": "",
@@ -165,7 +176,12 @@
             "devices": [
                 {
                     "devicePath": "<Gamepad>",
-                    "isOptional": false,
+                    "isOptional": true,
+                    "isOR": false
+                },
+                {
+                    "devicePath": "<DualShockGamepad>",
+                    "isOptional": true,
                     "isOR": false
                 }
             ]

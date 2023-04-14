@@ -265,7 +265,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3412724991778391894}
-  - component: {fileID: 2980379117298046929}
   - component: {fileID: 2015127076863944293}
   m_Layer: 6
   m_Name: Interaction
@@ -289,19 +288,6 @@ Transform:
   m_Father: {fileID: 3568601912637702674}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!135 &2980379117298046929
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3649820535369761792}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 10
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &2015127076863944293
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -315,4 +301,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _interact: {fileID: 11400000, guid: 67380d3709d97c74e85b3aafe21013ad, type: 2}
-  _maxDistanceInteraction: 10
+  _maxDistanceInteraction: 20
