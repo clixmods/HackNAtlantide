@@ -4,6 +4,8 @@ using UnityEditor;
 using System;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
+
 [RequireComponent(typeof(BoxCollider))]
 
 [AddComponentMenu("#Survival Game/Gameplay Elements/Zone Volume")]
@@ -18,9 +20,20 @@ public class ZoneVolume : MonoBehaviour
     /// </summary>
     public UnityEvent EventOnTriggerEnd;
     private BoxCollider _boxCollider;
-    [SerializeField] private bool _disableAfterOnTriggerEnter;
-    [SerializeField] private bool _disableAfterOnTriggerExit;
-    [SerializeField] private LayerMask _layerMaskWithInteract;
+    [SerializeField] private bool disableAfterOnTriggerEnter;
+    [SerializeField] private bool disableAfterOnTriggerExit;
+    [SerializeField] private LayerMask layersMaskWithInteract;
+    public LayerMask LayersMaskWithInteract
+    {
+        get
+        {
+            return layersMaskWithInteract;
+        }
+        set
+        {
+            layersMaskWithInteract = value;
+        }
+    }
     private void Awake()
     {
         _boxCollider = GetComponent<BoxCollider>();
@@ -39,7 +52,7 @@ public class ZoneVolume : MonoBehaviour
             Debug.Log("Trigger Enter by player");
             EventOnTriggerEnter?.Invoke();
             
-            if (_disableAfterOnTriggerEnter)
+            if (disableAfterOnTriggerEnter)
             {
                 gameObject.SetActive(false);
             }
@@ -53,7 +66,7 @@ public class ZoneVolume : MonoBehaviour
          
             EventOnTriggerEnd?.Invoke();
             
-            if (_disableAfterOnTriggerExit)
+            if (disableAfterOnTriggerExit)
             {
                 gameObject.SetActive(false);
             }
@@ -61,7 +74,7 @@ public class ZoneVolume : MonoBehaviour
     }
     private bool IsInteractable(GameObject gameObject)
     {
-        return _layerMaskWithInteract == (_layerMaskWithInteract | (1 << gameObject.layer));
+        return layersMaskWithInteract == (layersMaskWithInteract | (1 << gameObject.layer));
     }
 #if UNITY_EDITOR
     // Add a menu item to create custom GameObjects.
