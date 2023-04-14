@@ -4,8 +4,9 @@ using UnityEngine.InputSystem;
 public class InputManager : MonoBehaviour
 {
     public PlayerControls _input { private set; get; }
-    [SerializeField] InputButtonScriptableObject _interact;
-    [SerializeField] InputVectorScriptableObject _move;
+    [SerializeField] private InputButtonScriptableObject _interact;
+    [SerializeField] private InputButtonScriptableObject _dash;
+    [SerializeField] private InputVectorScriptableObject _move;
     void Awake()
     {
         _input = new PlayerControls();
@@ -26,6 +27,9 @@ public class InputManager : MonoBehaviour
         _input.InGame.Interact.performed += ctx => _interact.ChangeValue(true);
         _input.InGame.Interact.canceled += ctx => _interact.ChangeValue(false);
 
+        //Dash
+        _input.InGame.Dash.performed += ctx => _dash.ChangeValue(true);
+
         //Move
         _input.InGame.Move.performed += ctx => _move.ChangeValue(_input.InGame.Move.ReadValue<Vector2>());
         _input.InGame.Move.canceled += ctx => _move.ChangeValue(Vector2.zero);
@@ -36,6 +40,9 @@ public class InputManager : MonoBehaviour
         //Interact
         _input.InGame.Interact.performed -= ctx => _interact.ChangeValue(true);
         _input.InGame.Interact.canceled -= ctx => _interact.ChangeValue(false);
+
+        //Dash
+        _input.InGame.Dash.performed -= ctx => _dash.ChangeValue(true);
 
         //Move
         _input.InGame.Move.performed -= ctx => _move.ChangeValue(_input.InGame.Move.ReadValue<Vector2>());
