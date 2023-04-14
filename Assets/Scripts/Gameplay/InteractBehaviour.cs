@@ -2,16 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(CreateInputHelper))]
+[RequireComponent(typeof(InputHelper))]
 public class InteractBehaviour : MonoBehaviour, IInteractable
 {
     [SerializeField] Rigidbody _rigidBody;
-    CreateInputHelper inputHelper;
+    InputHelper inputHelper;
     bool _hasInteract;
     private void Awake()
     {
         _rigidBody = GetComponent<Rigidbody>();
-        inputHelper = GetComponent<CreateInputHelper>();
+        inputHelper = GetComponent<InputHelper>();
         _hasInteract = false;
     }
     public void Interact()
