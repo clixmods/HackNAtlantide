@@ -5,14 +5,19 @@ using UnityEngine;
 [RequireComponent(typeof(InputHelper))]
 public class InteractBehaviour : MonoBehaviour, IInteractable
 {
-    [SerializeField] Rigidbody _rigidBody;
+    Rigidbody _rigidBody;
     InputHelper inputHelper;
     bool _hasInteract;
+    [SerializeField] PlayerDetectionScriptableObject _playerDetectionScriptableObject;
     private void Awake()
     {
         _rigidBody = GetComponent<Rigidbody>();
         inputHelper = GetComponent<InputHelper>();
         _hasInteract = false;
+    }
+    private void Update()
+    {
+        inputHelper.enabled = _playerDetectionScriptableObject.IsInRange(transform.position)&&!_hasInteract? true:false;
     }
     public void Interact()
     {

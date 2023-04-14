@@ -7,7 +7,8 @@ public class InteractDetection : MonoBehaviour
 {
     [SerializeField] InputButtonScriptableObject _interact;
     List<IInteractable> interactable = new List<IInteractable>();
-    [SerializeField] float _maxDistanceInteraction;
+    float _maxDistanceInteraction;
+    [SerializeField] PlayerDetectionScriptableObject _playerDetectionScriptableObject;
 
     void OnEnable()
     {
@@ -16,6 +17,14 @@ public class InteractDetection : MonoBehaviour
     private void OnDisable()
     {
         _interact.OnValueChanged -= InteractInput;
+    }
+    private void Awake()
+    {
+        _maxDistanceInteraction = _playerDetectionScriptableObject.MaxDistance;
+    }
+    private void Update()
+    {
+        _playerDetectionScriptableObject.PlayerPosition = transform.position;
     }
     void InteractInput(bool value)
     {
