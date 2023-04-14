@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -49,6 +50,8 @@ public class UIInputHelper : MonoBehaviour
         _playerControls ??= new PlayerControls();
         _initialScale = ((RectTransform) transform).sizeDelta;
         InputSystem.onAnyButtonPress.Call(OnButtonPressed);
+        // Apply default binding group
+        _bindingGroup = _playerControls.controlSchemes[0].bindingGroup;
     }
         private string _bindingGroup;
     public string bindingGroup => _bindingGroup;
