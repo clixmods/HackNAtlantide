@@ -5,20 +5,10 @@ using UnityEngine;
 //TODO : Mettre RequireComponent pour le show/hide Icon
 public class InteractBehaviour : MonoBehaviour, IInteractable
 {
-    [SerializeField] GameObject _iconeInteract;
-
-    
+    [SerializeField] Rigidbody rb;
     public void Interact()
     {
-        Debug.Log("interact");
-    }
-
-    public void ShowIcon()
-    {
-        _iconeInteract.SetActive(true);
-    }
-    public void HideIcon()
-    {
-        _iconeInteract.SetActive(false);
+        Debug.Log("Interact");
+        rb.AddForce(Vector3.up * 1000,ForceMode.Impulse);
     }
 }
