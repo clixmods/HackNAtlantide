@@ -5,6 +5,7 @@ public class InputManager : MonoBehaviour
 {
     public PlayerControls _input { private set; get; }
     [SerializeField] private InputButtonScriptableObject _interact;
+    [SerializeField] private InputButtonScriptableObject _attack;
     [SerializeField] private InputButtonScriptableObject _dash;
     [SerializeField] private InputVectorScriptableObject _move;
     void Awake()
@@ -30,6 +31,9 @@ public class InputManager : MonoBehaviour
         //Dash
         _input.InGame.Dash.performed += ctx => _dash.ChangeValue(true);
 
+        // Attack
+        _input.InGame.Attack.performed += ctx => _attack.ChangeValue(true);
+
         //Move
         _input.InGame.Move.performed += ctx => _move.ChangeValue(_input.InGame.Move.ReadValue<Vector2>());
         _input.InGame.Move.canceled += ctx => _move.ChangeValue(Vector2.zero);
@@ -43,6 +47,9 @@ public class InputManager : MonoBehaviour
 
         //Dash
         _input.InGame.Dash.performed -= ctx => _dash.ChangeValue(true);
+
+        // Attack
+        _input.InGame.Attack.performed -= ctx => _attack.ChangeValue(true);
 
         //Move
         _input.InGame.Move.performed -= ctx => _move.ChangeValue(_input.InGame.Move.ReadValue<Vector2>());
