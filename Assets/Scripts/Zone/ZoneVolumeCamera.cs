@@ -14,27 +14,42 @@ namespace Zone
                 [MenuItem("GameObject/Trigger/Zone Volume with Camera", false, 1)]
                 static void CreateZoneCameraVolume(MenuCommand menuCommand)
                 {
-                    // Create a custom game object
-                    GameObject zoneVolumeGameObject = new GameObject("Zone Volume with camera");
-                    GameObjectUtility.SetParentAndAlign(zoneVolumeGameObject, menuCommand.context as GameObject);
-                    // Register the creation in the undo system
-                    Undo.RegisterCreatedObjectUndo(zoneVolumeGameObject, "Create " + zoneVolumeGameObject.name);
-                    Selection.activeObject = zoneVolumeGameObject;
-                    // Create Virtual Camera
-                    GameObject cameraVirtual = new GameObject("Camera Virtual");
-                    GameObjectUtility.SetParentAndAlign(cameraVirtual, zoneVolumeGameObject );
-                    // Register the creation in the undo system
-                    Undo.RegisterCreatedObjectUndo(cameraVirtual, "Create " + cameraVirtual.name);
-                    Selection.activeObject = cameraVirtual;
-                    cameraVirtual.AddComponent<CinemachineVirtualCamera>();
+                    
                     var view = SceneView.lastActiveSceneView;
                     if (view != null)
                     {
+                        // Create a custom game object
+                        GameObject zoneVolumeGameObject = new GameObject("Zone Volume with camera");
+                        var raycastHits = Physics.RaycastAll(view.camera.transform.position, view.camera.transform.forward);
+                        if (raycastHits.Length > 0)
+                        {
+                            zoneVolumeGameObject.transform.position = raycastHits[0].point;
+                        }
+                        GameObjectUtility.SetParentAndAlign(zoneVolumeGameObject, menuCommand.context as GameObject);
+                        // Register the creation in the undo system
+                        Undo.RegisterCreatedObjectUndo(zoneVolumeGameObject, "Create " + zoneVolumeGameObject.name);
+                        Selection.activeObject = zoneVolumeGameObject;
+                        // Create Virtual Camera
+                        GameObject cameraVirtual = new GameObject("Camera Virtual");
+                        GameObjectUtility.SetParentAndAlign(cameraVirtual, zoneVolumeGameObject );
+                        // Register the creation in the undo system
+                        Undo.RegisterCreatedObjectUndo(cameraVirtual, "Create " + cameraVirtual.name);
+                        Selection.activeObject = cameraVirtual;
+                        var cinemachineVirtualCamera = cameraVirtual.AddComponent<CinemachineVirtualCamera>();
+                        // Apply default setting
+                        CinemachineFramingTransposer body = cinemachineVirtualCamera.AddCinemachineComponent<CinemachineFramingTransposer>();
+                        var framingTransposer = body;
+                        framingTransposer.m_CameraDistance = 45;
+                        framingTransposer.m_DeadZoneWidth = 0.05f;
+                        framingTransposer.m_DeadZoneHeight = 0.05f;
+                        
+                        
                         cameraVirtual.transform.position = view.camera.transform.position;
                         cameraVirtual.transform.rotation =  view.camera.transform.rotation;
-                    }
-                    var zoneVolume = zoneVolumeGameObject.AddComponent<CinemachineCameraVirtualTransition>();
                     
+                    
+                         var zoneVolume = zoneVolumeGameObject.AddComponent<CinemachineCameraVirtualTransition>();
+                    }
                  
                 }
         #endif

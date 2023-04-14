@@ -34,6 +34,8 @@ public class ZoneVolume : MonoBehaviour
             layersMaskWithInteract = value;
         }
     }
+    
+    
     private void Awake()
     {
         _boxCollider = GetComponent<BoxCollider>();

@@ -7,10 +7,18 @@ using UnityEngine;
     {
         private ZoneVolume _zoneVolume;
         private CinemachineVirtualCamera _cinemachineVirtualCamera;
+
+        private void Awake()
+        {
+            _cinemachineVirtualCamera = GetComponentInChildren<CinemachineVirtualCamera>();
+            _cinemachineVirtualCamera.gameObject.SetActive(false);
+        }
+
         private void Start()
         {
             _zoneVolume = GetComponent<ZoneVolume>();
-            _cinemachineVirtualCamera = GetComponentInChildren<CinemachineVirtualCamera>();
+            
+            
             _zoneVolume.EventOnTriggerEnter.AddListener(ActiveCamera);
             _zoneVolume.EventOnTriggerEnd.AddListener(DesactiveCamera);
             _zoneVolume.LayersMaskWithInteract = LayerMask.GetMask("Player");
