@@ -24,9 +24,12 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float _dashReloadTime;
     private bool _canDash;
     private bool _isDashing;
+    private float _rotationSpeed;
+    Quaternion _targetRotation;
 
     private Collider[] _buffer = new Collider[8];
     new CapsuleCollider collider;
+    [SerializeField] private LayerMask _layerEnvironnement;
 
 
     // Start is called before the first frame update
@@ -60,11 +63,6 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
         Move();
-        ExtractFromColliders();
-    }
-    private void Update()
-    {
-        GetComponentInChildren<MeshRenderer>().material.color = _isDashing?Color.yellow:Color.blue;
     }
     private void Move()
     {
@@ -76,6 +74,12 @@ public class PlayerMovement : MonoBehaviour
 
         //Move the object with the RigidBody
         MoveSweepTestRecurs(_moveAmount, 3);
+
+        //Rotate the player by his direction
+        LookAtDirection(5, targetmoveAmount);
+
+        //Extract the rb from any collider
+        ExtractFromColliders();
     }
     private void MoveSweepTestRecurs(Vector3 velocity, int recurs)
     {
@@ -87,12 +91,23 @@ public class PlayerMovement : MonoBehaviour
             distance = Mathf.Max(0f, hit.distance - Physics.defaultContactOffset);
             displacement = velocity.normalized * distance;
         }
-
-
         _rigidbody.MovePosition(_rigidbody.position + displacement);
-        velocity -= displacement;
 
+        velocity -= displacement;
         velocity -= hit.normal * Vector3.Dot(velocity, hit.normal);
+
+
+        //Force Player To StayOnGround
+        /*RaycastHit groundHit;
+        float halfHeight = (collider.height * 0.5f);
+        Vector3 bottom = collider.bounds.center + (Vector3.down * halfHeight);
+
+        Debug.DrawRay(bottom, Vector3.down);
+        if (Physics.Raycast(bottom, Vector3.down, out groundHit,100f, _layerEnvironnement))
+        {
+            Vector3 direction = groundHit.collider.transform.position - bottom;
+            _rigidbody.MovePosition(_rigidbody.position + direction * (1 - Physics.defaultContactOffset));
+        }*/
 
         //recursivity
         if ((--recurs != 0) && (velocity != Vector3.zero))
@@ -121,11 +136,21 @@ public class PlayerMovement : MonoBehaviour
                                        _buffer[i], _buffer[i].transform.position, _buffer[i].transform.rotation,
                                        out Vector3 direction, out float distance))
             {
-                _rigidbody.MovePosition(_rigidbody.position + (direction * (distance + Physics.defaultContactOffset)));
+                _rigidbody.MovePosition(_rigidbody.position + (direction * (distance)));
             }
         }
 
         amount = Physics.OverlapCapsuleNonAlloc(bottom, top, collider.radius, _buffer);
+    }
+
+    public void LookAtDirection(float speed, Vector3 direction)
+    {
+        if (direction.magnitude > 0.001f)
+        {
+            Debug.Log("rotate");
+            _targetRotation = Quaternion.LookRotation(direction, transform.up);
+            transform.rotation = Quaternion.Slerp(transform.rotation, _targetRotation, speed * Time.deltaTime);
+        }
     }
 
     private void Dash(bool value)
