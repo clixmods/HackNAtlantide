@@ -259,7 +259,7 @@ namespace Audio.Editor
                // #endif
             }
 
-            EditorGUILayout.LabelField("GUID",currentElemFromArraySelected.FindPropertyRelative("guid").intValue.ToString());
+            EditorGUILayout.TextField("GUID",currentElemFromArraySelected.FindPropertyRelative("guid").intValue.ToString());
         }
 
         private static void DrawToolTip(SerializedProperty property)
