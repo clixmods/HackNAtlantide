@@ -21,7 +21,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: M_Rock_01
-  m_Shader: {fileID: -6465566751694194690, guid: b3a108036cf67c94e97d7c4fac2daae2,
+  m_Shader: {fileID: -6465566751694194690, guid: 9109b5218a8769240a01d739efe994fd,
     type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -54,12 +54,28 @@ Material:
         m_Texture: {fileID: 2800000, guid: b81346cf3f0a0714393496e97ba2f158, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _Detail_1_Color_Map:
+        m_Texture: {fileID: 2800000, guid: d2dff32b79fc4c34492746544f7623e9, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Detail_1_Normal_Map:
+        m_Texture: {fileID: 2800000, guid: 697b6632bedafa745b14345a2da0fbd1, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Detail_2_Color_Map:
+        m_Texture: {fileID: 2800000, guid: 3f6216e9ff6a35541985629070e589ec, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Detail_2_Normal_Map:
+        m_Texture: {fileID: 2800000, guid: 697b6632bedafa745b14345a2da0fbd1, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _EmissionMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Grime_Map:
-        m_Texture: {fileID: 2800000, guid: fffc6ab80bb6e1f44ba076cd75243bbf, type: 3}
+        m_Texture: {fileID: 2800000, guid: 9483b0abb3bb25d4baba2e3dce83a7ec, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Grime_Normal_Map:
@@ -72,6 +88,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
         m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Mix_Map:
+        m_Texture: {fileID: 2800000, guid: f8a0a3a7c47f8a44cb38fd9c23ba5099, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Normal_Map:
@@ -108,14 +128,24 @@ Material:
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
+    - _Detail_1_Normal_Height: 1
+    - _Detail_1_Smoothness: 0.5
+    - _Detail_1_UV_Rotation: 0
+    - _Detail_1_Use_World_Space_UV_Offset: 1
+    - _Detail_2_Normal_Height: 1
+    - _Detail_2_Smoothness: 0
+    - _Detail_2_UV_Rotation: 0
+    - _Detail_2_Use_World_Space_UV_Offset: 0
     - _DstBlend: 0
     - _GlossMapScale: 1
     - _Glossiness: 0.328
     - _GlossyReflections: 1
-    - _Grime_Height_Blend: 4.07
-    - _Grime_Threshold_Blend: 0
+    - _Grime_Height_Blend: 1.65
+    - _Grime_Normal_Height: 1
+    - _Grime_Threshold_Blend: 0.632
     - _Metallic: 0
     - _Mode: 0
+    - _Normal_Height: 1
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _QueueControl: 0
@@ -128,5 +158,14 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Detail_1_Albedo_Tint: {r: 1, g: 1, b: 1, a: 1}
+    - _Detail_1_Scale: {r: 1, g: 1, b: 0, a: 0}
+    - _Detail_2_Albedo_Tint: {r: 1, g: 1, b: 1, a: 1}
+    - _Detail_2_Scale: {r: 1, g: 1, b: 0, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _Grime_Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Grime_Normal_Tiling: {r: 16, g: 16, b: 0, a: 0}
+    - _Grime_Tiling: {r: 16, g: 16, b: 0, a: 0}
+    - _Mix_Map_Scale: {r: 4.41, g: 5.27, b: 0, a: 0}
+    - _Normal_Map_Scale: {r: 1, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []

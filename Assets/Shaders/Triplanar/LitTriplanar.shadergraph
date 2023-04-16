@@ -160,7 +160,7 @@
                 "m_Node": {
                     "m_Id": "f407e2c58d8c4e81968155f1187abf14"
                 },
-                "m_SlotId": -480791591
+                "m_SlotId": -1775263466
             }
         },
         {
@@ -188,7 +188,7 @@
                 "m_Node": {
                     "m_Id": "f407e2c58d8c4e81968155f1187abf14"
                 },
-                "m_SlotId": 507689675
+                "m_SlotId": 1712785810
             }
         },
         {
@@ -688,6 +688,29 @@
 
 {
     "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Vector3MaterialSlot",
+    "m_ObjectId": "3c93eb1730564cd1add05db532757dc9",
+    "m_Id": -1775263466,
+    "m_DisplayName": "Normal",
+    "m_SlotType": 0,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "_Normal",
+    "m_StageCapability": 3,
+    "m_Value": {
+        "x": 0.5,
+        "y": 0.5,
+        "z": 0.5
+    },
+    "m_DefaultValue": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    "m_Labels": []
+}
+
+{
+    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
     "m_ObjectId": "4284d9a91aff4869aeeb74baa274528f",
     "m_Id": -292564276,
@@ -765,10 +788,10 @@
     "m_Type": "UnityEditor.ShaderGraph.Vector4MaterialSlot",
     "m_ObjectId": "44dac7f3e1d147bea1db3d1653703458",
     "m_Id": 1,
-    "m_DisplayName": "Out_Vector4",
+    "m_DisplayName": "Color",
     "m_SlotType": 1,
     "m_Hidden": false,
-    "m_ShaderOutputName": "OutVector4",
+    "m_ShaderOutputName": "Color",
     "m_StageCapability": 3,
     "m_Value": {
         "x": 0.0,
@@ -1007,6 +1030,29 @@
 
 {
     "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Vector3MaterialSlot",
+    "m_ObjectId": "830d9ad9dc9348689d742dc53be57f00",
+    "m_Id": 1712785810,
+    "m_DisplayName": "Grime Normal",
+    "m_SlotType": 0,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "_Grime_Normal",
+    "m_StageCapability": 3,
+    "m_Value": {
+        "x": 0.20000000298023225,
+        "y": 0.20000000298023225,
+        "z": 0.20000000298023225
+    },
+    "m_DefaultValue": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    "m_Labels": []
+}
+
+{
+    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.UVMaterialSlot",
     "m_ObjectId": "872f052daff44e78b43b5f085e58fcfb",
     "m_Id": 2,
@@ -1159,31 +1205,6 @@
 {
     "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.Vector4MaterialSlot",
-    "m_ObjectId": "94b19132c1274d59ab5fe0b820afd6f1",
-    "m_Id": -480791591,
-    "m_DisplayName": "Normal",
-    "m_SlotType": 0,
-    "m_Hidden": false,
-    "m_ShaderOutputName": "_Normal",
-    "m_StageCapability": 3,
-    "m_Value": {
-        "x": 1.0,
-        "y": 1.0,
-        "z": 1.0,
-        "w": 1.0
-    },
-    "m_DefaultValue": {
-        "x": 0.0,
-        "y": 0.0,
-        "z": 0.0,
-        "w": 0.0
-    },
-    "m_Labels": []
-}
-
-{
-    "m_SGVersion": 0,
-    "m_Type": "UnityEditor.ShaderGraph.Vector4MaterialSlot",
     "m_ObjectId": "951c882a03004cf9b11510cf4affb495",
     "m_Id": 1505617565,
     "m_DisplayName": "Albedo Tint",
@@ -1191,31 +1212,6 @@
     "m_Hidden": false,
     "m_ShaderOutputName": "_Albedo_Tint",
     "m_StageCapability": 2,
-    "m_Value": {
-        "x": 1.0,
-        "y": 1.0,
-        "z": 1.0,
-        "w": 1.0
-    },
-    "m_DefaultValue": {
-        "x": 0.0,
-        "y": 0.0,
-        "z": 0.0,
-        "w": 0.0
-    },
-    "m_Labels": []
-}
-
-{
-    "m_SGVersion": 0,
-    "m_Type": "UnityEditor.ShaderGraph.Vector4MaterialSlot",
-    "m_ObjectId": "977cd8aa014a481782c7c450b6fddf1d",
-    "m_Id": 507689675,
-    "m_DisplayName": "Grime Normal",
-    "m_SlotType": 0,
-    "m_Hidden": false,
-    "m_ShaderOutputName": "_Grime_Normal",
-    "m_StageCapability": 3,
     "m_Value": {
         "x": 1.0,
         "y": 1.0,
@@ -1401,10 +1397,10 @@
         "m_Expanded": false,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -675.0,
-            "y": 227.0,
-            "width": 239.00003051757813,
-            "height": 94.00003051757813
+            "x": -657.0,
+            "y": 218.0,
+            "width": 239.0,
+            "height": 94.0
         }
     },
     "m_Slots": [
@@ -1613,10 +1609,10 @@
     "m_Type": "UnityEditor.ShaderGraph.Vector3MaterialSlot",
     "m_ObjectId": "bd0acbb564a14b2a913ec633b1ecbdff",
     "m_Id": 2,
-    "m_DisplayName": "Out_Vector3",
+    "m_DisplayName": "Normal",
     "m_SlotType": 1,
     "m_Hidden": false,
-    "m_ShaderOutputName": "OutVector3",
+    "m_ShaderOutputName": "Normal",
     "m_StageCapability": 3,
     "m_Value": {
         "x": 0.0,
@@ -1893,10 +1889,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -709.0,
-            "y": -312.0000305175781,
-            "width": 138.0,
-            "height": 34.000030517578128
+            "x": -693.0,
+            "y": -321.0,
+            "width": 137.99993896484376,
+            "height": 34.0
         }
     },
     "m_Slots": [
@@ -2148,13 +2144,13 @@
             "m_Id": "02fa8850981e458b908db724aafcf4b1"
         },
         {
-            "m_Id": "94b19132c1274d59ab5fe0b820afd6f1"
+            "m_Id": "3c93eb1730564cd1add05db532757dc9"
         },
         {
             "m_Id": "9e21af3128044a6ea27a99044eb69377"
         },
         {
-            "m_Id": "977cd8aa014a481782c7c450b6fddf1d"
+            "m_Id": "830d9ad9dc9348689d742dc53be57f00"
         },
         {
             "m_Id": "1959c85f31524f63a9f87d52f0a45bf5"
@@ -2187,7 +2183,9 @@
         "89e692e7-1e4b-4575-8ec3-6312713a0d6d",
         "a5e2ae9c-b936-4da4-966a-ce1ee5cedf15",
         "8a69c0e6-07f7-4240-a8e4-19a418b0e9c1",
-        "529d95e2-be9c-4056-bec5-f5440b547c48"
+        "529d95e2-be9c-4056-bec5-f5440b547c48",
+        "5884c209-1206-4aad-9822-c0938153c617",
+        "72485264-d5ea-4682-914c-a7d88dc27a8a"
     ],
     "m_PropertyIds": [
         -969120047,
@@ -2199,7 +2197,9 @@
         -1275234989,
         -480791591,
         -1378249823,
-        507689675
+        507689675,
+        -1775263466,
+        1712785810
     ],
     "m_Dropdowns": [],
     "m_DropdownSelectedEntries": []
