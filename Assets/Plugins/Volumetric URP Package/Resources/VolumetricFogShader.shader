@@ -38,6 +38,8 @@ Shader "Hidden/Custom/VolumetricFogShader"
 
     TEXTURE2D(_MainTex);
     SAMPLER(sampler_MainTex);
+
+    float2 _MainTex_TexelSize;
     TEXTURE2D_X(_VolumetricRenderTexture);
     SAMPLER(sampler_VolumetricRenderTexture);
 
@@ -255,8 +257,9 @@ half4 _LightOcclusionProbInfo;
         float3 viewDirection : TEXCOORD1;
     };
 
-    v2f vert(uint vertexID : SV_VertexID)
+    v2f vertVolumetric(uint vertexID : SV_VertexID)
     {
+    
         // On calcule les vertex position
         float x = (vertexID != 1) ? -1 : 3;
         float y = (vertexID == 2) ? -3 : 1;
@@ -266,8 +269,46 @@ half4 _LightOcclusionProbInfo;
         v2f output;
         output.vertex = float4(vertexPosition.x, -vertexPosition.y, 1, 1);
         output.uv = (vertexPosition.xy + 1) / 2;
+        
+         //  if (_ProjectionParams.x < 0.0)
+         // {
+         //     output.uv.y = 1.0 - output.uv.y;
+         // }
         float3 viewDirectionWithCamera = mul(unity_CameraInvProjection, vertexPosition.xyzz * far).xyz;
         output.viewDirection = mul(_CameraToWorldMatrix, float4(viewDirectionWithCamera, 0)).xyz;
+           // On non-GL when AA is used, the main texture and scene depth texture
+            // will come out in different vertical orientations.
+            // So flip sampling of the texture when that is the case (main texture
+            // texel size will have negative Y).
+
+       
+        return output;
+    }
+     v2f vertProject(uint vertexID : SV_VertexID)
+    {
+    
+        // On calcule les vertex position
+        float x = (vertexID != 1) ? -1 : 3;
+        float y = (vertexID == 2) ? -3 : 1;
+        float3 vertexPosition = float3(x, y, 1.0);
+        float far = _ProjectionParams.z;
+
+        v2f output;
+        output.vertex = float4(vertexPosition.x, -vertexPosition.y, 1, 1);
+        output.uv = (vertexPosition.xy + 1) / 2;
+        
+         if (_ProjectionParams.x < 0.0)
+        {
+            output.uv.y = 1.0 - output.uv.y;
+        }
+        float3 viewDirectionWithCamera = mul(unity_CameraInvProjection, vertexPosition.xyzz * far).xyz;
+        output.viewDirection = mul(_CameraToWorldMatrix, float4(viewDirectionWithCamera, 0)).xyz;
+           // On non-GL when AA is used, the main texture and scene depth texture
+            // will come out in different vertical orientations.
+            // So flip sampling of the texture when that is the case (main texture
+            // texel size will have negative Y).
+
+       
         return output;
     }
     float random (float2 uv)
@@ -294,9 +335,10 @@ half4 _LightOcclusionProbInfo;
         return mainProduct;
     }
     
-    float4 fragComposite(v2f input) : SV_Target
+    float4 frag(v2f input) : SV_Target
     {
         //UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(input);
+        
         float3 rayOrigin = _WorldSpaceCameraPos;
         float3 viewLength = length(input.viewDirection);
         float3 rayDirection  = input.viewDirection / viewLength;
@@ -374,11 +416,20 @@ half4 _LightOcclusionProbInfo;
                     return color /= _BlurQuality * _BlurDirection - 15.0;;
                 }
 
-                 float4 frag(v2f input) : SV_Target
+                 float4 fragCompositeVol(v2f input) : SV_Target
                 {
+                    
                     float4 color = SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, input.uv);
                   //  float4 vol = SAMPLE_TEXTURE2D_X(_VolumetricRenderTexture, sampler_VolumetricRenderTexture, input.uv);
                     //float4 colora = float4(1,1,1,1);
+                    #if UNITY_UV_STARTS_AT_TOP
+                        input.uv.y = 1.0 - input.uv.y;
+                        #endif
+                         
+                        if (_ProjectionParams.y < 0.0)
+                        {
+                            input.uv.y = 1.0 - input.uv.y;
+                        }
                     return color + blurVertical(input.uv);
                 }
 
@@ -393,16 +444,16 @@ half4 _LightOcclusionProbInfo;
         {
             HLSLPROGRAM
              
-                #pragma vertex vert
-                #pragma fragment fragComposite
+                #pragma vertex vertVolumetric
+                #pragma fragment frag
             ENDHLSL        
         }  
 
            Pass
         {
             HLSLPROGRAM
-                #pragma vertex vert
-                #pragma fragment frag
+                #pragma vertex vertProject
+                #pragma fragment fragCompositeVol
             ENDHLSL        
         }
     }

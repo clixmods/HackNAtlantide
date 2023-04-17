@@ -110,6 +110,9 @@ public class VolumetricRenderPass : ScriptableRenderPass
     // The actual execution of the pass. This is where custom rendering occurs.
     public override void Execute(ScriptableRenderContext context, ref RenderingData renderingData)
     {
+        if (renderingData.cameraData.isSceneViewCamera)
+            return; 
+        
         CommandBuffer cmd = CommandBufferPool.Get();
  
         var stack = VolumeManager.instance.stack;

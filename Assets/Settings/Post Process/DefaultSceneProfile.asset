@@ -132,6 +132,7 @@ MonoBehaviour:
   - {fileID: -7893295128165547882}
   - {fileID: -7011558710299706105}
   - {fileID: -8537361919317471234}
+  - {fileID: 7627971522188918691}
 --- !u!114 &849379129802519247
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -148,3 +149,57 @@ MonoBehaviour:
   mode:
     m_OverrideState: 1
     m_Value: 1
+--- !u!114 &7627971522188918691
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69937ca7235a455479d787fa54827d09, type: 3}
+  m_Name: VolumetricPostProcessComponent
+  m_EditorClassIdentifier: 
+  active: 1
+  intensity:
+    m_OverrideState: 1
+    m_Value: 1
+  overlayColor:
+    m_OverrideState: 0
+    m_Value: {r: 1, g: 1, b: 1, a: 1}
+    hdr: 0
+  stepSize:
+    m_OverrideState: 1
+    m_Value: 0.1
+  densityMultiplier:
+    m_OverrideState: 1
+    m_Value: 0.01
+  blueNoise:
+    m_OverrideState: 0
+    m_Value: {fileID: 0}
+    dimension: 1
+  blueNoiseOffset:
+    m_OverrideState: 0
+    m_Value: 0
+  blueNoiseScale:
+    m_OverrideState: 0
+    m_Value: 0
+  fogMultiplier:
+    m_OverrideState: 1
+    m_Value: 0.72
+  extinction:
+    m_OverrideState: 1
+    m_Value: 0.02
+  scattering:
+    m_OverrideState: 0
+    m_Value: 1
+  skyboxExtinction:
+    m_OverrideState: 0
+    m_Value: 1
+  maxDistance:
+    m_OverrideState: 1
+    m_Value: 200
+  minDistance:
+    m_OverrideState: 1
+    m_Value: 200
