@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
+using Object = UnityEngine.Object;
 using Random = UnityEngine.Random;
 
 namespace AudioAliase
