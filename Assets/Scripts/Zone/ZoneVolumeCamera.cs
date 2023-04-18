@@ -23,7 +23,7 @@ namespace Zone
                         var raycastHits = Physics.RaycastAll(view.camera.transform.position, view.camera.transform.forward);
                         if (raycastHits.Length > 0)
                         {
-                            zoneVolumeGameObject.transform.position = raycastHits[0].point;
+                            zoneVolumeGameObject.transform.position = raycastHits[^1].point;
                         }
                         GameObjectUtility.SetParentAndAlign(zoneVolumeGameObject, menuCommand.context as GameObject);
                         // Register the creation in the undo system
@@ -31,7 +31,7 @@ namespace Zone
                         Selection.activeObject = zoneVolumeGameObject;
                         // Create Virtual Camera
                         GameObject cameraVirtual = new GameObject("Camera Virtual");
-                        GameObjectUtility.SetParentAndAlign(cameraVirtual, zoneVolumeGameObject );
+                        //GameObjectUtility.SetParentAndAlign(cameraVirtual, zoneVolumeGameObject );
                         // Register the creation in the undo system
                         Undo.RegisterCreatedObjectUndo(cameraVirtual, "Create " + cameraVirtual.name);
                         Selection.activeObject = cameraVirtual;
@@ -48,7 +48,9 @@ namespace Zone
                         cameraVirtual.transform.rotation =  view.camera.transform.rotation;
                     
                     
-                         var zoneVolume = zoneVolumeGameObject.AddComponent<CinemachineCameraVirtualTransition>();
+                         var cinemachineCameraVirtualTransition = zoneVolumeGameObject.AddComponent<CinemachineCameraVirtualTransition>();
+                         cinemachineCameraVirtualTransition.Init(cinemachineVirtualCamera);
+                         //cinemachineVirtualCamera.Follow = GameObject.FindWithTag("Player").transform;
                     }
                  
                 }
