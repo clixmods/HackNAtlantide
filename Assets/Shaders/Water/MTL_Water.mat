@@ -113,8 +113,8 @@ Material:
     - _DstBlend: 0
     - _EnvironmentReflections: 1
     - _FoamAmount: 2.31
-    - _FoamCutoff: 1.1
-    - _FoamScale: 0.26
+    - _FoamCutoff: 1.04
+    - _FoamScale: 0.29
     - _FoamSpeed: 0.05
     - _GlossMapScale: 0
     - _Glossiness: 0
@@ -123,17 +123,18 @@ Material:
     - _Mettalic: 0
     - _NormalFlow1: 1
     - _NormalFlow2: 1
-    - _NormalStrenght: 0.44
+    - _NormalSpeed_1: -0.1
+    - _NormalStrenght: 0.333
     - _OcclusionStrength: 1
-    - _Opacity: 2.16
+    - _Opacity: 1
     - _Parallax: 0.005
     - _QueueControl: 0
     - _QueueOffset: 23
     - _ReceiveShadows: 1
-    - _RefractionSpeed1: 0.07
-    - _RefractionSpeed2: 0.01
-    - _RefractionStrenght: 0.18
-    - _Smoothness: 0.653
+    - _RefractionSpeed1: 0.19
+    - _RefractionSpeed2: -0.24
+    - _RefractionStrenght: 0.325
+    - _Smoothness: 1
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
@@ -141,13 +142,13 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - _BaseColor: {r: 0.25943398, g: 0.8054197, b: 1, a: 1}
+    - _BaseColor: {r: 0.25882354, g: 0.8039216, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _DeepColor: {r: 0.08940016, g: 0.38679248, b: 0.29079753, a: 1}
+    - _DeepColor: {r: 0.09019608, g: 0.3882353, b: 0.2901961, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _FoamColor: {r: 6.4222345, g: 6.4222345, b: 6.4222345, a: 1}
-    - _NormalSpeed: {r: 0.25, g: 0.25, b: 0, a: 0}
-    - _NormalTilling: {r: 1, g: 1, b: 0, a: 0}
-    - _RefractionTile: {r: 0.25, g: 0.25, b: 0, a: 0}
+    - _NormalSpeed: {r: 0.04, g: 0.05, b: 0, a: 0}
+    - _NormalTilling: {r: 0.01, g: 0.01, b: 0, a: 0}
+    - _RefractionTile: {r: 0.1, g: 0.1, b: 0, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
