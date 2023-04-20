@@ -17,6 +17,7 @@ namespace Plugins.AnimationClipEventEditor.Editor
             window.titleContent = new UnityEngine.GUIContent("Animation Event Editor");
             window.Show();
             _animationClips = GetAllInstances();
+            _showButtons = new bool[_animationClips.Length];
         }
 
         private void OnGUI()
