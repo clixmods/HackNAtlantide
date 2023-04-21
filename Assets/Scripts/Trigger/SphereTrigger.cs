@@ -4,12 +4,17 @@ using UnityEngine;
 [RequireComponent(typeof(SphereCollider))]
 public class SphereTrigger : Trigger
 {
+    protected override void Init()
+    {
+        _meshFilter.mesh = Resources.GetBuiltinResource<Mesh>("Sphere.fbx");
+        GetComponent<SphereCollider>().radius *= 2;
+    }
 #if UNITY_EDITOR
     // Add a menu item to create custom GameObjects.
     // Priority 10 ensures it is grouped with the other menu items of the same kind
     // and propagated to the hierarchy dropdown and hierarchy context menus.
     [MenuItem("GameObject/Trigger/Trigger Sphere", false, 1)]
-    static void CreateZoneCameraVolume(MenuCommand menuCommand)
+    static void CreateTriggerSphere(MenuCommand menuCommand)
     {
         var view = SceneView.lastActiveSceneView;
         if (view != null)

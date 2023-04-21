@@ -24,6 +24,7 @@ public class InputManager : MonoBehaviour
     {
         _input.Enable();
 
+        //_input.InGame.Interact
         //Interact
         _input.InGame.Interact.performed += ctx => _interact.ChangeValue(true);
         _input.InGame.Interact.canceled += ctx => _interact.ChangeValue(false);

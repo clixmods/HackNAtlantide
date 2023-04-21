@@ -7,7 +7,6 @@ using UnityEngine;
 public class InputButtonScriptableObject : ScriptableObject
 {
     public event Action<bool> OnValueChanged;
- 
     public void ChangeValue(bool value)
     {
         OnValueChanged?.Invoke(value);

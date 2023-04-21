@@ -178,4 +178,9 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(_dashReloadTime);
         _canDash = true;
     }
+    
+    public void Teleport(Transform transformPoint)
+    {
+        transform.position = transformPoint.position;
+    }
 }
