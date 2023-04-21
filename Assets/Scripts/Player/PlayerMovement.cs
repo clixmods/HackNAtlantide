@@ -183,4 +183,8 @@ public class PlayerMovement : MonoBehaviour
     {
         transform.position = transformPoint.position;
     }
+    public  void SetParentToNull()
+    {
+        transform.SetParent(null);
+    }
 }
