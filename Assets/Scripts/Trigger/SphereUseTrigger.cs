@@ -8,8 +8,9 @@ public class SphereUseTrigger : UseTrigger
 {
     protected override void Init()
     {
-        _meshFilter.mesh = Resources.GetBuiltinResource<Mesh>("Sphere.fbx");
         GetComponent<SphereCollider>().radius *= 2;
+        _meshFilter.mesh = Resources.GetBuiltinResource<Mesh>("Sphere.fbx");
+       
     }
 #if UNITY_EDITOR
     // Add a menu item to create custom GameObjects.

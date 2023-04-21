@@ -7,13 +7,16 @@ using UnityEngine.InputSystem;
 public abstract class UseTrigger : Trigger
 { 
     [Header("USE")]
+    [Tooltip("Which input the trigger need to check ?")]
     [SerializeField] private InputButtonScriptableObject inputToTrigger;
+    [Tooltip("Delete Trigger after use")]
     [SerializeField] private bool triggerOnce;
     /// <summary>
-    /// Event when the volume is triggered by Exit
+    /// Event when is triggered by input
     /// </summary>
     public UnityEvent EventOnTriggerInput;
-    
+
+    #region Methods
     protected override void TriggerEnter()
     {
         inputToTrigger.OnValueChanged +=InputToTriggerOnOnValueChanged;
@@ -22,7 +25,6 @@ public abstract class UseTrigger : Trigger
     {
         inputToTrigger.OnValueChanged -= InputToTriggerOnOnValueChanged;
     }
-
     private void InputToTriggerOnOnValueChanged(bool inputValue)
     {
         if (inputValue)
@@ -36,4 +38,5 @@ public abstract class UseTrigger : Trigger
             }
         }
     }
+    #endregion
 }
