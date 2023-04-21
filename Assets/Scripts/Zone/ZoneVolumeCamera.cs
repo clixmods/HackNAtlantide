@@ -19,23 +19,28 @@ namespace Zone
                     if (view != null)
                     {
                         // Create a custom game object
-                        GameObject zoneVolumeGameObject = new GameObject("Zone Volume with camera");
+                        GameObject zoneVolumeGameObject = new GameObject("Box Trigger : [Specify something]");
                         var raycastHits = Physics.RaycastAll(view.camera.transform.position, view.camera.transform.forward);
                         if (raycastHits.Length > 0)
                         {
-                            zoneVolumeGameObject.transform.position = raycastHits[^1].point;
+                            zoneVolumeGameObject.transform.position = raycastHits[0].point;
+                        }
+                        else
+                        {
+                            zoneVolumeGameObject.transform.position += view.camera.transform.forward * 5;
                         }
                         GameObjectUtility.SetParentAndAlign(zoneVolumeGameObject, menuCommand.context as GameObject);
                         // Register the creation in the undo system
                         Undo.RegisterCreatedObjectUndo(zoneVolumeGameObject, "Create " + zoneVolumeGameObject.name);
                         Selection.activeObject = zoneVolumeGameObject;
                         // Create Virtual Camera
-                        GameObject cameraVirtual = new GameObject("Camera Virtual");
+                        GameObject cameraVirtual = new GameObject("Camera Virtual : [Specify something]");
                         //GameObjectUtility.SetParentAndAlign(cameraVirtual, zoneVolumeGameObject );
                         // Register the creation in the undo system
                         Undo.RegisterCreatedObjectUndo(cameraVirtual, "Create " + cameraVirtual.name);
                         Selection.activeObject = cameraVirtual;
                         var cinemachineVirtualCamera = cameraVirtual.AddComponent<CinemachineVirtualCamera>();
+                        cinemachineVirtualCamera.m_Lens.FieldOfView = 20;
                         // Apply default setting
                         CinemachineFramingTransposer body = cinemachineVirtualCamera.AddCinemachineComponent<CinemachineFramingTransposer>();
                         var framingTransposer = body;
