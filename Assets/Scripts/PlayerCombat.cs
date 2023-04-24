@@ -11,7 +11,18 @@ public class PlayerCombat : MonoBehaviour
 
     Animator anim;
     [SerializeField] Weapon weapon;
-    
+
+    [SerializeField] private InputButtonScriptableObject _inputAttack;
+
+    private void OnEnable()
+    {
+        _inputAttack.OnValueChanged += Attack;
+    }
+    private void OnDisable()
+    {
+        _inputAttack.OnValueChanged -= Attack;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,14 +32,9 @@ public class PlayerCombat : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Fire1"))
-        {
-            Attack();
-        }
-        ExitAttack();
     }
 
-    void Attack()
+    void Attack(bool value)
     {
         if(Time.time - lastComboEnd > 0.5f && comboCounter <= combo.Count)
         {
@@ -48,6 +54,7 @@ public class PlayerCombat : MonoBehaviour
                 }
             }
         }
+        ExitAttack();
     }
 
     void ExitAttack()
