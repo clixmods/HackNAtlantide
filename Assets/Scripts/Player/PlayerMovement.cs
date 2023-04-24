@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -93,21 +94,11 @@ public class PlayerMovement : MonoBehaviour
         }
         _rigidbody.MovePosition(_rigidbody.position + displacement);
 
+        //Keep the player on ground
+        StayGrounded();
+
         velocity -= displacement;
         velocity -= hit.normal * Vector3.Dot(velocity, hit.normal);
-
-
-        //Force Player To StayOnGround
-        /*RaycastHit groundHit;
-        float halfHeight = (collider.height * 0.5f);
-        Vector3 bottom = collider.bounds.center + (Vector3.down * halfHeight);
-
-        Debug.DrawRay(bottom, Vector3.down);
-        if (Physics.Raycast(bottom, Vector3.down, out groundHit,100f, _layerEnvironnement))
-        {
-            Vector3 direction = groundHit.collider.transform.position - bottom;
-            _rigidbody.MovePosition(_rigidbody.position + direction * (1 - Physics.defaultContactOffset));
-        }*/
 
         //recursivity
         if ((--recurs != 0) && (velocity != Vector3.zero))
@@ -178,7 +169,18 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(_dashReloadTime);
         _canDash = true;
     }
-    
+    private void StayGrounded()
+    {
+        float distance = 0f;
+        Vector3 displacement = Vector3.zero;
+        if (_rigidbody.SweepTest(Vector3.down*0.1f, out RaycastHit hit, 0.5f, QueryTriggerInteraction.Ignore))
+        {
+            //ClampDistance with contact offset;
+            distance = Mathf.Max(0f, hit.distance - Physics.defaultContactOffset);
+            displacement = Vector3.down * distance;
+        }
+        _rigidbody.MovePosition(_rigidbody.position + displacement);
+    }
     public void Teleport(Transform transformPoint)
     {
         transform.position = transformPoint.position;
