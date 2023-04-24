@@ -2,12 +2,11 @@ using System.Collections;
 using UnityEngine;
 
 [ExecuteAlways]
-[RequireComponent(typeof(Collider))]
-public class VolumeFog : MonoBehaviour
+public class FogTransition : MonoBehaviour
 {
     public delegate void VolumeFogEvent();
     private static VolumeFogEvent OnVolumeActive;
-     [SerializeField] private VolumeFogSettings fogSetting = new VolumeFogSettings();
+    [SerializeField] private VolumeFogSettings fogSetting;
     private void Awake()
     {
         OnVolumeActive += () => StopCoroutine(Lerp());
@@ -21,10 +20,10 @@ public class VolumeFog : MonoBehaviour
         }
     }
     #endif
-   
-
     private void OnValidate()
     {
+        if (fogSetting == null)
+            return;
         RenderSettings.fogDensity = fogSetting.fogDensity;
         RenderSettings.fogEndDistance = fogSetting.fogEndDistance;
         RenderSettings.fogStartDistance = fogSetting.fogStartDistance;
@@ -33,7 +32,7 @@ public class VolumeFog : MonoBehaviour
         RenderSettings.fogMode = fogSetting.fogMode;
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void ApplyFog()
     {
         OnVolumeActive?.Invoke();
         StartCoroutine(Lerp());

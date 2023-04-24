@@ -1,8 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-[Serializable]
-public class VolumeFogSettings
+public class VolumeFogSettings : ScriptableObject
 {
     public bool fog = true;
     public Color fogColor = Color.white;

@@ -1,6 +1,4 @@
-﻿using System;
-using Cinemachine;
-using UnityEditor;
+﻿using UnityEditor;
 using UnityEngine;
 
 [RequireComponent(typeof(BoxCollider))]
