@@ -6,7 +6,6 @@ using UnityEngine;
     public class CinemachineCameraVirtualTransition : MonoBehaviour
     {
         public delegate void CameraEvent();
-
         public event CameraEvent OnCameraChanged;
         private BoxTrigger _zoneVolume;
         [SerializeField] private CinemachineVirtualCamera _cinemachineVirtualCamera;
@@ -19,12 +18,10 @@ using UnityEngine;
         }
         private void Awake()
         {
-            //_cinemachineVirtualCamera = GetComponentInChildren<CinemachineVirtualCamera>();
             if (disableCameraInAwake)
             {
                 _cinemachineVirtualCamera.gameObject.SetActive(false);
             }
-
             OnCameraChanged += DesactiveCamera;
         }
 
@@ -32,8 +29,6 @@ using UnityEngine;
         {
             _zoneVolume = GetComponent<BoxTrigger>();
             _zoneVolume.EventOnTriggerEnter.AddListener(ActiveCamera);
-           // _zoneVolume.EventOnTriggerEnd.AddListener(DesactiveCamera);
-            
             if (followPlayer)
             {
                 _cinemachineVirtualCamera.Follow = GameObject.FindWithTag("Player").transform;
