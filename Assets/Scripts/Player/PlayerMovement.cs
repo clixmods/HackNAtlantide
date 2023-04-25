@@ -9,25 +9,33 @@ public class PlayerMovement : MonoBehaviour
 {
     private Rigidbody _rigidbody;
     private Camera _camera;
+    [SerializeField] private PlayerMovementStateScriptableObject _playerMovementState;
+
     //Input
     [SerializeField] private InputVectorScriptableObject _moveInput;
     [SerializeField] private InputButtonScriptableObject _dashInput;
     private Vector3 _moveDirection;
 
+    //Walk
     [SerializeField] private float _moveSpeed;
     private float _speed;
     private Vector3 _smoothMoveVelocity;
     private Vector3 _moveAmount;
     [SerializeField] private float _smoothTimeAcceleration;
     [SerializeField] private float _smoothTimeAccelerationDash;
-    [SerializeField] private float _dashTime;
-    [SerializeField] private float _dashSpeed;
-    [SerializeField] private float _dashReloadTime;
-    private bool _canDash;
-    private bool _isDashing;
     private float _rotationSpeed;
     Quaternion _targetRotation;
 
+    //Dash
+    [SerializeField] private float _dashTime;
+    [SerializeField] private float _dashSpeed;
+    [SerializeField] private float _dashReloadTime;
+    [SerializeField] EventFloatScriptableObject _dashEvent;
+    [SerializeField] PlayerStaminaScriptableObject _playerStamina;
+    private bool _canDash;
+    private bool _isDashing;
+    
+    //Collision Detection
     private Collider[] _buffer = new Collider[8];
     new CapsuleCollider collider;
     [SerializeField] private LayerMask _layerEnvironnement;
@@ -70,8 +78,21 @@ public class PlayerMovement : MonoBehaviour
         //direction in which player wants to move
         Vector3 targetmoveAmount = _moveDirection * _speed * Time.fixedDeltaTime;
 
-        //calculated direction based of his movedirection of the precedent frame, different smooth time if he is dashing.
-        _moveAmount = Vector3.SmoothDamp(_moveAmount, targetmoveAmount, ref _smoothMoveVelocity, _isDashing?_smoothTimeAccelerationDash:_smoothTimeAcceleration);
+        if(_isDashing)
+        {
+            //calculated direction based of his movedirection of the precedent frame
+            _moveAmount = Vector3.SmoothDamp(_moveAmount, targetmoveAmount, ref _smoothMoveVelocity, _smoothTimeAccelerationDash);
+
+            _playerMovementState.MovementState = MovementState.dashing;
+        }
+        else
+        {
+            //calculated direction based of his movedirection of the precedent frame
+            _moveAmount = Vector3.SmoothDamp(_moveAmount, targetmoveAmount, ref _smoothMoveVelocity, _smoothTimeAcceleration);
+
+            _playerMovementState.MovementState = _moveAmount.sqrMagnitude > 0.0005f ? MovementState.running : MovementState.idle;
+        }
+        
 
         //Move the object with the RigidBody
         MoveSweepTestRecurs(_moveAmount, 3);
@@ -145,8 +166,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void Dash(bool value)
     {
-        if (_canDash)
+        if (_canDash && _playerStamina.CanUseStamina()&& _moveDirection.sqrMagnitude > 0.1f)
         {
+            _dashEvent.LaunchEvent(1);
             _speed = _dashSpeed;
             _isDashing = true;
             _canDash = false;
