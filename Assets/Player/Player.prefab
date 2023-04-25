@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 2176775217575482329}
   - component: {fileID: -6015575804148246740}
   - component: {fileID: 70470615285775491}
+  - component: {fileID: 6041089416096145865}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -123,6 +124,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerMovementState: {fileID: 11400000, guid: cbdc9ceb96c20ac4cb9cc17112219e5d,
     type: 2}
+  _playerInstanceSO: {fileID: 11400000, guid: 275f07e531552df4896cbb9e43e44af7, type: 2}
   _moveInput: {fileID: 11400000, guid: f723c9ff06fee8f4b84dfde16114e058, type: 2}
   _dashInput: {fileID: 11400000, guid: 4bd4a32db9dece64598ee56d8821fda5, type: 2}
   _moveSpeed: 8
@@ -133,9 +135,6 @@ MonoBehaviour:
   _dashReloadTime: 0.2
   _dashEvent: {fileID: 11400000, guid: 4d2826f6d65799142b0ba195f975918e, type: 2}
   _playerStamina: {fileID: 11400000, guid: 7a3b5b3b905bbfe4fb4ea9ada55960e1, type: 2}
-  _layerEnvironnement:
-    serializedVersion: 2
-    m_Bits: 0
 --- !u!114 &70470615285775491
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -151,6 +150,19 @@ MonoBehaviour:
   _staminaSO: {fileID: 11400000, guid: 7a3b5b3b905bbfe4fb4ea9ada55960e1, type: 2}
   _dashEvent: {fileID: 11400000, guid: 4d2826f6d65799142b0ba195f975918e, type: 2}
   _speedToRecharge: 1
+--- !u!114 &6041089416096145865
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2176775217575482146}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab66d9ea3cea1024c8e5269a9f9154b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxHealth: 3
 --- !u!1 &7404291090903331117
 GameObject:
   m_ObjectHideFlags: 0

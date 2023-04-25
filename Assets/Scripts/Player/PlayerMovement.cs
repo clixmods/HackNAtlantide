@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody _rigidbody;
     private Camera _camera;
     [SerializeField] private PlayerMovementStateScriptableObject _playerMovementState;
+    [SerializeField] private PlayerInstanceScriptableObject _playerInstanceSO;
 
     //Input
     [SerializeField] private InputVectorScriptableObject _moveInput;
@@ -38,12 +39,12 @@ public class PlayerMovement : MonoBehaviour
     //Collision Detection
     private Collider[] _buffer = new Collider[8];
     new CapsuleCollider collider;
-    [SerializeField] private LayerMask _layerEnvironnement;
 
 
     // Start is called before the first frame update
     void Awake()
     {
+        _playerInstanceSO.Player = this.gameObject;
         _rigidbody = GetComponent<Rigidbody>();
         _camera = Camera.main;
         collider = GetComponent<CapsuleCollider>();

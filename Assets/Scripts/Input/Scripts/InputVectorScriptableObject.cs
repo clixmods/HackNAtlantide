@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "InputData/Vector")]
+[CreateAssetMenu(menuName = "Data/InputData/Vector")]
 public class InputVectorScriptableObject : ScriptableObject
 {
     public event Action<Vector2> OnValueChanged;

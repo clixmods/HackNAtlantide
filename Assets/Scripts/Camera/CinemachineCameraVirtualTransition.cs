@@ -31,7 +31,7 @@ using UnityEngine;
             _zoneVolume.EventOnTriggerEnter.AddListener(ActiveCamera);
             if (followPlayer)
             {
-                _cinemachineVirtualCamera.Follow = GameObject.FindWithTag("Player").transform;
+                _cinemachineVirtualCamera.Follow = Resources.Load<PlayerInstanceScriptableObject>("PlayerInstance").Player.transform;
             }
         }
 
