@@ -15,16 +15,11 @@ public class Weapon : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        /*var enemy = other.gameObject.GetComponent<enemyAIPatrol>();
-        if(enemy != null)
+        var damageable = other.gameObject.GetComponent<EnemyController>(); // getcomponent IDamageable
+        if(damageable != null)
         {
-            enemy.health.HP -= damage;
-
-            if(enemy.health.HP <= 0)
-            {
-                Destroy(enemy.gameObject);
-            }
-        }*/
+            //damageable.takedamage(damage);
+        }
     }
 
     public void EnableTriggerBox()
@@ -36,5 +31,4 @@ public class Weapon : MonoBehaviour
     {
         triggerBox.enabled = false;
     }
-
 }
