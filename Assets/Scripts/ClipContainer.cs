@@ -5,27 +5,51 @@ using UnityEngine;
 
 public class ClipContainer : MonoBehaviour
 {
-    [SerializeField] private Material clipMaterial;
-
+    //[SerializeField] private Material clipMaterial;
+    [SerializeField] private bool showFloorIngame = true;
+    [SerializeField] private bool showWallIngame = true;
     private void Awake()
     {
-        foreach (Transform child in transform)
+        //if (!showFloorIngame)
         {
-            foreach (Transform childChild in child)
+            foreach (Transform child in transform)
             {
-                if (childChild.TryGetComponent<MeshRenderer>(out MeshRenderer meshRendererChild))
-                    meshRendererChild.enabled = false;
+                var childsWithMeshRenderers = child.GetComponentsInChildren<MeshRenderer>();
+                foreach (MeshRenderer component in childsWithMeshRenderers)
+                {
+                    if (!showFloorIngame && component.gameObject.layer == 11  )
+                    {
+                        component.enabled = false;
+                    }
+                    if (!showWallIngame && component.gameObject.layer == 3 )
+                    {
+                        component.enabled = false;
+                    }
+                }
+                // if (child.CompareTag("Floor") && child.TryGetComponent<MeshRenderer>( out MeshRenderer meshRendererFloor))
+                // {
+                //     meshRendererFloor.enabled = false;
+                // }
             }
-            if (child.TryGetComponent<MeshRenderer>(out MeshRenderer meshRenderer))
-                meshRenderer.enabled = false;
         }
+
+        // if (!showWallIngame)
+        // {
+        //     foreach (Transform child in transform)
+        //     {
+        //         if (child.CompareTag("Wall") && child.TryGetComponent<MeshRenderer>( out MeshRenderer meshRendererWall))
+        //         {
+        //             meshRendererWall.enabled = false;
+        //         }
+        //     }
+        // }
     }
 
     private void OnValidate()
     {
-        foreach (Transform child in transform)
-        {
-            child.GetComponentInChildren<MeshRenderer>().sharedMaterial = clipMaterial;
-        }
+        // foreach (Transform child in transform)
+        // {
+        //     child.GetComponentInChildren<MeshRenderer>().sharedMaterial = clipMaterial;
+        // }
     }
 }
