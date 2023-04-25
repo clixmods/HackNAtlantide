@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-    public  float damage;
+    public float damage;
 
     BoxCollider triggerBox;
 
@@ -15,10 +15,9 @@ public class Weapon : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        var damageable = other.gameObject.GetComponent<EnemyController>(); // getcomponent IDamageable
-        if(damageable != null)
+        if(TryGetComponent<IDamageable>(out var damageable))
         {
-            //damageable.takedamage(damage);
+            damageable.TakeDamage(damage);
         }
     }
 
