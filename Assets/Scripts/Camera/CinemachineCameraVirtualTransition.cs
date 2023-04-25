@@ -7,6 +7,7 @@ using UnityEngine;
     {
         public delegate void CameraEvent(CinemachineVirtualCamera newCinemachineVirtualCamera );
         public static event CameraEvent OnCameraChanged;
+        public static event CameraEvent OnPostCameraChanged;
         private BoxTrigger _zoneVolume;
         [SerializeField] private CinemachineVirtualCamera _cinemachineVirtualCamera;
         [SerializeField] private bool disableCameraInAwake = true;
@@ -39,6 +40,7 @@ using UnityEngine;
         {
             OnCameraChanged?.Invoke(_cinemachineVirtualCamera);
             _cinemachineVirtualCamera.gameObject.SetActive(true);
+            OnPostCameraChanged?.Invoke(_cinemachineVirtualCamera);
         }
         public void DesactiveCamera(CinemachineVirtualCamera newCinemachineVirtualCamera)
         {
