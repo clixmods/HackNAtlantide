@@ -5,8 +5,8 @@ using UnityEngine;
     [RequireComponent(typeof(BoxTrigger))]
     public class CinemachineCameraVirtualTransition : MonoBehaviour
     {
-        public delegate void CameraEvent();
-        public event CameraEvent OnCameraChanged;
+        public delegate void CameraEvent(CinemachineVirtualCamera newCinemachineVirtualCamera );
+        public static event CameraEvent OnCameraChanged;
         private BoxTrigger _zoneVolume;
         [SerializeField] private CinemachineVirtualCamera _cinemachineVirtualCamera;
         [SerializeField] private bool disableCameraInAwake = true;
@@ -37,10 +37,10 @@ using UnityEngine;
 
         public void ActiveCamera()
         {
-            OnCameraChanged?.Invoke();
+            OnCameraChanged?.Invoke(_cinemachineVirtualCamera);
             _cinemachineVirtualCamera.gameObject.SetActive(true);
         }
-        public void DesactiveCamera()
+        public void DesactiveCamera(CinemachineVirtualCamera newCinemachineVirtualCamera)
         {
             _cinemachineVirtualCamera.gameObject.SetActive(false);
         }

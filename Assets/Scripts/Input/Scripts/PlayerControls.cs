@@ -62,6 +62,24 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Focus"",
+                    ""type"": ""Button"",
+                    ""id"": ""99fd06d9-00d4-45c6-b8e1-1d6a28706af0"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SwitchFocus"",
+                    ""type"": ""Value"",
+                    ""id"": ""accf1927-d9ad-41af-9d52-c4e86eefc9f4"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -207,6 +225,50 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""action"": ""Attack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d2dd1060-0f76-4590-816b-8d07a0e1160f"",
+                    ""path"": ""<Gamepad>/rightStickPress"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Focus"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a7d4c5b6-83ed-42ba-9403-bb913ccd5ff4"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""PC"",
+                    ""action"": ""Focus"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b6a98e5b-cc98-4983-b375-ff5ab7b09ca0"",
+                    ""path"": ""<Mouse>/scroll"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""PC"",
+                    ""action"": ""SwitchFocus"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6fee35aa-b9b4-4e3f-ba9e-54de014f38e2"",
+                    ""path"": ""<Gamepad>/rightStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""SwitchFocus"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -247,6 +309,8 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_InGame_Move = m_InGame.FindAction("Move", throwIfNotFound: true);
         m_InGame_Dash = m_InGame.FindAction("Dash", throwIfNotFound: true);
         m_InGame_Attack = m_InGame.FindAction("Attack", throwIfNotFound: true);
+        m_InGame_Focus = m_InGame.FindAction("Focus", throwIfNotFound: true);
+        m_InGame_SwitchFocus = m_InGame.FindAction("SwitchFocus", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -310,6 +374,8 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_InGame_Move;
     private readonly InputAction m_InGame_Dash;
     private readonly InputAction m_InGame_Attack;
+    private readonly InputAction m_InGame_Focus;
+    private readonly InputAction m_InGame_SwitchFocus;
     public struct InGameActions
     {
         private @PlayerControls m_Wrapper;
@@ -318,6 +384,8 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @Move => m_Wrapper.m_InGame_Move;
         public InputAction @Dash => m_Wrapper.m_InGame_Dash;
         public InputAction @Attack => m_Wrapper.m_InGame_Attack;
+        public InputAction @Focus => m_Wrapper.m_InGame_Focus;
+        public InputAction @SwitchFocus => m_Wrapper.m_InGame_SwitchFocus;
         public InputActionMap Get() { return m_Wrapper.m_InGame; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -339,6 +407,12 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Attack.started -= m_Wrapper.m_InGameActionsCallbackInterface.OnAttack;
                 @Attack.performed -= m_Wrapper.m_InGameActionsCallbackInterface.OnAttack;
                 @Attack.canceled -= m_Wrapper.m_InGameActionsCallbackInterface.OnAttack;
+                @Focus.started -= m_Wrapper.m_InGameActionsCallbackInterface.OnFocus;
+                @Focus.performed -= m_Wrapper.m_InGameActionsCallbackInterface.OnFocus;
+                @Focus.canceled -= m_Wrapper.m_InGameActionsCallbackInterface.OnFocus;
+                @SwitchFocus.started -= m_Wrapper.m_InGameActionsCallbackInterface.OnSwitchFocus;
+                @SwitchFocus.performed -= m_Wrapper.m_InGameActionsCallbackInterface.OnSwitchFocus;
+                @SwitchFocus.canceled -= m_Wrapper.m_InGameActionsCallbackInterface.OnSwitchFocus;
             }
             m_Wrapper.m_InGameActionsCallbackInterface = instance;
             if (instance != null)
@@ -355,6 +429,12 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Attack.started += instance.OnAttack;
                 @Attack.performed += instance.OnAttack;
                 @Attack.canceled += instance.OnAttack;
+                @Focus.started += instance.OnFocus;
+                @Focus.performed += instance.OnFocus;
+                @Focus.canceled += instance.OnFocus;
+                @SwitchFocus.started += instance.OnSwitchFocus;
+                @SwitchFocus.performed += instance.OnSwitchFocus;
+                @SwitchFocus.canceled += instance.OnSwitchFocus;
             }
         }
     }
@@ -383,5 +463,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnMove(InputAction.CallbackContext context);
         void OnDash(InputAction.CallbackContext context);
         void OnAttack(InputAction.CallbackContext context);
+        void OnFocus(InputAction.CallbackContext context);
+        void OnSwitchFocus(InputAction.CallbackContext context);
     }
 }

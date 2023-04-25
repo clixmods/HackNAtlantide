@@ -8,6 +8,8 @@ public class InputManager : MonoBehaviour
     [SerializeField] private InputButtonScriptableObject _attack;
     [SerializeField] private InputButtonScriptableObject _dash;
     [SerializeField] private InputVectorScriptableObject _move;
+    [SerializeField] private InputVectorScriptableObject _switchFocus;
+    [SerializeField] private InputButtonScriptableObject _focus;
     [SerializeField] private InputActionIcon _actionIcon;
     void Awake()
     {
@@ -39,6 +41,11 @@ public class InputManager : MonoBehaviour
         //Move
         _input.InGame.Move.performed += ctx => _move.ChangeValue(_input.InGame.Move.ReadValue<Vector2>());
         _input.InGame.Move.canceled += ctx => _move.ChangeValue(Vector2.zero);
+        // Focus
+        _input.InGame.Focus.performed += ctx => _focus.ChangeValue(true);
+        // SwitchFocus
+        _input.InGame.SwitchFocus.performed += ctx => _switchFocus.ChangeValue(_input.InGame.SwitchFocus.ReadValue<Vector2>());
+        _input.InGame.SwitchFocus.canceled += ctx => _switchFocus.ChangeValue(Vector2.zero);
     }
 
     void DisableGameInput()
@@ -56,7 +63,13 @@ public class InputManager : MonoBehaviour
         //Move
         _input.InGame.Move.performed -= ctx => _move.ChangeValue(_input.InGame.Move.ReadValue<Vector2>());
         _input.InGame.Move.canceled -= ctx => _move.ChangeValue(Vector2.zero);
-
+        
+        // Focus
+        _input.InGame.Focus.performed -= ctx => _focus.ChangeValue(true);
+        // SwitchFocus
+        _input.InGame.SwitchFocus.performed -= ctx => _switchFocus.ChangeValue(_input.InGame.SwitchFocus.ReadValue<Vector2>());
+        _input.InGame.SwitchFocus.canceled -= ctx => _switchFocus.ChangeValue(Vector2.zero);
+        
         _input.Disable();
     }
     private void Update()
