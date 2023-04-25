@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: 11fbb8f7bedc9154ca491afc829a0e21
 ModelImporter:
-  serializedVersion: 21202
+  serializedVersion: 21300
   internalIDToNameTable:
   - first:
       74: -5252816984213320552
@@ -154,7 +154,23 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0
+        functionName: SetDamageActive
+        data: 
+        objectReferenceParameter: {fileID: 919132149155446097, guid: f0031b1fe4efcdc49a686b2310a4c150,
+          type: 3}
+        floatParameter: 0
+        intParameter: 1
+        messageOptions: 0
+      - time: 0.35880396
+        functionName: SetDamageActive
+        data: 
+        objectReferenceParameter: {fileID: 919132149155446097, guid: f0031b1fe4efcdc49a686b2310a4c150,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
@@ -284,6 +300,7 @@ ModelImporter:
   humanoidOversampling: 1
   avatarSetup: 1
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  remapMaterialsIfMaterialImportModeIsNone: 1
   additionalBone: 0
   userData: 
   assetBundleName: 

@@ -14,6 +14,9 @@ public class PlayerCombat : MonoBehaviour
 
     [SerializeField] private InputButtonScriptableObject _inputAttack;
 
+    public bool CanGiveDamage { get { return _canGiveDamage; } }
+    private bool _canGiveDamage;
+
     private void OnEnable()
     {
         _inputAttack.OnValueChanged += Attack;
@@ -67,5 +70,10 @@ public class PlayerCombat : MonoBehaviour
     {
         comboCounter = 0;
         lastComboEnd = Time.time;
+    }
+
+    public void SetDamageActive(int value)
+    {
+        _canGiveDamage = value == 1;
     }
 }
