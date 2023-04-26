@@ -20,7 +20,7 @@ public class UIInputHelper : MonoBehaviour
     [SerializeField] InputActionIcons inputActionIcons;
     [SerializeField] private float distanceToShow = 10;
     private static Canvas _canvas;
-    private static GameObject _player;
+    
     public static UIInputHelper CreateInputHelper(GameObject prefab, Transform transformTarget, Sprite image, float maxDistanceToShow,
         InputActionReference input = default)
     {
@@ -56,10 +56,10 @@ public class UIInputHelper : MonoBehaviour
         InputSystem.onAnyButtonPress.Call(OnButtonPressed);
         // Apply default binding group
         _bindingGroup = _playerControls.controlSchemes[0].bindingGroup;
-        _player ??= GameObject.FindGameObjectWithTag("Player");
+        
         
     }
-        private string _bindingGroup;
+    private string _bindingGroup;
     public string bindingGroup => _bindingGroup;
      private void OnButtonPressed(InputControl button)
     {
@@ -101,14 +101,14 @@ public class UIInputHelper : MonoBehaviour
     }
     private void UpdateOpacity()
     {
-        var distance = Vector3.Distance(_player.transform.position, _targetTransform.position);
+        var distance = Vector3.Distance(PlayerInstanceScriptableObject.Player.transform.position, _targetTransform.position);
         var color = _imageInput.color;
         color.a = 1-Mathf.Clamp((distance / distanceToShow),0,1);
         _imageInput.color = color;
     }
     private void UpdateScale()
     {
-        var distance = Vector3.Distance(_player.transform.position, _targetTransform.position);
+        var distance = Vector3.Distance(PlayerInstanceScriptableObject.Player.transform.position, _targetTransform.position);
         var calcul = distance / distanceToShow ;
         var clampT = Mathf.Clamp(calcul, 0, 1);
         ((RectTransform) transform).sizeDelta = Vector2.Lerp(_initialScale , _initialScale * 0.5f, clampT);
