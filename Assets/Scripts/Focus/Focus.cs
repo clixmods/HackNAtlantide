@@ -29,6 +29,8 @@ public class Focus : MonoBehaviour
     private GameObject _nofocusVirtualCamera;
     
 
+    public static Transform Target { get; private set; }
+
     public int IndexTargettable
     {
         get { return _indexTargettable; }
@@ -166,7 +168,8 @@ public class Focus : MonoBehaviour
             _cinemachineTargetGroup.m_Targets[1].target = _cinemachineTargetGroup.m_Targets[2].target;
             _cinemachineTargetGroup.m_Targets[1].weight = 1;
             _cinemachineTargetGroup.m_Targets[2].target = null;
-            
+            Target = _cinemachineTargetGroup.m_Targets[1].target;
+
         }
 
     private void Update()

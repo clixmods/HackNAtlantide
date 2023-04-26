@@ -46,7 +46,7 @@ public class Interactable : MonoBehaviour
     // This method is meant to be overwritten
     public virtual void Interact()
     {
-
+        Debug.Log("Levitation", gameObject);
     }
 
     void OnDrawGizmosSelected()

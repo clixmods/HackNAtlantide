@@ -28,7 +28,38 @@ public class InteractDetection : MonoBehaviour
     }
     void InteractInput(bool value)
     {
+        Debug.Log("Value Input "+value);
         if(value)
+        {
+            Collider[] cols = Physics.OverlapSphere(transform.position, _maxDistanceInteraction);
+            for (int i = 0; i < cols.Length; i++)
+            {
+                if (cols[i].gameObject.TryGetComponent<IInteractable>(out var interactObject))
+                {
+                    interactable.Add(interactObject);
+                }
+            }
+            
+            //calculate closest Interactable
+            float closestSqrDistance = Mathf.Infinity;
+            IInteractable closestObject = null;
+            for (int i = 0; i < interactable.Count; i++)
+            {
+                if (interactable[i] == null) continue;
+                float distance = (interactable[i].transform.position - transform.position).sqrMagnitude;
+                if (closestSqrDistance > distance)
+                {
+                    closestObject = interactable[i];
+                    closestSqrDistance = distance;
+                }
+            }
+
+            if(closestObject!=null)
+            {
+                closestObject.Interact();
+            }
+        }
+        else
         {
             Collider[] cols = Physics.OverlapSphere(transform.position, _maxDistanceInteraction);
             for (int i = 0; i < cols.Length; i++)
@@ -44,6 +75,7 @@ public class InteractDetection : MonoBehaviour
             IInteractable closestObject = null;
             for (int i = 0; i < interactable.Count; i++)
             {
+                if (interactable[i] == null) continue;
                 float distance = (interactable[i].transform.position - transform.position).sqrMagnitude;
                 if (closestSqrDistance > distance)
                 {
@@ -54,7 +86,7 @@ public class InteractDetection : MonoBehaviour
 
             if(closestObject!=null)
             {
-                closestObject.Interact();
+                closestObject.CancelInteract();
             }
         }
 
