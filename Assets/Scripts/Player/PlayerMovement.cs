@@ -128,7 +128,7 @@ public class PlayerMovement : MonoBehaviour
         MoveSweepTestRecurs(_moveAmount, 3);
 
         //Rotate the player by his direction
-        LookAtDirection(_rotationSpeed, targetmoveAmount);
+        LookAtDirection(_isDashing?_rotationSpeed*5:_rotationSpeed, targetmoveAmount);
 
         //Extract the rb from any collider
         ExtractFromColliders();
@@ -189,11 +189,11 @@ public class PlayerMovement : MonoBehaviour
     {
         if(_transformLock != null)
         {
-            _targetRotation = Quaternion.LookRotation((_transformLock.position-transform.position), transform.up);
+            _targetRotation = Quaternion.LookRotation((new Vector3(_transformLock.position.x,transform.position.y, _transformLock.position.z)-transform.position), Vector3.up);
         }
         else if (direction.magnitude > 0.001f)
         {
-            _targetRotation = Quaternion.LookRotation(direction, transform.up);
+            _targetRotation = Quaternion.LookRotation(direction, Vector3.up);
         }
         transform.rotation = Quaternion.Slerp(transform.rotation, _targetRotation, speed * Time.deltaTime);
     }
