@@ -27,6 +27,7 @@ public class Focus : MonoBehaviour
     [SerializeField] private float switchTargetMultiplier = 1f;
     private bool _isSwitching;
     private GameObject _nofocusVirtualCamera;
+    
 
     public int IndexTargettable
     {
@@ -61,7 +62,7 @@ public class Focus : MonoBehaviour
         CinemachineCameraVirtualTransition.OnPostCameraChanged += CinemachineCameraVirtualTransitionOnOnCameraChanged;
         _cinemachineTargetGroup.m_Targets = new CinemachineTargetGroup.Target[3];
         _cinemachineTargetGroup.m_Targets[0].weight = 1;
-        _cinemachineTargetGroup.m_Targets[0].target = GameObject.FindWithTag("Player").transform;
+        _cinemachineTargetGroup.m_Targets[0].target = Resources.Load<PlayerInstanceScriptableObject>("PlayerInstance").Player.transform;
         _cinemachineTargetGroup.m_Targets[1].weight = 1;
         _cinemachineTargetGroup.m_Targets[2].weight = 1;
     }
