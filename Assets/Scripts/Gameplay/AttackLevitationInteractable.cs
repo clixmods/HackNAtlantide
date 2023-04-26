@@ -29,10 +29,11 @@ public class AttackLevitationInteractable : MonoBehaviour, IInteractable
     /// </summary>
     private float _chargePercentage = 0;
     private bool _isCharging;
+    private Transform transformDestination;
     [Header("Settings")]
     [SerializeField] private float timeToBeCharged = 0.75f;
     [SerializeField] private float projectionSpeedMultiplier = 50f;
-
+    
     #region Monobehaviour
     private void Awake()
     {
@@ -41,20 +42,27 @@ public class AttackLevitationInteractable : MonoBehaviour, IInteractable
         _rigidBody = GetComponent<Rigidbody>();
         inputHelper = GetComponent<InputHelper>();
         _hasInteract = false;
+        Focus.OnFocusSwitch += SetDestination;
     }
+
+    private void SetDestination(Transform target)
+    {
+        transformDestination = target;
+    }
+
     private void FixedUpdate()
     {
         inputHelper.enabled = _playerDetectionScriptableObject.IsInRange(transform.position)&&!_hasInteract? true:false;
         if (_hasInteract)
         {
             Vector3 direction;
-            if (Focus.Target == null)
+            if (transformDestination == null)
             {
                 direction = transform.forward.normalized ;
             }
             else
             {
-                direction = (Focus.Target.position - transform.position).normalized ;
+                direction = (transformDestination.position - transform.position).normalized ;
             }
             
             _rigidBody.useGravity = false;
@@ -92,9 +100,9 @@ public class AttackLevitationInteractable : MonoBehaviour, IInteractable
     #if UNITY_EDITOR
     private void OnDrawGizmos()
     {
-        if (Focus.Target != null)
+        if (transformDestination != null)
         {
-            Gizmos.DrawLine(transform.position, transform.position + (Focus.Target.position - transform.position) );
+            Gizmos.DrawLine(transform.position, transform.position + (transformDestination.position - transform.position) );
         }
     }
     #endif

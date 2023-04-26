@@ -14,7 +14,6 @@ public class UIFocus : MonoBehaviour
         Focus.OnFocusEnable += FocusOnOnFocusEnable;
         Focus.OnFocusDisable += FocusOnOnFocusDisable;
         Focus.OnFocusSwitch += FocusOnOnFocusSwitch;
-        
     }
     
     private void FocusOnOnFocusSwitch(Transform target)
@@ -24,7 +23,6 @@ public class UIFocus : MonoBehaviour
 
     private void FocusOnOnFocusDisable()
     {
-        target = null;
         gameObject.SetActive(false);
     }
 
@@ -35,20 +33,19 @@ public class UIFocus : MonoBehaviour
 
     private void Update()
     {
-        // Si l'object a follow est detruit, on le delete
-            if(target == null)
-            {
-                transform.position = new Vector3(-10000,0,-100);
-                return;
-            }
-            Vector3 position = target.position.GetPositionInWorldToScreenPoint();
-            if(target.position.IsOutOfCameraVision() )
-            {
-                transform.position = new Vector3(-10000,0,-100);
-            }
-            else
-            {
-                transform.position = position;
-            }
+        if(target == null)
+        {
+            transform.position = new Vector3(-10000,0,-100);
+            return;
+        }
+        Vector3 position = target.position.GetPositionInWorldToScreenPoint();
+        if(target.position.IsOutOfCameraVision() )
+        {
+            transform.position = new Vector3(-10000,0,-100);
+        }
+        else
+        {
+            transform.position = position;
+        }
     }
 }

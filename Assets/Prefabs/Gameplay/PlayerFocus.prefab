@@ -94,7 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2199508585763071396}
   - component: {fileID: 2199508585763071395}
-  - component: {fileID: 2199508585763071397}
+  - component: {fileID: 6057143475609417798}
   m_Layer: 0
   m_Name: PlayerFocus
   m_TagString: Untagged
@@ -130,14 +130,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca96764ce128bc64482c9a875ea15adc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectsTargetable: []
-  minimumDistanceToBeTargettable: 50
   inputEnableFocus: {fileID: 11400000, guid: f80c46dfb20a52241ad87b243d5f800f, type: 2}
   inputSwitchTarget: {fileID: 11400000, guid: 6a5484de302615045a26f049fc40d2dd, type: 2}
   cameraVirtualFocus: {fileID: 2199508586024135327}
-  switchTargetMultiplier: 3
-  _playerInstanceScriptableObject: {fileID: 0}
---- !u!114 &2199508585763071397
+--- !u!114 &6057143475609417798
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -146,7 +142,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2199508585763071394}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5eb80d8e62d9d145bb50fb783c0f731, type: 3}
+  m_Script: {fileID: 11500000, guid: 87d00802b08b4aafa597b07cf04abe2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_PositionMode: 1
@@ -157,8 +153,9 @@ MonoBehaviour:
     weight: 1
     radius: 0
   - target: {fileID: 0}
-    weight: 1
+    weight: 0
     radius: 0
+  switchTargetMultiplier: 1
 --- !u!1 &2199508586024135326
 GameObject:
   m_ObjectHideFlags: 0
@@ -183,7 +180,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2199508586024135326}
-  m_LocalRotation: {x: 0.18500915, y: 0.81157994, z: -0.4309441, w: 0.34842044}
+  m_LocalRotation: {x: 0.10787878, y: 0.8838798, z: -0.25130537, w: 0.37942642}
   m_LocalPosition: {x: -16.64, y: 14.2, z: 15.81}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

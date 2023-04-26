@@ -1,7 +1,6 @@
 ﻿using UnityEditor;
-using UnityEngine;
 
-namespace Fog.Editor
+namespace Plugins.Fog.Editor
 {
     [CustomEditor(typeof(FogTransition), true)] 
     public class VolumeFogEditor : UnityEditor.Editor

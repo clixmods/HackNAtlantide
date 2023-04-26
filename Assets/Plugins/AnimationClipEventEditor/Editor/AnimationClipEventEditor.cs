@@ -29,39 +29,39 @@ namespace Plugins.AnimationClipEventEditor.Editor
             }
            
            
-                for (int i = 0; i < _animationClips.Length; i++)
+            for (int i = 0; i < _animationClips.Length; i++)
+            {
+                var animationCLip = _animationClips[i];
+                using (new GUILayout.VerticalScope())
                 {
-                    var animationCLip = _animationClips[i];
-                    using (new GUILayout.VerticalScope())
+                    _showButtons[i] = EditorGUILayout.Foldout(_showButtons[i], animationCLip.name);
+                    if (_showButtons[i])
                     {
-                        _showButtons[i] = EditorGUILayout.Foldout(_showButtons[i], animationCLip.name);
-                        if (_showButtons[i])
+                        EditorGUI.indentLevel++;
+                        var events = animationCLip.events;
+                        using (new GUILayout.VerticalScope())
                         {
-                            EditorGUI.indentLevel++;
-                            var events = animationCLip.events;
-                             using (new GUILayout.VerticalScope())
+                            for (int j = 0; j < events.Length; j++)
                             {
-                                for (int j = 0; j < events.Length; j++)
+                                using (new GUILayout.HorizontalScope())
                                 {
-                                    using (new GUILayout.HorizontalScope())
+                                    AnimationEvent animationEvent = events[j];
+                                    EditorGUILayout.LabelField(
+                                        $"Frame : {animationEvent.time * animationCLip.frameRate}");
+                                    if (events[j].functionName.Contains("Alias"))
                                     {
-                                        AnimationEvent animationEvent = events[j];
-                                        EditorGUILayout.LabelField(
-                                            $"Frame : {animationEvent.time * animationCLip.frameRate}");
-                                        if (events[j].functionName.Contains("Alias"))
-                                        {
-                                            events[j].intParameter =
-                                                guidAliases[DrawPopupAlias(animationCLip.events[j].intParameter)];
-                                        }
+                                        events[j].intParameter =
+                                            guidAliases[DrawPopupAlias(animationCLip.events[j].intParameter)];
                                     }
                                 }
                             }
-
-                            AnimationUtility.SetAnimationEvents(animationCLip, events);
-                            EditorGUI.indentLevel--;
                         }
+
+                        AnimationUtility.SetAnimationEvents(animationCLip, events);
+                        EditorGUI.indentLevel--;
                     }
                 }
+            }
             
         }
         static AnimationClip[] GetAllInstances()
