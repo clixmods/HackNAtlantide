@@ -9,28 +9,31 @@ using UnityEngine.Serialization;
 
 public class Focus : MonoBehaviour
 {
+    #region Events
     public delegate void EventFocus();
     public delegate void EventSwitchFocus(Transform target);
     public static event EventFocus OnFocusEnable;
     public static event EventFocus OnFocusDisable;
     public static event EventSwitchFocus OnFocusSwitch;
-    
-    [FormerlySerializedAs("objectsTargettable")] public List<Transform> objectsTargetable;
-    [SerializeField] private float minimumDistanceToBeTargettable;
+    #endregion
+    [Header("Input")]
     [SerializeField] private InputButtonScriptableObject inputEnableFocus;
     [SerializeField] private InputVectorScriptableObject inputSwitchTarget;
-    private bool _focusIsEnable;
-    [SerializeField] CinemachineVirtualCamera cameraVirtual;
-    private CinemachineTargetGroup _cinemachineTargetGroup;
-    private CinemachineBrain _cinemachineBrain;
-    private int _indexTargettable;
+    [Header("Settings")]
     [SerializeField] private float switchTargetMultiplier = 1f;
+    
+    private IEnumerable<ITargetable> _targetablesInScene;
+    private List<Transform> _targetable;
+    
+    private bool _focusIsEnable;
+    [SerializeField] CinemachineVirtualCamera cameraVirtualFocus;
+    private CinemachineTargetGroup _cinemachineTargetGroup;
+    private int _indexTargettable;
     private bool _isSwitching;
     private GameObject _nofocusVirtualCamera;
-    
-
+    private PlayerInstanceScriptableObject _playerInstanceScriptableObject;
+    #region Properties
     public static Transform Target { get; private set; }
-
     public int IndexTargettable
     {
         get { return _indexTargettable; }
@@ -39,37 +42,35 @@ public class Focus : MonoBehaviour
             _indexTargettable = value;
             if (_indexTargettable < 0)
             {
-                _indexTargettable = objectsTargetable.Count-1;
+                _indexTargettable = _targetable.Count-1;
             }
-            else if(_indexTargettable > objectsTargetable.Count - 1)
+            else if(_indexTargettable > _targetable.Count - 1)
             {
                 _indexTargettable = 0;
             }
         }
     }
+    #endregion
     // Start is called before the first frame update
     void Awake()
     {
-        _cinemachineBrain = FindObjectOfType<CinemachineBrain>();
-        
-        var targets = FindObjectsOfType<MonoBehaviour>().OfType<ITargetable>();
-        objectsTargetable.Clear();
-        foreach (ITargetable target in targets)
-        {
-            objectsTargetable.Add(target.transform);
-        }
+        _targetablesInScene = FindObjectsOfType<MonoBehaviour>().OfType<ITargetable>();
+        _playerInstanceScriptableObject = Resources.Load<PlayerInstanceScriptableObject>("PlayerInstance");
+        // Input Behaviour
+        inputEnableFocus.OnValueChanged += InputEnableFocusOnChanged;
+        inputSwitchTarget.OnValueChanged += InputSwitchTargetOnChanged;
+        // Check camera transition
+        CinemachineCameraVirtualTransition.OnPostCameraChanged += CameraTransitionOnCameraChanged;
+        // Setup target group
         _cinemachineTargetGroup = GetComponent<CinemachineTargetGroup>();
-        inputEnableFocus.OnValueChanged += InputEnableFocusOnOnValueChanged;
-        inputSwitchTarget.OnValueChanged += InputSwitchTargetOnOnValueChanged;
-        CinemachineCameraVirtualTransition.OnPostCameraChanged += CinemachineCameraVirtualTransitionOnOnCameraChanged;
         _cinemachineTargetGroup.m_Targets = new CinemachineTargetGroup.Target[3];
         _cinemachineTargetGroup.m_Targets[0].weight = 1;
-        _cinemachineTargetGroup.m_Targets[0].target = PlayerInstanceScriptableObject.Player.transform;
+        _cinemachineTargetGroup.m_Targets[0].target = _playerInstanceScriptableObject.Player.transform;
         _cinemachineTargetGroup.m_Targets[1].weight = 1;
         _cinemachineTargetGroup.m_Targets[2].weight = 1;
     }
     
-    private void CinemachineCameraVirtualTransitionOnOnCameraChanged(CinemachineVirtualCamera newCameraVirtual)
+    private void CameraTransitionOnCameraChanged(CinemachineVirtualCamera newCameraVirtual)
     {
         if (_focusIsEnable)
         {
@@ -82,26 +83,25 @@ public class Focus : MonoBehaviour
     IEnumerator LerpCameraPosition(CinemachineVirtualCamera newCameraVirtual)
     {
         float timeElapsed = 0;
-        var cameraPosition = cameraVirtual.transform.position;
-        var cameraRotation = cameraVirtual.transform.rotation;
+        var cameraPosition = cameraVirtualFocus.transform.position;
+        var cameraRotation = cameraVirtualFocus.transform.rotation;
         float timeTransition = 2;
-        while (timeElapsed < timeTransition )
+        while (timeElapsed < timeTransition)
         {
             timeElapsed += Time.deltaTime;
             if(newCameraVirtual.gameObject != _nofocusVirtualCamera)
                 yield break;
 
             var t = timeElapsed / timeTransition;
-            cameraVirtual.transform.position = Vector3.Lerp(cameraPosition,newCameraVirtual.transform.position , t);
-            cameraVirtual.transform.rotation = Quaternion.Lerp(cameraRotation,  newCameraVirtual.transform.rotation, t);
+            cameraVirtualFocus.transform.position = Vector3.Lerp(cameraPosition,newCameraVirtual.transform.position , t);
+            cameraVirtualFocus.transform.rotation = Quaternion.Lerp(cameraRotation, newCameraVirtual.transform.rotation, t);
             
             yield return null;
         }
   
         
     }
-
-    private void InputSwitchTargetOnOnValueChanged(Vector2 value)
+    private void InputSwitchTargetOnChanged(Vector2 value)
     {
         if (value.magnitude == 0) return;
         
@@ -113,12 +113,11 @@ public class Focus : MonoBehaviour
         {
             IndexTargettable--;
         }
-        
         StopCoroutine(ChangeTarget());
         StartCoroutine(ChangeTarget());
     }
 
-    private void InputEnableFocusOnOnValueChanged(bool value)
+    private void InputEnableFocusOnChanged(bool value)
     {
         if (value)
         {
@@ -126,7 +125,8 @@ public class Focus : MonoBehaviour
            
             if (_focusIsEnable)
             {
-                cameraVirtual.gameObject.SetActive(true); 
+                IndexTargettable = 0;
+                cameraVirtualFocus.gameObject.SetActive(true); 
                 OnFocusEnable?.Invoke();
                 StartCoroutine(ChangeTarget());
             }
@@ -138,12 +138,49 @@ public class Focus : MonoBehaviour
         
     }
 
+    private void GenerateInteractableObject()
+    {
+        _targetable.Clear();
+    
+        foreach (ITargetable target in _targetablesInScene)
+        {
+            if (target.CanBeTarget)
+                _targetable.Add(target.transform);
+        }
+
+        if (_targetable.Count == 0)
+        {
+            _cinemachineTargetGroup.m_Targets[1].target = null;
+            Target = null;
+
+            
+        }
+        // Sort the list to have the nearest in first
+        _targetable.Sort(delegate(Transform t1, Transform t2){
+            return
+                Vector3.Distance(
+                        t1.position,_playerInstanceScriptableObject.Player.transform.position
+                    )
+                 
+                    .CompareTo(
+                        Vector3.Distance(
+                            t2.position,
+                            _playerInstanceScriptableObject.Player.transform.position
+                        )
+                    )
+                ;
+        });
+        
+    }
+
     private void DisableFocus()
     {
-        cameraVirtual.gameObject.SetActive(false); 
+        cameraVirtualFocus.gameObject.SetActive(false); 
         OnFocusDisable?.Invoke();
         if (_nofocusVirtualCamera != null)
+        {
             _nofocusVirtualCamera.SetActive(true);
+        }
         _focusIsEnable = false;
     }
 
@@ -151,8 +188,12 @@ public class Focus : MonoBehaviour
         {
             if(_isSwitching)
                 yield break;
-            
-            _cinemachineTargetGroup.m_Targets[2].target = objectsTargetable[IndexTargettable].transform;
+
+            if (_targetable.Count == 0)
+            {
+                yield break;
+            }
+            _cinemachineTargetGroup.m_Targets[2].target = _targetable[IndexTargettable].transform;
             OnFocusSwitch?.Invoke(_cinemachineTargetGroup.m_Targets[2].target);
             _cinemachineTargetGroup.m_Targets[2].weight = 0;
             _cinemachineTargetGroup.m_Targets[1].weight = 1;
@@ -174,11 +215,6 @@ public class Focus : MonoBehaviour
 
     private void Update()
     {
-        if (_cinemachineTargetGroup.m_Targets[1].target != null &&
-            Vector3.Distance(_cinemachineTargetGroup.m_Targets[0].target.position, _cinemachineTargetGroup.m_Targets[1].target.position) >
-            minimumDistanceToBeTargettable)
-        {
-            DisableFocus();
-        }
+        GenerateInteractableObject();
     }
 }

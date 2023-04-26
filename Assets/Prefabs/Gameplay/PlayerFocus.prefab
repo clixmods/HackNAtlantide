@@ -75,7 +75,7 @@ MonoBehaviour:
   m_GroupFramingSize: 0.66
   m_FramingMode: 2
   m_FrameDamping: 0
-  m_AdjustmentMode: 2
+  m_AdjustmentMode: 0
   m_MaxDollyIn: 5000
   m_MaxDollyOut: 5000
   m_MinimumDistance: 30.5
@@ -131,11 +131,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectsTargetable: []
-  minimumDistanceToBeTargettable: 10
+  minimumDistanceToBeTargettable: 50
   inputEnableFocus: {fileID: 11400000, guid: f80c46dfb20a52241ad87b243d5f800f, type: 2}
   inputSwitchTarget: {fileID: 11400000, guid: 6a5484de302615045a26f049fc40d2dd, type: 2}
-  cameraVirtual: {fileID: 2199508586024135327}
+  cameraVirtualFocus: {fileID: 2199508586024135327}
   switchTargetMultiplier: 3
+  _playerInstanceScriptableObject: {fileID: 0}
 --- !u!114 &2199508585763071397
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -182,8 +183,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2199508586024135326}
-  m_LocalRotation: {x: 0.18588066, y: 0.8091187, z: -0.44095707, w: 0.34107518}
-  m_LocalPosition: {x: -10, y: 20.4, z: 9.5}
+  m_LocalRotation: {x: 0.18500915, y: 0.81157994, z: -0.4309441, w: 0.34842044}
+  m_LocalPosition: {x: -16.64, y: 14.2, z: 15.81}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -212,7 +213,7 @@ MonoBehaviour:
   m_LookAt: {fileID: 2199508585763071396}
   m_Follow: {fileID: 0}
   m_Lens:
-    FieldOfView: 15
+    FieldOfView: 15.4
     OrthographicSize: 10
     NearClipPlane: 0.1
     FarClipPlane: 5000
