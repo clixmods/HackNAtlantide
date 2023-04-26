@@ -1,6 +1,8 @@
 ﻿using System;
 using UnityEngine;
 
+
+[CreateAssetMenu(menuName = "Fog/Volume Setting Fog" , fileName = "VolumeFogSettings_", order = 0)]
 public class VolumeFogSettings : ScriptableObject
 {
     public bool fog = true;
