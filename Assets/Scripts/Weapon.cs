@@ -4,21 +4,21 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-    [SerializeField] PlayerCombat playerCombat;
+    [SerializeField] PlayerCombat _playerCombat;
     public float damage;
 
-    BoxCollider triggerBox;
+    BoxCollider _triggerBox;
 
-    AnimationEvent damageActive;
+    AnimationEvent _damageActiveAnimatorEvent;
 
     private void Start()
     {
-        triggerBox= GetComponent<BoxCollider>();
+        _triggerBox= GetComponent<BoxCollider>();
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if(playerCombat.CanGiveDamage && other.TryGetComponent<IDamageable>(out var damageable))
+        if(_playerCombat.CanGiveDamage && other.TryGetComponent<IDamageable>(out var damageable))
         {
             damageable.TakeDamage(damage);
         }
@@ -26,11 +26,11 @@ public class Weapon : MonoBehaviour
 
     public void EnableTriggerBox()
     {
-        triggerBox.enabled = true;
+        _triggerBox.enabled = true;
     }
 
     public void DisableTriggerBox()
     {
-        triggerBox.enabled = false;
+        _triggerBox.enabled = false;
     }
 }

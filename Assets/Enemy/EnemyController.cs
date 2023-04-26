@@ -6,33 +6,34 @@ using UnityEngine.AI;
 
 public class EnemyController : MonoBehaviour
 {
-    [SerializeField] private float lookRadius;
+    private float _lookRadius = 10f;
 
-    private bool isAwake;
-    private float timerToGoSleep;
+    public bool IsAwake { get { return _isAwake; } }
+    private bool _isAwake;
+    private float _timerToGoSleep;
 
-    Transform target;
-    NavMeshAgent agent;
+    Transform _target;
+    NavMeshAgent _agent;
 
     private void Start()
     {
-        target = Resources.Load<PlayerInstanceScriptableObject>("PlayerInstance").Player.transform;
-        agent = GetComponent<NavMeshAgent>();
+        _target = Resources.Load<PlayerInstanceScriptableObject>("PlayerInstance").Player.transform;
+        _agent = GetComponent<NavMeshAgent>();
     }
 
     private void Update()
     {
         //Debug.Log(timerToGoSleep);
-        float distance = Vector3.Distance(target.position, transform.position);
+        float distance = Vector3.Distance(_target.position, transform.position);
 
-        if (distance <= lookRadius)
+        if (distance <= _lookRadius)
         {
-            if(!isAwake)
+            if(!_isAwake)
             {
-                timerToGoSleep = 0;
+                _timerToGoSleep = 0;
                 StartCoroutine(SetDestinationToPlayer());
 
-                if (distance <= agent.stoppingDistance)
+                if (distance <= _agent.stoppingDistance)
                 {
                     // Attack the target
 
@@ -42,10 +43,10 @@ public class EnemyController : MonoBehaviour
             }
             else
             {
-                timerToGoSleep = 0;
-                agent.SetDestination(target.position);
+                _timerToGoSleep = 0;
+                _agent.SetDestination(_target.position);
 
-                if (distance <= agent.stoppingDistance)
+                if (distance <= _agent.stoppingDistance)
                 {
                     // Attack the target
 
@@ -55,41 +56,41 @@ public class EnemyController : MonoBehaviour
             }
             
         }
-        else if(isAwake)
+        else if(_isAwake)
         {
-            timerToGoSleep += Time.deltaTime;
+            _timerToGoSleep += Time.deltaTime;
         }
 
-        if (timerToGoSleep > 3.5f)
+        if (_timerToGoSleep > 3f)
         {
-            isAwake = false;
-            timerToGoSleep = 0f;
+            _isAwake = false;
+            _timerToGoSleep = 0f;
         }
     }
 
     public IEnumerator SetDestinationToPlayer()
     {
-        float distance = Vector3.Distance(target.position, transform.position);
+        float distance = Vector3.Distance(_target.position, transform.position);
         // anim enemy awake
         Debug.Log("Is Awakening" + "/!\\ IS IN COROUTINE");
 
-        yield return new WaitForSeconds(3.5f); // temps d'animation awake a mettre
+        yield return new WaitForSeconds(1f); // temps d'animation awake a mettre
 
-        if (timerToGoSleep > 3.5f)
+        if (_timerToGoSleep > 3f)
         {
             yield break;
         }
 
-        if (distance <= lookRadius)
+        if (distance <= _lookRadius)
         {
             Debug.Log("Start focusing enemy" + "/!\\ IS IN COROUTINE & In Range");
-            isAwake = true;
-            agent.SetDestination(target.position);
+            _isAwake = true;
+            _agent.SetDestination(_target.position);
         }
-        else if (distance >= lookRadius)
+        else if (distance >= _lookRadius)
         {
             Debug.Log("Not focusing enemy" + "/!\\ IS IN COROUTINE & Not In Range");
-            isAwake = false;
+            _isAwake = false;
         }
         else
         {
@@ -99,7 +100,7 @@ public class EnemyController : MonoBehaviour
 
     private void FaceTarget()
     {
-        Vector3 direction = (target.position - transform.position).normalized;
+        Vector3 direction = (_target.position - transform.position).normalized;
         Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
         transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5);
     }
@@ -107,7 +108,7 @@ public class EnemyController : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, lookRadius);
+        Gizmos.DrawWireSphere(transform.position, _lookRadius);
 
     }
 
