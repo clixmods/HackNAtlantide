@@ -37,7 +37,7 @@ using UnityEngine;
         {
             if (targeter == null)
             {
-                targeter = Resources.Load<PlayerInstanceScriptableObject>("PlayerInstance").Player.transform;
+                targeter = PlayerInstanceScriptableObject.Player.transform;
             }
             
         }

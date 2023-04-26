@@ -16,7 +16,7 @@ public class FocusCinemachineTargetGroup : CinemachineTargetGroup
         if (Application.isPlaying) // the parent class use attribut executealways, so I use that to execute the following instructions only in the start game
         {
             m_Targets = new CinemachineTargetGroup.Target[2];
-            m_Targets[0].target = Resources.Load<PlayerInstanceScriptableObject>("PlayerInstance").Player.transform;
+            m_Targets[0].target = PlayerInstanceScriptableObject.Player.transform;
             m_Targets[0].weight = 1;
             targetFollower = new GameObject().transform;
             targetFollower.SetParent(transform);

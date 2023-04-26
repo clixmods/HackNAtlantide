@@ -30,7 +30,6 @@ public class Focus : MonoBehaviour
     private FocusCinemachineTargetGroup _cinemachineTargetGroup;
     private int _currentTargetIndex;
     private GameObject _nofocusVirtualCamera;
-    private PlayerInstanceScriptableObject _playerInstanceScriptableObject;
     private Transform _previousTarget;
     #region Properties
     public Transform currentTarget
@@ -64,7 +63,6 @@ public class Focus : MonoBehaviour
     void Awake()
     {
         _targetablesInScene = FindObjectsOfType<MonoBehaviour>().OfType<ITargetable>().ToList();
-        _playerInstanceScriptableObject = Resources.Load<PlayerInstanceScriptableObject>("PlayerInstance");
         // Input Behaviour
         inputEnableFocus.OnValueChanged += InputEnableFocusOnChanged;
         inputSwitchTarget.OnValueChanged += InputSwitchTargetOnChanged;
@@ -177,13 +175,13 @@ public class Focus : MonoBehaviour
         _targetable.Sort(delegate(Transform t1, Transform t2){
             return
                 Vector3.Distance(
-                        t1.position,_playerInstanceScriptableObject.Player.transform.position
+                        t1.position,PlayerInstanceScriptableObject.Player.transform.position
                     )
                  
                     .CompareTo(
                         Vector3.Distance(
                             t2.position,
-                            _playerInstanceScriptableObject.Player.transform.position
+                            PlayerInstanceScriptableObject.Player.transform.position
                         )
                     )
                 ;
