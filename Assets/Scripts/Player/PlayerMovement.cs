@@ -40,6 +40,9 @@ public class PlayerMovement : MonoBehaviour
     private Collider[] _buffer = new Collider[8];
     new CapsuleCollider collider;
 
+    //LockForCombat
+    Transform _transformLock = null;
+
 
     // Start is called before the first frame update
     void Awake()
@@ -55,6 +58,7 @@ public class PlayerMovement : MonoBehaviour
     {
         _moveInput.OnValueChanged += MoveInput;
         _dashInput.OnValueChanged += Dash;
+        
     }
     private void OnDisable()
     {
@@ -158,11 +162,15 @@ public class PlayerMovement : MonoBehaviour
 
     public void LookAtDirection(float speed, Vector3 direction)
     {
-        if (direction.magnitude > 0.001f)
+        if(_transformLock != null)
+        {
+            _targetRotation = Quaternion.LookRotation((_transformLock.position-transform.position), transform.up);
+        }
+        else if (direction.magnitude > 0.001f)
         {
             _targetRotation = Quaternion.LookRotation(direction, transform.up);
-            transform.rotation = Quaternion.Slerp(transform.rotation, _targetRotation, speed * Time.deltaTime);
         }
+        transform.rotation = Quaternion.Slerp(transform.rotation, _targetRotation, speed * Time.deltaTime);
     }
 
     private void Dash(bool value)
@@ -211,5 +219,14 @@ public class PlayerMovement : MonoBehaviour
     public  void SetParentToNull()
     {
         transform.SetParent(null);
+    }
+
+    public void FocusLock(Transform transform)
+    {
+        _transformLock = transform;
+    }
+    public void FocusUnLock()
+    {
+        _transformLock = null;
     }
 }
