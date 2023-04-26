@@ -13,7 +13,6 @@ public class RuntimeGameState : GameState
 
     }
 }
-
 public class PauseGameState : GameState
 {
     public override int Priority => GameStateUtility.PausePriority;
