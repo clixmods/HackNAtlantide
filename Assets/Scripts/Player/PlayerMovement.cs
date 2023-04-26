@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("GENERAL")]
     [Space(5)]
 
+    private Animator _animator;
     private Rigidbody _rigidbody;
     private Camera _camera;
     [SerializeField] private PlayerMovementStateScriptableObject _playerMovementState;
@@ -65,10 +66,10 @@ public class PlayerMovement : MonoBehaviour
     Transform _transformLock = null;
     Transform _transformLockTempForDash;
 
-
     // Start is called before the first frame update
     void Awake()
     {
+        _animator = GetComponent<Animator>();
         _playerInstanceSO.Player = this.gameObject;
         _rigidbody = GetComponent<Rigidbody>();
         _camera = Camera.main;
@@ -92,6 +93,7 @@ public class PlayerMovement : MonoBehaviour
     }
     void MoveInput(Vector2 direction)
     {
+        _animator.SetFloat("RunningSpeed", Mathf.Abs(direction.x) + Mathf.Abs(direction.y));
         //Projects the camera forward on 2D horizontal plane
         Vector3 camForwardOnPlane = new Vector3(_camera.transform.forward.x, 0, _camera.transform.forward.z).normalized;
         Vector3 camRightOnPlane = new Vector3(_camera.transform.right.x, 0, _camera.transform.right.z).normalized;
