@@ -5,14 +5,10 @@ using UnityEngine.AI;
 
 public class EnemyHealth : MonoBehaviour, IDamageable
 {
-    EnemyController _enemyController;
+    [SerializeField] EnemyController _enemyController;
     [SerializeField] private float _maxHealth;
     private float _health;
     public float health { get { return _health; } private set { _health = value; } }
-    private void Awake()
-    {
-        _enemyController = GetComponent<EnemyController>();
-    }
 
     void Start()
     {
