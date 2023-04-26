@@ -70,7 +70,7 @@ public class PlayerMovement : MonoBehaviour
     void Awake()
     {
         _animator = GetComponent<Animator>();
-        _playerInstanceSO.Player = this.gameObject;
+        PlayerInstanceScriptableObject.Player = this.gameObject;
         _rigidbody = GetComponent<Rigidbody>();
         _camera = Camera.main;
         collider = GetComponent<CapsuleCollider>();

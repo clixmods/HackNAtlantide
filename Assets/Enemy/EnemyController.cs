@@ -17,7 +17,7 @@ public class EnemyController : MonoBehaviour
 
     private void Start()
     {
-        _target = Resources.Load<PlayerInstanceScriptableObject>("PlayerInstance").Player.transform;
+        _target = PlayerInstanceScriptableObject.Player.transform;
         _agent = GetComponent<NavMeshAgent>();
     }
 

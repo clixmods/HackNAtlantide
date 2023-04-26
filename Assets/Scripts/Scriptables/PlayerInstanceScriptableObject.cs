@@ -4,6 +4,20 @@ using UnityEngine;
 [CreateAssetMenu(menuName ="Data/PlayerInstance")]
 public class PlayerInstanceScriptableObject : ScriptableObject
 {
-    GameObject _player;
-    public GameObject Player { get { return _player; } set { _player = value; } }
+    static GameObject _player;
+    public static GameObject Player 
+    { 
+        get 
+        { 
+            if (_player == null)
+            { 
+                _player = FindObjectOfType<PlayerMovement>().gameObject; 
+            } 
+            return _player; 
+        } 
+        set 
+        { 
+            _player = value; 
+        } 
+    }
 }
