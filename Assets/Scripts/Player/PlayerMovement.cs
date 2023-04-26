@@ -7,27 +7,48 @@ using UnityEngine.EventSystems;
 
 public class PlayerMovement : MonoBehaviour
 {
+    //General
+    [Header("GENERAL")]
+    [Space(5)]
+
     private Rigidbody _rigidbody;
     private Camera _camera;
     [SerializeField] private PlayerMovementStateScriptableObject _playerMovementState;
     [SerializeField] private PlayerInstanceScriptableObject _playerInstanceSO;
 
+
     //Input
+    [Header("INPUT")]
+    [Space(5)]
     [SerializeField] private InputVectorScriptableObject _moveInput;
     [SerializeField] private InputButtonScriptableObject _dashInput;
     private Vector3 _moveDirection;
 
+
     //Walk
+    [Header("WALK")]
+    [Space(5)]
+
     [SerializeField] private float _moveSpeed;
     private float _speed;
     private Vector3 _smoothMoveVelocity;
     private Vector3 _moveAmount;
     [SerializeField] private float _smoothTimeAcceleration;
     [SerializeField] private float _smoothTimeAccelerationDash;
-    private float _rotationSpeed;
+
+
+    //rotation lookat
+    [Header("LOOK")]
+    [Space(5)]
+
+    [SerializeField] private float _rotationSpeed;
     Quaternion _targetRotation;
 
+
     //Dash
+    [Header("DASH")]
+    [Space(5)]
+
     [SerializeField] private float _dashTime;
     [SerializeField] private float _dashSpeed;
     [SerializeField] private float _dashReloadTime;
@@ -42,6 +63,7 @@ public class PlayerMovement : MonoBehaviour
 
     //LockForCombat
     Transform _transformLock = null;
+    Transform _transformLockTempForDash;
 
 
     // Start is called before the first frame update
@@ -58,12 +80,15 @@ public class PlayerMovement : MonoBehaviour
     {
         _moveInput.OnValueChanged += MoveInput;
         _dashInput.OnValueChanged += Dash;
-        
+        Focus.OnFocusSwitch += FocusLock;
+        Focus.OnFocusDisable += FocusUnLock;
     }
     private void OnDisable()
     {
         _moveInput.OnValueChanged -= MoveInput;
         _dashInput.OnValueChanged += Dash;
+        Focus.OnFocusSwitch -= FocusLock;
+        Focus.OnFocusDisable -= FocusUnLock;
     }
     void MoveInput(Vector2 direction)
     {
@@ -103,7 +128,7 @@ public class PlayerMovement : MonoBehaviour
         MoveSweepTestRecurs(_moveAmount, 3);
 
         //Rotate the player by his direction
-        LookAtDirection(5, targetmoveAmount);
+        LookAtDirection(_rotationSpeed, targetmoveAmount);
 
         //Extract the rb from any collider
         ExtractFromColliders();
@@ -181,6 +206,8 @@ public class PlayerMovement : MonoBehaviour
             _speed = _dashSpeed;
             _isDashing = true;
             _canDash = false;
+            _transformLockTempForDash = _transformLock;
+            _transformLock = null;
             StartCoroutine(CancelDash());
         }
     }
@@ -191,6 +218,7 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(_dashTime);
         _speed = _moveSpeed;
         _isDashing = false;
+        _transformLock = _transformLockTempForDash;
         StartCoroutine(ReloadDash());
     }
 
