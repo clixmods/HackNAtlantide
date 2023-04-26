@@ -128,7 +128,7 @@ public class PlayerMovement : MonoBehaviour
         MoveSweepTestRecurs(_moveAmount, 3);
 
         //Rotate the player by his direction
-        LookAtDirection(_isDashing?_rotationSpeed*5:_rotationSpeed, targetmoveAmount);
+        LookAtDirection(_isDashing?_rotationSpeed*20:_rotationSpeed, targetmoveAmount);
 
         //Extract the rb from any collider
         ExtractFromColliders();
