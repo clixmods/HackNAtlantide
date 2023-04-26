@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -8,33 +9,42 @@ public class PlayerMovement : MonoBehaviour
 {
     private Rigidbody _rigidbody;
     private Camera _camera;
+    [SerializeField] private PlayerMovementStateScriptableObject _playerMovementState;
+    [SerializeField] private PlayerInstanceScriptableObject _playerInstanceSO;
+
     //Input
     [SerializeField] private InputVectorScriptableObject _moveInput;
     [SerializeField] private InputButtonScriptableObject _dashInput;
     private Vector3 _moveDirection;
 
+    //Walk
     [SerializeField] private float _moveSpeed;
     private float _speed;
     private Vector3 _smoothMoveVelocity;
     private Vector3 _moveAmount;
     [SerializeField] private float _smoothTimeAcceleration;
     [SerializeField] private float _smoothTimeAccelerationDash;
-    [SerializeField] private float _dashTime;
-    [SerializeField] private float _dashSpeed;
-    [SerializeField] private float _dashReloadTime;
-    private bool _canDash;
-    private bool _isDashing;
     private float _rotationSpeed;
     Quaternion _targetRotation;
 
+    //Dash
+    [SerializeField] private float _dashTime;
+    [SerializeField] private float _dashSpeed;
+    [SerializeField] private float _dashReloadTime;
+    [SerializeField] EventFloatScriptableObject _dashEvent;
+    [SerializeField] PlayerStaminaScriptableObject _playerStamina;
+    private bool _canDash;
+    private bool _isDashing;
+    
+    //Collision Detection
     private Collider[] _buffer = new Collider[8];
     new CapsuleCollider collider;
-    [SerializeField] private LayerMask _layerEnvironnement;
 
 
     // Start is called before the first frame update
     void Awake()
     {
+        _playerInstanceSO.Player = this.gameObject;
         _rigidbody = GetComponent<Rigidbody>();
         _camera = Camera.main;
         collider = GetComponent<CapsuleCollider>();
@@ -69,8 +79,21 @@ public class PlayerMovement : MonoBehaviour
         //direction in which player wants to move
         Vector3 targetmoveAmount = _moveDirection * _speed * Time.fixedDeltaTime;
 
-        //calculated direction based of his movedirection of the precedent frame, different smooth time if he is dashing.
-        _moveAmount = Vector3.SmoothDamp(_moveAmount, targetmoveAmount, ref _smoothMoveVelocity, _isDashing?_smoothTimeAccelerationDash:_smoothTimeAcceleration);
+        if(_isDashing)
+        {
+            //calculated direction based of his movedirection of the precedent frame
+            _moveAmount = Vector3.SmoothDamp(_moveAmount, targetmoveAmount, ref _smoothMoveVelocity, _smoothTimeAccelerationDash);
+
+            _playerMovementState.MovementState = MovementState.dashing;
+        }
+        else
+        {
+            //calculated direction based of his movedirection of the precedent frame
+            _moveAmount = Vector3.SmoothDamp(_moveAmount, targetmoveAmount, ref _smoothMoveVelocity, _smoothTimeAcceleration);
+
+            _playerMovementState.MovementState = _moveAmount.sqrMagnitude > 0.0005f ? MovementState.running : MovementState.idle;
+        }
+        
 
         //Move the object with the RigidBody
         MoveSweepTestRecurs(_moveAmount, 3);
@@ -93,21 +116,11 @@ public class PlayerMovement : MonoBehaviour
         }
         _rigidbody.MovePosition(_rigidbody.position + displacement);
 
+        //Keep the player on ground
+        StayGrounded();
+
         velocity -= displacement;
         velocity -= hit.normal * Vector3.Dot(velocity, hit.normal);
-
-
-        //Force Player To StayOnGround
-        /*RaycastHit groundHit;
-        float halfHeight = (collider.height * 0.5f);
-        Vector3 bottom = collider.bounds.center + (Vector3.down * halfHeight);
-
-        Debug.DrawRay(bottom, Vector3.down);
-        if (Physics.Raycast(bottom, Vector3.down, out groundHit,100f, _layerEnvironnement))
-        {
-            Vector3 direction = groundHit.collider.transform.position - bottom;
-            _rigidbody.MovePosition(_rigidbody.position + direction * (1 - Physics.defaultContactOffset));
-        }*/
 
         //recursivity
         if ((--recurs != 0) && (velocity != Vector3.zero))
@@ -154,8 +167,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void Dash(bool value)
     {
-        if (_canDash)
+        if (_canDash && _playerStamina.CanUseStamina()&& _moveDirection.sqrMagnitude > 0.1f)
         {
+            _dashEvent.LaunchEvent(1);
             _speed = _dashSpeed;
             _isDashing = true;
             _canDash = false;
@@ -178,7 +192,18 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(_dashReloadTime);
         _canDash = true;
     }
-    
+    private void StayGrounded()
+    {
+        float distance = 0f;
+        Vector3 displacement = Vector3.zero;
+        if (_rigidbody.SweepTest(Vector3.down*0.1f, out RaycastHit hit, 0.5f, QueryTriggerInteraction.Ignore))
+        {
+            //ClampDistance with contact offset;
+            distance = Mathf.Max(0f, hit.distance - Physics.defaultContactOffset);
+            displacement = Vector3.down * distance;
+        }
+        _rigidbody.MovePosition(_rigidbody.position + displacement);
+    }
     public void Teleport(Transform transformPoint)
     {
         transform.position = transformPoint.position;

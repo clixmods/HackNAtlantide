@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-    public  float damage;
+    [SerializeField] PlayerCombat playerCombat;
+    public float damage;
 
     BoxCollider triggerBox;
+
+    AnimationEvent damageActive;
 
     private void Start()
     {
@@ -15,16 +18,10 @@ public class Weapon : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        /*var enemy = other.gameObject.GetComponent<enemyAIPatrol>();
-        if(enemy != null)
+        if(playerCombat.CanGiveDamage && other.TryGetComponent<IDamageable>(out var damageable))
         {
-            enemy.health.HP -= damage;
-
-            if(enemy.health.HP <= 0)
-            {
-                Destroy(enemy.gameObject);
-            }
-        }*/
+            damageable.TakeDamage(damage);
+        }
     }
 
     public void EnableTriggerBox()
@@ -36,5 +33,4 @@ public class Weapon : MonoBehaviour
     {
         triggerBox.enabled = false;
     }
-
 }

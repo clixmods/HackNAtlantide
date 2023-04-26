@@ -14,6 +14,9 @@ public class PlayerCombat : MonoBehaviour
 
     [SerializeField] private InputButtonScriptableObject _inputAttack;
 
+    public bool CanGiveDamage { get { return _canGiveDamage; } }
+    private bool _canGiveDamage;
+
     private void OnEnable()
     {
         _inputAttack.OnValueChanged += Attack;
@@ -29,32 +32,30 @@ public class PlayerCombat : MonoBehaviour
         anim = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-    }
-
     void Attack(bool value)
     {
-        if(Time.time - lastComboEnd > 0.5f && comboCounter <= combo.Count)
+        if (value)
         {
-            CancelInvoke("EndCombo");
-
-            if(Time.time - lastClickedTime >= 0.2f)
+            if (Time.time - lastComboEnd > 0.5f && comboCounter <= combo.Count)
             {
-                anim.runtimeAnimatorController = combo[comboCounter].animatorOV;
-                anim.Play("Attack", 0, 0);
-                weapon.damage = combo[comboCounter].damage;
-                comboCounter++;
-                lastClickedTime = Time.time;
+                CancelInvoke("EndCombo");
 
-                if (comboCounter + 1 > combo.Count)
+                if (Time.time - lastClickedTime >= 0.2f)
                 {
-                    comboCounter = 0;
+                    anim.runtimeAnimatorController = combo[comboCounter].animatorOV;
+                    anim.Play("Attack", 0, 0);
+                    weapon.damage = combo[comboCounter].damage;
+                    comboCounter++;
+                    lastClickedTime = Time.time;
+
+                    if (comboCounter + 1 > combo.Count)
+                    {
+                        comboCounter = 0;
+                    }
                 }
             }
+            ExitAttack();
         }
-        ExitAttack();
     }
 
     void ExitAttack()
@@ -69,5 +70,10 @@ public class PlayerCombat : MonoBehaviour
     {
         comboCounter = 0;
         lastComboEnd = Time.time;
+    }
+
+    public void SetDamageActive(int value)
+    {
+        _canGiveDamage = value == 1;
     }
 }

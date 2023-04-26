@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName ="InputData/button")]
+[CreateAssetMenu(menuName ="Data/InputData/button")]
 public class InputButtonScriptableObject : ScriptableObject
 {
     public event Action<bool> OnValueChanged;
