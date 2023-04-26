@@ -81,21 +81,16 @@ public class EnemyController : MonoBehaviour
             yield break;
         }
 
-        if (distance <= _lookRadius)
+        if (distance <= _lookRadius )
         {
             Debug.Log("Start focusing enemy" + "/!\\ IS IN COROUTINE & In Range");
-            _isAwake = true;
-            _agent.SetDestination(_target.position);
+            WakeUp();
         }
-        else if (distance >= _lookRadius)
-        {
-            Debug.Log("Not focusing enemy" + "/!\\ IS IN COROUTINE & Not In Range");
-            _isAwake = false;
-        }
-        else
-        {
-            Debug.Log("TESTTTTTTT");
-        }
+    }
+
+    public void WakeUp()
+    {
+        _isAwake = true;
     }
 
     private void FaceTarget()
@@ -110,14 +105,5 @@ public class EnemyController : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, _lookRadius);
 
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if(other.TryGetComponent<PlayerMovement>(out var damageable))
-        {
-            // player.takedamage
-            print("HIT!");
-        }
     }
 }
