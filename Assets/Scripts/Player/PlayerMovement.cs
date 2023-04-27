@@ -84,14 +84,19 @@ public class PlayerMovement : MonoBehaviour
     {
         _moveInput.OnValueChanged += MoveInput;
         _dashInput.OnValueChanged += Dash;
-        Focus.OnFocusSwitch += FocusLock;
+        Focus.OnFocusEnable += FocusEnable;
+        Focus.OnFocusSwitch += FocusSwitch;
         Focus.OnFocusDisable += FocusUnLock;
     }
+
+   
+
     private void OnDisable()
     {
         _moveInput.OnValueChanged -= MoveInput;
         _dashInput.OnValueChanged += Dash;
-        Focus.OnFocusSwitch -= FocusLock;
+        Focus.OnFocusEnable -= FocusEnable;
+        Focus.OnFocusSwitch -= FocusSwitch;
         Focus.OnFocusDisable -= FocusUnLock;
     }
     void MoveInput(Vector2 direction)
@@ -192,7 +197,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void LookAtDirection(float speed, Vector3 direction)
     {
-        if(_transformLock != null)
+        if(_followTarget && _transformLock != null)
         {
             _targetRotation = Quaternion.LookRotation((new Vector3(_transformLock.position.x,transform.position.y, _transformLock.position.z)-transform.position), Vector3.up);
         }
@@ -257,12 +262,21 @@ public class PlayerMovement : MonoBehaviour
         transform.SetParent(null);
     }
 
-    public void FocusLock(Transform transform)
+    #region Focus Events / Behavior
+
+    private bool _followTarget;
+    private void FocusEnable()
+    {
+        _followTarget = true;
+    }
+    public void FocusSwitch(Transform transform)
     {
         _transformLock = transform;
     }
     public void FocusUnLock()
     {
-        _transformLock = null;
+        _followTarget = false;
     }
+
+    #endregion
 }

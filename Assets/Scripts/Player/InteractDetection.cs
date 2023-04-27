@@ -54,9 +54,10 @@ public class InteractDetection : MonoBehaviour
         }
         if(value)
         {
-            if(closestObject != null)
+            if(closestObject != null )
             {
                 closestObject.Interact();
+                
             }
         }
         else

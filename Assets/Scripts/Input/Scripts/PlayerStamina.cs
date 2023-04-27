@@ -7,7 +7,7 @@ public class PlayerStamina : MonoBehaviour
 {
     [SerializeField] PlayerStaminaScriptableObject _staminaSO;
     private bool _rechargeStamina;
-    [SerializeField] float _speedToRecharge;
+    
 
     private void OnEnable()
     {
@@ -28,7 +28,7 @@ public class PlayerStamina : MonoBehaviour
         {
             if(_rechargeStamina)
             {
-                _staminaSO.Value += Time.deltaTime * _speedToRecharge;   
+                _staminaSO.Value += Time.deltaTime * _staminaSO.SpeedToRecharge;   
             }
         }
         else

@@ -8,6 +8,8 @@ public class PlayerStaminaScriptableObject : ScriptableObject
 {
     [SerializeField] private float _maxValue;
     [SerializeField] private float _value;
+    [SerializeField] private float _speedToRecharge = 1f;
+    public float SpeedToRecharge => _speedToRecharge;
     public float Value
     {
         get => _value;
@@ -17,7 +19,6 @@ public class PlayerStaminaScriptableObject : ScriptableObject
             OnValueChanged?.Invoke(_value);
         }
     }
-    
     private bool waitForRecharge;
     public bool WaitForRecharge
     {

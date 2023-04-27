@@ -16,6 +16,7 @@ public class AttackLevitationInteractable : MonoBehaviour, IInteractable
     /// </summary>
     private bool _hasInteract;
     [SerializeField] PlayerDetectionScriptableObject _playerDetectionScriptableObject;
+    [SerializeField] private PlayerStaminaScriptableObject _playerStamina;
     /// <summary>
     /// Initial position of the in the Awake event
     /// </summary>
@@ -33,7 +34,7 @@ public class AttackLevitationInteractable : MonoBehaviour, IInteractable
     [Header("Settings")]
     [SerializeField] private float timeToBeCharged = 0.75f;
     [SerializeField] private float projectionSpeedMultiplier = 50f;
-    
+    [SerializeField] private float useStaminaAmount = 1f;
     #region Monobehaviour
     private void Awake()
     {
@@ -88,12 +89,15 @@ public class AttackLevitationInteractable : MonoBehaviour, IInteractable
         {
             if(!_isCharging)
                 yield break;
+            
+            _playerStamina.UseStamina(_playerStamina.SpeedToRecharge*Time.deltaTime);
             var t = timeElapsed / timeToBeCharged;
             transform.position = Vector3.Lerp(_initialPosition, _initialPosition + Vector3.up*5, t);
             timeElapsed += Time.deltaTime;
             yield return null;
         }
         _hasInteract = true;
+        _playerStamina.UseStamina(useStaminaAmount);
         _isCharging = false;
     }
 
@@ -111,7 +115,7 @@ public class AttackLevitationInteractable : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-        if (!_hasInteract)
+        if (!_hasInteract && _playerStamina.CanUseStamina())
         {
             StartCoroutine(ChargeObject());
         }
