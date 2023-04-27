@@ -39,6 +39,11 @@ public class PlayerStaminaScriptableObject : ScriptableObject
     {
         return !waitForRecharge;
     }
+    public Action<float> OnUseStamina;
+    public void UseStamina(float value)
+    {
+        OnUseStamina?.Invoke(value);
+    }
     public void ResetStamina()
     {
         Value = _maxValue;

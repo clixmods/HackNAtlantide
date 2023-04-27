@@ -204,7 +204,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (_canDash && _playerStamina.CanUseStamina()&& _moveDirection.sqrMagnitude > 0.1f)
         {
-            _dashEvent.LaunchEvent(1);
+            _playerStamina.UseStamina(1);
             _speed = _dashSpeed;
             _isDashing = true;
             _canDash = false;
