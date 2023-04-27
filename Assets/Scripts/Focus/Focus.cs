@@ -32,7 +32,7 @@ public class Focus : MonoBehaviour
     private GameObject _nofocusVirtualCamera;
     private Transform _previousTarget;
     #region Properties
-    public Transform currentTarget
+    public Transform CurrentTarget
     {
         get
         {
@@ -104,8 +104,6 @@ public class Focus : MonoBehaviour
             cameraVirtualFocus.transform.rotation = Quaternion.Lerp(cameraRotation, newCameraVirtual.transform.rotation, t);
             yield return null;
         }
-  
-        
     }
     private void InputSwitchTargetOnChanged(Vector2 value)
     {
@@ -124,12 +122,12 @@ public class Focus : MonoBehaviour
 
     private void Switch()
     {
-        if (_previousTarget == currentTarget)
+        if (_previousTarget == CurrentTarget)
             return;
         
-        OnFocusSwitch?.Invoke(currentTarget);
-        _cinemachineTargetGroup.SwitchToTarget(currentTarget);
-        _previousTarget = currentTarget;
+        OnFocusSwitch?.Invoke(CurrentTarget);
+        _cinemachineTargetGroup.SwitchToTarget(CurrentTarget);
+        _previousTarget = CurrentTarget;
     }
 
     private void InputEnableFocusOnChanged(bool value)
@@ -155,7 +153,6 @@ public class Focus : MonoBehaviour
     private void GenerateInteractableObject()
     {
         _targetable.Clear();
-        
         foreach (ITargetable target in _targetablesInScene)
         {
             try
@@ -167,6 +164,7 @@ public class Focus : MonoBehaviour
             {
                 Debug.Log("Horrible things happened!");
                 _targetablesInScene = FindObjectsOfType<MonoBehaviour>().OfType<ITargetable>().ToList();
+                Switch();
                 return;
             }
 
@@ -206,7 +204,7 @@ public class Focus : MonoBehaviour
         if (!_focusIsEnable)
         {
             CurrentTargetIndex = 0;
-            if (currentTarget != _previousTarget)
+            if (CurrentTarget != _previousTarget)
             {
                 Switch();
             }
