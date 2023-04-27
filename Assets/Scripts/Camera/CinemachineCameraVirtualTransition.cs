@@ -23,7 +23,12 @@ using UnityEngine;
             {
                 _cinemachineVirtualCamera.gameObject.SetActive(false);
             }
+            else
+            {
+                ActiveCamera();
+            }
             OnCameraChanged += DesactiveCamera;
+            
         }
 
         private void Start()

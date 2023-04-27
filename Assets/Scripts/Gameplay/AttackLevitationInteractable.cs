@@ -74,6 +74,10 @@ public class AttackLevitationInteractable : MonoBehaviour, IInteractable
     {
         if (_hasInteract)
         {
+            if (collision.transform.TryGetComponent<IDamageable>(out var damageable))
+            {
+                damageable.TakeDamage(2f);
+            }
             // Todo : implement collision ennemi etc
             Destroy(gameObject);
         }
