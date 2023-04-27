@@ -66,6 +66,9 @@ public class PlayerMovement : MonoBehaviour
     Transform _transformLock = null;
     Transform _transformLockTempForDash;
 
+    [Header("FeedBack")]
+    [SerializeField] RumblerDataConstant _dashRumble;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -211,6 +214,9 @@ public class PlayerMovement : MonoBehaviour
             _transformLockTempForDash = _transformLock;
             _transformLock = null;
             StartCoroutine(CancelDash());
+
+            //FeedBack
+            Rumbler.instance.RumbleConstant(_dashRumble);
         }
     }
 
