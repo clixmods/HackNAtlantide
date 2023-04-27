@@ -66,7 +66,7 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-    public IEnumerator SetDestinationToPlayer()
+    IEnumerator SetDestinationToPlayer()
     {
         float distance = Vector3.Distance(_target.position, transform.position);
         // anim enemy awake
