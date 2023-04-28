@@ -1,29 +1,35 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Serialization;
 
-public class EnemyController : MonoBehaviour
+public class EnemyController : MonoBehaviour,ICombat
 {
-    private float attackRadius = 2f;
-    private float _lookRadius = 10f;
+    public float damage;
+
+    [SerializeField] private float attackRadius = 1f;
+    [SerializeField] private float lookRadius = 10f;
     
-    bool playerInLookRadius, playerInAttackRadius;
+    bool _playerInLookRadius, _playerInAttackRadius;
     [SerializeField] LayerMask groundLayer, playerLayer;
 
     NavMeshAgent _agent;
 
+    private Animator _animator;
+
     private void Start()
     {
         _agent = GetComponent<NavMeshAgent>();
+        _animator = GetComponent<Animator>();
     }
 
     private void Update()
     {
-        playerInLookRadius = Physics.CheckSphere(transform.position, _lookRadius, playerLayer);
-        playerInAttackRadius = Physics.CheckSphere(transform.position, attackRadius, playerLayer);
+        _playerInLookRadius = Physics.CheckSphere(transform.position, lookRadius, playerLayer);
+        _playerInAttackRadius = Physics.CheckSphere(transform.position, attackRadius, playerLayer);
         
-        if (playerInLookRadius && !playerInAttackRadius) Chase();
-        if (playerInLookRadius && playerInAttackRadius) Attack();
+        if (_playerInLookRadius && !_playerInAttackRadius) Chase();
+        if (_playerInLookRadius && _playerInAttackRadius) Attack();
     }
     
     void Chase()
@@ -33,32 +39,36 @@ public class EnemyController : MonoBehaviour
     
     private void Attack()
     {
-        var player = PlayerInstanceScriptableObject.Player.transform.position;
-        
-        if(player != null)
+        FaceTarget();
+        if (!_animator.GetCurrentAnimatorStateInfo(0).IsName("Enemy_attack"))
         {
-            Debug.Log("attacking!");
+            _animator.SetTrigger("Attack");
+            _agent.SetDestination(transform.position);
         }
     }
     
-    /*private void OnTriggerEnter(Collider other)
+    private void FaceTarget()
     {
-        var player = PlayerInstanceScriptableObject.Player.transform.position;
-        
-        print("ATTACK");
+        Vector3 direction = (PlayerInstanceScriptableObject.Player.transform.position - transform.position).normalized;
+        Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
+        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5);
+    }
 
-        if(player != null)
-        {
-            print("HIT!");
-        }
-    }*/
+    public void SetDamageActive(int value)
+    {
+        canAttack = value == 1;
+        Debug.Log(canAttack);
+    }
 
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, _lookRadius);
+        var position = transform.position;
+        Gizmos.DrawWireSphere(position, lookRadius);
 
         Gizmos.color = Color.magenta;
-        Gizmos.DrawWireSphere(transform.position, attackRadius);
+        Gizmos.DrawWireSphere(position, attackRadius);
     }
+
+    public bool canAttack { get; set; }
 }

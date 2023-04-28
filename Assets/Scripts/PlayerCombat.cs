@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerCombat : MonoBehaviour
+public class PlayerCombat : MonoBehaviour,ICombat
 {
     public List<AttackSO> combo;
     float lastClickedTime;
@@ -13,9 +13,6 @@ public class PlayerCombat : MonoBehaviour
     [SerializeField] Weapon weapon;
 
     [SerializeField] private InputButtonScriptableObject _inputAttack;
-
-    public bool CanGiveDamage { get { return _canGiveDamage; } }
-    private bool _canGiveDamage;
 
     private void OnEnable()
     {
@@ -70,11 +67,12 @@ public class PlayerCombat : MonoBehaviour
     {
         comboCounter = 0;
         lastComboEnd = Time.time;
-        Debug.Log("Oui");
     }
 
     public void SetDamageActive(int value)
     {
-        _canGiveDamage = value == 1;
+        canAttack = value == 1;
     }
+
+    public bool canAttack { get; set; }
 }
