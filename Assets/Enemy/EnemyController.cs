@@ -1,107 +1,74 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Serialization;
 
-public class EnemyController : MonoBehaviour
+public class EnemyController : MonoBehaviour,ICombat
 {
-    private float _lookRadius = 10f;
+    public float damage;
 
-    public bool IsAwake { get { return _isAwake; } }
-    private bool _isAwake;
-    private float _timerToGoSleep;
+    [SerializeField] private float attackRadius = 1f;
+    [SerializeField] private float lookRadius = 10f;
+    
+    bool _playerInLookRadius, _playerInAttackRadius;
+    [SerializeField] LayerMask groundLayer, playerLayer;
 
-    Transform _target;
     NavMeshAgent _agent;
+
+    private Animator _animator;
 
     private void Start()
     {
-        _target = PlayerInstanceScriptableObject.Player.transform;
         _agent = GetComponent<NavMeshAgent>();
+        _animator = GetComponent<Animator>();
     }
 
     private void Update()
     {
-        //Debug.Log(timerToGoSleep);
-        float distance = Vector3.Distance(_target.position, transform.position);
-
-        if (distance <= _lookRadius)
-        {
-            if(!_isAwake)
-            {
-                _timerToGoSleep = 0;
-                StartCoroutine(SetDestinationToPlayer());
-
-                if (distance <= _agent.stoppingDistance)
-                {
-                    // Attack the target
-
-                    // Face target
-                    FaceTarget();
-                }
-            }
-            else
-            {
-                _timerToGoSleep = 0;
-                _agent.SetDestination(_target.position);
-
-                if (distance <= _agent.stoppingDistance)
-                {
-                    // Attack the target
-
-                    // Face target
-                    FaceTarget();
-                }
-            }
-            
-        }
-        else if(_isAwake)
-        {
-            _timerToGoSleep += Time.deltaTime;
-        }
-
-        if (_timerToGoSleep > 3f)
-        {
-            _isAwake = false;
-            _timerToGoSleep = 0f;
-        }
+        _playerInLookRadius = Physics.CheckSphere(transform.position, lookRadius, playerLayer);
+        _playerInAttackRadius = Physics.CheckSphere(transform.position, attackRadius, playerLayer);
+        
+        if (_playerInLookRadius && !_playerInAttackRadius) Chase();
+        if (_playerInLookRadius && _playerInAttackRadius) Attack();
     }
-
-    IEnumerator SetDestinationToPlayer()
+    
+    void Chase()
     {
-        float distance = Vector3.Distance(_target.position, transform.position);
-        // anim enemy awake
-        Debug.Log("Is Awakening" + "/!\\ IS IN COROUTINE");
-
-        yield return new WaitForSeconds(1f); // temps d'animation awake a mettre
-
-        if (_timerToGoSleep > 3f)
-        {
-            yield break;
-        }
-
-        if (distance <= _lookRadius )
-        {
-            Debug.Log("Start focusing enemy" + "/!\\ IS IN COROUTINE & In Range");
-            WakeUp();
-        }
+        _agent.SetDestination(PlayerInstanceScriptableObject.Player.transform.position);
     }
-
-    public void WakeUp()
+    
+    private void Attack()
     {
-        _isAwake = true;
+        FaceTarget();
+        if (!_animator.GetCurrentAnimatorStateInfo(0).IsName("Enemy_attack"))
+        {
+            _animator.SetTrigger("Attack");
+            _agent.SetDestination(transform.position);
+        }
     }
-
+    
     private void FaceTarget()
     {
-        Vector3 direction = (_target.position - transform.position).normalized;
+        Vector3 direction = (PlayerInstanceScriptableObject.Player.transform.position - transform.position).normalized;
         Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
         transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5);
+    }
+
+    public void SetDamageActive(int value)
+    {
+        canAttack = value == 1;
+        Debug.Log(canAttack);
     }
 
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, _lookRadius);
+        var position = transform.position;
+        Gizmos.DrawWireSphere(position, lookRadius);
 
+        Gizmos.color = Color.magenta;
+        Gizmos.DrawWireSphere(position, attackRadius);
     }
+
+    public bool canAttack { get; set; }
 }

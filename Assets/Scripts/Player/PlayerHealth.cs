@@ -19,7 +19,7 @@ public class PlayerHealth : MonoBehaviour,IDamageable
 
     public void Dead()
     {
-        Debug.Log("dead");
+        // TODO - Make the dead function
     }
 
     public void TakeDamage(float damage)
