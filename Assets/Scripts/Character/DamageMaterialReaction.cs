@@ -14,6 +14,7 @@ namespace Character
         {
             idamageable = GetComponentInChildren<IDamageable>();
             idamageable.OnDamage += IdamageableOnOnDamage;
+            // Setup Material property block
             _meshRenderer = GetComponentInChildren<MeshRenderer>();
             _propBlocks = new MaterialPropertyBlock[_meshRenderer.sharedMaterials.Length];
             for (int i = 0; i < _propBlocks.Length; i++)

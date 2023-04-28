@@ -38,7 +38,7 @@ public class Focus : MonoBehaviour
         {
             if (_targetable.Count == 0)
                 return null;
-
+            
             return _targetable[CurrentTargetIndex];
         }
     }
@@ -113,11 +113,23 @@ public class Focus : MonoBehaviour
     private void Switch()
     {
         if (CurrentTarget != null && _previousTarget == CurrentTarget)
+        {
+            
             return;
+        }
+
+        if (_focusIsEnable && _previousTarget != null)
+        {
+            _previousTarget.GetComponent<ITargetable>().OnUntarget();
+        }
         
         OnFocusSwitch?.Invoke(CurrentTarget);
         _cinemachineTargetGroup.SwitchToTarget(CurrentTarget);
         _previousTarget = CurrentTarget;
+        if (_focusIsEnable)
+        {
+            CurrentTarget.GetComponent<ITargetable>().OnTarget();
+        }
     }
 
     private void InputSwitchTargetOnChanged(Vector2 value)
@@ -144,6 +156,10 @@ public class Focus : MonoBehaviour
                 CurrentTargetIndex = 0;
                 cameraVirtualFocus.gameObject.SetActive(true); 
                 OnFocusEnable?.Invoke();
+                if (CurrentTarget != null)
+                {
+                    CurrentTarget.GetComponent<ITargetable>().OnTarget();
+                }
                 //Switch();
             }
             else
@@ -221,6 +237,11 @@ public class Focus : MonoBehaviour
             _nofocusVirtualCamera.SetActive(true);
         }
         _focusIsEnable = false;
+        if (_previousTarget != null)
+        {
+            _previousTarget.GetComponent<ITargetable>().OnUntarget();
+        }
+        
     }
     
     private void Update()
