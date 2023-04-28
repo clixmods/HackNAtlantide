@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -7,6 +8,8 @@ public class PlayerHealth : MonoBehaviour,IDamageable
 {
     [SerializeField] private float _maxHealth;
     private float _health;
+    public event EventHandler OnDamage;
+    public event EventHandler OnDeath;
     public float health { get { return _health; } private set { _health = value; } }
 
     void Start()
