@@ -1,3 +1,4 @@
+using _2DGame.Scripts.Save;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -17,8 +18,7 @@ public enum WindowMode
     FullScreenWindowed
 }
 
-[CreateAssetMenu(fileName ="SettingsData")] 
-public class Settings : MonoBehaviour
+public class Settings : MonoBehaviourSaveable
 {
     public static Settings Instance;
 
@@ -99,6 +99,43 @@ public class Settings : MonoBehaviour
         }
         Instance = this;
         DontDestroyOnLoad(this);
+        DataPersistentHandler.Load(this, this.SaveID.ToString());
     }
 
+    private void OnApplicationQuit()
+    {
+        DataPersistentHandler.Save(this, this.SaveID.ToString());
+    }
+    
+    public class SettingsSaveData : SaveData
+    {
+        public float volumeMusic;
+        public float volumeSFX;
+        public float volumeGeneral;
+        public RumblerIntensity rumblerIntensity;
+        public WindowMode windowMode;
+    }
+    public override void OnLoad(string data)
+    {
+        SettingsSaveData settingsSaveData = JsonUtility.FromJson<SettingsSaveData>(data);
+        _volumeMusic = settingsSaveData.volumeMusic;
+        _volumeSFX = settingsSaveData.volumeSFX;
+        _volumeGeneral = settingsSaveData.volumeGeneral;
+        _rumblerIntensity = settingsSaveData.rumblerIntensity;
+        _windowMode = settingsSaveData.windowMode;
+    }
+
+    public override void OnSave(out SaveData saveData)
+    {
+        SettingsSaveData settingsSaveData = new SettingsSaveData();
+
+        settingsSaveData.volumeMusic = _volumeMusic;
+        settingsSaveData.volumeSFX = _volumeSFX;
+        settingsSaveData.rumblerIntensity = _rumblerIntensity;
+        settingsSaveData.volumeGeneral = _volumeGeneral;
+        settingsSaveData.windowMode = _windowMode;
+
+        saveData = settingsSaveData;
+    }
 }
+
