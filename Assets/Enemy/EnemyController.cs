@@ -1,41 +1,99 @@
 using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.PackageManager.Requests;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class EnemyController : MonoBehaviour
 {
-    [SerializeField] private float lookRadius;
+    private float _lookRadius = 10f;
 
-    Transform target;
-    NavMeshAgent agent;
+    public bool IsAwake { get { return _isAwake; } }
+    private bool _isAwake;
+    private float _timerToGoSleep;
+
+    Transform _target;
+    NavMeshAgent _agent;
 
     private void Start()
     {
-        target = PlayerHandler.Instance.player.transform;
-        agent = GetComponent<NavMeshAgent>();
+        _target = PlayerInstanceScriptableObject.Player.transform;
+        _agent = GetComponent<NavMeshAgent>();
     }
 
     private void Update()
     {
-        float distance = Vector3.Distance(target.position, transform.position);
+        //Debug.Log(timerToGoSleep);
+        float distance = Vector3.Distance(_target.position, transform.position);
 
-        if (distance <= lookRadius)
+        if (distance <= _lookRadius)
         {
-            agent.SetDestination(target.position);
-
-            if (distance <= agent.stoppingDistance)
+            if(!_isAwake)
             {
-                // attack the target
-                FaceTarget();
+                _timerToGoSleep = 0;
+                StartCoroutine(SetDestinationToPlayer());
+
+                if (distance <= _agent.stoppingDistance)
+                {
+                    // Attack the target
+
+                    // Face target
+                    FaceTarget();
+                }
             }
+            else
+            {
+                _timerToGoSleep = 0;
+                _agent.SetDestination(_target.position);
+
+                if (distance <= _agent.stoppingDistance)
+                {
+                    // Attack the target
+
+                    // Face target
+                    FaceTarget();
+                }
+            }
+            
         }
+        else if(_isAwake)
+        {
+            _timerToGoSleep += Time.deltaTime;
+        }
+
+        if (_timerToGoSleep > 3f)
+        {
+            _isAwake = false;
+            _timerToGoSleep = 0f;
+        }
+    }
+
+    IEnumerator SetDestinationToPlayer()
+    {
+        float distance = Vector3.Distance(_target.position, transform.position);
+        // anim enemy awake
+        Debug.Log("Is Awakening" + "/!\\ IS IN COROUTINE");
+
+        yield return new WaitForSeconds(1f); // temps d'animation awake a mettre
+
+        if (_timerToGoSleep > 3f)
+        {
+            yield break;
+        }
+
+        if (distance <= _lookRadius )
+        {
+            Debug.Log("Start focusing enemy" + "/!\\ IS IN COROUTINE & In Range");
+            WakeUp();
+        }
+    }
+
+    public void WakeUp()
+    {
+        _isAwake = true;
     }
 
     private void FaceTarget()
     {
-        Vector3 direction = (target.position - transform.position).normalized;
+        Vector3 direction = (_target.position - transform.position).normalized;
         Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
         transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5);
     }
@@ -43,16 +101,7 @@ public class EnemyController : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, lookRadius);
+        Gizmos.DrawWireSphere(transform.position, _lookRadius);
 
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if(other.TryGetComponent<PlayerMovement>(out var damageable))
-        {
-            // player.takedamage
-            print("HIT!");
-        }
     }
 }

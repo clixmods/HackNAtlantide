@@ -21,6 +21,7 @@ public class InteractDetection : MonoBehaviour
     private void Awake()
     {
         _maxDistanceInteraction = _playerDetectionScriptableObject.MaxDistance;
+        transform.localPosition = Vector3.zero;
     }
     private void Update()
     {
@@ -28,33 +29,42 @@ public class InteractDetection : MonoBehaviour
     }
     void InteractInput(bool value)
     {
+        Debug.Log("Value Input "+value);
+        Collider[] cols = Physics.OverlapSphere(transform.position, _maxDistanceInteraction);
+        interactable = new List<IInteractable>();
+        for (int i = 0; i < cols.Length; i++)
+        {
+            if (cols[i].gameObject.TryGetComponent<IInteractable>(out var interactObject))
+            {
+                interactable.Add(interactObject);
+            }
+        }
+        //calculate closest Interactable
+        float closestSqrDistance = Mathf.Infinity;
+        IInteractable closestObject = null;
+        for (int i = 0; i < interactable.Count; i++)
+        {
+           // if (interactable[i] == null) continue;
+            float distance = (interactable[i].transform.position - transform.position).sqrMagnitude;
+            if (closestSqrDistance > distance)
+            {
+                closestObject = interactable[i];
+                closestSqrDistance = distance;
+            }
+        }
         if(value)
         {
-            Collider[] cols = Physics.OverlapSphere(transform.position, _maxDistanceInteraction);
-            for (int i = 0; i < cols.Length; i++)
-            {
-                if (cols[i].gameObject.TryGetComponent<IInteractable>(out var interactObject))
-                {
-                    interactable.Add(interactObject);
-                }
-            }
-
-            //calculate closest Interactable
-            float closestSqrDistance = Mathf.Infinity;
-            IInteractable closestObject = null;
-            for (int i = 0; i < interactable.Count; i++)
-            {
-                float distance = (interactable[i].transform.position - transform.position).sqrMagnitude;
-                if (closestSqrDistance > distance)
-                {
-                    closestObject = interactable[i];
-                    closestSqrDistance = distance;
-                }
-            }
-
-            if(closestObject!=null)
+            if(closestObject != null )
             {
                 closestObject.Interact();
+                
+            }
+        }
+        else
+        {
+            if(closestObject != null)
+            {
+                closestObject.CancelInteract();
             }
         }
 

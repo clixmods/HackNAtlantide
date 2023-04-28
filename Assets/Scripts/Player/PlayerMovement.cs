@@ -7,27 +7,49 @@ using UnityEngine.EventSystems;
 
 public class PlayerMovement : MonoBehaviour
 {
+    //General
+    [Header("GENERAL")]
+    [Space(5)]
+
+    private Animator _animator;
     private Rigidbody _rigidbody;
     private Camera _camera;
     [SerializeField] private PlayerMovementStateScriptableObject _playerMovementState;
     [SerializeField] private PlayerInstanceScriptableObject _playerInstanceSO;
 
+
     //Input
+    [Header("INPUT")]
+    [Space(5)]
     [SerializeField] private InputVectorScriptableObject _moveInput;
     [SerializeField] private InputButtonScriptableObject _dashInput;
     private Vector3 _moveDirection;
 
+
     //Walk
+    [Header("WALK")]
+    [Space(5)]
+
     [SerializeField] private float _moveSpeed;
     private float _speed;
     private Vector3 _smoothMoveVelocity;
     private Vector3 _moveAmount;
     [SerializeField] private float _smoothTimeAcceleration;
     [SerializeField] private float _smoothTimeAccelerationDash;
-    private float _rotationSpeed;
+
+
+    //rotation lookat
+    [Header("LOOK")]
+    [Space(5)]
+
+    [SerializeField] private float _rotationSpeed;
     Quaternion _targetRotation;
 
+
     //Dash
+    [Header("DASH")]
+    [Space(5)]
+
     [SerializeField] private float _dashTime;
     [SerializeField] private float _dashSpeed;
     [SerializeField] private float _dashReloadTime;
@@ -40,11 +62,18 @@ public class PlayerMovement : MonoBehaviour
     private Collider[] _buffer = new Collider[8];
     new CapsuleCollider collider;
 
+    //LockForCombat
+    Transform _transformLock = null;
+    Transform _transformLockTempForDash;
+
+    [Header("FeedBack")]
+    [SerializeField] RumblerDataConstant _dashRumble;
 
     // Start is called before the first frame update
     void Awake()
     {
-        _playerInstanceSO.Player = this.gameObject;
+        _animator = GetComponent<Animator>();
+        PlayerInstanceScriptableObject.Player = this.gameObject;
         _rigidbody = GetComponent<Rigidbody>();
         _camera = Camera.main;
         collider = GetComponent<CapsuleCollider>();
@@ -55,14 +84,24 @@ public class PlayerMovement : MonoBehaviour
     {
         _moveInput.OnValueChanged += MoveInput;
         _dashInput.OnValueChanged += Dash;
+        Focus.OnFocusEnable += FocusEnable;
+        Focus.OnFocusSwitch += FocusSwitch;
+        Focus.OnFocusDisable += FocusUnLock;
     }
+
+   
+
     private void OnDisable()
     {
         _moveInput.OnValueChanged -= MoveInput;
         _dashInput.OnValueChanged += Dash;
+        Focus.OnFocusEnable -= FocusEnable;
+        Focus.OnFocusSwitch -= FocusSwitch;
+        Focus.OnFocusDisable -= FocusUnLock;
     }
     void MoveInput(Vector2 direction)
     {
+        _animator.SetFloat("RunningSpeed", Mathf.Abs(direction.x) + Mathf.Abs(direction.y));
         //Projects the camera forward on 2D horizontal plane
         Vector3 camForwardOnPlane = new Vector3(_camera.transform.forward.x, 0, _camera.transform.forward.z).normalized;
         Vector3 camRightOnPlane = new Vector3(_camera.transform.right.x, 0, _camera.transform.right.z).normalized;
@@ -99,7 +138,7 @@ public class PlayerMovement : MonoBehaviour
         MoveSweepTestRecurs(_moveAmount, 3);
 
         //Rotate the player by his direction
-        LookAtDirection(5, targetmoveAmount);
+        LookAtDirection(_isDashing?_rotationSpeed*20:_rotationSpeed, targetmoveAmount);
 
         //Extract the rb from any collider
         ExtractFromColliders();
@@ -158,22 +197,31 @@ public class PlayerMovement : MonoBehaviour
 
     public void LookAtDirection(float speed, Vector3 direction)
     {
-        if (direction.magnitude > 0.001f)
+        if(_followTarget && _transformLock != null)
         {
-            _targetRotation = Quaternion.LookRotation(direction, transform.up);
-            transform.rotation = Quaternion.Slerp(transform.rotation, _targetRotation, speed * Time.deltaTime);
+            _targetRotation = Quaternion.LookRotation((new Vector3(_transformLock.position.x,transform.position.y, _transformLock.position.z)-transform.position), Vector3.up);
         }
+        else if (direction.magnitude > 0.001f)
+        {
+            _targetRotation = Quaternion.LookRotation(direction, Vector3.up);
+        }
+        transform.rotation = Quaternion.Slerp(transform.rotation, _targetRotation, speed * Time.deltaTime);
     }
 
     private void Dash(bool value)
     {
         if (_canDash && _playerStamina.CanUseStamina()&& _moveDirection.sqrMagnitude > 0.1f)
         {
-            _dashEvent.LaunchEvent(1);
+            _playerStamina.UseStamina(1);
             _speed = _dashSpeed;
             _isDashing = true;
             _canDash = false;
+            _transformLockTempForDash = _transformLock;
+            _transformLock = null;
             StartCoroutine(CancelDash());
+
+            //FeedBack
+            Rumbler.instance.RumbleConstant(_dashRumble);
         }
     }
 
@@ -183,6 +231,7 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(_dashTime);
         _speed = _moveSpeed;
         _isDashing = false;
+        _transformLock = _transformLockTempForDash;
         StartCoroutine(ReloadDash());
     }
 
@@ -212,4 +261,22 @@ public class PlayerMovement : MonoBehaviour
     {
         transform.SetParent(null);
     }
+
+    #region Focus Events / Behavior
+
+    private bool _followTarget;
+    private void FocusEnable()
+    {
+        _followTarget = true;
+    }
+    public void FocusSwitch(Transform transform)
+    {
+        _transformLock = transform;
+    }
+    public void FocusUnLock()
+    {
+        _followTarget = false;
+    }
+
+    #endregion
 }

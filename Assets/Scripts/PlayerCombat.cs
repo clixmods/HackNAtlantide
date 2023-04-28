@@ -70,6 +70,7 @@ public class PlayerCombat : MonoBehaviour
     {
         comboCounter = 0;
         lastComboEnd = Time.time;
+        Debug.Log("Oui");
     }
 
     public void SetDamageActive(int value)

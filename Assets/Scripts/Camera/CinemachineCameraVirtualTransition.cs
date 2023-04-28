@@ -24,6 +24,7 @@ using UnityEngine;
                 _cinemachineVirtualCamera.gameObject.SetActive(false);
             }
             OnCameraChanged += DesactiveCamera;
+            
         }
 
         private void Start()
@@ -32,7 +33,12 @@ using UnityEngine;
             _zoneVolume.EventOnTriggerEnter.AddListener(ActiveCamera);
             if (followPlayer)
             {
-                _cinemachineVirtualCamera.Follow = Resources.Load<PlayerInstanceScriptableObject>("PlayerInstance").Player.transform;
+                _cinemachineVirtualCamera.Follow = PlayerInstanceScriptableObject.Player.transform;
+            }
+
+            if (disableCameraInAwake)
+            {
+                ActiveCamera();
             }
         }
 

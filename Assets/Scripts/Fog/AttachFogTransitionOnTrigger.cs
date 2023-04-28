@@ -1,4 +1,6 @@
-﻿namespace Fog
+﻿using Plugins.Fog;
+
+namespace Fog
 {
     public class AttachFogTransitionOnTrigger : FogTransition
     {

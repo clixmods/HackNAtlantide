@@ -105,6 +105,8 @@ MonoBehaviour:
   combo:
   - {fileID: 11400000, guid: da923303e3682c44ca3028f39f0be928, type: 2}
   - {fileID: 11400000, guid: cb1f60437e506bf439ac378c3bbf8e0e, type: 2}
+  - {fileID: 11400000, guid: da923303e3682c44ca3028f39f0be928, type: 2}
+  - {fileID: 11400000, guid: cb1f60437e506bf439ac378c3bbf8e0e, type: 2}
   - {fileID: 11400000, guid: 8b84c3761b851fc438503aba69256776, type: 2}
   weapon: {fileID: 2176775216645680527}
   _inputAttack: {fileID: 11400000, guid: fdbbc2eed1d30cb48b96b3abfe6f859e, type: 2}
@@ -128,11 +130,13 @@ MonoBehaviour:
   _moveSpeed: 8
   _smoothTimeAcceleration: 0.1
   _smoothTimeAccelerationDash: 0.05
+  _rotationSpeed: 10
   _dashTime: 0.1
   _dashSpeed: 25
   _dashReloadTime: 0.2
   _dashEvent: {fileID: 11400000, guid: 4d2826f6d65799142b0ba195f975918e, type: 2}
   _playerStamina: {fileID: 11400000, guid: 7a3b5b3b905bbfe4fb4ea9ada55960e1, type: 2}
+  _dashRumble: {fileID: 11400000, guid: ba6cf9a408e865248965638af31bbe14, type: 2}
 --- !u!114 &70470615285775491
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -146,7 +150,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _staminaSO: {fileID: 11400000, guid: 7a3b5b3b905bbfe4fb4ea9ada55960e1, type: 2}
-  _dashEvent: {fileID: 11400000, guid: 4d2826f6d65799142b0ba195f975918e, type: 2}
   _speedToRecharge: 1
 --- !u!114 &6041089416096145865
 MonoBehaviour:
@@ -333,7 +336,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5b86aa4926329d4386be4f9e91c7444, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerCombat: {fileID: 2176775217575482329}
+  _playerCombat: {fileID: 2176775217575482329}
   damage: 1
 --- !u!1001 &2176775216997011789
 PrefabInstance:
@@ -462,6 +465,16 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: -16910627869579306, guid: 11fbb8f7bedc9154ca491afc829a0e21,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 0a42f7977b83acd4cab31eec246b7ed5, type: 2}
+    - target: {fileID: -16910627869579306, guid: 11fbb8f7bedc9154ca491afc829a0e21,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 0a42f7977b83acd4cab31eec246b7ed5, type: 2}
     - target: {fileID: 489739747748339547, guid: 11fbb8f7bedc9154ca491afc829a0e21,
         type: 3}
       propertyPath: m_Layer

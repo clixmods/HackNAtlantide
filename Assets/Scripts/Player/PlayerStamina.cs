@@ -6,17 +6,16 @@ using UnityEngine;
 public class PlayerStamina : MonoBehaviour
 {
     [SerializeField] PlayerStaminaScriptableObject _staminaSO;
-    [SerializeField] EventFloatScriptableObject _dashEvent;
     private bool _rechargeStamina;
-    [SerializeField] float _speedToRecharge;
+    
 
     private void OnEnable()
     {
-        _dashEvent.OnEvent += RemoveStamina;
+        _staminaSO.OnUseStamina += RemoveStamina;
     }
     private void OnDisable()
     {
-        _dashEvent.OnEvent -= RemoveStamina;
+        _staminaSO.OnUseStamina -= RemoveStamina;
     }
     private void Start()
     {
@@ -29,7 +28,7 @@ public class PlayerStamina : MonoBehaviour
         {
             if(_rechargeStamina)
             {
-                _staminaSO.Value += Time.deltaTime * _speedToRecharge;   
+                _staminaSO.Value += Time.deltaTime * _staminaSO.SpeedToRecharge;   
             }
         }
         else
