@@ -22,11 +22,9 @@ public class EnemyHealth : MonoBehaviour, IDamageable
 
     public void TakeDamage(float damage)
     {
-        if (_enemyController.IsAwake)
-        {
-            _health -= damage;
-            Debug.Log("Enemy damaged");
-        }
+        _health -= damage;
+        Debug.Log("Enemy damaged");
+        
         
         if (_health < 0f)
         {

@@ -4,104 +4,61 @@ using UnityEngine.AI;
 
 public class EnemyController : MonoBehaviour
 {
+    private float attackRadius = 2f;
     private float _lookRadius = 10f;
+    
+    bool playerInLookRadius, playerInAttackRadius;
+    [SerializeField] LayerMask groundLayer, playerLayer;
 
-    public bool IsAwake { get { return _isAwake; } }
-    private bool _isAwake;
-    private float _timerToGoSleep;
-
-    Transform _target;
     NavMeshAgent _agent;
 
     private void Start()
     {
-        _target = PlayerInstanceScriptableObject.Player.transform;
         _agent = GetComponent<NavMeshAgent>();
     }
 
     private void Update()
     {
-        //Debug.Log(timerToGoSleep);
-        float distance = Vector3.Distance(_target.position, transform.position);
-
-        if (distance <= _lookRadius)
-        {
-            if(!_isAwake)
-            {
-                _timerToGoSleep = 0;
-                StartCoroutine(SetDestinationToPlayer());
-
-                if (distance <= _agent.stoppingDistance)
-                {
-                    // Attack the target
-
-                    // Face target
-                    FaceTarget();
-                }
-            }
-            else
-            {
-                _timerToGoSleep = 0;
-                _agent.SetDestination(_target.position);
-
-                if (distance <= _agent.stoppingDistance)
-                {
-                    // Attack the target
-
-                    // Face target
-                    FaceTarget();
-                }
-            }
-            
-        }
-        else if(_isAwake)
-        {
-            _timerToGoSleep += Time.deltaTime;
-        }
-
-        if (_timerToGoSleep > 3f)
-        {
-            _isAwake = false;
-            _timerToGoSleep = 0f;
-        }
+        playerInLookRadius = Physics.CheckSphere(transform.position, _lookRadius, playerLayer);
+        playerInAttackRadius = Physics.CheckSphere(transform.position, attackRadius, playerLayer);
+        
+        if (playerInLookRadius && !playerInAttackRadius) Chase();
+        if (playerInLookRadius && playerInAttackRadius) Attack();
     }
-
-    IEnumerator SetDestinationToPlayer()
+    
+    void Chase()
     {
-        float distance = Vector3.Distance(_target.position, transform.position);
-        // anim enemy awake
-        Debug.Log("Is Awakening" + "/!\\ IS IN COROUTINE");
-
-        yield return new WaitForSeconds(1f); // temps d'animation awake a mettre
-
-        if (_timerToGoSleep > 3f)
+        _agent.SetDestination(PlayerInstanceScriptableObject.Player.transform.position);
+    }
+    
+    private void Attack()
+    {
+        var player = PlayerInstanceScriptableObject.Player.transform.position;
+        
+        if(player != null)
         {
-            yield break;
-        }
-
-        if (distance <= _lookRadius )
-        {
-            Debug.Log("Start focusing enemy" + "/!\\ IS IN COROUTINE & In Range");
-            WakeUp();
+            Debug.Log("attacking!");
         }
     }
-
-    public void WakeUp()
+    
+    /*private void OnTriggerEnter(Collider other)
     {
-        _isAwake = true;
-    }
+        var player = PlayerInstanceScriptableObject.Player.transform.position;
+        
+        print("ATTACK");
 
-    private void FaceTarget()
-    {
-        Vector3 direction = (_target.position - transform.position).normalized;
-        Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
-        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5);
-    }
+        if(player != null)
+        {
+            print("HIT!");
+        }
+    }*/
 
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, _lookRadius);
 
+        Gizmos.color = Color.magenta;
+        Gizmos.DrawWireSphere(transform.position, attackRadius);
     }
 }
