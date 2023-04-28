@@ -7,6 +7,7 @@ using UnityEngine.EventSystems;
 
 public class PlayerMovement : MonoBehaviour
 {
+    #region properties
     //General
     [Header("GENERAL")]
     [Space(5)]
@@ -68,6 +69,10 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("FeedBack")]
     [SerializeField] RumblerDataConstant _dashRumble;
+    [SerializeField] ParticleSystem _dashFX;
+    [SerializeField] TrailRenderer _dashTrail;
+    [SerializeField] ParticleSystem _dustWalk;
+    #endregion
 
     // Start is called before the first frame update
     void Awake()
@@ -129,8 +134,17 @@ public class PlayerMovement : MonoBehaviour
         {
             //calculated direction based of his movedirection of the precedent frame
             _moveAmount = Vector3.SmoothDamp(_moveAmount, targetmoveAmount, ref _smoothMoveVelocity, _smoothTimeAcceleration);
-
-            _playerMovementState.MovementState = _moveAmount.sqrMagnitude > 0.0005f ? MovementState.running : MovementState.idle;
+            if(_moveAmount.sqrMagnitude > 0.0005f)
+            {
+                _playerMovementState.MovementState =  MovementState.running;
+                if(!_dustWalk.isEmitting)
+                _dustWalk.Play();
+            }
+            else
+            {
+                _playerMovementState.MovementState = MovementState.idle;
+                _dustWalk.Stop();
+            }
         }
         
 
@@ -221,7 +235,7 @@ public class PlayerMovement : MonoBehaviour
             StartCoroutine(CancelDash());
 
             //FeedBack
-            Rumbler.instance.RumbleConstant(_dashRumble);
+            DashFeedBack(true);
         }
     }
 
@@ -229,10 +243,19 @@ public class PlayerMovement : MonoBehaviour
     IEnumerator CancelDash()
     {
         yield return new WaitForSeconds(_dashTime);
+
         _speed = _moveSpeed;
         _isDashing = false;
         _transformLock = _transformLockTempForDash;
+
         StartCoroutine(ReloadDash());
+
+        StartCoroutine(CancelDashFeedback());
+    }
+    IEnumerator CancelDashFeedback()
+    {
+        yield return new WaitForSeconds(0.2f);
+        DashFeedBack(false);
     }
 
     //allows player to dash again
@@ -279,4 +302,17 @@ public class PlayerMovement : MonoBehaviour
     }
 
     #endregion
+    void DashFeedBack(bool enable)
+    {
+        if(enable)
+        {
+            Rumbler.instance.RumbleConstant(_dashRumble);
+            _dashFX.Play();
+            _dashTrail.emitting = true;
+        }
+        else
+        {
+            _dashTrail.emitting = false;
+        }
+    }
 }
