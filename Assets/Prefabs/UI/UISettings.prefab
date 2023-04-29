@@ -1618,7 +1618,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 52.695625, y: 0, z: 48.953285, w: 26.628448}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -1942,7 +1942,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: 108.34385, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -2195,7 +2195,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: 131.87308, w: 26.908293}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -2693,6 +2693,7 @@ GameObject:
   - component: {fileID: 8448906632180076770}
   - component: {fileID: 8448906632180076796}
   - component: {fileID: 8448906632180076797}
+  - component: {fileID: 8247303259451706577}
   m_Layer: 5
   m_Name: UISettings
   m_TagString: Untagged
@@ -2760,6 +2761,22 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &8247303259451706577
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8448906632180076771}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 110ef82445db8fe459cb6f1aa663756b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _generalVolumeSlider: {fileID: 8448906630855595994}
+  _volumeMusicSlider: {fileID: 8448906631987314949}
+  _volumeSFXSlider: {fileID: 8448906631895618307}
+  _rumblerDropDown: {fileID: 8448906631411666153}
 --- !u!1 &8448906632378042172
 GameObject:
   m_ObjectHideFlags: 0
