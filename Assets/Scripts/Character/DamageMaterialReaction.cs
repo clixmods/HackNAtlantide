@@ -2,8 +2,6 @@
 using System.Collections;
 using UnityEngine;
 
-namespace Character
-{
     public class DamageMaterialReaction : MonoBehaviour
     {
         private IDamageable idamageable;
@@ -45,7 +43,7 @@ namespace Character
             }
         }
     }
-}
+
 
 
 
