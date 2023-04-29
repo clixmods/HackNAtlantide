@@ -11,12 +11,7 @@ public enum RumblerIntensity
     mid,
     high
 }
-public enum WindowMode
-{
-    Windowed,
-    FullScreen,
-    FullScreenWindowed
-}
+
 
 public class Settings : MonoBehaviourSaveable
 {
@@ -64,17 +59,18 @@ public class Settings : MonoBehaviourSaveable
     #endregion
 
     #region Graphics
-    [SerializeField] private WindowMode _windowMode;
-    public WindowMode WindowMode
+    [SerializeField] private FullScreenMode _windowMode;
+    public FullScreenMode WindowMode
     {
         get { return _windowMode; }
         set
         {
             _windowMode = value;
             OnWindowModeValueChanged?.Invoke(_windowMode);
+            Screen.fullScreenMode = _windowMode;
         }
     }
-    public Action<WindowMode> OnWindowModeValueChanged;
+    public Action<FullScreenMode> OnWindowModeValueChanged;
 
     [SerializeField] private Resolution _screenResolution;
     public Resolution ScreenResolution
@@ -83,7 +79,7 @@ public class Settings : MonoBehaviourSaveable
         set
         {
             _screenResolution = value;
-            Screen.SetResolution(_screenResolution.width,_screenResolution.height,_windowMode==WindowMode.FullScreen);
+            Screen.SetResolution(_screenResolution.width,_screenResolution.height,_windowMode==FullScreenMode.ExclusiveFullScreen);
             OnScreenResolutionValueChanged?.Invoke(_screenResolution);
         }
     }
@@ -113,7 +109,7 @@ public class Settings : MonoBehaviourSaveable
         public float volumeSFX;
         public float volumeGeneral;
         public RumblerIntensity rumblerIntensity;
-        public WindowMode windowMode;
+        public FullScreenMode windowMode;
     }
     public override void OnLoad(string data)
     {
