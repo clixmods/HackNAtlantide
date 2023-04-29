@@ -487,6 +487,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &106752244 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7546472010882262842, guid: 31a5dabd6df8d6b4583ba51c6a872ae5,
+    type: 3}
+  m_PrefabInstance: {fileID: 863128093}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &120874325
 GameObject:
   m_ObjectHideFlags: 0
@@ -536,6 +542,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4665511f82f0d124c860526e344501e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 0
+  attackRadius: 1
+  lookRadius: 10
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &120874328
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -548,8 +563,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d839f7a3a5db89646a55d1b7d6405d74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 4
-  interactionTransform: {fileID: 120874330}
 --- !u!195 &120874329
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -899,6 +912,75 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 222030578}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1001 &262680065
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1774817194}
+    m_Modifications:
+    - target: {fileID: 4305988863186509392, guid: 970bc3284d5d33542a96fe186d4ae760,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4305988863186509392, guid: 970bc3284d5d33542a96fe186d4ae760,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4305988863186509392, guid: 970bc3284d5d33542a96fe186d4ae760,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4305988863186509392, guid: 970bc3284d5d33542a96fe186d4ae760,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4305988863186509392, guid: 970bc3284d5d33542a96fe186d4ae760,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4305988863186509392, guid: 970bc3284d5d33542a96fe186d4ae760,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4305988863186509392, guid: 970bc3284d5d33542a96fe186d4ae760,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4305988863186509392, guid: 970bc3284d5d33542a96fe186d4ae760,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4305988863186509392, guid: 970bc3284d5d33542a96fe186d4ae760,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4305988863186509392, guid: 970bc3284d5d33542a96fe186d4ae760,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4305988863186509392, guid: 970bc3284d5d33542a96fe186d4ae760,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4305988863186509394, guid: 970bc3284d5d33542a96fe186d4ae760,
+        type: 3}
+      propertyPath: m_Name
+      value: Settings
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 970bc3284d5d33542a96fe186d4ae760, type: 3}
 --- !u!1 &282828205
 GameObject:
   m_ObjectHideFlags: 0
@@ -1062,6 +1144,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4665511f82f0d124c860526e344501e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 0
+  attackRadius: 1
+  lookRadius: 10
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &375145832
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1074,8 +1165,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d839f7a3a5db89646a55d1b7d6405d74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 4
-  interactionTransform: {fileID: 375145834}
 --- !u!195 &375145833
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1493,6 +1582,63 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 454675081}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1001 &474043347
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1774817194}
+    m_Modifications:
+    - target: {fileID: 7106371341753770, guid: 97191c65a69646649bcf700274c14435, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7106371341753770, guid: 97191c65a69646649bcf700274c14435, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7106371341753770, guid: 97191c65a69646649bcf700274c14435, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7106371341753770, guid: 97191c65a69646649bcf700274c14435, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7106371341753770, guid: 97191c65a69646649bcf700274c14435, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7106371341753770, guid: 97191c65a69646649bcf700274c14435, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7106371341753770, guid: 97191c65a69646649bcf700274c14435, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7106371341753770, guid: 97191c65a69646649bcf700274c14435, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7106371341753770, guid: 97191c65a69646649bcf700274c14435, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7106371341753770, guid: 97191c65a69646649bcf700274c14435, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7106371341753770, guid: 97191c65a69646649bcf700274c14435, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7106371341753772, guid: 97191c65a69646649bcf700274c14435, type: 3}
+      propertyPath: m_Name
+      value: GameStateManager
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 97191c65a69646649bcf700274c14435, type: 3}
 --- !u!1 &514898317
 GameObject:
   m_ObjectHideFlags: 0
@@ -1673,6 +1819,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4665511f82f0d124c860526e344501e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 0
+  attackRadius: 1
+  lookRadius: 10
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &536458111
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1685,8 +1840,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d839f7a3a5db89646a55d1b7d6405d74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 4
-  interactionTransform: {fileID: 536458113}
 --- !u!195 &536458112
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1759,27 +1912,27 @@ PrefabInstance:
     - target: {fileID: 8448906631212831924, guid: 4d6418cfd70d9ac4fb0003cd4d5bcf12,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8448906631508286080, guid: 4d6418cfd70d9ac4fb0003cd4d5bcf12,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8448906631601413761, guid: 4d6418cfd70d9ac4fb0003cd4d5bcf12,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8448906631941222909, guid: 4d6418cfd70d9ac4fb0003cd4d5bcf12,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8448906632052678019, guid: 4d6418cfd70d9ac4fb0003cd4d5bcf12,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8448906632180076770, guid: 4d6418cfd70d9ac4fb0003cd4d5bcf12,
         type: 3}
@@ -1894,12 +2047,12 @@ PrefabInstance:
     - target: {fileID: 8448906632180076771, guid: 4d6418cfd70d9ac4fb0003cd4d5bcf12,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8448906632721620881, guid: 4d6418cfd70d9ac4fb0003cd4d5bcf12,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d6418cfd70d9ac4fb0003cd4d5bcf12, type: 3}
@@ -1952,6 +2105,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4665511f82f0d124c860526e344501e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 0
+  attackRadius: 1
+  lookRadius: 10
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &587021152
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1964,8 +2126,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d839f7a3a5db89646a55d1b7d6405d74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 4
-  interactionTransform: {fileID: 587021154}
 --- !u!195 &587021153
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -2016,6 +2176,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c80a058dcb004b16bdccf09b276a7bb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &648810293 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7106371341753770, guid: 97191c65a69646649bcf700274c14435,
+    type: 3}
+  m_PrefabInstance: {fileID: 474043347}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &650712672
 GameObject:
   m_ObjectHideFlags: 0
@@ -2146,6 +2312,12 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 650712672}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &668953784 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4305988863186509392, guid: 970bc3284d5d33542a96fe186d4ae760,
+    type: 3}
+  m_PrefabInstance: {fileID: 262680065}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &747474381 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8448906632180076771, guid: 4d6418cfd70d9ac4fb0003cd4d5bcf12,
@@ -2340,6 +2512,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4665511f82f0d124c860526e344501e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 0
+  attackRadius: 1
+  lookRadius: 10
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &755643603
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2352,8 +2533,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d839f7a3a5db89646a55d1b7d6405d74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 4
-  interactionTransform: {fileID: 755643605}
 --- !u!195 &755643604
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -2778,6 +2957,75 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 851602957}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1001 &863128093
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1774817194}
+    m_Modifications:
+    - target: {fileID: 1709095153728360559, guid: 31a5dabd6df8d6b4583ba51c6a872ae5,
+        type: 3}
+      propertyPath: m_Name
+      value: RumblerManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 7546472010882262842, guid: 31a5dabd6df8d6b4583ba51c6a872ae5,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7546472010882262842, guid: 31a5dabd6df8d6b4583ba51c6a872ae5,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7546472010882262842, guid: 31a5dabd6df8d6b4583ba51c6a872ae5,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7546472010882262842, guid: 31a5dabd6df8d6b4583ba51c6a872ae5,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7546472010882262842, guid: 31a5dabd6df8d6b4583ba51c6a872ae5,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7546472010882262842, guid: 31a5dabd6df8d6b4583ba51c6a872ae5,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7546472010882262842, guid: 31a5dabd6df8d6b4583ba51c6a872ae5,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7546472010882262842, guid: 31a5dabd6df8d6b4583ba51c6a872ae5,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7546472010882262842, guid: 31a5dabd6df8d6b4583ba51c6a872ae5,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7546472010882262842, guid: 31a5dabd6df8d6b4583ba51c6a872ae5,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7546472010882262842, guid: 31a5dabd6df8d6b4583ba51c6a872ae5,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 31a5dabd6df8d6b4583ba51c6a872ae5, type: 3}
 --- !u!1 &955094621
 GameObject:
   m_ObjectHideFlags: 0
@@ -3138,6 +3386,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4665511f82f0d124c860526e344501e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 0
+  attackRadius: 1
+  lookRadius: 10
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &973765062
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3150,8 +3407,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d839f7a3a5db89646a55d1b7d6405d74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 4
-  interactionTransform: {fileID: 973765064}
 --- !u!195 &973765063
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -3675,6 +3930,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4665511f82f0d124c860526e344501e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 0
+  attackRadius: 1
+  lookRadius: 10
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &1099205260
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3687,8 +3951,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d839f7a3a5db89646a55d1b7d6405d74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 4
-  interactionTransform: {fileID: 1099205262}
 --- !u!195 &1099205261
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -3919,6 +4181,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4665511f82f0d124c860526e344501e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 0
+  attackRadius: 1
+  lookRadius: 10
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &1140592885
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3931,8 +4202,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d839f7a3a5db89646a55d1b7d6405d74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 4
-  interactionTransform: {fileID: 1140592887}
 --- !u!195 &1140592886
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -4032,6 +4301,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4665511f82f0d124c860526e344501e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 0
+  attackRadius: 1
+  lookRadius: 10
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &1158517082
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4044,8 +4322,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d839f7a3a5db89646a55d1b7d6405d74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 4
-  interactionTransform: {fileID: 1158517084}
 --- !u!195 &1158517083
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -4944,8 +5220,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d839f7a3a5db89646a55d1b7d6405d74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 4
-  interactionTransform: {fileID: 1486977092}
 --- !u!4 &1486977092
 Transform:
   m_ObjectHideFlags: 0
@@ -4974,6 +5248,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4665511f82f0d124c860526e344501e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 0
+  attackRadius: 1
+  lookRadius: 10
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!195 &1486977094
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -7266,6 +7549,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4665511f82f0d124c860526e344501e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 0
+  attackRadius: 1
+  lookRadius: 10
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &1687572218
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7278,8 +7570,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d839f7a3a5db89646a55d1b7d6405d74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 4
-  interactionTransform: {fileID: 1687572220}
 --- !u!195 &1687572219
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -7330,6 +7620,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c80a058dcb004b16bdccf09b276a7bb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1774817193
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1774817194}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1774817194
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1774817193}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 648810293}
+  - {fileID: 106752244}
+  - {fileID: 668953784}
+  m_Father: {fileID: 0}
+  m_RootOrder: 38
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1781435471
 GameObject:
   m_ObjectHideFlags: 0
@@ -8054,6 +8378,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4665511f82f0d124c860526e344501e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 0
+  attackRadius: 1
+  lookRadius: 10
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &2041482462
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8066,8 +8399,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d839f7a3a5db89646a55d1b7d6405d74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 4
-  interactionTransform: {fileID: 2041482464}
 --- !u!195 &2041482463
 NavMeshAgent:
   m_ObjectHideFlags: 0

@@ -17,7 +17,7 @@ public class ClipContainer : MonoBehaviour
                 var childsWithMeshRenderers = child.GetComponentsInChildren<MeshRenderer>();
                 foreach (MeshRenderer component in childsWithMeshRenderers)
                 {
-                    if (!showFloorIngame && component.gameObject.layer == 11  )
+                    if (!showFloorIngame && component.gameObject.layer == 7  )
                     {
                         component.enabled = false;
                     }

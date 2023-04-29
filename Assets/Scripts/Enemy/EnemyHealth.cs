@@ -20,6 +20,8 @@ public class EnemyHealth : MonoBehaviour, IDamageable
 
     public void Dead()
     {
+        OnDeath?.Invoke(this,null);
+
         Destroy(gameObject.transform.parent.gameObject);
     }
 
@@ -27,7 +29,7 @@ public class EnemyHealth : MonoBehaviour, IDamageable
     {
         _health -= damage;
         Debug.Log("Enemy damaged");
-        
+        OnDamage?.Invoke(this,null);
         
         if (_health < 0f)
         {
