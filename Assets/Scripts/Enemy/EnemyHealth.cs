@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+
 public class EnemyHealth : MonoBehaviour, IDamageable
 {
     [SerializeField] EnemyController _enemyController;
@@ -11,6 +12,8 @@ public class EnemyHealth : MonoBehaviour, IDamageable
     private float _health;
     public event EventHandler OnDamage;
     public event EventHandler OnDeath;
+    public event EventHandler OnChangeHealth;
+    public float maxHealth => _maxHealth;
     public float health { get { return _health; } private set { _health = value; } }
 
     void Start()
@@ -40,6 +43,7 @@ public class EnemyHealth : MonoBehaviour, IDamageable
     public void AddHealth(float health)
     {
         _health += health;
+        OnChangeHealth?.Invoke(this,null);
         if (health > _maxHealth)
         {
             _health = _maxHealth;

@@ -10,7 +10,21 @@ public class PlayerHealth : MonoBehaviour,IDamageable
     private float _health;
     public event EventHandler OnDamage;
     public event EventHandler OnDeath;
-    public float health { get { return _health; } private set { _health = value; } }
+    public event EventHandler OnChangeHealth;
+    public float maxHealth => _maxHealth;
+
+    public float health
+    {
+        get
+        {
+            return _health;
+        }
+        private set
+        {
+            OnChangeHealth?.Invoke(this,null);
+            _health = value;
+        }
+    }
 
     void Start()
     {
@@ -19,12 +33,14 @@ public class PlayerHealth : MonoBehaviour,IDamageable
 
     public void Dead()
     {
+        OnDeath?.Invoke(this,null);
         // TODO - Make the dead function
     }
 
     public void TakeDamage(float damage)
     {
         _health -= damage;
+        OnDamage?.Invoke(this,null);
         if(_health < 0f)
         {
             Dead();
@@ -34,6 +50,7 @@ public class PlayerHealth : MonoBehaviour,IDamageable
     public void AddHealth(float health)
     {
         _health += health;
+        
         if(health > _maxHealth)
         {
             _health = _maxHealth;
