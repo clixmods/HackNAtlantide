@@ -8,14 +8,25 @@ public class Character : MonoBehaviour,  IDamageable
     public event EventHandler OnDamage;
     public event EventHandler OnDeath;
     public event EventHandler OnChangeHealth;
-    public float maxHealth => _maxHealth;
+    public float maxHealth 
+    {
+        get
+        {
+            return _maxHealth;
+        }
+        set
+        {
+            OnChangeHealth?.Invoke(this,null);
+            _maxHealth = value;
+        }
+    }
     public float health
     {
         get
         {
             return _health;
         }
-        private set
+        set
         {
             OnChangeHealth?.Invoke(this,null);
             _health = value;
@@ -23,14 +34,14 @@ public class Character : MonoBehaviour,  IDamageable
     }
     void Start()
     {
-        _health = _maxHealth;
+        health = maxHealth;
     }
     
     public void TakeDamage(float damage)
     {
-        _health -= damage;
+        health -= damage;
         OnDamage?.Invoke(this,null);
-        if(_health < 0f)
+        if(health < 0f)
         {
             Dead();
         }
@@ -40,13 +51,13 @@ public class Character : MonoBehaviour,  IDamageable
         OnDeath?.Invoke(this, null);
     }
 
-    public void AddHealth(float health)
+    public void AddHealth(float amount)
     {
-        _health += health;
+        health += health;
         OnChangeHealth?.Invoke(this,null);
-        if (health > _maxHealth)
+        if (amount > maxHealth)
         {
-            _health = _maxHealth;
+            health = maxHealth;
         }
     }
 }
