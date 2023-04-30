@@ -94,13 +94,16 @@ public class AttackLevitationInteractable : MonoBehaviour, IInteractable
     
     private void DestroyInteractable()
     {
-        _meshDestroy.transform.position = transform.position;
-        _meshDestroy.transform.rotation = transform.rotation;
-        _meshDestroy.SetActive(true);
-        Rigidbody[] childrb = _meshDestroy.GetComponentsInChildren<Rigidbody>();
-        foreach(Rigidbody rb in childrb)
+        if (_meshDestroy != null)
         {
-            rb.AddExplosionForce(Random.value, rb.position + Random.onUnitSphere, Random.value);
+            _meshDestroy.transform.position = transform.position;
+            _meshDestroy.transform.rotation = transform.rotation;
+            _meshDestroy.SetActive(true);
+            Rigidbody[] childrb = _meshDestroy.GetComponentsInChildren<Rigidbody>();
+            foreach(Rigidbody rb in childrb)
+            {
+                rb.AddExplosionForce(Random.value, rb.position + Random.onUnitSphere, Random.value);
+            }
         }
         this.gameObject.SetActive(false);
     }
