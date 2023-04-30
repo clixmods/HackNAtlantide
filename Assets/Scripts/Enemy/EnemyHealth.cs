@@ -11,6 +11,6 @@ public class EnemyHealth : Character
     public override void Dead()
     {
         base.Dead();
-        Destroy(gameObject.transform.parent.gameObject);
+        Destroy(transform.gameObject);
     }
 }

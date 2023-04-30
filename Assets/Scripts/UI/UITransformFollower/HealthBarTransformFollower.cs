@@ -25,17 +25,17 @@ namespace UI.UITransformFollower
         private void ITargetableOnOnUntargeted(object sender, EventArgs e)
         {
             if(_idamageable.health.Equals(_idamageable.maxHealth))
-                gameObject.SetActive(false);
+                enabled = false;
         }
 
         private void ITargetableOnOnTargeted(object sender, EventArgs e)
         {
-            gameObject.SetActive(true);
+            enabled = true;
         }
 
         private void IdamageableOnOnDamage(object sender, EventArgs e)
         {
-            gameObject.SetActive(true);
+            enabled = true;
         }
 
         // Start is called before the first frame update
@@ -43,7 +43,7 @@ namespace UI.UITransformFollower
         {
             _uiHealthBar = UITransformFollower.Create<UIHealthBarTransformFollower>(_prefab, transform , maxDistanceToShow);
             _uiHealthBar.Init(_idamageable);
-            gameObject.SetActive(false);
+            enabled = false;
         }
 
         private void OnDisable()

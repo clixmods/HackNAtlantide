@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Attack;
 using UnityEngine;
 
 public class PlayerCombat : MonoBehaviour,ICombat
@@ -8,12 +10,9 @@ public class PlayerCombat : MonoBehaviour,ICombat
     float lastClickedTime;
     float lastComboEnd;
     int comboCounter;
-
     Animator anim;
-    [SerializeField] Weapon weapon;
-
     [SerializeField] private InputButtonScriptableObject _inputAttack;
-
+    private IAttackCollider _attackCollider;
     private void OnEnable()
     {
         _inputAttack.OnValueChanged += Attack;
@@ -21,6 +20,20 @@ public class PlayerCombat : MonoBehaviour,ICombat
     private void OnDisable()
     {
         _inputAttack.OnValueChanged -= Attack;
+    }
+
+    private void Awake()
+    {
+        _attackCollider = GetComponentInChildren<IAttackCollider>();
+        _attackCollider.OnCollideWithIDamageable += AttackColliderOnOnCollideWithIDamageable; 
+    }
+
+    private void AttackColliderOnOnCollideWithIDamageable(object sender, EventArgs eventArgs)
+    {
+        if (eventArgs is DamageableEventArgs mDamageableEventArgs && canAttack)
+        {
+            mDamageableEventArgs.idamageable.DoDamage( combo[comboCounter].damage);
+        }
     }
 
     // Start is called before the first frame update
@@ -41,7 +54,6 @@ public class PlayerCombat : MonoBehaviour,ICombat
                 {
                     anim.runtimeAnimatorController = combo[comboCounter].animatorOV;
                     anim.Play("Attack", 0, 0);
-                    weapon.damage = combo[comboCounter].damage;
                     comboCounter++;
                     lastClickedTime = Time.time;
 
@@ -69,10 +81,17 @@ public class PlayerCombat : MonoBehaviour,ICombat
         lastComboEnd = Time.time;
     }
 
+    #region Animation Event Methods
+
     public void SetDamageActive(int value)
     {
         canAttack = value == 1;
+        _attackCollider.enabled = canAttack;
+        Debug.Log(canAttack);
     }
+
+    #endregion
+
 
     public bool canAttack { get; set; }
 }

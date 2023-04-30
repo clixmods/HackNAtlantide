@@ -15,7 +15,7 @@ using UnityEngine;
         
         // Material block 
         private MaterialPropertyBlock[] _propBlocks;
-        private MeshRenderer _meshRenderer;
+        private Renderer _renderer;
         private static readonly int Amount = Shader.PropertyToID("_Outline");
         
         public bool CanBeTarget
@@ -50,8 +50,8 @@ using UnityEngine;
                 targeter = PlayerInstanceScriptableObject.Player.transform;
             }
             // Setup Material property block
-            _meshRenderer = GetComponentInChildren<MeshRenderer>();
-            _propBlocks = new MaterialPropertyBlock[_meshRenderer.sharedMaterials.Length];
+            _renderer = GetComponentInChildren<Renderer>();
+            _propBlocks = new MaterialPropertyBlock[_renderer.sharedMaterials.Length];
             for (int i = 0; i < _propBlocks.Length; i++)
             {
                 _propBlocks[i] = new MaterialPropertyBlock();
@@ -79,11 +79,11 @@ using UnityEngine;
             for (int i = 0; i < _propBlocks.Length; i++)
             {
                 // Get the current value of the material properties in the renderer.
-                _meshRenderer.GetPropertyBlock(_propBlocks[i],i);
+                _renderer.GetPropertyBlock(_propBlocks[i],i);
                 // Assign our new value.
                 _propBlocks[i].SetInt(Amount, boolean ? 1 : 0   );  
                 // Apply the edited values to the renderer.
-                _meshRenderer.SetPropertyBlock(_propBlocks[i], i );
+                _renderer.SetPropertyBlock(_propBlocks[i], i );
             }
         }
         

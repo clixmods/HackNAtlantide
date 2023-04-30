@@ -1,9 +1,11 @@
+using System;
 using System.Collections;
+using Attack;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Serialization;
 
-public class EnemyController : MonoBehaviour,ICombat
+public class EnemyController : MonoBehaviour, ICombat
 {
     public float damage;
 
@@ -16,6 +18,20 @@ public class EnemyController : MonoBehaviour,ICombat
     NavMeshAgent _agent;
 
     private Animator _animator;
+    private IAttackCollider _attackCollider;
+    private void Awake()
+    {
+        _attackCollider = GetComponentInChildren<IAttackCollider>();
+        _attackCollider.OnCollideWithIDamageable += AttackColliderOnOnCollideWithIDamageable;
+    }
+
+    private void AttackColliderOnOnCollideWithIDamageable(object sender, EventArgs eventArgs)
+    {
+        if( eventArgs is DamageableEventArgs mDamageableEventArgs && canAttack)
+        {
+            mDamageableEventArgs.idamageable.DoDamage(damage);
+        }
+    }
 
     private void Start()
     {
@@ -53,13 +69,15 @@ public class EnemyController : MonoBehaviour,ICombat
         Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
         transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5);
     }
+    #region Animation Event Methods
 
     public void SetDamageActive(int value)
     {
         canAttack = value == 1;
-        Debug.Log(canAttack);
+        _attackCollider.enabled = canAttack; 
+       
     }
-
+    #endregion
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
