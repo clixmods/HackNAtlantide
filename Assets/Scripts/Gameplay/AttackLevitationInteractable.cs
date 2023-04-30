@@ -65,7 +65,7 @@ public class AttackLevitationInteractable : MonoBehaviour, IInteractable
             }
             else
             {
-                direction = (transformDestination.position - transform.position).normalized ;
+                direction = (transformDestination.position+Vector3.up - transform.position).normalized ;
             }
             
             _rigidBody.useGravity = false;

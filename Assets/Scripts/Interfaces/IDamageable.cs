@@ -7,7 +7,9 @@ using UnityEngine;
 public interface IDamageable
 {
     event EventHandler OnDamage;  
-    event EventHandler OnDeath; 
+    event EventHandler OnDeath;
+    event EventHandler OnChangeHealth;
+    public float maxHealth { get; }
     public float health { get; }
     public void TakeDamage(float damage);
     public void Dead();
