@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem.Utilities;
 using UnityEngine.Serialization;
+using Random = UnityEngine.Random;
 
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(InputHelper))]
@@ -35,6 +36,7 @@ public class AttackLevitationInteractable : MonoBehaviour, IInteractable
     [SerializeField] private float timeToBeCharged = 0.75f;
     [SerializeField] private float projectionSpeedMultiplier = 50f;
     [SerializeField] private float useStaminaAmount = 1f;
+    [SerializeField] private GameObject _meshDestroy;
     #region Monobehaviour
     private void Awake()
     {
@@ -79,8 +81,21 @@ public class AttackLevitationInteractable : MonoBehaviour, IInteractable
                 damageable.TakeDamage(2f);
             }
             // Todo : implement collision ennemi etc
-            Destroy(gameObject);
+            DestroyInteractable();
         }
+    }
+    
+    private void DestroyInteractable()
+    {
+        _meshDestroy.transform.position = transform.position;
+        _meshDestroy.transform.rotation = transform.rotation;
+        _meshDestroy.SetActive(true);
+        Rigidbody[] childrb = _meshDestroy.GetComponentsInChildren<Rigidbody>();
+        foreach(Rigidbody rb in childrb)
+        {
+            rb.AddExplosionForce(Random.value, rb.position + Random.onUnitSphere, Random.value);
+        }
+        this.gameObject.SetActive(false);
     }
 
         #endregion

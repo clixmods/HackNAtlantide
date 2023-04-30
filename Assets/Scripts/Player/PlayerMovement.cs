@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -17,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
     private Camera _camera;
     [SerializeField] private PlayerMovementStateScriptableObject _playerMovementState;
     [SerializeField] private PlayerInstanceScriptableObject _playerInstanceSO;
+    [SerializeField] private LayerMask _layerToIgnore;
 
 
     //Input
@@ -72,6 +74,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] ParticleSystem _dashFX;
     [SerializeField] TrailRenderer _dashTrail;
     [SerializeField] ParticleSystem _dustWalk;
+
     #endregion
 
     // Start is called before the first frame update
@@ -197,16 +200,16 @@ public class PlayerMovement : MonoBehaviour
             {
                 continue;
             }
+            
 
-            if (Physics.ComputePenetration(collider, _rigidbody.position, _rigidbody.rotation,
-                                       _buffer[i], _buffer[i].transform.position, _buffer[i].transform.rotation,
+            if (_buffer[i].gameObject.layer == (_layerToIgnore | (1 << _buffer[i].gameObject.layer)) && 
+                Physics.ComputePenetration(collider, _rigidbody.position, _rigidbody.rotation,
+                _buffer[i], _buffer[i].transform.position, _buffer[i].transform.rotation,
                                        out Vector3 direction, out float distance))
             {
                 _rigidbody.MovePosition(_rigidbody.position + (direction * (distance)));
             }
         }
-
-        amount = Physics.OverlapCapsuleNonAlloc(bottom, top, collider.radius, _buffer);
     }
 
     public void LookAtDirection(float speed, Vector3 direction)
