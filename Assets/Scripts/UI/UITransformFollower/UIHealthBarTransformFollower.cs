@@ -32,7 +32,7 @@ namespace UI.UITransformFollower
             idamageable.OnChangeHealth += IdamageableOnOnChangeHealth;
             
             _slider ??= GetComponentInChildren<Slider>();
-            _striLength = ((RectTransform)transform).rect.width;
+            _striLength = _rectTransform.sizeDelta.x;
             _rectTransform.sizeDelta = new Vector2 (_striLength * idamageable.maxHealth, _rectTransform.sizeDelta.y);
         }
 

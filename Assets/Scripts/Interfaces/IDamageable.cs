@@ -11,7 +11,7 @@ public interface IDamageable
     event EventHandler OnChangeHealth;
     public float maxHealth { get; }
     public float health { get; }
-    public void TakeDamage(float damage);
+    public void DoDamage(float damage);
     public void Dead();
     public void AddHealth(float health);
 

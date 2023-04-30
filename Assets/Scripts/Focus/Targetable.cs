@@ -4,6 +4,10 @@ using UnityEngine;
 
     public class Targetable : MonoBehaviour , ITargetable
     {
+        
+        public event EventHandler OnTargeted;
+        public event EventHandler OnUntargeted;
+        
         [SerializeField] private Transform targeter;
         [SerializeField] private bool useDistance;
         [SerializeField] private float maxDistanceWithTargeter = 50f;
@@ -56,16 +60,20 @@ using UnityEngine;
         
         public void OnTarget()
         {
+            OnTargeted?.Invoke(this,null);
             SetFloat(true);
             Debug.Log("Object is target",gameObject);
         }
 
         public void OnUntarget()
         {
+            OnUntargeted?.Invoke(this,null);
             SetFloat(false);
             Debug.Log("Object is untarget", gameObject);
         }
-        
+
+   
+
         private void SetFloat(bool boolean)
         {
             for (int i = 0; i < _propBlocks.Length; i++)

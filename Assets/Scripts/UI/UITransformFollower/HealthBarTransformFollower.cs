@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace UI.UITransformFollower
 {
@@ -10,11 +11,39 @@ namespace UI.UITransformFollower
         [Tooltip("If is true, the UI Element is not connected with the manipulation of this component")]
         [SerializeField] private bool _UIElementIsIndependant;
         private UIHealthBarTransformFollower _uiHealthBar;
+        private IDamageable _idamageable;
+        private ITargetable _iTargetable;
+        private void Awake()
+        {
+            _idamageable = GetComponent<IDamageable>();
+            _idamageable.OnDamage += IdamageableOnOnDamage;
+            _iTargetable = GetComponent<ITargetable>();
+            _iTargetable.OnTargeted += ITargetableOnOnTargeted; 
+            _iTargetable.OnUntargeted += ITargetableOnOnUntargeted;
+        }
+
+        private void ITargetableOnOnUntargeted(object sender, EventArgs e)
+        {
+            if(_idamageable.health.Equals(_idamageable.maxHealth))
+                gameObject.SetActive(false);
+        }
+
+        private void ITargetableOnOnTargeted(object sender, EventArgs e)
+        {
+            gameObject.SetActive(true);
+        }
+
+        private void IdamageableOnOnDamage(object sender, EventArgs e)
+        {
+            gameObject.SetActive(true);
+        }
+
         // Start is called before the first frame update
         void Start()
         {
             _uiHealthBar = UITransformFollower.Create<UIHealthBarTransformFollower>(_prefab, transform , maxDistanceToShow);
-            _uiHealthBar.Init(GetComponent<IDamageable>());
+            _uiHealthBar.Init(_idamageable);
+            gameObject.SetActive(false);
         }
 
         private void OnDisable()

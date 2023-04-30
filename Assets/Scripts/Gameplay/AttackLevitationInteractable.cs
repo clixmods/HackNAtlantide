@@ -78,7 +78,7 @@ public class AttackLevitationInteractable : MonoBehaviour, IInteractable
         {
             if (collision.transform.TryGetComponent<IDamageable>(out var damageable))
             {
-                damageable.TakeDamage(2f);
+                damageable.DoDamage(2f);
             }
             // Todo : implement collision ennemi etc
             DestroyInteractable();
@@ -118,6 +118,7 @@ public class AttackLevitationInteractable : MonoBehaviour, IInteractable
         }
         _hasInteract = true;
         _playerStamina.UseStamina(useStaminaAmount);
+        Focus.OnFocusSwitch -= SetDestination;
         _isCharging = false;
     }
 

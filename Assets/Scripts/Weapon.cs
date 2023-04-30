@@ -18,7 +18,7 @@ public class Weapon : MonoBehaviour
     {
         if(_iCombat.canAttack && other.TryGetComponent<IDamageable>(out var damageable))
         {
-            damageable.TakeDamage(damage);
+            damageable.DoDamage(damage);
         }
     }
 }

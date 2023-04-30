@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public interface ITargetable
 {
@@ -6,4 +7,7 @@ public interface ITargetable
     public bool CanBeTarget { get; }
     public void OnTarget();
     public void OnUntarget();
+    
+    event EventHandler OnTargeted;
+    event EventHandler OnUntargeted;
 }

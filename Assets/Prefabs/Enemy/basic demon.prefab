@@ -459,7 +459,6 @@ GameObject:
   - component: {fileID: 6174288241333017958}
   - component: {fileID: 6174288241333017959}
   - component: {fileID: 5681841889505129741}
-  - component: {fileID: 8995137762431560514}
   m_Layer: 11
   m_Name: Capsule
   m_TagString: Untagged
@@ -574,8 +573,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 448570f2dca1f494abcca596f07f1bbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemyController: {fileID: 6174288241673237631}
   _maxHealth: 3
+  _enemyController: {fileID: 6174288241673237631}
 --- !u!114 &5681841889505129741
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -592,22 +591,6 @@ MonoBehaviour:
   _prefab: {fileID: 7842852136325112521, guid: 5671e126f0de2064a98d178b7b82fe6a, type: 3}
   maxDistanceToShow: 45
   _UIElementIsIndependant: 0
---- !u!114 &8995137762431560514
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6174288241333017945}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75cba42aa9fb495c86c5a9e6b45b2454, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targeter: {fileID: 0}
-  useDistance: 1
-  maxDistanceWithTargeter: 20
-  canBeTarget: 1
 --- !u!1 &6395227641650034023
 GameObject:
   m_ObjectHideFlags: 0
@@ -952,6 +935,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5027895009128811711}
   - component: {fileID: 910961543596870149}
+  - component: {fileID: 17162417211097417}
   m_Layer: 11
   m_Name: basic_demon_lowres
   m_TagString: Untagged
@@ -1047,6 +1031,22 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.0013940455, y: 0.010287664, z: 0.0012325263}
     m_Extent: {x: 0.02121685, y: 0.025829613, z: 0.013857047}
   m_DirtyAABB: 0
+--- !u!114 &17162417211097417
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8462686171901773623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75cba42aa9fb495c86c5a9e6b45b2454, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targeter: {fileID: 0}
+  useDistance: 0
+  maxDistanceWithTargeter: 50
+  canBeTarget: 1
 --- !u!1 &8678495247871380457
 GameObject:
   m_ObjectHideFlags: 0

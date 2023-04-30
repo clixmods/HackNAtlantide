@@ -37,7 +37,7 @@ public class Character : MonoBehaviour,  IDamageable
         health = maxHealth;
     }
     
-    public void TakeDamage(float damage)
+    public void DoDamage(float damage)
     {
         health -= damage;
         OnDamage?.Invoke(this,null);

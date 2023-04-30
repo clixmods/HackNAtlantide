@@ -45,7 +45,7 @@ public class InputManager : MonoBehaviour
         // Focus
         _input.InGame.Focus.performed += ctx => _focus.ChangeValue(true);
         // SwitchFocus
-        _input.InGame.SwitchFocus.performed += ctx => _switchFocus.ChangeValue(_input.InGame.SwitchFocus.ReadValue<Vector2>());
+        _input.InGame.SwitchFocus.started += ctx => _switchFocus.ChangeValue(_input.InGame.SwitchFocus.ReadValue<Vector2>());
         _input.InGame.SwitchFocus.canceled += ctx => _switchFocus.ChangeValue(Vector2.zero);
     }
 
@@ -68,7 +68,7 @@ public class InputManager : MonoBehaviour
         // Focus
         _input.InGame.Focus.performed -= ctx => _focus.ChangeValue(true);
         // SwitchFocus
-        _input.InGame.SwitchFocus.performed -= ctx => _switchFocus.ChangeValue(_input.InGame.SwitchFocus.ReadValue<Vector2>());
+        _input.InGame.SwitchFocus.started -= ctx => _switchFocus.ChangeValue(_input.InGame.SwitchFocus.ReadValue<Vector2>());
         _input.InGame.SwitchFocus.canceled -= ctx => _switchFocus.ChangeValue(Vector2.zero);
         
         _input.Disable();
