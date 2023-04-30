@@ -60,6 +60,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] PlayerStaminaScriptableObject _playerStamina;
     private bool _canDash;
     private bool _isDashing;
+    public bool IsDashing { get { return _isDashing; } }
     
     //Collision Detection
     private Collider[] _buffer = new Collider[8];
@@ -123,6 +124,7 @@ public class PlayerMovement : MonoBehaviour
     }
     private void Move()
     {
+        _rigidbody.velocity = Vector3.zero;
         //direction in which player wants to move
         Vector3 targetmoveAmount = _moveDirection * _speed * Time.fixedDeltaTime;
 
@@ -235,6 +237,7 @@ public class PlayerMovement : MonoBehaviour
             _canDash = false;
             _transformLockTempForDash = _transformLock;
             _transformLock = null;
+            Physics.IgnoreLayerCollision(this.gameObject.layer, 16);
             StartCoroutine(CancelDash());
 
             //FeedBack
@@ -248,8 +251,9 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(_dashTime);
 
         _speed = _moveSpeed;
-        _isDashing = false;
+        
         _transformLock = _transformLockTempForDash;
+        
 
         StartCoroutine(ReloadDash());
 
@@ -258,6 +262,8 @@ public class PlayerMovement : MonoBehaviour
     IEnumerator CancelDashFeedback()
     {
         yield return new WaitForSeconds(0.2f);
+        _isDashing = false;
+        Physics.IgnoreLayerCollision(this.gameObject.layer, 16, false);
         DashFeedBack(false);
     }
 
@@ -271,7 +277,7 @@ public class PlayerMovement : MonoBehaviour
     {
         float distance = 0f;
         Vector3 displacement = Vector3.zero;
-        if (_rigidbody.SweepTest(Vector3.down*0.1f, out RaycastHit hit, 0.5f, QueryTriggerInteraction.Ignore))
+        if (_rigidbody.SweepTest(Vector3.down, out RaycastHit hit, 0.5f, QueryTriggerInteraction.Ignore))
         {
             //ClampDistance with contact offset;
             distance = Mathf.Max(0f, hit.distance - Physics.defaultContactOffset);

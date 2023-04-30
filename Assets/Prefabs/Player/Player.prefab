@@ -67,7 +67,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.68
+  m_Radius: 1
   m_Height: 3.435063
   m_Direction: 1
   m_Center: {x: 0, y: 0.82, z: 0}
@@ -126,6 +126,9 @@ MonoBehaviour:
   _playerMovementState: {fileID: 11400000, guid: cbdc9ceb96c20ac4cb9cc17112219e5d,
     type: 2}
   _playerInstanceSO: {fileID: 11400000, guid: 275f07e531552df4896cbb9e43e44af7, type: 2}
+  _layerToIgnore:
+    serializedVersion: 2
+    m_Bits: 98304
   _moveInput: {fileID: 11400000, guid: f723c9ff06fee8f4b84dfde16114e058, type: 2}
   _dashInput: {fileID: 11400000, guid: 4bd4a32db9dece64598ee56d8821fda5, type: 2}
   _moveSpeed: 8
@@ -413,7 +416,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 11fbb8f7bedc9154ca491afc829a0e21,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.09257126
+      value: -0.08
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 11fbb8f7bedc9154ca491afc829a0e21,
         type: 3}

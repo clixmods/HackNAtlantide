@@ -114,6 +114,7 @@ public class AttackLevitationInteractable : MonoBehaviour, IInteractable
             transform.position = Vector3.Lerp(_initialPosition, _initialPosition + Vector3.up*5, t);
             timeElapsed += Time.deltaTime;
             yield return null;
+            _rigidBody.AddTorque(Random.onUnitSphere * 20);
         }
         _hasInteract = true;
         _playerStamina.UseStamina(useStaminaAmount);
