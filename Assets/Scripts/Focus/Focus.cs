@@ -3,8 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Cinemachine;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.EventSystems;
 using UnityEngine.Serialization;
 
 public class Focus : MonoBehaviour
@@ -134,18 +136,52 @@ public class Focus : MonoBehaviour
 
     private void InputSwitchTargetOnChanged(Vector2 value)
     {
-        if (value.magnitude == 0) return;
+        if (value.magnitude <= 0.7) return;
         
-        if (value.x > 0 || value.y > 0)
+        if(InputManager.IsGamepad())
         {
-            CurrentTargetIndex++;
+            CurrentTargetIndex = ClosestDotIndex(value);
         }
-        else if(value.x < 0 || value.y < 0)
+        else
         {
-            CurrentTargetIndex--;
+            if (value.x > 0 || value.y > 0)
+            {
+                CurrentTargetIndex++;
+            }
+            else if (value.x < 0 || value.y < 0)
+            {
+                CurrentTargetIndex--;
+            }
         }
+        
         Switch();
     }
+    int ClosestDotIndex(Vector2 inputValue)
+    {
+        Camera cam = CameraUtility.Camera;
+
+        Vector3 camForwardOnPlane = new Vector3(cam.transform.forward.x, 0, cam.transform.forward.z).normalized;
+        Vector3 camRightOnPlane = new Vector3(cam.transform.right.x, 0, cam.transform.right.z).normalized;
+
+        Vector3 inputDirection = inputValue.x * camRightOnPlane + inputValue.y * camForwardOnPlane;
+
+        Vector3 playerPos = PlayerInstanceScriptableObject.Player.transform.position;
+        Debug.Log(inputValue);
+        int index = 0;
+        float closestdot = -2;
+        for(int i = 0; i < _targetable.Count; i++)
+        {
+            float dot = Vector3.Dot(inputDirection,(_targetable[i].position - playerPos).normalized);
+
+            if(dot > closestdot)
+            {
+                index = i;
+                closestdot = dot;
+            }
+        }
+        return index;
+    }
+    
     private void InputEnableFocusOnChanged(bool value)
     {
         if (value)

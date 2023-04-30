@@ -83,7 +83,7 @@ public class PlayerMovement : MonoBehaviour
         _animator = GetComponent<Animator>();
         PlayerInstanceScriptableObject.Player = this.gameObject;
         _rigidbody = GetComponent<Rigidbody>();
-        _camera = Camera.main;
+        _camera = CameraUtility.Camera;
         collider = GetComponent<CapsuleCollider>();
         _speed = _moveSpeed;
         _canDash = true;

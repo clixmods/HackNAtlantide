@@ -11,6 +11,7 @@ public class InputManager : MonoBehaviour
     [SerializeField] private InputVectorScriptableObject _switchFocus;
     [SerializeField] private InputButtonScriptableObject _focus;
     [SerializeField] private InputActionIcon _actionIcon;
+    private bool _isGamepad { get; set; }
     void Awake()
     {
         _input = new PlayerControls();
@@ -75,10 +76,11 @@ public class InputManager : MonoBehaviour
     private void Update()
     {
         //find the last Input Device used and set a bool.
-        //LastInputDeviceUsed();
+        _isGamepad = IsGamepad();
+        Debug.Log(_isGamepad);
     }
 
-    bool LastInputDeviceUsed()
+    public static bool IsGamepad()
     {
         InputDevice lastUsedDevice = null;
         float lastEventTime = 0;
