@@ -6,21 +6,40 @@ using UnityEngine;
 
 public class AttackCollider : MonoBehaviour , IAttackCollider
 {
+    public List<IDamageable> hitsted; 
     public event EventHandler OnCollideWithIDamageable;
     AnimationEvent _damageActiveAnimatorEvent;
 
     [SerializeField] private bool sendEventOnEnter = true;
     [SerializeField] private bool sendEventOnStay = false; 
-    [SerializeField] private bool sendEventOnExit = false; 
+    [SerializeField] private bool sendEventOnExit = false;
+
+    private void OnEnable()
+    {
+        hitsted = new List<IDamageable>();
+    }
+
+    private void OnDisable()
+    {
+        hitsted = new List<IDamageable>();
+    }
+
+    private void OnHit(IDamageable damageable)
+    {
+        if (hitsted.Contains(damageable)) return;
+        
+        hitsted.Add(damageable);
+        OnCollideWithIDamageable?.Invoke(this, new DamageableEventArgs()
+        {
+            idamageable = damageable
+        });
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (!sendEventOnEnter) return;
-        if(other.TryGetComponent<IDamageable>(out var damageable))
+        if(other.TryGetComponent<IDamageable>(out var damageable) )
         {
-            OnCollideWithIDamageable?.Invoke(this, new DamageableEventArgs()
-            {
-                idamageable = damageable
-            });
+            OnHit(damageable);
         }
     }
     private void OnTriggerStay(Collider other)
@@ -28,21 +47,15 @@ public class AttackCollider : MonoBehaviour , IAttackCollider
         if (!sendEventOnStay) return;
         if(other.TryGetComponent<IDamageable>(out var damageable))
         {
-            OnCollideWithIDamageable?.Invoke(this, new DamageableEventArgs()
-            {
-                idamageable = damageable
-            });
+            OnHit(damageable);
         }
     }
     private void OnTriggerExit(Collider other)
     {
         if (!sendEventOnExit) return;
-        if(other.TryGetComponent<IDamageable>(out var damageable))
+        if(other.TryGetComponent<IDamageable>(out var damageable) )
         {
-            OnCollideWithIDamageable?.Invoke(this, new DamageableEventArgs()
-            {
-                idamageable = damageable
-            });
+            OnHit(damageable);
         }
     }
 }

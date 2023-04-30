@@ -53,6 +53,7 @@ public class PlayerCombat : MonoBehaviour,ICombat
                 if (Time.time - lastClickedTime >= 0.2f)
                 {
                     anim.runtimeAnimatorController = combo[comboCounter].animatorOV;
+                    _attackCollider.enabled = false;
                     anim.Play("Attack", 0, 0);
                     comboCounter++;
                     lastClickedTime = Time.time;

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Attack;
 using UnityEngine;
 using UnityEngine.InputSystem.Utilities;
 using UnityEngine.Serialization;
@@ -8,6 +9,7 @@ using Random = UnityEngine.Random;
 
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(InputHelper))]
+[RequireComponent(typeof(IAttackCollider))]
 public class AttackLevitationInteractable : MonoBehaviour, IInteractable
 {
     private Rigidbody _rigidBody;
@@ -37,6 +39,8 @@ public class AttackLevitationInteractable : MonoBehaviour, IInteractable
     [SerializeField] private float projectionSpeedMultiplier = 50f;
     [SerializeField] private float useStaminaAmount = 1f;
     [SerializeField] private GameObject _meshDestroy;
+    [SerializeField] private float damageAmount = 1f;
+    private IAttackCollider _attackCollider;
     #region Monobehaviour
     private void Awake()
     {
@@ -46,6 +50,21 @@ public class AttackLevitationInteractable : MonoBehaviour, IInteractable
         inputHelper = GetComponent<InputHelper>();
         _hasInteract = false;
         Focus.OnFocusSwitch += SetDestination;
+        _attackCollider = GetComponent<IAttackCollider>();
+        _attackCollider.OnCollideWithIDamageable += AttackColliderOnOnCollideWithIDamageable;
+        
+    }
+    private void Start()
+    {
+        _attackCollider.enabled = false;
+    }
+    private void AttackColliderOnOnCollideWithIDamageable(object sender, EventArgs e)
+    {
+        if (e is DamageableEventArgs mDamageableEventArgs)
+        {
+            mDamageableEventArgs.idamageable.DoDamage(damageAmount);
+            DestroyInteractable();
+        }
     }
 
     private void SetDestination(Transform target)
@@ -70,18 +89,6 @@ public class AttackLevitationInteractable : MonoBehaviour, IInteractable
             
             _rigidBody.useGravity = false;
             _rigidBody.velocity = direction * projectionSpeedMultiplier  ;
-        }
-    }
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (_hasInteract)
-        {
-            if (collision.transform.TryGetComponent<IDamageable>(out var damageable))
-            {
-                damageable.DoDamage(2f);
-            }
-            // Todo : implement collision ennemi etc
-            DestroyInteractable();
         }
     }
     
@@ -117,11 +124,11 @@ public class AttackLevitationInteractable : MonoBehaviour, IInteractable
             _rigidBody.AddTorque(Random.onUnitSphere * 20);
         }
         _hasInteract = true;
+        _attackCollider.enabled = true;
         _playerStamina.UseStamina(useStaminaAmount);
         Focus.OnFocusSwitch -= SetDestination;
         _isCharging = false;
     }
-
     #if UNITY_EDITOR
     private void OnDrawGizmos()
     {
@@ -131,9 +138,7 @@ public class AttackLevitationInteractable : MonoBehaviour, IInteractable
         }
     }
     #endif
-
     #region IInteractable
-
     public void Interact()
     {
         if (!_hasInteract && _playerStamina.CanUseStamina())
@@ -155,6 +160,6 @@ public class AttackLevitationInteractable : MonoBehaviour, IInteractable
         transform.position = _initialPosition;
         transform.rotation = _initialRotation;
     }
-
     #endregion
+    
 }
