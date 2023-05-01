@@ -10,6 +10,7 @@ public class InputManager : MonoBehaviour
     [SerializeField] private InputVectorScriptableObject _move;
     [SerializeField] private InputVectorScriptableObject _switchFocus;
     [SerializeField] private InputButtonScriptableObject _focus;
+    [SerializeField] private InputButtonScriptableObject _pause;
     [SerializeField] private InputActionIcon _actionIcon;
     private bool _isGamepad { get; set; }
     void Awake()
@@ -47,6 +48,8 @@ public class InputManager : MonoBehaviour
         // SwitchFocus
         _input.InGame.SwitchFocus.performed += ctx => _switchFocus.ChangeValue(_input.InGame.SwitchFocus.ReadValue<Vector2>());
         _input.InGame.SwitchFocus.canceled += ctx => _switchFocus.ChangeValue(Vector2.zero);
+        // Pause
+        _input.InGame.Pause.performed += ctx =>  _pause.ChangeValue(true);
     }
 
     void DisableGameInput()
@@ -70,6 +73,8 @@ public class InputManager : MonoBehaviour
         // SwitchFocus
         _input.InGame.SwitchFocus.performed -= ctx => _switchFocus.ChangeValue(_input.InGame.SwitchFocus.ReadValue<Vector2>());
         _input.InGame.SwitchFocus.canceled -= ctx => _switchFocus.ChangeValue(Vector2.zero);
+        // Pause
+        _input.InGame.Pause.performed -= ctx =>  _pause.ChangeValue(true);
         
         _input.Disable();
     }

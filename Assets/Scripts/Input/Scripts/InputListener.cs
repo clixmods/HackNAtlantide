@@ -1,28 +1,28 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class InputListener : MonoBehaviour
 {
-    [SerializeField] InputButtonScriptableObject _interact;
-    [SerializeField] InputVectorScriptableObject _move;
-    // Start is called before the first frame update
-    void OnEnable()
+    [SerializeField] InputScriptableObject<bool> inputToListen;
+    public UnityEvent InputValueTrue;
+    public UnityEvent InputValueFalse;
+    private void Awake()
     {
-        _interact.OnValueChanged += InteractInput;
-        _move.OnValueChanged += MoveInput;
-    }
-    private void OnDisable()
-    {
-        _interact.OnValueChanged -= InteractInput;
-        _move.OnValueChanged -= MoveInput;
-    }
-    void InteractInput(bool value)
-    {
-        Debug.Log(value);
-    }
-    void MoveInput(Vector2 value)
-    {
-        Debug.Log(value);
+        inputToListen.OnValueChanged += obj =>
+        {
+            if (obj)
+            {
+                InputValueTrue?.Invoke();
+            }
+            else
+            {
+                InputValueFalse?.Invoke();
+            }
+            
+        };
     }
 }

@@ -136,6 +136,17 @@ public class UIMenu : MonoBehaviour
         }
     }
 
+    public void OpenCloseMenu()
+    {
+        if (IsOpen)
+        {
+            CloseMenu();
+        }
+        else
+        {
+            OpenMenu();
+        }
+    }
     public void OpenMenu()
     {
         OpenMenu(null);

@@ -80,6 +80,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""3cf6f724-1905-40ef-a4aa-07f4bf2ee77b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -269,6 +278,28 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""action"": ""SwitchFocus"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""35e27e3c-927c-4f31-bcd9-15d4a2b9fae7"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b15e910f-11b9-4e9d-b69d-276a302b5a2d"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""PC"",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -311,6 +342,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_InGame_Attack = m_InGame.FindAction("Attack", throwIfNotFound: true);
         m_InGame_Focus = m_InGame.FindAction("Focus", throwIfNotFound: true);
         m_InGame_SwitchFocus = m_InGame.FindAction("SwitchFocus", throwIfNotFound: true);
+        m_InGame_Pause = m_InGame.FindAction("Pause", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -376,6 +408,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_InGame_Attack;
     private readonly InputAction m_InGame_Focus;
     private readonly InputAction m_InGame_SwitchFocus;
+    private readonly InputAction m_InGame_Pause;
     public struct InGameActions
     {
         private @PlayerControls m_Wrapper;
@@ -386,6 +419,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @Attack => m_Wrapper.m_InGame_Attack;
         public InputAction @Focus => m_Wrapper.m_InGame_Focus;
         public InputAction @SwitchFocus => m_Wrapper.m_InGame_SwitchFocus;
+        public InputAction @Pause => m_Wrapper.m_InGame_Pause;
         public InputActionMap Get() { return m_Wrapper.m_InGame; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -413,6 +447,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @SwitchFocus.started -= m_Wrapper.m_InGameActionsCallbackInterface.OnSwitchFocus;
                 @SwitchFocus.performed -= m_Wrapper.m_InGameActionsCallbackInterface.OnSwitchFocus;
                 @SwitchFocus.canceled -= m_Wrapper.m_InGameActionsCallbackInterface.OnSwitchFocus;
+                @Pause.started -= m_Wrapper.m_InGameActionsCallbackInterface.OnPause;
+                @Pause.performed -= m_Wrapper.m_InGameActionsCallbackInterface.OnPause;
+                @Pause.canceled -= m_Wrapper.m_InGameActionsCallbackInterface.OnPause;
             }
             m_Wrapper.m_InGameActionsCallbackInterface = instance;
             if (instance != null)
@@ -435,6 +472,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @SwitchFocus.started += instance.OnSwitchFocus;
                 @SwitchFocus.performed += instance.OnSwitchFocus;
                 @SwitchFocus.canceled += instance.OnSwitchFocus;
+                @Pause.started += instance.OnPause;
+                @Pause.performed += instance.OnPause;
+                @Pause.canceled += instance.OnPause;
             }
         }
     }
@@ -465,5 +505,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnAttack(InputAction.CallbackContext context);
         void OnFocus(InputAction.CallbackContext context);
         void OnSwitchFocus(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
     }
 }
