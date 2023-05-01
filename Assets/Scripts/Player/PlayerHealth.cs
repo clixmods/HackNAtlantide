@@ -9,6 +9,7 @@ public class PlayerHealth : Character
     public override void Dead()
     {
         base.Dead();
+        
         // TODO - Make the dead function
     }
 }
