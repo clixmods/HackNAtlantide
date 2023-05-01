@@ -88,7 +88,6 @@ public class PlayerCombat : MonoBehaviour,ICombat
     {
         canAttack = value == 1;
         _attackCollider.enabled = canAttack;
-        Debug.Log(canAttack);
     }
 
     #endregion

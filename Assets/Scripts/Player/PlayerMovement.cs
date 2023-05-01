@@ -98,7 +98,7 @@ public class PlayerMovement : MonoBehaviour
     private void OnDisable()
     {
         _moveInput.OnValueChanged -= MoveInput;
-        _dashInput.OnValueChanged += Dash;
+        _dashInput.OnValueChanged -= Dash;
         Focus.OnFocusEnable -= FocusEnable;
         Focus.OnFocusSwitch -= FocusSwitch;
         Focus.OnFocusDisable -= FocusUnLock;

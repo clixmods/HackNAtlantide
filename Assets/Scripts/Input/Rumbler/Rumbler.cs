@@ -35,6 +35,7 @@ public class Rumbler : MonoBehaviour
     // Public Methods
     public void RumbleConstant(RumblerDataConstant rumblerDataConstant)
     {
+        
         switch(Settings.Instance.RumblerIntensity)
         {
             case (RumblerIntensity.none):

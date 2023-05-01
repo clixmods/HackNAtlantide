@@ -27,6 +27,11 @@ using UnityEngine;
             
         }
 
+        private void OnDestroy()
+        {
+            OnCameraChanged -= DesactiveCamera;
+        }
+
         private void Start()
         {
             _zoneVolume = GetComponent<BoxTrigger>();

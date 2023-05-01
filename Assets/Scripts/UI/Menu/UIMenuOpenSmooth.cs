@@ -36,17 +36,18 @@ public class UIMenuOpenSmooth : MonoBehaviour
 
     private void Update()
     {
-        if (_currentStartTheOpenDelay >= startTheOpenInSeconds)
+        if (_canvasGroup.alpha < 1)
         {
-            _currentDelay += Time.unscaledDeltaTime;
-            float value = _currentDelay / openDelay;
-            _canvasGroup.alpha = value;
+            if (_currentStartTheOpenDelay >= startTheOpenInSeconds)
+            {
+                _currentDelay += Time.unscaledDeltaTime;
+                float value = _currentDelay / openDelay;
+                _canvasGroup.alpha = value;
+            }
+            else
+            {
+                _currentStartTheOpenDelay += Time.unscaledDeltaTime;
+            }
         }
-        else
-        {
-            _currentStartTheOpenDelay += Time.unscaledDeltaTime;
-        }
-        
-
     }
 }

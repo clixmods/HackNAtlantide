@@ -43,11 +43,19 @@ using UnityEngine;
         {
             get
             {
-                if(pivot != null)
-                    return pivot;
+                try
+                {
+                    if(pivot != null)
+                        return pivot;
                 
-                if(transform != null)
-                    return transform;
+                    if(transform != null)
+                        return transform;
+                }
+                catch
+                {
+                    return null;
+                }
+               
 
                 return null;
             }

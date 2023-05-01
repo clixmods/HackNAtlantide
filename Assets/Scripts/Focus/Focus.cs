@@ -159,12 +159,16 @@ public class Focus : MonoBehaviour
         }
         
         OnFocusSwitch?.Invoke(CurrentTarget);
-        _cinemachineTargetGroup.SwitchToTarget(CurrentTarget.transform);
-        _lastcachedTarget = CurrentTarget;
-        if (_focusIsEnable)
+        if (CurrentTarget != null)
         {
-            CurrentTarget.OnTarget();
+            _cinemachineTargetGroup.SwitchToTarget(CurrentTarget.transform);
+            _lastcachedTarget = CurrentTarget;
+            if (_focusIsEnable)
+            {
+                CurrentTarget.OnTarget();
+            }
         }
+     
     }
 
     private void InputSwitchTargetOnChanged(Vector2 value)
@@ -249,6 +253,10 @@ public class Focus : MonoBehaviour
     {
         if (ITargetable.Targetables.Count == 0)
         {
+            if (_targetableAvailable.Count > 0)
+            {
+                _targetableAvailable = new List<ITargetable>();
+            }
             return; 
         }
         _targetableAvailable = new List<ITargetable>();
@@ -362,11 +370,15 @@ public class Focus : MonoBehaviour
         GenerateTargetableList();
         if (!_focusIsEnable)
         {
-            CurrentTargetIndex = 0;
-            if (CurrentTarget != _lastcachedTarget)
+            if (_targetableAvailable.Count > 0)
             {
-                Switch();
+                CurrentTargetIndex = 0;
+                if (CurrentTarget != _lastcachedTarget)
+                {
+                    Switch();
+                }
             }
+           
         }
     }
 }

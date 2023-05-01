@@ -91,7 +91,7 @@ public class AttackLevitationInteractable : MonoBehaviour, IInteractable
             transform.LookAt(transformDestination);
            
             
-            _rigidBody.velocity = transform.forward ;
+            _rigidBody.velocity = transform.forward * projectionSpeedMultiplier ;
         }
     }
     
