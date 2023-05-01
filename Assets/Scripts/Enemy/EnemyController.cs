@@ -22,7 +22,15 @@ public class EnemyController : MonoBehaviour, ICombat
     private void Awake()
     {
         _attackCollider = GetComponentInChildren<IAttackCollider>();
-        _attackCollider.OnCollideWithIDamageable += AttackColliderOnOnCollideWithIDamageable;
+        if (_attackCollider != null)
+        {
+            _attackCollider.OnCollideWithIDamageable += AttackColliderOnOnCollideWithIDamageable;
+        }
+        else
+        {
+            Debug.LogError("No attackCollider find, this enemy can't attack.", gameObject);
+        }
+       
     }
 
     private void AttackColliderOnOnCollideWithIDamageable(object sender, EventArgs eventArgs)

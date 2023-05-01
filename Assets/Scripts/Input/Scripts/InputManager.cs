@@ -82,7 +82,7 @@ public class InputManager : MonoBehaviour
     {
         //find the last Input Device used and set a bool.
         _isGamepad = IsGamepad();
-        Debug.Log(_isGamepad);
+     
     }
 
     public static bool IsGamepad()

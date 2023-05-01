@@ -11,14 +11,23 @@ public class UIFocus : MonoBehaviour
     private void Awake()
     {
         _image = GetComponent<Image>();
+        // Event subscribe
         Focus.OnFocusEnable += FocusOnOnFocusEnable;
         Focus.OnFocusDisable += FocusOnOnFocusDisable;
         Focus.OnFocusSwitch += FocusOnOnFocusSwitch;
     }
-    
-    private void FocusOnOnFocusSwitch(Transform target)
+
+    private void OnDestroy()
     {
-        this.target = target;
+        // Event unsubscribe
+        Focus.OnFocusEnable -= FocusOnOnFocusEnable;
+        Focus.OnFocusDisable -= FocusOnOnFocusDisable;
+        Focus.OnFocusSwitch -= FocusOnOnFocusSwitch;
+    }
+
+    private void FocusOnOnFocusSwitch(ITargetable target)
+    {
+        this.target = target.targetableTransform;
     }
 
     private void FocusOnOnFocusDisable()

@@ -28,7 +28,6 @@ public class LagFill : MonoBehaviour
       this.enabled = true;
       delayToStartLag = 3;
       t = 0;
-      Debug.Log("Slide event");
    }
 
    private void Update()

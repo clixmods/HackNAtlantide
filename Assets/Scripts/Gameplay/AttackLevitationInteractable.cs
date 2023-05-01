@@ -67,14 +67,16 @@ public class AttackLevitationInteractable : MonoBehaviour, IInteractable
         }
     }
 
-    private void SetDestination(Transform target)
+    private void SetDestination(ITargetable target)
     {
-        transformDestination = target;
+        transformDestination = target.targetableTransform;
     }
 
-    private void FixedUpdate()
+    
+    // We need to use late update, sometimes, the position targeted glitch because nav agent is bullshit
+    private void LateUpdate()
     {
-        inputHelper.enabled = _playerDetectionScriptableObject.IsInRange(transform.position)&&!_hasInteract? true:false;
+        inputHelper.enabled = _playerDetectionScriptableObject.IsInRange(transform.position)&&!_hasInteract;
         if (_hasInteract)
         {
             Vector3 direction;
@@ -84,11 +86,12 @@ public class AttackLevitationInteractable : MonoBehaviour, IInteractable
             }
             else
             {
-                direction = (transformDestination.position+Vector3.up - transform.position).normalized ;
+                direction =(transformDestination.position - _rigidBody.worldCenterOfMass).normalized ;
             }
+            transform.LookAt(transformDestination);
+           
             
-            _rigidBody.useGravity = false;
-            _rigidBody.velocity = direction * projectionSpeedMultiplier  ;
+            _rigidBody.velocity = transform.forward ;
         }
     }
     
@@ -124,11 +127,12 @@ public class AttackLevitationInteractable : MonoBehaviour, IInteractable
             transform.position = Vector3.Lerp(_initialPosition, _initialPosition + Vector3.up*5, t);
             timeElapsed += Time.deltaTime;
             yield return null;
-            _rigidBody.AddTorque(Random.onUnitSphere * 20);
+            //_rigidBody.AddTorque(Random.onUnitSphere * 20);
         }
         _hasInteract = true;
         _attackCollider.enabled = true;
         _playerStamina.UseStamina(useStaminaAmount);
+        _rigidBody.useGravity = false;
         Focus.OnFocusSwitch -= SetDestination;
         _isCharging = false;
     }
@@ -137,7 +141,7 @@ public class AttackLevitationInteractable : MonoBehaviour, IInteractable
     {
         if (transformDestination != null)
         {
-            Gizmos.DrawLine(transform.position, transform.position + (transformDestination.position - transform.position) );
+            Gizmos.DrawLine(transform.position, transformDestination.position );
         }
     }
     #endif

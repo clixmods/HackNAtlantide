@@ -15,7 +15,10 @@ public struct InputUnityEvent
     {
         InputButtonScriptableObject.OnValueChanged += InputButtonScriptableObjectOnOnValueChanged;
     }
-
+    public void OnDestroy()
+    {
+        InputButtonScriptableObject.OnValueChanged -= InputButtonScriptableObjectOnOnValueChanged;
+    }
     private void InputButtonScriptableObjectOnOnValueChanged(bool obj)
     {
         if (obj)
@@ -28,18 +31,32 @@ public class PlayerEvents : MonoBehaviour
 {
     [SerializeField] private InputUnityEvent[] _inputsUnityEvent;
     public UnityEvent OnDamage, OnDeath, OnAttackHit , OnInteract;
-
+    private IDamageable _damageable;
+    private IAttackCollider _attackCollider;
     private void Awake()
     {
-       GetComponent<IDamageable>().OnDamage += OnOnDamage;
-       GetComponent<IDamageable>().OnDeath += OnOnDeath;
-       GetComponentInChildren<IAttackCollider>().OnCollideWithIDamageable += OnOnCollideWithIDamageable;
+        _damageable = GetComponent<IDamageable>(); 
+        _damageable .OnDamage += OnOnDamage;
+        _damageable.OnDeath += OnOnDeath;
+        _attackCollider = GetComponentInChildren<IAttackCollider>();
+        _attackCollider.OnCollideWithIDamageable += OnOnCollideWithIDamageable;
        for (int i = 0; i < _inputsUnityEvent.Length; i++)
        {
            _inputsUnityEvent[i].Init();
        }
     }
-    
+
+    private void OnDestroy()
+    {
+        _damageable.OnDamage -= OnOnDamage;
+        _damageable.OnDeath -= OnOnDeath;
+        _attackCollider.OnCollideWithIDamageable -= OnOnCollideWithIDamageable;
+        for (int i = 0; i < _inputsUnityEvent.Length; i++)
+        {
+            _inputsUnityEvent[i].OnDestroy();
+        }
+    }
+
     private void OnOnCollideWithIDamageable(object sender, EventArgs e)
     {
         OnAttackHit?.Invoke();

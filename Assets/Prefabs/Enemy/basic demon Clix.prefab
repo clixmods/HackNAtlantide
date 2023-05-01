@@ -191,6 +191,37 @@ Transform:
   m_Father: {fileID: 6926385138113054705}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 4.1903963, y: -4.8596096, z: -47.144318}
+--- !u!1 &3379478458497258667
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 153834424590158610}
+  m_Layer: 11
+  m_Name: TargetablePivot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &153834424590158610
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3379478458497258667}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 2.68, z: 0.19}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5919351741948662680}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3658837674462854605
 GameObject:
   m_ObjectHideFlags: 0
@@ -443,7 +474,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5b86aa4926329d4386be4f9e91c7444, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1
+  sendEventOnEnter: 1
+  sendEventOnStay: 0
+  sendEventOnExit: 0
 --- !u!1 &6395227641650034023
 GameObject:
   m_ObjectHideFlags: 0
@@ -488,11 +521,11 @@ GameObject:
   - component: {fileID: 6174288241673237630}
   - component: {fileID: 6174288241673237631}
   - component: {fileID: 5221501643054161874}
-  - component: {fileID: 4941157224044765246}
   - component: {fileID: 460704731309419892}
   - component: {fileID: 6377393696202663881}
   - component: {fileID: 2251515660098559642}
   - component: {fileID: 4946743525479470109}
+  - component: {fileID: 5843071302513481857}
   m_Layer: 11
   m_Name: basic demon Clix
   m_TagString: Untagged
@@ -514,6 +547,7 @@ Transform:
   m_Children:
   - {fileID: 5027895009128811711}
   - {fileID: 4252147742636224193}
+  - {fileID: 153834424590158610}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -592,22 +626,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c80a058dcb004b16bdccf09b276a7bb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &4941157224044765246
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6444109697107675426}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75cba42aa9fb495c86c5a9e6b45b2454, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targeter: {fileID: 0}
-  useDistance: 1
-  maxDistanceWithTargeter: 20
-  canBeTarget: 1
 --- !u!114 &460704731309419892
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -634,7 +652,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da7a50129c684288a9f5916b2bb3c0db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _iconObject: {fileID: 0}
   _prefab: {fileID: 7842852136325112521, guid: 5671e126f0de2064a98d178b7b82fe6a, type: 3}
   maxDistanceToShow: 45
   _UIElementIsIndependant: 0
@@ -668,6 +685,23 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &5843071302513481857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6444109697107675426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75cba42aa9fb495c86c5a9e6b45b2454, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targeter: {fileID: 0}
+  pivot: {fileID: 153834424590158610}
+  useDistance: 1
+  maxDistanceWithTargeter: 25
+  canBeTarget: 1
 --- !u!1 &6807757247191123624
 GameObject:
   m_ObjectHideFlags: 0

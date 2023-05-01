@@ -296,9 +296,10 @@ public class PlayerMovement : MonoBehaviour
     {
         _followTarget = true;
     }
-    public void FocusSwitch(Transform transform)
+    public void FocusSwitch(ITargetable targetable)
     {
-        _transformLock = transform;
+        
+        _transformLock = targetable.targetableTransform;
     }
     public void FocusUnLock()
     {

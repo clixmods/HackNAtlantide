@@ -99,10 +99,10 @@ public class UIMenu : MonoBehaviour
             {
                 EventSystem.current.SetSelectedGameObject(buttonInChild.gameObject);
             }
-            else
-            {
-                Debug.LogError("UIMenu : _firstSelectedGameObject was not assigned, and no button are available in transform child, so please assign it", gameObject);
-            }
+            // else
+            // {
+            //     Debug.LogError("UIMenu : _firstSelectedGameObject was not assigned, and no button are available in transform child, so please assign it", gameObject);
+            // }
         }
     }
 
@@ -222,5 +222,10 @@ public class UIMenu : MonoBehaviour
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Confined;
         }
+    }
+
+    private void OnDestroy()
+    {
+        CloseMenu();
     }
 }

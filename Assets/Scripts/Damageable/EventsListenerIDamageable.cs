@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class EventHandlerIDamageable : MonoBehaviour
+public class EventsListenerIDamageable : MonoBehaviour
 {
     public UnityEvent OnDamage;
     public UnityEvent OnDeath;
