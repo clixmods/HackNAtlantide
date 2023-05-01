@@ -5,10 +5,9 @@ namespace UI.UITransformFollower
 {
     public class HealthBarTransformFollower : MonoBehaviour
     {
-        [SerializeField] private Sprite _iconObject;
         [SerializeField] private GameObject _prefab;
         [SerializeField] private float maxDistanceToShow = 45;
-        [Tooltip("If is true, the UI Element is not connected with the manipulation of this component")]
+        [Tooltip("UI Element is connected with the manipulation of this component")]
         [SerializeField] private bool _UIElementIsIndependant;
         private UIHealthBarTransformFollower _uiHealthBar;
         private IDamageable _idamageable;

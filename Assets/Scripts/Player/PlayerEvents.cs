@@ -44,12 +44,10 @@ public class PlayerEvents : MonoBehaviour
     {
         OnAttackHit?.Invoke();
     }
-
     private void OnOnDeath(object sender, EventArgs e)
     {
         OnDeath?.Invoke();
     }
-
     private void OnOnDamage(object sender, EventArgs e)
     {
         OnDamage?.Invoke();
