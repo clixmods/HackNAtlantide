@@ -30,16 +30,14 @@ public class InputManager : MonoBehaviour
     {
         _input.Enable();
 
-        //_input.InGame.Interact
         //Interact
         _input.InGame.Interact.performed += ctx => _interact.ChangeValue(true);
         _input.InGame.Interact.canceled += ctx => _interact.ChangeValue(false);
+        // Attack
+        _input.InGame.Attack.performed += ctx => _attack.ChangeValue(true);
 
         //Dash
         _input.InGame.Dash.performed += ctx => _dash.ChangeValue(true);
-
-        // Attack
-        _input.InGame.Attack.performed += ctx => _attack.ChangeValue(true);
 
         //Move
         _input.InGame.Move.performed += ctx => _move.ChangeValue(_input.InGame.Move.ReadValue<Vector2>());
