@@ -11,6 +11,7 @@ public class InputManager : MonoBehaviour
     [SerializeField] private InputVectorScriptableObject _switchFocus;
     [SerializeField] private InputButtonScriptableObject _focus;
     [SerializeField] private InputButtonScriptableObject _pause;
+    [SerializeField] private InputButtonScriptableObject _boussole;
     [SerializeField] private InputActionIcon _actionIcon;
     private bool _isGamepad { get; set; }
     void Awake()
@@ -29,16 +30,14 @@ public class InputManager : MonoBehaviour
     {
         _input.Enable();
 
-        //_input.InGame.Interact
         //Interact
         _input.InGame.Interact.performed += ctx => _interact.ChangeValue(true);
         _input.InGame.Interact.canceled += ctx => _interact.ChangeValue(false);
+        // Attack
+        _input.InGame.Attack.performed += ctx => _attack.ChangeValue(true);
 
         //Dash
         _input.InGame.Dash.performed += ctx => _dash.ChangeValue(true);
-
-        // Attack
-        _input.InGame.Attack.performed += ctx => _attack.ChangeValue(true);
 
         //Move
         _input.InGame.Move.performed += ctx => _move.ChangeValue(_input.InGame.Move.ReadValue<Vector2>());
@@ -50,6 +49,9 @@ public class InputManager : MonoBehaviour
         _input.InGame.SwitchFocus.canceled += ctx => _switchFocus.ChangeValue(Vector2.zero);
         // Pause
         _input.InGame.Pause.performed += ctx =>  _pause.ChangeValue(true);
+        //Boussole
+        _input.InGame.Boussole.performed += ctx => _boussole.ChangeValue(true);
+        _input.InGame.Boussole.canceled += ctx => _boussole.ChangeValue(false);
     }
 
     void DisableGameInput()
@@ -75,7 +77,11 @@ public class InputManager : MonoBehaviour
         _input.InGame.SwitchFocus.canceled -= ctx => _switchFocus.ChangeValue(Vector2.zero);
         // Pause
         _input.InGame.Pause.performed -= ctx =>  _pause.ChangeValue(true);
-        
+
+        //Boussole
+        _input.InGame.Boussole.performed -= ctx => _boussole.ChangeValue(true);
+        _input.InGame.Boussole.canceled -= ctx => _boussole.ChangeValue(false);
+
         _input.Disable();
     }
     private void Update()

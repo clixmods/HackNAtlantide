@@ -3,7 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName ="Data/InputData/button")]
+[CreateAssetMenu(menuName = "Data/InputData/button")]
 public class InputButtonScriptableObject : InputScriptableObject<bool>
 {
+    
 }
