@@ -9,6 +9,22 @@ public class CinematiqueScriptableObject : ScriptableObject
 {
     [SerializeField] TimelineAsset _timeline;
     [SerializeField] bool _isInputActive;
-    [SerializeField] bool skipable;
+    [SerializeField] bool _skipable;
     [SerializeField] Action onCinematiqueEnd;
+    public void LaunchCinematique()
+    {
+        //_timeline.play
+        FindObjectOfType<CinematiqueStateBehaviour>().gameObject.SetActive(true);
+        //DisactiveGameplayInputs
+
+    }
+    public void Skip()
+    {
+        if(_skipable)
+        {
+            //_timeline.Stop
+            //fadeBlackScreen
+            onCinematiqueEnd?.Invoke();
+        }
+    }
 }
