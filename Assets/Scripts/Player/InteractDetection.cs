@@ -1,14 +1,20 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEngine.Rendering.DebugUI;
 
 public class InteractDetection : MonoBehaviour
 {
     [SerializeField] InputButtonScriptableObject _interact;
     List<IInteractable> interactable = new List<IInteractable>();
+    public List<IInteractable> Interactable { get { DetectInteract(); return interactable; } }
+    IInteractable closestObject;
+    public Action<List<IInteractable>> onInteractableListValueChanged;
     float _maxDistanceInteraction;
     [SerializeField] PlayerDetectionScriptableObject _playerDetectionScriptableObject;
+
 
     void OnEnable()
     {
@@ -29,35 +35,13 @@ public class InteractDetection : MonoBehaviour
     }
     void InteractInput(bool value)
     {
-        Debug.Log("Value Input "+value);
-        Collider[] cols = Physics.OverlapSphere(transform.position, _maxDistanceInteraction);
-        interactable = new List<IInteractable>();
-        for (int i = 0; i < cols.Length; i++)
-        {
-            if (cols[i].gameObject.TryGetComponent<IInteractable>(out var interactObject))
-            {
-                interactable.Add(interactObject);
-            }
-        }
-        //calculate closest Interactable
-        float closestSqrDistance = Mathf.Infinity;
-        IInteractable closestObject = null;
-        for (int i = 0; i < interactable.Count; i++)
-        {
-           // if (interactable[i] == null) continue;
-            float distance = (interactable[i].transform.position - transform.position).sqrMagnitude;
-            if (closestSqrDistance > distance)
-            {
-                closestObject = interactable[i];
-                closestSqrDistance = distance;
-            }
-        }
+        DetectInteract();
+        ClosestInteractable();
         if(value)
         {
             if(closestObject != null )
             {
                 closestObject.Interact();
-                
             }
         }
         else
@@ -67,7 +51,37 @@ public class InteractDetection : MonoBehaviour
                 closestObject.CancelInteract();
             }
         }
+    }
 
+    void DetectInteract()
+    {
+        Collider[] cols = Physics.OverlapSphere(transform.position, _maxDistanceInteraction);
+        interactable = new List<IInteractable>();
+        for (int i = 0; i < cols.Length; i++)
+        {
+            if (cols[i].gameObject.TryGetComponent<IInteractable>(out var interactObject))
+            {
+                interactable.Add(interactObject);
+            }
+        }
+        
+    }
+    IInteractable ClosestInteractable()
+    {
+        //calculate closest Interactable
+        float closestSqrDistance = Mathf.Infinity;
+        closestObject = null;
+        for (int i = 0; i < interactable.Count; i++)
+        {
+            // if (interactable[i] == null) continue;
+            float distance = (interactable[i].transform.position - transform.position).sqrMagnitude;
+            if (closestSqrDistance > distance)
+            {
+                closestObject = interactable[i];
+                closestSqrDistance = distance;
+            }
+        }
+        return closestObject;
     }
     
 }
