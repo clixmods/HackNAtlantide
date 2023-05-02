@@ -41,12 +41,14 @@ public class AttackLevitationInteractable : MonoBehaviour, IInteractable
     [SerializeField] private GameObject _meshDestroy;
     [SerializeField] private float damageAmount = 1f;
     private IAttackCollider _attackCollider;
-    private UIChargeInputHelper _inputHelper;
+    private InputHelper _inputHelper;
+    private UIChargeInputHelper _uiChargeInputHelper;
     #region Monobehaviour
     private void Awake()
     {
         _initialPosition = transform.position;
         _initialRotation = transform.rotation;
+        _inputHelper = GetComponent<InputHelper>();
         _rigidBody = GetComponent<Rigidbody>();
         _hasInteract = false;
         Focus.OnFocusSwitch += SetDestination;
@@ -64,7 +66,8 @@ public class AttackLevitationInteractable : MonoBehaviour, IInteractable
     private void Start()
     {
         _attackCollider.enabled = false;
-        _inputHelper = (UIChargeInputHelper)(GetComponent<InputHelper>().UIInputHelper);
+        _uiChargeInputHelper = (UIChargeInputHelper)(_inputHelper.UIInputHelper);
+        _inputHelper.enabled = false;
     }
    
    
@@ -138,21 +141,23 @@ public class AttackLevitationInteractable : MonoBehaviour, IInteractable
         float timeElapsed = 0;
         Vector3 startPosition = transform.position;
         Vector3 destinationPosition = startPosition + Vector3.up * 5;
-        _inputHelper.SetFillValue(1);
+        _inputHelper.enabled = true;
+        _uiChargeInputHelper.SetFillValue(1);
         while (timeElapsed < timeToBeCharged )
         {
             if(!_isCharging)
                 yield break;
             
+            _inputHelper.enabled = true;
             _playerStamina.UseStamina(_playerStamina.SpeedToRecharge*Time.deltaTime);
             var t = timeElapsed / timeToBeCharged;
-            _inputHelper.SetFillValue(t);
+            _uiChargeInputHelper.SetFillValue(t);
             transform.position = Vector3.Lerp(startPosition, destinationPosition, t);
             timeElapsed += Time.deltaTime;
             yield return null;
             //_rigidBody.AddTorque(Random.onUnitSphere * 20);
         }
-        _inputHelper.SetFillValue(1);
+        _uiChargeInputHelper.SetFillValue(1);
         _hasInteract = true;
         _attackCollider.enabled = true;
         _playerStamina.UseStamina(useStaminaAmount);
@@ -179,7 +184,8 @@ public class AttackLevitationInteractable : MonoBehaviour, IInteractable
     }
     public void CancelInteract()
     {
-        _inputHelper.SetFillValue(1);
+        _inputHelper.enabled = false;
+        _uiChargeInputHelper.SetFillValue(1);
         if (_isAttacking)
         {
             return;

@@ -32,27 +32,30 @@ public class InteractDetection : MonoBehaviour
     }
     private void Update()
     {
+        if (_currentInteractable == null)
+        {
+             DetectInteract();
+             ClosestInteractable();
+        }
+       
         _playerDetectionScriptableObject.PlayerPosition = transform.position;
         if (_currentInteractable != null )
         {
             _currentInteractable.transform.position = transform.position + transform.up * 2;
         }
     }
+    
 
     private IInteractable _currentInteractable;
     void InteractInput(bool value)
     {
         Debug.Log("Value Input "+value);
+        // if (_currentInteractable == null)
+        // {
+        //     DetectInteract();
+        //     ClosestInteractable();
+        // }
         
-        DetectInteract();
-        ClosestInteractable();
-        if (closestObject != null)
-        {
-            if (closestObject.transform.TryGetComponent<InputHelper>(out var inputHelper))
-            {
-                inputHelper.enabled = true;
-            }
-        }
         if(value)
         {
             // A Interactable is currently used so we dont need to use an another one
@@ -60,6 +63,7 @@ public class InteractDetection : MonoBehaviour
             {
                 return;
             }
+            // No interactable used, so we need to check the closest and use it
             if(closestObject != null && _playerStamina.CanUseStamina())
             {
                 closestObject.Interact();
@@ -73,13 +77,6 @@ public class InteractDetection : MonoBehaviour
                 _currentInteractable.CancelInteract();
                 _currentInteractable = null;
             }
-               
-                
-            // if(closestObject != null)
-            // {
-            //     if(_currentInteractable != null)
-            //         closestObject.CancelInteract();
-            // }
         }
     }
 
@@ -92,6 +89,10 @@ public class InteractDetection : MonoBehaviour
             if (cols[i].gameObject.TryGetComponent<IInteractable>(out var interactObject))
             {
                 interactable.Add(interactObject);
+                if (closestObject != interactObject && interactObject != _currentInteractable && interactObject.transform.TryGetComponent<InputHelper>(out var inputHelper))
+                {
+                    inputHelper.enabled = false;
+                }
             }
         }
         
@@ -103,16 +104,19 @@ public class InteractDetection : MonoBehaviour
         closestObject = null;
         for (int i = 0; i < interactable.Count; i++)
         {
-            if (interactable[i].transform.TryGetComponent<InputHelper>(out var inputHelper))
-            {
-                inputHelper.enabled = false;
-            }
-            // if (interactable[i] == null) continue;
             float distance = (interactable[i].transform.position - transform.position).sqrMagnitude;
             if (closestSqrDistance > distance)
             {
                 closestObject = interactable[i];
                 closestSqrDistance = distance;
+            }
+        }
+
+        if (_currentInteractable == null)
+        {
+            if ( closestObject != null && closestObject.transform.TryGetComponent<InputHelper>(out var inputHelper))
+            {
+                inputHelper.enabled = true;
             }
         }
         

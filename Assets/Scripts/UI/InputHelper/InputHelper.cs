@@ -24,12 +24,12 @@ public class InputHelper : MonoBehaviour
 
     private void OnDisable()
     {
-        if(!_UIElementIsIndependant && _uiInputHelper != null)
+        if(!_UIElementIsIndependant && _uiInputHelper != null && _uiInputHelper.gameObject.activeSelf )
             _uiInputHelper.gameObject.SetActive(false);
     }
     private void OnEnable()
     {
-        if(!_UIElementIsIndependant && _uiInputHelper != null)
+        if(!_UIElementIsIndependant && _uiInputHelper != null && !_uiInputHelper.gameObject.activeSelf)
             _uiInputHelper.gameObject.SetActive(true);
     }
 
