@@ -10,6 +10,8 @@ public class PlayerCombat : MonoBehaviour,ICombat
     float lastClickedTime;
     float lastComboEnd;
     int comboCounter;
+    
+    public static readonly int AttackAnim = Animator.StringToHash("Attack");
     Animator anim;
     [SerializeField] private InputButtonScriptableObject _inputAttack;
     private IAttackCollider _attackCollider;
@@ -54,7 +56,7 @@ public class PlayerCombat : MonoBehaviour,ICombat
                 {
                     anim.runtimeAnimatorController = combo[comboCounter].animatorOV;
                     _attackCollider.enabled = false;
-                    anim.Play("Attack", 0, 0);
+                    anim.Play(AttackAnim, 0, 0);
                     comboCounter++;
                     lastClickedTime = Time.time;
 
