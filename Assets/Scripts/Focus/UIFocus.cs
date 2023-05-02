@@ -15,6 +15,12 @@ public class UIFocus : MonoBehaviour
         Focus.OnFocusEnable += FocusOnOnFocusEnable;
         Focus.OnFocusDisable += FocusOnOnFocusDisable;
         Focus.OnFocusSwitch += FocusOnOnFocusSwitch;
+        Focus.OnFocusNoTarget += RemoveTarget;
+    }
+
+    private void RemoveTarget()
+    {
+        target = null;
     }
 
     private void OnDestroy()
@@ -23,6 +29,7 @@ public class UIFocus : MonoBehaviour
         Focus.OnFocusEnable -= FocusOnOnFocusEnable;
         Focus.OnFocusDisable -= FocusOnOnFocusDisable;
         Focus.OnFocusSwitch -= FocusOnOnFocusSwitch;
+        Focus.OnFocusNoTarget -= RemoveTarget;
     }
 
     private void FocusOnOnFocusSwitch(ITargetable target)

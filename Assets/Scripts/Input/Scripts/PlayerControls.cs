@@ -98,6 +98,24 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Release"",
+                    ""type"": ""Button"",
+                    ""id"": ""0cfc96d6-e9d1-4de1-84ac-1db5384648b9"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Book"",
+                    ""type"": ""Button"",
+                    ""id"": ""e79f226c-6fa3-4cdc-8d8e-af4e8034fe3a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -331,6 +349,39 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""action"": ""Boussole"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4bfa415c-2820-4241-8ae4-8fb55e1ba948"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""PC"",
+                    ""action"": ""Release"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""abbdc004-e164-467a-8cd4-a192d6a72bbf"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""PC"",
+                    ""action"": ""Book"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e6823d1f-6c90-471a-999a-d19e5b1b0673"",
+                    ""path"": ""<Gamepad>/dpad/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Book"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -375,6 +426,8 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_InGame_SwitchFocus = m_InGame.FindAction("SwitchFocus", throwIfNotFound: true);
         m_InGame_Pause = m_InGame.FindAction("Pause", throwIfNotFound: true);
         m_InGame_Boussole = m_InGame.FindAction("Boussole", throwIfNotFound: true);
+        m_InGame_Release = m_InGame.FindAction("Release", throwIfNotFound: true);
+        m_InGame_Book = m_InGame.FindAction("Book", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -442,6 +495,8 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_InGame_SwitchFocus;
     private readonly InputAction m_InGame_Pause;
     private readonly InputAction m_InGame_Boussole;
+    private readonly InputAction m_InGame_Release;
+    private readonly InputAction m_InGame_Book;
     public struct InGameActions
     {
         private @PlayerControls m_Wrapper;
@@ -454,6 +509,8 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @SwitchFocus => m_Wrapper.m_InGame_SwitchFocus;
         public InputAction @Pause => m_Wrapper.m_InGame_Pause;
         public InputAction @Boussole => m_Wrapper.m_InGame_Boussole;
+        public InputAction @Release => m_Wrapper.m_InGame_Release;
+        public InputAction @Book => m_Wrapper.m_InGame_Book;
         public InputActionMap Get() { return m_Wrapper.m_InGame; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -487,6 +544,12 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Boussole.started -= m_Wrapper.m_InGameActionsCallbackInterface.OnBoussole;
                 @Boussole.performed -= m_Wrapper.m_InGameActionsCallbackInterface.OnBoussole;
                 @Boussole.canceled -= m_Wrapper.m_InGameActionsCallbackInterface.OnBoussole;
+                @Release.started -= m_Wrapper.m_InGameActionsCallbackInterface.OnRelease;
+                @Release.performed -= m_Wrapper.m_InGameActionsCallbackInterface.OnRelease;
+                @Release.canceled -= m_Wrapper.m_InGameActionsCallbackInterface.OnRelease;
+                @Book.started -= m_Wrapper.m_InGameActionsCallbackInterface.OnBook;
+                @Book.performed -= m_Wrapper.m_InGameActionsCallbackInterface.OnBook;
+                @Book.canceled -= m_Wrapper.m_InGameActionsCallbackInterface.OnBook;
             }
             m_Wrapper.m_InGameActionsCallbackInterface = instance;
             if (instance != null)
@@ -515,6 +578,12 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Boussole.started += instance.OnBoussole;
                 @Boussole.performed += instance.OnBoussole;
                 @Boussole.canceled += instance.OnBoussole;
+                @Release.started += instance.OnRelease;
+                @Release.performed += instance.OnRelease;
+                @Release.canceled += instance.OnRelease;
+                @Book.started += instance.OnBook;
+                @Book.performed += instance.OnBook;
+                @Book.canceled += instance.OnBook;
             }
         }
     }
@@ -547,5 +616,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnSwitchFocus(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
         void OnBoussole(InputAction.CallbackContext context);
+        void OnRelease(InputAction.CallbackContext context);
+        void OnBook(InputAction.CallbackContext context);
     }
 }

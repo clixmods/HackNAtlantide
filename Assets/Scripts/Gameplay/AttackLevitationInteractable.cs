@@ -94,7 +94,7 @@ public class AttackLevitationInteractable : MonoBehaviour, IInteractable
             transform.LookAt(transformDestination);
            
             
-            _rigidBody.velocity = transform.forward * projectionSpeedMultiplier ;
+            _rigidBody.velocity = direction * projectionSpeedMultiplier ;
         }
     }
     
@@ -205,6 +205,7 @@ public class AttackLevitationInteractable : MonoBehaviour, IInteractable
             }
             // A target is defined so start the attack
             Focus.OnFocusSwitch -= SetDestination;
+            Focus.OnFocusNoTarget -= RemoveTarget;
             _isAttacking = true;
             return;
         }
