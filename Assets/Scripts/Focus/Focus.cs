@@ -17,6 +17,7 @@ public class Focus : MonoBehaviour
     public static event EventFocus OnFocusEnable;
     public static event EventFocus OnFocusDisable;
     public static event EventSwitchFocus OnFocusSwitch;
+    public static event EventFocus OnFocusNoTarget;
     #endregion
     [Header("Input")]
     [Tooltip("Input to enable and disable focus mode")]
@@ -154,6 +155,7 @@ public class Focus : MonoBehaviour
     
         if (_targetableAvailable.Count == 0)
         {
+            OnFocusNoTarget?.Invoke();
             DisableFocus();
             return;
         }
@@ -307,6 +309,7 @@ public class Focus : MonoBehaviour
 
         }
 
+
         if (!_targetableAvailable.Contains(_lastcachedTarget))
         {
             _forceSwitch = true;
@@ -317,6 +320,11 @@ public class Focus : MonoBehaviour
         {
             Switch();
             _forceSwitch = false;
+        }
+        
+        if (!_focusIsEnable && _targetableAvailable.Count > 0)
+        {
+            Switch();
         }
     }
 

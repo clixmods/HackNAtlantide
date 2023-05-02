@@ -15,16 +15,15 @@ public class UIInputHelper : MonoBehaviour
     private Transform _targetTransform;
     private Vector2 _initialScale;
     [SerializeField] private Image _imageIcon;
-    [SerializeField] private Image _imageInput;
-    private InputActionReference _inputActionReference;
-    [SerializeField] InputActionIcons inputActionIcons;
+    [SerializeField] protected Image _imageInput;
+    protected InputActionReference _inputActionReference;
+    [SerializeField] protected InputActionIcons inputActionIcons;
     [SerializeField] private float distanceToShow = 10;
-    private static Canvas _canvas;
+    protected static Canvas _canvas;
     
     public static UIInputHelper CreateInputHelper(GameObject prefab, Transform transformTarget, Sprite image, float maxDistanceToShow,
         InputActionReference input = default)
     {
-        UIInputHelper component = null;
         if (transformTarget == null) return null;
 
         if (_canvas == null)
@@ -32,21 +31,28 @@ public class UIInputHelper : MonoBehaviour
             _canvas = FindObjectOfType<Canvas>();
         }
         var inputHelperObject = Instantiate(prefab, Vector3.zero, Quaternion.identity, _canvas.transform);
+        UIInputHelper component = inputHelperObject.GetComponentInChildren<UIInputHelper>().Init(prefab, transformTarget,  image,  maxDistanceToShow, input);
+        return component;
+    }
+
+    public virtual UIInputHelper Init(GameObject prefab, Transform transformTarget, Sprite image, float maxDistanceToShow,
+        InputActionReference input = default)
+    {
         // Setup
-        component = inputHelperObject.GetComponentInChildren<UIInputHelper>();
-        component._inputActionReference = input;
+        this._inputActionReference = input;
         if (image != null)
         {
-            component._imageIcon.sprite = image;
+            this._imageIcon.sprite = image;
         }
         else
         {
-            component._imageIcon.gameObject.SetActive(false);
+            this._imageIcon.gameObject.SetActive(false);
         }
-        component._targetTransform = transformTarget;
-        component.distanceToShow = maxDistanceToShow;
-        return component;
+        this._targetTransform = transformTarget;
+        this.distanceToShow = maxDistanceToShow;
+        return this;
     }
+    
     
     // Start is called before the first frame update
     void Awake()
@@ -85,8 +91,9 @@ public class UIInputHelper : MonoBehaviour
         UpdateScale();
         UpdateOpacity();
     }
-    private void UpdateInputIcon()
+    protected virtual void UpdateInputIcon()
     {
+        
         if (_inputActionReference != null)
         {
             for (int i = 0; i < _inputActionReference.action.bindings.Count; i++)
@@ -101,6 +108,7 @@ public class UIInputHelper : MonoBehaviour
     }
     private void UpdateOpacity()
     {
+        
         var distance = Vector3.Distance(PlayerInstanceScriptableObject.Player.transform.position, _targetTransform.position);
         var color = _imageInput.color;
         color.a = 1-Mathf.Clamp((distance / distanceToShow),0,1);
@@ -108,6 +116,7 @@ public class UIInputHelper : MonoBehaviour
     }
     private void UpdateScale()
     {
+        
         var distance = Vector3.Distance(PlayerInstanceScriptableObject.Player.transform.position, _targetTransform.position);
         var calcul = distance / distanceToShow ;
         var clampT = Mathf.Clamp(calcul, 0, 1);
@@ -116,6 +125,7 @@ public class UIInputHelper : MonoBehaviour
 
     void UpdatePosition()
     {
+        
         // Si l'object a follow est detruit, on le delete
         if(_targetTransform == null)
         {

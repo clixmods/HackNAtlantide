@@ -14,6 +14,7 @@ public class InteractDetection : MonoBehaviour
     public Action<List<IInteractable>> onInteractableListValueChanged;
     float _maxDistanceInteraction;
     [SerializeField] PlayerDetectionScriptableObject _playerDetectionScriptableObject;
+    [SerializeField] private PlayerStaminaScriptableObject _playerStamina;
 
 
     void OnEnable()
@@ -32,24 +33,53 @@ public class InteractDetection : MonoBehaviour
     private void Update()
     {
         _playerDetectionScriptableObject.PlayerPosition = transform.position;
+        if (_currentInteractable != null )
+        {
+            _currentInteractable.transform.position = transform.position + transform.up * 2;
+        }
     }
+
+    private IInteractable _currentInteractable;
     void InteractInput(bool value)
     {
+        Debug.Log("Value Input "+value);
+        
         DetectInteract();
         ClosestInteractable();
+        if (closestObject != null)
+        {
+            if (closestObject.transform.TryGetComponent<InputHelper>(out var inputHelper))
+            {
+                inputHelper.enabled = true;
+            }
+        }
         if(value)
         {
-            if(closestObject != null )
+            // A Interactable is currently used so we dont need to use an another one
+            if (_currentInteractable != null)
+            {
+                return;
+            }
+            if(closestObject != null && _playerStamina.CanUseStamina())
             {
                 closestObject.Interact();
+                _currentInteractable = closestObject;
             }
         }
         else
         {
-            if(closestObject != null)
+            if (_currentInteractable != null)
             {
-                closestObject.CancelInteract();
+                _currentInteractable.CancelInteract();
+                _currentInteractable = null;
             }
+               
+                
+            // if(closestObject != null)
+            // {
+            //     if(_currentInteractable != null)
+            //         closestObject.CancelInteract();
+            // }
         }
     }
 
@@ -73,6 +103,10 @@ public class InteractDetection : MonoBehaviour
         closestObject = null;
         for (int i = 0; i < interactable.Count; i++)
         {
+            if (interactable[i].transform.TryGetComponent<InputHelper>(out var inputHelper))
+            {
+                inputHelper.enabled = false;
+            }
             // if (interactable[i] == null) continue;
             float distance = (interactable[i].transform.position - transform.position).sqrMagnitude;
             if (closestSqrDistance > distance)
@@ -81,6 +115,7 @@ public class InteractDetection : MonoBehaviour
                 closestSqrDistance = distance;
             }
         }
+        
         return closestObject;
     }
     
