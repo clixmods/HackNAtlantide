@@ -89,6 +89,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Boussole"",
+                    ""type"": ""Button"",
+                    ""id"": ""ee7bc772-9438-422a-a40f-abd2b0b44e7e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -300,6 +309,28 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""action"": ""Pause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""836e109d-c162-43f5-a523-084b76139b64"",
+                    ""path"": ""<Gamepad>/dpad/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Boussole"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ab81de05-b3e1-422a-a817-a2953080d82b"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""PC"",
+                    ""action"": ""Boussole"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -343,6 +374,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_InGame_Focus = m_InGame.FindAction("Focus", throwIfNotFound: true);
         m_InGame_SwitchFocus = m_InGame.FindAction("SwitchFocus", throwIfNotFound: true);
         m_InGame_Pause = m_InGame.FindAction("Pause", throwIfNotFound: true);
+        m_InGame_Boussole = m_InGame.FindAction("Boussole", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -409,6 +441,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_InGame_Focus;
     private readonly InputAction m_InGame_SwitchFocus;
     private readonly InputAction m_InGame_Pause;
+    private readonly InputAction m_InGame_Boussole;
     public struct InGameActions
     {
         private @PlayerControls m_Wrapper;
@@ -420,6 +453,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @Focus => m_Wrapper.m_InGame_Focus;
         public InputAction @SwitchFocus => m_Wrapper.m_InGame_SwitchFocus;
         public InputAction @Pause => m_Wrapper.m_InGame_Pause;
+        public InputAction @Boussole => m_Wrapper.m_InGame_Boussole;
         public InputActionMap Get() { return m_Wrapper.m_InGame; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -450,6 +484,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Pause.started -= m_Wrapper.m_InGameActionsCallbackInterface.OnPause;
                 @Pause.performed -= m_Wrapper.m_InGameActionsCallbackInterface.OnPause;
                 @Pause.canceled -= m_Wrapper.m_InGameActionsCallbackInterface.OnPause;
+                @Boussole.started -= m_Wrapper.m_InGameActionsCallbackInterface.OnBoussole;
+                @Boussole.performed -= m_Wrapper.m_InGameActionsCallbackInterface.OnBoussole;
+                @Boussole.canceled -= m_Wrapper.m_InGameActionsCallbackInterface.OnBoussole;
             }
             m_Wrapper.m_InGameActionsCallbackInterface = instance;
             if (instance != null)
@@ -475,6 +512,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Pause.started += instance.OnPause;
                 @Pause.performed += instance.OnPause;
                 @Pause.canceled += instance.OnPause;
+                @Boussole.started += instance.OnBoussole;
+                @Boussole.performed += instance.OnBoussole;
+                @Boussole.canceled += instance.OnBoussole;
             }
         }
     }
@@ -506,5 +546,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnFocus(InputAction.CallbackContext context);
         void OnSwitchFocus(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
+        void OnBoussole(InputAction.CallbackContext context);
     }
 }
