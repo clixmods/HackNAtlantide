@@ -13,7 +13,6 @@ using Random = UnityEngine.Random;
 public class AttackLevitationInteractable : MonoBehaviour, IInteractable
 {
     private Rigidbody _rigidBody;
-    private InputHelper inputHelper;
     /// <summary>
     /// The object has been interacted ? True when the object start to project to a target
     /// </summary>
@@ -49,7 +48,6 @@ public class AttackLevitationInteractable : MonoBehaviour, IInteractable
         _initialPosition = transform.position;
         _initialRotation = transform.rotation;
         _rigidBody = GetComponent<Rigidbody>();
-        inputHelper = GetComponent<InputHelper>();
         _hasInteract = false;
         Focus.OnFocusSwitch += SetDestination;
         Focus.OnFocusNoTarget += RemoveTarget;
@@ -77,7 +75,7 @@ public class AttackLevitationInteractable : MonoBehaviour, IInteractable
         // {
         //     _inputHelper = (UIChargeInputHelper)(GetComponent<InputHelper>().UIInputHelper);
         // }
-        inputHelper.enabled = _playerDetectionScriptableObject.IsInRange(transform.position)&&!_hasInteract;
+       // inputHelper.enabled = _playerDetectionScriptableObject.IsInRange(transform.position)&&!_hasInteract;
         
         if (_isAttacking)
         {

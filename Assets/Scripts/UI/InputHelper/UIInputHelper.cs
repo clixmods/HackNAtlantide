@@ -93,7 +93,6 @@ public class UIInputHelper : MonoBehaviour
     }
     protected virtual void UpdateInputIcon()
     {
-        
         if (_inputActionReference != null)
         {
             for (int i = 0; i < _inputActionReference.action.bindings.Count; i++)
