@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class PlayerCombat : MonoBehaviour,ICombat
 {
+    private PlayerMovement _playerMovement;
     public List<AttackSO> combo;
     float lastClickedTime;
     float lastComboEnd;
@@ -14,14 +15,18 @@ public class PlayerCombat : MonoBehaviour,ICombat
     public static readonly int AttackAnim = Animator.StringToHash("Attack");
     Animator anim;
     [SerializeField] private InputButtonScriptableObject _inputAttack;
+    [SerializeField] private InputButtonScriptableObject _inputAttackDash;
+
     private IAttackCollider _attackCollider;
     private void OnEnable()
     {
         _inputAttack.OnValueChanged += Attack;
+        _inputAttack.OnValueChanged += AttackDash;
     }
     private void OnDisable()
     {
         _inputAttack.OnValueChanged -= Attack;
+        _inputAttack.OnValueChanged -= AttackDash;
     }
 
     private void Awake()
@@ -67,6 +72,21 @@ public class PlayerCombat : MonoBehaviour,ICombat
                 }
             }
             ExitAttack();
+        }
+    }
+    
+    void AttackDash(bool value)
+    {
+        if (value)
+        {
+            if (Time.time - lastClickedTime >= 0.2f)
+            {
+                _playerMovement.Dash(true);
+                anim.runtimeAnimatorController = combo[comboCounter].animatorOV;
+                _attackCollider.enabled = false;
+                anim.Play(AttackAnim, 0, 0);
+                lastClickedTime = Time.time;
+            }
         }
     }
 
