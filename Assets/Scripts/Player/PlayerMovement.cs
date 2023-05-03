@@ -91,6 +91,7 @@ public class PlayerMovement : MonoBehaviour
         Focus.OnFocusEnable += FocusEnable;
         Focus.OnFocusSwitch += FocusSwitch;
         Focus.OnFocusDisable += FocusUnLock;
+        Focus.OnFocusNoTarget += FocusUnLock;
     }
 
    
@@ -102,6 +103,7 @@ public class PlayerMovement : MonoBehaviour
         Focus.OnFocusEnable -= FocusEnable;
         Focus.OnFocusSwitch -= FocusSwitch;
         Focus.OnFocusDisable -= FocusUnLock;
+        Focus.OnFocusNoTarget -= FocusUnLock;
     }
     void MoveInput(Vector2 direction)
     {

@@ -42,15 +42,6 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "DashAttack",
-                    "type": "Button",
-                    "id": "10be352d-9f88-41df-b093-eb3854f314db",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "Focus",
                     "type": "Button",
                     "id": "99fd06d9-00d4-45c6-b8e1-1d6a28706af0",
@@ -85,13 +76,31 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Release",
+                    "type": "Button",
+                    "id": "0cfc96d6-e9d1-4de1-84ac-1db5384648b9",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Book",
+                    "type": "Button",
+                    "id": "e79f226c-6fa3-4cdc-8d8e-af4e8034fe3a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
                 {
                     "name": "",
                     "id": "eed49afc-16df-46ae-b4b3-e2268b52a236",
-                    "path": "<Keyboard>/e",
+                    "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
                     "groups": "PC",
@@ -321,23 +330,34 @@
                 },
                 {
                     "name": "",
-                    "id": "db67624d-1519-46b7-a982-4867f8884265",
-                    "path": "<Keyboard>/f",
+                    "id": "4bfa415c-2820-4241-8ae4-8fb55e1ba948",
+                    "path": "<Keyboard>/r",
                     "interactions": "",
                     "processors": "",
                     "groups": "PC",
-                    "action": "DashAttack",
+                    "action": "Release",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "765a96a8-7d26-499b-a8dd-b0716196d95a",
-                    "path": "<Gamepad>/buttonWest",
+                    "id": "abbdc004-e164-467a-8cd4-a192d6a72bbf",
+                    "path": "<Keyboard>/2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "PC",
+                    "action": "Book",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e6823d1f-6c90-471a-999a-d19e5b1b0673",
+                    "path": "<Gamepad>/dpad/up",
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "DashAttack",
+                    "action": "Book",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

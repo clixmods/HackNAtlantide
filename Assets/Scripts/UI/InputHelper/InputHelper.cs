@@ -5,15 +5,18 @@ using UnityEngine.Rendering;
 
 public class InputHelper : MonoBehaviour
 {
-    [SerializeField] private Sprite _iconObject;
-    [SerializeField] private InputActionReference _inputActionReference;
-    [SerializeField] private GameObject _prefab;
-    [SerializeField] private float maxDistanceToShow = 45;
+    [SerializeField] protected Sprite _iconObject;
+    [SerializeField] protected InputActionReference _inputActionReference;
+    [SerializeField] protected GameObject _prefab;
+    [SerializeField] protected float maxDistanceToShow = 45;
     [Tooltip("If is true, the UI Element is not connected with the manipulation of this component")]
-    [SerializeField] private bool _UIElementIsIndependant;
+    [SerializeField] protected bool _UIElementIsIndependant;
     private UIInputHelper _uiInputHelper;
+
+    public UIInputHelper UIInputHelper => _uiInputHelper;
+    
     // Start is called before the first frame update
-    void Start()
+    protected virtual void Awake()
     {
         _uiInputHelper = UIInputHelper.CreateInputHelper(_prefab, transform, _iconObject , maxDistanceToShow,_inputActionReference);
         
@@ -21,12 +24,12 @@ public class InputHelper : MonoBehaviour
 
     private void OnDisable()
     {
-        if(!_UIElementIsIndependant && _uiInputHelper != null)
+        if(!_UIElementIsIndependant && _uiInputHelper != null && _uiInputHelper.gameObject.activeSelf )
             _uiInputHelper.gameObject.SetActive(false);
     }
     private void OnEnable()
     {
-        if(!_UIElementIsIndependant && _uiInputHelper != null)
+        if(!_UIElementIsIndependant && _uiInputHelper != null && !_uiInputHelper.gameObject.activeSelf)
             _uiInputHelper.gameObject.SetActive(true);
     }
 
