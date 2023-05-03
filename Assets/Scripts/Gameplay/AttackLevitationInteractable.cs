@@ -90,6 +90,7 @@ public class AttackLevitationInteractable : MonoBehaviour, IInteractable
             if (_colliderExplosion.radius > _maxRadius)
             {
                 _colliderExplosion.enabled = false;
+                Destroy(this);
             }
             else
             {
@@ -156,6 +157,7 @@ public class AttackLevitationInteractable : MonoBehaviour, IInteractable
                 }
             }
             GetComponent<MeshRenderer>().enabled = false;
+            GetComponent<BoxCollider>().enabled = false;
             explosion = true;
         }
         

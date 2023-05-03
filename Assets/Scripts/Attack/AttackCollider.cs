@@ -40,6 +40,7 @@ public class AttackCollider : MonoBehaviour , IAttackCollider
         if (!sendEventOnEnter) return;
         if(other.TryGetComponent<IDamageable>(out var damageable) && other.gameObject.layer!=6)
         {
+            Debug.Log(other.gameObject.name);
             OnHit(damageable);
         }
     }

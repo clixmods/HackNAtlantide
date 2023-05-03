@@ -28,7 +28,7 @@ public class Rumbler : MonoBehaviour
     {
         if (instance != null)
         {
-            Destroy(instance);
+            Destroy(instance.gameObject);
         }
         instance = this;
         DontDestroyOnLoad(this);
