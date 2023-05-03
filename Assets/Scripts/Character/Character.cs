@@ -4,6 +4,10 @@ using UnityEngine;
 public class Character : MonoBehaviour,  IDamageable
 {
     [SerializeField] private float _maxHealth;
+    
+    [Header("Feedback")]
+    [SerializeField] RumblerDataConstant _attackRumble;
+    
     private float _health;
     public event EventHandler OnDamage;
     public event EventHandler OnDeath;
@@ -40,11 +44,16 @@ public class Character : MonoBehaviour,  IDamageable
     public void DoDamage(float damage)
     {
         health -= damage;
+        AttackFeedback();
         OnDamage?.Invoke(this,null);
-        if(health < 0f)
+        if(health <= 0f)
         {
             Dead();
         }
+    }
+    void AttackFeedback()
+    {
+        Rumbler.instance.RumbleConstant(_attackRumble);
     }
     public virtual void Dead()
     {

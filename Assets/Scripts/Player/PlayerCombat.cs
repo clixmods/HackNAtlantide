@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Attack;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class PlayerCombat : MonoBehaviour,ICombat
 {
@@ -18,15 +19,16 @@ public class PlayerCombat : MonoBehaviour,ICombat
     [SerializeField] private InputButtonScriptableObject _inputAttackDash;
 
     private IAttackCollider _attackCollider;
+    
     private void OnEnable()
     {
         _inputAttack.OnValueChanged += Attack;
-        _inputAttack.OnValueChanged += AttackDash;
+        _inputAttackDash.OnValueChanged += AttackDash;
     }
     private void OnDisable()
     {
         _inputAttack.OnValueChanged -= Attack;
-        _inputAttack.OnValueChanged -= AttackDash;
+        _inputAttackDash.OnValueChanged -= AttackDash;
     }
 
     private void Awake()
@@ -42,13 +44,12 @@ public class PlayerCombat : MonoBehaviour,ICombat
             mDamageableEventArgs.idamageable.DoDamage( combo[comboCounter].damage);
         }
     }
-
-    // Start is called before the first frame update
     void Start()
     {
         anim = GetComponent<Animator>();
+        _playerMovement = GetComponent<PlayerMovement>();
     }
-
+    
     void Attack(bool value)
     {
         if (value)
@@ -81,10 +82,9 @@ public class PlayerCombat : MonoBehaviour,ICombat
         {
             if (Time.time - lastClickedTime >= 0.2f)
             {
-                _playerMovement.Dash(true);
-                anim.runtimeAnimatorController = combo[comboCounter].animatorOV;
                 _attackCollider.enabled = false;
                 anim.Play(AttackAnim, 0, 0);
+                _playerMovement.Dash(true);
                 lastClickedTime = Time.time;
             }
         }
@@ -113,7 +113,6 @@ public class PlayerCombat : MonoBehaviour,ICombat
     }
 
     #endregion
-
-
+    
     public bool canAttack { get; set; }
 }

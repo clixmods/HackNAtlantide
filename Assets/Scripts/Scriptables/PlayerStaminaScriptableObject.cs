@@ -28,6 +28,8 @@ public class PlayerStaminaScriptableObject : ScriptableObject
             waitForRecharge = value;
         }
     }
+
+    public float MaxStamina => _maxValue;
     public bool IsMaxStamina()
     { 
         return _value == _maxValue; 

@@ -64,6 +64,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""DashAttack"",
+                    ""type"": ""Button"",
+                    ""id"": ""77e60b25-c7be-4d96-aa86-0cd79896117e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""Focus"",
                     ""type"": ""Button"",
                     ""id"": ""99fd06d9-00d4-45c6-b8e1-1d6a28706af0"",
@@ -98,13 +107,31 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Release"",
+                    ""type"": ""Button"",
+                    ""id"": ""0cfc96d6-e9d1-4de1-84ac-1db5384648b9"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Book"",
+                    ""type"": ""Button"",
+                    ""id"": ""e79f226c-6fa3-4cdc-8d8e-af4e8034fe3a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
                 {
                     ""name"": """",
                     ""id"": ""eed49afc-16df-46ae-b4b3-e2268b52a236"",
-                    ""path"": ""<Keyboard>/e"",
+                    ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""PC"",
@@ -331,6 +358,61 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""action"": ""Boussole"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4bfa415c-2820-4241-8ae4-8fb55e1ba948"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""PC"",
+                    ""action"": ""Release"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""abbdc004-e164-467a-8cd4-a192d6a72bbf"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""PC"",
+                    ""action"": ""Book"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e6823d1f-6c90-471a-999a-d19e5b1b0673"",
+                    ""path"": ""<Gamepad>/dpad/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Book"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""29312186-d30e-45db-a5e4-c0d6d933edec"",
+                    ""path"": ""<Mouse>/backButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""PC"",
+                    ""action"": ""DashAttack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""34a2fde3-706a-4f80-b767-27234ca09ae5"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""DashAttack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -371,10 +453,13 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_InGame_Move = m_InGame.FindAction("Move", throwIfNotFound: true);
         m_InGame_Dash = m_InGame.FindAction("Dash", throwIfNotFound: true);
         m_InGame_Attack = m_InGame.FindAction("Attack", throwIfNotFound: true);
+        m_InGame_DashAttack = m_InGame.FindAction("DashAttack", throwIfNotFound: true);
         m_InGame_Focus = m_InGame.FindAction("Focus", throwIfNotFound: true);
         m_InGame_SwitchFocus = m_InGame.FindAction("SwitchFocus", throwIfNotFound: true);
         m_InGame_Pause = m_InGame.FindAction("Pause", throwIfNotFound: true);
         m_InGame_Boussole = m_InGame.FindAction("Boussole", throwIfNotFound: true);
+        m_InGame_Release = m_InGame.FindAction("Release", throwIfNotFound: true);
+        m_InGame_Book = m_InGame.FindAction("Book", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -438,10 +523,13 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_InGame_Move;
     private readonly InputAction m_InGame_Dash;
     private readonly InputAction m_InGame_Attack;
+    private readonly InputAction m_InGame_DashAttack;
     private readonly InputAction m_InGame_Focus;
     private readonly InputAction m_InGame_SwitchFocus;
     private readonly InputAction m_InGame_Pause;
     private readonly InputAction m_InGame_Boussole;
+    private readonly InputAction m_InGame_Release;
+    private readonly InputAction m_InGame_Book;
     public struct InGameActions
     {
         private @PlayerControls m_Wrapper;
@@ -450,10 +538,13 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @Move => m_Wrapper.m_InGame_Move;
         public InputAction @Dash => m_Wrapper.m_InGame_Dash;
         public InputAction @Attack => m_Wrapper.m_InGame_Attack;
+        public InputAction @DashAttack => m_Wrapper.m_InGame_DashAttack;
         public InputAction @Focus => m_Wrapper.m_InGame_Focus;
         public InputAction @SwitchFocus => m_Wrapper.m_InGame_SwitchFocus;
         public InputAction @Pause => m_Wrapper.m_InGame_Pause;
         public InputAction @Boussole => m_Wrapper.m_InGame_Boussole;
+        public InputAction @Release => m_Wrapper.m_InGame_Release;
+        public InputAction @Book => m_Wrapper.m_InGame_Book;
         public InputActionMap Get() { return m_Wrapper.m_InGame; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -475,6 +566,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Attack.started -= m_Wrapper.m_InGameActionsCallbackInterface.OnAttack;
                 @Attack.performed -= m_Wrapper.m_InGameActionsCallbackInterface.OnAttack;
                 @Attack.canceled -= m_Wrapper.m_InGameActionsCallbackInterface.OnAttack;
+                @DashAttack.started -= m_Wrapper.m_InGameActionsCallbackInterface.OnDashAttack;
+                @DashAttack.performed -= m_Wrapper.m_InGameActionsCallbackInterface.OnDashAttack;
+                @DashAttack.canceled -= m_Wrapper.m_InGameActionsCallbackInterface.OnDashAttack;
                 @Focus.started -= m_Wrapper.m_InGameActionsCallbackInterface.OnFocus;
                 @Focus.performed -= m_Wrapper.m_InGameActionsCallbackInterface.OnFocus;
                 @Focus.canceled -= m_Wrapper.m_InGameActionsCallbackInterface.OnFocus;
@@ -487,6 +581,12 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Boussole.started -= m_Wrapper.m_InGameActionsCallbackInterface.OnBoussole;
                 @Boussole.performed -= m_Wrapper.m_InGameActionsCallbackInterface.OnBoussole;
                 @Boussole.canceled -= m_Wrapper.m_InGameActionsCallbackInterface.OnBoussole;
+                @Release.started -= m_Wrapper.m_InGameActionsCallbackInterface.OnRelease;
+                @Release.performed -= m_Wrapper.m_InGameActionsCallbackInterface.OnRelease;
+                @Release.canceled -= m_Wrapper.m_InGameActionsCallbackInterface.OnRelease;
+                @Book.started -= m_Wrapper.m_InGameActionsCallbackInterface.OnBook;
+                @Book.performed -= m_Wrapper.m_InGameActionsCallbackInterface.OnBook;
+                @Book.canceled -= m_Wrapper.m_InGameActionsCallbackInterface.OnBook;
             }
             m_Wrapper.m_InGameActionsCallbackInterface = instance;
             if (instance != null)
@@ -503,6 +603,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Attack.started += instance.OnAttack;
                 @Attack.performed += instance.OnAttack;
                 @Attack.canceled += instance.OnAttack;
+                @DashAttack.started += instance.OnDashAttack;
+                @DashAttack.performed += instance.OnDashAttack;
+                @DashAttack.canceled += instance.OnDashAttack;
                 @Focus.started += instance.OnFocus;
                 @Focus.performed += instance.OnFocus;
                 @Focus.canceled += instance.OnFocus;
@@ -515,6 +618,12 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Boussole.started += instance.OnBoussole;
                 @Boussole.performed += instance.OnBoussole;
                 @Boussole.canceled += instance.OnBoussole;
+                @Release.started += instance.OnRelease;
+                @Release.performed += instance.OnRelease;
+                @Release.canceled += instance.OnRelease;
+                @Book.started += instance.OnBook;
+                @Book.performed += instance.OnBook;
+                @Book.canceled += instance.OnBook;
             }
         }
     }
@@ -543,9 +652,12 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnMove(InputAction.CallbackContext context);
         void OnDash(InputAction.CallbackContext context);
         void OnAttack(InputAction.CallbackContext context);
+        void OnDashAttack(InputAction.CallbackContext context);
         void OnFocus(InputAction.CallbackContext context);
         void OnSwitchFocus(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
         void OnBoussole(InputAction.CallbackContext context);
+        void OnRelease(InputAction.CallbackContext context);
+        void OnBook(InputAction.CallbackContext context);
     }
 }

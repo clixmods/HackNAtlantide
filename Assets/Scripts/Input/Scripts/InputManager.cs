@@ -3,10 +3,12 @@ using UnityEngine.InputSystem;
 
 public class InputManager : MonoBehaviour
 {
+    public static InputManager Instance;
     public PlayerControls _input { private set; get; }
     [SerializeField] private InputButtonScriptableObject _interact;
     [SerializeField] private InputButtonScriptableObject _attack;
     [SerializeField] private InputButtonScriptableObject _dash;
+    [SerializeField] private InputButtonScriptableObject _dashAttack;
     [SerializeField] private InputVectorScriptableObject _move;
     [SerializeField] private InputVectorScriptableObject _switchFocus;
     [SerializeField] private InputButtonScriptableObject _focus;
@@ -16,7 +18,14 @@ public class InputManager : MonoBehaviour
     private bool _isGamepad { get; set; }
     void Awake()
     {
+        if (Instance != null)
+        {
+            Destroy(Instance);
+        }
+        Instance = this;
+        DontDestroyOnLoad(this);
         _input = new PlayerControls();
+
     }
     private void OnEnable()
     {
@@ -38,6 +47,9 @@ public class InputManager : MonoBehaviour
 
         //Dash
         _input.InGame.Dash.performed += ctx => _dash.ChangeValue(true);
+        
+        // DashAttack
+        _input.InGame.DashAttack.performed += ctx => _dashAttack.ChangeValue(true);
 
         //Move
         _input.InGame.Move.performed += ctx => _move.ChangeValue(_input.InGame.Move.ReadValue<Vector2>());
@@ -65,6 +77,9 @@ public class InputManager : MonoBehaviour
 
         // Attack
         _input.InGame.Attack.performed -= ctx => _attack.ChangeValue(true);
+        
+        // DashAttack
+        _input.InGame.DashAttack.performed -= ctx => _dashAttack.ChangeValue(true);
 
         //Move
         _input.InGame.Move.performed -= ctx => _move.ChangeValue(_input.InGame.Move.ReadValue<Vector2>());

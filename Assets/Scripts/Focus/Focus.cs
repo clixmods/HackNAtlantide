@@ -17,6 +17,7 @@ public class Focus : MonoBehaviour
     public static event EventFocus OnFocusEnable;
     public static event EventFocus OnFocusDisable;
     public static event EventSwitchFocus OnFocusSwitch;
+    public static event EventFocus OnFocusNoTarget;
     #endregion
     [Header("Input")]
     [Tooltip("Input to enable and disable focus mode")]
@@ -134,6 +135,12 @@ public class Focus : MonoBehaviour
     }
     private void Switch()
     {
+        if (_targetableAvailable.Count == 0)
+        {
+            OnFocusNoTarget?.Invoke();
+            DisableFocus();
+            return;
+        }
         if (CurrentTarget != null && _lastcachedTarget == CurrentTarget)
         {
             return;
@@ -152,11 +159,7 @@ public class Focus : MonoBehaviour
             }
         }
     
-        if (_targetableAvailable.Count == 0)
-        {
-            DisableFocus();
-            return;
-        }
+        
         
         OnFocusSwitch?.Invoke(CurrentTarget);
         if (CurrentTarget != null)
@@ -238,7 +241,6 @@ public class Focus : MonoBehaviour
                 {
                     Debug.LogWarning("A ITargetable has been destroyed ! Its better to not destroy them in a same scene");
                 }
-                //Switch();
             }
             else
             {
@@ -266,46 +268,9 @@ public class Focus : MonoBehaviour
             {
                 _targetableAvailable.Add(targetable);
             }
-            
-            // if(targetable != null) // If the list _itargetablesInScene have no change, we will go in try everytime
-            // {
-            //     if (targetable.transform != null && targetable.CanBeTarget)
-            //         _targetableAvailable.Add(targetable);
-            //     
-            // }
-            // else // If the list _itargetablesInScene have a destroyed itargetable, we catch it to fix the null ref.
-            // {
-            //     Debug.LogWarning("A ITargetable has been destroyed ! Its better to not destroy them in a same scene");
-            //     // If the current target has been destroyed, we need to get the nearest target in the next generation
-            //     if ( _lastcachedTarget == null)
-            //     {
-            //         _forceSwitch = true;
-            //     }
-            //     // We need a correct targetableList in this frame.
-            //     GenerateTargetableList();
-            //     return;
-            // }
-            // try // If the list _itargetablesInScene have no change, we will go in try everytime
-            // {
-            //     if (target.transform != null && target.CanBeTarget)
-            //         _targetableAvailable.Add(target);
-            //     
-            // }
-            // catch // If the list _itargetablesInScene have a destroyed itargetable, we catch it to fix the null ref.
-            // {
-            //     Debug.LogWarning("A ITargetable has been destroyed ! Its better to not destroy them in a same scene");
-            //     _itargetablesInScene = FindObjectsOfType<Targetable>().ToList();
-            //     // If the current target has been destroyed, we need to get the nearest target in the next generation
-            //     if ( _lastcachedTarget == null)
-            //     {
-            //         _forceSwitch = true;
-            //     }
-            //     // We need a correct targetableList in this frame.
-            //     GenerateTargetableList();
-            //     return;
-            // }
-
+           
         }
+
 
         if (!_targetableAvailable.Contains(_lastcachedTarget))
         {
@@ -317,6 +282,11 @@ public class Focus : MonoBehaviour
         {
             Switch();
             _forceSwitch = false;
+        }
+        
+        if (!_focusIsEnable && _targetableAvailable.Count > 0)
+        {
+            Switch();
         }
     }
 
@@ -350,9 +320,10 @@ public class Focus : MonoBehaviour
         _focusIsEnable = false;
         try
         {
-            if (_targetableAvailable.Contains(_lastcachedTarget))
+            //if (_targetableAvailable.Contains(_lastcachedTarget))
             {
                 _lastcachedTarget.OnUntarget();
+                _lastcachedTarget = null;
             }
         }
         catch

@@ -24,7 +24,13 @@ public class BoussoleBehaviour : MonoBehaviour
     }
     private void Start()
     {
+        if (_interactDetection == null)
+        {
+            Debug.LogWarning("Warning you need to set InteractDetection", gameObject);
+            _interactDetection = FindObjectOfType<InteractDetection>();
+        }
         _timeReset = timeToChangeAiguilleDirection;
+        _interfaceBoussole.SetActive(false);
     }
     private void Update()
     {
