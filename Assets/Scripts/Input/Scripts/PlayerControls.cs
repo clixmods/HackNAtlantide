@@ -64,6 +64,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""DashAttack"",
+                    ""type"": ""Button"",
+                    ""id"": ""77e60b25-c7be-4d96-aa86-0cd79896117e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""Focus"",
                     ""type"": ""Button"",
                     ""id"": ""99fd06d9-00d4-45c6-b8e1-1d6a28706af0"",
@@ -382,6 +391,28 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""action"": ""Book"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""29312186-d30e-45db-a5e4-c0d6d933edec"",
+                    ""path"": ""<Mouse>/backButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""PC"",
+                    ""action"": ""DashAttack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""34a2fde3-706a-4f80-b767-27234ca09ae5"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""DashAttack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -422,6 +453,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_InGame_Move = m_InGame.FindAction("Move", throwIfNotFound: true);
         m_InGame_Dash = m_InGame.FindAction("Dash", throwIfNotFound: true);
         m_InGame_Attack = m_InGame.FindAction("Attack", throwIfNotFound: true);
+        m_InGame_DashAttack = m_InGame.FindAction("DashAttack", throwIfNotFound: true);
         m_InGame_Focus = m_InGame.FindAction("Focus", throwIfNotFound: true);
         m_InGame_SwitchFocus = m_InGame.FindAction("SwitchFocus", throwIfNotFound: true);
         m_InGame_Pause = m_InGame.FindAction("Pause", throwIfNotFound: true);
@@ -491,6 +523,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_InGame_Move;
     private readonly InputAction m_InGame_Dash;
     private readonly InputAction m_InGame_Attack;
+    private readonly InputAction m_InGame_DashAttack;
     private readonly InputAction m_InGame_Focus;
     private readonly InputAction m_InGame_SwitchFocus;
     private readonly InputAction m_InGame_Pause;
@@ -505,6 +538,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @Move => m_Wrapper.m_InGame_Move;
         public InputAction @Dash => m_Wrapper.m_InGame_Dash;
         public InputAction @Attack => m_Wrapper.m_InGame_Attack;
+        public InputAction @DashAttack => m_Wrapper.m_InGame_DashAttack;
         public InputAction @Focus => m_Wrapper.m_InGame_Focus;
         public InputAction @SwitchFocus => m_Wrapper.m_InGame_SwitchFocus;
         public InputAction @Pause => m_Wrapper.m_InGame_Pause;
@@ -532,6 +566,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Attack.started -= m_Wrapper.m_InGameActionsCallbackInterface.OnAttack;
                 @Attack.performed -= m_Wrapper.m_InGameActionsCallbackInterface.OnAttack;
                 @Attack.canceled -= m_Wrapper.m_InGameActionsCallbackInterface.OnAttack;
+                @DashAttack.started -= m_Wrapper.m_InGameActionsCallbackInterface.OnDashAttack;
+                @DashAttack.performed -= m_Wrapper.m_InGameActionsCallbackInterface.OnDashAttack;
+                @DashAttack.canceled -= m_Wrapper.m_InGameActionsCallbackInterface.OnDashAttack;
                 @Focus.started -= m_Wrapper.m_InGameActionsCallbackInterface.OnFocus;
                 @Focus.performed -= m_Wrapper.m_InGameActionsCallbackInterface.OnFocus;
                 @Focus.canceled -= m_Wrapper.m_InGameActionsCallbackInterface.OnFocus;
@@ -566,6 +603,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Attack.started += instance.OnAttack;
                 @Attack.performed += instance.OnAttack;
                 @Attack.canceled += instance.OnAttack;
+                @DashAttack.started += instance.OnDashAttack;
+                @DashAttack.performed += instance.OnDashAttack;
+                @DashAttack.canceled += instance.OnDashAttack;
                 @Focus.started += instance.OnFocus;
                 @Focus.performed += instance.OnFocus;
                 @Focus.canceled += instance.OnFocus;
@@ -612,6 +652,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnMove(InputAction.CallbackContext context);
         void OnDash(InputAction.CallbackContext context);
         void OnAttack(InputAction.CallbackContext context);
+        void OnDashAttack(InputAction.CallbackContext context);
         void OnFocus(InputAction.CallbackContext context);
         void OnSwitchFocus(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);

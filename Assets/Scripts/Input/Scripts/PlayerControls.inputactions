@@ -42,6 +42,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "DashAttack",
+                    "type": "Button",
+                    "id": "77e60b25-c7be-4d96-aa86-0cd79896117e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Focus",
                     "type": "Button",
                     "id": "99fd06d9-00d4-45c6-b8e1-1d6a28706af0",
@@ -358,6 +367,28 @@
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "Book",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "29312186-d30e-45db-a5e4-c0d6d933edec",
+                    "path": "<Mouse>/backButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "PC",
+                    "action": "DashAttack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "34a2fde3-706a-4f80-b767-27234ca09ae5",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "DashAttack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
