@@ -25,6 +25,7 @@ public class BoussoleBehaviour : MonoBehaviour
     private void Start()
     {
         _timeReset = timeToChangeAiguilleDirection;
+        _interfaceBoussole.SetActive(false);
     }
     private void Update()
     {
