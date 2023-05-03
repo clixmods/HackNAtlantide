@@ -17,7 +17,9 @@ public class InputManager : MonoBehaviour
     private bool _isGamepad { get; set; }
     void Awake()
     {
+        DontDestroyOnLoad(this);
         _input = new PlayerControls();
+
     }
     private void OnEnable()
     {

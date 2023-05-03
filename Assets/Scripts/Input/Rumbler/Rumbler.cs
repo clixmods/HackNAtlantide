@@ -26,11 +26,13 @@ public class Rumbler : MonoBehaviour
     private bool isMotorActive = false;
     private void Start()
     {
-        if(instance == null)
+        if (instance != null)
         {
-            instance = this;
+            Destroy(instance);
         }
-        
+        instance = this;
+        DontDestroyOnLoad(this);
+
     }
     // Public Methods
     public void RumbleConstant(RumblerDataConstant rumblerDataConstant)

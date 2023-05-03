@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -199,7 +200,10 @@ public class PlayerMovement : MonoBehaviour
             {
                 continue;
             }
-            
+            if (_buffer[i].gameObject.layer == 7)
+            {
+                Debug.Log("extractfrom ground");
+            }
 
             if (_buffer[i].gameObject.layer == (_layerToIgnore | (1 << _buffer[i].gameObject.layer)) && 
                 Physics.ComputePenetration(collider, _rigidbody.position, _rigidbody.rotation,
@@ -274,7 +278,7 @@ public class PlayerMovement : MonoBehaviour
     {
         float distance = 0f;
         Vector3 displacement = Vector3.zero;
-        if (_rigidbody.SweepTest(Vector3.down, out RaycastHit hit, 0.5f, QueryTriggerInteraction.Ignore))
+        if (_rigidbody.SweepTest(Vector3.down, out RaycastHit hit, 0.2f, QueryTriggerInteraction.Ignore))
         {
             //ClampDistance with contact offset;
             distance = Mathf.Max(0f, hit.distance - Physics.defaultContactOffset);
