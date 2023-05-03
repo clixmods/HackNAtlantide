@@ -9,10 +9,10 @@ public class AutoDestroy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        _timeToDestroy -=Time.deltaTime;
+        _timeToDestroy -= Time.deltaTime;
         if( _timeToDestroy < 0 )
         {
-            Destroy( this );
+            Destroy( gameObject );
         }
     }
 }

@@ -64,7 +64,7 @@ public class AttackLevitationInteractable : MonoBehaviour, IInteractable
         _attackCollider.OnCollideWithIDamageable += AttackColliderOnOnCollideWithIDamageable;
 
         _colliderExplosion = GetComponent<SphereCollider>();
-        _colliderExplosion.radius = 0.5f;
+        _colliderExplosion.radius = 0.1f;
         _colliderExplosion.isTrigger = true;
     }
     private void OnDestroy()
@@ -156,8 +156,8 @@ public class AttackLevitationInteractable : MonoBehaviour, IInteractable
                     rb.AddExplosionForce(Random.value, rb.position + Random.onUnitSphere, Random.value);
                 }
             }
-            GetComponent<MeshRenderer>().enabled = false;
-            GetComponent<BoxCollider>().enabled = false;
+            Destroy(GetComponent<MeshRenderer>());
+            Destroy(GetComponent<BoxCollider>());
             explosion = true;
         }
         
