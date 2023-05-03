@@ -663,7 +663,7 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6444109697107675426}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 1.5
   m_Height: 5.77
@@ -806,6 +806,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4252147742636224193}
+  - component: {fileID: 7432877148203674342}
   m_Layer: 11
   m_Name: Demon_Enemy
   m_TagString: Untagged
@@ -829,6 +830,19 @@ Transform:
   m_Father: {fileID: 5919351741948662680}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: -89.98021, y: 0, z: 0}
+--- !u!65 &7432877148203674342
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8411170609446297975}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.013798122, y: 0.010451411, z: 0.036986955}
+  m_Center: {x: 0, y: -4.469564e-17, z: 0.0050161416}
 --- !u!1 &8412586543460034263
 GameObject:
   m_ObjectHideFlags: 0
