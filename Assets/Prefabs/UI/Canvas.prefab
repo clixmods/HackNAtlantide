@@ -150,7 +150,6 @@ GameObject:
   - component: {fileID: 155454731398636896}
   - component: {fileID: 2582940603024666182}
   - component: {fileID: 6851609595507712071}
-  - component: {fileID: 5713732408926192427}
   - component: {fileID: 6841649232089922218}
   - component: {fileID: 2928636872496934781}
   - component: {fileID: 4834517097068760183}
@@ -235,7 +234,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EventOnOpenMenu:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6354926507877826843}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   EventOnCloseMenu:
     m_PersistentCalls:
       m_Calls: []
@@ -249,37 +260,6 @@ MonoBehaviour:
   showCursor: 1
   StayOpenOnAwake: 0
   _menuType: 0
---- !u!114 &5713732408926192427
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 223234446094866146}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6ff66007dfe4bec47900ec5c25eca62a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inputToListen: {fileID: 11400000, guid: 5719ad0ca169cbd449cb1c5d174cfa98, type: 2}
-  InputValueTrue:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6851609595507712071}
-        m_TargetAssemblyTypeName: UIMenu, Assembly-CSharp
-        m_MethodName: OpenCloseMenu
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  InputValueFalse:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!225 &6841649232089922218
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -323,6 +303,18 @@ MonoBehaviour:
   LaunchEvent:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 3045381470713022938}
+        m_TargetAssemblyTypeName: UIMenu, Assembly-CSharp
+        m_MethodName: CloseMenu
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 6851609595507712071}
         m_TargetAssemblyTypeName: UIMenu, Assembly-CSharp
         m_MethodName: OpenMenu
@@ -2800,6 +2792,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0ff13d70bdb7bdc4ab4b84400857a953, type: 3}
+--- !u!114 &3045381470713022938 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2456352770044569039, guid: 0ff13d70bdb7bdc4ab4b84400857a953,
+    type: 3}
+  m_PrefabInstance: {fileID: 600642979449121813}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4a64c97293e39e4b969ba8a7b5bda56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6150087292119121502 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6704899238180082251, guid: 0ff13d70bdb7bdc4ab4b84400857a953,
@@ -2958,11 +2962,6 @@ PrefabInstance:
     - target: {fileID: 1811226049353837089, guid: f10d081dcc4b774409a34836024bf908,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1811226049353837093, guid: f10d081dcc4b774409a34836024bf908,
-        type: 3}
-      propertyPath: StayOpenOnAwake
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1811226049368332603, guid: f10d081dcc4b774409a34836024bf908,

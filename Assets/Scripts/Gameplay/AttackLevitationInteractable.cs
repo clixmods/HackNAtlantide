@@ -50,9 +50,11 @@ public class AttackLevitationInteractable : MonoBehaviour, IInteractable
     [SerializeField] float _speedExplosion;
     [SerializeField] float _maxRadius;
     bool explosion;
+    private int _layerBase = 0;
     #region Monobehaviour
     private void Awake()
     {
+        _layerBase = gameObject.layer;
         _initialPosition = transform.position;
         _initialRotation = transform.rotation;
         _inputHelper = GetComponent<InputHelper>();
@@ -190,6 +192,7 @@ public class AttackLevitationInteractable : MonoBehaviour, IInteractable
         _uiChargeInputHelper.SetFillValue(1);
         _hasInteract = true;
         _attackCollider.enabled = true;
+        _attackCollider.gameObject.layer = 10;
         _playerStamina.UseStamina(useStaminaAmount);
         _rigidBody.useGravity = false;
         
@@ -226,6 +229,9 @@ public class AttackLevitationInteractable : MonoBehaviour, IInteractable
             // Check if the transform destination is null, to cancel the attack
             if (transformDestination == null)
             {
+                _attackCollider.enabled = false;
+                _attackCollider.gameObject.layer = _layerBase;
+                
                 _isCharging = false;
                 StopCoroutine(ChargeObject());
                 _hasInteract = false;

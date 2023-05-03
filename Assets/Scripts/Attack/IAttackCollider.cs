@@ -13,6 +13,7 @@ namespace Attack
     /// </summary>
     public interface IAttackCollider
     {
+        public GameObject gameObject { get; }
         /// <summary>
         /// Events when the collider hit a damageable
         /// </summary>
