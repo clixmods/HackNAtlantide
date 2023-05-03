@@ -41,7 +41,7 @@ public class Character : MonoBehaviour,  IDamageable
     {
         health -= damage;
         OnDamage?.Invoke(this,null);
-        if(health < 0f)
+        if(health <= 0f)
         {
             Dead();
         }
