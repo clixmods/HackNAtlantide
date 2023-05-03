@@ -443,7 +443,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5b86aa4926329d4386be4f9e91c7444, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1
+  sendEventOnEnter: 1
+  sendEventOnStay: 0
+  sendEventOnExit: 0
 --- !u!1 &6395227641650034023
 GameObject:
   m_ObjectHideFlags: 0
@@ -592,6 +594,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c80a058dcb004b16bdccf09b276a7bb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _meshRenderer: {fileID: 910961543596870149}
 --- !u!114 &4941157224044765246
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -605,6 +608,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targeter: {fileID: 0}
+  pivot: {fileID: 0}
   useDistance: 1
   maxDistanceWithTargeter: 20
   canBeTarget: 1
@@ -621,6 +625,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxHealth: 3
+  _attackRumble: {fileID: 11400000, guid: e6931a1188abaf943a45d0af0863cfbc, type: 2}
   _enemyController: {fileID: 6174288241673237631}
 --- !u!114 &6377393696202663881
 MonoBehaviour:
@@ -634,7 +639,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da7a50129c684288a9f5916b2bb3c0db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _iconObject: {fileID: 0}
   _prefab: {fileID: 7842852136325112521, guid: 5671e126f0de2064a98d178b7b82fe6a, type: 3}
   maxDistanceToShow: 45
   _UIElementIsIndependant: 0
