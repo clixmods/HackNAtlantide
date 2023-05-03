@@ -1,5 +1,6 @@
 ﻿using System;
 using Cinemachine;
+using Unity.VisualScripting;
 using UnityEngine;
 
     [RequireComponent(typeof(BoxTrigger))]
@@ -16,6 +17,7 @@ using UnityEngine;
         public void Init(CinemachineVirtualCamera cinemachineVirtualCamera)
         {
             _cinemachineVirtualCamera = cinemachineVirtualCamera;
+           
         }
         private void Awake()
         {
@@ -24,7 +26,7 @@ using UnityEngine;
                 _cinemachineVirtualCamera.gameObject.SetActive(false);
             }
             OnCameraChanged += DesactiveCamera;
-            
+           
         }
 
         private void OnDestroy()
