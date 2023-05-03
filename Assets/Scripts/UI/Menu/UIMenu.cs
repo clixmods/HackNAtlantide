@@ -153,7 +153,11 @@ public class UIMenu : MonoBehaviour
     }
     public virtual void OpenMenu(GameObject parentMenu = null)
     {
-        if (!canBeOpenedAnywhere && ActiveMenu != null && parentMenu != ActiveMenu.gameObject && ActiveMenu.menuType == MenuType.Active)
+        if (this.enabled == false)
+        {
+            return;
+        }
+        if (!canBeOpenedAnywhere && ActiveMenu != null && parentMenu != ActiveMenu.gameObject)
         {
             return;
         }
@@ -193,13 +197,28 @@ public class UIMenu : MonoBehaviour
     }
     public virtual void CloseMenu(bool openPreviousMenu = false)
     {
-        if (ActiveMenu == null || !IsOpen) 
+        if (ActiveMenu == null || !IsOpen)
+        {
+            if (canAdjustTimescale)
+            {
+                Time.timeScale = 1;
+            }
             return;
-        EventOnCloseMenu?.Invoke();
-        EventMenuClosed?.Invoke();
+        }
+           
+        
+     
         if (canAdjustTimescale)
         {
-            Time.timeScale = ActiveMenu._previousTimeScale;
+            if (ActiveMenu != null)
+            {
+                Time.timeScale = ActiveMenu._previousTimeScale;
+            }
+            else
+            {
+                Time.timeScale = 1;
+            }
+          
         }
         // Parent menu
         if(_previousMenu != null)
@@ -222,6 +241,8 @@ public class UIMenu : MonoBehaviour
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Confined;
         }
+        EventOnCloseMenu?.Invoke();
+        EventMenuClosed?.Invoke();
     }
 
     private void OnDestroy()

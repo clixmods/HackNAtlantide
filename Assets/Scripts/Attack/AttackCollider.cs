@@ -40,6 +40,7 @@ public class AttackCollider : MonoBehaviour , IAttackCollider
         if (!sendEventOnEnter) return;
         if(other.TryGetComponent<IDamageable>(out var damageable) )
         {
+            Debug.Log(other.gameObject.name);
             OnHit(damageable);
         }
     }
@@ -56,7 +57,7 @@ public class AttackCollider : MonoBehaviour , IAttackCollider
     {
         if (!enabled) return;
         if (!sendEventOnExit) return;
-        if(other.TryGetComponent<IDamageable>(out var damageable) )
+        if(other.TryGetComponent<IDamageable>(out var damageable))
         {
             OnHit(damageable);
         }

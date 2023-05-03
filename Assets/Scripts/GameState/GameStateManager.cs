@@ -142,7 +142,7 @@ public class GameStateManager : MonoBehaviour
     {
         if (Instance != null)
         {
-            Destroy(Instance);
+            Destroy(Instance.gameObject);
         }
         Instance = this;
         DontDestroyOnLoad(this);

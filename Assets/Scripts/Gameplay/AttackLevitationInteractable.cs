@@ -10,6 +10,7 @@ using Random = UnityEngine.Random;
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(InputHelper))]
 [RequireComponent(typeof(IAttackCollider))]
+[RequireComponent(typeof(SphereCollider))]
 public class AttackLevitationInteractable : MonoBehaviour, IInteractable
 {
     private Rigidbody _rigidBody;
@@ -43,9 +44,17 @@ public class AttackLevitationInteractable : MonoBehaviour, IInteractable
     private IAttackCollider _attackCollider;
     private InputHelper _inputHelper;
     private UIChargeInputHelper _uiChargeInputHelper;
+
+    //Explosiopn
+    SphereCollider _colliderExplosion;
+    [SerializeField] float _speedExplosion;
+    [SerializeField] float _maxRadius;
+    bool explosion;
+    private int _layerBase = 0;
     #region Monobehaviour
     private void Awake()
     {
+        _layerBase = gameObject.layer;
         _initialPosition = transform.position;
         _initialRotation = transform.rotation;
         _inputHelper = GetComponent<InputHelper>();
@@ -55,7 +64,10 @@ public class AttackLevitationInteractable : MonoBehaviour, IInteractable
         Focus.OnFocusNoTarget += RemoveTarget;
         _attackCollider = GetComponent<IAttackCollider>();
         _attackCollider.OnCollideWithIDamageable += AttackColliderOnOnCollideWithIDamageable;
-        
+
+        _colliderExplosion = GetComponent<SphereCollider>();
+        _colliderExplosion.radius = 0.1f;
+        _colliderExplosion.isTrigger = true;
     }
     private void OnDestroy()
     {
@@ -69,8 +81,26 @@ public class AttackLevitationInteractable : MonoBehaviour, IInteractable
         _uiChargeInputHelper = (UIChargeInputHelper)(_inputHelper.UIInputHelper);
         _inputHelper.enabled = false;
     }
-   
-   
+    private void Update()
+    {
+        Explosion();
+    }
+    void Explosion()
+    {
+        if (explosion)
+        {
+            if (_colliderExplosion.radius > _maxRadius)
+            {
+                _colliderExplosion.enabled = false;
+                Destroy(this);
+            }
+            else
+            {
+                _colliderExplosion.radius += Time.deltaTime * _speedExplosion;
+            }
+        }
+    }
+
     // We need to use late update, sometimes, the position targeted glitch because nav agent is bullshit
     private void LateUpdate()
     {
@@ -128,7 +158,9 @@ public class AttackLevitationInteractable : MonoBehaviour, IInteractable
                     rb.AddExplosionForce(Random.value, rb.position + Random.onUnitSphere, Random.value);
                 }
             }
-            this.gameObject.SetActive(false);
+            Destroy(GetComponent<MeshRenderer>());
+            Destroy(GetComponent<BoxCollider>());
+            explosion = true;
         }
         
         private void RemoveTarget()
@@ -160,6 +192,7 @@ public class AttackLevitationInteractable : MonoBehaviour, IInteractable
         _uiChargeInputHelper.SetFillValue(1);
         _hasInteract = true;
         _attackCollider.enabled = true;
+        _attackCollider.gameObject.layer = 10;
         _playerStamina.UseStamina(useStaminaAmount);
         _rigidBody.useGravity = false;
         
@@ -196,6 +229,9 @@ public class AttackLevitationInteractable : MonoBehaviour, IInteractable
             // Check if the transform destination is null, to cancel the attack
             if (transformDestination == null)
             {
+                _attackCollider.enabled = false;
+                _attackCollider.gameObject.layer = _layerBase;
+                
                 _isCharging = false;
                 StopCoroutine(ChargeObject());
                 _hasInteract = false;
