@@ -593,12 +593,12 @@ PrefabInstance:
     - target: {fileID: 2199508586024135312, guid: 7d6da1fa2313064439558de1d65bd657,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.18110262
+      value: 0.18110265
       objectReference: {fileID: 0}
     - target: {fileID: 2199508586024135312, guid: 7d6da1fa2313064439558de1d65bd657,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.23330577
+      value: 0.23330572
       objectReference: {fileID: 0}
     - target: {fileID: 2199508586024135312, guid: 7d6da1fa2313064439558de1d65bd657,
         type: 3}
@@ -1443,6 +1443,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 97191c65a69646649bcf700274c14435, type: 3}
+--- !u!137 &480865405 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 7059003573121365659, guid: 120c1c1b3fb8db64f84b9754b96145c4,
+    type: 3}
+  m_PrefabInstance: {fileID: 1519655573}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &532177785
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5808,6 +5814,11 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: 0.00000004727533
       objectReference: {fileID: 0}
+    - target: {fileID: 2163970336209644009, guid: 120c1c1b3fb8db64f84b9754b96145c4,
+        type: 3}
+      propertyPath: OnDamage.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_FloatArgument
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 2176775217575482146, guid: 120c1c1b3fb8db64f84b9754b96145c4,
         type: 3}
       propertyPath: m_Name
@@ -5948,6 +5959,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 3187746015186250110, guid: 120c1c1b3fb8db64f84b9754b96145c4,
+        type: 3}
+      propertyPath: _meshRenderer
+      value: 
+      objectReference: {fileID: 480865405}
     - target: {fileID: 3254360785627689518, guid: 120c1c1b3fb8db64f84b9754b96145c4,
         type: 3}
       propertyPath: m_DefaultVelocity.y

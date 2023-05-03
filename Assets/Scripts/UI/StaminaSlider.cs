@@ -22,6 +22,6 @@ public class StaminaSlider : MonoBehaviour
 
     void ChangeValue(float value)
     {
-        slider.value = value;
+        slider.value = value/_staminaSO.MaxStamina;
     }
 }
