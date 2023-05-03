@@ -91,7 +91,7 @@ public class Settings : MonoBehaviourSaveable
     {
         if (Instance != null)
         {
-            Destroy(Instance);
+            Destroy(Instance.gameObject);
         }
         Instance = this;
         DontDestroyOnLoad(this);
