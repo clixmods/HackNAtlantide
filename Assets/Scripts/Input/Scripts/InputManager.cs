@@ -3,6 +3,7 @@ using UnityEngine.InputSystem;
 
 public class InputManager : MonoBehaviour
 {
+    public static InputManager Instance;
     public PlayerControls _input { private set; get; }
     [SerializeField] private InputButtonScriptableObject _interact;
     [SerializeField] private InputButtonScriptableObject _attack;
@@ -17,6 +18,11 @@ public class InputManager : MonoBehaviour
     private bool _isGamepad { get; set; }
     void Awake()
     {
+        if (Instance != null)
+        {
+            Destroy(Instance);
+        }
+        Instance = this;
         DontDestroyOnLoad(this);
         _input = new PlayerControls();
 
