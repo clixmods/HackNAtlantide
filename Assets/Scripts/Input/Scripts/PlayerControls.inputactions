@@ -42,6 +42,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "DashAttack",
+                    "type": "Button",
+                    "id": "10be352d-9f88-41df-b093-eb3854f314db",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Focus",
                     "type": "Button",
                     "id": "99fd06d9-00d4-45c6-b8e1-1d6a28706af0",
@@ -307,6 +316,28 @@
                     "processors": "",
                     "groups": "PC",
                     "action": "Boussole",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "db67624d-1519-46b7-a982-4867f8884265",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "PC",
+                    "action": "DashAttack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "765a96a8-7d26-499b-a8dd-b0716196d95a",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "DashAttack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

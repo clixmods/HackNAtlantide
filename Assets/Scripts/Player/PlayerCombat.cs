@@ -21,12 +21,12 @@ public class PlayerCombat : MonoBehaviour,ICombat
     private void OnEnable()
     {
         _inputAttack.OnValueChanged += Attack;
-        _inputAttack.OnValueChanged += AttackDash;
+        _inputAttackDash.OnValueChanged += AttackDash;
     }
     private void OnDisable()
     {
         _inputAttack.OnValueChanged -= Attack;
-        _inputAttack.OnValueChanged -= AttackDash;
+        _inputAttackDash.OnValueChanged -= AttackDash;
     }
 
     private void Awake()
@@ -47,6 +47,7 @@ public class PlayerCombat : MonoBehaviour,ICombat
     void Start()
     {
         anim = GetComponent<Animator>();
+        _playerMovement = GetComponent<PlayerMovement>();
     }
 
     void Attack(bool value)
@@ -81,10 +82,9 @@ public class PlayerCombat : MonoBehaviour,ICombat
         {
             if (Time.time - lastClickedTime >= 0.2f)
             {
-                _playerMovement.Dash(true);
-                anim.runtimeAnimatorController = combo[comboCounter].animatorOV;
                 _attackCollider.enabled = false;
                 anim.Play(AttackAnim, 0, 0);
+                _playerMovement.Dash(true);
                 lastClickedTime = Time.time;
             }
         }

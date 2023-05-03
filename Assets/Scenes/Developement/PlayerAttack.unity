@@ -1360,10 +1360,12 @@ MonoBehaviour:
   _interact: {fileID: 11400000, guid: 67380d3709d97c74e85b3aafe21013ad, type: 2}
   _attack: {fileID: 11400000, guid: fdbbc2eed1d30cb48b96b3abfe6f859e, type: 2}
   _dash: {fileID: 11400000, guid: 4bd4a32db9dece64598ee56d8821fda5, type: 2}
+  _dashAttack: {fileID: 11400000, guid: 6a4e272f294a6a94185c64218df86d2e, type: 2}
   _move: {fileID: 11400000, guid: f723c9ff06fee8f4b84dfde16114e058, type: 2}
   _switchFocus: {fileID: 0}
   _focus: {fileID: 0}
   _pause: {fileID: 0}
+  _boussole: {fileID: 0}
   _actionIcon:
     path: 
     icon: {fileID: 0}
@@ -3134,6 +3136,75 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1519655573}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1643059474
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 8229067413225768042, guid: 704a0cffa538bd74c84e96027619de4e,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 8229067413225768042, guid: 704a0cffa538bd74c84e96027619de4e,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.63
+      objectReference: {fileID: 0}
+    - target: {fileID: 8229067413225768042, guid: 704a0cffa538bd74c84e96027619de4e,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.59
+      objectReference: {fileID: 0}
+    - target: {fileID: 8229067413225768042, guid: 704a0cffa538bd74c84e96027619de4e,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 31.53
+      objectReference: {fileID: 0}
+    - target: {fileID: 8229067413225768042, guid: 704a0cffa538bd74c84e96027619de4e,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8229067413225768042, guid: 704a0cffa538bd74c84e96027619de4e,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8229067413225768042, guid: 704a0cffa538bd74c84e96027619de4e,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8229067413225768042, guid: 704a0cffa538bd74c84e96027619de4e,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8229067413225768042, guid: 704a0cffa538bd74c84e96027619de4e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8229067413225768042, guid: 704a0cffa538bd74c84e96027619de4e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8229067413225768042, guid: 704a0cffa538bd74c84e96027619de4e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8229067413225768047, guid: 704a0cffa538bd74c84e96027619de4e,
+        type: 3}
+      propertyPath: m_Name
+      value: Trigger PowerEnergy
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 704a0cffa538bd74c84e96027619de4e, type: 3}
 --- !u!114 &1821937127 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6174288241673237631, guid: b53c20b6f237f3242924df59e45f0d1f,
