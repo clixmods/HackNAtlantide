@@ -10,6 +10,7 @@ using Random = UnityEngine.Random;
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(InputHelper))]
 [RequireComponent(typeof(IAttackCollider))]
+[RequireComponent(typeof(SphereCollider))]
 public class AttackLevitationInteractable : MonoBehaviour, IInteractable
 {
     private Rigidbody _rigidBody;
@@ -43,6 +44,12 @@ public class AttackLevitationInteractable : MonoBehaviour, IInteractable
     private IAttackCollider _attackCollider;
     private InputHelper _inputHelper;
     private UIChargeInputHelper _uiChargeInputHelper;
+
+    //Explosiopn
+    SphereCollider _colliderExplosion;
+    [SerializeField] float _speedExplosion;
+    [SerializeField] float _maxRadius;
+    bool explosion;
     #region Monobehaviour
     private void Awake()
     {
@@ -55,7 +62,10 @@ public class AttackLevitationInteractable : MonoBehaviour, IInteractable
         Focus.OnFocusNoTarget += RemoveTarget;
         _attackCollider = GetComponent<IAttackCollider>();
         _attackCollider.OnCollideWithIDamageable += AttackColliderOnOnCollideWithIDamageable;
-        
+
+        _colliderExplosion = GetComponent<SphereCollider>();
+        _colliderExplosion.radius = 0.5f;
+        _colliderExplosion.isTrigger = true;
     }
     private void OnDestroy()
     {
@@ -69,8 +79,25 @@ public class AttackLevitationInteractable : MonoBehaviour, IInteractable
         _uiChargeInputHelper = (UIChargeInputHelper)(_inputHelper.UIInputHelper);
         _inputHelper.enabled = false;
     }
-   
-   
+    private void Update()
+    {
+        Explosion();
+    }
+    void Explosion()
+    {
+        if (explosion)
+        {
+            if (_colliderExplosion.radius > _maxRadius)
+            {
+                _colliderExplosion.enabled = false;
+            }
+            else
+            {
+                _colliderExplosion.radius += Time.deltaTime * _speedExplosion;
+            }
+        }
+    }
+
     // We need to use late update, sometimes, the position targeted glitch because nav agent is bullshit
     private void LateUpdate()
     {
@@ -128,7 +155,8 @@ public class AttackLevitationInteractable : MonoBehaviour, IInteractable
                     rb.AddExplosionForce(Random.value, rb.position + Random.onUnitSphere, Random.value);
                 }
             }
-            this.gameObject.SetActive(false);
+            GetComponent<MeshRenderer>().enabled = false;
+            explosion = true;
         }
         
         private void RemoveTarget()
