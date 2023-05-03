@@ -43,7 +43,7 @@ using UnityEngine;
                 _cinemachineVirtualCamera.Follow = PlayerInstanceScriptableObject.Player.transform;
             }
 
-            if (disableCameraInAwake)
+            if (!disableCameraInAwake)
             {
                 ActiveCamera();
             }
