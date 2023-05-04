@@ -4879,7 +4879,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3065957743833887637}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: PotInteractable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5146,6 +5146,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _timeToDestroy: 3
+  _randomValue: 1
 --- !u!1 &2214534108621373705 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6436861295646983487, guid: 4e8b2ee9a16caa54fb249e397e03b612,
@@ -5195,6 +5196,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _timeToDestroy: 3
+  _randomValue: 1
 --- !u!1 &2683800537957357309 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -2102883703568887093, guid: 4e8b2ee9a16caa54fb249e397e03b612,
@@ -5244,6 +5246,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _timeToDestroy: 3
+  _randomValue: 1
 --- !u!4 &4640239553894917085 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 4e8b2ee9a16caa54fb249e397e03b612,
@@ -5299,6 +5302,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _timeToDestroy: 3
+  _randomValue: 1
 --- !u!1 &5348541134405596283 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -8226354797361647539, guid: 4e8b2ee9a16caa54fb249e397e03b612,
@@ -5348,6 +5352,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _timeToDestroy: 3
+  _randomValue: 1
 --- !u!1 &5417445413406898535 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 4e8b2ee9a16caa54fb249e397e03b612,
@@ -5403,6 +5408,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _timeToDestroy: 3
+  _randomValue: 1
 --- !u!1 &6218100132865221416 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -7951974755809138914, guid: 4e8b2ee9a16caa54fb249e397e03b612,
@@ -5452,6 +5458,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _timeToDestroy: 3
+  _randomValue: 1
 --- !u!1 &7850699959547660283 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -6116871035047263283, guid: 4e8b2ee9a16caa54fb249e397e03b612,
@@ -5501,6 +5508,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _timeToDestroy: 3
+  _randomValue: 1
 --- !u!1 &8497024497747744499 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3604206767336657605, guid: 4e8b2ee9a16caa54fb249e397e03b612,
@@ -5550,6 +5558,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _timeToDestroy: 3
+  _randomValue: 1
 --- !u!1 &8567013990109170949 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3534179891654199603, guid: 4e8b2ee9a16caa54fb249e397e03b612,
@@ -5599,6 +5608,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _timeToDestroy: 3
+  _randomValue: 1
 --- !u!1001 &8557617840307134382
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5689,7 +5699,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 97e3ae23e98aaa145834714e304b8755,
         type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 97e3ae23e98aaa145834714e304b8755,
         type: 3}
@@ -5726,19 +5736,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!135 &7713684521422395325
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8792061954932892415}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.32823804
-  m_Center: {x: 0, y: -0.06812955, z: 0.2854706}
 --- !u!65 &8611957874930130160
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5806,4 +5803,4 @@ MonoBehaviour:
   _meshDestroy: {fileID: 5417445413406898535}
   damageAmount: 1
   _speedExplosion: 5
-  _maxRadius: 1.5
+  _maxRadius: 1
