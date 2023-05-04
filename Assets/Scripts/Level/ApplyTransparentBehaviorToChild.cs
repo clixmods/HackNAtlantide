@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +6,14 @@ public class ApplyTransparentBehaviorToChild : MonoBehaviour
 {
     /// <summary> Material transparent qui sera appliqué à tout les models présent en tant qu'enfant </summary>
     [SerializeField] Material mtlTransparent;
+
+   
+
+    private void Awake()
+    {
+      
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -132,7 +141,8 @@ public class ApplyTransparentBehaviorToChild : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        MouseToWorldPosition();
+       // MouseToWorldPosition();
+        GameObjectToWorldPosition(PlayerInstanceScriptableObject.Player);
     }
 
     /// <summary> Retourne la position de la souris dans le monde 3D </summary> 
@@ -164,21 +174,24 @@ public class ApplyTransparentBehaviorToChild : MonoBehaviour
     {
         Ray ray;
         Vector3 Hitpoint = Vector3.zero;
+
+        Vector3 cameraPosition = CameraUtility.Camera.transform.position;
+        Vector3 rayDirection = objectTarget.transform.position - cameraPosition;
         // On trace un rayon avec la mousePosition de la souris
         ray = Camera.main.ViewportPointToRay(objectTarget.transform.position); 
-        if (Physics.Raycast(Camera.main.transform.position , objectTarget.transform.position - Camera.main.transform.position,  out RaycastHit RayHit, Mathf.Infinity))
+        if (Physics.Raycast(cameraPosition,  rayDirection ,  out RaycastHit RayHit, Mathf.Infinity))
         {
             Transform objectTouched = RayHit.collider.transform; // L'object toucher par le raycast
             // On verifie que le parent de l'objet n'est pas le transform de cette class
             // Si il a un autre parent, ca veut dire qu'on a toucher un mesh d'un prefab
             // Il faut donc tout selectionner pour eviter davoir des mesh transparent bizarre
-            if(objectTouched.TryGetComponent<MeshTransparentWatcher>(out MeshTransparentWatcher oof))
+            if(objectTouched.TryGetComponent<MeshTransparentWatcher>(out var meshTransparentWatcher))
             {
-                oof.IsHide = true;        
+                meshTransparentWatcher.IsHide = true;        
             }
             Hitpoint = new Vector3(RayHit.point.x, RayHit.point.y, RayHit.point.z);
             #if UNITY_EDITOR
-                Debug.DrawLine(Camera.main.transform.position, RayHit.collider.transform.position, Color.blue, 0.5f);
+                Debug.DrawLine(cameraPosition, RayHit.collider.transform.position, Color.blue, 0.5f);
             #endif
         }
 

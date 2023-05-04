@@ -8,6 +8,8 @@ using static UnityEngine.Rendering.DebugUI;
 public class InteractDetection : MonoBehaviour
 {
     [SerializeField] InputButtonScriptableObject _interact;
+    [SerializeField] InputButtonScriptableObject _release;
+    [SerializeField] private InputInfoScriptableObject _releaseInfo;
     List<IInteractable> interactable = new List<IInteractable>();
     public List<IInteractable> Interactable { get { DetectInteract(); return interactable; } }
     IInteractable closestObject;
@@ -20,10 +22,12 @@ public class InteractDetection : MonoBehaviour
     void OnEnable()
     {
         _interact.OnValueChanged += InteractInput;
+        _release.OnValueChanged += ReleaseInput;
     }
     private void OnDisable()
     {
         _interact.OnValueChanged -= InteractInput;
+        _release.OnValueChanged -= ReleaseInput;
     }
     private void Awake()
     {
@@ -41,6 +45,7 @@ public class InteractDetection : MonoBehaviour
         _playerDetectionScriptableObject.PlayerPosition = transform.position;
         if (_currentInteractable != null )
         {
+            _releaseInfo.ShowInputInfo();
             _currentInteractable.transform.position = transform.position + transform.up * 2;
         }
     }
@@ -75,6 +80,20 @@ public class InteractDetection : MonoBehaviour
             if (_currentInteractable != null)
             {
                 _currentInteractable.CancelInteract();
+                _currentInteractable = null;
+            }
+        }
+    }
+    
+    private void ReleaseInput(bool value)
+    {
+        if(value)
+        {
+            // A Interactable is currently used so we dont need to use an another one
+            if (_currentInteractable != null)
+            {
+                _releaseInfo.RemoveInputInfo();
+                _currentInteractable.ResetInteract();
                 _currentInteractable = null;
             }
         }
@@ -114,7 +133,8 @@ public class InteractDetection : MonoBehaviour
 
         if (_currentInteractable == null)
         {
-            if ( closestObject != null && closestObject.transform.TryGetComponent<InputHelper>(out var inputHelper))
+            _releaseInfo.RemoveInputInfo();
+            if ( closestObject != null && closestObject.transform.TryGetComponent<InputHelper>(out var inputHelper) )
             {
                 inputHelper.enabled = true;
             }

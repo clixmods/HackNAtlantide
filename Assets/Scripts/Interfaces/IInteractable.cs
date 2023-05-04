@@ -7,4 +7,5 @@ public interface IInteractable
     Transform transform { get; }
     public void Interact();
     public void CancelInteract();
+    public void ResetInteract();
 }

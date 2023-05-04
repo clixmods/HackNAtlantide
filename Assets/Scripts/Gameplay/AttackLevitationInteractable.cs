@@ -230,11 +230,9 @@ public class AttackLevitationInteractable : MonoBehaviour, IInteractable
             // Check if the transform destination is null, to cancel the attack
             if (transformDestination == null)
             {
-                _isCharging = false;
-                StopCoroutine(ChargeObject());
-                _hasInteract = false;
-                // Renable gravity
-                _rigidBody.useGravity = true;
+                _attackCollider.enabled = false;
+                _attackCollider.gameObject.layer = _layerBase;
+                ResetInteract();
                 return;
             }
             // A target is defined so start the attack
@@ -244,12 +242,24 @@ public class AttackLevitationInteractable : MonoBehaviour, IInteractable
             _inputHelper.enabled = false;
             return;
         }
-        _isCharging = false;
-        StopCoroutine(ChargeObject());
-        _hasInteract = false;
-        // Renable gravity
-        _rigidBody.useGravity = true;
+
+        ResetInteract();
     }
+
+    public void ResetInteract()
+    {
+        if (_hasInteract && !_isAttacking)
+        {
+            _attackCollider.enabled = false;
+            _attackCollider.gameObject.layer = _layerBase;
+        }
+
+        Debug.Log("Cancel Interact" , gameObject);
+        _inputHelper.enabled = false;
+        _uiChargeInputHelper.SetFillValue(1);
+  
+    }
+
     #endregion
 
     private void ResetToInitialPositionAndRotation()

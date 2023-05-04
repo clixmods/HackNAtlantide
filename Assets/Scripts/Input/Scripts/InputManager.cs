@@ -14,6 +14,7 @@ public class InputManager : MonoBehaviour
     [SerializeField] private InputButtonScriptableObject _focus;
     [SerializeField] private InputButtonScriptableObject _pause;
     [SerializeField] private InputButtonScriptableObject _boussole;
+    [SerializeField] private InputButtonScriptableObject _release;
     [SerializeField] private InputActionIcon _actionIcon;
     private bool _isGamepad { get; set; }
     void Awake()
@@ -64,6 +65,9 @@ public class InputManager : MonoBehaviour
         //Boussole
         _input.InGame.Boussole.performed += ctx => _boussole.ChangeValue(true);
         _input.InGame.Boussole.canceled += ctx => _boussole.ChangeValue(false);
+        // Release
+        _input.InGame.Release.performed += ctx => _release.ChangeValue(true);
+        _input.InGame.Release.canceled += ctx => _release.ChangeValue(false);
     }
 
     void DisableGameInput()
@@ -96,6 +100,9 @@ public class InputManager : MonoBehaviour
         //Boussole
         _input.InGame.Boussole.performed -= ctx => _boussole.ChangeValue(true);
         _input.InGame.Boussole.canceled -= ctx => _boussole.ChangeValue(false);
+        // Release
+        _input.InGame.Release.performed -= ctx => _release.ChangeValue(true);
+        _input.InGame.Release.canceled -= ctx => _release.ChangeValue(false);
 
         _input.Disable();
     }
