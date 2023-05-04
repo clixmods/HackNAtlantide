@@ -66,6 +66,7 @@ public class AttackLevitationInteractable : MonoBehaviour, IInteractable
         _colliderExplosion = GetComponent<SphereCollider>();
         _colliderExplosion.radius = 0.1f;
         _colliderExplosion.isTrigger = true;
+
     }
     private void OnDestroy()
     {
@@ -90,7 +91,7 @@ public class AttackLevitationInteractable : MonoBehaviour, IInteractable
             if (_colliderExplosion.radius > _maxRadius)
             {
                 _colliderExplosion.enabled = false;
-                Destroy(this);
+                Destroy(gameObject);
             }
             else
             {
@@ -158,6 +159,8 @@ public class AttackLevitationInteractable : MonoBehaviour, IInteractable
             }
             Destroy(GetComponent<MeshRenderer>());
             Destroy(GetComponent<BoxCollider>());
+            Destroy(GetComponent<InputHelper>());
+            Destroy(_rigidBody);
             explosion = true;
         }
         

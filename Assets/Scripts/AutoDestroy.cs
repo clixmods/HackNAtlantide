@@ -5,7 +5,15 @@ using UnityEngine;
 public class AutoDestroy : MonoBehaviour
 {
     [SerializeField] float _timeToDestroy;
+    [SerializeField] bool _randomValue;
 
+    private void Awake()
+    {
+        if(_randomValue)
+        {
+            _timeToDestroy = (Random.value+0.5f) *_timeToDestroy;
+        }
+    }
     // Update is called once per frame
     void Update()
     {
