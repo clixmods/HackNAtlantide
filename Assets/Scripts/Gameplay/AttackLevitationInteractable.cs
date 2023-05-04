@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Attack;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem.Utilities;
 using UnityEngine.Serialization;
@@ -50,11 +51,9 @@ public class AttackLevitationInteractable : MonoBehaviour, IInteractable
     [SerializeField] float _speedExplosion;
     [SerializeField] float _maxRadius;
     bool explosion;
-    private int _layerBase = 0;
     #region Monobehaviour
     private void Awake()
     {
-        _layerBase = gameObject.layer;
         _initialPosition = transform.position;
         _initialRotation = transform.rotation;
         _inputHelper = GetComponent<InputHelper>();
@@ -68,6 +67,7 @@ public class AttackLevitationInteractable : MonoBehaviour, IInteractable
         _colliderExplosion = GetComponent<SphereCollider>();
         _colliderExplosion.radius = 0.1f;
         _colliderExplosion.isTrigger = true;
+
     }
     private void OnDestroy()
     {
@@ -92,7 +92,7 @@ public class AttackLevitationInteractable : MonoBehaviour, IInteractable
             if (_colliderExplosion.radius > _maxRadius)
             {
                 _colliderExplosion.enabled = false;
-                Destroy(this);
+                Destroy(gameObject);
             }
             else
             {
@@ -160,6 +160,8 @@ public class AttackLevitationInteractable : MonoBehaviour, IInteractable
             }
             Destroy(GetComponent<MeshRenderer>());
             Destroy(GetComponent<BoxCollider>());
+            
+            _rigidBody.isKinematic = true ;
             explosion = true;
         }
         
@@ -192,7 +194,7 @@ public class AttackLevitationInteractable : MonoBehaviour, IInteractable
         _uiChargeInputHelper.SetFillValue(1);
         _hasInteract = true;
         _attackCollider.enabled = true;
-        _attackCollider.gameObject.layer = 10;
+        Debug.Break();
         _playerStamina.UseStamina(useStaminaAmount);
         _rigidBody.useGravity = false;
         
@@ -229,9 +231,6 @@ public class AttackLevitationInteractable : MonoBehaviour, IInteractable
             // Check if the transform destination is null, to cancel the attack
             if (transformDestination == null)
             {
-                _attackCollider.enabled = false;
-                _attackCollider.gameObject.layer = _layerBase;
-                
                 _isCharging = false;
                 StopCoroutine(ChargeObject());
                 _hasInteract = false;
@@ -243,9 +242,9 @@ public class AttackLevitationInteractable : MonoBehaviour, IInteractable
             Focus.OnFocusSwitch -= SetDestination;
             Focus.OnFocusNoTarget -= RemoveTarget;
             _isAttacking = true;
+            _inputHelper.enabled = false;
             return;
         }
-        Debug.Log("Cancel Interact" , gameObject);
         _isCharging = false;
         StopCoroutine(ChargeObject());
         _hasInteract = false;

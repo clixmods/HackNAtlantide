@@ -200,10 +200,6 @@ public class PlayerMovement : MonoBehaviour
             {
                 continue;
             }
-            if (_buffer[i].gameObject.layer == 7)
-            {
-                Debug.Log("extractfrom ground");
-            }
 
             if (_buffer[i].gameObject.layer == (_layerToIgnore | (1 << _buffer[i].gameObject.layer)) && 
                 Physics.ComputePenetration(collider, _rigidbody.position, _rigidbody.rotation,
