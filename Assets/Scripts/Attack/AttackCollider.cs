@@ -38,7 +38,7 @@ public class AttackCollider : MonoBehaviour , IAttackCollider
     {
         if (!enabled) return;
         if (!sendEventOnEnter) return;
-        if(other.TryGetComponent<IDamageable>(out var damageable) && other.gameObject.layer!=6)
+        if(other.TryGetComponent<IDamageable>(out var damageable))
         {
             Debug.Log(other.gameObject.name);
             OnHit(damageable);
@@ -48,7 +48,7 @@ public class AttackCollider : MonoBehaviour , IAttackCollider
     {
         if (!enabled) return;
         if (!sendEventOnStay) return;
-        if(other.TryGetComponent<IDamageable>(out var damageable) && other.gameObject.layer != 6)
+        if(other.TryGetComponent<IDamageable>(out var damageable))
         {
             OnHit(damageable);
         }
