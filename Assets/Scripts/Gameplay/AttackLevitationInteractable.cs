@@ -51,9 +51,12 @@ public class AttackLevitationInteractable : MonoBehaviour, IInteractable
     [SerializeField] float _speedExplosion;
     [SerializeField] float _maxRadius;
     bool explosion;
+
+    private int _layerBase;
     #region Monobehaviour
     private void Awake()
     {
+        _layerBase = gameObject.layer;
         _initialPosition = transform.position;
         _initialRotation = transform.rotation;
         _inputHelper = GetComponent<InputHelper>();
@@ -257,7 +260,11 @@ public class AttackLevitationInteractable : MonoBehaviour, IInteractable
         Debug.Log("Cancel Interact" , gameObject);
         _inputHelper.enabled = false;
         _uiChargeInputHelper.SetFillValue(1);
-  
+        _isCharging = false;
+        StopCoroutine(ChargeObject());
+        _hasInteract = false;
+        // Renable gravity
+        _rigidBody.useGravity = true;
     }
 
     #endregion
