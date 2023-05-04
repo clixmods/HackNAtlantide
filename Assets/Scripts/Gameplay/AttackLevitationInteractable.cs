@@ -194,7 +194,6 @@ public class AttackLevitationInteractable : MonoBehaviour, IInteractable
         _uiChargeInputHelper.SetFillValue(1);
         _hasInteract = true;
         _attackCollider.enabled = true;
-        Debug.Break();
         _playerStamina.UseStamina(useStaminaAmount);
         _rigidBody.useGravity = false;
         
