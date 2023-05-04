@@ -140,8 +140,12 @@ public class GameStateManager : MonoBehaviour
     //------------------------
     private void Awake()
     {
+        if (Instance != null)
+        {
+            Destroy(Instance.gameObject);
+        }
         Instance = this;
-        DontDestroyOnLoad(gameObject);
+        DontDestroyOnLoad(this);
     }
 
     //------------------------

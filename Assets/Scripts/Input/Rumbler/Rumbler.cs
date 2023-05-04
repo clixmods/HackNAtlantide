@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 public enum RumblePattern
@@ -23,42 +24,73 @@ public class Rumbler : MonoBehaviour
     private float highStep;
     private float rumbleStep;
     private bool isMotorActive = false;
-
     private void Start()
     {
-        if(instance == null)
+        if (instance != null)
         {
-            instance = this;
+            Destroy(instance.gameObject);
         }
-        
+        instance = this;
+        DontDestroyOnLoad(this);
+
     }
     // Public Methods
     public void RumbleConstant(RumblerDataConstant rumblerDataConstant)
     {
-        //if(Settings.UseRumbler)
+        
+        switch(Settings.Instance.RumblerIntensity)
         {
-            activeRumbePattern = RumblePattern.Constant;
-            lowA = rumblerDataConstant.low;
-            highA = rumblerDataConstant.high;
-            rumbleDurration = Time.unscaledTime + rumblerDataConstant.duration;
+            case (RumblerIntensity.none):
+                break;
+            case (RumblerIntensity.low):
+                ApplyValuesConstant(rumblerDataConstant, 0.1f);
+                break;
+            case (RumblerIntensity.mid):
+                ApplyValuesConstant(rumblerDataConstant, 1f);
+                break;
+            case (RumblerIntensity.high):
+                ApplyValuesConstant(rumblerDataConstant, 5f);
+                break;
         }
         
+    }
+    private void ApplyValuesConstant(RumblerDataConstant data,float intensity)
+    {
+        activeRumbePattern = RumblePattern.Constant;
+        lowA = data.low *intensity;
+        highA = data.high*intensity;
+        rumbleDurration = Time.unscaledTime + data.duration;
     }
 
     public void RumblePulse(RumblerDataPulse rumblerDataPulse)
     {
-        //if (Settings.UseRumbler)
+        switch (Settings.Instance.RumblerIntensity)
         {
-            activeRumbePattern = RumblePattern.Pulse;
-            lowA = rumblerDataPulse.low;
-            highA = rumblerDataPulse.high;
-            rumbleStep = rumblerDataPulse.burstTime;
-            pulseDurration = Time.unscaledTime + rumblerDataPulse.burstTime;
-            rumbleDurration = Time.unscaledTime + rumblerDataPulse.duration;
-            isMotorActive = true;
-            var g = GetGamepad();
-            g?.SetMotorSpeeds(lowA, highA);
+            case (RumblerIntensity.none):
+                break;
+            case (RumblerIntensity.low):
+                ApplyValuesPulse(rumblerDataPulse, 0.1f);
+                break;
+            case (RumblerIntensity.mid):
+                ApplyValuesPulse(rumblerDataPulse, 1f);
+                break;
+            case (RumblerIntensity.high):
+                ApplyValuesPulse(rumblerDataPulse, 5f);
+                break;
         }
+        
+    }
+    private void ApplyValuesPulse(RumblerDataPulse data, float intensity)
+    {
+        activeRumbePattern = RumblePattern.Pulse;
+        lowA = data.low*intensity;
+        highA = data.high*intensity;
+        rumbleStep = data.burstTime;
+        pulseDurration = Time.unscaledTime + data.burstTime;
+        rumbleDurration = Time.unscaledTime + data.duration;
+        isMotorActive = true;
+        var g = GetGamepad();
+        g?.SetMotorSpeeds(lowA, highA);
     }
 
     public void RumbleLinear(float lowStart, float lowEnd, float highStart, float highEnd, float durration)

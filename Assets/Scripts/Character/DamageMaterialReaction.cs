@@ -2,20 +2,18 @@
 using System.Collections;
 using UnityEngine;
 
-namespace Character
-{
     public class DamageMaterialReaction : MonoBehaviour
     {
         private IDamageable idamageable;
         private MaterialPropertyBlock[] _propBlocks;
-        private MeshRenderer _meshRenderer;
+        [SerializeField] private Renderer _meshRenderer;
         private static readonly int Amount = Shader.PropertyToID("_Flick");
         private void Awake()
         {
             idamageable = GetComponentInChildren<IDamageable>();
             idamageable.OnDamage += IdamageableOnOnDamage;
             // Setup Material property block
-            _meshRenderer = GetComponentInChildren<MeshRenderer>();
+            _meshRenderer ??= GetComponentInChildren<Renderer>();
             _propBlocks = new MaterialPropertyBlock[_meshRenderer.sharedMaterials.Length];
             for (int i = 0; i < _propBlocks.Length; i++)
             {
@@ -45,7 +43,7 @@ namespace Character
             }
         }
     }
-}
+
 
 
 
