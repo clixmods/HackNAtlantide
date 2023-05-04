@@ -13,13 +13,13 @@ public class InputIconImage : MonoBehaviour
      public InputActionReference _inputActionReference;
     private Image _image;
     [SerializeField] protected InputActionIcons inputActionIcons;
-    private string _bindingGroup;
-    public string bindingGroup => _bindingGroup;
+    private static string _bindingGroup;
+    public static string bindingGroup => _bindingGroup;
     private void Awake()
     {
         _playerControls ??= new PlayerControls();
         _image = GetComponent<Image>();
-        _bindingGroup = _playerControls.controlSchemes[0].bindingGroup;
+        _bindingGroup ??= _playerControls.controlSchemes[0].bindingGroup;
         InputSystem.onAnyButtonPress.Call(OnButtonPressed);
     }
     private void OnButtonPressed(InputControl button)
