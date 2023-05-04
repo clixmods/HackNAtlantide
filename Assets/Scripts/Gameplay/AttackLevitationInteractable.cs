@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Attack;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem.Utilities;
 using UnityEngine.Serialization;
@@ -159,8 +160,8 @@ public class AttackLevitationInteractable : MonoBehaviour, IInteractable
             }
             Destroy(GetComponent<MeshRenderer>());
             Destroy(GetComponent<BoxCollider>());
-            Destroy(GetComponent<InputHelper>());
-            Destroy(_rigidBody);
+            
+            _rigidBody.isKinematic = true ;
             explosion = true;
         }
         
@@ -193,6 +194,7 @@ public class AttackLevitationInteractable : MonoBehaviour, IInteractable
         _uiChargeInputHelper.SetFillValue(1);
         _hasInteract = true;
         _attackCollider.enabled = true;
+        Debug.Break();
         _playerStamina.UseStamina(useStaminaAmount);
         _rigidBody.useGravity = false;
         
@@ -240,9 +242,9 @@ public class AttackLevitationInteractable : MonoBehaviour, IInteractable
             Focus.OnFocusSwitch -= SetDestination;
             Focus.OnFocusNoTarget -= RemoveTarget;
             _isAttacking = true;
+            _inputHelper.enabled = false;
             return;
         }
-        Debug.Log("Cancel Interact" , gameObject);
         _isCharging = false;
         StopCoroutine(ChargeObject());
         _hasInteract = false;
