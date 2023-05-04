@@ -372,6 +372,17 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""4fdd88c9-1d7f-42db-b9a3-9ae168a01a08"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Release"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""abbdc004-e164-467a-8cd4-a192d6a72bbf"",
                     ""path"": ""<Keyboard>/2"",
                     ""interactions"": """",
@@ -395,7 +406,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""29312186-d30e-45db-a5e4-c0d6d933edec"",
-                    ""path"": ""<Mouse>/backButton"",
+                    ""path"": ""<Mouse>/middleButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""PC"",
