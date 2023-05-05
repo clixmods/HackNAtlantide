@@ -53,13 +53,85 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Attack"",
+                    ""type"": ""Button"",
+                    ""id"": ""c141ba68-9439-412c-80d3-e265cf4937d7"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""DashAttack"",
+                    ""type"": ""Button"",
+                    ""id"": ""77e60b25-c7be-4d96-aa86-0cd79896117e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Focus"",
+                    ""type"": ""Button"",
+                    ""id"": ""99fd06d9-00d4-45c6-b8e1-1d6a28706af0"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SwitchFocus"",
+                    ""type"": ""Value"",
+                    ""id"": ""accf1927-d9ad-41af-9d52-c4e86eefc9f4"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""3cf6f724-1905-40ef-a4aa-07f4bf2ee77b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Boussole"",
+                    ""type"": ""Button"",
+                    ""id"": ""ee7bc772-9438-422a-a40f-abd2b0b44e7e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Release"",
+                    ""type"": ""Button"",
+                    ""id"": ""0cfc96d6-e9d1-4de1-84ac-1db5384648b9"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Book"",
+                    ""type"": ""Button"",
+                    ""id"": ""e79f226c-6fa3-4cdc-8d8e-af4e8034fe3a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
                 {
                     ""name"": """",
                     ""id"": ""eed49afc-16df-46ae-b4b3-e2268b52a236"",
-                    ""path"": ""<Keyboard>/e"",
+                    ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""PC"",
@@ -70,7 +142,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""40e1e8fe-65e3-4b68-901a-194cc12d7eab"",
-                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
@@ -81,7 +153,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""cc13820f-1b8e-4f6c-b080-aca5cfdcd76b"",
-                    ""path"": ""<DualShockGamepad>/buttonWest"",
+                    ""path"": ""<DualShockGamepad>/rightTrigger"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
@@ -176,6 +248,182 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""action"": ""Dash"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9c2272e6-165c-4bf3-8705-5d62786eb1c1"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""PC"",
+                    ""action"": ""Attack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2071bb1b-3518-4f86-a5c1-10f717bdef1b"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Attack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d2dd1060-0f76-4590-816b-8d07a0e1160f"",
+                    ""path"": ""<Gamepad>/rightStickPress"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Focus"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a7d4c5b6-83ed-42ba-9403-bb913ccd5ff4"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""PC"",
+                    ""action"": ""Focus"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b6a98e5b-cc98-4983-b375-ff5ab7b09ca0"",
+                    ""path"": ""<Mouse>/scroll"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""PC"",
+                    ""action"": ""SwitchFocus"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6fee35aa-b9b4-4e3f-ba9e-54de014f38e2"",
+                    ""path"": ""<Gamepad>/rightStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""SwitchFocus"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""35e27e3c-927c-4f31-bcd9-15d4a2b9fae7"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b15e910f-11b9-4e9d-b69d-276a302b5a2d"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""PC"",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""836e109d-c162-43f5-a523-084b76139b64"",
+                    ""path"": ""<Gamepad>/dpad/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Boussole"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ab81de05-b3e1-422a-a817-a2953080d82b"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""PC"",
+                    ""action"": ""Boussole"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4bfa415c-2820-4241-8ae4-8fb55e1ba948"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""PC"",
+                    ""action"": ""Release"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4fdd88c9-1d7f-42db-b9a3-9ae168a01a08"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Release"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""abbdc004-e164-467a-8cd4-a192d6a72bbf"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""PC"",
+                    ""action"": ""Book"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e6823d1f-6c90-471a-999a-d19e5b1b0673"",
+                    ""path"": ""<Gamepad>/dpad/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Book"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""29312186-d30e-45db-a5e4-c0d6d933edec"",
+                    ""path"": ""<Mouse>/middleButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""PC"",
+                    ""action"": ""DashAttack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""34a2fde3-706a-4f80-b767-27234ca09ae5"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""DashAttack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -215,6 +463,14 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_InGame_Interact = m_InGame.FindAction("Interact", throwIfNotFound: true);
         m_InGame_Move = m_InGame.FindAction("Move", throwIfNotFound: true);
         m_InGame_Dash = m_InGame.FindAction("Dash", throwIfNotFound: true);
+        m_InGame_Attack = m_InGame.FindAction("Attack", throwIfNotFound: true);
+        m_InGame_DashAttack = m_InGame.FindAction("DashAttack", throwIfNotFound: true);
+        m_InGame_Focus = m_InGame.FindAction("Focus", throwIfNotFound: true);
+        m_InGame_SwitchFocus = m_InGame.FindAction("SwitchFocus", throwIfNotFound: true);
+        m_InGame_Pause = m_InGame.FindAction("Pause", throwIfNotFound: true);
+        m_InGame_Boussole = m_InGame.FindAction("Boussole", throwIfNotFound: true);
+        m_InGame_Release = m_InGame.FindAction("Release", throwIfNotFound: true);
+        m_InGame_Book = m_InGame.FindAction("Book", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -277,6 +533,14 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_InGame_Interact;
     private readonly InputAction m_InGame_Move;
     private readonly InputAction m_InGame_Dash;
+    private readonly InputAction m_InGame_Attack;
+    private readonly InputAction m_InGame_DashAttack;
+    private readonly InputAction m_InGame_Focus;
+    private readonly InputAction m_InGame_SwitchFocus;
+    private readonly InputAction m_InGame_Pause;
+    private readonly InputAction m_InGame_Boussole;
+    private readonly InputAction m_InGame_Release;
+    private readonly InputAction m_InGame_Book;
     public struct InGameActions
     {
         private @PlayerControls m_Wrapper;
@@ -284,6 +548,14 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @Interact => m_Wrapper.m_InGame_Interact;
         public InputAction @Move => m_Wrapper.m_InGame_Move;
         public InputAction @Dash => m_Wrapper.m_InGame_Dash;
+        public InputAction @Attack => m_Wrapper.m_InGame_Attack;
+        public InputAction @DashAttack => m_Wrapper.m_InGame_DashAttack;
+        public InputAction @Focus => m_Wrapper.m_InGame_Focus;
+        public InputAction @SwitchFocus => m_Wrapper.m_InGame_SwitchFocus;
+        public InputAction @Pause => m_Wrapper.m_InGame_Pause;
+        public InputAction @Boussole => m_Wrapper.m_InGame_Boussole;
+        public InputAction @Release => m_Wrapper.m_InGame_Release;
+        public InputAction @Book => m_Wrapper.m_InGame_Book;
         public InputActionMap Get() { return m_Wrapper.m_InGame; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -302,6 +574,30 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Dash.started -= m_Wrapper.m_InGameActionsCallbackInterface.OnDash;
                 @Dash.performed -= m_Wrapper.m_InGameActionsCallbackInterface.OnDash;
                 @Dash.canceled -= m_Wrapper.m_InGameActionsCallbackInterface.OnDash;
+                @Attack.started -= m_Wrapper.m_InGameActionsCallbackInterface.OnAttack;
+                @Attack.performed -= m_Wrapper.m_InGameActionsCallbackInterface.OnAttack;
+                @Attack.canceled -= m_Wrapper.m_InGameActionsCallbackInterface.OnAttack;
+                @DashAttack.started -= m_Wrapper.m_InGameActionsCallbackInterface.OnDashAttack;
+                @DashAttack.performed -= m_Wrapper.m_InGameActionsCallbackInterface.OnDashAttack;
+                @DashAttack.canceled -= m_Wrapper.m_InGameActionsCallbackInterface.OnDashAttack;
+                @Focus.started -= m_Wrapper.m_InGameActionsCallbackInterface.OnFocus;
+                @Focus.performed -= m_Wrapper.m_InGameActionsCallbackInterface.OnFocus;
+                @Focus.canceled -= m_Wrapper.m_InGameActionsCallbackInterface.OnFocus;
+                @SwitchFocus.started -= m_Wrapper.m_InGameActionsCallbackInterface.OnSwitchFocus;
+                @SwitchFocus.performed -= m_Wrapper.m_InGameActionsCallbackInterface.OnSwitchFocus;
+                @SwitchFocus.canceled -= m_Wrapper.m_InGameActionsCallbackInterface.OnSwitchFocus;
+                @Pause.started -= m_Wrapper.m_InGameActionsCallbackInterface.OnPause;
+                @Pause.performed -= m_Wrapper.m_InGameActionsCallbackInterface.OnPause;
+                @Pause.canceled -= m_Wrapper.m_InGameActionsCallbackInterface.OnPause;
+                @Boussole.started -= m_Wrapper.m_InGameActionsCallbackInterface.OnBoussole;
+                @Boussole.performed -= m_Wrapper.m_InGameActionsCallbackInterface.OnBoussole;
+                @Boussole.canceled -= m_Wrapper.m_InGameActionsCallbackInterface.OnBoussole;
+                @Release.started -= m_Wrapper.m_InGameActionsCallbackInterface.OnRelease;
+                @Release.performed -= m_Wrapper.m_InGameActionsCallbackInterface.OnRelease;
+                @Release.canceled -= m_Wrapper.m_InGameActionsCallbackInterface.OnRelease;
+                @Book.started -= m_Wrapper.m_InGameActionsCallbackInterface.OnBook;
+                @Book.performed -= m_Wrapper.m_InGameActionsCallbackInterface.OnBook;
+                @Book.canceled -= m_Wrapper.m_InGameActionsCallbackInterface.OnBook;
             }
             m_Wrapper.m_InGameActionsCallbackInterface = instance;
             if (instance != null)
@@ -315,6 +611,30 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Dash.started += instance.OnDash;
                 @Dash.performed += instance.OnDash;
                 @Dash.canceled += instance.OnDash;
+                @Attack.started += instance.OnAttack;
+                @Attack.performed += instance.OnAttack;
+                @Attack.canceled += instance.OnAttack;
+                @DashAttack.started += instance.OnDashAttack;
+                @DashAttack.performed += instance.OnDashAttack;
+                @DashAttack.canceled += instance.OnDashAttack;
+                @Focus.started += instance.OnFocus;
+                @Focus.performed += instance.OnFocus;
+                @Focus.canceled += instance.OnFocus;
+                @SwitchFocus.started += instance.OnSwitchFocus;
+                @SwitchFocus.performed += instance.OnSwitchFocus;
+                @SwitchFocus.canceled += instance.OnSwitchFocus;
+                @Pause.started += instance.OnPause;
+                @Pause.performed += instance.OnPause;
+                @Pause.canceled += instance.OnPause;
+                @Boussole.started += instance.OnBoussole;
+                @Boussole.performed += instance.OnBoussole;
+                @Boussole.canceled += instance.OnBoussole;
+                @Release.started += instance.OnRelease;
+                @Release.performed += instance.OnRelease;
+                @Release.canceled += instance.OnRelease;
+                @Book.started += instance.OnBook;
+                @Book.performed += instance.OnBook;
+                @Book.canceled += instance.OnBook;
             }
         }
     }
@@ -342,5 +662,13 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnInteract(InputAction.CallbackContext context);
         void OnMove(InputAction.CallbackContext context);
         void OnDash(InputAction.CallbackContext context);
+        void OnAttack(InputAction.CallbackContext context);
+        void OnDashAttack(InputAction.CallbackContext context);
+        void OnFocus(InputAction.CallbackContext context);
+        void OnSwitchFocus(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
+        void OnBoussole(InputAction.CallbackContext context);
+        void OnRelease(InputAction.CallbackContext context);
+        void OnBook(InputAction.CallbackContext context);
     }
 }

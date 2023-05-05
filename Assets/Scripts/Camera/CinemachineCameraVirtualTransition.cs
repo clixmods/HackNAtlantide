@@ -1,12 +1,14 @@
 ﻿using System;
 using Cinemachine;
+using Unity.VisualScripting;
 using UnityEngine;
 
     [RequireComponent(typeof(BoxTrigger))]
     public class CinemachineCameraVirtualTransition : MonoBehaviour
     {
-        public delegate void CameraEvent();
-        public event CameraEvent OnCameraChanged;
+        public delegate void CameraEvent(CinemachineVirtualCamera newCinemachineVirtualCamera );
+        public static event CameraEvent OnCameraChanged;
+        public static event CameraEvent OnPostCameraChanged;
         private BoxTrigger _zoneVolume;
         [SerializeField] private CinemachineVirtualCamera _cinemachineVirtualCamera;
         [SerializeField] private bool disableCameraInAwake = true;
@@ -15,6 +17,7 @@ using UnityEngine;
         public void Init(CinemachineVirtualCamera cinemachineVirtualCamera)
         {
             _cinemachineVirtualCamera = cinemachineVirtualCamera;
+           
         }
         private void Awake()
         {
@@ -23,6 +26,12 @@ using UnityEngine;
                 _cinemachineVirtualCamera.gameObject.SetActive(false);
             }
             OnCameraChanged += DesactiveCamera;
+           
+        }
+
+        private void OnDestroy()
+        {
+            OnCameraChanged -= DesactiveCamera;
         }
 
         private void Start()
@@ -31,16 +40,22 @@ using UnityEngine;
             _zoneVolume.EventOnTriggerEnter.AddListener(ActiveCamera);
             if (followPlayer)
             {
-                _cinemachineVirtualCamera.Follow = GameObject.FindWithTag("Player").transform;
+                _cinemachineVirtualCamera.Follow = PlayerInstanceScriptableObject.Player.transform;
+            }
+
+            if (!disableCameraInAwake)
+            {
+                ActiveCamera();
             }
         }
 
         public void ActiveCamera()
         {
-            OnCameraChanged?.Invoke();
+            OnCameraChanged?.Invoke(_cinemachineVirtualCamera);
             _cinemachineVirtualCamera.gameObject.SetActive(true);
+            OnPostCameraChanged?.Invoke(_cinemachineVirtualCamera);
         }
-        public void DesactiveCamera()
+        public void DesactiveCamera(CinemachineVirtualCamera newCinemachineVirtualCamera)
         {
             _cinemachineVirtualCamera.gameObject.SetActive(false);
         }
