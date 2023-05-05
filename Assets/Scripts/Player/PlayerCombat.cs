@@ -11,13 +11,17 @@ public class PlayerCombat : MonoBehaviour,ICombat
     private PlayerMovement _playerMovement;
     
     Animator _animator;//You may not need an animator, but if so declare it here    
-      
+    
+    [Header("Variables")]
     int noOfClicks; //Determines Which Animation Will Play
     bool canClick; //Locks ability to click during animation event
-    
     float lastClickedTime;
     float lastComboEnd;
     int comboCounter;
+    [SerializeField] private bool stopAnimation;
+    
+    // TODO - TEMPORARY
+    private float damage = 1f;
     
     public static readonly int AttackAnim = Animator.StringToHash("Attack");
     [SerializeField] private InputButtonScriptableObject _inputAttack;
@@ -44,15 +48,31 @@ public class PlayerCombat : MonoBehaviour,ICombat
 
     void Start()
     {
-        _animator = GetComponent<Animator>();
+        _animator = GetComponentInChildren<Animator>();
         _playerMovement = GetComponent<PlayerMovement>();
     }
-    
+
+    private void Update()
+    {
+        if (stopAnimation)
+        {
+            _animator.enabled = false;
+        }
+    }
+
     private void AttackColliderOnOnCollideWithIDamageable(object sender, EventArgs eventArgs)
     {
         if (eventArgs is DamageableEventArgs mDamageableEventArgs && canAttack)
         {
             mDamageableEventArgs.idamageable.DoDamage(combo[comboCounter].damage);
+        }
+    }
+    
+    void Attack(bool value)
+    {
+        if (value)
+        {
+            ComboStarter();
         }
     }
     
