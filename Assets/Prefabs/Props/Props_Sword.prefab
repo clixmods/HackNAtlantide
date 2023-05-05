@@ -175,6 +175,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1607754350522045473}
+  - component: {fileID: 2663345130741773249}
+  - component: {fileID: 7522388846641901712}
   m_Layer: 0
   m_Name: Props_Sword
   m_TagString: Untagged
@@ -191,11 +193,39 @@ Transform:
   m_GameObject: {fileID: 2090854112794300059}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 70.121, y: -0.068, z: 237.784}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 2.5, y: 2.5, z: 2.5}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 7531465338457069237}
   - {fileID: 2654416780340899075}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2663345130741773249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2090854112794300059}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5b86aa4926329d4386be4f9e91c7444, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sendEventOnEnter: 1
+  sendEventOnStay: 0
+  sendEventOnExit: 0
+--- !u!65 &7522388846641901712
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2090854112794300059}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.27921304, y: 1.089673, z: 0.16789816}
+  m_Center: {x: 0.042822674, y: 0.97340006, z: -0.00928932}
