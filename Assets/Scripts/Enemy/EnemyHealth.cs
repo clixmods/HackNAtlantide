@@ -8,9 +8,13 @@ using UnityEngine.AI;
 public class EnemyHealth : Character
 {
     [SerializeField] EnemyController _enemyController;
+    [SerializeField] ParticleSystem _particleDead;
     public override void Dead()
     {
         base.Dead();
-        Destroy(transform.gameObject);
+        
+        _particleDead.transform.parent = null;
+        _particleDead.Play();
+        gameObject.SetActive(false);
     }
 }

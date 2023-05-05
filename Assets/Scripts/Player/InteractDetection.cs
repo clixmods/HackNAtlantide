@@ -69,7 +69,7 @@ public class InteractDetection : MonoBehaviour
                 return;
             }
             // No interactable used, so we need to check the closest and use it
-            if(closestObject != null && _playerStamina.CanUseStamina())
+            if(closestObject != null)
             {
                 closestObject.Interact();
                 _currentInteractable = closestObject;

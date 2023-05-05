@@ -226,7 +226,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void Dash(bool value)
     {
-        if (_canDash && _playerStamina.CanUseStamina()&& _moveDirection.sqrMagnitude > 0.1f)
+        if (_canDash && _playerStamina.CanUseStamina(1)&& _moveDirection.sqrMagnitude > 0.1f)
         {
             _playerStamina.UseStamina(1);
             _speed = _dashSpeed;

@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlayerStamina : MonoBehaviour
 {
     [SerializeField] PlayerStaminaScriptableObject _staminaSO;
-    private bool _rechargeStamina;
+    [SerializeField] ParticleSystem _useStaminaFX;
     
 
     private void OnEnable()
@@ -20,42 +20,26 @@ public class PlayerStamina : MonoBehaviour
     private void Start()
     {
         _staminaSO.ResetStamina();
-        _rechargeStamina = true;
     }
     private void Update()
     {
         if(!_staminaSO.IsMaxStamina())
         {
-            if(_rechargeStamina)
-            {
-                _staminaSO.Value += Time.deltaTime * _staminaSO.SpeedToRecharge;   
-            }
-        }
-        else
-        {
-            if(_staminaSO.WaitForRecharge)
-            {
-                _staminaSO.OnStaminaIsFilledAfterRecharge?.Invoke();
-                _staminaSO.WaitForRecharge = false;
-            }
+            _staminaSO.Value += Time.deltaTime * _staminaSO.SpeedToRecharge;
         }
     }
     void RemoveStamina(float value)
     {
+        
         _staminaSO.Value -= value;
         if(_staminaSO.Value<0)
         {
             _staminaSO.Value = 0;
             _staminaSO.OnStaminaIsEmpty?.Invoke();
-            StartCoroutine(WaitToRechargeStamina());
         }
-    }
-    IEnumerator WaitToRechargeStamina()
-    {
-        _rechargeStamina = false;
-        _staminaSO.WaitForRecharge = true;
-        yield return new WaitForSeconds(1f);
-        _rechargeStamina = true;
+
+        //feedBack
+        _useStaminaFX.Play();
     }
     
 }
