@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1338876326744236031}
   - component: {fileID: 5692966685275495224}
+  - component: {fileID: 7869216726195417593}
   m_Layer: 5
   m_Name: SliderFollower
   m_TagString: Untagged
@@ -53,6 +54,34 @@ MonoBehaviour:
   distanceToShow: 10
   updateScale: 0
   updateOpacity: 0
+--- !u!114 &7869216726195417593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7842852136325112521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f6b678f0e70c584d88ed3bcc46007a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _scriptableEvent: {fileID: 11400000, guid: b2bbc58ab515aa9479d9150fd0fd66b9, type: 2}
+  LaunchEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7842852136325112521}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &7481994053477677489
 PrefabInstance:
   m_ObjectHideFlags: 0

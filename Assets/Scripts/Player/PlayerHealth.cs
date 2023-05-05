@@ -15,7 +15,7 @@ public class PlayerHealth : Character
     }
     public override void DoDamage(float damage)
     {
-        if(_movementState.MovementState == MovementState.dashing)
+        if(_movementState.MovementState != MovementState.dashing)
         {
             base.DoDamage(damage);
         }
