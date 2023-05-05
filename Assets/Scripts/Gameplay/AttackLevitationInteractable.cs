@@ -214,7 +214,7 @@ public class AttackLevitationInteractable : MonoBehaviour, IInteractable
     #region IInteractable
     public void Interact()
     {
-        if (!_hasInteract && _playerStamina.CanUseStamina())
+        if (!_hasInteract && _playerStamina.CanUseStamina(useStaminaAmount))
         {
             StartCoroutine(ChargeObject());
         }

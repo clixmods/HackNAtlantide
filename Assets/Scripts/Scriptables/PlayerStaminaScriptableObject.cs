@@ -19,28 +19,24 @@ public class PlayerStaminaScriptableObject : ScriptableObject
             OnValueChanged?.Invoke(_value);
         }
     }
-    private bool waitForRecharge;
-    public bool WaitForRecharge
-    {
-        get => waitForRecharge;
-        set
-        {
-            waitForRecharge = value;
-        }
-    }
 
     public float MaxStamina => _maxValue;
     public bool IsMaxStamina()
     { 
-        return _value == _maxValue; 
+        return _value >= _maxValue; 
     }
 
     public Action<float> OnValueChanged;
     public Action OnStaminaIsEmpty;
-    public Action OnStaminaIsFilledAfterRecharge;
-    public bool CanUseStamina()
+    public Action FailUseStamina;
+    public bool CanUseStamina(float amount)
     {
-        return !waitForRecharge;
+        if(Value - amount >= 0)
+        {
+            return true;
+        }
+        FailUseStamina?.Invoke();
+        return false; 
     }
     public Action<float> OnUseStamina;
     public void UseStamina(float value)
@@ -50,6 +46,5 @@ public class PlayerStaminaScriptableObject : ScriptableObject
     public void ResetStamina()
     {
         Value = _maxValue;
-        waitForRecharge=false;
     }
 }

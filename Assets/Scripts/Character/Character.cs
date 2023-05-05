@@ -41,7 +41,7 @@ public class Character : MonoBehaviour,  IDamageable
         health = maxHealth;
     }
     
-    public void DoDamage(float damage)
+    public virtual void DoDamage(float damage)
     {
         health -= damage;
         AttackFeedback();
