@@ -15,7 +15,7 @@ public class UIHealthPlayer : MonoBehaviour
     private void Awake()
     {
         _slider = GetComponent<Slider>();
-        _rectTransform = transform.GetComponent (typeof (RectTransform)) as RectTransform;
+        _rectTransform = transform.GetComponent<RectTransform>();
     }
 
     private void Start()
@@ -24,8 +24,14 @@ public class UIHealthPlayer : MonoBehaviour
         player.OnDamage += PlayerOnDamage;
         player.OnChangeHealth += PlayerOnOnChangeHealth;
         
-        _striLength = ((RectTransform)transform).rect.width;
+        _striLength = _rectTransform.rect.width;
         _rectTransform.sizeDelta = new Vector2 (_striLength * player.maxHealth, _rectTransform.sizeDelta.y);
+    }
+
+    private void OnDestroy()
+    {
+        player.OnDamage -= PlayerOnDamage;
+        player.OnChangeHealth -= PlayerOnOnChangeHealth;
     }
 
     private void PlayerOnOnChangeHealth(object sender, EventArgs e)
