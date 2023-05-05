@@ -13,8 +13,8 @@ public class PlayerCombat : MonoBehaviour,ICombat
     Animator _animator;//You may not need an animator, but if so declare it here    
     
     [Header("Variables")]
-    int noOfClicks; //Determines Which Animation Will Play
-    bool canClick; //Locks ability to click during animation event
+    [SerializeField] int noOfClicks; //Determines Which Animation Will Play
+    [SerializeField] bool canClick; //Locks ability to click during animation event
     float lastClickedTime;
     float lastComboEnd;
     int comboCounter;
@@ -28,7 +28,8 @@ public class PlayerCombat : MonoBehaviour,ICombat
     [SerializeField] private InputButtonScriptableObject _inputAttackDash;
 
     private IAttackCollider _attackCollider;
-    
+    private int INTAttack = Animator.StringToHash("intAttack");
+
     private void OnEnable()
     {
         _inputAttack.OnValueChanged += Attack;
@@ -89,8 +90,9 @@ public class PlayerCombat : MonoBehaviour,ICombat
         }           
     }
     
-    public void ComboCheck() {
-       
+    public void ComboCheck()
+    {
+        Debug.Log("OUIIII CA PASSE CHECKKK");
         canClick = false;
         
         if(_animator.GetCurrentAnimatorStateInfo(0).IsName("Attack 1") && noOfClicks == 1 )
@@ -98,17 +100,20 @@ public class PlayerCombat : MonoBehaviour,ICombat
             _animator.SetInteger("intAttack", 1); // 1 is Idle
             canClick = true;
             noOfClicks = 0;
+            Debug.Log("yesssss1");
         }
         else if (_animator.GetCurrentAnimatorStateInfo(0).IsName("Attack 1") &&  noOfClicks >= 2)
         {//If the first animation is still playing and at least 2 clicks have happened, continue the combo           
             _animator.SetInteger("intAttack", 2); // 2 is Attack2
             canClick = true;
+            Debug.Log("yesssss2");
         }
         else if(_animator.GetCurrentAnimatorStateInfo(0).IsName("Attack 2") && noOfClicks == 2)
         {  //If the second animation is still playing and only 2 clicks have happened, return to idle          
             _animator.SetInteger("intAttack", 1); // 1 is Idle
             canClick = true;
             noOfClicks = 0;
+            Debug.Log("yesssss3");
         }
         else if (_animator.GetCurrentAnimatorStateInfo(0).IsName("Attack 2") && noOfClicks >= 3)
         {  //If the second animation is still playing and at least 3 clicks have happened, continue the combo          
