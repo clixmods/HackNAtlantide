@@ -1,11 +1,7 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using Attack;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.InputSystem.Utilities;
-using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 [RequireComponent(typeof(Rigidbody))]
@@ -210,12 +206,18 @@ public class AttackLevitationInteractable : MonoBehaviour, IInteractable
     }
     #endif
     #region IInteractable
-    public void Interact()
+    public bool Interact()
     {
+        if (_isAttacking)
+        {
+            return false;
+        }
         if (!_hasInteract && _playerStamina.CanUseStamina(useStaminaAmount))
         {
             StartCoroutine(ChargeObject());
+            return true;
         }
+        return false;
     }
     public void CancelInteract()
     {
