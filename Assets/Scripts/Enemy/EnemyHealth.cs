@@ -15,6 +15,6 @@ public class EnemyHealth : Character
         
         _particleDead.transform.parent = null;
         _particleDead.Play();
-        gameObject.SetActive(false);
+        Destroy(gameObject);
     }
 }

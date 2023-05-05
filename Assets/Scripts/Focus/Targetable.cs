@@ -15,6 +15,8 @@ using UnityEngine;
         private MaterialPropertyBlock[] _propBlocks;
         private Renderer _renderer;
         private static readonly int Amount = Shader.PropertyToID("_Outline");
+
+        [SerializeField] GameObject _decalTarget;
         public bool CanBeTarget
         {
             get
@@ -82,11 +84,13 @@ using UnityEngine;
         {
             OnTargeted?.Invoke(this,null);
             SetFloat(true);
+            _decalTarget.SetActive(true);
         }
         public void OnUntarget()
         {
             OnUntargeted?.Invoke(this,null);
             SetFloat(false);
+            _decalTarget.SetActive(false);
         }
         private void SetFloat(bool boolean)
         {
