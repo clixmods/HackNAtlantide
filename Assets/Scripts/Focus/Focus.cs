@@ -28,7 +28,7 @@ public class Focus : MonoBehaviour
     //private List<Targetable> _itargetablesInScene;
     private List<ITargetable> _targetableAvailable = new List<ITargetable>();
     
-    private bool _focusIsEnable;
+    public static bool FocusIsEnable;
     [SerializeField] CinemachineVirtualCamera cameraVirtualFocus;
     private FocusCinemachineTargetGroup _cinemachineTargetGroup;
     private int _currentTargetIndex;
@@ -79,6 +79,7 @@ public class Focus : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        FocusIsEnable = false;
         //_itargetablesInScene = FindObjectsOfType<Targetable>().ToList();
         // Input Behaviour
         inputEnableFocus.OnValueChanged += InputEnableFocusOnChanged;
@@ -107,7 +108,7 @@ public class Focus : MonoBehaviour
         if (newCameraVirtual.gameObject == _nofocusVirtualCamera)
             return;
         
-        if (_focusIsEnable)
+        if (FocusIsEnable)
         {
             _nofocusVirtualCamera = newCameraVirtual.gameObject;
             _nofocusVirtualCamera.SetActive(false);
@@ -143,10 +144,11 @@ public class Focus : MonoBehaviour
         }
         if (CurrentTarget != null && _lastcachedTarget == CurrentTarget)
         {
+            OnFocusSwitch?.Invoke(CurrentTarget);
             return;
         }
 
-        if (_focusIsEnable )
+        if (FocusIsEnable )
         {
             try
             {
@@ -164,14 +166,14 @@ public class Focus : MonoBehaviour
         OnFocusSwitch?.Invoke(CurrentTarget);
         if (CurrentTarget != null)
         {
-            _cinemachineTargetGroup.SwitchToTarget(CurrentTarget.transform);
+            _cinemachineTargetGroup.SwitchToTarget(CurrentTarget.targetableTransform);
             _lastcachedTarget = CurrentTarget;
-            if (_focusIsEnable)
+            if (FocusIsEnable)
             {
                 CurrentTarget.OnTarget();
             }
+      
         }
-     
     }
 
     private void InputSwitchTargetOnChanged(Vector2 value)
@@ -226,12 +228,13 @@ public class Focus : MonoBehaviour
     {
         if (value)
         {
-            _focusIsEnable = !_focusIsEnable;
-            if (_focusIsEnable)
+            FocusIsEnable = !FocusIsEnable;
+            if (FocusIsEnable)
             {
                 CurrentTargetIndex = 0;
                 cameraVirtualFocus.gameObject.SetActive(true); 
                 OnFocusEnable?.Invoke();
+                Switch();
                 try
                 {
                     if(CurrentTarget != null)
@@ -241,6 +244,7 @@ public class Focus : MonoBehaviour
                 {
                     Debug.LogWarning("A ITargetable has been destroyed ! Its better to not destroy them in a same scene");
                 }
+                
             }
             else
             {
@@ -284,7 +288,7 @@ public class Focus : MonoBehaviour
             _forceSwitch = false;
         }
         
-        if (!_focusIsEnable && _targetableAvailable.Count > 0)
+        if (!FocusIsEnable && _targetableAvailable.Count > 0)
         {
             Switch();
         }
@@ -317,7 +321,7 @@ public class Focus : MonoBehaviour
         {
             _nofocusVirtualCamera.SetActive(true);
         }
-        _focusIsEnable = false;
+        FocusIsEnable = false;
         try
         {
             //if (_targetableAvailable.Contains(_lastcachedTarget))
@@ -339,7 +343,7 @@ public class Focus : MonoBehaviour
     private void Update()
     {
         GenerateTargetableList();
-        if (!_focusIsEnable)
+        if (!FocusIsEnable)
         {
             if (_targetableAvailable.Count > 0)
             {
