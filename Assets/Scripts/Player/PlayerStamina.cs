@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlayerStamina : MonoBehaviour
 {
     [SerializeField] PlayerStaminaScriptableObject _staminaSO;
+    [SerializeField] ParticleSystem _useStaminaFX;
     
 
     private void OnEnable()
@@ -29,12 +30,16 @@ public class PlayerStamina : MonoBehaviour
     }
     void RemoveStamina(float value)
     {
+        
         _staminaSO.Value -= value;
         if(_staminaSO.Value<0)
         {
             _staminaSO.Value = 0;
             _staminaSO.OnStaminaIsEmpty?.Invoke();
         }
+
+        //feedBack
+        _useStaminaFX.Play();
     }
     
 }
