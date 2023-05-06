@@ -69,9 +69,8 @@ public class InteractDetection : MonoBehaviour
                 return;
             }
             // No interactable used, so we need to check the closest and use it
-            if(closestObject != null)
+            if(closestObject != null && closestObject.Interact())
             {
-                closestObject.Interact();
                 _currentInteractable = closestObject;
             }
         }

@@ -1,11 +1,7 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using Attack;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.InputSystem.Utilities;
-using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 [RequireComponent(typeof(Rigidbody))]
@@ -63,7 +59,7 @@ public class AttackLevitationInteractable : MonoBehaviour, IInteractable
         _rigidBody = GetComponent<Rigidbody>();
         _hasInteract = false;
         Focus.OnFocusSwitch += SetDestination;
-        Focus.OnFocusNoTarget += RemoveTarget;
+        //Focus.OnFocusNoTarget += RemoveTarget;
         _attackCollider = GetComponent<IAttackCollider>();
         _attackCollider.OnCollideWithIDamageable += AttackColliderOnOnCollideWithIDamageable;
 
@@ -76,7 +72,7 @@ public class AttackLevitationInteractable : MonoBehaviour, IInteractable
     {
         _attackCollider.OnCollideWithIDamageable -= AttackColliderOnOnCollideWithIDamageable;
         Focus.OnFocusSwitch -= SetDestination;
-        Focus.OnFocusNoTarget -= RemoveTarget;
+        //Focus.OnFocusNoTarget -= RemoveTarget;
     }
     private void Start()
     {
@@ -107,12 +103,6 @@ public class AttackLevitationInteractable : MonoBehaviour, IInteractable
     // We need to use late update, sometimes, the position targeted glitch because nav agent is bullshit
     private void LateUpdate()
     {
-        // if (_inputHelper == null)
-        // {
-        //     _inputHelper = (UIChargeInputHelper)(GetComponent<InputHelper>().UIInputHelper);
-        // }
-       // inputHelper.enabled = _playerDetectionScriptableObject.IsInRange(transform.position)&&!_hasInteract;
-        
         if (_isAttacking)
         {
             Vector3 direction;
@@ -122,18 +112,14 @@ public class AttackLevitationInteractable : MonoBehaviour, IInteractable
             }
             else
             {
-                direction =(transformDestination.position - _rigidBody.worldCenterOfMass).normalized ;
+                direction = (transformDestination.position - _rigidBody.worldCenterOfMass).normalized ;
             }
             transform.LookAt(transformDestination);
-           
-            
             _rigidBody.velocity = direction * projectionSpeedMultiplier ;
         }
     }
     
-  
-
-        #endregion
+    #endregion
         
         private void AttackColliderOnOnCollideWithIDamageable(object sender, EventArgs e)
         {
@@ -143,9 +129,17 @@ public class AttackLevitationInteractable : MonoBehaviour, IInteractable
                 DestroyInteractable();
             }
         }
-        private void SetDestination(ITargetable target)
+        private void SetDestination(ITargetable target) 
         {
-            transformDestination = target.targetableTransform;
+            if (Focus.FocusIsEnable)
+            {
+                transformDestination = target.targetableTransform;
+            }
+            else
+            {
+                transformDestination = null;
+            }
+            
         }
         
         private void DestroyInteractable()
@@ -212,12 +206,18 @@ public class AttackLevitationInteractable : MonoBehaviour, IInteractable
     }
     #endif
     #region IInteractable
-    public void Interact()
+    public bool Interact()
     {
+        if (_isAttacking)
+        {
+            return false;
+        }
         if (!_hasInteract && _playerStamina.CanUseStamina(useStaminaAmount))
         {
             StartCoroutine(ChargeObject());
+            return true;
         }
+        return false;
     }
     public void CancelInteract()
     {
@@ -227,7 +227,7 @@ public class AttackLevitationInteractable : MonoBehaviour, IInteractable
         {
             return;
         }
-            // If object is charged, go start the attack
+        // If object is charged, go start the attack
         if (_hasInteract && !_isAttacking)
         {
             // Check if the transform destination is null, to cancel the attack
