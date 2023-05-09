@@ -50,7 +50,6 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float _dashTime;
     [SerializeField] private float _dashSpeed;
     [SerializeField] private float _dashReloadTime;
-    [SerializeField] EventFloatScriptableObject _dashEvent;
     [SerializeField] PlayerStaminaScriptableObject _playerStamina;
     private bool _canDash;
     private bool _isDashing;
@@ -69,6 +68,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] ParticleSystem _dashFX;
     [SerializeField] TrailRenderer _dashTrail;
     [SerializeField] ParticleSystem _dustWalk;
+    
+    [SerializeField] EventScriptableObject _dashEvent;
 
     #endregion
 
@@ -241,6 +242,8 @@ public class PlayerMovement : MonoBehaviour
 
             //FeedBack
             DashFeedBack(true);
+            
+            _dashEvent.LaunchEvent();
         }
     }
 
