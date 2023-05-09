@@ -9,11 +9,14 @@ public class AttackCollider : MonoBehaviour , IAttackCollider
     public List<IDamageable> hitsted; 
     public event EventHandler OnCollideWithIDamageable;
     AnimationEvent _damageActiveAnimatorEvent;
+    
+    
 
     [SerializeField] private bool sendEventOnEnter = true;
     [SerializeField] private bool sendEventOnStay = false; 
     [SerializeField] private bool sendEventOnExit = false;
 
+    [SerializeField] private LayerMask interactWithLayers;
     private void OnEnable()
     {
         hitsted = new List<IDamageable>();
@@ -36,6 +39,8 @@ public class AttackCollider : MonoBehaviour , IAttackCollider
     }
     private void OnTriggerEnter(Collider other)
     {
+        if (!IsInteractable(other.gameObject)) return;
+        
         if (!enabled) return;
         if (!sendEventOnEnter) return;
         if(other.TryGetComponent<IDamageable>(out var damageable))
@@ -46,6 +51,7 @@ public class AttackCollider : MonoBehaviour , IAttackCollider
     }
     private void OnTriggerStay(Collider other)
     {
+        if (!IsInteractable(other.gameObject)) return;
         if (!enabled) return;
         if (!sendEventOnStay) return;
         if(other.TryGetComponent<IDamageable>(out var damageable))
@@ -55,11 +61,19 @@ public class AttackCollider : MonoBehaviour , IAttackCollider
     }
     private void OnTriggerExit(Collider other)
     {
+        if (!IsInteractable(other.gameObject)) return;
+        
         if (!enabled) return;
         if (!sendEventOnExit) return;
-        if(other.TryGetComponent<IDamageable>(out var damageable) && other.gameObject.layer != 6)
+        if(other.TryGetComponent<IDamageable>(out var damageable))
         {
             OnHit(damageable);
         }
+    }
+    
+    private bool IsInteractable(GameObject gameObject)
+    {
+        if (interactWithLayers == 0) return true;
+        return interactWithLayers == (interactWithLayers | (1 << gameObject.layer));
     }
 }
