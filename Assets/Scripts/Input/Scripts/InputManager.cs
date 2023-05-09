@@ -165,12 +165,13 @@ public class InputManager : MonoBehaviour
 
     private static void DoRebind(InputAction actionToRebind, int bindingIndex, TextMeshProUGUI statusText, bool allCompositeParts, bool excludeMouse)
     {
-        Debug.Log("Binging");
+        Debug.Log("Binding");
         if (actionToRebind == null || bindingIndex < 0)
             return;
 
         statusText.text = $"Press a {actionToRebind.expectedControlType}";
         actionToRebind.Disable();
+
         var rebind = actionToRebind.PerformInteractiveRebinding(bindingIndex);
         rebind.OnComplete(operation =>
         {
@@ -194,11 +195,13 @@ public class InputManager : MonoBehaviour
 
             rebindCanceled?.Invoke();
         });
-
         rebind.WithCancelingThrough("<Keyboard>/escape");
+        //rebind.WithControlsExcluding("<keyboard>/anyKey");
 
         if (excludeMouse)
+        {
             rebind.WithControlsExcluding("Mouse");
+        }
 
         rebindStarted?.Invoke(actionToRebind, bindingIndex);
         rebind.Start();
