@@ -7,11 +7,18 @@ using UnityEngine;
 [RequireComponent(typeof(Animator))]
 public class PlayerAnimations : MonoBehaviour
 {
+    [Header("SCRIPTS REFS")] private PlayerMovement PlayerMovement;
     private Animator _animator;
 
     private void Awake()
     {
+        PlayerMovement = GetComponentInParent<PlayerMovement>();
         _animator = GetComponent<Animator>();
+    }
+
+    private void Update()
+    {
+        _animator.SetFloat("Blend", PlayerMovement.MoveAmount.magnitude);
     }
 
     public void Dash()

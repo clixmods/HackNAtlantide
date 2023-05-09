@@ -30,6 +30,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float _moveSpeed;
     private float _speed;
     private Vector3 _smoothMoveVelocity;
+    public Vector3 MoveAmount { get { return _moveAmount; } }
     private Vector3 _moveAmount;
     [SerializeField] private float _smoothTimeAcceleration;
     [SerializeField] private float _smoothTimeAccelerationDash;
