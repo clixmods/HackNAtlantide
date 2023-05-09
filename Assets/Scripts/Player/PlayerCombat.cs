@@ -44,17 +44,22 @@ public class PlayerCombat : MonoBehaviour,ICombat
     private void Awake()
     {
         _attackCollider = GetComponentInChildren<IAttackCollider>();
-        _attackCollider.OnCollideWithIDamageable += AttackColliderOnOnCollideWithIDamageable; 
+        _attackCollider.OnCollideWithIDamageable += AttackColliderOnOnCollideWithIDamageable;
+        _animator = GetComponentInChildren<Animator>();
+        _playerMovement = GetComponent<PlayerMovement>();
     }
 
     void Start()
     {
         _animator = GetComponentInChildren<Animator>();
         _playerMovement = GetComponent<PlayerMovement>();
+        noOfClicks = 0;
+        canClick = true;
     }
 
     private void Update()
     {
+        Debug.Log(canClick);
         if (stopAnimation)
         {
             _animator.enabled = false;
@@ -83,7 +88,7 @@ public class PlayerCombat : MonoBehaviour,ICombat
         {            
             noOfClicks++;
         }
-               
+        
         if (noOfClicks == 1)
         {            
             _animator.SetInteger("intAttack", 31);
@@ -92,7 +97,6 @@ public class PlayerCombat : MonoBehaviour,ICombat
     
     public void ComboCheck()
     {
-        Debug.Log("OUIIII CA PASSE CHECKKK");
         canClick = false;
         
         if(_animator.GetCurrentAnimatorStateInfo(0).IsName("Attack 1") && noOfClicks == 1 )
