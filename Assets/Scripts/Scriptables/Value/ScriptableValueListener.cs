@@ -6,19 +6,28 @@ using UnityEngine.Events;
 
 public class ScriptableValueListener<T> : MonoBehaviour 
 {
-    [SerializeField] private ValueScriptableObject<T> _scriptableEvent;
+    [SerializeField] protected ValueScriptableObject<T> _scriptableEvent;
     public UnityEvent<T> LaunchEvent;
-    private void Awake()
+    [SerializeField] private bool launchEventOnStart;
+    protected virtual void Awake()
     {
-        _scriptableEvent.OnValueChanged += ScriptableEventOnOnEvent;
+        _scriptableEvent.OnValueChanged += LaunchScriptableValueEvent;
+    }
+
+    private void Start()
+    {
+        if (launchEventOnStart)
+        {
+            LaunchScriptableValueEvent(_scriptableEvent.Value);
+        }
     }
 
     private void OnDestroy()
     {
-        _scriptableEvent.OnValueChanged -= ScriptableEventOnOnEvent;
+        _scriptableEvent.OnValueChanged -= LaunchScriptableValueEvent;
     }
 
-    private void ScriptableEventOnOnEvent(T value)
+    private void LaunchScriptableValueEvent(T value)
     {
         LaunchEvent?.Invoke(value);
     }

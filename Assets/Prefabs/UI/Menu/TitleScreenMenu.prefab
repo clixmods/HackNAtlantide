@@ -657,6 +657,8 @@ GameObject:
   - component: {fileID: 4870286294396835188}
   - component: {fileID: 4870286294396835191}
   - component: {fileID: 4870286294396835190}
+  - component: {fileID: 3682160157450158012}
+  - component: {fileID: 9094874836051262611}
   m_Layer: 5
   m_Name: Load Button
   m_TagString: Untagged
@@ -706,7 +708,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.7264151, g: 0.7264151, b: 0.7264151, a: 0.36078432}
+  m_Color: {r: 0.7264151, g: 0.7264151, b: 0.7264151, a: 0.50980395}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -748,8 +750,8 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0, g: 0.44755006, b: 1, a: 1}
     m_PressedColor: {r: 0.3490566, g: 0.3490566, b: 0.3490566, a: 1}
     m_SelectedColor: {r: 0.11792451, g: 1, b: 0.9915311, a: 1}
-    m_DisabledColor: {r: 0.3679245, g: 0.3679245, b: 0.3679245, a: 0.5019608}
-    m_ColorMultiplier: 2.26
+    m_DisabledColor: {r: 0.1981132, g: 0.1981132, b: 0.1981132, a: 0.27058825}
+    m_ColorMultiplier: 2.48
     m_FadeDuration: 0.1
   m_SpriteState:
     m_HighlightedSprite: {fileID: 0}
@@ -767,9 +769,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4870286295579369509}
+      - m_Target: {fileID: 3682160157450158012}
         m_TargetAssemblyTypeName: ButtonLoadScene, Assembly-CSharp
-        m_MethodName: LoadScene
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -791,6 +793,49 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+--- !u!114 &3682160157450158012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4870286294396835192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec8b92431f1a7b843a12d4c0cae45ca1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  loadingScreen: {fileID: 0}
+  sceneToLoad: 0
+--- !u!114 &9094874836051262611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4870286294396835192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 954fc9ee586c19345a07365c01b9dbc3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _scriptableEvent: {fileID: 11400000, guid: 8a05482c837fd31449448a63e13a0d98, type: 2}
+  LaunchEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3682160157450158012}
+        m_TargetAssemblyTypeName: LoadSceneWithLoadingScreen, Assembly-CSharp
+        m_MethodName: SetSceneIndexToLoad
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  launchEventOnStart: 1
 --- !u!1 &4870286294504944092
 GameObject:
   m_ObjectHideFlags: 0

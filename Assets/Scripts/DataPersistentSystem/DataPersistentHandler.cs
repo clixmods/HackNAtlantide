@@ -9,11 +9,9 @@ using UnityEngine;
 using UnityEngine.Serialization;
 
 [ExecuteAlways]
-public class DataPersistentHandler : MonoBehaviour
+public class DataPersistentHandler : ScriptableObject
 {
     private const string ParentFolderName = "data/";
-    
-    
     // TODO : Resource.LoadAll is a better way, need to remove the list in the future to improve the system
     [Tooltip("Contains all scriptableObject compatible with DataPersistentSystem, required to be referenced here.")]
     public List<ScriptableObject> scriptableObjectSaveables;
@@ -118,6 +116,4 @@ public class DataPersistentHandler : MonoBehaviour
             save.OnLoad(jsonData);
         }
     }
-
-    
 }
