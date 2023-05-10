@@ -1,3 +1,5 @@
+using DG.Tweening;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -34,7 +36,9 @@ public class QTEHandler : MonoBehaviour
     [SerializeField] GameObject _inputInfoInteract;
     [SerializeField] GameObject _inputInfoFocus;
 
-
+    bool _isInCutScene = false;
+    public Action<InputType> cutSceneSuccess;
+    float timeStopLerp;
     private void OnEnable()
     {
         DisableInputsInfo();
@@ -67,7 +71,7 @@ public class QTEHandler : MonoBehaviour
     }
     public void DashInput(bool value)
     {
-        _hasDash = value && _moveInput.magnitude>0.5f;
+        _hasDash = value && _moveInput.magnitude > 0.5f;
     }
     public void DashAttackInput(bool value)
     {
@@ -77,19 +81,24 @@ public class QTEHandler : MonoBehaviour
     {
         _hasFocus = value;
     }
-    public void LaunchCutScene(int inputType)
+    public void LaunchCutScene(InputType inputType)
     {
-        StartCoroutine(Cutscene((InputType)inputType));
+        if(!_isInCutScene)
+        {
+            StartCoroutine(Cutscene(inputType));
+        }
     }
     IEnumerator Cutscene(InputType inputType)
     {
-        Time.timeScale = 0f;
-        while(!CutSceneFinish(inputType))
+        _isInCutScene = true;
+        Time.timeScale = 0;
+        while (!CutSceneFinish(inputType))
         {
             yield return null;
         }
-        Time.timeScale = 1f;
-
+        Time.timeScale = 1;
+        _isInCutScene = false;
+        cutSceneSuccess?.Invoke(inputType);
         DisableInputsInfo();
     }
     bool CutSceneFinish(InputType inputType)

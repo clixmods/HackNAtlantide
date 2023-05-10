@@ -19,6 +19,8 @@ public class EnemyController : MonoBehaviour, ICombat
 
     private Animator _animator;
     private IAttackCollider _attackCollider;
+    private bool _isAttacking;
+    public bool IsAttacking { get { return _isAttacking; } }
     private void Awake()
     {
         _attackCollider = GetComponentInChildren<IAttackCollider>();
@@ -53,7 +55,10 @@ public class EnemyController : MonoBehaviour, ICombat
         _playerInAttackRadius = Physics.CheckSphere(transform.position, attackRadius, playerLayer);
         
         if (_playerInLookRadius && !_playerInAttackRadius) Chase();
-        if (_playerInLookRadius && _playerInAttackRadius) Attack();
+        if (_playerInLookRadius && _playerInAttackRadius)
+        {
+            Attack();
+        }
     }
     
     void Chase()
@@ -63,6 +68,7 @@ public class EnemyController : MonoBehaviour, ICombat
     
     private void Attack()
     {
+        _isAttacking = true;
         FaceTarget();
         if (!_animator.GetCurrentAnimatorStateInfo(0).IsName("Enemy_attack"))
         {
@@ -96,5 +102,6 @@ public class EnemyController : MonoBehaviour, ICombat
         Gizmos.DrawWireSphere(position, attackRadius);
     }
 
-    public bool canAttack { get; set; }
+    private bool _canAttack;
+    public bool canAttack { get { return _canAttack; } set { _isAttacking = canAttack;_canAttack = value; } }
 }

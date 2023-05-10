@@ -59,15 +59,18 @@ public class InputManager : MonoBehaviour
 
         //Dash
         _input.InGame.Dash.performed += ctx => _dash.ChangeValue(true);
-        
+        _input.InGame.Dash.canceled += ctx => _dash.ChangeValue(false);
+
         // DashAttack
         _input.InGame.DashAttack.performed += ctx => _dashAttack.ChangeValue(true);
+        _input.InGame.DashAttack.canceled += ctx => _dashAttack.ChangeValue(false);
 
         //Move
         _input.InGame.Move.performed += ctx => _move.ChangeValue(_input.InGame.Move.ReadValue<Vector2>());
         _input.InGame.Move.canceled += ctx => _move.ChangeValue(Vector2.zero);
         // Focus
         _input.InGame.Focus.performed += ctx => _focus.ChangeValue(true);
+        _input.InGame.Focus.canceled += ctx => _focus.ChangeValue(false);
         // SwitchFocus
         _input.InGame.SwitchFocus.performed += ctx => _switchFocus.ChangeValue(_input.InGame.SwitchFocus.ReadValue<Vector2>());
         _input.InGame.SwitchFocus.canceled += ctx => _switchFocus.ChangeValue(Vector2.zero);
