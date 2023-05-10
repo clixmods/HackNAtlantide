@@ -26,4 +26,9 @@ using UnityEngine;
             //TODO
             throw new NotImplementedException();
         }
+        public override void OnReset()
+        {
+            //TODO
+            IsActive = true;
+        }
 }

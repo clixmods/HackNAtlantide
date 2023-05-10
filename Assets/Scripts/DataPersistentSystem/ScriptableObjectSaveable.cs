@@ -9,5 +9,7 @@ namespace _2DGame.Scripts.Save
     {
         public abstract void OnLoad(string data);
         public abstract void OnSave(out SaveData saveData);
+        public abstract void OnReset();
+    
     }
 }

@@ -333,7 +333,7 @@ public class Focus : MonoBehaviour
         catch
         {
             _lastcachedTarget = null;
-            Debug.LogWarning("A ITargetable has been destroyed ! Its better to not destroy them in a same scene");
+           // Debug.LogWarning("A ITargetable has been destroyed ! Its better to not destroy them in a same scene");
         }
        
 

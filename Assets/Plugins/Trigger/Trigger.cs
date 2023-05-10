@@ -34,7 +34,9 @@ public abstract class Trigger : MonoBehaviour
           SetupCollider();
           GetMeshComponents();
           _meshRenderer.material = materialTrigger;
-          gameObject.layer = 9;
+          if(gameObject.layer != 9)
+               gameObject.layer = 9;
+          
           if (_meshFilter.hideFlags != HideFlags.HideInInspector)
           {
                Init();

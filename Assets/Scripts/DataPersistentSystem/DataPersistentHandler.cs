@@ -27,7 +27,7 @@ public class DataPersistentHandler : ScriptableObject
             var interfacesOnObject = scriptableObjects[i].GetType().GetInterfaces();
             if ( interfacesOnObject.Contains(typeof(ISave)) )
             {
-                Debug.Log($"Component to save found in {scriptableObjects[i].name}");
+//                Debug.Log($"Component to save found in {scriptableObjects[i].name}");
                 scriptableObjectSaveables.Add((ScriptableObject)scriptableObjects[i]);
             }
         }
@@ -80,6 +80,22 @@ public class DataPersistentHandler : ScriptableObject
             if (dataPersistent.TryGetSaveInterface(out ISave save))
             {
                 Load(save, dataPersistent.name);
+            }
+        }
+    }
+    
+    /// <summary>
+    /// Reset all scriptables objets to have default value
+    /// </summary>
+    [ContextMenu("Reset All")]
+    public void ResetAll()
+    {
+        // Asset
+        foreach (var dataPersistent in scriptableObjectSaveables)
+        {
+            if (dataPersistent.TryGetSaveInterface(out ISave save))
+            {
+                save.OnReset();
             }
         }
     }

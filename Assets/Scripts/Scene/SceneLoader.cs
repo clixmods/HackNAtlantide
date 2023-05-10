@@ -23,17 +23,6 @@ public class SceneLoader : MonoBehaviour
         var indexBuildActiveScene = SceneManager.GetActiveScene().buildIndex;
         _currentSceneIndex = indexBuildActiveScene;
         StartCoroutine(LoadSceneAsync());
-        // SceneManager.LoadScene(dependenceScene, LoadSceneMode.Additive);
-        //
-        // if (SceneManager.GetSceneByBuildIndex(environmentScene) !=
-        //     SceneManager.GetSceneByBuildIndex(indexBuildActiveScene))
-        // {
-        //     SceneManager.LoadScene(environmentScene, LoadSceneMode.Additive);
-        // }
-        // else
-        // {
-        //     Debug.LogError("You load in additive the same scene, infinite loop was catch.");
-        // }
     }
     
     IEnumerator LoadSceneAsync()

@@ -6,5 +6,4 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Data/InputData/button")]
 public class InputButtonScriptableObject : InputScriptableObject<bool>
 {
-    
 }

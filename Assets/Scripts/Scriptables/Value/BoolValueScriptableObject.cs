@@ -4,5 +4,4 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Data/Value/bool")]
 public class BoolValueScriptableObject : ValueScriptableObject<bool>
 {
-
 }

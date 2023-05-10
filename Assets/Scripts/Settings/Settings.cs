@@ -133,5 +133,10 @@ public class Settings : MonoBehaviourSaveable
 
         saveData = settingsSaveData;
     }
+
+    public override void OnReset()
+    {
+        throw new NotImplementedException();
+    }
 }
 

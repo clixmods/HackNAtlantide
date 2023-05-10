@@ -6,7 +6,7 @@ using UnityEngine;
 public class ValueScriptableObject<T> : ScriptableObject
 {
     [SerializeField] private T _value;
-    public virtual T Value { get { return _value; } set { this._value = value; OnValueChanged.Invoke(this._value); } }
+    public virtual T Value { get { return _value; } set { this._value = value; OnValueChanged?.Invoke(this._value); } }
 
     public Action<T> OnValueChanged;
 

@@ -1,8 +1,11 @@
 using UnityEngine;
+using UnityEngine.Serialization;
+
 public class SceneHandler : MonoBehaviour
 {
     public static SceneHandler Instance;
-    [SerializeField] private IntScriptableObject intScriptableObject;
+    [SerializeField] private DataPersistentHandler _persistentHandler;
+    [FormerlySerializedAs("intScriptableObject")] [SerializeField] private IntValueScriptableObject intValueScriptableObject;
     private int _lastestGameSceneCached;
 
     private void Awake()
@@ -28,7 +31,8 @@ public class SceneHandler : MonoBehaviour
     {
         if (sceneType == SceneType.Game)
         {
-            intScriptableObject.Value = sceneIndex;
+            intValueScriptableObject.Value = sceneIndex;
+            _persistentHandler.SaveAll();
         }
     }
 }

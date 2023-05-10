@@ -6,4 +6,5 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Data/InputData/Vector")]
 public class InputVectorScriptableObject : InputScriptableObject<Vector2>
 {
+   
 }

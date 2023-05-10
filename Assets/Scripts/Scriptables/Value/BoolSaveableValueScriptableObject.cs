@@ -22,6 +22,12 @@ public class BoolSaveableValueScriptableObject : BoolValueScriptableObject , ISa
         customSaveData.Value = Value;
         saveData = customSaveData;
     }
+
+    public void OnReset()
+    {
+        Value = false;
+    }
+
     #endregion
      
 }
