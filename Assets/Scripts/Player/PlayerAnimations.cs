@@ -9,6 +9,9 @@ public class PlayerAnimations : MonoBehaviour
 {
     [Header("SCRIPTS REFS")] private PlayerMovement PlayerMovement;
     private Animator _animator;
+
+    [Header("VARIABLES")]
+    private float _timeBeforeIdle = 5f;
     private static readonly int Blend = Animator.StringToHash("Blend");
 
     private void Awake()
@@ -20,12 +23,33 @@ public class PlayerAnimations : MonoBehaviour
     private void Update()
     {
         _animator.SetFloat(Blend, Mathf.Clamp(PlayerMovement.MoveAmount.magnitude / 0.06f, 0, 1));
-        Debug.Log(PlayerMovement.MoveAmount.magnitude/ 0.06f);
+
+        if (PlayerMovement.MoveAmount.magnitude / 0.06f <= 0.1f)
+        {
+            _timeBeforeIdle -= Time.deltaTime;
+        }
+        else if (PlayerMovement.MoveAmount.magnitude / 0.06f >= 0.1f)
+        {
+            _timeBeforeIdle = 5f;
+        }
+
+        if (_timeBeforeIdle <= 0f)
+        {
+            StartCoroutine(IdleCoroutine());
+        }
     }
 
     public void Dash()
     {
         StartCoroutine(DashCoroutine());
+    }
+    
+    IEnumerator IdleCoroutine()
+    {
+        _animator.SetTrigger("Idle");
+        Debug.Log("triggered");
+        _timeBeforeIdle = 5f;
+        yield break;
     }
 
     IEnumerator DashCoroutine()
