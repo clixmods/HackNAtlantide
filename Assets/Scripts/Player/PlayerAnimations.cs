@@ -9,6 +9,7 @@ public class PlayerAnimations : MonoBehaviour
 {
     [Header("SCRIPTS REFS")] private PlayerMovement PlayerMovement;
     private Animator _animator;
+    private static readonly int Blend = Animator.StringToHash("Blend");
 
     private void Awake()
     {
@@ -18,7 +19,8 @@ public class PlayerAnimations : MonoBehaviour
 
     private void Update()
     {
-        _animator.SetFloat("Blend", PlayerMovement.MoveAmount.magnitude);
+        _animator.SetFloat(Blend, Mathf.Clamp(PlayerMovement.MoveAmount.magnitude / 0.06f, 0, 1));
+        Debug.Log(PlayerMovement.MoveAmount.magnitude/ 0.06f);
     }
 
     public void Dash()
