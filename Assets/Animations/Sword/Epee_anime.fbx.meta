@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 4225ca9ce9763764c98fa6b8b816c4aa
+guid: 28f4da8dfa6b72a4aafe593267dfa2d0
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
@@ -33,7 +33,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Course
+      name: Marche
       takeName: Take 001
       internalID: 1827226128182048838
       firstFrame: 10
@@ -44,7 +44,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -66,14 +66,14 @@ ModelImporter:
       takeName: Take 001
       internalID: -998496362607748373
       firstFrame: 50
-      lastFrame: 170
+      lastFrame: 220
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -114,15 +114,7 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events:
-      - time: 1
-        functionName: ComboCheck
-        data: 
-        objectReferenceParameter: {fileID: 11500000, guid: eaae99f2c6ebc0e40bda4e12dff66923,
-          type: 3}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
+      events: []
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
@@ -130,7 +122,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Attaque2
       takeName: Take 001
-      internalID: 1465369574596688972
+      internalID: 6641085478485924818
       firstFrame: 280
       lastFrame: 300
       wrapMode: 0
@@ -151,15 +143,7 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events:
-      - time: 1
-        functionName: ComboCheck
-        data: 
-        objectReferenceParameter: {fileID: 11500000, guid: eaae99f2c6ebc0e40bda4e12dff66923,
-          type: 3}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
+      events: []
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
@@ -188,83 +172,17 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events:
-      - time: 1
-        functionName: ComboCheck
-        data: 
-        objectReferenceParameter: {fileID: 11500000, guid: eaae99f2c6ebc0e40bda4e12dff66923,
-          type: 3}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
+      events: []
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: "L\xE9vitation"
+      name: "L\xE9vitation_idle"
       takeName: Take 001
       internalID: 6234510843852800090
       firstFrame: 330
-      lastFrame: 355
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 0
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
-    - serializedVersion: 16
-      name: "L\xE9vitation_Hold"
-      takeName: Take 001
-      internalID: -6788666626592393668
-      firstFrame: 355
-      lastFrame: 356
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 0
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
-    - serializedVersion: 16
-      name: "L\xE9vitation_Attaque"
-      takeName: Take 001
-      internalID: 1702301948168947093
-      firstFrame: 356
-      lastFrame: 375
+      lastFrame: 380
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -291,7 +209,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Marche_lock_avant
       takeName: Take 001
-      internalID: 9093586079265926502
+      internalID: -6788666626592393668
       firstFrame: 390
       lastFrame: 410
       wrapMode: 0
@@ -320,7 +238,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Marche_lock_arriere
       takeName: Take 001
-      internalID: -4045831500588228705
+      internalID: 1702301948168947093
       firstFrame: 420
       lastFrame: 440
       wrapMode: 0
@@ -349,7 +267,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Marche_lock_gauche
       takeName: Take 001
-      internalID: 7731641710072435382
+      internalID: 9093586079265926502
       firstFrame: 450
       lastFrame: 470
       wrapMode: 0
@@ -376,10 +294,39 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
+      name: Marche_lock_droite
+      takeName: Take 001
+      internalID: -4045831500588228705
+      firstFrame: 480
+      lastFrame: 500
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
       name: Roulade
       takeName: Take 001
-      internalID: -5912188926831197812
-      firstFrame: 523
+      internalID: 7731641710072435382
+      firstFrame: 510
       lastFrame: 550
       wrapMode: 0
       orientationOffsetY: 0
@@ -405,11 +352,11 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Idle2
+      name: Mort
       takeName: Take 001
-      internalID: -8608414141577764740
-      firstFrame: 170
-      lastFrame: 220
+      internalID: 6100139571335923458
+      firstFrame: 560
+      lastFrame: 590
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
