@@ -79,8 +79,8 @@ public class Focus : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        // focus is disable in the awake
         FocusIsEnable = false;
-        //_itargetablesInScene = FindObjectsOfType<Targetable>().ToList();
         // Input Behaviour
         inputEnableFocus.OnValueChanged += InputEnableFocusOnChanged;
         inputSwitchTarget.OnValueChanged += InputSwitchTargetOnChanged;
@@ -104,20 +104,41 @@ public class Focus : MonoBehaviour
 
     private void CameraTransitionOnCameraChanged(CinemachineVirtualCamera newCameraVirtual)
     {
-        // If its the same camera, not necesary to continue
-        if (newCameraVirtual.gameObject == _nofocusVirtualCamera)
-            return;
         
         if (FocusIsEnable)
         {
-            _nofocusVirtualCamera = newCameraVirtual.gameObject;
-            _nofocusVirtualCamera.SetActive(false);
+            // If a new camera transition is triggered, go lerp the focus camera to the new camera
+            if (newCameraVirtual.gameObject != _nofocusVirtualCamera)
+            {
+                StartCoroutine(LerpCameraPositionTo(newCameraVirtual));
+            }
+            else
+            {
+                // Focus enabled, we need to disable the new camera transition
+                newCameraVirtual.gameObject.SetActive(false); 
+            }
         }
-        StartCoroutine(LerpCameraPosition(newCameraVirtual));
+        else
+        {
+            cameraVirtualFocus.transform.position = newCameraVirtual.transform.position;
+            cameraVirtualFocus.transform.rotation = newCameraVirtual.transform.rotation;
+        }
+        // we need to cache the camera transition
+        _nofocusVirtualCamera = newCameraVirtual.gameObject;
+        
+        
+        // // If its the same camera, not necesary to continue
+        // if (newCameraVirtual.gameObject == _nofocusVirtualCamera)
+        // {
+        //     // Need to disable it, because the camera transition event has renable it
+        //     _nofocusVirtualCamera.SetActive(false); 
+        //     return;
+        // }
     }
     
-    IEnumerator LerpCameraPosition(CinemachineVirtualCamera newCameraVirtual)
+    IEnumerator LerpCameraPositionTo(CinemachineVirtualCamera newCameraVirtual)
     {
+        
         float timeElapsed = 0;
         var cameraPosition = cameraVirtualFocus.transform.position;
         var cameraRotation = cameraVirtualFocus.transform.rotation;
@@ -125,8 +146,8 @@ public class Focus : MonoBehaviour
         while (timeElapsed < timeTransition)
         {
             timeElapsed += Time.deltaTime;
-            if(newCameraVirtual.gameObject != _nofocusVirtualCamera)
-                yield break;
+            // if(newCameraVirtual.gameObject != _nofocusVirtualCamera)
+            //     yield break;
 
             var t = timeElapsed / timeTransition;
             cameraVirtualFocus.transform.position = Vector3.Lerp(cameraPosition,newCameraVirtual.transform.position , t);
@@ -228,30 +249,48 @@ public class Focus : MonoBehaviour
     {
         if (value)
         {
-            FocusIsEnable = !FocusIsEnable;
-            if (FocusIsEnable)
+            if (CanFocus())
             {
-                CurrentTargetIndex = 0;
-                cameraVirtualFocus.gameObject.SetActive(true); 
-                OnFocusEnable?.Invoke();
-                Switch();
-                try
+                FocusIsEnable = !FocusIsEnable;
+                // Focus will be enabled
+                if (FocusIsEnable)
                 {
-                    if(CurrentTarget != null)
-                        CurrentTarget.OnTarget();
-                }
-                catch
-                {
-                    Debug.LogWarning("A ITargetable has been destroyed ! Its better to not destroy them in a same scene");
-                }
+                    CurrentTargetIndex = 0;
+                    // Active the camera focus
+                    cameraVirtualFocus.gameObject.SetActive(true);
+                    // go disable the nofocus camera
+                    if (_nofocusVirtualCamera != null)
+                    {
+                        _nofocusVirtualCamera.SetActive(false);
+                    }
+                    OnFocusEnable?.Invoke();
+                    Switch();
+                    try
+                    {
+                        if(CurrentTarget != null)
+                            CurrentTarget.OnTarget();
+                    }
+                    catch
+                    {
+                        Debug.LogWarning("A ITargetable has been destroyed ! Its better to not destroy them in a same scene");
+                    }
                 
+                }
+                else
+                {
+                    DisableFocus();
+                }
             }
-            else
-            {
-                DisableFocus();
-            }
+           
+            
         }
         
+    }
+
+    private bool CanFocus()
+    {
+        return _targetableAvailable.Count > 0;
+
     }
 
     private bool _forceSwitch = false;
@@ -272,7 +311,6 @@ public class Focus : MonoBehaviour
             {
                 _targetableAvailable.Add(targetable);
             }
-           
         }
 
 
@@ -315,12 +353,12 @@ public class Focus : MonoBehaviour
 
     private void DisableFocus()
     {
-        cameraVirtualFocus.gameObject.SetActive(false); 
         OnFocusDisable?.Invoke();
-        if (_nofocusVirtualCamera != null)
+        if ( _nofocusVirtualCamera != null)
         {
             _nofocusVirtualCamera.SetActive(true);
         }
+        cameraVirtualFocus.gameObject.SetActive(false); 
         FocusIsEnable = false;
         try
         {
@@ -335,8 +373,6 @@ public class Focus : MonoBehaviour
             _lastcachedTarget = null;
            // Debug.LogWarning("A ITargetable has been destroyed ! Its better to not destroy them in a same scene");
         }
-       
-
         CurrentTargetIndex = 0;
     }
     

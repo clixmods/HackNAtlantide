@@ -14,7 +14,7 @@ public class InteractDetection : MonoBehaviour
     public List<IInteractable> Interactable { get { DetectInteract(); return interactable; } }
     IInteractable closestObject;
     public Action<List<IInteractable>> onInteractableListValueChanged;
-    float _maxDistanceInteraction;
+    private float maxDistanceInteraction => _playerDetectionScriptableObject.MaxDistance;
     [SerializeField] PlayerDetectionScriptableObject _playerDetectionScriptableObject;
     [SerializeField] private PlayerStaminaScriptableObject _playerStamina;
 
@@ -31,7 +31,7 @@ public class InteractDetection : MonoBehaviour
     }
     private void Awake()
     {
-        _maxDistanceInteraction = _playerDetectionScriptableObject.MaxDistance;
+        //maxDistanceInteraction = _playerDetectionScriptableObject.MaxDistance;
         transform.localPosition = Vector3.zero;
     }
     private void Update()
@@ -100,7 +100,7 @@ public class InteractDetection : MonoBehaviour
 
     void DetectInteract()
     {
-        Collider[] cols = Physics.OverlapSphere(transform.position, _maxDistanceInteraction);
+        Collider[] cols = Physics.OverlapSphere(transform.position, maxDistanceInteraction);
         interactable = new List<IInteractable>();
         for (int i = 0; i < cols.Length; i++)
         {

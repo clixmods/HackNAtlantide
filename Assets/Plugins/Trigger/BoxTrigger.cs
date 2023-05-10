@@ -6,7 +6,8 @@ public class BoxTrigger : Trigger
 {
     protected override void Init()
     {
-        _meshFilter.mesh = Resources.GetBuiltinResource<Mesh>("Cube.fbx");
+        if(_meshFilter.sharedMesh != Resources.GetBuiltinResource<Mesh>("Cube.fbx") )
+            _meshFilter.mesh = Resources.GetBuiltinResource<Mesh>("Cube.fbx");
     }
      #if UNITY_EDITOR
                 // Add a menu item to create custom GameObjects.

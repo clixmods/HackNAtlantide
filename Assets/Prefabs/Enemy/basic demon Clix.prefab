@@ -532,6 +532,9 @@ MonoBehaviour:
   sendEventOnEnter: 1
   sendEventOnStay: 1
   sendEventOnExit: 0
+  interactWithLayers:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &6395227641650034023
 GameObject:
   m_ObjectHideFlags: 0
@@ -761,7 +764,7 @@ MonoBehaviour:
   targeter: {fileID: 0}
   pivot: {fileID: 153834424590158610}
   useDistance: 1
-  maxDistanceWithTargeter: 25
+  maxDistanceWithTargeter: 10
   canBeTarget: 1
   _decalTarget: {fileID: 6063841212566642561}
 --- !u!65 &104935170799814868
