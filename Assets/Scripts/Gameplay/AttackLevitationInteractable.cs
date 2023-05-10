@@ -59,6 +59,7 @@ public class AttackLevitationInteractable : MonoBehaviour, IInteractable
         _rigidBody = GetComponent<Rigidbody>();
         _hasInteract = false;
         Focus.OnFocusSwitch += SetDestination;
+        Focus.OnFocusDisable += RemoveTarget;
         //Focus.OnFocusNoTarget += RemoveTarget;
         _attackCollider = GetComponent<IAttackCollider>();
         _attackCollider.OnCollideWithIDamageable += AttackColliderOnOnCollideWithIDamageable;
@@ -72,7 +73,7 @@ public class AttackLevitationInteractable : MonoBehaviour, IInteractable
     {
         _attackCollider.OnCollideWithIDamageable -= AttackColliderOnOnCollideWithIDamageable;
         Focus.OnFocusSwitch -= SetDestination;
-        //Focus.OnFocusNoTarget -= RemoveTarget;
+        Focus.OnFocusDisable -= RemoveTarget;
     }
     private void Start()
     {
@@ -129,7 +130,7 @@ public class AttackLevitationInteractable : MonoBehaviour, IInteractable
                 DestroyInteractable();
             }
         }
-        private void SetDestination(ITargetable target) 
+        private void SetDestination(ITargetable target = null) 
         {
             if (Focus.FocusIsEnable)
             {
