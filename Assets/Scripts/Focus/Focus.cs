@@ -281,8 +281,11 @@ public class Focus : MonoBehaviour
                     DisableFocus();
                 }
             }
-           
-            
+            else if (FocusIsEnable)
+            {
+                FocusIsEnable = false;
+                DisableFocus();
+            }
         }
         
     }
