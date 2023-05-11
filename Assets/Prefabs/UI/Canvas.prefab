@@ -964,6 +964,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputToListen: {fileID: 11400000, guid: 5719ad0ca169cbd449cb1c5d174cfa98, type: 2}
+  alwaysListen: 1
   InputValueTrue:
     m_PersistentCalls:
       m_Calls:
@@ -3307,7 +3308,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 93ca824ec33e01746b09755fade0567d,
+      objectReference: {fileID: 21300000, guid: 4270dc6951fec3949b75343dace7e5ed,
         type: 3}
     - target: {fileID: 3362502596227382046, guid: 0ff13d70bdb7bdc4ab4b84400857a953,
         type: 3}
@@ -3493,7 +3494,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 1a91811bdfb2af44883773e73fb709c3,
+      objectReference: {fileID: 21300000, guid: 4bb9931f835b344448f6c48abfed8479,
         type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0ff13d70bdb7bdc4ab4b84400857a953, type: 3}
@@ -3554,6 +3555,35 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2546023469697009649}
     m_Modifications:
+    - target: {fileID: 4252210216139495881, guid: 304430e12d2c68b4bbbfb8ca1e8400d8,
+        type: 3}
+      propertyPath: _inputActionReference
+      value: 
+      objectReference: {fileID: -8705557829352369860, guid: 35121f045d536cb48ba26fe77e11382b,
+        type: 3}
+    - target: {fileID: 4252210217117268853, guid: 304430e12d2c68b4bbbfb8ca1e8400d8,
+        type: 3}
+      propertyPath: _inputActionReference
+      value: 
+      objectReference: {fileID: 1196429158860228299, guid: 35121f045d536cb48ba26fe77e11382b,
+        type: 3}
+    - target: {fileID: 6255086950378116385, guid: 304430e12d2c68b4bbbfb8ca1e8400d8,
+        type: 3}
+      propertyPath: m_text
+      value: 'To Dash Attack
+
+'
+      objectReference: {fileID: 0}
+    - target: {fileID: 6818906810475399368, guid: 304430e12d2c68b4bbbfb8ca1e8400d8,
+        type: 3}
+      propertyPath: m_text
+      value: To Interact
+      objectReference: {fileID: 0}
+    - target: {fileID: 6818906811436329588, guid: 304430e12d2c68b4bbbfb8ca1e8400d8,
+        type: 3}
+      propertyPath: m_text
+      value: To Focus
+      objectReference: {fileID: 0}
     - target: {fileID: 6981228081136986340, guid: 304430e12d2c68b4bbbfb8ca1e8400d8,
         type: 3}
       propertyPath: m_Pivot.x
@@ -3666,6 +3696,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 304430e12d2c68b4bbbfb8ca1e8400d8, type: 3}
+--- !u!114 &2756530127931235717 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4052149454129330480, guid: 304430e12d2c68b4bbbfb8ca1e8400d8,
+    type: 3}
+  m_PrefabInstance: {fileID: 2196923181467116725}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 147e4dae20030574bba3a30e8095aedd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6975199431243626501 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 9129336387951353008, guid: 304430e12d2c68b4bbbfb8ca1e8400d8,
@@ -3678,12 +3720,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 2196923181467116725}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &6975199431992225859 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 9129336387488453878, guid: 304430e12d2c68b4bbbfb8ca1e8400d8,
-    type: 3}
-  m_PrefabInstance: {fileID: 2196923181467116725}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &6975199432271715001 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 9129336386630254092, guid: 304430e12d2c68b4bbbfb8ca1e8400d8,
@@ -3693,6 +3729,12 @@ GameObject:
 --- !u!1 &6975199432337469760 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 9129336386893125109, guid: 304430e12d2c68b4bbbfb8ca1e8400d8,
+    type: 3}
+  m_PrefabInstance: {fileID: 2196923181467116725}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7540139582676837868 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8565561709702119769, guid: 304430e12d2c68b4bbbfb8ca1e8400d8,
     type: 3}
   m_PrefabInstance: {fileID: 2196923181467116725}
   m_PrefabAsset: {fileID: 0}
@@ -3722,9 +3764,10 @@ MonoBehaviour:
   _move: {fileID: 11400000, guid: f723c9ff06fee8f4b84dfde16114e058, type: 2}
   _inputInfoAttack: {fileID: 6975199431284479753}
   _inputInfoDash: {fileID: 6975199432337469760}
-  _inputInfoDashAttack: {fileID: 6975199431992225859}
+  _inputInfoDashAttack: {fileID: 7540139582676837868}
   _inputInfoInteract: {fileID: 6975199431243626501}
   _inputInfoFocus: {fileID: 6975199432271715001}
+  _postProcessWeightTransition: {fileID: 2756530127931235717}
 --- !u!224 &9124086196023970897 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6981228081136986340, guid: 304430e12d2c68b4bbbfb8ca1e8400d8,
