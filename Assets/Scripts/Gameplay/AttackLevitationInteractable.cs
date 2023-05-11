@@ -60,7 +60,6 @@ public class AttackLevitationInteractable : MonoBehaviour, IInteractable
         _hasInteract = false;
         Focus.OnFocusSwitch += SetDestination;
         Focus.OnFocusDisable += RemoveTarget;
-        //Focus.OnFocusNoTarget += RemoveTarget;
         _attackCollider = GetComponent<IAttackCollider>();
         _attackCollider.OnCollideWithIDamageable += AttackColliderOnOnCollideWithIDamageable;
 
@@ -171,14 +170,20 @@ public class AttackLevitationInteractable : MonoBehaviour, IInteractable
     {
         _isCharging = true;
         float timeElapsed = 0;
-        Vector3 startPosition = transform.position;
-        Vector3 destinationPosition = startPosition + Vector3.up * 5;
+      
         _inputHelper.enabled = true;
         _uiChargeInputHelper.SetFillValue(1);
         while (timeElapsed < timeToBeCharged )
         {
-            if(!_isCharging)
+            _rigidBody.AddTorque(Random.onUnitSphere * 20);
+            Vector3 startPosition = _playerDetectionScriptableObject.PlayerPosition + Vector3.up * 2 ;
+            Vector3 destinationPosition = _playerDetectionScriptableObject.PlayerPosition + Vector3.up * 4;
+            if (!_isCharging)
+            {
+                _hasInteract = false;
                 yield break;
+            }
+                
             
             _inputHelper.enabled = true;
             _playerStamina.UseStamina(_playerStamina.SpeedToRecharge*Time.deltaTime);
@@ -187,7 +192,6 @@ public class AttackLevitationInteractable : MonoBehaviour, IInteractable
             transform.position = Vector3.Lerp(startPosition, destinationPosition, t);
             timeElapsed += Time.deltaTime;
             yield return null;
-            //_rigidBody.AddTorque(Random.onUnitSphere * 20);
         }
         _uiChargeInputHelper.SetFillValue(1);
         _hasInteract = true;

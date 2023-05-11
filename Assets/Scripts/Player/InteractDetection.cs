@@ -46,7 +46,7 @@ public class InteractDetection : MonoBehaviour
         if (_currentInteractable != null )
         {
             _releaseInfo.ShowInputInfo();
-            _currentInteractable.transform.position = transform.position + transform.up * 2;
+            _currentInteractable.transform.position = transform.position + transform.up * 4;
         }
     }
     
@@ -102,6 +102,7 @@ public class InteractDetection : MonoBehaviour
     {
         Collider[] cols = Physics.OverlapSphere(transform.position, maxDistanceInteraction);
         interactable = new List<IInteractable>();
+        
         for (int i = 0; i < cols.Length; i++)
         {
             if (cols[i].gameObject.TryGetComponent<IInteractable>(out var interactObject))
@@ -111,6 +112,14 @@ public class InteractDetection : MonoBehaviour
                 {
                     inputHelper.enabled = false;
                 }
+            }
+        }
+        // If the previous ClosestObject is not in the list of interactable, we need to disable the input helper
+        if ( closestObject != null && closestObject.transform.TryGetComponent<InputHelper>(out var closestObjectInputHelpernputHelper) )
+        {
+            if (!interactable.Contains(closestObject))
+            {
+                closestObjectInputHelpernputHelper.enabled = false;
             }
         }
         
