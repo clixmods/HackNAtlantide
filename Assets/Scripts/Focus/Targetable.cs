@@ -114,7 +114,7 @@ public class Targetable : MonoBehaviour, ITargetable
     {
         ITargetable.Targetables.Remove(this);
     }
-
+    #if UNITY_EDITOR
     private void OnDrawGizmos()
     {
         if (targeter == null) return;
@@ -127,9 +127,10 @@ public class Targetable : MonoBehaviour, ITargetable
             Debug.DrawLine(transform.position, targeter.transform.position, colorLine, 0.001f, true);
             GUIStyle style = new GUIStyle();
             style.normal.textColor = colorLine; 
-            //(targeter.transform.position - transform.position).normalized.ToString() 
+        
             Handles.Label(transform.position , GetHeightWithTargeter().ToString() , style );
     }
+    #endif
 
     #endregion
     public void OnTarget()
