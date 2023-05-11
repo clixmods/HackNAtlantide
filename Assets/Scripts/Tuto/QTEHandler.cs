@@ -1,3 +1,4 @@
+using Cinemachine;
 using DG.Tweening;
 using System;
 using System.Collections;
@@ -5,6 +6,7 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using static UnityEngine.Rendering.DebugUI;
 
 public enum InputType
@@ -13,7 +15,8 @@ public enum InputType
     Attack,
     Dash,
     DashAttack,
-    Focus
+    Focus,
+    Move
 }
 public class QTEHandler : MonoBehaviour
 {
@@ -38,7 +41,16 @@ public class QTEHandler : MonoBehaviour
 
     bool _isInCutScene = false;
     public Action<InputType> cutSceneSuccess;
-    float timeStopLerp;
+    CinemachineBrain cine;
+    CinemachineVirtualCamera VirtualCamera;
+    [SerializeField] PostProcessWeightTransition _postProcessWeightTransition;
+
+    void Start()
+    {
+        cine = FindObjectOfType<CinemachineBrain>();
+        VirtualCamera = (CinemachineVirtualCamera)cine.ActiveVirtualCamera;
+        ActiveAllInput(false);
+    }
     private void OnEnable()
     {
         DisableInputsInfo();
@@ -91,15 +103,76 @@ public class QTEHandler : MonoBehaviour
     IEnumerator Cutscene(InputType inputType)
     {
         _isInCutScene = true;
-        Time.timeScale = 0;
+        VirtualCamera = (CinemachineVirtualCamera)cine.ActiveVirtualCamera;
+        float fov = VirtualCamera.m_Lens.FieldOfView;
+       
+        _postProcessWeightTransition.SetWeightVolume(1f);
+
+        DOTween.To(() => Time.timeScale, x => Time.timeScale = x, 0, 0.2f).SetUpdate(true);
+
+        ActiveInputType(inputType, true);
+
         while (!CutSceneFinish(inputType))
         {
             yield return null;
         }
-        Time.timeScale = 1;
+
+        ActiveInputType(inputType, false);
+
+        _postProcessWeightTransition.SetWeightVolume(0f);
+        DOTween.To(() => Time.timeScale, x => Time.timeScale = x, 1, 0.2f).SetUpdate(true);
         _isInCutScene = false;
         cutSceneSuccess?.Invoke(inputType);
         DisableInputsInfo();
+    }
+    public void ActiveInputType(InputType inputType, bool active)
+    {
+        switch (inputType)
+        {
+            case InputType.Interact:
+                _interact.IsActive = active;
+                break;
+
+            case InputType.Attack:
+                _attack.IsActive = active;
+                break;
+
+            case InputType.Dash:
+                _dash.IsActive = active;
+                break;
+
+            case InputType.DashAttack:
+                _dashAttack.IsActive = active;
+                break;
+
+            case InputType.Focus:
+                _focus.IsActive = active;
+                break;
+
+            case InputType.Move:
+                _move.IsActive = active;
+                break;
+
+            default:
+                break;
+        }
+    }
+    public void CancelMove()
+    {
+        FindObjectOfType<PlayerMovement>().CancelMove();
+    }
+    public void MovePlayerToEnemy(Vector3 Target)
+    {
+        FindObjectOfType<PlayerMovement>().MoveTo(Target);
+    }
+
+    public void ActiveAllInput(bool active)
+    {
+        _interact.IsActive = active;
+        _attack.IsActive = active;
+        _dash.IsActive = active;
+        _dashAttack.IsActive = active;
+        _focus.IsActive = active;
     }
     bool CutSceneFinish(InputType inputType)
     {

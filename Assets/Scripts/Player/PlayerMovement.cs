@@ -95,8 +95,6 @@ public class PlayerMovement : MonoBehaviour
         Focus.OnFocusNoTarget += FocusUnLock;
     }
 
-   
-
     private void OnDisable()
     {
         _moveInput.OnValueChanged -= MoveInput;
@@ -114,7 +112,15 @@ public class PlayerMovement : MonoBehaviour
         Vector3 camRightOnPlane = new Vector3(_camera.transform.right.x, 0, _camera.transform.right.z).normalized;
         _moveDirection = direction.x * camRightOnPlane + direction.y * camForwardOnPlane;
     }
-
+    public void MoveTo(Vector3 Target)
+    {
+        Vector3 direction = ((Target - transform.position).normalized);
+        _moveDirection = new Vector3(direction.x, 0, direction.z);
+    }
+    public void CancelMove()
+    {
+        _moveDirection = Vector3.zero;
+    }
     // Update is called once per frame
     void FixedUpdate()
     {
@@ -226,7 +232,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void Dash(bool value)
     {
-        if (_canDash && _playerStamina.CanUseStamina(1)&& _moveDirection.sqrMagnitude > 0.1f)
+        if (value && _canDash && _playerStamina.CanUseStamina(1)&& _moveDirection.sqrMagnitude > 0.1f)
         {
             _playerStamina.UseStamina(1);
             _speed = _dashSpeed;

@@ -56,6 +56,7 @@ public class InputManager : MonoBehaviour
         _input.InGame.Interact.canceled += ctx => _interact.ChangeValue(false);
         // Attack
         _input.InGame.Attack.performed += ctx => _attack.ChangeValue(true);
+        _input.InGame.Attack.canceled += ctx => _attack.ChangeValue(false);
 
         //Dash
         _input.InGame.Dash.performed += ctx => _dash.ChangeValue(true);

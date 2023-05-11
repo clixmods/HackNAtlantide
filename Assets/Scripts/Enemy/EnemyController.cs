@@ -68,7 +68,6 @@ public class EnemyController : MonoBehaviour, ICombat
     
     private void Attack()
     {
-        _isAttacking = true;
         FaceTarget();
         if (!_animator.GetCurrentAnimatorStateInfo(0).IsName("Enemy_attack"))
         {
@@ -103,5 +102,18 @@ public class EnemyController : MonoBehaviour, ICombat
     }
 
     private bool _canAttack;
-    public bool canAttack { get { return _canAttack; } set { _isAttacking = canAttack;_canAttack = value; } }
+    public event Action _attackEvent;
+    public bool canAttack { 
+        get { return _canAttack; } 
+        set
+        { 
+            _canAttack = value;
+            _isAttacking = canAttack; 
+            if(_isAttacking)
+            {
+                _attackEvent?.Invoke();
+            };
+            
+        } 
+    }
 }
