@@ -11,5 +11,14 @@ public class CookieMove : MonoBehaviour
     {
         var light = GetComponent<UniversalAdditionalLightData>();
         light.lightCookieOffset +=  Time.deltaTime * cookieSpeed * Vector2.one ;
+        if (light.lightCookieOffset.x >= light.lightCookieSize.x)
+        {
+            light.lightCookieOffset.Set(0, light.lightCookieOffset.y );
+        }
+
+        if (light.lightCookieOffset.y >= light.lightCookieSize.y)
+        {
+            light.lightCookieOffset.Set(light.lightCookieOffset.x, 0 );
+        }
     }
 }
