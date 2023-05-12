@@ -70,7 +70,10 @@ public class AttackLevitationInteractable : MonoBehaviour, IInteractable
     }
     private void OnDestroy()
     {
-        _attackCollider.OnCollideWithIDamageable -= AttackColliderOnOnCollideWithIDamageable;
+        if (_attackCollider != null)
+        {
+            _attackCollider.OnCollideWithIDamageable -= AttackColliderOnOnCollideWithIDamageable;
+        }
         Focus.OnFocusSwitch -= SetDestination;
         Focus.OnFocusDisable -= RemoveTarget;
     }
@@ -173,9 +176,10 @@ public class AttackLevitationInteractable : MonoBehaviour, IInteractable
       
         _inputHelper.enabled = true;
         _uiChargeInputHelper.SetFillValue(1);
+        _rigidBody.AddTorque(Random.onUnitSphere * 20);
         while (timeElapsed < timeToBeCharged )
         {
-            _rigidBody.AddTorque(Random.onUnitSphere * 20);
+            
             Vector3 startPosition = _playerDetectionScriptableObject.PlayerPosition + Vector3.up * 2 ;
             Vector3 destinationPosition = _playerDetectionScriptableObject.PlayerPosition + Vector3.up * 4;
             if (!_isCharging)

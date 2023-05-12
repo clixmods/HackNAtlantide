@@ -201,6 +201,7 @@ public class Focus : MonoBehaviour
     {
         if (value.magnitude <= 0.7) return;
         
+        GenerateTargetableList();
         if(InputManager.IsGamepad())
         {
             CurrentTargetIndex = ClosestDotIndex(value);
@@ -292,6 +293,7 @@ public class Focus : MonoBehaviour
 
     private bool CanFocus()
     {
+        GenerateTargetableList();
         return _targetableAvailable.Count > 0;
 
     }
@@ -357,19 +359,19 @@ public class Focus : MonoBehaviour
     private void DisableFocus()
     {
         OnFocusDisable?.Invoke();
+        // Active the no focus camera cached
         if ( _nofocusVirtualCamera != null)
         {
             _nofocusVirtualCamera.SetActive(true);
         }
-        cameraVirtualFocus.gameObject.SetActive(false); 
+        // Disable focus camera
+        cameraVirtualFocus.gameObject.SetActive(false);
         FocusIsEnable = false;
+        // Try / Catch used to prevent Interface field issues, Unity have a bad behaviour
         try
         {
-            //if (_targetableAvailable.Contains(_lastcachedTarget))
-            {
-                _lastcachedTarget.OnUntarget();
-                _lastcachedTarget = null;
-            }
+            _lastcachedTarget.OnUntarget();
+            _lastcachedTarget = null;
         }
         catch
         {
@@ -380,19 +382,20 @@ public class Focus : MonoBehaviour
     }
     
     private void Update()
-    {
-        GenerateTargetableList();
-        if (!FocusIsEnable)
-        {
-            if (_targetableAvailable.Count > 0)
-            {
-                CurrentTargetIndex = 0;
-                if (CurrentTarget != _lastcachedTarget)
-                {
-                    Switch();
-                }
-            }
-           
-        }
+    {   
+        if(FocusIsEnable)
+            GenerateTargetableList();
+        // OBsolete apparently
+        // if (!FocusIsEnable)
+        // {
+        //     if (_targetableAvailable.Count > 0)
+        //     {
+        //         CurrentTargetIndex = 0;
+        //         if (CurrentTarget != _lastcachedTarget)
+        //         {
+        //             Switch();
+        //         }
+        //     }
+        // }
     }
 }
