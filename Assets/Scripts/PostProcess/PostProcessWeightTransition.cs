@@ -11,6 +11,7 @@ public class PostProcessWeightTransition : MonoBehaviour
     private float _weightPrevious;
     private float _timeElapsed;
     [SerializeField] private float timeTransition = 3;
+    
 
     void Awake()
     {
@@ -41,10 +42,5 @@ public class PostProcessWeightTransition : MonoBehaviour
         }
         _isTransitioning = false;
     }
-   
-    // // Update is called once per frame
-    // void Update()
-    // {
-    //     _volume.weight = Mathf.Clamp(Mathf.Lerp(_volume.weight, _weightTarget, Time.unscaledDeltaTime * timeTransition),0,1);
-    // }
+
 }
