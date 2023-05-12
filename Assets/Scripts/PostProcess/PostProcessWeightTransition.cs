@@ -6,41 +6,45 @@ using UnityEngine.Rendering;
 public class PostProcessWeightTransition : MonoBehaviour
 {
     private Volume _volume;
-
+    private bool _isTransitioning;
     private float _weightTarget;
     private float _weightPrevious;
+    private float _timeElapsed;
     [SerializeField] private float timeTransition = 3;
 
+    void Awake()
+    {
+        _volume = GetComponent<Volume>();
+    }
     public void SetWeightVolume(float value)
     {
         if(Math.Abs(value - _volume.weight) < 0.05f) 
             return;
-        StopCoroutine(WeightTransition());
+        //StopCoroutine(WeightTransition());
         _weightPrevious = _volume.weight;
         _weightTarget = value;
-        StartCoroutine(WeightTransition());
+         _timeElapsed = 0;
+        if( !_isTransitioning)
+            StartCoroutine(WeightTransition());
     }
     
     IEnumerator WeightTransition()
     {
-        float timeElapsed = 0;
-        while (timeElapsed < timeTransition )
+        _isTransitioning = true;
+        
+        while (_timeElapsed < timeTransition )
         {
-            var t = timeElapsed / timeTransition;
-    
+            var t = _timeElapsed / timeTransition;
             _volume.weight = Mathf.Clamp(Mathf.Lerp(_weightPrevious, _weightTarget, t) ,0,1);
-            timeElapsed += Time.deltaTime;
+            _timeElapsed += Time.deltaTime;
             yield return null;
         }
+        _isTransitioning = false;
     }
-    // Start is called before the first frame update
-    void Start()
-    {
-        _volume = GetComponent<Volume>();
-    }
-    // Update is called once per frame
-    void Update()
-    {
-        _volume.weight = Mathf.Clamp(Mathf.Lerp(_volume.weight, _weightTarget, Time.unscaledDeltaTime * timeTransition),0,1);
-    }
+   
+    // // Update is called once per frame
+    // void Update()
+    // {
+    //     _volume.weight = Mathf.Clamp(Mathf.Lerp(_volume.weight, _weightTarget, Time.unscaledDeltaTime * timeTransition),0,1);
+    // }
 }
