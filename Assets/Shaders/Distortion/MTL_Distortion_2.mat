@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Shader Graphs_Distortion 1
+  m_Name: MTL_Distortion_2
   m_Shader: {fileID: -6465566751694194690, guid: 28d2fc29c7a80e04ea176cd2c340edd6,
     type: 3}
   m_ValidKeywords: []
@@ -35,7 +35,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _MainTex:
-        m_Texture: {fileID: 10300, guid: 0000000000000000f000000000000000, type: 0}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -52,11 +52,11 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Exposure: 1
-    - _NoiseScale: 20
+    - _Exposure: 2.42
+    - _NoiseScale: 0.001
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Speed: 0.1
-    - _intensity: 0.1
+    - _Speed: 3.5
+    - _intensity: 7.12
     m_Colors: []
   m_BuildTextureStacks: []
