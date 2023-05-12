@@ -7,28 +7,36 @@ using UnityEngine;
 [RequireComponent(typeof(Animator))]
 public class PlayerAnimations : MonoBehaviour
 {
-    [Header("SCRIPTS REFS")] private PlayerMovement PlayerMovement;
+    [Header("SCRIPTS REFS")]
+    private PlayerMovement _playerMovement;
     private Animator _animator;
 
-    [Header("VARIABLES")]
+    [field: Header("VARIABLES")]
+    public float TimeBeforeIdle
+    {
+        get => _timeBeforeIdle;
+        set => _timeBeforeIdle = value;
+    }
+
     private float _timeBeforeIdle = 5f;
+    
     private static readonly int Blend = Animator.StringToHash("Blend");
 
     private void Awake()
     {
-        PlayerMovement = GetComponentInParent<PlayerMovement>();
+        _playerMovement = GetComponentInParent<PlayerMovement>();
         _animator = GetComponent<Animator>();
     }
 
     private void Update()
     {
-        _animator.SetFloat(Blend, Mathf.Clamp(PlayerMovement.MoveAmount.magnitude / 0.06f, 0, 1));
+        _animator.SetFloat(Blend, Mathf.Clamp(_playerMovement.MoveAmount.magnitude / 0.06f, 0, 1));
 
-        if (PlayerMovement.MoveAmount.magnitude / 0.06f <= 0.1f)
+        if (_playerMovement.MoveAmount.magnitude / 0.06f <= 0.1f)
         {
             _timeBeforeIdle -= Time.deltaTime;
         }
-        else if (PlayerMovement.MoveAmount.magnitude / 0.06f >= 0.1f)
+        else if (_playerMovement.MoveAmount.magnitude / 0.06f >= 0.1f)
         {
             _timeBeforeIdle = 5f;
         }
