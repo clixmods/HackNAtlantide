@@ -1,9 +1,10 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+/// <summary>
+/// Event listener to attach methods directly with the inspector
+/// </summary>
 public class EventsListenerIDamageable : MonoBehaviour
 {
     public UnityEvent OnDamage;
@@ -12,16 +13,14 @@ public class EventsListenerIDamageable : MonoBehaviour
     void Awake()
     {
         var idamageable = GetComponent<IDamageable>();
-        idamageable.OnDamage += IdamageableOnOnDamage;
-        idamageable.OnDeath += IdamageableOnOnDeath;
+        idamageable.OnDamage += IdamageableOnDamage;
+        idamageable.OnDeath += IdamageableOnDeath;
     }
-
-    private void IdamageableOnOnDeath(object sender, EventArgs e)
+    private void IdamageableOnDeath(object sender, EventArgs e)
     {
         OnDeath?.Invoke();
     }
-
-    private void IdamageableOnOnDamage(object sender, EventArgs e)
+    private void IdamageableOnDamage(object sender, EventArgs e)
     {
         OnDamage?.Invoke();
     }

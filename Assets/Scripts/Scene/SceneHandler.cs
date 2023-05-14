@@ -5,7 +5,7 @@ public class SceneHandler : MonoBehaviour
 {
     public static SceneHandler Instance;
     [SerializeField] private DataPersistentHandler _persistentHandler;
-    [FormerlySerializedAs("intScriptableObject")] [SerializeField] private IntValueScriptableObject intValueScriptableObject;
+    [FormerlySerializedAs("intScriptableValue")] [FormerlySerializedAs("intValueScriptableObject")] [FormerlySerializedAs("intScriptableObject")] [SerializeField] private ScriptableValueInt scriptableValueInt;
     private int _lastestGameSceneCached;
 
     private void Awake()
@@ -31,7 +31,7 @@ public class SceneHandler : MonoBehaviour
     {
         if (sceneType == SceneType.Game)
         {
-            intValueScriptableObject.Value = sceneIndex;
+            scriptableValueInt.Value = sceneIndex;
             _persistentHandler.SaveAll();
         }
     }

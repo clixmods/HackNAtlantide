@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -52,7 +53,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float _dashTime;
     [SerializeField] private float _dashSpeed;
     [SerializeField] private float _dashReloadTime;
-    [SerializeField] EventFloatScriptableObject _dashEvent;
+    [FormerlySerializedAs("_dashEvent")] [SerializeField] ScriptableEventFloat dashScriptableEvent;
     [SerializeField] PlayerStaminaScriptableObject _playerStamina;
     private bool _canDash;
     private bool _isDashing;
@@ -304,10 +305,10 @@ public class PlayerMovement : MonoBehaviour
     {
         _followTarget = true;
     }
-    public void FocusSwitch(ITargetable targetable)
+    public void FocusSwitch(IFocusable focusable)
     {
         
-        _transformLock = targetable.targetableTransform;
+        _transformLock = focusable.focusableTransform;
     }
     public void FocusUnLock()
     {

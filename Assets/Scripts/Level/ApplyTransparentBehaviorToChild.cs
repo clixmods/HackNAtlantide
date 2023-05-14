@@ -6,14 +6,6 @@ public class ApplyTransparentBehaviorToChild : MonoBehaviour
 {
     /// <summary> Material transparent qui sera appliqué à tout les models présent en tant qu'enfant </summary>
     [SerializeField] Material mtlTransparent;
-
-   
-
-    private void Awake()
-    {
-      
-    }
-
     // Start is called before the first frame update
     void Start()
     {
@@ -103,8 +95,9 @@ public class ApplyTransparentBehaviorToChild : MonoBehaviour
              
         }
     }
-    /// <summary> Combine une list de mesh et renvoi le nouveau generer </summary>
-   
+    /// <summary>
+    /// Combine a list of mesh into one mesh
+    /// </summary>
     private Mesh CombineMeshes(List<Mesh> meshes)
     {
         var combine = new CombineInstance[meshes.Count];

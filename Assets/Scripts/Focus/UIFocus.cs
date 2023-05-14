@@ -32,9 +32,9 @@ public class UIFocus : MonoBehaviour
         Focus.OnFocusNoTarget -= RemoveTarget;
     }
 
-    private void FocusOnOnFocusSwitch(ITargetable target)
+    private void FocusOnOnFocusSwitch(IFocusable target)
     {
-        this.target = target.targetableTransform;
+        this.target = target.focusableTransform;
     }
 
     private void FocusOnOnFocusDisable()

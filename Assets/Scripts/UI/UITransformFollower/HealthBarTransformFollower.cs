@@ -11,23 +11,23 @@ namespace UI.UITransformFollower
         [SerializeField] private bool _UIElementIsIndependant;
         private UIHealthBarTransformFollower _uiHealthBar;
         private IDamageable _idamageable;
-        private ITargetable _iTargetable;
+        private IFocusable _iFocusable;
         private void Awake()
         {
             _idamageable = GetComponent<IDamageable>();
             _idamageable.OnDamage += IdamageableOnOnDamage;
-            _iTargetable = GetComponent<ITargetable>();
-            _iTargetable.OnTargeted += ITargetableOnOnTargeted; 
-            _iTargetable.OnUntargeted += ITargetableOnOnUntargeted;
+            _iFocusable = GetComponent<IFocusable>();
+            _iFocusable.OnTargeted += FocusableOnOnTargeted; 
+            _iFocusable.OnUntargeted += FocusableOnOnUntargeted;
         }
 
-        private void ITargetableOnOnUntargeted(object sender, EventArgs e)
+        private void FocusableOnOnUntargeted(object sender, EventArgs e)
         {
             if(_idamageable.health.Equals(_idamageable.maxHealth))
                 enabled = false;
         }
 
-        private void ITargetableOnOnTargeted(object sender, EventArgs e)
+        private void FocusableOnOnTargeted(object sender, EventArgs e)
         {
             enabled = true;
         }

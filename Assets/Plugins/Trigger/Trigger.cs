@@ -7,7 +7,7 @@ public abstract class Trigger : MonoBehaviour
 {
      [HideInInspector] [SerializeField] private Material materialTrigger;
      private MeshRenderer _meshRenderer;
-     protected MeshFilter _meshFilter;
+     protected MeshFilter MeshFilter;
      private Collider _collider;
      /// <summary>
      /// Event when the volume is triggered by Enter
@@ -37,10 +37,10 @@ public abstract class Trigger : MonoBehaviour
           if(gameObject.layer != 9)
                gameObject.layer = 9;
           
-          if (_meshFilter.hideFlags != HideFlags.HideInInspector)
+          if (MeshFilter.hideFlags != HideFlags.HideInInspector)
           {
                Init();
-               _meshFilter.hideFlags = HideFlags.HideInInspector;
+               MeshFilter.hideFlags = HideFlags.HideInInspector;
                _meshRenderer.hideFlags = HideFlags.HideInInspector;
           }
      }
@@ -50,7 +50,7 @@ public abstract class Trigger : MonoBehaviour
 
      private void GetMeshComponents()
      {
-          _meshFilter = GetComponent<MeshFilter>();
+          MeshFilter = GetComponent<MeshFilter>();
           _meshRenderer = GetComponent<MeshRenderer>();
      }
      private void SetupCollider()

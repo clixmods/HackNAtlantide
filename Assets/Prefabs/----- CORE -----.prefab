@@ -1,178 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2083113764305909971
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1637522155638303201}
-  - component: {fileID: 2824228791505973642}
-  m_Layer: 0
-  m_Name: InputsActivator
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1637522155638303201
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2083113764305909971}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 5265682498006661748}
-  m_RootOrder: 8
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2824228791505973642
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2083113764305909971}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a227f632f730ff4b8c745e34655fa44, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  EventAwake:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 11400000, guid: fdbbc2eed1d30cb48b96b3abfe6f859e, type: 2}
-        m_TargetAssemblyTypeName: InputScriptableObject`1[[System.Boolean, mscorlib
-        m_MethodName: set_IsActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 11400000, guid: 6a4e272f294a6a94185c64218df86d2e, type: 2}
-        m_TargetAssemblyTypeName: InputScriptableObject`1[[System.Boolean, mscorlib
-        m_MethodName: set_IsActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 11400000, guid: bb066525f0a89ff498ec72baceaaf453, type: 2}
-        m_TargetAssemblyTypeName: InputScriptableObject`1[[System.Boolean, mscorlib
-        m_MethodName: set_IsActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 11400000, guid: 4bd4a32db9dece64598ee56d8821fda5, type: 2}
-        m_TargetAssemblyTypeName: InputScriptableObject`1[[System.Boolean, mscorlib
-        m_MethodName: set_IsActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 11400000, guid: f80c46dfb20a52241ad87b243d5f800f, type: 2}
-        m_TargetAssemblyTypeName: InputScriptableObject`1[[System.Boolean, mscorlib
-        m_MethodName: set_IsActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 11400000, guid: 67380d3709d97c74e85b3aafe21013ad, type: 2}
-        m_TargetAssemblyTypeName: InputScriptableObject`1[[System.Boolean, mscorlib
-        m_MethodName: set_IsActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 11400000, guid: f723c9ff06fee8f4b84dfde16114e058, type: 2}
-        m_TargetAssemblyTypeName: InputScriptableObject`1[[UnityEngine.Vector2, UnityEngine
-        m_MethodName: set_IsActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 11400000, guid: 5719ad0ca169cbd449cb1c5d174cfa98, type: 2}
-        m_TargetAssemblyTypeName: InputScriptableObject`1[[System.Boolean, mscorlib
-        m_MethodName: set_IsActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 11400000, guid: 6c5561a6fc10f3a4dbad7f9d3bc6f99a, type: 2}
-        m_TargetAssemblyTypeName: InputScriptableObject`1[[System.Boolean, mscorlib
-        m_MethodName: set_IsActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 11400000, guid: 6a5484de302615045a26f049fc40d2dd, type: 2}
-        m_TargetAssemblyTypeName: InputScriptableObject`1[[UnityEngine.Vector2, UnityEngine
-        m_MethodName: set_IsActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-  EventUpdate:
-    m_PersistentCalls:
-      m_Calls: []
-  EventDestroy:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &3822264950868972376
 GameObject:
   m_ObjectHideFlags: 0
@@ -528,6 +355,81 @@ MonoBehaviour:
   blendDistance: 0
   weight: 1
   sharedProfile: {fileID: 11400000, guid: a6560a915ef98420e9faacc1c7438823, type: 2}
+--- !u!1001 &2478338761695007756
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 5265682498006661748}
+    m_Modifications:
+    - target: {fileID: 3809330878909169133, guid: 40a1c09f7f986074b82b3f2e1ea97f8e,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3809330878909169133, guid: 40a1c09f7f986074b82b3f2e1ea97f8e,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3809330878909169133, guid: 40a1c09f7f986074b82b3f2e1ea97f8e,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3809330878909169133, guid: 40a1c09f7f986074b82b3f2e1ea97f8e,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3809330878909169133, guid: 40a1c09f7f986074b82b3f2e1ea97f8e,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3809330878909169133, guid: 40a1c09f7f986074b82b3f2e1ea97f8e,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3809330878909169133, guid: 40a1c09f7f986074b82b3f2e1ea97f8e,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3809330878909169133, guid: 40a1c09f7f986074b82b3f2e1ea97f8e,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3809330878909169133, guid: 40a1c09f7f986074b82b3f2e1ea97f8e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3809330878909169133, guid: 40a1c09f7f986074b82b3f2e1ea97f8e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3809330878909169133, guid: 40a1c09f7f986074b82b3f2e1ea97f8e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4507090678253595871, guid: 40a1c09f7f986074b82b3f2e1ea97f8e,
+        type: 3}
+      propertyPath: m_Name
+      value: InputsActivator
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 40a1c09f7f986074b82b3f2e1ea97f8e, type: 3}
+--- !u!4 &1637522155638303201 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3809330878909169133, guid: 40a1c09f7f986074b82b3f2e1ea97f8e,
+    type: 3}
+  m_PrefabInstance: {fileID: 2478338761695007756}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5385849557133197602
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1184,6 +1086,11 @@ PrefabInstance:
     - target: {fileID: 7059000592814186575, guid: 0d09c0515b2885647b380434ea8ed7a8,
         type: 3}
       propertyPath: _interactDetection
+      value: 
+      objectReference: {fileID: 7994010590937533326}
+    - target: {fileID: 7059000592814186575, guid: 0d09c0515b2885647b380434ea8ed7a8,
+        type: 3}
+      propertyPath: playerInteractDetection
       value: 
       objectReference: {fileID: 7994010590937533326}
     - target: {fileID: 7139420321661212384, guid: 0d09c0515b2885647b380434ea8ed7a8,

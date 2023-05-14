@@ -3,15 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using Attack;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class AttackCollider : MonoBehaviour , IAttackCollider
 {
-    public List<IDamageable> hitsted; 
+    private List<IDamageable> _damageableHitted; 
     public event EventHandler OnCollideWithIDamageable;
     AnimationEvent _damageActiveAnimatorEvent;
     
-    
-
     [SerializeField] private bool sendEventOnEnter = true;
     [SerializeField] private bool sendEventOnStay = false; 
     [SerializeField] private bool sendEventOnExit = false;
@@ -19,19 +18,19 @@ public class AttackCollider : MonoBehaviour , IAttackCollider
     [SerializeField] private LayerMask interactWithLayers;
     private void OnEnable()
     {
-        hitsted = new List<IDamageable>();
+        _damageableHitted = new List<IDamageable>();
     }
 
     private void OnDisable()
     {
-        hitsted = new List<IDamageable>();
+        _damageableHitted = new List<IDamageable>();
     }
 
     private void OnHit(IDamageable damageable)
     {
-        if (hitsted.Contains(damageable)) return;
+        if (_damageableHitted.Contains(damageable)) return;
         
-        hitsted.Add(damageable);
+        _damageableHitted.Add(damageable);
         OnCollideWithIDamageable?.Invoke(this, new DamageableEventArgs()
         {
             idamageable = damageable

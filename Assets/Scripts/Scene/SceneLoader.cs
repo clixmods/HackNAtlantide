@@ -21,6 +21,16 @@ public class SceneLoader : MonoBehaviour
     private void Awake()
     {
         var indexBuildActiveScene = SceneManager.GetActiveScene().buildIndex;
+       
+        // If additive are already loaded, we need to close each of them
+        for (int i = 0; i <  SceneManager.sceneCount; i++)
+        {
+           var scene = SceneManager.GetSceneAt(i);
+           if (scene.buildIndex == environmentScene || scene.buildIndex == dependenceScene)
+           {
+               SceneManager.UnloadSceneAsync(scene, UnloadSceneOptions.None);
+           }
+        }
         _currentSceneIndex = indexBuildActiveScene;
         StartCoroutine(LoadSceneAsync());
     }

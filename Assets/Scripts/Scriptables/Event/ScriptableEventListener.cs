@@ -3,22 +3,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 
 public class ScriptableEventListener : MonoBehaviour
 {
-    [SerializeField] private EventScriptableObject _scriptableEvent;
+    [FormerlySerializedAs("_scriptableEvent")] [SerializeField] private ScriptableEvent scriptableScriptableEvent;
     public UnityEvent LaunchEvent;
     private void Awake()
     {
-        _scriptableEvent.OnEvent += ScriptableEventOnOnEvent;
+        scriptableScriptableEvent.OnEvent += ScriptableScriptableEventOnOnEvent;
     }
 
     private void OnDestroy()
     {
-        _scriptableEvent.OnEvent -= ScriptableEventOnOnEvent;
+        scriptableScriptableEvent.OnEvent -= ScriptableScriptableEventOnOnEvent;
     }
 
-    private void ScriptableEventOnOnEvent()
+    private void ScriptableScriptableEventOnOnEvent()
     {
         LaunchEvent?.Invoke();
     }

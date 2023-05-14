@@ -585,6 +585,7 @@ GameObject:
   - component: {fileID: 4946743525479470109}
   - component: {fileID: 5843071302513481857}
   - component: {fileID: 104935170799814868}
+  - component: {fileID: 6271426190023578653}
   m_Layer: 11
   m_Name: basic demon Clix
   m_TagString: Untagged
@@ -687,7 +688,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c80a058dcb004b16bdccf09b276a7bb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _meshRenderer: {fileID: 910961543596870149}
+  meshRenderer: {fileID: 910961543596870149}
 --- !u!114 &460704731309419892
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -782,6 +783,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.530229, y: 5.7378287, z: 2.581873}
   m_Center: {x: -0.0025355816, y: 2.368913, z: 0.39581776}
+--- !u!114 &6271426190023578653
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6444109697107675426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 565d1a3666304450998481431676a846, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6807757247191123624
 GameObject:
   m_ObjectHideFlags: 0

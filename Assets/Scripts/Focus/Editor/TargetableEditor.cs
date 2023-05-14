@@ -2,7 +2,7 @@
 using UnityEngine;
 
 
-// //[CustomEditor(typeof(Targetable))]
+// //[CustomEditor(typeof(Focusable))]
 //     public class TargetableEditor : Editor
 //     {
 //         public override void OnInspectorGUI()

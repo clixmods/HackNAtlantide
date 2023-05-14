@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class BoussoleBehaviour : MonoBehaviour
 {
-    [SerializeField] private InteractDetection _interactDetection;
+    [FormerlySerializedAs("_interactDetection")] [SerializeField] private PlayerInteractDetection playerInteractDetection;
     bool _interactObjectIsClose;
     bool _isUsingBoussole;
     [SerializeField] GameObject _interfaceBoussole;
@@ -24,10 +25,10 @@ public class BoussoleBehaviour : MonoBehaviour
     }
     private void Start()
     {
-        if (_interactDetection == null)
+        if (playerInteractDetection == null)
         {
-            Debug.LogWarning("Warning you need to set InteractDetection", gameObject);
-            _interactDetection = FindObjectOfType<InteractDetection>();
+            Debug.LogWarning("Warning you need to set PlayerInteractDetection", gameObject);
+            playerInteractDetection = FindObjectOfType<PlayerInteractDetection>();
         }
         _timeReset = timeToChangeAiguilleDirection;
         _interfaceBoussole.SetActive(false);
@@ -36,7 +37,7 @@ public class BoussoleBehaviour : MonoBehaviour
     {
         if(_isUsingBoussole)
         {
-            List<IInteractable> interactables = _interactDetection.Interactable;
+            List<IInteractable> interactables = playerInteractDetection.Interactable;
             if (interactables.Count > 0)
             {
                 BoussoleControl(true);

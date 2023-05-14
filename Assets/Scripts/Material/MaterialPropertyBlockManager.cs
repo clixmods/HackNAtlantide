@@ -5,8 +5,6 @@ public class MaterialPropertyBlockManager : MonoBehaviour
         private MaterialPropertyBlock[] _propBlocks;
         private MeshRenderer _meshRenderer;
         private static readonly int Amount = Shader.PropertyToID("_Amount");
-
-
         public void Init(MeshRenderer meshRenderer)
         {
             _meshRenderer = meshRenderer;

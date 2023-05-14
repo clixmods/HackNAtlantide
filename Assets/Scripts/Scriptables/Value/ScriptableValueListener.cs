@@ -6,7 +6,7 @@ using UnityEngine.Events;
 
 public class ScriptableValueListener<T> : MonoBehaviour 
 {
-    [SerializeField] protected ValueScriptableObject<T> _scriptableEvent;
+    [SerializeField] protected ScriptableValue<T> _scriptableEvent;
     public UnityEvent<T> LaunchEvent;
     [SerializeField] private bool launchEventOnStart;
     protected virtual void Awake()
