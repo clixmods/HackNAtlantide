@@ -72,7 +72,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] TrailRenderer _dashTrail;
     [SerializeField] ParticleSystem _dustWalk;
     
-    [SerializeField] EventScriptableObject _dashEvent;
+    [SerializeField] ScriptableEvent _dashEvent;
 
     #endregion
 

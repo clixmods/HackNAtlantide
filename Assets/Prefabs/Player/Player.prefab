@@ -9747,6 +9747,7 @@ MonoBehaviour:
   _dashTime: 0.1
   _dashSpeed: 25
   _dashReloadTime: 0.2
+  dashScriptableEvent: {fileID: 0}
   _playerStamina: {fileID: 11400000, guid: 7a3b5b3b905bbfe4fb4ea9ada55960e1, type: 2}
   _dashRumble: {fileID: 11400000, guid: ba6cf9a408e865248965638af31bbe14, type: 2}
   _dashFX: {fileID: 5884998599488833683}
@@ -9962,7 +9963,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c80a058dcb004b16bdccf09b276a7bb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _meshRenderer: {fileID: 8662073844750551201}
+  meshRenderer: {fileID: 8662073844750551201}
 --- !u!114 &9206612970395859790
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10039,7 +10040,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 147e4dae20030574bba3a30e8095aedd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _multiplierSpeed: 0.5
+  timeTransition: 3
 --- !u!1 &3573697337452119477
 GameObject:
   m_ObjectHideFlags: 0

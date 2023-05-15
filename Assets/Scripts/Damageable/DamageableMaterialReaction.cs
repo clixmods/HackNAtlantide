@@ -14,7 +14,10 @@ public class DamageableMaterialReaction : MonoBehaviour
             idamageable = GetComponentInChildren<IDamageable>();
             idamageable.OnDamage += IdamageableOnOnDamage;
             // Setup Material property block
-            meshRenderer ??= GetComponentInChildren<Renderer>();
+            if (meshRenderer == null)
+            {
+                meshRenderer = GetComponentInChildren<Renderer>();
+            }
             _propBlocks = new MaterialPropertyBlock[meshRenderer.sharedMaterials.Length];
             for (int i = 0; i < _propBlocks.Length; i++)
             {
