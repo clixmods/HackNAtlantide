@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 using static UnityEngine.Rendering.DebugUI;
 
 public class PlayerInteractDetection : MonoBehaviour
@@ -18,6 +19,11 @@ public class PlayerInteractDetection : MonoBehaviour
     [SerializeField] PlayerDetectionScriptableObject _playerDetectionScriptableObject;
     [SerializeField] private PlayerStaminaScriptableObject _playerStamina;
 
+    private IInteractable _currentInteractable;
+
+    public UnityEvent<IInteractable> InteractableSelected;
+    public UnityEvent InteractableDeselected;
+    
 
     void OnEnable()
     {
@@ -51,7 +57,7 @@ public class PlayerInteractDetection : MonoBehaviour
     }
     
 
-    private IInteractable _currentInteractable;
+ 
     void InteractInput(bool value)
     {
         Debug.Log("Value Input "+value);
@@ -68,10 +74,12 @@ public class PlayerInteractDetection : MonoBehaviour
             {
                 return;
             }
-            // No interactable used, so we need to check the closest and use it
+            // No interactableTransform used, so we need to check the closest and use it
             if(closestObject != null && closestObject.Interact())
             {
+                
                 _currentInteractable = closestObject;
+                InteractableSelected?.Invoke(_currentInteractable);
             }
         }
         else
@@ -80,6 +88,7 @@ public class PlayerInteractDetection : MonoBehaviour
             {
                 _currentInteractable.CancelInteract();
                 _currentInteractable = null;
+                InteractableDeselected?.Invoke();
             }
         }
     }
@@ -94,6 +103,7 @@ public class PlayerInteractDetection : MonoBehaviour
                 _releaseInfo.RemoveInputInfo();
                 _currentInteractable.ResetInteract();
                 _currentInteractable = null;
+                InteractableDeselected?.Invoke();
             }
         }
     }
@@ -114,7 +124,7 @@ public class PlayerInteractDetection : MonoBehaviour
                 }
             }
         }
-        // If the previous ClosestObject is not in the list of interactable, we need to disable the input helper
+        // If the previous ClosestObject is not in the list of interactableTransform, we need to disable the input helper
         if ( closestObject != null && closestObject.transform.TryGetComponent<InputHelper>(out var closestObjectInputHelpernputHelper) )
         {
             if (!interactable.Contains(closestObject))
