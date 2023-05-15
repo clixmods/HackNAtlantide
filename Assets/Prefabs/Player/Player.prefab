@@ -9954,8 +9954,9 @@ GameObject:
   - component: {fileID: 2142915724051229906}
   - component: {fileID: 1507748067872934469}
   - component: {fileID: 1397478547313080145}
+  - component: {fileID: 9069158143247009177}
   m_Layer: 0
-  m_Name: Global Volume_001
+  m_Name: Global Volume Death
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10006,6 +10007,36 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeTransition: 3
+  ignoreTimescale: 1
+--- !u!114 &9069158143247009177
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2417519851276967300}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f6b678f0e70c584d88ed3bcc46007a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scriptableScriptableEvent: {fileID: 11400000, guid: b2bbc58ab515aa9479d9150fd0fd66b9,
+    type: 2}
+  LaunchEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1397478547313080145}
+        m_TargetAssemblyTypeName: PostProcessWeightTransition, Assembly-CSharp
+        m_MethodName: SetWeightVolume
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 1
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &3573697337452119477
 GameObject:
   m_ObjectHideFlags: 0

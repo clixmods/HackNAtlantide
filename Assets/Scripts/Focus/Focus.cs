@@ -96,6 +96,7 @@ public class Focus : MonoBehaviour
     }
     private void OnDestroy()
     {
+        DisableFocus();
         inputEnableFocus.OnValueChanged -= InputEnableFocusOnChanged;
         inputSwitchTarget.OnValueChanged -= InputSwitchTargetOnChanged;
         CinemachineCameraVirtualTransition.OnPostCameraChanged -= OnCameraTransitionChange;

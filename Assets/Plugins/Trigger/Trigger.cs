@@ -75,7 +75,6 @@ public abstract class Trigger : MonoBehaviour
      {
           if (IsInteractable(other.gameObject) )
           {
-               Debug.Log("Trigger Enter by player");
                EventOnTriggerEnter?.Invoke();
                TriggerEnter();
                if (disableAfterOnTriggerEnter)
@@ -88,7 +87,6 @@ public abstract class Trigger : MonoBehaviour
      {
           if (IsInteractable(other.gameObject) )
           {
-               Debug.Log($"Trigger Exit by {other.gameObject}", gameObject);
                EventOnTriggerEnd?.Invoke();
                TriggerExit();
                if (disableAfterOnTriggerExit)

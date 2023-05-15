@@ -11,6 +11,7 @@ public class PostProcessWeightTransition : MonoBehaviour
     private float _weightPrevious;
     private float _timeElapsed;
     [SerializeField] private float timeTransition = 3;
+    [SerializeField] private bool ignoreTimescale = true;
     void Awake()
     {
         _volume = GetComponent<Volume>();
@@ -35,7 +36,15 @@ public class PostProcessWeightTransition : MonoBehaviour
         {
             float t = _timeElapsed / timeTransition;
             _volume.weight = Mathf.Clamp(Mathf.Lerp(_weightPrevious, _weightTarget, t) ,0,1);
-            _timeElapsed += Time.deltaTime;
+            if (ignoreTimescale)
+            {
+                _timeElapsed += Time.unscaledTime;
+            }
+            else
+            {
+                _timeElapsed += Time.deltaTime;
+            }
+         
             yield return null;
         }
         _isTransitioning = false;
