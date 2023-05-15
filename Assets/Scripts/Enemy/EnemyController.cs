@@ -25,6 +25,7 @@ public class EnemyController : MonoBehaviour, ICombat
     private float reduceForce = 1f;
     public bool IsAttacking { get { return _isAttacking; } }
     private Vector3 destination;
+    
     private void Awake()
     {
         _attackCollider = GetComponentInChildren<IAttackCollider>();
@@ -34,9 +35,8 @@ public class EnemyController : MonoBehaviour, ICombat
         }
         else
         {
-            Debug.LogError("No attackCollider find, this enemy can't attack.", gameObject);
+            Debug.LogError("No attack Collider find, this enemy can't attack.", gameObject);
         }
-       
     }
 
     private void AttackColliderOnOnCollideWithIDamageable(object sender, EventArgs eventArgs)
@@ -59,8 +59,16 @@ public class EnemyController : MonoBehaviour, ICombat
         Debug.Log(forceDiffMove.magnitude);
         _playerInLookRadius = Physics.CheckSphere(transform.position, lookRadius, playerLayer);
         _playerInAttackRadius = Physics.CheckSphere(transform.position, attackRadius, playerLayer);
-        
-        if (_playerInLookRadius && !_playerInAttackRadius) Chase();
+
+        if (!_playerInLookRadius)
+        {
+            _animator.SetBool("IsAwake", false);
+        }
+        if (_playerInLookRadius && !_playerInAttackRadius)
+        {
+            _animator.SetBool("IsAwake", true);
+            Chase();
+        }
         if (_playerInLookRadius && _playerInAttackRadius)
         {
             Attack();
@@ -76,13 +84,14 @@ public class EnemyController : MonoBehaviour, ICombat
     
     void Chase()
     {
+        
         destination = PlayerInstanceScriptableObject.Player.transform.position;
     }
     
     private void Attack()
     {
         FaceTarget();
-        if (!_animator.GetCurrentAnimatorStateInfo(0).IsName("Enemy_attack"))
+        if (!_animator.GetCurrentAnimatorStateInfo(0).IsName("Attaque_1_Golem"))
         {
             _animator.SetTrigger("Attack");
             destination = transform.position;
@@ -115,7 +124,9 @@ public class EnemyController : MonoBehaviour, ICombat
     }
 
     private bool _canAttack;
+    
     public event Action _attackEvent;
+    
     public bool canAttack { 
         get { return _canAttack; } 
         set
