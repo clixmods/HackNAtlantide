@@ -70,10 +70,6 @@ public class PlayerCombatTuto : MonoBehaviour
         {
             yield return new WaitForSeconds(1f);
         }
-        else
-        {
-
-        }
         _isInCutScene = false;
 
     }
@@ -114,7 +110,7 @@ public class PlayerCombatTuto : MonoBehaviour
             //Attack
             if (!_hasDoneAttackQte)
             {
-                if ((_focus.CurrentTarget.transform.position - transform.position).magnitude < 2.5f)
+                if ((_focus.CurrentTarget.transform.position - transform.position).magnitude <3.5f)
                 {
                     _qTEHandler.ActiveInputType(InputType.Move, false);
                     _qTEHandler.CancelMove();
