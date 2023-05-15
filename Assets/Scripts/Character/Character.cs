@@ -45,7 +45,14 @@ public class Character : MonoBehaviour,  IDamageable
     {
         health -= damage;
         AttackFeedback();
-        OnDamage?.Invoke(this,null);
+        OnDamage?.Invoke(this,new DoDamageEventArgs
+            {
+                damage = damage,
+                attackPosition = attackLocation,
+                attacker = this
+            }
+            
+            );
         if(health <= 0f)
         {
             Dead();

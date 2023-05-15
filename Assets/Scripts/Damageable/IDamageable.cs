@@ -7,6 +7,7 @@ using UnityEngine;
 public class DoDamageEventArgs : EventArgs
 {  
     // class members 
+    public float damage;
     public Vector3 attackPosition;
     public IDamageable attacker;
 }
