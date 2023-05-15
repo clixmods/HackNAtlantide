@@ -34,6 +34,7 @@ Transform:
   - {fileID: 622382961767708416}
   - {fileID: 5174192314529097492}
   - {fileID: 3850195321192079801}
+  - {fileID: 3891266543451138116}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -53,6 +54,12 @@ MonoBehaviour:
   gameStateOverride:
     isPaused: 0
     timeScale: 1
+    inputActive: 0
+  tutoStateObject: {fileID: 5505274476436708543}
+  pauseStateObject: {fileID: 7106371741328935}
+  runTimeStateObject: {fileID: 7106371410384467}
+  combatStateObject: {fileID: 1591383525252357313}
+  pauseEvent: {fileID: 11400000, guid: 2e10e467beca3454ea2c3dfdfe77bc32, type: 2}
   references:
     version: 2
     RefIds: []
@@ -278,6 +285,51 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 59a3ea53ee9182045bcb77a2266c460a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gameStateManager: {fileID: 7106371341753771}
+--- !u!1 &5505274476436708543
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3891266543451138116}
+  - component: {fileID: 654234409203435011}
+  m_Layer: 0
+  m_Name: TutoState
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &3891266543451138116
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5505274476436708543}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7106371341753770}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &654234409203435011
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5505274476436708543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f5f2557ce06f09429750b532cc431d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _gameStateManager: {fileID: 7106371341753771}

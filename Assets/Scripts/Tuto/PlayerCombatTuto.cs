@@ -5,9 +5,8 @@ using UnityEngine;
 
 public class PlayerCombatTuto : MonoBehaviour
 {
-    [SerializeField] private QTEHandler _qTEHandler;
-    [SerializeField] private Focus _focus;
-    PlayerDetectionScriptableObject _playerDetectionScriptableObject;
+    private QTEHandler _qTEHandler;
+    private Focus _focus;
 
     bool _hasDoneAttackQte = false;
     bool _hasDoneDashQte = false;
@@ -15,8 +14,6 @@ public class PlayerCombatTuto : MonoBehaviour
     bool _hasDoneDashAttackQte = false;
 
     bool _isInCutScene;
-    bool isAttacking;
-    InputType _lastInputTypeDone;
     bool _listenToEventAttack;
     private void Awake()
     {
@@ -25,17 +22,18 @@ public class PlayerCombatTuto : MonoBehaviour
     }
     private void OnEnable()
     {
+        GameStateManager.Instance.tutoStateObject.SetActive(true);
+        _qTEHandler.ActiveAllInput(false);
         _qTEHandler.cutSceneSuccess += CutSceneSuccess;
     }
     private void OnDisable()
     {
-        
         _qTEHandler.cutSceneSuccess -= CutSceneSuccess;
+        GameStateManager.Instance.tutoStateObject.SetActive(false);
     }
 
     void CutSceneSuccess(InputType inputType)
     {
-        _lastInputTypeDone = inputType;
         switch (inputType)
         {
             case InputType.Interact:
@@ -68,7 +66,14 @@ public class PlayerCombatTuto : MonoBehaviour
     IEnumerator WaitForNewQTE()
     {
         _isInCutScene = true;
-        yield return new WaitForSeconds(1f);
+        if(_hasDoneAttackQte)
+        {
+            yield return new WaitForSeconds(1f);
+        }
+        else
+        {
+
+        }
         _isInCutScene = false;
 
     }

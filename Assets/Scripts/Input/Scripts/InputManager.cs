@@ -47,6 +47,35 @@ public class InputManager : MonoBehaviour
     {
         DisableGameInput();
     }
+    public void ActiveInputMovement(bool value)
+    { 
+        _move.IsActive = value;
+    }
+    public void ActiveInputDash(bool value)
+    {
+        _dash.IsActive = value;
+    }
+    public void ActiveInputInteract(bool value)
+    {
+        _interact.IsActive = value;
+    }
+    public void ActiveAllInputs(bool value)
+    {
+        _interact.IsActive = value;
+        _attack.IsActive = value;
+        _dash.IsActive = value;
+        _dashAttack.IsActive = value;
+        _move.IsActive = value;
+        _switchFocus.IsActive = value;
+        _focus.IsActive = value;
+        _boussole.IsActive = value;
+        _release.IsActive = value;
+    }
+    public void ActiveInputCombat(bool value)
+    {
+        _attack.IsActive = value;
+        _dashAttack.IsActive = value;
+    }
     public void EnableGameInput()
     {
         _input.Enable();

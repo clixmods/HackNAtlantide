@@ -10,4 +10,5 @@ public static class GameStateUtility
     public const int CinematiquePriority = 20;
     public const int MainMenuPriority = 2;
     public const int combatPriority = 50;
+    public const int TutoPriority = 30;
 }
