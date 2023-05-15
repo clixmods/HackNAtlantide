@@ -76,7 +76,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 7a3fd5510cc3fcf4683ab8f15c52d43f, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -110,34 +110,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5dd653709e044829bda348292851ec7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  materialTrigger: {fileID: 2100000, guid: 7a3fd5510cc3fcf4683ab8f15c52d43f, type: 2}
+  materialTrigger: {fileID: 0}
   EventOnTriggerEnter:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 11400000, guid: 67380d3709d97c74e85b3aafe21013ad, type: 2}
-        m_TargetAssemblyTypeName: InputScriptableObject`1[[System.Boolean, mscorlib
-        m_MethodName: set_IsActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 11400000, guid: fdbbc2eed1d30cb48b96b3abfe6f859e, type: 2}
-        m_TargetAssemblyTypeName: InputScriptableObject`1[[System.Boolean, mscorlib
-        m_MethodName: set_IsActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
+      m_Calls: []
   EventOnTriggerEnd:
     m_PersistentCalls:
       m_Calls: []
@@ -145,4 +121,4 @@ MonoBehaviour:
   disableAfterOnTriggerExit: 0
   interactWithLayers:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 0
