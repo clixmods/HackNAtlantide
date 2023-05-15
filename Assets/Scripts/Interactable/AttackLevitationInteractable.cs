@@ -87,22 +87,6 @@ public class AttackLevitationInteractable : MonoBehaviour, IInteractable
     {
         Explosion();
     }
-    void Explosion()
-    {
-        if (explosion)
-        {
-            if (_colliderExplosion.radius > _maxRadius)
-            {
-                _colliderExplosion.enabled = false;
-                Destroy(gameObject);
-            }
-            else
-            {
-                _colliderExplosion.radius += Time.deltaTime * _speedExplosion;
-            }
-        }
-    }
-
     // We need to use late update, sometimes, the position targeted glitch because nav agent is bullshit
     private void LateUpdate()
     {
@@ -124,7 +108,21 @@ public class AttackLevitationInteractable : MonoBehaviour, IInteractable
     }
     
     #endregion
-        
+    void Explosion()
+    {
+        if (explosion)
+        {
+            if (_colliderExplosion.radius > _maxRadius)
+            {
+                _colliderExplosion.enabled = false;
+                Destroy(gameObject);
+            }
+            else
+            {
+                _colliderExplosion.radius += Time.deltaTime * _speedExplosion;
+            }
+        }
+    }
         private void AttackColliderOnOnCollideWithIDamageable(object sender, EventArgs e)
         {
             if (e is AttackDamageableEventArgs mDamageableEventArgs)
@@ -174,14 +172,14 @@ public class AttackLevitationInteractable : MonoBehaviour, IInteractable
     {
         _isCharging = true;
         float timeElapsed = 0;
-      
+        Vector3 startPosition = transform.position  ;
         _inputHelper.enabled = true;
         _uiChargeInputHelper.SetFillValue(1);
         _rigidBody.AddTorque(Random.onUnitSphere * 20);
         while (timeElapsed < timeToBeCharged )
         {
             
-            Vector3 startPosition = _playerDetectionScriptableObject.PlayerPosition + Vector3.up * 2 ;
+           
             Vector3 destinationPosition = _playerDetectionScriptableObject.PlayerPosition + Vector3.up * 4;
             if (!_isCharging)
             {
