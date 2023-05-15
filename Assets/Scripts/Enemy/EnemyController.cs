@@ -20,7 +20,11 @@ public class EnemyController : MonoBehaviour, ICombat
     private Animator _animator;
     private IAttackCollider _attackCollider;
     private bool _isAttacking;
+    private Vector3 forceDiffMove;
+    public Vector3 ForceDiffMove { get; set; }
+    private float reduceForce = 1f;
     public bool IsAttacking { get { return _isAttacking; } }
+    private Vector3 destination;
     private void Awake()
     {
         _attackCollider = GetComponentInChildren<IAttackCollider>();
@@ -51,6 +55,8 @@ public class EnemyController : MonoBehaviour, ICombat
 
     private void Update()
     {
+        _agent.SetDestination(destination + forceDiffMove);
+        Debug.Log(forceDiffMove.magnitude);
         _playerInLookRadius = Physics.CheckSphere(transform.position, lookRadius, playerLayer);
         _playerInAttackRadius = Physics.CheckSphere(transform.position, attackRadius, playerLayer);
         
@@ -59,11 +65,18 @@ public class EnemyController : MonoBehaviour, ICombat
         {
             Attack();
         }
+
+        float magnitude = forceDiffMove.magnitude;
+        forceDiffMove = (magnitude - Time.deltaTime * reduceForce) * forceDiffMove;
+        if (magnitude < 0.001f)
+        {
+            forceDiffMove = Vector3.zero;
+        }
     }
     
     void Chase()
     {
-        _agent.SetDestination(PlayerInstanceScriptableObject.Player.transform.position);
+        destination = PlayerInstanceScriptableObject.Player.transform.position;
     }
     
     private void Attack()
@@ -72,7 +85,7 @@ public class EnemyController : MonoBehaviour, ICombat
         if (!_animator.GetCurrentAnimatorStateInfo(0).IsName("Enemy_attack"))
         {
             _animator.SetTrigger("Attack");
-            _agent.SetDestination(transform.position);
+            destination = transform.position;
         }
     }
     
