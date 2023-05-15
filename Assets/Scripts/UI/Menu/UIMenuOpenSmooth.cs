@@ -16,7 +16,6 @@ public class UIMenuOpenSmooth : MonoBehaviour
     {
         _canvasGroup = GetComponent<CanvasGroup>();
     }
-
     private void OnDisable()
     {
         ResetValues();
@@ -30,6 +29,7 @@ public class UIMenuOpenSmooth : MonoBehaviour
     private void ResetValues()
     {
         _canvasGroup.alpha = 0;
+        _canvasGroup.interactable = false;
         _currentDelay = 0;
         _currentStartTheOpenDelay = 0;
     }
@@ -48,6 +48,10 @@ public class UIMenuOpenSmooth : MonoBehaviour
             {
                 _currentStartTheOpenDelay += Time.unscaledDeltaTime;
             }
+        }
+        else
+        {
+            _canvasGroup.interactable = true;
         }
     }
 }
