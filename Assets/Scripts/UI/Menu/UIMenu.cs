@@ -176,7 +176,7 @@ public class UIMenu : MonoBehaviour
             _previousMenu = parentMenu;
             _previousMenu.SetActive(false);
         }
-        if (canAdjustTimescale)
+        /*if (canAdjustTimescale)
         {
             // Menu affect Timescale 
             _previousTimeScale = Time.timeScale;
@@ -185,7 +185,7 @@ public class UIMenu : MonoBehaviour
                 _previousTimeScale = Time.timeScale;
                 Time.timeScale = timeScale;
             }
-        }
+        }*/
         // Open the menu
         gameObject.SetActive(true);
         IsOpen = true;
@@ -198,11 +198,11 @@ public class UIMenu : MonoBehaviour
     public virtual void CloseMenu(bool openPreviousMenu = false)
     {
         if (ActiveMenu == null || !IsOpen)
-        {
+        {/*
             if (canAdjustTimescale)
             {
                 Time.timeScale = 1;
-            }
+            }*/
             return;
         }
            
