@@ -35,7 +35,7 @@ public class PlayerEvents : MonoBehaviour
     private IAttackCollider _attackCollider;
     private void Awake()
     {
-        _damageable = GetComponent<IDamageable>(); 
+        _damageable = GetComponentInChildren<IDamageable>(); 
         _damageable .OnDamage += OnOnDamage;
         _damageable.OnDeath += OnOnDeath;
         _attackCollider = GetComponentInChildren<IAttackCollider>();

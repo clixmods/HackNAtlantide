@@ -45,6 +45,8 @@ public class PlayerCombat : MonoBehaviour,ICombat
         _attackCollider.OnCollideWithIDamageable += AttackColliderOnOnCollideWithIDamageable;
         _animator = GetComponentInChildren<Animator>();
         _playerMovement = GetComponent<PlayerMovement>();
+        _playerAnimations = GetComponent<PlayerAnimations>();
+        
         noOfClicks = 0;
         canClick = true;
     }
