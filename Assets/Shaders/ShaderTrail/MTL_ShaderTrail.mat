@@ -22,7 +22,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _MainTexture:
-        m_Texture: {fileID: 2800000, guid: 65557ebe901272442bb8a8082d6dc0a4, type: 3}
+        m_Texture: {fileID: 2800000, guid: 6d261e1e79576f24c9b3aab788799156, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -39,14 +39,19 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _DecalMeshBiasType: 0
+    - _DecalMeshDepthBias: 0
+    - _DecalMeshViewBias: 0
     - _DissolveScale: 35
+    - _DrawOrder: 0
     - _QueueControl: 0
     - _QueueOffset: 0
+    - _Treshhold: 0.11
     m_Colors:
-    - _Color1: {r: 0.1215686, g: 0.4744013, b: 0.6039216, a: 1}
-    - _Color2: {r: 0.03327561, g: 1.5417701, b: 1.9854449, a: 1}
-    - _FadingSpeed: {r: 0.51, g: 0, b: 0, a: 0}
-    - _MaintTexSpeed: {r: 0.2, g: 0, b: 0, a: 0}
+    - _Color1: {r: 2.0302951, g: 2.9580128, b: 19.389322, a: 1}
+    - _Color2: {r: 0.062745094, g: 0.3686458, b: 0.53333336, a: 1}
+    - _FadingSpeed: {r: 0.81, g: 0, b: 0, a: 0}
+    - _MaintTexSpeed: {r: 1.16, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &5236747207739163290
 MonoBehaviour:
