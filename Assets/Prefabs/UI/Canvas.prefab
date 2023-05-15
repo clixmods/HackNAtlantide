@@ -393,6 +393,7 @@ GameObject:
   - component: {fileID: 629907865030338905}
   - component: {fileID: 6354926507877826843}
   - component: {fileID: 6018657793949776120}
+  - component: {fileID: 1909727725982889606}
   m_Layer: 5
   m_Name: PauseScreenMenu
   m_TagString: Untagged
@@ -474,10 +475,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EventOnOpenMenu:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1909727725982889606}
+        m_TargetAssemblyTypeName: PauseEvent, Assembly-CSharp
+        m_MethodName: Pause
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   EventOnCloseMenu:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1909727725982889606}
+        m_TargetAssemblyTypeName: PauseEvent, Assembly-CSharp
+        m_MethodName: Pause
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   _firstSelectedGameObject: {fileID: 4981220057676733223}
   closeMenuOnReleaseButton: 0
   canBeOpenedAnywhere: 1
@@ -520,6 +545,19 @@ MonoBehaviour:
   InputValueFalse:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1909727725982889606
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2770033533709605287}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6c76bbb75460ed469fb6c5d3d08ffe3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_PauseEvent: {fileID: 11400000, guid: 2e10e467beca3454ea2c3dfdfe77bc32, type: 2}
 --- !u!1 &2771088975631284720
 GameObject:
   m_ObjectHideFlags: 0
@@ -1816,7 +1854,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f6b678f0e70c584d88ed3bcc46007a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _scriptableEvent: {fileID: 11400000, guid: 7b2c3c7a6e608374cbc54157fac058b6, type: 2}
+  scriptableScriptableEvent: {fileID: 11400000, guid: 7b2c3c7a6e608374cbc54157fac058b6,
+    type: 2}
   LaunchEvent:
     m_PersistentCalls:
       m_Calls:

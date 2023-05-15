@@ -49,7 +49,6 @@ public class QTEHandler : MonoBehaviour
     {
         cine = FindObjectOfType<CinemachineBrain>();
         VirtualCamera = (CinemachineVirtualCamera)cine.ActiveVirtualCamera;
-        ActiveAllInput(false);
     }
     private void OnEnable()
     {

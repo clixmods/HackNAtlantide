@@ -10,7 +10,7 @@ public class RuntimeGameState : GameState
     public override int Priority => GameStateUtility.RunTimePriority;
     public override void ApplyOverride(GameStateOverride stateOverride)
     {
-
+        stateOverride.timeScale = 1f;
     }
 }
 public class PauseGameState : GameState
@@ -21,6 +21,7 @@ public class PauseGameState : GameState
     {
         stateOverride.isPaused = true;
         stateOverride.timeScale = 0f;
+        stateOverride.allInputActive = false;
     }
 }
 public class CinematiqueState : GameState
@@ -31,6 +32,7 @@ public class CinematiqueState : GameState
     {
         stateOverride.isPaused = false;
         stateOverride.timeScale = 1f;
+        stateOverride.allInputActive = false;
     }
 }
 public class MainMenuState : GameState
@@ -41,6 +43,7 @@ public class MainMenuState : GameState
     {
         stateOverride.isPaused = false;
         stateOverride.timeScale = 0f;
+        stateOverride.allInputActive = false;
     }
 }
 public class CombatState : GameState
@@ -53,6 +56,21 @@ public class CombatState : GameState
         stateOverride.timeScale = 0f;
     }
 }
+public class TutoState : GameState
+{
+    public override int Priority => GameStateUtility.combatPriority;
+
+    public override void ApplyOverride(GameStateOverride stateOverride)
+    {
+        stateOverride.isPaused = false;
+        stateOverride.timeScale = 1f;
+        stateOverride.inputInteractActive = false;
+        stateOverride.inputMovementActive = true;
+        stateOverride.inputCombatActive = false;
+        stateOverride.inputDashActive = false;
+
+    }
+}
 public interface IGameStateCallBack
 {
     void OnApplyGameStateOverride(GameStateOverride stateOverride);
@@ -63,14 +81,28 @@ public class GameStateOverride
 {
     public bool isPaused;
     public float timeScale = 1f;
+    public bool inputMovementActive = true;
+    public bool inputCombatActive = true;
+    public bool inputDashActive = true;
+    public bool inputInteractActive = true;
+    public bool allInputActive = true;
     public void Reset()
     {
         isPaused = false;
         timeScale = 1f;
+        inputMovementActive = true;
+        inputCombatActive = true;
+        inputDashActive = true;
+        inputInteractActive = true;
     }
     public void Apply()
     {
         Time.timeScale = timeScale;
+        InputManager.Instance.ActiveAllInputs(allInputActive);
+        InputManager.Instance.ActiveInputCombat(inputCombatActive);
+        InputManager.Instance.ActiveInputDash(inputDashActive);
+        InputManager.Instance.ActiveInputInteract(inputInteractActive);
+        InputManager.Instance.ActiveInputMovement(inputMovementActive);
     }
 }
 [Serializable]
@@ -137,6 +169,12 @@ public class GameStateManager : MonoBehaviour
 
     private bool isApplicationQuit = false;
 
+    public GameObject tutoStateObject;
+    public GameObject pauseStateObject;
+    public GameObject runTimeStateObject;
+    public GameObject combatStateObject;
+    [SerializeField] ScriptableEventBool pauseEvent;
+
     //------------------------
     private void Awake()
     {
@@ -147,7 +185,14 @@ public class GameStateManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(this);
     }
-
+    private void OnEnable()
+    {
+        pauseEvent.OnEvent += (x) => pauseStateObject.SetActive(x);
+    }
+    private void OnDisable()
+    {
+        pauseEvent.OnEvent -= (x) => pauseStateObject.SetActive(x);
+    }
     //------------------------
 
     public void RegisterCallback(IGameStateCallBack callback)
