@@ -63,6 +63,7 @@ public class PlayerCombatTuto : MonoBehaviour
     {
         return _hasDoneAttackQte && _hasDoneDashQte && _hasDoneFocusQte;
     }
+    
     IEnumerator WaitForNewQTE()
     {
         _isInCutScene = true;
@@ -71,7 +72,6 @@ public class PlayerCombatTuto : MonoBehaviour
             yield return new WaitForSeconds(1f);
         }
         _isInCutScene = false;
-
     }
     private void Update()
     {

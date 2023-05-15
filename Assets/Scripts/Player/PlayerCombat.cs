@@ -80,6 +80,7 @@ public class PlayerCombat : MonoBehaviour,ICombat
         if (canClick)            
         {            
             noOfClicks++;
+            //canClick = false;
         }
         
         if (noOfClicks == 1)
