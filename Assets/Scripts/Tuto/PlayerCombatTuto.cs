@@ -29,6 +29,7 @@ public class PlayerCombatTuto : MonoBehaviour
     }
     private void OnDisable()
     {
+        
         _qTEHandler.cutSceneSuccess -= CutSceneSuccess;
     }
 
@@ -84,6 +85,7 @@ public class PlayerCombatTuto : MonoBehaviour
             {
                 if (_focus.CurrentTarget.transform.TryGetComponent<EnemyController>(out EnemyController enemy) && !_listenToEventAttack)
                 {
+                   
                     enemy.GetComponent<Animator>().speed = 0.8f;
                     enemy._attackEvent += DashQTE;
                     _listenToEventAttack = true;
@@ -97,6 +99,7 @@ public class PlayerCombatTuto : MonoBehaviour
             //Focus
             if (!_hasDoneFocusQte)
             {
+                Debug.Log("Dans le IF ");
                 _qTEHandler.LaunchCutScene(InputType.Focus);
                 _isInCutScene = true;
                 _qTEHandler.MovePlayerToEnemy(_focus.CurrentTarget.transform.position);

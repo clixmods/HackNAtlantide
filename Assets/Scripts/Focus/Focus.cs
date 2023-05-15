@@ -39,9 +39,9 @@ public class Focus : MonoBehaviour
     {
         get
         {
+            GenerateTargetableList();
             if (_targetableAvailable.Count == 0)
                 return null;
-          
             
             return _targetableAvailable[CurrentTargetIndex];
         }
@@ -105,9 +105,13 @@ public class Focus : MonoBehaviour
         DisableFocus();
     }
     private void Update()
-    {   
-        if(FocusIsEnable)
+    {
+        if (FocusIsEnable)
+        {
             GenerateTargetableList();
+            AfterGenerateList();
+        }
+            
         // OBsolete apparently
         // if (!FocusIsEnable)
         // {
@@ -218,6 +222,7 @@ public class Focus : MonoBehaviour
         if (value.magnitude <= 0.7) return;
         
         GenerateTargetableList();
+        AfterGenerateList();
         if(InputManager.IsGamepad())
         {
             CurrentTargetIndex = ClosestDotIndex(value);
@@ -308,6 +313,7 @@ public class Focus : MonoBehaviour
     private bool CanFocus()
     {
         GenerateTargetableList();
+        AfterGenerateList();
         return _targetableAvailable.Count > 0;
     }
     private bool _forceSwitch = false;
@@ -334,6 +340,11 @@ public class Focus : MonoBehaviour
             _forceSwitch = true;
         }
         SortTargetableAvailableListByNearest();
+        
+    }
+
+    private void AfterGenerateList()
+    {
         // After a sort by nearest, we can do the switch
         if (_forceSwitch)
         {
