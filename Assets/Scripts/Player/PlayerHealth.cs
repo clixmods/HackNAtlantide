@@ -13,11 +13,11 @@ public class PlayerHealth : Character
         
         // TODO - Make the dead function
     }
-    public override void DoDamage(float damage)
+    public override void DoDamage(float damage , Vector3 attackLocation)
     {
         if(_movementState.MovementState != MovementState.dashing)
         {
-            base.DoDamage(damage);
+            base.DoDamage(damage,  attackLocation);
         }
         else
         {

@@ -31,7 +31,7 @@ public class AttackCollider : MonoBehaviour , IAttackCollider
         if (_damageableHitted.Contains(damageable)) return;
         
         _damageableHitted.Add(damageable);
-        OnCollideWithIDamageable?.Invoke(this, new DamageableEventArgs()
+        OnCollideWithIDamageable?.Invoke(this, new AttackDamageableEventArgs()
         {
             idamageable = damageable
         });

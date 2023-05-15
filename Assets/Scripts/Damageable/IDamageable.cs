@@ -4,6 +4,13 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 
+public class DoDamageEventArgs : EventArgs
+{  
+    // class members 
+    public Vector3 attackPosition;
+    public IDamageable attacker;
+}
+
 public interface IDamageable
 {
     event EventHandler OnDamage;  
@@ -20,7 +27,8 @@ public interface IDamageable
     /// Current health of the damageable
     /// </summary>
     public float health { get; }
-    public void DoDamage(float damage);
+
+    public void DoDamage(float damage, Vector3 attackPosition = default);
     /// <summary>
     /// Method executed when the damageable is dead, warning all inheritors need to call it when it's necessary
     /// </summary>

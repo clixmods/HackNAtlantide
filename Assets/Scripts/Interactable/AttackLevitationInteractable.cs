@@ -127,9 +127,9 @@ public class AttackLevitationInteractable : MonoBehaviour, IInteractable
         
         private void AttackColliderOnOnCollideWithIDamageable(object sender, EventArgs e)
         {
-            if (e is DamageableEventArgs mDamageableEventArgs)
+            if (e is AttackDamageableEventArgs mDamageableEventArgs)
             {
-                mDamageableEventArgs.idamageable.DoDamage(damageAmount);
+                mDamageableEventArgs.idamageable.DoDamage(damageAmount , transform.position);
                 DestroyInteractable();
             }
         }

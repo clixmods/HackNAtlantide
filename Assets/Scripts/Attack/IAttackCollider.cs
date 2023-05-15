@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Attack
 {
-    public class DamageableEventArgs : EventArgs
+    public class AttackDamageableEventArgs : EventArgs
     {  
         // class members 
         public IDamageable idamageable;

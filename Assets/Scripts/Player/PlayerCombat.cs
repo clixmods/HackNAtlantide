@@ -61,9 +61,9 @@ public class PlayerCombat : MonoBehaviour,ICombat
 
     private void AttackColliderOnOnCollideWithIDamageable(object sender, EventArgs eventArgs)
     {
-        if (eventArgs is DamageableEventArgs mDamageableEventArgs && canAttack)
+        if (eventArgs is AttackDamageableEventArgs mDamageableEventArgs && canAttack)
         {
-            mDamageableEventArgs.idamageable.DoDamage(damage);
+            mDamageableEventArgs.idamageable.DoDamage(damage, _attackCollider.gameObject.transform.position);
         }
     }
     
