@@ -108,6 +108,7 @@ public class AttackLevitationInteractable : MonoBehaviour, IInteractable
     {
         if (_isAttacking)
         {
+            _inputHelper.enabled = false;
             Vector3 direction;
             if (transformDestination == null)
             {
@@ -198,6 +199,7 @@ public class AttackLevitationInteractable : MonoBehaviour, IInteractable
             yield return null;
         }
         _uiChargeInputHelper.SetFillValue(1);
+        _inputHelper.enabled = false;
         _hasInteract = true;
         _attackCollider.enabled = true;
         _playerStamina.UseStamina(useStaminaAmount);
