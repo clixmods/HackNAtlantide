@@ -162,6 +162,8 @@ public class PlayerMovement : MonoBehaviour
 
         //Rotate the player by his direction
         LookAtDirection(_isDashing?_rotationSpeed*20:_rotationSpeed, targetmoveAmount);
+        //Keep the player on ground
+        StayGrounded();
 
         //Extract the rb from any collider
         ExtractFromColliders();
@@ -177,9 +179,6 @@ public class PlayerMovement : MonoBehaviour
             displacement = velocity.normalized * distance;
         }
         _rigidbody.MovePosition(_rigidbody.position + displacement);
-
-        //Keep the player on ground
-        StayGrounded();
 
         velocity -= displacement;
         velocity -= hit.normal * Vector3.Dot(velocity, hit.normal);
