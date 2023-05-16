@@ -15,14 +15,13 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private PlayerInstanceScriptableObject _playerInstanceSO;
     [SerializeField] private LayerMask _layerToIgnore;
 
-
     //Input
     [Header("INPUT")]
     [Space(5)]
     [SerializeField] private InputVectorScriptableObject _moveInput;
     [SerializeField] private InputButtonScriptableObject _dashInput;
+    [SerializeField] private InputButtonScriptableObject _dashAttackInput;
     private Vector3 _moveDirection;
-
 
     //Walk
     [Header("WALK")]
@@ -36,27 +35,36 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float _smoothTimeAcceleration;
     [SerializeField] private float _smoothTimeAccelerationDash;
 
-
-    //rotation lookat
+    //rotation look at
     [Header("LOOK")]
     [Space(5)]
 
     [SerializeField] private float _rotationSpeed;
     Quaternion _targetRotation;
 
-
-    //Dash
+    // Dash & Dash Attack
     [Header("DASH")]
     [Space(5)]
 
     [SerializeField] private float _dashTime;
     [SerializeField] private float _dashSpeed;
     [SerializeField] private float _dashReloadTime;
-    [FormerlySerializedAs("_dashEvent")] [SerializeField] ScriptableEventFloat dashScriptableEvent;
-    [SerializeField] PlayerStaminaScriptableObject _playerStamina;
     private bool _canDash;
     private bool _isDashing;
     public bool IsDashing { get { return _isDashing; } }
+    
+    [Header("DASH ATTACK")]
+    [Space(5)]
+    [SerializeField] private float _dashAttackTime;
+    [SerializeField] private float _dashAttackSpeed;
+    [SerializeField] private float _dashAttackReloadTime;
+
+    [SerializeField] ScriptableEventFloat dashScriptableEvent;
+    [SerializeField] ScriptableEventFloat dashAttackScriptableEvent;
+    [SerializeField] PlayerStaminaScriptableObject _playerStamina;
+    private bool _canDashAttack;
+    private bool _isDashingAttack;
+    public bool IsDashingAttack { get { return _isDashingAttack; } }
     
     //Collision Detection
     private Collider[] _buffer = new Collider[8];
@@ -73,6 +81,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] ParticleSystem _dustWalk;
     
     [SerializeField] ScriptableEvent _dashEvent;
+    [SerializeField] ScriptableEvent _dashAttackEvent;
 
     #endregion
 
@@ -90,6 +99,7 @@ public class PlayerMovement : MonoBehaviour
     {
         _moveInput.OnValueChanged += MoveInput;
         _dashInput.OnValueChanged += Dash;
+        _dashAttackInput.OnValueChanged += DashOfDashAttack;
         Focus.OnFocusEnable += FocusEnable;
         Focus.OnFocusSwitch += FocusSwitch;
         Focus.OnFocusDisable += FocusUnLock;
@@ -100,11 +110,13 @@ public class PlayerMovement : MonoBehaviour
     {
         _moveInput.OnValueChanged -= MoveInput;
         _dashInput.OnValueChanged -= Dash;
+        _dashAttackInput.OnValueChanged -= DashOfDashAttack;
         Focus.OnFocusEnable -= FocusEnable;
         Focus.OnFocusSwitch -= FocusSwitch;
         Focus.OnFocusDisable -= FocusUnLock;
         Focus.OnFocusNoTarget -= FocusUnLock;
     }
+    
     void MoveInput(Vector2 direction)
     {
         //Projects the camera forward on 2D horizontal plane
@@ -112,20 +124,24 @@ public class PlayerMovement : MonoBehaviour
         Vector3 camRightOnPlane = new Vector3(_camera.transform.right.x, 0, _camera.transform.right.z).normalized;
         _moveDirection = direction.x * camRightOnPlane + direction.y * camForwardOnPlane;
     }
+    
     public void MoveTo(Vector3 Target)
     {
         Vector3 direction = ((Target - transform.position).normalized);
         _moveDirection = new Vector3(direction.x, 0, direction.z);
     }
+    
     public void CancelMove()
     {
         _moveDirection = Vector3.zero;
     }
+    
     // Update is called once per frame
     void FixedUpdate()
     {
         Move();
     }
+    
     private void Move()
     {
         _rigidbody.velocity = Vector3.zero;
@@ -138,6 +154,13 @@ public class PlayerMovement : MonoBehaviour
             _moveAmount = Vector3.SmoothDamp(_moveAmount, targetmoveAmount, ref _smoothMoveVelocity, _smoothTimeAccelerationDash);
 
             _playerMovementState.MovementState = MovementState.dashing;
+        }
+        else if (_isDashingAttack)
+        {
+            //calculated direction based of his movedirection of the precedent frame
+            _moveAmount = Vector3.SmoothDamp(_moveAmount, targetmoveAmount, ref _smoothMoveVelocity, _smoothTimeAccelerationDash);
+
+            _playerMovementState.MovementState = MovementState.dashingAttack;
         }
         else
         {
@@ -155,7 +178,6 @@ public class PlayerMovement : MonoBehaviour
                 _dustWalk.Stop();
             }
         }
-        
 
         //Move the object with the RigidBody
         MoveSweepTestRecurs(_moveAmount, 3);
@@ -168,6 +190,7 @@ public class PlayerMovement : MonoBehaviour
         //Extract the rb from any collider
         ExtractFromColliders();
     }
+    
     private void MoveSweepTestRecurs(Vector3 velocity, int recurs)
     {
         float distance = velocity.magnitude;
@@ -188,15 +211,14 @@ public class PlayerMovement : MonoBehaviour
         {
             MoveSweepTestRecurs(velocity, recurs);
         }
-
     }
+    
     private void ExtractFromColliders()
     {
         float halfHeight = (collider.height * .5f) - collider.radius;
 
         Vector3 bottom = collider.bounds.center + (Vector3.down * halfHeight);
         Vector3 top = collider.bounds.center + (Vector3.up * halfHeight);
-
 
         int amount = Physics.OverlapCapsuleNonAlloc(bottom, top, collider.radius, _buffer);
         for (int i = 0; i < amount; i++)
@@ -248,6 +270,26 @@ public class PlayerMovement : MonoBehaviour
             _dashEvent.LaunchEvent();
         }
     }
+    
+    public void DashOfDashAttack(bool value)
+    {
+        if (value && _canDashAttack && _playerStamina.CanUseStamina(1.5f)&& _moveDirection.sqrMagnitude > 0.1f)
+        {
+            _playerStamina.UseStamina(1.5f);
+            _speed = _dashAttackSpeed;
+            _isDashingAttack = true;
+            _canDashAttack = false;
+            _transformLockTempForDash = _transformLock;
+            _transformLock = null;
+            Physics.IgnoreLayerCollision(this.gameObject.layer, 16);
+            StartCoroutine(CancelDashAttack());
+
+            //FeedBack
+            DashAttackFeedBack(true);
+
+            _dashAttackEvent.LaunchEvent();
+        }
+    }
 
     //sets the speeds value to dash
     IEnumerator CancelDash()
@@ -263,12 +305,36 @@ public class PlayerMovement : MonoBehaviour
 
         StartCoroutine(CancelDashFeedback());
     }
+    
+    //sets the speeds value to dash attack
+    IEnumerator CancelDashAttack()
+    {
+        yield return new WaitForSeconds(_dashAttackTime);
+
+        _speed = _moveSpeed;
+        
+        _transformLock = _transformLockTempForDash;
+        
+
+        StartCoroutine(ReloadDashAttack());
+
+        StartCoroutine(CancelDashAttackFeedback());
+    }
+    
     IEnumerator CancelDashFeedback()
     {
         yield return new WaitForSeconds(0.2f);
         _isDashing = false;
         Physics.IgnoreLayerCollision(this.gameObject.layer, 16, false);
         DashFeedBack(false);
+    }
+    
+    IEnumerator CancelDashAttackFeedback()
+    {
+        yield return new WaitForSeconds(0.2f);
+        _isDashingAttack = false;
+        Physics.IgnoreLayerCollision(this.gameObject.layer, 16, false);
+        DashAttackFeedBack(false);
     }
 
     //allows player to dash again
@@ -277,6 +343,14 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(_dashReloadTime);
         _canDash = true;
     }
+    
+    //allows player to dash attack again
+    IEnumerator ReloadDashAttack()
+    {
+        yield return new WaitForSeconds(_dashAttackReloadTime);
+        _canDashAttack = true;
+    }
+    
     private void StayGrounded()
     {
         float distance = 0f;
@@ -289,10 +363,12 @@ public class PlayerMovement : MonoBehaviour
         }
         _rigidbody.MovePosition(_rigidbody.position + displacement);
     }
+    
     public void Teleport(Transform transformPoint)
     {
         transform.position = transformPoint.position;
     }
+    
     public  void SetParentToNull()
     {
         transform.SetParent(null);
@@ -317,6 +393,20 @@ public class PlayerMovement : MonoBehaviour
 
     #endregion
     void DashFeedBack(bool enable)
+    {
+        if(enable)
+        {
+            Rumbler.instance.RumbleConstant(_dashRumble);
+            _dashFX.Play();
+            _dashTrail.emitting = true;
+        }
+        else
+        {
+            _dashTrail.emitting = false;
+        }
+    }
+    
+    void DashAttackFeedBack(bool enable)
     {
         if(enable)
         {

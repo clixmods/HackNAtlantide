@@ -9719,6 +9719,7 @@ MonoBehaviour:
     m_Bits: 98304
   _moveInput: {fileID: 11400000, guid: f723c9ff06fee8f4b84dfde16114e058, type: 2}
   _dashInput: {fileID: 11400000, guid: 4bd4a32db9dece64598ee56d8821fda5, type: 2}
+  _dashAttackInput: {fileID: 11400000, guid: 6a4e272f294a6a94185c64218df86d2e, type: 2}
   _moveSpeed: 8
   _smoothTimeAcceleration: 0.1
   _smoothTimeAccelerationDash: 0.05
@@ -9726,13 +9727,18 @@ MonoBehaviour:
   _dashTime: 0.1
   _dashSpeed: 25
   _dashReloadTime: 0.2
+  _dashAttackTime: 0.1
+  _dashAttackSpeed: 20
+  _dashAttackReloadTime: 1
   dashScriptableEvent: {fileID: 0}
+  dashAttackScriptableEvent: {fileID: 0}
   _playerStamina: {fileID: 11400000, guid: 7a3b5b3b905bbfe4fb4ea9ada55960e1, type: 2}
   _dashRumble: {fileID: 11400000, guid: ba6cf9a408e865248965638af31bbe14, type: 2}
   _dashFX: {fileID: 5884998599488833683}
   _dashTrail: {fileID: 1255183743997323722}
   _dustWalk: {fileID: 8314544821091689057}
   _dashEvent: {fileID: 11400000, guid: 4d2826f6d65799142b0ba195f975918e, type: 2}
+  _dashAttackEvent: {fileID: 11400000, guid: 733024fddf927b548ae5d341d936d018, type: 2}
 --- !u!114 &70470615285775491
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10306,6 +10312,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player_et_sword_anime
       objectReference: {fileID: 0}
+    - target: {fileID: 5947598796426845155, guid: 99d19c5c84645f7409300b87b05b63e4,
+        type: 3}
+      propertyPath: _playerMovement
+      value: 
+      objectReference: {fileID: -6015575804148246740}
     - target: {fileID: 5947598796426845155, guid: 99d19c5c84645f7409300b87b05b63e4,
         type: 3}
       propertyPath: _trailSwordDistortion

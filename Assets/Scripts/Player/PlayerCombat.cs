@@ -7,7 +7,7 @@ using UnityEngine.Serialization;
 
 public class PlayerCombat : MonoBehaviour,ICombat
 {
-    [Header("Scripts Refs")]
+    [Header("Scripts Refs"), SerializeField]
     private PlayerMovement _playerMovement;
 
     private PlayerAnimations _playerAnimations;
@@ -17,15 +17,16 @@ public class PlayerCombat : MonoBehaviour,ICombat
     [Header("Variables")]
     [SerializeField] int noOfClicks; //Determines Which Animation Will Play
     [SerializeField] bool canClick; //Locks ability to click during animation event
-    float lastClickedTime;
-    float lastComboEnd;
-    int comboCounter;
+    private float _lastClickedTime;
+    private float _lastComboEnd;
+    private int _comboCounter;
     [SerializeField] private bool stopAnimation;
     
     // TODO - TEMPORARY
     private float damage = 1f;
     
     [SerializeField] private InputButtonScriptableObject _inputAttack;
+    [SerializeField] private InputButtonScriptableObject _inputDashAttack;
 
     private IAttackCollider _attackCollider;
     private int INTAttack = Animator.StringToHash("intAttack");
@@ -34,10 +35,12 @@ public class PlayerCombat : MonoBehaviour,ICombat
     private void OnEnable()
     {
         _inputAttack.OnValueChanged += Attack;
+        _inputDashAttack.OnValueChanged += DashAttack;
     }
     private void OnDisable()
     {
         _inputAttack.OnValueChanged -= Attack;
+        _inputDashAttack.OnValueChanged -= DashAttack;
     }
     
     private void Awake()
@@ -45,7 +48,7 @@ public class PlayerCombat : MonoBehaviour,ICombat
         _attackCollider = GetComponentInChildren<IAttackCollider>();
         _attackCollider.OnCollideWithIDamageable += AttackColliderOnOnCollideWithIDamageable;
         _animator = GetComponentInChildren<Animator>();
-        _playerMovement = GetComponent<PlayerMovement>();
+        _playerMovement = GetComponentInParent<PlayerMovement>();
         _playerAnimations = GetComponent<PlayerAnimations>();
         
         noOfClicks = 0;
@@ -76,6 +79,14 @@ public class PlayerCombat : MonoBehaviour,ICombat
         }
     }
     
+    void DashAttack(bool value)
+    {
+        if (value)
+        {
+            StartCoroutine(DashAttackCoroutine());
+        }
+    }
+    
     void ComboStarter()
     {       
         if (canClick)            
@@ -87,6 +98,17 @@ public class PlayerCombat : MonoBehaviour,ICombat
         {            
             _animator.SetInteger(INTAttack, 1); // fait attaque 1
         }           
+    }
+
+    IEnumerator DashAttackCoroutine()
+    {
+        _animator.SetInteger(INTAttack, 1);
+        _playerMovement.DashOfDashAttack(true);
+        yield return new WaitForSeconds(.4f);
+        _playerAnimations.TimeBeforeIdle = 5f;
+        _animator.SetInteger(INTAttack, 0);
+        noOfClicks = 0;
+        canClick = true;
     }
     
     public void ComboCheck()

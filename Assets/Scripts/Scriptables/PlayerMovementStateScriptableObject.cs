@@ -6,6 +6,7 @@ public enum MovementState
 {
     running,
     dashing,
+    dashingAttack,
     idle
 }
 
