@@ -120,10 +120,10 @@ MonoBehaviour:
     AfterOpaque: 1
     Source: 1
     NormalSamples: 0
-    Intensity: 1.04
-    DirectLightingStrength: 0.246
-    Radius: 2.12
-    SampleCount: 12
+    Intensity: 1
+    DirectLightingStrength: 0.25
+    Radius: 2
+    SampleCount: 10
 --- !u!114 &-1195001646372009084
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -140,9 +140,9 @@ MonoBehaviour:
   passSettings:
     material: {fileID: 2100000, guid: 140f21568cc72ec4e93dc8933dee7cae, type: 2}
     renderPassEvent: 1000
-    downsample: 8
-    blurQuality: 31
-    blurRadius: 16
+    downsample: 16
+    blurQuality: 9
+    blurRadius: 34
     blurDirection: 8
 --- !u!114 &11400000
 MonoBehaviour:
