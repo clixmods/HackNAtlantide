@@ -11,6 +11,7 @@ public class PlayerHealth : Character
     {
         GameStateManager.Instance.deadStateObject.SetActive(true);
         base.Dead();
+        GetComponentInChildren<Animator>().CrossFade("Dead_Chara_Sword",0.01f);
         
         // TODO - Make the dead function
     }
