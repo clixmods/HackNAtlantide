@@ -9,6 +9,7 @@ public class PlayerHealth : Character
     [SerializeField] PlayerMovementStateScriptableObject _movementState;
     public override void Dead()
     {
+        GameStateManager.Instance.deadStateObject.SetActive(true);
         base.Dead();
         
         // TODO - Make the dead function

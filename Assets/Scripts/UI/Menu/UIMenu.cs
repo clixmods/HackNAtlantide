@@ -208,7 +208,7 @@ public class UIMenu : MonoBehaviour
            
         
      
-        if (canAdjustTimescale)
+        /*if (canAdjustTimescale)
         {
             if (ActiveMenu != null)
             {
@@ -219,7 +219,8 @@ public class UIMenu : MonoBehaviour
                 Time.timeScale = 1;
             }
           
-        }
+        }*/
+
         // Parent menu
         if(_previousMenu != null)
         {

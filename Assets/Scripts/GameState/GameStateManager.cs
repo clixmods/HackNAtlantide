@@ -71,6 +71,22 @@ public class TutoState : GameState
 
     }
 }
+public class DeadState : GameState
+{
+    public override int Priority => GameStateUtility.DeadPriority;
+
+    public override void ApplyOverride(GameStateOverride stateOverride)
+    {
+        stateOverride.isPaused = false;
+        stateOverride.timeScale = 0.3f;
+        stateOverride.allInputActive = false;
+        stateOverride.inputInteractActive = false;
+        stateOverride.inputMovementActive = false;
+        stateOverride.inputCombatActive = false;
+        stateOverride.inputDashActive = false;
+
+    }
+}
 public interface IGameStateCallBack
 {
     void OnApplyGameStateOverride(GameStateOverride stateOverride);
@@ -173,7 +189,9 @@ public class GameStateManager : MonoBehaviour
     public GameObject pauseStateObject;
     public GameObject runTimeStateObject;
     public GameObject combatStateObject;
+    public GameObject deadStateObject;
     [SerializeField] ScriptableEventBool pauseEvent;
+    [SerializeField] ScriptableEvent restartEvent;
 
     //------------------------
     private void Awake()
@@ -188,10 +206,12 @@ public class GameStateManager : MonoBehaviour
     private void OnEnable()
     {
         pauseEvent.OnEvent += (x) => pauseStateObject.SetActive(x);
+        restartEvent.OnEvent += gameStateOverride.Reset;
     }
     private void OnDisable()
     {
         pauseEvent.OnEvent -= (x) => pauseStateObject.SetActive(x);
+        restartEvent.OnEvent -= gameStateOverride.Reset;
     }
     //------------------------
 
