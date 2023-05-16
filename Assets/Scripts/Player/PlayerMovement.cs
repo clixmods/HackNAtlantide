@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using UnityEditor.Searcher;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -94,6 +95,7 @@ public class PlayerMovement : MonoBehaviour
         collider = GetComponent<CapsuleCollider>();
         _speed = _moveSpeed;
         _canDash = true;
+        _canDashAttack = true;
     }
     void OnEnable()
     {
@@ -275,6 +277,8 @@ public class PlayerMovement : MonoBehaviour
     {
         if (value && _canDashAttack && _playerStamina.CanUseStamina(1.5f)&& _moveDirection.sqrMagnitude > 0.1f)
         {
+            // TODO - LaunchDashAttackAnim
+            _dashAttackEvent.LaunchEvent();
             _playerStamina.UseStamina(1.5f);
             _speed = _dashAttackSpeed;
             _isDashingAttack = true;

@@ -32,15 +32,18 @@ public class PlayerCombat : MonoBehaviour,ICombat
     private int INTAttack = Animator.StringToHash("intAttack");
     [SerializeField] TrailRenderer _trailSwordDistortion;
 
+    [SerializeField] private ScriptableEvent _dashAttackEvent;
     private void OnEnable()
     {
         _inputAttack.OnValueChanged += Attack;
         _inputDashAttack.OnValueChanged += DashAttack;
+        _dashAttackEvent.OnEvent += DashAttackAnim;
     }
     private void OnDisable()
     {
         _inputAttack.OnValueChanged -= Attack;
         _inputDashAttack.OnValueChanged -= DashAttack;
+        _dashAttackEvent.OnEvent -= DashAttackAnim;
     }
     
     private void Awake()
@@ -86,6 +89,11 @@ public class PlayerCombat : MonoBehaviour,ICombat
             StartCoroutine(DashAttackCoroutine());
         }
     }
+
+    void DashAttackAnim()
+    {
+        _animator.CrossFade("DashAttack",0f);
+    }
     
     void ComboStarter()
     {       
@@ -102,11 +110,9 @@ public class PlayerCombat : MonoBehaviour,ICombat
 
     IEnumerator DashAttackCoroutine()
     {
-        _animator.SetInteger(INTAttack, 1);
         _playerMovement.DashOfDashAttack(true);
         yield return new WaitForSeconds(.4f);
         _playerAnimations.TimeBeforeIdle = 5f;
-        _animator.SetInteger(INTAttack, 0);
         noOfClicks = 0;
         canClick = true;
     }
