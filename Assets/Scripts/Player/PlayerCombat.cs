@@ -81,7 +81,6 @@ public class PlayerCombat : MonoBehaviour,ICombat
         if (canClick)            
         {            
             noOfClicks++;
-            //canClick = false;
         }
         
         if (noOfClicks == 1)
@@ -97,34 +96,40 @@ public class PlayerCombat : MonoBehaviour,ICombat
         if(_animator.GetCurrentAnimatorStateInfo(0).IsName("Attaque_Chara_Sword_1") && noOfClicks == 1)
         { //If the first animation is still playing and only 1 click has happened, return to idle
             _animator.SetInteger(INTAttack, 0); // 0 is Idle
-            canClick = true;
             noOfClicks = 0;
             _playerAnimations.TimeBeforeIdle = 5f;
+            StartCoroutine(CanClickCoroutine());
         }
         else if (_animator.GetCurrentAnimatorStateInfo(0).IsName("Attaque_Chara_Sword_1") && noOfClicks >= 2)
         { //If the first animation is still playing and at least 2 clicks have happened, continue the combo
             _animator.SetInteger(INTAttack, 2); // 2 is Attack2
-            canClick = true;
+            StartCoroutine(CanClickCoroutine());
         }
         else if(_animator.GetCurrentAnimatorStateInfo(0).IsName("Attaque_Chara_Sword_2") && noOfClicks == 2)
         { //If the second animation is still playing and only 2 clicks have happened, return to idle
             _animator.SetInteger(INTAttack, 0); // 0 is Idle
-            canClick = true;
             noOfClicks = 0;
             _playerAnimations.TimeBeforeIdle = 5f;
+            StartCoroutine(CanClickCoroutine());
         }
         else if (_animator.GetCurrentAnimatorStateInfo(0).IsName("Attaque_Chara_Sword_2") && noOfClicks >= 3)
         { //If the second animation is still playing and at least 3 clicks have happened, continue the combo
             _animator.SetInteger(INTAttack, 3); // 3 is Attack 3
-            canClick = true;
+            StartCoroutine(CanClickCoroutine());
         }
         else if (_animator.GetCurrentAnimatorStateInfo(0).IsName("Attaque_Chara_Sword_3"))
         { //Since this is the third and last animation, return to idle
             _animator.SetInteger(INTAttack, 0); // 0 is Idle
-            canClick = true;
             noOfClicks = 0;
             _playerAnimations.TimeBeforeIdle = 5f;
+            StartCoroutine(CanClickCoroutine());
         }
+    }
+
+    IEnumerator CanClickCoroutine()
+    {
+        yield return new WaitForSeconds(.1f);
+        canClick = true;
     }
 
     #region Animation Event Methods

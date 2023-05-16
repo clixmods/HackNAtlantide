@@ -56,7 +56,6 @@ public class EnemyController : MonoBehaviour, ICombat
     private void Update()
     {
         _agent.SetDestination(destination + forceDiffMove);
-        Debug.Log(forceDiffMove.magnitude);
         _playerInLookRadius = Physics.CheckSphere(transform.position, lookRadius, playerLayer);
         _playerInAttackRadius = Physics.CheckSphere(transform.position, attackRadius, playerLayer);
 
@@ -84,17 +83,16 @@ public class EnemyController : MonoBehaviour, ICombat
     
     void Chase()
     {
-        
         destination = PlayerInstanceScriptableObject.Player.transform.position;
     }
     
     private void Attack()
     {
-        FaceTarget();
         if (!_animator.GetCurrentAnimatorStateInfo(0).IsName("Attaque_1_Golem"))
         {
             _animator.SetTrigger("Attack");
             destination = transform.position;
+            // FaceTarget();
         }
     }
     
@@ -104,6 +102,7 @@ public class EnemyController : MonoBehaviour, ICombat
         Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
         transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5);
     }
+    
     #region Animation Event Methods
 
     public void SetDamageActive(int value)
@@ -113,6 +112,7 @@ public class EnemyController : MonoBehaviour, ICombat
        
     }
     #endregion
+    
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
