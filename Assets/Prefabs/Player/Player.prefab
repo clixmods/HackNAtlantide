@@ -10306,8 +10306,19 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player_et_sword_anime
       objectReference: {fileID: 0}
+    - target: {fileID: 5947598796426845155, guid: 99d19c5c84645f7409300b87b05b63e4,
+        type: 3}
+      propertyPath: _trailSwordDistortion
+      value: 
+      objectReference: {fileID: 2682706729268707780}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 99d19c5c84645f7409300b87b05b63e4, type: 3}
+--- !u!4 &1200084679159501611 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1035203895689834267, guid: 99d19c5c84645f7409300b87b05b63e4,
+    type: 3}
+  m_PrefabInstance: {fileID: 2232174480602545200}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3242760525399670330 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3745551614683546122, guid: 99d19c5c84645f7409300b87b05b63e4,
@@ -10516,4 +10527,84 @@ ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 2015897784752304465, guid: 3cb8f36e3dba0714fb7c619847e33e57,
     type: 3}
   m_PrefabInstance: {fileID: 5355447708689398210}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &5450781113641858520
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1200084679159501611}
+    m_Modifications:
+    - target: {fileID: 5815785507052769986, guid: 29db70930bc6b6b45a436cac45508d0d,
+        type: 3}
+      propertyPath: m_Name
+      value: TrailSwordAttack
+      objectReference: {fileID: 0}
+    - target: {fileID: 7314979885857136537, guid: 29db70930bc6b6b45a436cac45508d0d,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7314979885857136537, guid: 29db70930bc6b6b45a436cac45508d0d,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7314979885857136537, guid: 29db70930bc6b6b45a436cac45508d0d,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7314979885857136537, guid: 29db70930bc6b6b45a436cac45508d0d,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7314979885857136537, guid: 29db70930bc6b6b45a436cac45508d0d,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7314979885857136537, guid: 29db70930bc6b6b45a436cac45508d0d,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7314979885857136537, guid: 29db70930bc6b6b45a436cac45508d0d,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7314979885857136537, guid: 29db70930bc6b6b45a436cac45508d0d,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7314979885857136537, guid: 29db70930bc6b6b45a436cac45508d0d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7314979885857136537, guid: 29db70930bc6b6b45a436cac45508d0d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7314979885857136537, guid: 29db70930bc6b6b45a436cac45508d0d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7971357070846555164, guid: 29db70930bc6b6b45a436cac45508d0d,
+        type: 3}
+      propertyPath: m_Emitting
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 29db70930bc6b6b45a436cac45508d0d, type: 3}
+--- !u!96 &2682706729268707780 stripped
+TrailRenderer:
+  m_CorrespondingSourceObject: {fileID: 7971357070846555164, guid: 29db70930bc6b6b45a436cac45508d0d,
+    type: 3}
+  m_PrefabInstance: {fileID: 5450781113641858520}
   m_PrefabAsset: {fileID: 0}

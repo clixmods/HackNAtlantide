@@ -29,6 +29,7 @@ public class PlayerCombat : MonoBehaviour,ICombat
 
     private IAttackCollider _attackCollider;
     private int INTAttack = Animator.StringToHash("intAttack");
+    [SerializeField] TrailRenderer _trailSwordDistortion;
 
     private void OnEnable()
     {
@@ -132,6 +133,8 @@ public class PlayerCombat : MonoBehaviour,ICombat
     {
         canAttack = value == 1;
         _attackCollider.enabled = canAttack;
+
+        _trailSwordDistortion.emitting = canAttack;
     }
 
     #endregion
