@@ -112,7 +112,7 @@ public class PlayerCombatTuto : MonoBehaviour
             {
                 if ((_focus.CurrentTarget.transform.position - transform.position).magnitude <4.5f)
                 {
-                    _qTEHandler.ActiveInputType(InputType.Move, false);
+                    //_qTEHandler.ActiveInputType(InputType.Move, false);
                     _qTEHandler.CancelMove();
                     Debug.Log("QTE Attack");
                     _qTEHandler.LaunchCutScene(InputType.Attack);
@@ -125,7 +125,7 @@ public class PlayerCombatTuto : MonoBehaviour
                 if ((_focus.CurrentTarget.transform.position - transform.position).magnitude < 5f && (_focus.CurrentTarget.transform.position - transform.position).magnitude > 2f)
                 {
                     Debug.Log("QTE DashAttack");
-                    _qTEHandler.ActiveInputType(InputType.Move, true);
+                    //_qTEHandler.ActiveInputType(InputType.Move, true);
                     _qTEHandler.LaunchCutScene(InputType.DashAttack);
                     _isInCutScene = true;
                 }
