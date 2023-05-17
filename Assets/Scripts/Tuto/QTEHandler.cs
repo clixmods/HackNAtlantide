@@ -61,6 +61,10 @@ public class QTEHandler : MonoBehaviour
         _dash.OnValueChanged += DashInput;
         _move.OnValueChanged += MoveInput;
     }
+    private void OnDisable()
+    {
+        _postProcessWeightTransition.SetWeightVolume(0f);
+    }
     void DisableInputsInfo()
     {
         _inputInfoAttack.SetActive(false);
@@ -103,24 +107,20 @@ public class QTEHandler : MonoBehaviour
     IEnumerator Cutscene(InputType inputType)
     {
         _isInCutScene = true;
-        VirtualCamera = (CinemachineVirtualCamera)cine.ActiveVirtualCamera;
-        float fov = VirtualCamera.m_Lens.FieldOfView;
        
-        _postProcessWeightTransition.SetWeightVolume(1f);
-
+        //_postProcessWeightTransition.SetWeightVolume(1f);
         DOTween.To(() => Time.timeScale, x => Time.timeScale = x, 0, 0.2f).SetUpdate(true);
 
         ActiveInputType(inputType, true);
+        
 
         while (!CutSceneFinish(inputType))
         {
             yield return null;
         }
-
         ActiveInputType(inputType, false);
-
-        _postProcessWeightTransition.SetWeightVolume(0f);
         DOTween.To(() => Time.timeScale, x => Time.timeScale = x, 1, 0.2f).SetUpdate(true);
+        //_postProcessWeightTransition.SetWeightVolume(0f);
         _isInCutScene = false;
         cutSceneSuccess?.Invoke(inputType);
         DisableInputsInfo();
