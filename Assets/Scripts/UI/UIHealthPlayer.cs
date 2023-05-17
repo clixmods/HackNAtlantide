@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public class UIHealthPlayer : MonoBehaviour
 {
-    [SerializeField] private PlayerInstanceScriptableObject _playerInstanceScriptableObject;
     private Slider _slider;
     private IDamageable player;
     // Calcul maxhealth length
@@ -37,6 +36,7 @@ public class UIHealthPlayer : MonoBehaviour
     private void PlayerOnOnChangeHealth(object sender, EventArgs e)
     {
         _rectTransform.sizeDelta = new Vector2 (_striLength * player.maxHealth, _rectTransform.sizeDelta.y);
+        _slider.value = player.health/player.maxHealth;
     }
 
     private void PlayerOnDamage(object sender, EventArgs e)

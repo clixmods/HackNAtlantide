@@ -105,6 +105,10 @@ public class AttackLevitationInteractable : MonoBehaviour, IInteractable
             transform.LookAt(transformDestination);
             _rigidBody.velocity = direction * projectionSpeedMultiplier ;
         }
+        else if(_hasInteract)
+        {
+           transform.position = _playerDetectionScriptableObject.PlayerPosition + Vector3.up * 4;
+        }
     }
     
     #endregion
@@ -178,16 +182,12 @@ public class AttackLevitationInteractable : MonoBehaviour, IInteractable
         _rigidBody.AddTorque(Random.onUnitSphere * 20);
         while (timeElapsed < timeToBeCharged )
         {
-            
-           
             Vector3 destinationPosition = _playerDetectionScriptableObject.PlayerPosition + Vector3.up * 4;
             if (!_isCharging)
             {
                 _hasInteract = false;
                 yield break;
             }
-                
-            
             _inputHelper.enabled = true;
             _playerStamina.UseStamina(_playerStamina.SpeedToRecharge*Time.deltaTime);
             var t = timeElapsed / timeToBeCharged;

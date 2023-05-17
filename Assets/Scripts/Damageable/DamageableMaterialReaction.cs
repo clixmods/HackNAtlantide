@@ -23,6 +23,7 @@ public class DamageableMaterialReaction : MonoBehaviour
             {
                 _propBlocks[i] = new MaterialPropertyBlock();
             }
+            SetFloat(false);
         }
         private void IdamageableOnOnDamage(object sender, EventArgs e)
         {

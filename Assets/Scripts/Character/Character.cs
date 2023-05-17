@@ -36,13 +36,16 @@ public class Character : MonoBehaviour,  IDamageable
             _health = value;
         }
     }
-    void Start()
+    void Awake()
     {
         health = maxHealth;
     }
     
     public virtual void DoDamage(float damage , Vector3 attackLocation)
     {
+        if (health <= 0)
+            return;
+        
         health -= damage;
         AttackFeedback();
         OnDamage?.Invoke(this,new DoDamageEventArgs
@@ -69,9 +72,9 @@ public class Character : MonoBehaviour,  IDamageable
 
     public void AddHealth(float amount)
     {
-        health += health;
+        health += amount;
         OnChangeHealth?.Invoke(this,null);
-        if (amount > maxHealth)
+        if (health > maxHealth)
         {
             health = maxHealth;
         }
