@@ -29,6 +29,7 @@ public class Focus : MonoBehaviour
     private List<IFocusable> _targetableAvailable = new List<IFocusable>();
     
     [SerializeField] CinemachineVirtualCamera cameraVirtualFocus;
+    private CinemachineBrain _cinemachineBrain;
     private Transform _camFocusTransform;
     private FocusCinemachineTargetGroup _cinemachineTargetGroup;
     private int _currentTargetIndex;
@@ -86,13 +87,15 @@ public class Focus : MonoBehaviour
         inputEnableFocus.OnValueChanged += InputEnableFocusOnChanged;
         inputSwitchTarget.OnValueChanged += InputSwitchTargetOnChanged;
         // Check camera transition
-        CinemachineCameraVirtualTransition.OnPostCameraChanged += OnCameraTransitionChange;
+        //CinemachineCameraVirtualTransition.OnPostCameraChanged += OnCameraTransitionChange;
         // Setup target group
         _cinemachineTargetGroup = GetComponent<FocusCinemachineTargetGroup>();
         if (cameraVirtualFocus != null)
         {
-            _camFocusTransform = cameraVirtualFocus.transform;
+            //_camFocusTransform = cameraVirtualFocus.transform;
         }
+
+        _cinemachineBrain = FindObjectOfType<CinemachineBrain>();
     }
     private void OnDestroy()
     {
@@ -111,6 +114,12 @@ public class Focus : MonoBehaviour
         {
             GenerateTargetableList();
             AfterGenerateList();
+        }
+        else
+        {
+          //  var newCamTransitionTransform = _cinemachineBrain.ActiveVirtualCamera.VirtualCameraGameObject.transform;
+          //  _camFocusTransform.position = newCamTransitionTransform.position;
+           // _camFocusTransform.rotation = newCamTransitionTransform.rotation;
         }
             
         // OBsolete apparently
@@ -139,17 +148,17 @@ public class Focus : MonoBehaviour
             else
             {
                 // Focus enabled, we need to disable the new camera transition
-                newCameraVirtual.gameObject.SetActive(false); 
+              //  newCameraVirtual.gameObject.SetActive(false); 
             }
         }
         else
         {
-            var newCamTransitionTransform = newCameraVirtual.transform;
-            _camFocusTransform.position = newCamTransitionTransform.position;
-            _camFocusTransform.rotation = newCamTransitionTransform.rotation;
+           //  var newCamTransitionTransform = _cinemachineBrain.ActiveVirtualCamera.VirtualCameraGameObject.transform;
+           //  _camFocusTransform.position = newCamTransitionTransform.position;
+           //  _camFocusTransform.rotation = newCamTransitionTransform.rotation;
         }
         // we need to cache the camera transition
-        _nofocusVirtualCamera = newCameraVirtual.gameObject;
+       // _nofocusVirtualCamera = newCameraVirtual.gameObject;
         
         
         // // If its the same camera, not necesary to continue
@@ -279,11 +288,11 @@ public class Focus : MonoBehaviour
                 {
                     CurrentTargetIndex = 0;
                     // Active the camera focus
-                    cameraVirtualFocus.gameObject.SetActive(true);
+                    //cameraVirtualFocus.gameObject.SetActive(true);
                     // go disable the nofocus camera
                     if (_nofocusVirtualCamera != null)
                     {
-                        _nofocusVirtualCamera.SetActive(false);
+                       // _nofocusVirtualCamera.SetActive(false);
                     }
                     OnFocusEnable?.Invoke();
                     Switch();
@@ -382,10 +391,10 @@ public class Focus : MonoBehaviour
         // Active the no focus camera cached
         if ( _nofocusVirtualCamera != null)
         {
-            _nofocusVirtualCamera.SetActive(true);
+            //_nofocusVirtualCamera.SetActive(true);
         }
         // Disable focus camera
-        cameraVirtualFocus.gameObject.SetActive(false);
+       // cameraVirtualFocus.gameObject.SetActive(false);
         FocusIsEnable = false;
         // Try / Catch used to prevent Interface field issues, Unity have a bad behaviour
         try
