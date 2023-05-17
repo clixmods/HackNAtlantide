@@ -8639,7 +8639,7 @@ Transform:
   - {fileID: 1828071115}
   - {fileID: 125938871}
   m_Father: {fileID: 0}
-  m_RootOrder: 20
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!43 &684637637
 Mesh:
@@ -11929,159 +11929,6 @@ Mesh:
     offset: 0
     size: 0
     path: 
---- !u!1001 &934746567
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 5919351741948662680, guid: 09bb7b58b0e1a0a458e7b6b7fb3e38e8,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 19
-      objectReference: {fileID: 0}
-    - target: {fileID: 5919351741948662680, guid: 09bb7b58b0e1a0a458e7b6b7fb3e38e8,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.10510874
-      objectReference: {fileID: 0}
-    - target: {fileID: 5919351741948662680, guid: 09bb7b58b0e1a0a458e7b6b7fb3e38e8,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -8.697899
-      objectReference: {fileID: 0}
-    - target: {fileID: 5919351741948662680, guid: 09bb7b58b0e1a0a458e7b6b7fb3e38e8,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 339.91415
-      objectReference: {fileID: 0}
-    - target: {fileID: 5919351741948662680, guid: 09bb7b58b0e1a0a458e7b6b7fb3e38e8,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5919351741948662680, guid: 09bb7b58b0e1a0a458e7b6b7fb3e38e8,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5919351741948662680, guid: 09bb7b58b0e1a0a458e7b6b7fb3e38e8,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5919351741948662680, guid: 09bb7b58b0e1a0a458e7b6b7fb3e38e8,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5919351741948662680, guid: 09bb7b58b0e1a0a458e7b6b7fb3e38e8,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5919351741948662680, guid: 09bb7b58b0e1a0a458e7b6b7fb3e38e8,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5919351741948662680, guid: 09bb7b58b0e1a0a458e7b6b7fb3e38e8,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6444109697107675426, guid: 09bb7b58b0e1a0a458e7b6b7fb3e38e8,
-        type: 3}
-      propertyPath: m_Name
-      value: basic demon Clix_002
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 09bb7b58b0e1a0a458e7b6b7fb3e38e8, type: 3}
---- !u!1 &934746568 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6444109697107675426, guid: 09bb7b58b0e1a0a458e7b6b7fb3e38e8,
-    type: 3}
-  m_PrefabInstance: {fileID: 934746567}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &934746569
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 934746568}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb88cccfe97e4a64d9fd6d19cb31ffbf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OnDamage:
-    m_PersistentCalls:
-      m_Calls: []
-  OnDeath:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5744227957552894903}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 499114785}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 260741397}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 445048064}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 819921912}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
 --- !u!43 &935604664
 Mesh:
   m_ObjectHideFlags: 0
@@ -24679,7 +24526,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2013438189}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6339dfd904a9e2246820b66f852db5b6, type: 3}
   m_Name: 
