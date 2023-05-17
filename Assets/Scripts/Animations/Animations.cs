@@ -12,4 +12,8 @@ public class Animations : MonoBehaviour
     {
         altarAnimator.SetBool(Activation, true);
     }
+    public void AltarAnimationDesctivation()
+    {
+        altarAnimator.SetBool(Activation, false);
+    }
 }
