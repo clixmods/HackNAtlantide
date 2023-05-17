@@ -75,6 +75,7 @@ public class InputManager : MonoBehaviour
     {
         _attack.IsActive = value;
         _dashAttack.IsActive = value;
+        _focus.IsActive = value;
     }
     public void EnableGameInput()
     {

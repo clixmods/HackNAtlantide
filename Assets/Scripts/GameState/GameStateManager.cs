@@ -203,17 +203,25 @@ public class GameStateManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(this);
     }
+    private void Start()
+    {
+        RefreshState();
+    }
     private void OnEnable()
     {
-        pauseEvent.OnEvent += (x) => pauseStateObject.SetActive(x);
+        pauseEvent.OnEvent += SetPauseActive;
         restartEvent.OnEvent += gameStateOverride.Reset;
     }
     private void OnDisable()
     {
-        pauseEvent.OnEvent -= (x) => pauseStateObject.SetActive(x);
+        pauseEvent.OnEvent -= SetPauseActive;
         restartEvent.OnEvent -= gameStateOverride.Reset;
     }
     //------------------------
+    void SetPauseActive(bool isActive)
+    {
+        pauseStateObject.SetActive(isActive);
+    }
 
     public void RegisterCallback(IGameStateCallBack callback)
     {
