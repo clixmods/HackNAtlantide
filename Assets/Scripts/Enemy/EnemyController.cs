@@ -11,6 +11,8 @@ public class EnemyController : MonoBehaviour, ICombat
 
     [SerializeField] private float attackRadius = 1f;
     [SerializeField] private float lookRadius = 10f;
+
+    private bool _hasFinishAttack;
     
     bool _playerInLookRadius, _playerInAttackRadius;
     [SerializeField] LayerMask groundLayer, playerLayer;
@@ -20,12 +22,7 @@ public class EnemyController : MonoBehaviour, ICombat
     private Animator _animator;
     private IAttackCollider _attackCollider;
     private bool _isAttacking;
-    private Vector3 forceDiffMove;
-    public Vector3 ForceDiffMove { get; set; }
-    private float reduceForce = 1f;
     public bool IsAttacking { get { return _isAttacking; } }
-    private Vector3 destination;
-    
     private void Awake()
     {
         _attackCollider = GetComponentInChildren<IAttackCollider>();
@@ -35,15 +32,17 @@ public class EnemyController : MonoBehaviour, ICombat
         }
         else
         {
-            Debug.LogError("No attack Collider find, this enemy can't attack.", gameObject);
+            Debug.LogError("No attackCollider find, this enemy can't attack.", gameObject);
         }
+
+        _hasFinishAttack = true;
     }
 
     private void AttackColliderOnOnCollideWithIDamageable(object sender, EventArgs eventArgs)
     {
         if( eventArgs is AttackDamageableEventArgs mDamageableEventArgs && canAttack)
         {
-            mDamageableEventArgs.idamageable.DoDamage(damage, _attackCollider.gameObject.transform.position);
+            mDamageableEventArgs.idamageable.DoDamage(damage);
         }
     }
 
@@ -55,45 +54,33 @@ public class EnemyController : MonoBehaviour, ICombat
 
     private void Update()
     {
-        _agent.SetDestination(destination + forceDiffMove);
         _playerInLookRadius = Physics.CheckSphere(transform.position, lookRadius, playerLayer);
         _playerInAttackRadius = Physics.CheckSphere(transform.position, attackRadius, playerLayer);
 
-        if (!_playerInLookRadius)
-        {
-            _animator.SetBool("IsAwake", false);
-        }
-        if (_playerInLookRadius && !_playerInAttackRadius)
-        {
-            _animator.SetBool("IsAwake", true);
-            Chase();
-        }
-        if (_playerInLookRadius && _playerInAttackRadius)
-        {
-            Attack();
-        }
-
-        float magnitude = forceDiffMove.magnitude;
-        forceDiffMove = (magnitude - Time.deltaTime * reduceForce) * forceDiffMove;
-        if (magnitude < 0.001f)
-        {
-            forceDiffMove = Vector3.zero;
-        }
+        if (_playerInLookRadius) _animator.SetBool(IsAwake, true);
+        if (!_playerInLookRadius) _animator.SetBool(IsAwake, false);
+        if (_playerInLookRadius && !_playerInAttackRadius && !_isAttacking && _hasFinishAttack) Chase();
+        if (_playerInLookRadius && (_playerInAttackRadius || _isAttacking)) StartCoroutine(Attack());
     }
     
     void Chase()
     {
-        destination = PlayerInstanceScriptableObject.Player.transform.position;
+        _agent.isStopped = false;
+        _agent.SetDestination(PlayerInstanceScriptableObject.Player.transform.position);
     }
     
-    private void Attack()
+    IEnumerator Attack()
     {
+        _hasFinishAttack = false;
         if (!_animator.GetCurrentAnimatorStateInfo(0).IsName("Attaque_1_Golem"))
         {
             _animator.SetTrigger("Attack");
-            destination = transform.position;
-            // FaceTarget();
+            _agent.isStopped = true;
         }
+        FaceTarget();
+        yield return new WaitForSeconds(1f);
+        FaceTarget();
+        _hasFinishAttack = true;
     }
     
     private void FaceTarget()
@@ -102,7 +89,6 @@ public class EnemyController : MonoBehaviour, ICombat
         Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
         transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5);
     }
-    
     #region Animation Event Methods
 
     public void SetDamageActive(int value)
@@ -112,7 +98,6 @@ public class EnemyController : MonoBehaviour, ICombat
        
     }
     #endregion
-    
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
@@ -124,15 +109,14 @@ public class EnemyController : MonoBehaviour, ICombat
     }
 
     private bool _canAttack;
-    
+    private static readonly int IsAwake = Animator.StringToHash("IsAwake");
     public event Action _attackEvent;
-    
     public bool canAttack { 
         get { return _canAttack; } 
         set
         { 
             _canAttack = value;
-            _isAttacking = canAttack; 
+            _isAttacking = canAttack;
             if(_isAttacking)
             {
                 _attackEvent?.Invoke();

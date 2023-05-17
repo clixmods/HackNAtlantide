@@ -24,7 +24,7 @@ public class OnDamageKnockback : MonoBehaviour
         if( eventArgs is DoDamageEventArgs doDamageEventArgs )
         {
             Vector3 direction = (transform.position - doDamageEventArgs.attackPosition).normalized;
-            _enemyController.ForceDiffMove += direction * 100f;
+            // _enemyController.ForceDiffMove += direction * 100f;
         }
         _animator.enabled = true;
         Debug.Log("onDamageKBAnim is going trought");
