@@ -8,4 +8,5 @@ public interface IInteractable
     public bool Interact();
     public void CancelInteract();
     public void ResetInteract();
+    public void ResetTransform();
 }

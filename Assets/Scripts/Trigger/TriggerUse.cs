@@ -17,11 +17,11 @@ public abstract class TriggerUse : Trigger
     public UnityEvent EventOnTriggerInput;
 
     #region Methods
-    protected override void TriggerEnter()
+    protected override void TriggerEnter(Collider other)
     {
         inputToTrigger.OnValueChanged +=InputToTriggerOnOnValueChanged;
     }
-    protected override void TriggerExit()
+    protected override void TriggerExit(Collider other)
     {
         inputToTrigger.OnValueChanged -= InputToTriggerOnOnValueChanged;
     }

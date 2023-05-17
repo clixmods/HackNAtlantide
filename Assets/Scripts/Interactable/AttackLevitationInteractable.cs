@@ -278,7 +278,7 @@ public class AttackLevitationInteractable : MonoBehaviour, IInteractable
 
     #endregion
 
-    private void ResetToInitialPositionAndRotation()
+    public void ResetTransform()
     {
         transform.position = _initialPosition;
         transform.rotation = _initialRotation;

@@ -61,8 +61,8 @@ public abstract class Trigger : MonoBehaviour
      }
 
      protected abstract void Init();
-     protected virtual void TriggerEnter() { }
-     protected virtual void TriggerExit() { }
+     protected virtual void TriggerEnter(Collider other) { }
+     protected virtual void TriggerExit(Collider other) { }
      private bool IsInteractable(GameObject gameObject)
      {
           return interactWithLayers == (interactWithLayers | (1 << gameObject.layer));
@@ -76,7 +76,7 @@ public abstract class Trigger : MonoBehaviour
           if (IsInteractable(other.gameObject) )
           {
                EventOnTriggerEnter?.Invoke();
-               TriggerEnter();
+               TriggerEnter(other);
                if (disableAfterOnTriggerEnter)
                {
                     gameObject.SetActive(false);
@@ -88,7 +88,7 @@ public abstract class Trigger : MonoBehaviour
           if (IsInteractable(other.gameObject) )
           {
                EventOnTriggerEnd?.Invoke();
-               TriggerExit();
+               TriggerExit(other);
                if (disableAfterOnTriggerExit)
                {
                     gameObject.SetActive(false);
