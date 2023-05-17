@@ -14,6 +14,9 @@
         },
         {
             "m_Id": "77618ad7c2c24e9398335b9381eb2886"
+        },
+        {
+            "m_Id": "793e9cc68cc64fcb8b9d4fb3ada9031b"
         }
     ],
     "m_Keywords": [],
@@ -83,6 +86,9 @@
         },
         {
             "m_Id": "7040c63af9d34b828b552bd6ef4b4652"
+        },
+        {
+            "m_Id": "804ae15a89f44985b293771fb7ae8a26"
         }
     ],
     "m_GroupDatas": [],
@@ -252,6 +258,20 @@
             "m_InputSlot": {
                 "m_Node": {
                     "m_Id": "8b34b3626e5d46c0997bf6917770d750"
+                },
+                "m_SlotId": 2
+            }
+        },
+        {
+            "m_OutputSlot": {
+                "m_Node": {
+                    "m_Id": "804ae15a89f44985b293771fb7ae8a26"
+                },
+                "m_SlotId": 0
+            },
+            "m_InputSlot": {
+                "m_Node": {
+                    "m_Id": "588ca6c34a0747fda8fcbe80a9d08c7d"
                 },
                 "m_SlotId": 2
             }
@@ -601,7 +621,7 @@
     "m_Hidden": false,
     "m_ShaderOutputName": "RadialScale",
     "m_StageCapability": 3,
-    "m_Value": 1.0,
+    "m_Value": 1.0299999713897706,
     "m_DefaultValue": 1.0,
     "m_Labels": []
 }
@@ -1563,6 +1583,21 @@
 
 {
     "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
+    "m_ObjectId": "728a085fb6c2442dbca4eede18dbd7de",
+    "m_Id": 0,
+    "m_DisplayName": "SlashThickness",
+    "m_SlotType": 1,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "Out",
+    "m_StageCapability": 3,
+    "m_Value": 0.0,
+    "m_DefaultValue": 0.0,
+    "m_Labels": []
+}
+
+{
+    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.DynamicValueMaterialSlot",
     "m_ObjectId": "774a76efb2814954b0f4b03ff4140668",
     "m_Id": 0,
@@ -1672,6 +1707,33 @@
 }
 
 {
+    "m_SGVersion": 1,
+    "m_Type": "UnityEditor.ShaderGraph.Internal.Vector1ShaderProperty",
+    "m_ObjectId": "793e9cc68cc64fcb8b9d4fb3ada9031b",
+    "m_Guid": {
+        "m_GuidSerialized": "a2db5fe0-32c9-4163-953f-04b143742ca6"
+    },
+    "m_Name": "SlashThickness",
+    "m_DefaultRefNameVersion": 1,
+    "m_RefNameGeneratedByDisplayName": "SlashThickness",
+    "m_DefaultReferenceName": "_SlashThickness",
+    "m_OverrideReferenceName": "",
+    "m_GeneratePropertyBlock": true,
+    "m_UseCustomSlotLabel": false,
+    "m_CustomSlotLabel": "",
+    "m_Precision": 0,
+    "overrideHLSLDeclaration": false,
+    "hlslDeclarationOverride": 0,
+    "m_Hidden": false,
+    "m_Value": 2.0,
+    "m_FloatType": 0,
+    "m_RangeValues": {
+        "x": 0.0,
+        "y": 1.0
+    }
+}
+
+{
     "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.DynamicVectorMaterialSlot",
     "m_ObjectId": "7d1e2814fa53499597f49db2d7e8f006",
@@ -1721,7 +1783,7 @@
     "m_ShaderOutputName": "B",
     "m_StageCapability": 3,
     "m_Value": {
-        "x": 4.309999942779541,
+        "x": 2.4100000858306886,
         "y": 2.0,
         "z": 2.0,
         "w": 2.0
@@ -1731,6 +1793,41 @@
         "y": 0.0,
         "z": 0.0,
         "w": 0.0
+    }
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.PropertyNode",
+    "m_ObjectId": "804ae15a89f44985b293771fb7ae8a26",
+    "m_Group": {
+        "m_Id": ""
+    },
+    "m_Name": "Property",
+    "m_DrawState": {
+        "m_Expanded": true,
+        "m_Position": {
+            "serializedVersion": "2",
+            "x": -2154.400146484375,
+            "y": -3.1999969482421877,
+            "width": 140.0001220703125,
+            "height": 33.600006103515628
+        }
+    },
+    "m_Slots": [
+        {
+            "m_Id": "728a085fb6c2442dbca4eede18dbd7de"
+        }
+    ],
+    "synonyms": [],
+    "m_Precision": 0,
+    "m_PreviewExpanded": true,
+    "m_PreviewMode": 0,
+    "m_CustomColors": {
+        "m_SerializableColors": []
+    },
+    "m_Property": {
+        "m_Id": "793e9cc68cc64fcb8b9d4fb3ada9031b"
     }
 }
 
@@ -1923,6 +2020,9 @@
         },
         {
             "m_Id": "77618ad7c2c24e9398335b9381eb2886"
+        },
+        {
+            "m_Id": "793e9cc68cc64fcb8b9d4fb3ada9031b"
         }
     ]
 }
