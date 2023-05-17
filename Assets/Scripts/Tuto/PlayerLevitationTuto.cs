@@ -19,6 +19,7 @@ public class PlayerLevitationTuto : MonoBehaviour
         {
             case InputType.Interact:
                 StartCoroutine(WaitForNewQTE());
+                this.enabled = false;
                 break;
             case InputType.Focus:
                 StartCoroutine(WaitForNewQTE());
@@ -41,6 +42,7 @@ public class PlayerLevitationTuto : MonoBehaviour
     {
         GameStateManager.Instance.tutoStateObject.SetActive(true);
         _qTEHandler.cutSceneSuccess += CutSceneSuccess;
+        _qTEHandler.HasFocus = false;
     }
     private void OnDisable()
     {
@@ -49,9 +51,20 @@ public class PlayerLevitationTuto : MonoBehaviour
     }
     private void Update()
     {
-        if(interactDetection.ClosestInteractable() != null)
+        if (!_hasDoneFocusQte)
         {
-            Debug.Log("launchtutolevit");
+            if (_focus != null && _focus.CurrentTarget != null && !_isInCutScene)
+            {
+                _qTEHandler.LaunchCutScene(InputType.Focus);
+                _isInCutScene = true;
+            }
         }
+            
+        if(interactDetection.ClosestInteractable() != null && _hasDoneFocusQte)
+        {
+            _qTEHandler.LaunchCutScene(InputType.Interact);
+            _isInCutScene = true;
+        }
+
     }
 }

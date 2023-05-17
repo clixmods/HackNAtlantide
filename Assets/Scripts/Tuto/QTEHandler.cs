@@ -31,6 +31,7 @@ public class QTEHandler : MonoBehaviour
     bool _hasDash;
     bool _hasDashAttack;
     bool _hasFocus;
+    public bool HasFocus { get { return _hasFocus; } set { _hasFocus = value; } }
     Vector2 _moveInput;
 
     [SerializeField] GameObject _inputInfoAttack;
@@ -129,7 +130,7 @@ public class QTEHandler : MonoBehaviour
         switch (inputType)
         {
             case InputType.Interact:
-                _interact.IsActive = active;
+                //_interact.IsActive = active;
                 break;
 
             case InputType.Attack:
@@ -167,7 +168,7 @@ public class QTEHandler : MonoBehaviour
 
     public void ActiveAllInput(bool active)
     {
-        _interact.IsActive = active;
+        //_interact.IsActive = active;
         _attack.IsActive = active;
         _dash.IsActive = active;
         _dashAttack.IsActive = active;

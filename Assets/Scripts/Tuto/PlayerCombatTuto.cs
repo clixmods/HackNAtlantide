@@ -28,7 +28,7 @@ public class PlayerCombatTuto : MonoBehaviour
     private void OnDisable()
     {
         _qTEHandler.cutSceneSuccess -= CutSceneSuccess;
-        GetComponent<PlayerLevitationTuto>().enabled = true;
+        //GetComponent<PlayerLevitationTuto>().enabled = true;
         GameStateManager.Instance.tutoStateObject.SetActive(false);
     }
 
