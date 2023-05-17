@@ -64,7 +64,7 @@ public class TutoState : GameState
     {
         stateOverride.isPaused = false;
         stateOverride.timeScale = 1f;
-        stateOverride.inputInteractActive = false;
+        stateOverride.inputInteractActive = true;
         stateOverride.inputMovementActive = true;
         stateOverride.inputCombatActive = false;
         stateOverride.inputDashActive = false;

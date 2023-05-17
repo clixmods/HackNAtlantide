@@ -23,12 +23,12 @@ public class PlayerCombatTuto : MonoBehaviour
     private void OnEnable()
     {
         GameStateManager.Instance.tutoStateObject.SetActive(true);
-        _qTEHandler.ActiveAllInput(false);
         _qTEHandler.cutSceneSuccess += CutSceneSuccess;
     }
     private void OnDisable()
     {
         _qTEHandler.cutSceneSuccess -= CutSceneSuccess;
+        GetComponent<PlayerLevitationTuto>().enabled = true;
         GameStateManager.Instance.tutoStateObject.SetActive(false);
     }
 
@@ -69,7 +69,7 @@ public class PlayerCombatTuto : MonoBehaviour
         _isInCutScene = true;
         if(_hasDoneAttackQte)
         {
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.3f);
         }
         _isInCutScene = false;
     }

@@ -134,7 +134,7 @@ public class PlayerInteractDetection : MonoBehaviour
         }
         
     }
-    IInteractable ClosestInteractable()
+    public IInteractable ClosestInteractable()
     {
         //calculate closest Interactable
         float closestSqrDistance = Mathf.Infinity;
