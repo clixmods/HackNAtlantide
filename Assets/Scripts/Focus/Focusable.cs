@@ -84,7 +84,7 @@ public class Focusable : MonoBehaviour, IFocusable
 
     #region MonoBehaviour
 
-    private void Awake()
+    private void Start()
     {
         if (targeter == null)
         {

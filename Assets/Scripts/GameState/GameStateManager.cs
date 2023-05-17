@@ -304,7 +304,7 @@ public class GameStateManager : MonoBehaviour
         }
         else
         {
-            Debug.LogError("No active state");
+            Debug.LogWarning("No active state");
         }
     }
 }

@@ -23,6 +23,26 @@ public class EnemyController : MonoBehaviour, ICombat
     private IAttackCollider _attackCollider;
     private bool _isAttacking;
     public bool IsAttacking { get { return _isAttacking; } }
+
+    private bool _canAttack;
+    private bool _hasFinishWaitAttack = true;
+    private static readonly int IsAwake = Animator.StringToHash("IsAwake");
+    public event Action _attackEvent;
+    public bool canAttack
+    {
+        get { return _canAttack; }
+        set
+        {
+            _canAttack = value;
+            _isAttacking = canAttack;
+            if (_isAttacking)
+            {
+                _attackEvent?.Invoke();
+            };
+
+        }
+    }
+
     private void Awake()
     {
         _attackCollider = GetComponentInChildren<IAttackCollider>();
@@ -60,7 +80,7 @@ public class EnemyController : MonoBehaviour, ICombat
         if (_playerInLookRadius) _animator.SetBool(IsAwake, true);
         if (!_playerInLookRadius) _animator.SetBool(IsAwake, false);
         if (_playerInLookRadius && !_playerInAttackRadius && !_isAttacking && _hasFinishAttack) Chase();
-        if (_playerInLookRadius && (_playerInAttackRadius || _isAttacking)) StartCoroutine(Attack());
+        if (_playerInLookRadius && (_playerInAttackRadius || _isAttacking) && _hasFinishWaitAttack) StartCoroutine(Attack());
     }
     
     void Chase()
@@ -71,6 +91,7 @@ public class EnemyController : MonoBehaviour, ICombat
     
     IEnumerator Attack()
     {
+        _hasFinishWaitAttack = false;
         _hasFinishAttack = false;
         if (!_animator.GetCurrentAnimatorStateInfo(0).IsName("Attaque_1_Golem"))
         {
@@ -78,11 +99,20 @@ public class EnemyController : MonoBehaviour, ICombat
             _agent.isStopped = true;
         }
         FaceTarget();
+
         yield return new WaitForSeconds(1f);
+
         FaceTarget();
         _hasFinishAttack = true;
+        _animator.SetBool("IsAwake", false);
+
+        yield return new WaitForSeconds(1f);
+
+        _hasFinishWaitAttack = true;
+        _animator.SetBool("IsAwake", true);
+
     }
-    
+
     private void FaceTarget()
     {
         Vector3 direction = (PlayerInstanceScriptableObject.Player.transform.position - transform.position).normalized;
@@ -108,20 +138,5 @@ public class EnemyController : MonoBehaviour, ICombat
         Gizmos.DrawWireSphere(position, attackRadius);
     }
 
-    private bool _canAttack;
-    private static readonly int IsAwake = Animator.StringToHash("IsAwake");
-    public event Action _attackEvent;
-    public bool canAttack { 
-        get { return _canAttack; } 
-        set
-        { 
-            _canAttack = value;
-            _isAttacking = canAttack;
-            if(_isAttacking)
-            {
-                _attackEvent?.Invoke();
-            };
-            
-        } 
-    }
+    
 }

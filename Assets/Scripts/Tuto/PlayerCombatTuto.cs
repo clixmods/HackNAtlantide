@@ -69,7 +69,7 @@ public class PlayerCombatTuto : MonoBehaviour
         _isInCutScene = true;
         if(_hasDoneAttackQte)
         {
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(0.1f);
         }
         _isInCutScene = false;
     }
@@ -103,14 +103,14 @@ public class PlayerCombatTuto : MonoBehaviour
                 Debug.Log("Dans le IF ");
                 _qTEHandler.LaunchCutScene(InputType.Focus);
                 _isInCutScene = true;
-                _qTEHandler.MovePlayerToEnemy(_focus.CurrentTarget.transform.position);
                 _qTEHandler.ActiveInputType(InputType.Move, false);
+                _qTEHandler.MovePlayerToEnemy(_focus.CurrentTarget.transform.position);
             }
 
             //Attack
             if (!_hasDoneAttackQte)
             {
-                if ((_focus.CurrentTarget.transform.position - transform.position).magnitude <3.5f)
+                if ((_focus.CurrentTarget.transform.position - transform.position).magnitude <4.5f)
                 {
                     _qTEHandler.ActiveInputType(InputType.Move, false);
                     _qTEHandler.CancelMove();
