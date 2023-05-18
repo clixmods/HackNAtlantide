@@ -103,7 +103,7 @@ public class Focus : MonoBehaviour
     {
         if (FocusIsEnable && _noFocusVirtualCamera != null && !_isTransitioning)
         {
-            Debug.Log("Camera Move");
+           // Debug.Log("Camera Move");
             _camFocusTransform.position = _noFocusVirtualCamera.transform.position;
             _camFocusTransform.rotation = _noFocusVirtualCamera.transform.rotation;
         }
