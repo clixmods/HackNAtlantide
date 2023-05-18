@@ -1,14 +1,8 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Cinemachine;
-using Unity.Mathematics;
 using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.EventSystems;
-using UnityEngine.Serialization;
-
 public class Focus : MonoBehaviour
 {
     public static bool FocusIsEnable;
@@ -29,12 +23,12 @@ public class Focus : MonoBehaviour
     private List<IFocusable> _targetableAvailable = new List<IFocusable>();
     
     [SerializeField] CinemachineVirtualCamera cameraVirtualFocus;
-    private CinemachineBrain _cinemachineBrain;
     private Transform _camFocusTransform;
     private FocusCinemachineTargetGroup _cinemachineTargetGroup;
     private int _currentTargetIndex;
-    private GameObject _nofocusVirtualCamera;
-    private IFocusable _lastcachedTarget;
+    private GameObject _noFocusVirtualCamera;
+    private IFocusable _lastCachedTarget;
+    private bool _isTransitioning;
     #region Properties
     public IFocusable CurrentTarget
     {
@@ -77,7 +71,6 @@ public class Focus : MonoBehaviour
         }
     }
     #endregion
-
     #region Monobehaviour
     private void Awake()
     {
@@ -87,15 +80,13 @@ public class Focus : MonoBehaviour
         inputEnableFocus.OnValueChanged += InputEnableFocusOnChanged;
         inputSwitchTarget.OnValueChanged += InputSwitchTargetOnChanged;
         // Check camera transition
-        //CinemachineCameraVirtualTransition.OnPostCameraChanged += OnCameraTransitionChange;
+        CinemachineCameraVirtualTransition.OnPostCameraChanged += OnCameraTransitionChange;
         // Setup target group
         _cinemachineTargetGroup = GetComponent<FocusCinemachineTargetGroup>();
         if (cameraVirtualFocus != null)
         {
-            //_camFocusTransform = cameraVirtualFocus.transform;
+            _camFocusTransform = cameraVirtualFocus.transform;
         }
-
-        _cinemachineBrain = FindObjectOfType<CinemachineBrain>();
     }
     private void OnDestroy()
     {
@@ -108,32 +99,26 @@ public class Focus : MonoBehaviour
     {
         DisableFocus();
     }
+    private void FixedUpdate()
+    {
+        if (FocusIsEnable && _noFocusVirtualCamera != null && !_isTransitioning)
+        {
+            Debug.Log("Camera Move");
+            _camFocusTransform.position = _noFocusVirtualCamera.transform.position;
+            _camFocusTransform.rotation = _noFocusVirtualCamera.transform.rotation;
+        }
+    }
+
     private void Update()
     {
+        
         if (FocusIsEnable)
         {
+            //_camFocusTransform.position = _noFocusVirtualCamera.transform.position ;
+            //_camFocusTransform.rotation =  _noFocusVirtualCamera.transform.rotation;
             GenerateTargetableList();
             AfterGenerateList();
         }
-        else
-        {
-          //  var newCamTransitionTransform = _cinemachineBrain.ActiveVirtualCamera.VirtualCameraGameObject.transform;
-          //  _camFocusTransform.position = newCamTransitionTransform.position;
-           // _camFocusTransform.rotation = newCamTransitionTransform.rotation;
-        }
-            
-        // OBsolete apparently
-        // if (!FocusIsEnable)
-        // {
-        //     if (_targetableAvailable.Count > 0)
-        //     {
-        //         CurrentTargetIndex = 0;
-        //         if (CurrentTarget != _lastcachedTarget)
-        //         {
-        //             Switch();
-        //         }
-        //     }
-        // }
     }
     #endregion
     private void OnCameraTransitionChange(CinemachineVirtualCamera newCameraVirtual)
@@ -141,36 +126,44 @@ public class Focus : MonoBehaviour
         if (FocusIsEnable)
         {
             // If a new camera transition is triggered, go lerp the focus camera to the new camera
-            if (newCameraVirtual.gameObject != _nofocusVirtualCamera)
+            if (newCameraVirtual.gameObject != _noFocusVirtualCamera)
             {
-                StartCoroutine(LerpCameraPositionTo(newCameraVirtual));
+                // we need to cache the camera transition
+                _noFocusVirtualCamera = newCameraVirtual.gameObject;
+               // if (!_isTransitioning)
+                {
+                    StartCoroutine(LerpCameraPositionTo(newCameraVirtual));
+                }
+               
+             
             }
             else
             {
                 // Focus enabled, we need to disable the new camera transition
-              //  newCameraVirtual.gameObject.SetActive(false); 
+                //newCameraVirtual.gameObject.SetActive(false); 
             }
         }
         else
         {
-           //  var newCamTransitionTransform = _cinemachineBrain.ActiveVirtualCamera.VirtualCameraGameObject.transform;
-           //  _camFocusTransform.position = newCamTransitionTransform.position;
-           //  _camFocusTransform.rotation = newCamTransitionTransform.rotation;
+            var newCamTransitionTransform = newCameraVirtual.transform;
+            //_camFocusTransform.position = newCamTransitionTransform.position;
+            //_camFocusTransform.rotation = newCamTransitionTransform.rotation;
         }
         // we need to cache the camera transition
-       // _nofocusVirtualCamera = newCameraVirtual.gameObject;
+        _noFocusVirtualCamera = newCameraVirtual.gameObject;
         
         
         // // If its the same camera, not necesary to continue
-        // if (newCameraVirtual.gameObject == _nofocusVirtualCamera)
+        // if (newCameraVirtual.gameObject == _noFocusVirtualCamera)
         // {
         //     // Need to disable it, because the camera transition event has renable it
-        //     _nofocusVirtualCamera.SetActive(false); 
+        //     _noFocusVirtualCamera.SetActive(false); 
         //     return;
         // }
     }
     IEnumerator LerpCameraPositionTo(CinemachineVirtualCamera newCameraVirtual)
     {
+        _isTransitioning = true;
         float timeElapsed = 0;
         Vector3 cameraPosition = _camFocusTransform.position;
         Quaternion cameraRotation = _camFocusTransform.rotation;
@@ -178,13 +171,19 @@ public class Focus : MonoBehaviour
         while (timeElapsed < timeTransition)
         {
             timeElapsed += Time.deltaTime;
-            // if(newCameraVirtual.gameObject != _nofocusVirtualCamera)
-            //     yield break;
+            if (newCameraVirtual.gameObject != _noFocusVirtualCamera)
+            {
+                _isTransitioning = false;
+                yield break;
+            }
+                
             var t = timeElapsed / timeTransition;
             _camFocusTransform.position = Vector3.Lerp(cameraPosition,newCameraVirtual.transform.position , t);
             _camFocusTransform.rotation = Quaternion.Lerp(cameraRotation, newCameraVirtual.transform.rotation, t);
             yield return null;
         }
+
+        _isTransitioning = false;
     }
     private void Switch()
     {
@@ -196,7 +195,7 @@ public class Focus : MonoBehaviour
             return;
         }
         // If the CurrentTarget is the last target, go return
-        if (CurrentTarget != null && _lastcachedTarget == CurrentTarget)
+        if (CurrentTarget != null && _lastCachedTarget == CurrentTarget)
         {
             OnFocusSwitch?.Invoke(CurrentTarget);
             return;
@@ -206,12 +205,12 @@ public class Focus : MonoBehaviour
         {
             try
             {
-                _lastcachedTarget.OnUnfocus();
+                _lastCachedTarget.OnUnfocus();
             }
             catch
             {
                 Debug.LogWarning("A IFocusable has been destroyed ! Its better to not destroy them in a same scene");
-                _lastcachedTarget = null;
+                _lastCachedTarget = null;
             }
         }
         
@@ -219,7 +218,7 @@ public class Focus : MonoBehaviour
         if (CurrentTarget != null)
         {
             _cinemachineTargetGroup.SwitchToTarget(CurrentTarget.focusableTransform);
-            _lastcachedTarget = CurrentTarget;
+            _lastCachedTarget = CurrentTarget;
             if (FocusIsEnable)
             {
                 CurrentTarget.OnFocus();
@@ -288,11 +287,11 @@ public class Focus : MonoBehaviour
                 {
                     CurrentTargetIndex = 0;
                     // Active the camera focus
-                    //cameraVirtualFocus.gameObject.SetActive(true);
+                    cameraVirtualFocus.gameObject.SetActive(true);
                     // go disable the nofocus camera
-                    if (_nofocusVirtualCamera != null)
+                    if (_noFocusVirtualCamera != null)
                     {
-                       // _nofocusVirtualCamera.SetActive(false);
+                        //_noFocusVirtualCamera.SetActive(false);
                     }
                     OnFocusEnable?.Invoke();
                     Switch();
@@ -345,7 +344,7 @@ public class Focus : MonoBehaviour
             _targetableAvailable.Add(targetable);
         }
         // If the lastest target is not in the list, we need to force a switch
-        if (!_targetableAvailable.Contains(_lastcachedTarget))
+        if (!_targetableAvailable.Contains(_lastCachedTarget))
         {
             _forceSwitch = true;
         }
@@ -389,22 +388,22 @@ public class Focus : MonoBehaviour
     {
         OnFocusDisable?.Invoke();
         // Active the no focus camera cached
-        if ( _nofocusVirtualCamera != null)
+        if ( _noFocusVirtualCamera != null)
         {
-            //_nofocusVirtualCamera.SetActive(true);
+           // _noFocusVirtualCamera.SetActive(true);
         }
         // Disable focus camera
-       // cameraVirtualFocus.gameObject.SetActive(false);
+        cameraVirtualFocus.gameObject.SetActive(false);
         FocusIsEnable = false;
         // Try / Catch used to prevent Interface field issues, Unity have a bad behaviour
         try
         {
-            _lastcachedTarget.OnUnfocus();
-            _lastcachedTarget = null;
+            _lastCachedTarget.OnUnfocus();
+            _lastCachedTarget = null;
         }
         catch
         {
-            _lastcachedTarget = null;
+            _lastCachedTarget = null;
            // Debug.LogWarning("A IFocusable has been destroyed ! Its better to not destroy them in a same scene");
         }
         CurrentTargetIndex = 0;
