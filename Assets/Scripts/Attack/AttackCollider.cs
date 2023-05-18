@@ -16,6 +16,8 @@ public class AttackCollider : MonoBehaviour , IAttackCollider
     [SerializeField] private bool sendEventOnExit = false;
 
     [SerializeField] private LayerMask interactWithLayers;
+
+    [SerializeField] ParticleSystem _hitVfx;
     private void OnEnable()
     {
         _damageableHitted = new List<IDamageable>();
@@ -46,6 +48,7 @@ public class AttackCollider : MonoBehaviour , IAttackCollider
         {
             Debug.Log(other.gameObject.name);
             OnHit(damageable);
+            _hitVfx.Play();
         }
     }
     private void OnTriggerStay(Collider other)
@@ -56,6 +59,7 @@ public class AttackCollider : MonoBehaviour , IAttackCollider
         if(other.TryGetComponent<IDamageable>(out var damageable))
         {
             OnHit(damageable);
+            _hitVfx.Play();
         }
     }
     private void OnTriggerExit(Collider other)
