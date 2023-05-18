@@ -265,8 +265,6 @@ public class AttackLevitationInteractable : MonoBehaviour, IInteractable
             _attackCollider.enabled = false;
             _attackCollider.gameObject.layer = _layerBase;
         }
-
-        Debug.Log("Cancel Interact" , gameObject);
         _inputHelper.enabled = false;
         _uiChargeInputHelper.SetFillValue(1);
         _isCharging = false;

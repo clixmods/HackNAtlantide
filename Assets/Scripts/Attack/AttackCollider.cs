@@ -46,7 +46,6 @@ public class AttackCollider : MonoBehaviour , IAttackCollider
         if (!sendEventOnEnter) return;
         if(other.TryGetComponent<IDamageable>(out var damageable))
         {
-            Debug.Log(other.gameObject.name);
             OnHit(damageable);
             _hitVfx.Play();
         }

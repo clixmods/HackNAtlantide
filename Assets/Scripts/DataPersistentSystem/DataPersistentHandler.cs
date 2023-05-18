@@ -111,7 +111,6 @@ public class DataPersistentHandler : ScriptableObject
             Directory.CreateDirectory(Path.GetDirectoryName(dataPath));
         }
         File.WriteAllBytes(dataPath, byteData);
-        Debug.Log("Save data to: " + dataPath);
     }
     public static void Load(ISave save, string fileName)
     {
@@ -125,10 +124,8 @@ public class DataPersistentHandler : ScriptableObject
         if (File.Exists(dataPath))
         {
             jsonDataAsBytes = File.ReadAllBytes(dataPath);
-            Debug.Log("<color=green>Loaded all data from: </color>" + dataPath);
             string jsonData;
             jsonData = Encoding.ASCII.GetString(jsonDataAsBytes);
-            Debug.Log(jsonData);
             save.OnLoad(jsonData);
         }
     }
