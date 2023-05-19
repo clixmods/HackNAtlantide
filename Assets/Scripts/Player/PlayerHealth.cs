@@ -9,7 +9,7 @@ public class PlayerHealth : Character
 {
     [SerializeField] PlayerMovementStateScriptableObject _movementState;
     [SerializeField] PostProcessWeightTransition _postProcessWeightTransition;
-    private void Awake()
+    private void Start()
     {
         _postProcessWeightTransition.SetWeightVolume(0);
     }

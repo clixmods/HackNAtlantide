@@ -44,7 +44,11 @@ public class Character : MonoBehaviour,  IDamageable
     public virtual void DoDamage(float damage , Vector3 attackLocation)
     {
         if (health <= 0)
+        {
+            Debug.Log("damage");
             return;
+        }
+            
         
         health -= damage;
         AttackFeedback();
@@ -56,6 +60,7 @@ public class Character : MonoBehaviour,  IDamageable
             }
             
             );
+        
         if(health <= 0f)
         {
             Dead();
