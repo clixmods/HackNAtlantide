@@ -358,7 +358,8 @@ public class PlayerMovement : MonoBehaviour
     {
         float distance = 0f;
         Vector3 displacement = Vector3.zero;
-        if (_rigidbody.SweepTest(Vector3.down, out RaycastHit hit, 0.2f, QueryTriggerInteraction.Ignore))
+        float magnitudeCheck = IsDashing || IsDashingAttack ? 0.6f : 0.3f;
+        if (_rigidbody.SweepTest(Vector3.down, out RaycastHit hit, magnitudeCheck, QueryTriggerInteraction.Ignore))
         {
             //ClampDistance with contact offset;
             distance = Mathf.Max(0f, hit.distance - Physics.defaultContactOffset);
