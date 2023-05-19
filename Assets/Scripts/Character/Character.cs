@@ -45,7 +45,6 @@ public class Character : MonoBehaviour,  IDamageable
     {
         if (health <= 0)
         {
-            Debug.Log("damage");
             return;
         }
             

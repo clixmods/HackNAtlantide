@@ -28,10 +28,6 @@ public class PlayerHealth : Character
             base.DoDamage(damage,  attackLocation);
             StartCoroutine(PostProcessHit());
         }
-        else
-        {
-            Debug.Log("dashing no damage");
-        }
         
     }
     IEnumerator PostProcessHit()
