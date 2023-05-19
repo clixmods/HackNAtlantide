@@ -181,6 +181,7 @@ GameObject:
   - component: {fileID: 2456352770044569039}
   - component: {fileID: 8894913341285539094}
   - component: {fileID: 2225118806408707203}
+  - component: {fileID: 5955506824905409156}
   m_Layer: 5
   m_Name: IngameScreenMenu
   m_TagString: Untagged
@@ -236,8 +237,6 @@ MonoBehaviour:
   canBeOpenedAnywhere: 0
   reopenPreviousMenuOnClose: 0
   EraseActiveMenu: 0
-  canAdjustTimescale: 1
-  timeScale: 1
   showCursor: 1
   StayOpenOnAwake: 1
   _menuType: 0
@@ -268,6 +267,35 @@ MonoBehaviour:
   startTheOpenInSeconds: 2
   openDelay: 3
   closeDelay: 0.5
+--- !u!114 &5955506824905409156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3362502596227382046}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f6b678f0e70c584d88ed3bcc46007a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scriptableScriptableEvent: {fileID: 11400000, guid: b2bbc58ab515aa9479d9150fd0fd66b9,
+    type: 2}
+  LaunchEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2456352770044569039}
+        m_TargetAssemblyTypeName: UIMenu, Assembly-CSharp
+        m_MethodName: CloseMenu
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &4090426513518536549
 GameObject:
   m_ObjectHideFlags: 0
