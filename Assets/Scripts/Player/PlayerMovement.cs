@@ -145,7 +145,7 @@ public class PlayerMovement : MonoBehaviour
     
     private void Move()
     {
-        _rigidbody.velocity = Vector3.zero;
+        _rigidbody.velocity = new Vector3(0,_rigidbody.velocity.y,0);
         //direction in which player wants to move
         Vector3 targetmoveAmount = _moveDirection * _speed * Time.fixedDeltaTime;
 
@@ -301,7 +301,7 @@ public class PlayerMovement : MonoBehaviour
 
         _speed = _moveSpeed;
         
-        _transformLock = _transformLockTempForDash;
+        
         
 
         StartCoroutine(ReloadDash());
@@ -327,14 +327,20 @@ public class PlayerMovement : MonoBehaviour
     IEnumerator CancelDashFeedback()
     {
         yield return new WaitForSeconds(0.2f);
+        _transformLock = _transformLockTempForDash;
         _isDashing = false;
         Physics.IgnoreLayerCollision(this.gameObject.layer, 16, false);
         DashFeedBack(false);
     }
-    
+    public void SetTransformLock()
+    {
+        _transformLock = _transformLockTempForDash;
+    }
+
     IEnumerator CancelDashAttackFeedback()
     {
         yield return new WaitForSeconds(0.2f);
+        _transformLock = _transformLockTempForDash;
         _isDashingAttack = false;
         Physics.IgnoreLayerCollision(this.gameObject.layer, 16, false);
         DashAttackFeedBack(false);
@@ -356,16 +362,18 @@ public class PlayerMovement : MonoBehaviour
     
     private void StayGrounded()
     {
-        float distance = 0f;
+        _rigidbody.AddForce(Vector3.down * 1000 * Time.fixedDeltaTime);
+        /*float distance = 0f;
         Vector3 displacement = Vector3.zero;
         float magnitudeCheck = IsDashing || IsDashingAttack ? 0.6f : 0.3f;
-        if (_rigidbody.SweepTest(Vector3.down, out RaycastHit hit, magnitudeCheck, QueryTriggerInteraction.Ignore))
+        RaycastHit hit;
+        if (Physics.Raycast(_rigidbody.position, Vector3.down, magnitudeCheck))
         {
             //ClampDistance with contact offset;
             distance = Mathf.Max(0f, hit.distance - Physics.defaultContactOffset);
             displacement = Vector3.down * distance;
         }
-        _rigidbody.MovePosition(_rigidbody.position + displacement);
+        _rigidbody.MovePosition(_rigidbody.position + displacement);*/
     }
     
     public void Teleport(Transform transformPoint)

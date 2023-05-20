@@ -66,4 +66,9 @@ public class PlayerAnimations : MonoBehaviour
         yield return new WaitForSeconds(.5f);
         _animator.SetBool("dash", false);
     }
+    public void DashFinish()
+    {
+        Debug.Log("dashfinish");
+        GetComponentInParent<PlayerMovement>().SetTransformLock();
+    }
 }
