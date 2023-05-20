@@ -9,6 +9,8 @@ public class PlayerHealth : Character
 {
     [SerializeField] PlayerMovementStateScriptableObject _movementState;
     [SerializeField] PostProcessWeightTransition _postProcessWeightTransition;
+    bool _isInvincible = false;
+    public bool IsInvincible { get { return _isInvincible; } set { _isInvincible = value; } }
     private void Start()
     {
         _postProcessWeightTransition.SetWeightVolume(0);
@@ -23,7 +25,7 @@ public class PlayerHealth : Character
     }
     public override void DoDamage(float damage , Vector3 attackLocation)
     {
-        if(_movementState.MovementState != MovementState.dashing)
+        if(_movementState.MovementState != MovementState.dashing && !_isInvincible)
         {
             base.DoDamage(damage,  attackLocation);
             StartCoroutine(PostProcessHit());
