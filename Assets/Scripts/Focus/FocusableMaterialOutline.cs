@@ -6,13 +6,16 @@ public class FocusableMaterialOutline : MonoBehaviour
     private IFocusable _focusable;
     // Material block 
     private MaterialPropertyBlock[] _propBlocks;
-    private Renderer _renderer;
+    [SerializeField] private Renderer _renderer;
     private static readonly int Amount = Shader.PropertyToID("_Outline");
     private void Awake()
     {
         _focusable = GetComponent<IFocusable>();
         // Setup Material property block
-        _renderer = GetComponentInChildren<Renderer>();
+        if (_renderer == null)
+        {
+            _renderer = GetComponentInChildren<Renderer>();
+        }
         if (_renderer != null)
         {
             _propBlocks = new MaterialPropertyBlock[_renderer.sharedMaterials.Length];

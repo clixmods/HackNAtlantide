@@ -12,7 +12,7 @@ public class AttackLevitationInteractable : MonoBehaviour, IInteractable
 {
     private Rigidbody _rigidBody;
     /// <summary>
-    /// The object has been interacted ? True when the object start to project to a target
+    /// The object has been interacted ? True when the object start to attack a target
     /// </summary>
     private bool _hasInteract;
     [SerializeField] PlayerDetectionScriptableObject _playerDetectionScriptableObject;
