@@ -6,22 +6,29 @@ using UnityEngine.Serialization;
 public class InteractableTrailLinker : MonoBehaviour
 {
     [SerializeField] private Transform startTransform;
-    private Transform _interactableTransform;
+    [SerializeField] private Transform interactableTransform;
     [SerializeField] private float speedMultiplier;
 
+    public void SetTransformsLink(Transform transform1, Transform transform2, float speed = 12)
+    {
+        startTransform = transform1;
+        interactableTransform = transform2;
+        speedMultiplier = speed;
+    }
+    
     public void SetInteractable(IInteractable interactable)
     {
-        this._interactableTransform = interactable.transform;
+        this.interactableTransform = interactable.transform;
         gameObject.SetActive(true);
     }
     public void Unselect()
     {
-        this._interactableTransform = null;
+        this.interactableTransform = null;
         gameObject.SetActive(false);
     }
     // Update is called once per frame
     void Update()
     {
-        transform.position = Vector3.Lerp(startTransform.position, _interactableTransform.position, ( ( Mathf.Cos(Time.time*speedMultiplier)) + 1f) /2f  );
+        transform.position = Vector3.Lerp(startTransform.position, interactableTransform.position, ( ( Mathf.Cos(Time.time*speedMultiplier)) + 1f) /2f  );
     }
 }

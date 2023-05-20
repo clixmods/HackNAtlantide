@@ -7,15 +7,23 @@ using UnityEngine.Events;
 /// </summary>
 public class EventsListenerIDamageable : MonoBehaviour
 {
+    private IDamageable _idamageable;
     public UnityEvent OnDamage;
     public UnityEvent OnDeath;
     // Start is called before the first frame update
     void Awake()
     {
-        var idamageable = GetComponent<IDamageable>();
-        idamageable.OnDamage += IdamageableOnDamage;
-        idamageable.OnDeath += IdamageableOnDeath;
+        _idamageable = GetComponent<IDamageable>();
+        _idamageable.OnDamage += IdamageableOnDamage;
+        _idamageable.OnDeath += IdamageableOnDeath;
     }
+
+    private void OnDestroy()
+    {
+        _idamageable.OnDamage -= IdamageableOnDamage;
+        _idamageable.OnDeath -= IdamageableOnDeath;
+    }
+
     private void IdamageableOnDeath(object sender, EventArgs e)
     {
         OnDeath?.Invoke();
