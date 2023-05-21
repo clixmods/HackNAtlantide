@@ -83,7 +83,7 @@ public class Focusable : MonoBehaviour, IFocusable
     }
 
     #region MonoBehaviour
-
+    
     private void Start()
     {
         if (targeter == null)

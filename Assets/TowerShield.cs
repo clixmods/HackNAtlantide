@@ -10,7 +10,7 @@ public class TowerShield : MonoBehaviour
     private GameObject[] fxTrailGameObjects;
     [SerializeField] private GameObject fxTrail;
     [SerializeField] private Transform pivotStartTrail;
-    private void Awake()
+    private void Start()
     {
         _idamageable = GetComponent<IDamageable>();
         fxTrailGameObjects = new GameObject[charactersToProtect.Count];
