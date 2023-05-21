@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -8,6 +9,17 @@ public class EnemiesWatcher : MonoBehaviour
 {
     [SerializeField] private List<Character> _charactersToWatch;
     public UnityEvent NoCharactersToWatch;
+    [SerializeField] private bool GetChildEnnemies;
+
+    private void OnValidate()
+    {
+        if (GetChildEnnemies)
+        {
+            _charactersToWatch = GetComponentsInChildren<Character>().ToList();
+            GetChildEnnemies = false;
+        }
+    }
+
     private void Start()
     {
         for (int i = 0; i < _charactersToWatch.Count; i++)
@@ -31,17 +43,32 @@ public class EnemiesWatcher : MonoBehaviour
 
     public void KillAllEnemiesWatchedWithoutSendWatcherEvent()
     {
+        if (_charactersToWatch.Count == 0)
+        {
+            return;
+        }
+            
         for (int i = 0; i < _charactersToWatch.Count; i++)
         {
-            _charactersToWatch[i].OnDeath -= OnDeath;
-            _charactersToWatch[i].Dead();
+            if (_charactersToWatch[i] != null)
+            {
+                _charactersToWatch[i].OnDeath -= OnDeath;
+                _charactersToWatch[i].Dead();
+            }
         }
     }
     public void KillAllEnemiesWatched()
     {
+        if (_charactersToWatch.Count == 0)
+        {
+            return;
+        }
         for (int i = 0; i < _charactersToWatch.Count; i++)
         {
-            _charactersToWatch[i].Dead();
+            if (_charactersToWatch[i] != null)
+            {
+                _charactersToWatch[i].Dead();
+            }
         }
     }
     
