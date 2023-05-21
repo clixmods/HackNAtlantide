@@ -9,8 +9,8 @@ public class ScriptableValueBoolListener : ScriptableValueListener<bool>
     public UnityEvent ValueIsFalse;
     protected override void Awake()
     {
-        base.Awake();
         LaunchEvent.AddListener(ValueChanged);
+        base.Awake();
     }
 
     private void ValueChanged(bool obj)

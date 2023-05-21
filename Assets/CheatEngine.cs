@@ -4,8 +4,9 @@ using TMPro;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
+#if UNITY_EDITOR
 using XEditor.Editor;
-
+#endif
 public class CheatEngine : MonoBehaviour
 {
     public bool isInvicible;
@@ -21,7 +22,7 @@ public class CheatEngine : MonoBehaviour
     public GameObject EventsPanelPrefab;
     public List<GameObject> EventsPanelPrefabs = new List<GameObject>();
 
-
+#if UNITY_EDITOR
     private void OnValidate()
     {
         events = XEditorUtility.GetAssets<ScriptableEvent>();
@@ -29,6 +30,7 @@ public class CheatEngine : MonoBehaviour
         eventsBool = XEditorUtility.GetAssets<ScriptableEventType<bool>>();
         UpdateEvents();
     }
+    #endif
     private void OnEnable()
     {
         _openCheatinput.OnValueChanged += OpenMenu;

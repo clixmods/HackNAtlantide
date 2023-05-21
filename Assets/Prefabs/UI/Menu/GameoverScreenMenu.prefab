@@ -201,6 +201,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 11400000, guid: 2a8894600e41b1b4da912bb02b84e087, type: 2}
+        m_TargetAssemblyTypeName: DataPersistentHandler, DataPersistent
+        m_MethodName: LoadAll
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
       - m_Target: {fileID: 3213594563360779266}
         m_TargetAssemblyTypeName: ButtonRestartScene, Assembly-CSharp
         m_MethodName: LoadScene
@@ -226,6 +238,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   loadingScreen: {fileID: 0}
+  _restartEvent: {fileID: 0}
 --- !u!1 &2732020244970805310
 GameObject:
   m_ObjectHideFlags: 0
@@ -628,8 +641,6 @@ MonoBehaviour:
   canBeOpenedAnywhere: 1
   reopenPreviousMenuOnClose: 0
   EraseActiveMenu: 0
-  canAdjustTimescale: 1
-  timeScale: 0.34
   showCursor: 1
   StayOpenOnAwake: 0
   _menuType: 0
@@ -672,7 +683,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f6b678f0e70c584d88ed3bcc46007a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _scriptableEvent: {fileID: 11400000, guid: b2bbc58ab515aa9479d9150fd0fd66b9, type: 2}
+  scriptableScriptableEvent: {fileID: 11400000, guid: b2bbc58ab515aa9479d9150fd0fd66b9,
+    type: 2}
   LaunchEvent:
     m_PersistentCalls:
       m_Calls:
