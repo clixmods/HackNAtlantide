@@ -9,6 +9,7 @@ public class PlayerStamina : MonoBehaviour
     [SerializeField] ParticleSystem _useStaminaFX;
     [SerializeField] ParticleSystem _failUseStaminaFX;
 
+    public PlayerStaminaScriptableObject StaminaData => _staminaSO;
 
     private void OnEnable()
     {

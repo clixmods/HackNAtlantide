@@ -2003,7 +2003,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh50484
+  m_Name: pb_Mesh-878212
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2857,7 +2857,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh49972
+  m_Name: pb_Mesh-878198
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -3243,6 +3243,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 11400000, guid: 2a8894600e41b1b4da912bb02b84e087, type: 2}
+        m_TargetAssemblyTypeName: DataPersistentHandler, DataPersistent
+        m_MethodName: SaveAll
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   EventOnTriggerStay:
     m_PersistentCalls:
       m_Calls: []
@@ -3327,7 +3339,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 664844716}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 55.5, y: 22.3895, z: 21.2134}
+  m_LocalPosition: {x: 54.62, y: 22.3895, z: 21.2134}
   m_LocalScale: {x: 4.2627, y: 3.1209, z: 7.8327603}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5326,6 +5338,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 668fd41e32e9be54d9ddf8c998048bbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerMovement: {fileID: 0}
 --- !u!43 &1039521966
 Mesh:
   m_ObjectHideFlags: 0
@@ -5698,6 +5711,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 668fd41e32e9be54d9ddf8c998048bbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerMovement: {fileID: 0}
 --- !u!1 &1077861936
 GameObject:
   m_ObjectHideFlags: 0
@@ -6232,7 +6246,7 @@ GameObject:
   - component: {fileID: 1162146080}
   - component: {fileID: 1162146079}
   m_Layer: 0
-  m_Name: HUBProgression
+  m_Name: Player Spawner Condition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6245,7 +6259,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1162146078}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d291e6217de5ece45ae817916ad548f5, type: 3}
   m_Name: 
@@ -6495,6 +6509,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 668fd41e32e9be54d9ddf8c998048bbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerMovement: {fileID: 0}
 --- !u!43 &1284660247
 Mesh:
   m_ObjectHideFlags: 0
@@ -8299,6 +8314,55 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1 &1550736697
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1550736699}
+  - component: {fileID: 1550736698}
+  m_Layer: 0
+  m_Name: PlayerSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1550736698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1550736697}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83633ab0d5c8d7b46b0cf39c456f0eeb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerPosition: {fileID: 11400000, guid: e6fe967b377afa44e8305abd5258cd29, type: 2}
+  playerSpawns:
+  - {fileID: 1255021091}
+  - {fileID: 1076599841}
+  - {fileID: 1007693867}
+--- !u!4 &1550736699
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1550736697}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 49.23929, y: 22.52355, z: 16.889845}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!43 &1578477142
 Mesh:
   m_ObjectHideFlags: 0
@@ -10205,6 +10269,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 214863531046329631, guid: b77b45d696911824da7f8bf5a53304ad,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 14.32
+      objectReference: {fileID: 0}
+    - target: {fileID: 214863531046329631, guid: b77b45d696911824da7f8bf5a53304ad,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 21.6
+      objectReference: {fileID: 0}
     - target: {fileID: 266132403581896982, guid: b77b45d696911824da7f8bf5a53304ad,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -10434,6 +10508,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalRotation.z
       value: -0.2513053
+      objectReference: {fileID: 0}
+    - target: {fileID: 5385849557459567704, guid: b77b45d696911824da7f8bf5a53304ad,
+        type: 3}
+      propertyPath: field of view
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 6068698100297187777, guid: b77b45d696911824da7f8bf5a53304ad,
         type: 3}

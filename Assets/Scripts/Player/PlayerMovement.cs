@@ -378,7 +378,18 @@ public class PlayerMovement : MonoBehaviour
     
     public void Teleport(Transform transformPoint)
     {
-        transform.position = transformPoint.position;
+        Teleport(transformPoint.position);
+    }
+    public void Teleport(Vector3 position)
+    {
+        transform.position = position;
+    }
+    public void TeleportWorldSpawn(Vector3 position)
+    {
+        if (position != Vector3.zero)
+        {
+            Teleport(position);
+        }
     }
     
     public  void SetParentToNull()

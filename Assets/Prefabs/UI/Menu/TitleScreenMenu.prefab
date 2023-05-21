@@ -769,9 +769,21 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 11400000, guid: 2a8894600e41b1b4da912bb02b84e087, type: 2}
+        m_TargetAssemblyTypeName: DataPersistentHandler, DataPersistent
+        m_MethodName: LoadAll
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
       - m_Target: {fileID: 3682160157450158012}
-        m_TargetAssemblyTypeName: ButtonLoadScene, Assembly-CSharp
-        m_MethodName: 
+        m_TargetAssemblyTypeName: LoadSceneWithLoadingScreen, Assembly-CSharp
+        m_MethodName: LoadScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -912,8 +924,6 @@ MonoBehaviour:
   canBeOpenedAnywhere: 0
   reopenPreviousMenuOnClose: 0
   EraseActiveMenu: 0
-  canAdjustTimescale: 1
-  timeScale: 1
   showCursor: 1
   StayOpenOnAwake: 1
   _menuType: 0

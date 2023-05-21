@@ -17,7 +17,7 @@ public class Character : MonoBehaviour,  IDamageable
     public event EventHandler OnDeath;
     public event EventHandler OnChangeHealth;
     #endregion
-    public float maxHealth 
+    public virtual float maxHealth 
     {
         get
         {
@@ -29,7 +29,7 @@ public class Character : MonoBehaviour,  IDamageable
             _maxHealth = value;
         }
     }
-    public float health
+    public virtual float health
     {
         get
         {
@@ -43,9 +43,14 @@ public class Character : MonoBehaviour,  IDamageable
     }
     void Awake()
     {
+        InitHealth();
+    }
+
+    protected virtual void InitHealth()
+    {
         health = maxHealth;
     }
-    
+
     public virtual void DoDamage(float damage , Vector3 attackLocation)
     {
         if (isInvulnerable)

@@ -25,6 +25,7 @@ public class UIHealthPlayer : MonoBehaviour
         
         _striLength = _rectTransform.rect.width;
         _rectTransform.sizeDelta = new Vector2 (_striLength * player.maxHealth, _rectTransform.sizeDelta.y);
+        _slider.value = player.health/player.maxHealth;
     }
 
     private void OnDestroy()
