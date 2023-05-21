@@ -335,6 +335,7 @@ public class Focus : MonoBehaviour
             {
                 _targetableAvailable = new List<IFocusable>();
             }
+            DisableFocus();
             return; 
         }
         // Generate list of available targetable

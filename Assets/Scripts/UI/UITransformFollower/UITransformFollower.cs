@@ -11,7 +11,7 @@ namespace UI.UITransformFollower
         private Vector3 _offset;
         private Vector2 _initialScale;
         
-        private static Canvas _canvas;
+        private static UIFollowerContainer _followerContainer;
         [Header("Settings")]
         [SerializeField] private float distanceToShow = 10;
 
@@ -26,11 +26,11 @@ namespace UI.UITransformFollower
             T component = null;
             if (transformTarget == null) return null;
 
-            if (_canvas == null)
+            if (_followerContainer == null)
             {
-                _canvas = FindObjectOfType<Canvas>();
+                _followerContainer = FindObjectOfType<UIFollowerContainer>();
             }
-            var inputHelperObject = Instantiate(prefab, Vector3.zero, Quaternion.identity, _canvas.transform);
+            var inputHelperObject = Instantiate(prefab, Vector3.zero, Quaternion.identity, _followerContainer.transform);
             // Setup
             component = inputHelperObject.GetComponentInChildren<T>();
             component._transformToFollow = transformTarget;
