@@ -53,7 +53,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5e1dc532bcb41949b58bc4f2abfbb7e, type: 3}
   m_Name: LensDistortion
   m_EditorClassIdentifier: 
-  active: 0
+  active: 1
   intensity:
     m_OverrideState: 1
     m_Value: 0.04
@@ -69,6 +69,34 @@ MonoBehaviour:
   scale:
     m_OverrideState: 1
     m_Value: 1.12
+--- !u!114 &-3787229426976684828
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66f335fb1ffd8684294ad653bf1c7564, type: 3}
+  m_Name: ColorAdjustments
+  m_EditorClassIdentifier: 
+  active: 1
+  postExposure:
+    m_OverrideState: 1
+    m_Value: 1.39
+  contrast:
+    m_OverrideState: 1
+    m_Value: 100
+  colorFilter:
+    m_OverrideState: 1
+    m_Value: {r: 1, g: 0, b: 0, a: 1}
+  hueShift:
+    m_OverrideState: 1
+    m_Value: 0
+  saturation:
+    m_OverrideState: 1
+    m_Value: -62
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -86,6 +114,7 @@ MonoBehaviour:
   - {fileID: 8562686228033705842}
   - {fileID: 6119726847142373007}
   - {fileID: -4037753009727282892}
+  - {fileID: -3787229426976684828}
 --- !u!114 &6119726847142373007
 MonoBehaviour:
   m_ObjectHideFlags: 3

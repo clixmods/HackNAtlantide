@@ -73,7 +73,10 @@ public class PlayerHealth : Character
     IEnumerator PostProcessHit()
     {
         _postProcessWeightTransition.SetWeightVolume(1);
-        yield return new WaitForSecondsRealtime(0.3f);
+        float timescale = Time.timeScale;
+        Time.timeScale = 0.2f;
+        yield return new WaitForSecondsRealtime(0.15f);
+        Time.timeScale = timescale;
         _postProcessWeightTransition.SetWeightVolume(0);
     }
 

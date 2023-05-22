@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.32761228, g: 0.34573942, b: 0.42263716, a: 1}
+  m_IndirectSpecularColor: {r: 0.32764328, g: 0.34525967, b: 0.43074402, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 112000000, guid: 3bfed318eec1d9b42a10431441d8df33,
+  m_LightingDataAsset: {fileID: 112000004, guid: ed58ef01dd9d4f84b8a58c3643e352c7,
     type: 2}
   m_LightingSettings: {fileID: 4890085278179872738, guid: 92ea290efc25ed94b88310e3ed37590c,
     type: 2}
@@ -252,7 +252,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 1, g: 0.935589, b: 0.759434, a: 1}
-  m_Intensity: 0.76
+  m_Intensity: 2.5
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -283,7 +283,7 @@ Light:
       e32: 0
       e33: 1
     m_UseCullingMatrixOverride: 0
-  m_Cookie: {fileID: 0}
+  m_Cookie: {fileID: 2800000, guid: 06f1dce651d2eae40bd3cf6fca1060a0, type: 3}
   m_DrawHalo: 0
   m_Flare: {fileID: 0}
   m_RenderMode: 0
@@ -335,7 +335,7 @@ MonoBehaviour:
   m_LightLayerMask: 1
   m_CustomShadowLayers: 0
   m_ShadowLayerMask: 1
-  m_LightCookieSize: {x: 256, y: 256}
+  m_LightCookieSize: {x: 64, y: 64}
   m_LightCookieOffset: {x: 8108.9336, y: 8108.9336}
 --- !u!114 &1464707200
 MonoBehaviour:
@@ -349,7 +349,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3f8be92e164bee4eaf2923c55cb7b53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cookieSpeed: 2
+  cookieSpeed: 1
 --- !u!114 &1464707201
 MonoBehaviour:
   m_ObjectHideFlags: 0
