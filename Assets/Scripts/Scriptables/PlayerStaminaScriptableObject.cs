@@ -1,10 +1,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using _2DGame.Scripts.Save;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Data/PlayerStamina")]
-public class PlayerStaminaScriptableObject : ScriptableObject
+public class PlayerStaminaScriptableObject : ScriptableObjectSaveable
 {
     [SerializeField] private float _maxValue;
     [SerializeField] private float _value;
@@ -47,4 +48,34 @@ public class PlayerStaminaScriptableObject : ScriptableObject
     {
         Value = _maxValue;
     }
+
+    #region Saveable
+
+    class PlayerStamina : SaveData
+    {
+        public float currentStamina;
+        public float maxStamina;
+    }
+    
+    public override void OnLoad(string data)
+    {
+        PlayerStamina playerStamina = JsonUtility.FromJson<PlayerStamina>(data);
+        _maxValue = playerStamina.maxStamina;
+        Value = playerStamina.currentStamina;
+    }
+
+    public override void OnSave(out SaveData saveData)
+    {
+        PlayerStamina playerStaminaData = new PlayerStamina();
+        playerStaminaData.currentStamina = Value;
+        playerStaminaData.maxStamina = _maxValue;
+        saveData = playerStaminaData;
+    }
+
+    public override void OnReset()
+    {
+        throw new NotImplementedException();
+    }
+
+    #endregion
 }

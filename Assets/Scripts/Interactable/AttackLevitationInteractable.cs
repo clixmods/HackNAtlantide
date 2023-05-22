@@ -12,7 +12,7 @@ public class AttackLevitationInteractable : MonoBehaviour, IInteractable
 {
     private Rigidbody _rigidBody;
     /// <summary>
-    /// The object has been interacted ? True when the object start to project to a target
+    /// The object has been interacted ? True when the object start to attack a target
     /// </summary>
     private bool _hasInteract;
     [SerializeField] PlayerDetectionScriptableObject _playerDetectionScriptableObject;
@@ -105,6 +105,10 @@ public class AttackLevitationInteractable : MonoBehaviour, IInteractable
             transform.LookAt(transformDestination);
             _rigidBody.velocity = direction * projectionSpeedMultiplier ;
         }
+        else if(_hasInteract)
+        {
+           transform.position = _playerDetectionScriptableObject.PlayerPosition + Vector3.up * 4;
+        }
     }
     
     #endregion
@@ -178,16 +182,12 @@ public class AttackLevitationInteractable : MonoBehaviour, IInteractable
         _rigidBody.AddTorque(Random.onUnitSphere * 20);
         while (timeElapsed < timeToBeCharged )
         {
-            
-           
             Vector3 destinationPosition = _playerDetectionScriptableObject.PlayerPosition + Vector3.up * 4;
             if (!_isCharging)
             {
                 _hasInteract = false;
                 yield break;
             }
-                
-            
             _inputHelper.enabled = true;
             _playerStamina.UseStamina(_playerStamina.SpeedToRecharge*Time.deltaTime);
             var t = timeElapsed / timeToBeCharged;
@@ -265,8 +265,6 @@ public class AttackLevitationInteractable : MonoBehaviour, IInteractable
             _attackCollider.enabled = false;
             _attackCollider.gameObject.layer = _layerBase;
         }
-
-        Debug.Log("Cancel Interact" , gameObject);
         _inputHelper.enabled = false;
         _uiChargeInputHelper.SetFillValue(1);
         _isCharging = false;

@@ -52,7 +52,7 @@ public class PlayerInteractDetection : MonoBehaviour
         if (_currentInteractable != null )
         {
             _releaseInfo.ShowInputInfo();
-            _currentInteractable.transform.position = transform.position + transform.up * 4;
+            
         }
     }
     
@@ -134,7 +134,7 @@ public class PlayerInteractDetection : MonoBehaviour
         }
         
     }
-    IInteractable ClosestInteractable()
+    public IInteractable ClosestInteractable()
     {
         //calculate closest Interactable
         float closestSqrDistance = Mathf.Infinity;

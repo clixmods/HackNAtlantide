@@ -304,6 +304,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3138663662263092683, guid: ad82f62c7f2ebfb4fa81c86a35492089,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4181116070233044810, guid: ad82f62c7f2ebfb4fa81c86a35492089,
         type: 3}
       propertyPath: m_WholeNumbers
@@ -370,7 +375,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _staminaSO: {fileID: 11400000, guid: 7a3b5b3b905bbfe4fb4ea9ada55960e1, type: 2}
-  maskFlik: {fileID: 0}
+  maskFlik: {fileID: 4849555470391698331}
+--- !u!114 &4849555470391698331 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1503790769863582905, guid: ad82f62c7f2ebfb4fa81c86a35492089,
+    type: 3}
+  m_PrefabInstance: {fileID: 6310559839596906274}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &4974006236828670173 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1338876326744236031, guid: ad82f62c7f2ebfb4fa81c86a35492089,
@@ -479,8 +496,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fba51fa703b2db439fc0476c247223a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerInstanceScriptableObject: {fileID: 11400000, guid: 275f07e531552df4896cbb9e43e44af7,
-    type: 2}
 --- !u!224 &4974006236236028134 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1338876326744236031, guid: ad82f62c7f2ebfb4fa81c86a35492089,

@@ -125,6 +125,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""CheatMenu"",
+                    ""type"": ""Button"",
+                    ""id"": ""f66edcc1-8705-45b1-a61f-263079284b98"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -424,6 +433,28 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""action"": ""Attack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c3c75504-b160-40b6-9469-2b3e8f405c20"",
+                    ""path"": ""<Keyboard>/u"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CheatMenu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0c550748-75e4-4aaf-b515-154c86e331a9"",
+                    ""path"": ""<Gamepad>/select"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CheatMenu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -499,6 +530,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_InGame_Boussole = m_InGame.FindAction("Boussole", throwIfNotFound: true);
         m_InGame_Release = m_InGame.FindAction("Release", throwIfNotFound: true);
         m_InGame_Book = m_InGame.FindAction("Book", throwIfNotFound: true);
+        m_InGame_CheatMenu = m_InGame.FindAction("CheatMenu", throwIfNotFound: true);
         // binding
         m_binding = asset.FindActionMap("binding", throwIfNotFound: true);
         m_binding_Newaction = m_binding.FindAction("New action", throwIfNotFound: true);
@@ -572,6 +604,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_InGame_Boussole;
     private readonly InputAction m_InGame_Release;
     private readonly InputAction m_InGame_Book;
+    private readonly InputAction m_InGame_CheatMenu;
     public struct InGameActions
     {
         private @PlayerControls m_Wrapper;
@@ -587,6 +620,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @Boussole => m_Wrapper.m_InGame_Boussole;
         public InputAction @Release => m_Wrapper.m_InGame_Release;
         public InputAction @Book => m_Wrapper.m_InGame_Book;
+        public InputAction @CheatMenu => m_Wrapper.m_InGame_CheatMenu;
         public InputActionMap Get() { return m_Wrapper.m_InGame; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -629,6 +663,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Book.started -= m_Wrapper.m_InGameActionsCallbackInterface.OnBook;
                 @Book.performed -= m_Wrapper.m_InGameActionsCallbackInterface.OnBook;
                 @Book.canceled -= m_Wrapper.m_InGameActionsCallbackInterface.OnBook;
+                @CheatMenu.started -= m_Wrapper.m_InGameActionsCallbackInterface.OnCheatMenu;
+                @CheatMenu.performed -= m_Wrapper.m_InGameActionsCallbackInterface.OnCheatMenu;
+                @CheatMenu.canceled -= m_Wrapper.m_InGameActionsCallbackInterface.OnCheatMenu;
             }
             m_Wrapper.m_InGameActionsCallbackInterface = instance;
             if (instance != null)
@@ -666,6 +703,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Book.started += instance.OnBook;
                 @Book.performed += instance.OnBook;
                 @Book.canceled += instance.OnBook;
+                @CheatMenu.started += instance.OnCheatMenu;
+                @CheatMenu.performed += instance.OnCheatMenu;
+                @CheatMenu.canceled += instance.OnCheatMenu;
             }
         }
     }
@@ -734,6 +774,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnBoussole(InputAction.CallbackContext context);
         void OnRelease(InputAction.CallbackContext context);
         void OnBook(InputAction.CallbackContext context);
+        void OnCheatMenu(InputAction.CallbackContext context);
     }
     public interface IBindingActions
     {

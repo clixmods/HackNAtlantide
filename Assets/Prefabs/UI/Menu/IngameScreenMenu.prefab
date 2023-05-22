@@ -67,7 +67,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 4270dc6951fec3949b75343dace7e5ed, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -181,6 +181,8 @@ GameObject:
   - component: {fileID: 2456352770044569039}
   - component: {fileID: 8894913341285539094}
   - component: {fileID: 2225118806408707203}
+  - component: {fileID: 5955506824905409156}
+  - component: {fileID: 7088651316727534161}
   m_Layer: 5
   m_Name: IngameScreenMenu
   m_TagString: Untagged
@@ -236,8 +238,6 @@ MonoBehaviour:
   canBeOpenedAnywhere: 0
   reopenPreviousMenuOnClose: 0
   EraseActiveMenu: 0
-  canAdjustTimescale: 1
-  timeScale: 1
   showCursor: 1
   StayOpenOnAwake: 1
   _menuType: 0
@@ -268,6 +268,47 @@ MonoBehaviour:
   startTheOpenInSeconds: 2
   openDelay: 3
   closeDelay: 0.5
+--- !u!114 &5955506824905409156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3362502596227382046}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f6b678f0e70c584d88ed3bcc46007a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scriptableScriptableEvent: {fileID: 11400000, guid: b2bbc58ab515aa9479d9150fd0fd66b9,
+    type: 2}
+  LaunchEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2456352770044569039}
+        m_TargetAssemblyTypeName: UIMenu, Assembly-CSharp
+        m_MethodName: CloseMenu
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &7088651316727534161
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3362502596227382046}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e1e1feeda818c04492bbfcf04dd8f6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4090426513518536549
 GameObject:
   m_ObjectHideFlags: 0
@@ -394,7 +435,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88ff9bfacf9c08146a9786eca18d99b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _interactDetection: {fileID: 0}
+  playerInteractDetection: {fileID: 0}
   _interfaceBoussole: {fileID: 3347366430572642398}
   _aiguille: {fileID: 8104199152630213027}
   _inputBoussole: {fileID: 11400000, guid: bb066525f0a89ff498ec72baceaaf453, type: 2}
@@ -933,6 +974,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PanelPlayerInfo
+      objectReference: {fileID: 0}
+    - target: {fileID: 2128549736758085546, guid: 293b22a0eb482fb4daf6b2195f08628b,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2128549736758085546, guid: 293b22a0eb482fb4daf6b2195f08628b,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2128549737519548305, guid: 293b22a0eb482fb4daf6b2195f08628b,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2128549737519548305, guid: 293b22a0eb482fb4daf6b2195f08628b,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2883472543346603056, guid: 293b22a0eb482fb4daf6b2195f08628b,
         type: 3}

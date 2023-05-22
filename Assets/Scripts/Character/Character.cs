@@ -9,10 +9,15 @@ public class Character : MonoBehaviour,  IDamageable
     [SerializeField] RumblerDataConstant _attackRumble;
     
     private float _health;
+
+    [Header("Settings")] 
+    [SerializeField] private bool isInvulnerable = false;
+    #region Events
     public event EventHandler OnDamage;
     public event EventHandler OnDeath;
     public event EventHandler OnChangeHealth;
-    public float maxHealth 
+    #endregion
+    public virtual float maxHealth 
     {
         get
         {
@@ -24,7 +29,7 @@ public class Character : MonoBehaviour,  IDamageable
             _maxHealth = value;
         }
     }
-    public float health
+    public virtual float health
     {
         get
         {
@@ -36,13 +41,28 @@ public class Character : MonoBehaviour,  IDamageable
             _health = value;
         }
     }
-    void Start()
+    void Awake()
+    {
+        InitHealth();
+    }
+
+    protected virtual void InitHealth()
     {
         health = maxHealth;
     }
-    
+
     public virtual void DoDamage(float damage , Vector3 attackLocation)
     {
+        if (isInvulnerable)
+        {
+            return;
+        }
+        if (health <= 0)
+        {
+            return;
+        }
+            
+        
         health -= damage;
         AttackFeedback();
         OnDamage?.Invoke(this,new DoDamageEventArgs
@@ -53,6 +73,7 @@ public class Character : MonoBehaviour,  IDamageable
             }
             
             );
+        
         if(health <= 0f)
         {
             Dead();
@@ -69,12 +90,17 @@ public class Character : MonoBehaviour,  IDamageable
 
     public void AddHealth(float amount)
     {
-        health += health;
+        health += amount;
         OnChangeHealth?.Invoke(this,null);
-        if (amount > maxHealth)
+        if (health > maxHealth)
         {
             health = maxHealth;
         }
+    }
+
+    public void SetInvulnerability(bool value)
+    {
+        isInvulnerable = value;
     }
 }
 

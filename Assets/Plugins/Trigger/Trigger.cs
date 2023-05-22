@@ -14,12 +14,22 @@ public abstract class Trigger : MonoBehaviour
      /// </summary>
      public UnityEvent EventOnTriggerEnter;
      /// <summary>
+     /// Event when the volume is triggered by Stay
+     /// </summary>
+     public UnityEvent EventOnTriggerStay;
+     /// <summary>
      /// Event when the volume is triggered by Exit
      /// </summary>
      public UnityEvent EventOnTriggerEnd;
      [SerializeField] private bool disableAfterOnTriggerEnter;
+     [SerializeField] private bool disableAfterOnTriggerStay;
      [SerializeField] private bool disableAfterOnTriggerExit;
      [SerializeField] private LayerMask interactWithLayers;
+     
+ 
+     [Header("Settings")] [SerializeField] private float triggerStayCooldown = 1f;
+     private bool CanDoStay => _currentCooldown <= 0;
+     private float _currentCooldown = 0;
      #region MonoBehaviour
 
      private void Awake()
@@ -63,6 +73,7 @@ public abstract class Trigger : MonoBehaviour
      protected abstract void Init();
      protected virtual void TriggerEnter(Collider other) { }
      protected virtual void TriggerExit(Collider other) { }
+     protected virtual void TriggerStay(Collider other) { }
      private bool IsInteractable(GameObject gameObject)
      {
           return interactWithLayers == (interactWithLayers | (1 << gameObject.layer));
@@ -81,6 +92,26 @@ public abstract class Trigger : MonoBehaviour
                {
                     gameObject.SetActive(false);
                }
+          }
+     }
+     private void OnTriggerStay(Collider other)
+     {
+          if (CanDoStay)
+          {
+               _currentCooldown = triggerStayCooldown;
+               if (IsInteractable(other.gameObject))
+               {
+                    EventOnTriggerStay?.Invoke();
+                    TriggerStay(other);
+                    if (disableAfterOnTriggerStay)
+                    {
+                         gameObject.SetActive(false);
+                    }
+               }
+          }
+          else
+          {
+               _currentCooldown -= Time.deltaTime;
           }
      }
      private void OnTriggerExit(Collider other)

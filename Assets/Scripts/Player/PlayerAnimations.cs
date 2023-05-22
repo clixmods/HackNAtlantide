@@ -55,7 +55,6 @@ public class PlayerAnimations : MonoBehaviour
     IEnumerator IdleCoroutine()
     {
         _animator.SetTrigger("Idle");
-        Debug.Log("triggered");
         _timeBeforeIdle = 5f;
         yield break;
     }
@@ -63,10 +62,13 @@ public class PlayerAnimations : MonoBehaviour
     IEnumerator DashCoroutine()
     {
         _animator.SetBool("dash", true);
-        Debug.Log("triggered");
 
         yield return new WaitForSeconds(.5f);
         _animator.SetBool("dash", false);
-        Debug.Log("triggered");
+    }
+    public void DashFinish()
+    {
+        Debug.Log("dashfinish");
+        GetComponentInParent<PlayerMovement>().SetTransformLock();
     }
 }

@@ -8,10 +8,15 @@ public class ScriptableValueListener<T> : MonoBehaviour
 {
     [SerializeField] protected ScriptableValue<T> _scriptableEvent;
     public UnityEvent<T> LaunchEvent;
+    [SerializeField] private bool launchEventOnAwake;
     [SerializeField] private bool launchEventOnStart;
     protected virtual void Awake()
     {
         _scriptableEvent.OnValueChanged += LaunchScriptableValueEvent;
+        if (launchEventOnAwake)
+        {
+            LaunchScriptableValueEvent(_scriptableEvent.Value);
+        }
     }
 
     private void Start()

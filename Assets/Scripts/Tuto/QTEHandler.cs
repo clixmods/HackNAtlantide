@@ -31,6 +31,7 @@ public class QTEHandler : MonoBehaviour
     bool _hasDash;
     bool _hasDashAttack;
     bool _hasFocus;
+    public bool HasFocus { get { return _hasFocus; } set { _hasFocus = value; } }
     Vector2 _moveInput;
 
     [SerializeField] GameObject _inputInfoAttack;
@@ -59,6 +60,10 @@ public class QTEHandler : MonoBehaviour
         _focus.OnValueChanged += FocusInput;
         _dash.OnValueChanged += DashInput;
         _move.OnValueChanged += MoveInput;
+    }
+    private void OnDisable()
+    {
+        _postProcessWeightTransition.SetWeightVolume(0f);
     }
     void DisableInputsInfo()
     {
@@ -102,24 +107,20 @@ public class QTEHandler : MonoBehaviour
     IEnumerator Cutscene(InputType inputType)
     {
         _isInCutScene = true;
-        VirtualCamera = (CinemachineVirtualCamera)cine.ActiveVirtualCamera;
-        float fov = VirtualCamera.m_Lens.FieldOfView;
        
-        _postProcessWeightTransition.SetWeightVolume(1f);
-
+        //_postProcessWeightTransition.SetWeightVolume(1f);
         DOTween.To(() => Time.timeScale, x => Time.timeScale = x, 0, 0.2f).SetUpdate(true);
 
         ActiveInputType(inputType, true);
+        
 
         while (!CutSceneFinish(inputType))
         {
             yield return null;
         }
-
         ActiveInputType(inputType, false);
-
-        _postProcessWeightTransition.SetWeightVolume(0f);
         DOTween.To(() => Time.timeScale, x => Time.timeScale = x, 1, 0.2f).SetUpdate(true);
+        //_postProcessWeightTransition.SetWeightVolume(0f);
         _isInCutScene = false;
         cutSceneSuccess?.Invoke(inputType);
         DisableInputsInfo();
@@ -129,7 +130,7 @@ public class QTEHandler : MonoBehaviour
         switch (inputType)
         {
             case InputType.Interact:
-                _interact.IsActive = active;
+                //_interact.IsActive = active;
                 break;
 
             case InputType.Attack:
@@ -167,7 +168,7 @@ public class QTEHandler : MonoBehaviour
 
     public void ActiveAllInput(bool active)
     {
-        _interact.IsActive = active;
+        //_interact.IsActive = active;
         _attack.IsActive = active;
         _dash.IsActive = active;
         _dashAttack.IsActive = active;

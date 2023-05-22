@@ -23,12 +23,12 @@ public class PlayerCombatTuto : MonoBehaviour
     private void OnEnable()
     {
         GameStateManager.Instance.tutoStateObject.SetActive(true);
-        _qTEHandler.ActiveAllInput(false);
         _qTEHandler.cutSceneSuccess += CutSceneSuccess;
     }
     private void OnDisable()
     {
         _qTEHandler.cutSceneSuccess -= CutSceneSuccess;
+        //GetComponent<PlayerLevitationTuto>().enabled = true;
         GameStateManager.Instance.tutoStateObject.SetActive(false);
     }
 
@@ -69,7 +69,7 @@ public class PlayerCombatTuto : MonoBehaviour
         _isInCutScene = true;
         if(_hasDoneAttackQte)
         {
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.3f);
         }
         _isInCutScene = false;
     }
@@ -112,7 +112,7 @@ public class PlayerCombatTuto : MonoBehaviour
             {
                 if ((_focus.CurrentTarget.transform.position - transform.position).magnitude <4.5f)
                 {
-                    _qTEHandler.ActiveInputType(InputType.Move, false);
+                    //_qTEHandler.ActiveInputType(InputType.Move, false);
                     _qTEHandler.CancelMove();
                     Debug.Log("QTE Attack");
                     _qTEHandler.LaunchCutScene(InputType.Attack);
@@ -125,7 +125,7 @@ public class PlayerCombatTuto : MonoBehaviour
                 if ((_focus.CurrentTarget.transform.position - transform.position).magnitude < 5f && (_focus.CurrentTarget.transform.position - transform.position).magnitude > 2f)
                 {
                     Debug.Log("QTE DashAttack");
-                    _qTEHandler.ActiveInputType(InputType.Move, true);
+                    //_qTEHandler.ActiveInputType(InputType.Move, true);
                     _qTEHandler.LaunchCutScene(InputType.DashAttack);
                     _isInCutScene = true;
                 }

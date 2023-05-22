@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// TODO : Use coroutine
 [RequireComponent(typeof(CanvasGroup))]
 public class UIMenuOpenSmooth : MonoBehaviour
 {
@@ -36,7 +37,7 @@ public class UIMenuOpenSmooth : MonoBehaviour
 
     private void Update()
     {
-        if (_canvasGroup.alpha < 1)
+        if (_canvasGroup.alpha < 1 && !_canvasGroup.interactable )
         {
             if (_currentStartTheOpenDelay >= startTheOpenInSeconds)
             {

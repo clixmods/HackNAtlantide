@@ -46,11 +46,11 @@ public class UIMenu : MonoBehaviour
     [Tooltip("The menu can erase the active menu and close it ?")]
     [SerializeField] private bool EraseActiveMenu;
 
-    [Header("Timescale")] 
-    [SerializeField] private bool canAdjustTimescale = true;
-    [Tooltip("The timescale when the menu is opened")]
-    [SerializeField] [Range(0,10)] private float timeScale = 1;
-    private float _previousTimeScale;
+    // [Header("Timescale")] 
+    // [SerializeField] private bool canAdjustTimescale = true;
+    // [Tooltip("The timescale when the menu is opened")]
+    // [SerializeField] [Range(0,10)] private float timeScale = 1;
+    // private float _previousTimeScale;
     private GameObject _previousMenu;
     private double TOLERANCE = 0.05f;
 

@@ -19,18 +19,18 @@ public class UIInputHelper : MonoBehaviour
     protected InputActionReference _inputActionReference;
     [SerializeField] protected InputActionIcons inputActionIcons;
     [SerializeField] private float distanceToShow = 10;
-    protected static Canvas _canvas;
+    protected static UIFollowerContainer _FollowerContainer;
     
     public static UIInputHelper CreateInputHelper(GameObject prefab, Transform transformTarget, Sprite image, float maxDistanceToShow,
         InputActionReference input = default)
     {
         if (transformTarget == null) return null;
 
-        if (_canvas == null)
+        if (_FollowerContainer == null)
         {
-            _canvas = FindObjectOfType<Canvas>();
+            _FollowerContainer = FindObjectOfType<UIFollowerContainer>();
         }
-        var inputHelperObject = Instantiate(prefab, Vector3.zero, Quaternion.identity, _canvas.transform);
+        var inputHelperObject = Instantiate(prefab, Vector3.zero, Quaternion.identity, _FollowerContainer.transform);
         UIInputHelper component = inputHelperObject.GetComponentInChildren<UIInputHelper>().Init(prefab, transformTarget,  image,  maxDistanceToShow, input);
         return component;
     }

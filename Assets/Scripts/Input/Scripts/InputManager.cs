@@ -18,6 +18,9 @@ public class InputManager : MonoBehaviour
     [SerializeField] private InputButtonScriptableObject _pause;
     [SerializeField] private InputButtonScriptableObject _boussole;
     [SerializeField] private InputButtonScriptableObject _release;
+
+    [SerializeField] private InputButtonScriptableObject _openCheatMenu;
+
     [SerializeField] private InputActionIcon _actionIcon;
     private bool _isGamepad { get; set; }
 
@@ -113,6 +116,10 @@ public class InputManager : MonoBehaviour
         // Release
         _input.InGame.Release.performed += ctx => _release.ChangeValue(true);
         _input.InGame.Release.canceled += ctx => _release.ChangeValue(false);
+
+        // Release
+        _input.InGame.CheatMenu.performed += ctx => _openCheatMenu.ChangeValue(true);
+        _input.InGame.CheatMenu.canceled += ctx => _openCheatMenu.ChangeValue(false);
     }
 
     void DisableGameInput()
