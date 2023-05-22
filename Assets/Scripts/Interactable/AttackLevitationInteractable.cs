@@ -199,7 +199,7 @@ public class AttackLevitationInteractable : MonoBehaviour, IInteractable
         _uiChargeInputHelper.SetFillValue(1);
         _inputHelper.enabled = false;
         _hasInteract = true;
-        _attackCollider.enabled = true;
+       
         _playerStamina.UseStamina(useStaminaAmount);
         _rigidBody.useGravity = false;
         
@@ -251,6 +251,7 @@ public class AttackLevitationInteractable : MonoBehaviour, IInteractable
             Focus.OnFocusSwitch -= SetDestination;
             Focus.OnFocusNoTarget -= RemoveTarget;
             _isAttacking = true;
+            _attackCollider.enabled = true;
             _inputHelper.enabled = false;
             return;
         }
