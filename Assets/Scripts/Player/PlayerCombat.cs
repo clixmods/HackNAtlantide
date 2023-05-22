@@ -143,6 +143,7 @@ public class PlayerCombat : MonoBehaviour,ICombat
         else if (_animator.GetCurrentAnimatorStateInfo(0).IsName("Attaque_Chara_Sword_2") && noOfClicks >= 3)
         { //If the second animation is still playing and at least 3 clicks have happened, continue the combo
             _animator.SetInteger(INTAttack, 3); // 3 is Attack 3
+           
             StartCoroutine(CanClickCoroutine());
         }
         else if (_animator.GetCurrentAnimatorStateInfo(0).IsName("Attaque_Chara_Sword_3"))

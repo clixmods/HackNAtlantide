@@ -13,6 +13,7 @@ public class LagFill : MonoBehaviour
    [SerializeField] private float delayToStartLag = 3;
    [SerializeField]private float interpolationDuration = 5f; 
    private float t;
+   private float _currentDelayLag = 0;
    
 
    private void Awake()
@@ -26,15 +27,15 @@ public class LagFill : MonoBehaviour
    void OnValueChanged(float value)
    {
       this.enabled = true;
-      delayToStartLag = 3;
+      _currentDelayLag = delayToStartLag;
       t = 0;
    }
 
    private void Update()
    {
-      if (delayToStartLag > 0)
+      if (_currentDelayLag > 0)
       {
-         delayToStartLag -= Time.deltaTime;
+         _currentDelayLag -= Time.deltaTime;
       }
       else
       {
