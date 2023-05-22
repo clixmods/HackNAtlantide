@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class ScriptableValueFloatSaveable : ScriptableValueFloat , ISave
 {
-    [SerializeField] private float defaultValue = 0;
-    [SerializeField] private float defaultMaxValue = 0;
+
+    
     #region Save and Load
     class FloatSaveData : SaveData
     {
@@ -33,6 +33,5 @@ public class ScriptableValueFloatSaveable : ScriptableValueFloat , ISave
         Value = defaultValue;
         MaxValue = defaultMaxValue;
     }
-
     #endregion
 }

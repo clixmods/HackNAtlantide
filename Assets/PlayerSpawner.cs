@@ -18,6 +18,12 @@ public class PlayerSpawner : MonoBehaviour
 
     private void Start()
     {
+        TeleportPlayerToSafeSpawn();
+
+    }
+
+    public void TeleportPlayerToSafeSpawn()
+    {
         if (playerPosition.Value == Vector3.zero)
         {
             // No position saved so we keep the default spawn
@@ -45,7 +51,6 @@ public class PlayerSpawner : MonoBehaviour
         }
         if(nearest.gameObject.activeSelf)
             _playerMovement.TeleportWorldSpawn(nearest.position);
-        
     }
 
     private void OnDestroy()

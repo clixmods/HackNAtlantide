@@ -36,13 +36,16 @@ public class EnemiesWatcher : MonoBehaviour
         }
         if (_charactersToWatch.Count <= 0)
         {
+            enabled = false;
             NoCharactersToWatch?.Invoke();
-            this.enabled = false;
+            
         }
     }
 
     public void KillAllEnemiesWatchedWithoutSendWatcherEvent()
     {
+        if (!enabled) return;
+        
         if (_charactersToWatch.Count == 0)
         {
             return;
@@ -59,6 +62,8 @@ public class EnemiesWatcher : MonoBehaviour
     }
     public void KillAllEnemiesWatched()
     {
+        if (!enabled) return;
+        
         if (_charactersToWatch.Count == 0)
         {
             return;

@@ -11419,6 +11419,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 869798465}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &869798467 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 460704731309419892, guid: b53c20b6f237f3242924df59e45f0d1f,
+    type: 3}
+  m_PrefabInstance: {fileID: 869798465}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 448570f2dca1f494abcca596f07f1bbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!43 &888843961
 Mesh:
   m_ObjectHideFlags: 0
@@ -19044,18 +19056,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b53c20b6f237f3242924df59e45f0d1f, type: 3}
---- !u!114 &1435232127 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 460704731309419892, guid: b53c20b6f237f3242924df59e45f0d1f,
-    type: 3}
-  m_PrefabInstance: {fileID: 1435232126}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 448570f2dca1f494abcca596f07f1bbe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1447032308 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1431442559968935345, guid: 35182bafc89f6cf488f4445bf843a630,
@@ -21960,7 +21960,7 @@ MonoBehaviour:
   - {fileID: 700516504}
   - {fileID: 500755950}
   - {fileID: 2141442538}
-  - {fileID: 1435232127}
+  - {fileID: 869798467}
   NoCharactersToWatch:
     m_PersistentCalls:
       m_Calls:
@@ -21976,6 +21976,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+  GetChildEnnemies: 0
 --- !u!4 &1703697698
 Transform:
   m_ObjectHideFlags: 0
@@ -26909,6 +26910,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1431442560461809965, guid: 35182bafc89f6cf488f4445bf843a630,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1431442560461809967, guid: 35182bafc89f6cf488f4445bf843a630,
         type: 3}
       propertyPath: EventOnTriggerEnd.m_PersistentCalls.m_Calls.Array.size
@@ -27139,7 +27145,7 @@ PrefabInstance:
   m_SourcePrefab: {fileID: 100100000, guid: 35182bafc89f6cf488f4445bf843a630, type: 3}
 --- !u!1 &1431442560675285062 stripped
 GameObject:
-  m_CorrespondingSourceObject: {fileID: 1431442561649480630, guid: 35182bafc89f6cf488f4445bf843a630,
+  m_CorrespondingSourceObject: {fileID: 1431442560461809965, guid: 35182bafc89f6cf488f4445bf843a630,
     type: 3}
   m_PrefabInstance: {fileID: 1431442560675285061}
   m_PrefabAsset: {fileID: 0}

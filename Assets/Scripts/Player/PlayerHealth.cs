@@ -43,6 +43,10 @@ public class PlayerHealth : Character
     protected override void InitHealth()
     {
         // Scriptable Value Init the health
+        if (healthValue.Value <= 0)
+        {
+            healthValue.Value = healthValue.DefaultValue;
+        }
         health = healthValue.Value;
         maxHealth = healthValue.MaxValue;
         return;

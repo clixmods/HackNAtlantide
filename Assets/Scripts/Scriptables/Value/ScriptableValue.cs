@@ -14,4 +14,6 @@ public class ScriptableValue<T> : ScriptableObject
     {
         OnValueChanged?.Invoke(Value);
     }
+
+ 
 }

@@ -15,16 +15,22 @@ using UnityEngine;
                 OnValueChanged?.Invoke(value);
             }
         }
+
+        private class InputSaveData : SaveData
+        {
+            
+        }
         public override void OnLoad(string data)
         {
             //TODO
-            throw new NotImplementedException();
+           // throw new NotImplementedException();
         }
 
         public override void OnSave(out SaveData saveData)
         {
             //TODO
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
+            saveData = new InputSaveData();
         }
         public override void OnReset()
         {

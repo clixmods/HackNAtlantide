@@ -7,7 +7,7 @@ public class FocusableMaterialOutline : MonoBehaviour
     // Material block 
     private MaterialPropertyBlock[] _propBlocks;
     [SerializeField] private Renderer _renderer;
-    private static readonly int Amount = Shader.PropertyToID("_Outline");
+    private static readonly int PropertyOutlineID = Shader.PropertyToID("_Outline");
     private void Awake()
     {
         _focusable = GetComponent<IFocusable>();
@@ -34,15 +34,15 @@ public class FocusableMaterialOutline : MonoBehaviour
 
     private void FocusableOnOnUntargeted(object sender, EventArgs e)
     {
-        SetFloat(false);
+        SetPropertyValue(false);
     }
 
     private void FocusableOnOnTargeted(object sender, EventArgs e)
     {
-        SetFloat(true);
+        SetPropertyValue(true);
     }
     
-    private void SetFloat(bool boolean)
+    private void SetPropertyValue(bool boolean)
     {
         if (_propBlocks != null)
         {
@@ -51,7 +51,7 @@ public class FocusableMaterialOutline : MonoBehaviour
                 // Get the current value of the material properties in the renderer.
                 _renderer.GetPropertyBlock(_propBlocks[i], i);
                 // Assign our new value.
-                _propBlocks[i].SetInt(Amount, boolean ? 1 : 0);
+                _propBlocks[i].SetInt(PropertyOutlineID, boolean ? 1 : 0);
                 // Apply the edited values to the renderer.
                 _renderer.SetPropertyBlock(_propBlocks[i], i);
             }

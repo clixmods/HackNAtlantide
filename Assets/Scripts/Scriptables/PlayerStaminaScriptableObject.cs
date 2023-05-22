@@ -74,7 +74,7 @@ public class PlayerStaminaScriptableObject : ScriptableObjectSaveable
 
     public override void OnReset()
     {
-        throw new NotImplementedException();
+        Value = MaxStamina;
     }
 
     #endregion

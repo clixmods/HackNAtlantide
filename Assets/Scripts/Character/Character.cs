@@ -15,6 +15,8 @@ public class Character : MonoBehaviour,  IDamageable
 
     [Header("Settings")] 
     [SerializeField] private bool isInvulnerable = false;
+
+    private bool _isDead;
     public bool IsInvulnerable { get { return isInvulnerable; } set { OnInvulnerable?.Invoke(value); isInvulnerable = value; } }
     #region Events
     public event EventHandler OnDamage;
@@ -91,6 +93,11 @@ public class Character : MonoBehaviour,  IDamageable
     }
     public virtual void Dead()
     {
+        if (_isDead)
+        {
+            return;
+        }
+        _isDead = true;
         OnDeath?.Invoke(this, null);
     }
 
