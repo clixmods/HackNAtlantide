@@ -28,6 +28,7 @@ public class EnemyController : MonoBehaviour, ICombat
     private bool _hasFinishWaitAttack = true;
     private static readonly int IsAwake = Animator.StringToHash("IsAwake");
     public event Action _attackEvent;
+    Character character;
     public bool canAttack
     {
         get { return _canAttack; }
@@ -45,6 +46,7 @@ public class EnemyController : MonoBehaviour, ICombat
 
     private void Awake()
     {
+        character = GetComponent<Character>();
         _attackCollider = GetComponentInChildren<IAttackCollider>();
         if (_attackCollider != null)
         {
@@ -81,6 +83,9 @@ public class EnemyController : MonoBehaviour, ICombat
         if (!_playerInLookRadius) _animator.SetBool(IsAwake, false);
         if (_playerInLookRadius && !_playerInAttackRadius && !_isAttacking && _hasFinishAttack) Chase();
         if (_playerInLookRadius && (_playerInAttackRadius || _isAttacking) && _hasFinishWaitAttack) StartCoroutine(Attack());
+        
+        //for animation
+        character.CurrentSpeed = _agent.velocity.magnitude;
     }
     
     void Chase()

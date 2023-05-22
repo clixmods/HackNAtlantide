@@ -4,7 +4,10 @@ using UnityEngine;
 public class Character : MonoBehaviour,  IDamageable
 {
     [SerializeField] private float _maxHealth;
-    
+
+    private float currentSpeed;
+    public float CurrentSpeed { get { return currentSpeed; } set { currentSpeed = value; } }
+
     [Header("Feedback")]
     [SerializeField] RumblerDataConstant _attackRumble;
     
@@ -19,6 +22,7 @@ public class Character : MonoBehaviour,  IDamageable
     public event EventHandler OnChangeHealth;
     public Action<bool> OnInvulnerable;
     #endregion
+
     public virtual float maxHealth 
     {
         get
