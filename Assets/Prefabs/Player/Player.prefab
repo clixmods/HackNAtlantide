@@ -9643,6 +9643,7 @@ GameObject:
   - component: {fileID: 3254360785627689518}
   - component: {fileID: 3187746015186250110}
   - component: {fileID: 4335499789587737346}
+  - component: {fileID: 7707920963531297730}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -9870,6 +9871,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 7707920963531297730}
+        m_TargetAssemblyTypeName: RestartScene, Assembly-CSharp
+        m_MethodName: SceneRestart
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnAttackHit:
     m_PersistentCalls:
       m_Calls:
@@ -9978,6 +9991,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f8043cb67861ff46896be0716d89c6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7707920963531297730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2176775217575482146}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ae74695d20f5e04493433f357424bd4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  loadingScreen: {fileID: 0}
+  _restartEvent: {fileID: 11400000, guid: 3dd976d102ab16042a6f5adc4277550b, type: 2}
+  _dataPersistentHandler: {fileID: 11400000, guid: 2a8894600e41b1b4da912bb02b84e087,
+    type: 2}
+  LoadingStart:
+    m_PersistentCalls:
+      m_Calls: []
+  LoadingStop:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 7368ba06a7477a942b281a13774a908f, type: 2}
+        m_TargetAssemblyTypeName: ScriptableValueFloat, Assembly-CSharp
+        m_MethodName: set_Value
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 3
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  speed: 0
 --- !u!1 &2417519851276967300
 GameObject:
   m_ObjectHideFlags: 0
