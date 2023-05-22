@@ -17,7 +17,9 @@ public class TowerShield : MonoBehaviour
         for (int i = 0; i < charactersToProtect.Count; i++)
         {
             charactersToProtect[i].SetInvulnerability(true);
-           
+            //ennemie cancel focusable
+            charactersToProtect[i].GetComponent<Focusable>().IsTargetable = false;
+
             var gameObjectFX = Instantiate(fxTrail);
             var component = gameObjectFX.AddComponent<InteractableTrailLinker>();
             fxTrailGameObjects[i] = gameObjectFX;
@@ -45,6 +47,8 @@ public class TowerShield : MonoBehaviour
             {
                 character.SetInvulnerability(false);
             }
+            //let the ennemie be focusable
+            charactersToProtect[i].GetComponent<Focusable>().IsTargetable = true;
         }
     }
 }

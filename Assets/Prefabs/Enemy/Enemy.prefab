@@ -744,6 +744,7 @@ GameObject:
   - component: {fileID: -1569191948511382141}
   - component: {fileID: 5533182843198823011}
   - component: {fileID: 5552746890893481800}
+  - component: {fileID: 9160518458684676332}
   m_Layer: 11
   m_Name: Enemy
   m_TagString: Untagged
@@ -922,7 +923,7 @@ MonoBehaviour:
   targeter: {fileID: 0}
   pivot: {fileID: 3688723002234596659}
   useDistance: 1
-  maxDistanceWithTargeter: 10
+  maxDistanceWithTargeter: 15
   isTargetable: 1
   checkHeight: 1
   heightTolerance: 3.5
@@ -1032,6 +1033,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _meshDestroy: {fileID: 2571133367540857870}
+--- !u!114 &9160518458684676332
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6444109697107675426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 918bce5cca5e7764d8cff647e6e99bf6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meshRenderer: {fileID: 2351378239584803541}
 --- !u!1 &7495811690746433620
 GameObject:
   m_ObjectHideFlags: 0

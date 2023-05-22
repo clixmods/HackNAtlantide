@@ -12,6 +12,7 @@ public class Focusable : MonoBehaviour, IFocusable
     [SerializeField] private bool useDistance;
     [SerializeField] private float maxDistanceWithTargeter = 50f;
     [FormerlySerializedAs("canBeTarget")] [SerializeField] private bool isTargetable;
+    public bool IsTargetable { get { return isTargetable; } set { isTargetable = value; } }
     [Header("Height")] 
     [SerializeField] private bool checkHeight;
     [SerializeField] private float heightTolerance = 10f;

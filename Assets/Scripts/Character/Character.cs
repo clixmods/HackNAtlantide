@@ -12,10 +12,12 @@ public class Character : MonoBehaviour,  IDamageable
 
     [Header("Settings")] 
     [SerializeField] private bool isInvulnerable = false;
+    public bool IsInvulnerable { get { return isInvulnerable; } set { OnInvulnerable?.Invoke(value); isInvulnerable = value; } }
     #region Events
     public event EventHandler OnDamage;
     public event EventHandler OnDeath;
     public event EventHandler OnChangeHealth;
+    public Action<bool> OnInvulnerable;
     #endregion
     public virtual float maxHealth 
     {
@@ -100,7 +102,7 @@ public class Character : MonoBehaviour,  IDamageable
 
     public void SetInvulnerability(bool value)
     {
-        isInvulnerable = value;
+        IsInvulnerable = value;
     }
 }
 
