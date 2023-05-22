@@ -4,12 +4,14 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerHealth : Character
 {
     [SerializeField] PlayerMovementStateScriptableObject _movementState;
     [SerializeField] PostProcessWeightTransition _postProcessWeightTransition;
     [SerializeField] private ScriptableValueFloat healthValue;
+    
     public override float health
     {
         get => healthValue.Value; 
@@ -70,4 +72,5 @@ public class PlayerHealth : Character
         yield return new WaitForSecondsRealtime(0.3f);
         _postProcessWeightTransition.SetWeightVolume(0);
     }
+
 }
