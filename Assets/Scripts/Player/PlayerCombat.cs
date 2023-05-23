@@ -16,10 +16,8 @@ public class PlayerCombat : MonoBehaviour,ICombat
     
     [Header("Variables")]
     [SerializeField] int noOfClicks; //Determines Which Animation Will Play
-    [SerializeField] bool canClick; //Locks ability to click during animation event
-    private float _lastClickedTime;
-    private float _lastComboEnd;
-    private int _comboCounter;
+    private float _lastClickedTime = 0f;
+    private float comboDelay = .3f;
     [SerializeField] private bool stopAnimation;
     
     // TODO - TEMPORARY
@@ -29,7 +27,6 @@ public class PlayerCombat : MonoBehaviour,ICombat
     [SerializeField] private InputButtonScriptableObject _inputDashAttack;
 
     private IAttackCollider _attackCollider;
-    private int INTAttack = Animator.StringToHash("intAttack");
     [SerializeField] TrailRenderer _trailSwordDistortion;
 
     [SerializeField] private ScriptableEvent _dashAttackEvent;
@@ -56,7 +53,6 @@ public class PlayerCombat : MonoBehaviour,ICombat
         _playerAnimations = GetComponent<PlayerAnimations>();
         
         noOfClicks = 0;
-        canClick = true;
     }
 
     private void Update()
@@ -64,6 +60,18 @@ public class PlayerCombat : MonoBehaviour,ICombat
         if (stopAnimation)
         {
             _animator.enabled = false;
+        }
+        if (Time.time - _lastClickedTime > comboDelay)
+        {
+            noOfClicks = 0;
+        }
+        if (noOfClicks > 0)
+        {
+            _animator.SetBool("IdleReturn", false);
+        }
+        else if (noOfClicks <= 0)
+        {
+            _animator.SetBool("IdleReturn", true);
         }
     }
 
@@ -79,8 +87,28 @@ public class PlayerCombat : MonoBehaviour,ICombat
     {
         if (value)
         {
-            ComboStarter();
+            _lastClickedTime = Time.time;
+            noOfClicks++;
+
+            if (noOfClicks == 1)
+            {
+                _animator.SetTrigger("Attack1");
+            }
+
+            noOfClicks = Mathf.Clamp(noOfClicks, 0, 3);
         }
+    }
+
+    public void ComboAttack1Transition()
+    {
+        if (noOfClicks < 2) return;
+        _animator.SetTrigger("Attack2");
+    }
+    
+    public void ComboAttack2Transition()
+    {
+        if (noOfClicks < 3) return;
+        _animator.SetTrigger("Attack3");
     }
     
     void DashAttack(bool value)
@@ -103,70 +131,13 @@ public class PlayerCombat : MonoBehaviour,ICombat
         _animator.SetBool("dashAttack", false);
     }
 
-    void ComboStarter()
-    {       
-        if (canClick)            
-        {            
-            noOfClicks++;
-        }
-        
-        if (noOfClicks == 1)
-        {            
-            _animator.SetInteger(INTAttack, 1); // fait attaque 1
-        }           
-    }
-
     IEnumerator DashAttackCoroutine()
     {
         _playerMovement.DashOfDashAttack(true);
         yield return new WaitForSeconds(.4f);
         _playerAnimations.TimeBeforeIdle = 5f;
         noOfClicks = 0;
-        canClick = true;
-    }
-    
-    public void ComboCheck()
-    {
-        canClick = false;
-        
-        if(_animator.GetCurrentAnimatorStateInfo(0).IsName("Attaque_Chara_Sword_1") && noOfClicks == 1)
-        { //If the first animation is still playing and only 1 click has happened, return to idle
-            _animator.SetInteger(INTAttack, 0); // 0 is Idle
-            noOfClicks = 0;
-            _playerAnimations.TimeBeforeIdle = 5f;
-            StartCoroutine(CanClickCoroutine());
-        }
-        else if (_animator.GetCurrentAnimatorStateInfo(0).IsName("Attaque_Chara_Sword_1") && noOfClicks >= 2)
-        { //If the first animation is still playing and at least 2 clicks have happened, continue the combo
-            _animator.SetInteger(INTAttack, 2); // 2 is Attack2
-            StartCoroutine(CanClickCoroutine());
-        }
-        else if(_animator.GetCurrentAnimatorStateInfo(0).IsName("Attaque_Chara_Sword_2") && noOfClicks == 2)
-        { //If the second animation is still playing and only 2 clicks have happened, return to idle
-            _animator.SetInteger(INTAttack, 0); // 0 is Idle
-            noOfClicks = 0;
-            _playerAnimations.TimeBeforeIdle = 5f;
-            StartCoroutine(CanClickCoroutine());
-        }
-        else if (_animator.GetCurrentAnimatorStateInfo(0).IsName("Attaque_Chara_Sword_2") && noOfClicks >= 3)
-        { //If the second animation is still playing and at least 3 clicks have happened, continue the combo
-            _animator.SetInteger(INTAttack, 3); // 3 is Attack 3
-           
-            StartCoroutine(CanClickCoroutine());
-        }
-        else if (_animator.GetCurrentAnimatorStateInfo(0).IsName("Attaque_Chara_Sword_3"))
-        { //Since this is the third and last animation, return to idle
-            _animator.SetInteger(INTAttack, 0); // 0 is Idle
-            noOfClicks = 0;
-            _playerAnimations.TimeBeforeIdle = 5f;
-            StartCoroutine(CanClickCoroutine());
-        }
-    }
-
-    IEnumerator CanClickCoroutine()
-    {
-        yield return new WaitForSeconds(.1f);
-        canClick = true;
+        // canClick = true;
     }
 
     #region Animation Event Methods
