@@ -30,6 +30,19 @@ public class FocusShowInput : MonoBehaviour
         Focus.OnFocusNoTarget -= FocusOnOnFocusNoTarget;
     }
 
+
+    private void Update()
+    {
+        if (!Focus.FocusIsEnable && _focus.FocusablesAvailable.Count > 0)
+        {
+            inputEnableFocus.ShowInputInfo();
+        }
+        else if (!Focus.FocusIsEnable && _focus.FocusablesAvailable.Count <= 0)
+        {
+            inputEnableFocus.RemoveInputInfo();
+        }
+    }
+
     private void FocusOnOnFocusNoTarget()
     {
         inputEnableFocus.RemoveInputInfo();
@@ -70,6 +83,10 @@ public class FocusShowInput : MonoBehaviour
             inputEnableFocus.RemoveInputInfo();
             inputDisableFocus.RemoveInputInfo();
             inputSwitchFocus.RemoveInputInfo();
+        }
+        if (!Focus.FocusIsEnable && _focus.FocusablesAvailable.Count > 0)
+        {
+            inputEnableFocus.ShowInputInfo();
         }
 
         if (Focus.FocusIsEnable)

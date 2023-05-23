@@ -11,7 +11,7 @@ Material:
   m_Shader: {fileID: -6465566751694194690, guid: 0863f9e6657bc0f42842a85acf825a2b,
     type: 3}
   m_ValidKeywords:
-  - _COLOR_A_ROTATION__0
+  - _COLOR_A_ROTATION__180
   - _COLOR_B_ROTATION__180
   m_InvalidKeywords:
   - _ENUM__180
@@ -83,12 +83,12 @@ Material:
     m_Ints: []
     m_Floats:
     - _BumpScale: 1
-    - _COLOR_A_ROTATION: 0
+    - _COLOR_A_ROTATION: 2
     - _COLOR_B_ROTATION: 2
     - _Color_A_Rotation: 90
     - _Color_A_Scroll_Speed: 0.05
     - _Color_B_Rotation: 0
-    - _Color_B_Scroll_Speed: 0.05
+    - _Color_B_Scroll_Speed: 0.005
     - _DecalMeshBiasType: 0
     - _DecalMeshDepthBias: 0
     - _DecalMeshViewBias: 0
@@ -106,8 +106,8 @@ Material:
     - _Color2: {r: 0.96022767, g: 1, b: 0.5990566, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _Tiling: {r: 1, g: 1, b: 0, a: 0}
-    - _Tiling_A: {r: 10, g: 10, b: 0, a: 0}
-    - _Tiling_B: {r: 2, g: 2, b: 0, a: 0}
+    - _Tiling_A: {r: 5, g: 5, b: 0, a: 0}
+    - _Tiling_B: {r: 1, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &594869358668476339
 MonoBehaviour:
