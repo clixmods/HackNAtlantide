@@ -37,7 +37,7 @@ using UnityEngine;
         private void Start()
         {
             _zoneVolume = GetComponent<TriggerBox>();
-            _zoneVolume.EventOnTriggerEnter.AddListener(ActiveCamera);
+            _zoneVolume.EventOnTriggerEnter.AddListener(TriggerEnter);
             if (followPlayer)
             {
                 _cinemachineVirtualCamera.Follow = PlayerInstanceScriptableObject.Player.transform;
@@ -49,12 +49,18 @@ using UnityEngine;
             }
         }
 
-        public void ActiveCamera()
+        public void TriggerEnter()
         {
             if (_cinemachineVirtualCamera.gameObject.activeSelf)
             {
                 return;
             }
+
+            ActiveCamera();
+        }
+
+        void ActiveCamera()
+        {
             OnCameraChanged?.Invoke(_cinemachineVirtualCamera);
             _cinemachineVirtualCamera.gameObject.SetActive(true);
             OnPostCameraChanged?.Invoke(_cinemachineVirtualCamera);
