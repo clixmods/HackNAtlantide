@@ -229,11 +229,12 @@ public class PlayerMovement : MonoBehaviour
                 continue;
             }
 
-            if (_buffer[i].gameObject.layer == (_layerToIgnore | (1 << _buffer[i].gameObject.layer)) && 
+            if (_buffer[i].gameObject.layer != (_layerToIgnore | (1 << _buffer[i].gameObject.layer)) && 
                 Physics.ComputePenetration(collider, _rigidbody.position, _rigidbody.rotation,
                 _buffer[i], _buffer[i].transform.position, _buffer[i].transform.rotation,
                                        out Vector3 direction, out float distance))
             {
+                Debug.Log(gameObject.layer);
                 _rigidbody.MovePosition(_rigidbody.position + (direction * (distance)));
             }
         }
