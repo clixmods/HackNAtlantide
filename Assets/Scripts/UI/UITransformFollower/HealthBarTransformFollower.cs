@@ -12,6 +12,9 @@ namespace UI.UITransformFollower
         private UIHealthBarTransformFollower _uiHealthBar;
         private IDamageable _idamageable;
         private IFocusable _iFocusable;
+
+        [Header("Settings")] 
+        [SerializeField] private bool showHealthWhenItIsFull;
         private void Awake()
         {
             _idamageable = GetComponent<IDamageable>();
@@ -23,7 +26,7 @@ namespace UI.UITransformFollower
 
         private void FocusableOnOnUntargeted(object sender, EventArgs e)
         {
-            if(_idamageable.health.Equals(_idamageable.maxHealth))
+            if(_idamageable.health.Equals(_idamageable.maxHealth) && !showHealthWhenItIsFull)
                 enabled = false;
         }
 
@@ -42,7 +45,8 @@ namespace UI.UITransformFollower
         {
             _uiHealthBar = UITransformFollower.Create<UIHealthBarTransformFollower>(_prefab, transform , maxDistanceToShow);
             _uiHealthBar.Init(_idamageable);
-            enabled = false;
+            if(!showHealthWhenItIsFull)
+                enabled = false;
         }
 
         private void OnDisable()
