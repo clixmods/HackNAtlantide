@@ -20,22 +20,30 @@ public class SceneLoader : MonoBehaviour
     [SerializeField] private SceneType sceneType;
     private void Awake()
     {
-        var indexBuildActiveScene = SceneManager.GetActiveScene().buildIndex;
-        // If additive are already loaded, we need to close each of them
-        for (int i = 0; i <  SceneManager.sceneCount; i++)
+        // If multiple are loaded in play, go reload the main scene completely
+        if (SceneManager.sceneCount > 1)
         {
-           var scene = SceneManager.GetSceneAt(i);
-           if (scene.buildIndex == environmentScene || scene.buildIndex == dependenceScene)
-           {
-               SceneManager.UnloadSceneAsync(scene, UnloadSceneOptions.None);
-           }
+            for (int i = 0; i < SceneManager.sceneCount; i++)
+            {
+                var scene = SceneManager.GetSceneAt(i);
+                if (scene.buildIndex != environmentScene && scene.buildIndex != dependenceScene)
+                {
+                    var indexBuildActiveScene = scene.buildIndex;
+                    SceneManager.LoadScene(indexBuildActiveScene, LoadSceneMode.Single);
+                    return;
+                }
+            }
         }
-        _currentSceneIndex = indexBuildActiveScene;
+       
         StartCoroutine(LoadSceneAsync());
     }
     
     IEnumerator LoadSceneAsync()
     {
+        var indexBuildActiveScene = SceneManager.GetActiveScene().buildIndex;
+        // If additive are already loaded, we need to close each of them
+       
+        _currentSceneIndex = indexBuildActiveScene;
         AsyncOperation operationDependence = SceneManager.LoadSceneAsync(dependenceScene, LoadSceneMode.Additive);
         while(!operationDependence.isDone)
         {
