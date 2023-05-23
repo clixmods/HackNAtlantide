@@ -33,6 +33,7 @@ public class CinematiqueState : GameState
         stateOverride.isPaused = false;
         stateOverride.timeScale = 1f;
         stateOverride.allInputActive = false;
+        stateOverride.canPause = false;
     }
 }
 public class MainMenuState : GameState
@@ -44,6 +45,7 @@ public class MainMenuState : GameState
         stateOverride.isPaused = false;
         stateOverride.timeScale = 0f;
         stateOverride.allInputActive = false;
+        stateOverride.canPause = false;
     }
 }
 public class CombatState : GameState
@@ -84,6 +86,7 @@ public class DeadState : GameState
         stateOverride.inputMovementActive = false;
         stateOverride.inputCombatActive = false;
         stateOverride.inputDashActive = false;
+        stateOverride.canPause = false;
 
     }
 }
@@ -96,6 +99,7 @@ public interface IGameStateCallBack
 public class GameStateOverride
 {
     public bool isPaused;
+    public bool canPause = true;
     public float timeScale = 1f;
     public bool inputMovementActive = true;
     public bool inputCombatActive = true;
@@ -110,6 +114,7 @@ public class GameStateOverride
         inputCombatActive = true;
         inputDashActive = true;
         inputInteractActive = true;
+        canPause = true;
     }
     public void Apply()
     {
@@ -182,6 +187,7 @@ public class GameStateManager : MonoBehaviour
     [SerializeReference] private List<GameState> currentGameStates = new List<GameState>();
 
     [SerializeField] private GameStateOverride gameStateOverride = new GameStateOverride();
+    public GameStateOverride GameStateOverride { get { return gameStateOverride; } }
 
     private bool isApplicationQuit = false;
 

@@ -9,6 +9,10 @@ public class PauseEvent : MonoBehaviour
     public void Pause(bool pause)
     {
         Debug.Log("game is pause :" + pause);
-        m_PauseEvent.LaunchEvent(pause);
+        if(GameStateManager.Instance.GameStateOverride.canPause)
+        {
+            m_PauseEvent.LaunchEvent(pause);
+        }
+        
     }
 }

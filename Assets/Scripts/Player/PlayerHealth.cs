@@ -73,7 +73,7 @@ public class PlayerHealth : Character
     IEnumerator PostProcessHit()
     {
         _postProcessWeightTransition.SetWeightVolume(1);
-        float timescale = Time.timeScale;
+        float timescale = GameStateManager.Instance.GameStateOverride.timeScale;
         Time.timeScale = 0.2f;
         yield return new WaitForSecondsRealtime(0.15f);
         Time.timeScale = timescale;
