@@ -131,36 +131,11 @@ public class Focus : MonoBehaviour
             {
                 // we need to cache the camera transition
                 _noFocusVirtualCamera = newCameraVirtual.gameObject;
-               // if (!_isTransitioning)
-                {
-                    StartCoroutine(LerpCameraPositionTo(newCameraVirtual));
-                }
-               
-             
+                StartCoroutine(LerpCameraPositionTo(newCameraVirtual));
             }
-            else
-            {
-                // Focus enabled, we need to disable the new camera transition
-                //newCameraVirtual.gameObject.SetActive(false); 
-            }
-        }
-        else
-        {
-            var newCamTransitionTransform = newCameraVirtual.transform;
-            //_camFocusTransform.position = newCamTransitionTransform.position;
-            //_camFocusTransform.rotation = newCamTransitionTransform.rotation;
         }
         // we need to cache the camera transition
         _noFocusVirtualCamera = newCameraVirtual.gameObject;
-        
-        
-        // // If its the same camera, not necesary to continue
-        // if (newCameraVirtual.gameObject == _noFocusVirtualCamera)
-        // {
-        //     // Need to disable it, because the camera transition event has renable it
-        //     _noFocusVirtualCamera.SetActive(false); 
-        //     return;
-        // }
     }
     IEnumerator LerpCameraPositionTo(CinemachineVirtualCamera newCameraVirtual)
     {

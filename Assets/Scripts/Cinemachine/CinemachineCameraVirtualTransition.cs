@@ -51,6 +51,10 @@ using UnityEngine;
 
         public void ActiveCamera()
         {
+            if (_cinemachineVirtualCamera.gameObject.activeSelf)
+            {
+                return;
+            }
             OnCameraChanged?.Invoke(_cinemachineVirtualCamera);
             _cinemachineVirtualCamera.gameObject.SetActive(true);
             OnPostCameraChanged?.Invoke(_cinemachineVirtualCamera);
