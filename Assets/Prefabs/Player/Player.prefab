@@ -10008,14 +10008,11 @@ MonoBehaviour:
     type: 2}
   LoadingStart:
     m_PersistentCalls:
-      m_Calls: []
-  LoadingStop:
-    m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 11400000, guid: 7368ba06a7477a942b281a13774a908f, type: 2}
         m_TargetAssemblyTypeName: ScriptableValueFloat, Assembly-CSharp
-        m_MethodName: set_Value
-        m_Mode: 4
+        m_MethodName: SetValueToMaxValue
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -10024,6 +10021,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  LoadingStop:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &2417519851276967300
 GameObject:
   m_ObjectHideFlags: 0
