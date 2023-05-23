@@ -1,6 +1,4 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -19,9 +17,6 @@ public class UIStamina : MonoBehaviour
         _rectTransform = transform.GetComponent<RectTransform>();
         _striLength = _rectTransform.rect.width;
         _rectTransform.sizeDelta = new Vector2 (_striLength * _staminaSO.MaxStamina, _rectTransform.sizeDelta.y);
-        
-        _staminaSO.FailUseStamina += FailUseStamina;
-
     }
 
     private void FailUseStamina()
@@ -35,16 +30,14 @@ public class UIStamina : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         maskFlik.gameObject.SetActive(false);
     }
-    private void SetFloat(bool boolean)
-    {
-       
-    }
     private void OnEnable()
     {
+        _staminaSO.FailUseStamina += FailUseStamina;
         _staminaSO.OnValueChanged += ChangeValue;
     }
     private void OnDisable()
     {
+        _staminaSO.FailUseStamina -= FailUseStamina;
         _staminaSO.OnValueChanged -= ChangeValue;
     }
 

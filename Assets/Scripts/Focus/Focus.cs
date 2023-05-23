@@ -20,7 +20,7 @@ public class Focus : MonoBehaviour
     [Tooltip("Input Vector to switch between the list of target")]
     [SerializeField] private InputVectorScriptableObject inputSwitchTarget;
     
-    private List<IFocusable> _targetableAvailable = new List<IFocusable>();
+    private List<IFocusable> _FocusableAvailable = new List<IFocusable>();
     
     [SerializeField] CinemachineVirtualCamera cameraVirtualFocus;
     private Transform _camFocusTransform;
@@ -30,31 +30,32 @@ public class Focus : MonoBehaviour
     private IFocusable _lastCachedTarget;
     private bool _isTransitioning;
     #region Properties
+
+    public List<IFocusable> FocusablesAvailable => _FocusableAvailable;
     public IFocusable CurrentTarget
     {
         get
         {
             GenerateTargetableList();
-            if (_targetableAvailable.Count == 0)
+            if (_FocusableAvailable.Count == 0)
                 return null;
             
-            return _targetableAvailable[CurrentTargetIndex];
+            return _FocusableAvailable[CurrentTargetIndex];
         }
     }
-    
     private int CurrentTargetIndex
     {
         get
         {
-            if (_currentTargetIndex > _targetableAvailable.Count - 1)
+            if (_currentTargetIndex > _FocusableAvailable.Count - 1)
             {
-                _currentTargetIndex = _targetableAvailable.Count - 1;
+                _currentTargetIndex = _FocusableAvailable.Count - 1;
             }
             return _currentTargetIndex;
         }
         set
         {
-            if (_targetableAvailable.Count == 0)
+            if (_FocusableAvailable.Count == 0)
             {
                 _currentTargetIndex = 0;
                 return;
@@ -62,9 +63,9 @@ public class Focus : MonoBehaviour
             _currentTargetIndex = value;
             if (_currentTargetIndex < 0)
             {
-                _currentTargetIndex = _targetableAvailable.Count-1;
+                _currentTargetIndex = _FocusableAvailable.Count-1;
             }
-            else if(_currentTargetIndex > _targetableAvailable.Count - 1)
+            else if(_currentTargetIndex > _FocusableAvailable.Count - 1)
             {
                 _currentTargetIndex = 0;
             }
@@ -188,7 +189,7 @@ public class Focus : MonoBehaviour
     private void Switch()
     {
         // No target available
-        if (_targetableAvailable.Count == 0)
+        if (_FocusableAvailable.Count == 0)
         {
             OnFocusNoTarget?.Invoke();
             DisableFocus();
@@ -263,9 +264,9 @@ public class Focus : MonoBehaviour
         Debug.Log(inputValue);
         int index = 0;
         float closestdot = -2;
-        for(int i = 0; i < _targetableAvailable.Count; i++)
+        for(int i = 0; i < _FocusableAvailable.Count; i++)
         {
-            float dot = Vector3.Dot(inputDirection,(_targetableAvailable[i].transform.position - playerPos).normalized);
+            float dot = Vector3.Dot(inputDirection,(_FocusableAvailable[i].transform.position - playerPos).normalized);
 
             if(dot > closestdot)
             {
@@ -323,7 +324,7 @@ public class Focus : MonoBehaviour
     {
         GenerateTargetableList();
         AfterGenerateList();
-        return _targetableAvailable.Count > 0;
+        return _FocusableAvailable.Count > 0;
     }
     private bool _forceSwitch = false;
     private void GenerateTargetableList()
@@ -331,21 +332,21 @@ public class Focus : MonoBehaviour
         // If no targetables is available in the scene, we need to check if targetableavailable is not fucked
         if (IFocusable.Focusables.Count == 0)
         {
-            if (_targetableAvailable.Count > 0)
+            if (_FocusableAvailable.Count > 0)
             {
-                _targetableAvailable = new List<IFocusable>();
+                _FocusableAvailable = new List<IFocusable>();
             }
             DisableFocus();
             return; 
         }
         // Generate list of available targetable
-        _targetableAvailable = new List<IFocusable>();
+        _FocusableAvailable = new List<IFocusable>();
         foreach (var targetable in IFocusable.Focusables.Where(targetable => targetable.CanBeFocusable))
         {
-            _targetableAvailable.Add(targetable);
+            _FocusableAvailable.Add(targetable);
         }
         // If the lastest target is not in the list, we need to force a switch
-        if (!_targetableAvailable.Contains(_lastCachedTarget))
+        if (!_FocusableAvailable.Contains(_lastCachedTarget))
         {
             _forceSwitch = true;
         }
@@ -362,7 +363,7 @@ public class Focus : MonoBehaviour
             _forceSwitch = false;
         }
         // TODO : Maybe a rewrite here ?
-        if (!FocusIsEnable && _targetableAvailable.Count > 0)
+        if (!FocusIsEnable && _FocusableAvailable.Count > 0)
         {
             Switch();
         }
@@ -370,7 +371,7 @@ public class Focus : MonoBehaviour
     private void SortTargetableAvailableListByNearest()
     {
         // Sort the list to have the nearest in first
-        _targetableAvailable.Sort(delegate(IFocusable t1, IFocusable t2)
+        _FocusableAvailable.Sort(delegate(IFocusable t1, IFocusable t2)
         {
             return
                 Vector3.Distance(
