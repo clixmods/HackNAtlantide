@@ -17,7 +17,7 @@ public class PlayerCombat : MonoBehaviour,ICombat
     [Header("Variables")]
     [SerializeField] int noOfClicks; //Determines Which Animation Will Play
     private float _lastClickedTime = 0f;
-    private float comboDelay = .3f;
+    private float comboDelay = .4f;
     [SerializeField] private bool stopAnimation;
     
     // TODO - TEMPORARY
@@ -65,14 +65,6 @@ public class PlayerCombat : MonoBehaviour,ICombat
         {
             noOfClicks = 0;
         }
-        if (noOfClicks > 0)
-        {
-            _animator.SetBool("IdleReturn", false);
-        }
-        else if (noOfClicks <= 0)
-        {
-            _animator.SetBool("IdleReturn", true);
-        }
     }
 
     private void AttackColliderOnOnCollideWithIDamageable(object sender, EventArgs eventArgs)
@@ -97,6 +89,11 @@ public class PlayerCombat : MonoBehaviour,ICombat
 
             noOfClicks = Mathf.Clamp(noOfClicks, 0, 3);
         }
+    }
+
+    public void ResetNoOfClicks()
+    {
+        noOfClicks = 0;
     }
 
     public void ComboAttack1Transition()
