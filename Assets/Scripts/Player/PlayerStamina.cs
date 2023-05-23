@@ -24,15 +24,16 @@ public class PlayerStamina : MonoBehaviour
     private void Start()
     {
         _staminaSO.ResetStamina();
+        _staminaSO.CanRechargeStamina = true;
     }
     private void Update()
     {
-        if(!_staminaSO.IsMaxStamina())
+        if(!_staminaSO.IsMaxStamina() && _staminaSO.CanRechargeStamina)
         {
             _staminaSO.Value += Time.deltaTime * _staminaSO.SpeedToRecharge;
         }
     }
-    void RemoveStamina(float value)
+    public void RemoveStamina(float value)
     {
         
         _staminaSO.Value -= value;

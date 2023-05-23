@@ -10,6 +10,9 @@ public class PlayerStaminaScriptableObject : ScriptableObjectSaveable
     [SerializeField] private float _maxValue;
     [SerializeField] private float _value;
     [SerializeField] private float _speedToRecharge = 1f;
+
+    bool _canRechargeStamina;
+    public bool CanRechargeStamina { get { return _canRechargeStamina; } set { _canRechargeStamina = value; } }
     public float SpeedToRecharge => _speedToRecharge;
     public float Value
     {
