@@ -33,6 +33,7 @@ public class PlayerCombat : MonoBehaviour,ICombat
     [SerializeField] TrailRenderer _trailSwordDistortion;
 
     [SerializeField] private ScriptableEvent _dashAttackEvent;
+
     private void OnEnable()
     {
         _inputAttack.OnValueChanged += Attack;
@@ -92,9 +93,16 @@ public class PlayerCombat : MonoBehaviour,ICombat
 
     void DashAttackAnim()
     {
-        _animator.CrossFade("DashAttack",0f);
+        StartCoroutine(DashAttackBoolean());
     }
-    
+
+    IEnumerator DashAttackBoolean()
+    {
+        _animator.SetBool("dashAttack", true);
+        yield return new WaitForSeconds(.5f);
+        _animator.SetBool("dashAttack", false);
+    }
+
     void ComboStarter()
     {       
         if (canClick)            
