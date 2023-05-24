@@ -229,7 +229,7 @@ public class PlayerMovement : MonoBehaviour
                 continue;
             }
 
-            if (_buffer[i].gameObject.layer == (_layerToIgnore | (1 << _buffer[i].gameObject.layer)) && 
+            if (((1 << _buffer[i].gameObject.layer) &_layerToIgnore) == 0 && 
                 Physics.ComputePenetration(collider, _rigidbody.position, _rigidbody.rotation,
                 _buffer[i], _buffer[i].transform.position, _buffer[i].transform.rotation,
                                        out Vector3 direction, out float distance))
@@ -362,7 +362,7 @@ public class PlayerMovement : MonoBehaviour
     
     private void StayGrounded()
     {
-        _rigidbody.AddForce(Vector3.down * 1000 * Time.fixedDeltaTime);
+        _rigidbody.AddForce(Vector3.down * 1000000 * Time.fixedDeltaTime);
         /*float distance = 0f;
         Vector3 displacement = Vector3.zero;
         float magnitudeCheck = IsDashing || IsDashingAttack ? 0.6f : 0.3f;
