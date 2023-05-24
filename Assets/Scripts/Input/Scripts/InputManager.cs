@@ -54,6 +54,10 @@ public class InputManager : MonoBehaviour
     { 
         _move.IsActive = value;
     }
+    public void ActiveInputPause(bool value)
+    {
+        _pause.IsActive = value;
+    }
     public void ActiveInputDash(bool value)
     {
         _dash.IsActive = value;
@@ -109,7 +113,7 @@ public class InputManager : MonoBehaviour
         _input.InGame.SwitchFocus.performed += ctx => _switchFocus.ChangeValue(_input.InGame.SwitchFocus.ReadValue<Vector2>());
         _input.InGame.SwitchFocus.canceled += ctx => _switchFocus.ChangeValue(Vector2.zero);
         // Pause
-        _input.InGame.Pause.performed += ctx =>  PauseGame();
+        _input.InGame.Pause.performed += ctx => _pause.ChangeValue(true);
         //Boussole
         _input.InGame.Boussole.performed += ctx => _boussole.ChangeValue(true);
         _input.InGame.Boussole.canceled += ctx => _boussole.ChangeValue(false);
@@ -120,13 +124,6 @@ public class InputManager : MonoBehaviour
         // Release
         _input.InGame.CheatMenu.performed += ctx => _openCheatMenu.ChangeValue(true);
         _input.InGame.CheatMenu.canceled += ctx => _openCheatMenu.ChangeValue(false);
-    }
-    void PauseGame()
-    {
-        if(GameStateManager.Instance.GameStateOverride.canPause)
-        {
-            _pause.ChangeValue(true);
-        }
     }
     void DisableGameInput()
     {
