@@ -1,0 +1,56 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Events;
+
+public abstract class EnemyAttackBehaviour : MonoBehaviour
+{
+    #region properties
+    [SerializeField] float damage;
+    public float Damage { get { return damage; } }
+
+    [SerializeField] private float _minPriority;
+    public float MinPriority { get { return _minPriority; } }
+    private float _currentPriority;
+    public float Priority { get { return _currentPriority; } set { _currentPriority = value; } }
+
+    [SerializeField] private float _coolDown;
+    public float CoolDown { get { return _coolDown; } }
+
+    [SerializeField] private float _minDistanceToAttack = 0f;
+    public float MinDistanceToAttack { get { return _minDistanceToAttack; } }
+    [SerializeField] private float _maxDistanceToAttack = 3f;
+    public float MaxDistanceToAttack { get { return _maxDistanceToAttack; } }
+
+    [SerializeField] private bool _facePlayer;
+    public bool FacePlayer { get { return _facePlayer; } set { _facePlayer = value; } }
+
+    [SerializeField] private UnityEvent _onAttack;
+    public UnityEvent OnAttack {get { return _onAttack; }}
+
+    //Components
+
+    private EnemyBehaviour _enemyBehaviour;
+    public EnemyBehaviour EnemyBehaviour { get { return _enemyBehaviour; } }
+
+    #endregion
+
+    #region MonoBehaviour
+    private void Awake()
+    {
+        _enemyBehaviour = GetComponent<EnemyBehaviour>();
+        _currentPriority = _minPriority;
+    }
+    #endregion
+    public abstract bool CanAttack();
+    public abstract void Attack();
+    public IEnumerator RechargePriority()
+    {
+        while (_currentPriority > _minPriority)
+        {
+            _currentPriority -= Time.deltaTime;
+            yield return null;
+        }
+        _currentPriority = _minPriority;
+    }
+}

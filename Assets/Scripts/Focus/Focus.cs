@@ -278,7 +278,6 @@ public class Focus : MonoBehaviour
                     {
                         Debug.LogWarning("A IFocusable has been destroyed ! Its better to not destroy them in a same scene");
                     }
-
                 }
             }
             else if (FocusIsEnable)
