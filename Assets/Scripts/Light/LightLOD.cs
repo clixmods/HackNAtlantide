@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
@@ -7,6 +8,7 @@ using UnityEngine;
     [RequireComponent(typeof(UnityEngine.Light))]
     public class LightLOD : MonoBehaviour
     {
+        private static List<LightLOD> _lightLods;
         private Light m_light;
         [Header("Attenuation")]
         [Range(0,2)]
@@ -14,7 +16,7 @@ using UnityEngine;
         [Range(0,2)]
         [SerializeField] private float attenuationOuter = 1;
         [Header("LOD")]
-        [SerializeField] private float maxDistanceVisible = 10;
+        [SerializeField] private float maxDistanceVisible = 50;
 
         [SerializeField] private bool HideWhenOutOfCameraVision;
         
@@ -31,11 +33,12 @@ using UnityEngine;
 
         private void Update()
         {
-            if (Application.isPlaying)
+          
+            if (Application.isPlaying && _lightLods.Count >= 8 )
             {
                 float attenuationDistance =  1 - (Vector3.Distance(Camera.main.transform.position, transform.position) / maxDistanceVisible) ;
                // volumetricBoost = _cachedVolumetricBoost * attenuationDistance;
-                if (HideWhenOutOfCameraVision && transform.position.IsOutOfCameraVision())
+                if (HideWhenOutOfCameraVision && transform.position.IsOutOfCameraVision(-1f,2f))
                 {
                     m_light.enabled = false;
                 }
@@ -48,6 +51,7 @@ using UnityEngine;
                     m_light.enabled = true;
                 }
             }
+            
            
         }
 #if UNITY_EDITOR
