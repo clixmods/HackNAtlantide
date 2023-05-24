@@ -5321,7 +5321,7 @@ PrefabInstance:
     - target: {fileID: 4856474537322459677, guid: c66673c6a44fd1c47bc9bf1c0cb949b4,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 380.38
+      value: 384.82
       objectReference: {fileID: 0}
     - target: {fileID: 4856474537322459677, guid: c66673c6a44fd1c47bc9bf1c0cb949b4,
         type: 3}
@@ -18645,6 +18645,71 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1 &1422279714
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1422279716}
+  - component: {fileID: 1422279715}
+  m_Layer: 0
+  m_Name: MonoBehaviourUnityEvent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1422279715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1422279714}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a227f632f730ff4b8c745e34655fa44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EventAwake:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 7368ba06a7477a942b281a13774a908f, type: 2}
+        m_TargetAssemblyTypeName: ScriptableValueFloat, Assembly-CSharp
+        m_MethodName: set_Value
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0.5
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  EventUpdate:
+    m_PersistentCalls:
+      m_Calls: []
+  EventDestroy:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!4 &1422279716
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1422279714}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.5480156, y: -14.76854, z: 407.6766}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 14
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!43 &1423686381
 Mesh:
   m_ObjectHideFlags: 0

@@ -48,11 +48,13 @@ public class EmissiveMaterialHandler : MonoBehaviour
 
     public void ResetEmissive()
     {
+        
         for (int i = 0; i < _propBlocks.Length; i++)
         {
             StopCoroutine(SetColor(_propBlocks[i] , i , emissiveColor , timeToActiveEmissive ));
             StartCoroutine(SetColor(_propBlocks[i] , i , _initialColor[i] , timeToResetEmissive)); 
         } 
+        
     }
     
     IEnumerator SetColor(MaterialPropertyBlock materialPropertyBlock, int index , Color colorTarget, float timeTransition)
