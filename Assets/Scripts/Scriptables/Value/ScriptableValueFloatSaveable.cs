@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class ScriptableValueFloatSaveable : ScriptableValueFloat , ISave
 {
-
-    
     #region Save and Load
     class FloatSaveData : SaveData
     {

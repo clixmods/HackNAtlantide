@@ -5,29 +5,31 @@ using _2DGame.Scripts.Save;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Data/PlayerStamina")]
-public class PlayerStaminaScriptableObject : ScriptableObjectSaveable
+public class PlayerStaminaScriptableObject : ScriptableValueFloatSaveable
 {
-    [SerializeField] private float _maxValue;
-    [SerializeField] private float _value;
     [SerializeField] private float _speedToRecharge = 1f;
 
     bool _canRechargeStamina;
     public bool CanRechargeStamina { get { return _canRechargeStamina; } set { _canRechargeStamina = value; } }
     public float SpeedToRecharge => _speedToRecharge;
-    public float Value
+    public override float Value
     {
-        get => _value;
+        get
+        {
+            return base.Value;
+        }
         set
         {
-            _value = value > _maxValue ? _maxValue : value;
-            OnValueChanged?.Invoke(_value);
+            base.Value = value;
+            OnValueChanged?. Invoke(value);
         }
     }
 
-    public float MaxStamina => _maxValue;
+
+    public float MaxStamina => MaxValue;
     public bool IsMaxStamina()
     { 
-        return _value >= _maxValue; 
+        return Value >= MaxValue; 
     }
 
     public Action<float> OnValueChanged;
@@ -49,36 +51,7 @@ public class PlayerStaminaScriptableObject : ScriptableObjectSaveable
     }
     public void ResetStamina()
     {
-        Value = _maxValue;
-    }
-
-    #region Saveable
-
-    class PlayerStamina : SaveData
-    {
-        public float currentStamina;
-        public float maxStamina;
-    }
-    
-    public override void OnLoad(string data)
-    {
-        PlayerStamina playerStamina = JsonUtility.FromJson<PlayerStamina>(data);
-        _maxValue = playerStamina.maxStamina;
-        Value = playerStamina.currentStamina;
-    }
-
-    public override void OnSave(out SaveData saveData)
-    {
-        PlayerStamina playerStaminaData = new PlayerStamina();
-        playerStaminaData.currentStamina = Value;
-        playerStaminaData.maxStamina = _maxValue;
-        saveData = playerStaminaData;
-    }
-
-    public override void OnReset()
-    {
         Value = MaxStamina;
     }
-
-    #endregion
+    
 }

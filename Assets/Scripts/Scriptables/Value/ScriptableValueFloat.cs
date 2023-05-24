@@ -17,14 +17,37 @@ public class ScriptableValueFloat : ScriptableValue<float>
     public float MaxValue
     {
         get => _maxValue;
-        set => _maxValue = value;
+        set
+        {
+            _maxValue = value; 
+            OnValueChanged?.Invoke(Value);
+        }
     }
+
+    public float Value01 => Value / MaxValue;
 
     #endregion
     #region Methods
     public void SetValueToMaxValue()
     {
         Value = MaxValue;
+    }
+
+    public void IncrementMaxValue(float incrementValue)
+    {
+        MaxValue += incrementValue;
+    }
+    public void DecrementMaxValue(float decrementValue)
+    {
+        MaxValue -= decrementValue;
+    }
+    public void IncrementValue(float incrementValue)
+    {
+        Value += incrementValue;
+    }
+    public void DecrementValue(float decrementValue)
+    {
+        Value -= decrementValue;
     }
     #endregion
 }

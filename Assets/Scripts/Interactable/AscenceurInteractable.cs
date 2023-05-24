@@ -24,9 +24,6 @@ public class AscenceurInteractable : Interactable
     }
     private void Update()
     {
-        
-
-        
         if(_isInteract)
         {
             float cost = costStamina * Time.deltaTime * _speedUp / distance;
