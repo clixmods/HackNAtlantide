@@ -90,20 +90,22 @@ public class UIMenu : MonoBehaviour
 
     private void OnEnable()
     {
-        if(_firstSelectedGameObject != null)
-            EventSystem.current.SetSelectedGameObject(_firstSelectedGameObject);
-        else
+        if( EventSystem.current != null)
         {
-            var buttonInChild = GetComponentInChildren<Button>();
-            if (buttonInChild != null)
+            if (_firstSelectedGameObject != null)
             {
-                EventSystem.current.SetSelectedGameObject(buttonInChild.gameObject);
+                EventSystem.current.SetSelectedGameObject(_firstSelectedGameObject);
             }
-            // else
-            // {
-            //     Debug.LogError("UIMenu : _firstSelectedGameObject was not assigned, and no button are available in transform child, so please assign it", gameObject);
-            // }
+            else
+            {
+                var buttonInChild = GetComponentInChildren<Button>();
+                if (buttonInChild != null )
+                {
+                    EventSystem.current.SetSelectedGameObject(buttonInChild.gameObject);
+                }
+            }
         }
+      
     }
 
     public void OnOpenMenu(InputAction.CallbackContext context)

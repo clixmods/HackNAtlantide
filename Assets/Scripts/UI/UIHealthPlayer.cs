@@ -20,18 +20,24 @@ public class UIHealthPlayer : MonoBehaviour
     private void Start()
     {
         player = PlayerInstanceScriptableObject.Player.GetComponent<IDamageable>();
-        player.OnDamage += PlayerOnDamage;
-        player.OnChangeHealth += PlayerOnOnChangeHealth;
+        if (player != null)
+        {
+            player.OnDamage += PlayerOnDamage;
+            player.OnChangeHealth += PlayerOnOnChangeHealth;
         
-        _striLength = _rectTransform.rect.width;
-        _rectTransform.sizeDelta = new Vector2 (_striLength * player.maxHealth, _rectTransform.sizeDelta.y);
-        _slider.value = player.health/player.maxHealth;
+            _striLength = _rectTransform.rect.width;
+            _rectTransform.sizeDelta = new Vector2 (_striLength * player.maxHealth, _rectTransform.sizeDelta.y);
+            _slider.value = player.health/player.maxHealth;
+        }
     }
 
     private void OnDestroy()
     {
-        player.OnDamage -= PlayerOnDamage;
-        player.OnChangeHealth -= PlayerOnOnChangeHealth;
+        if (player != null)
+        {
+            player.OnDamage -= PlayerOnDamage;
+            player.OnChangeHealth -= PlayerOnOnChangeHealth;
+        }
     }
 
     private void PlayerOnOnChangeHealth(object sender, EventArgs e)
