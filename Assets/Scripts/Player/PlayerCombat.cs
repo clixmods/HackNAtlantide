@@ -124,7 +124,7 @@ public class PlayerCombat : MonoBehaviour,ICombat
     IEnumerator DashAttackBoolean()
     {
         _animator.SetBool("dashAttack", true);
-        yield return new WaitForSeconds(.5f);
+        yield return new WaitForSeconds(.25f);
         _animator.SetBool("dashAttack", false);
     }
 

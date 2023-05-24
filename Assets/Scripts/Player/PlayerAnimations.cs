@@ -49,6 +49,11 @@ public class PlayerAnimations : MonoBehaviour
         }
     }
 
+    public void SetTriggerIdle()
+    {
+        _animator.CrossFade("Idle",0.01f);
+    }
+
     public void Dash()
     {
         StartCoroutine(DashCoroutine());
