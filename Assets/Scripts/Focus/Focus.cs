@@ -256,7 +256,6 @@ public class Focus : MonoBehaviour
     {
         while (_inputFocusIsPressed)
         {
-            //postprocessActivate
             //TryFocus
             if (CanFocus())
             {
@@ -268,10 +267,6 @@ public class Focus : MonoBehaviour
                     // Active the camera focus
                     cameraVirtualFocus.gameObject.SetActive(true);
                     // go disable the nofocus camera
-                    if (_noFocusVirtualCamera != null)
-                    {
-                        //_noFocusVirtualCamera.SetActive(false);
-                    }
                     OnFocusEnable?.Invoke();
                     Switch();
                     try
@@ -284,22 +279,16 @@ public class Focus : MonoBehaviour
                         Debug.LogWarning("A IFocusable has been destroyed ! Its better to not destroy them in a same scene");
                     }
 
-                }/*
-                else
-                {
-                    DisableFocus();
-                }*/
+                }
             }
             else if (FocusIsEnable)
-            {/*
-                FocusIsEnable = false;*/
+            {
                 DisableFocus();
             }
             yield return null;
         }
         //CancelTryFocus
         DisableFocus();
-        //postprocessDisActivate
     }
     private void InputEnableFocusOnChanged(bool value)
     {
