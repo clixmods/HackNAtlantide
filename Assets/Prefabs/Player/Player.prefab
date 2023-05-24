@@ -9642,7 +9642,6 @@ GameObject:
   - component: {fileID: 2163970336209644009}
   - component: {fileID: 3254360785627689518}
   - component: {fileID: 3187746015186250110}
-  - component: {fileID: 4335499789587737346}
   - component: {fileID: 7707920963531297730}
   m_Layer: 6
   m_Name: Player
@@ -9979,18 +9978,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   meshRenderer: {fileID: 8662073844750551201}
---- !u!114 &4335499789587737346
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2176775217575482146}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f8043cb67861ff46896be0716d89c6a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &7707920963531297730
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10310,12 +10297,36 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 6222297412654333480}
+        m_TargetAssemblyTypeName: EmissiveMaterialHandler, Assembly-CSharp
+        m_MethodName: ActiveEmissive
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   InteractableDeselected:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 6495566153358447584}
         m_TargetAssemblyTypeName: InteractableTrailLinker, Assembly-CSharp
         m_MethodName: Unselect
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 6222297412654333480}
+        m_TargetAssemblyTypeName: EmissiveMaterialHandler, Assembly-CSharp
+        m_MethodName: ResetEmissive
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -15372,12 +15383,56 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2232174480602545200}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1267106490925922019 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1112367662337002195, guid: 99d19c5c84645f7409300b87b05b63e4,
+    type: 3}
+  m_PrefabInstance: {fileID: 2232174480602545200}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6222297412654333480
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1267106490925922019}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b86b17c408ffaa4b8217cda196f5863, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meshRenderer: {fileID: 8662073844750551201}
+  emissiveColor: {r: 0, g: 39.396626, b: 34.76173, a: 1}
+  timeToActiveEmissive: 1
+  timeToResetEmissive: 0.5
 --- !u!4 &3242760525399670330 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3745551614683546122, guid: 99d19c5c84645f7409300b87b05b63e4,
     type: 3}
   m_PrefabInstance: {fileID: 2232174480602545200}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &3979305113640223440 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3009269007580298976, guid: 99d19c5c84645f7409300b87b05b63e4,
+    type: 3}
+  m_PrefabInstance: {fileID: 2232174480602545200}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4220518268304965951
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3979305113640223440}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b86b17c408ffaa4b8217cda196f5863, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meshRenderer: {fileID: 7302734754534765840}
+  emissiveColor: {r: 0, g: 25.992073, b: 19.468573, a: 1}
+  timeToActiveEmissive: 0.2
+  timeToResetEmissive: 0.2
 --- !u!65 &5527146070642193168 stripped
 BoxCollider:
   m_CorrespondingSourceObject: {fileID: 5930705024338579232, guid: 99d19c5c84645f7409300b87b05b63e4,

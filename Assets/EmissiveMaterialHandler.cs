@@ -12,7 +12,13 @@ public class EmissiveMaterialHandler : MonoBehaviour
     [SerializeField] private float timeToActiveEmissive = 1f;
     [SerializeField] private float timeToResetEmissive = 0.5f;
     private static readonly int EmissionColorID = Shader.PropertyToID("_EmissionColor");
-    
+
+    enum State
+    {
+        None,
+        Active,
+        IsDesactive
+    }
 
     private void Awake()
     {
@@ -41,7 +47,7 @@ public class EmissiveMaterialHandler : MonoBehaviour
     {
         for (int i = 0; i < _propBlocks.Length; i++)
         {
-            StopCoroutine(SetColor(_propBlocks[i] , i , _initialColor[i] , timeToResetEmissive)); 
+            //StopCoroutine(SetColor(_propBlocks[i] , i , _initialColor[i] , timeToResetEmissive)); 
             StartCoroutine(SetColor(_propBlocks[i] , i , emissiveColor , timeToActiveEmissive )); 
         } 
     }
@@ -51,7 +57,7 @@ public class EmissiveMaterialHandler : MonoBehaviour
         
         for (int i = 0; i < _propBlocks.Length; i++)
         {
-            StopCoroutine(SetColor(_propBlocks[i] , i , emissiveColor , timeToActiveEmissive ));
+            //
             StartCoroutine(SetColor(_propBlocks[i] , i , _initialColor[i] , timeToResetEmissive)); 
         } 
         
