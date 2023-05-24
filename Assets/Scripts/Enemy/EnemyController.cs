@@ -3,6 +3,7 @@ using System.Collections;
 using Attack;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Events;
 using UnityEngine.Serialization;
 
 public class EnemyController : MonoBehaviour, ICombat
@@ -26,9 +27,15 @@ public class EnemyController : MonoBehaviour, ICombat
 
     private bool _canAttack;
     private bool _hasFinishWaitAttack = true;
-    private static readonly int IsAwake = Animator.StringToHash("IsAwake");
+    private static readonly int IsAwakeNameID = Animator.StringToHash("IsAwake");
     public event Action _attackEvent;
     Character character;
+
+    public UnityEvent OnAwake;
+    public UnityEvent OnSleep;
+
+    #region Properties
+
     public bool canAttack
     {
         get { return _canAttack; }
@@ -43,7 +50,10 @@ public class EnemyController : MonoBehaviour, ICombat
 
         }
     }
+    public bool IsAwake => _playerInLookRadius;
+    
 
+    #endregion
     private void Awake()
     {
         character = GetComponent<Character>();
@@ -76,16 +86,36 @@ public class EnemyController : MonoBehaviour, ICombat
 
     private void Update()
     {
-        _playerInLookRadius = Physics.CheckSphere(transform.position, lookRadius, playerLayer);
+        _playerInLookRadius = PlayerIsInLookRadius();
         _playerInAttackRadius = Physics.CheckSphere(transform.position, attackRadius, playerLayer);
 
-        if (_playerInLookRadius) _animator.SetBool(IsAwake, true);
-        if (!_playerInLookRadius) _animator.SetBool(IsAwake, false);
+        if (_playerInLookRadius) _animator.SetBool(IsAwakeNameID, true);
+        if (!_playerInLookRadius) _animator.SetBool(IsAwakeNameID, false);
         if (_playerInLookRadius && !_playerInAttackRadius && !_isAttacking && _hasFinishAttack) Chase();
         if (_playerInLookRadius && (_playerInAttackRadius || _isAttacking) && _hasFinishWaitAttack) StartCoroutine(Attack());
         
         //for animation
         character.CurrentSpeed = _agent.velocity.magnitude;
+    }
+
+    private bool PlayerIsInLookRadius()
+    {
+        bool value = Physics.CheckSphere(transform.position, lookRadius, playerLayer);
+        if (_playerInLookRadius != value)
+        {
+            if (value) // Awake
+            {
+                Debug.Log("Awake", gameObject);
+                OnAwake?.Invoke();
+            }
+            else // Sleep
+            {
+                Debug.Log("Sleep", gameObject);
+                OnSleep?.Invoke();
+            }
+        }
+            
+        return value;
     }
     
     void Chase()
@@ -109,12 +139,12 @@ public class EnemyController : MonoBehaviour, ICombat
 
         FaceTarget();
         _hasFinishAttack = true;
-        _animator.SetBool("IsAwake", false);
+        _animator.SetBool(IsAwakeNameID, false);
 
         yield return new WaitForSeconds(1f);
 
         _hasFinishWaitAttack = true;
-        _animator.SetBool("IsAwake", true);
+        _animator.SetBool(IsAwakeNameID, true);
 
     }
 
