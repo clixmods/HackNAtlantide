@@ -34,10 +34,12 @@ public class PlayerAnimations : MonoBehaviour
 
         if (_playerMovement.MoveAmount.magnitude / 0.06f <= 0.1f)
         {
+            _animator.ResetTrigger("Idle");
             _timeBeforeIdle -= Time.deltaTime;
         }
         else if (_playerMovement.MoveAmount.magnitude / 0.06f >= 0.1f)
         {
+            _animator.SetTrigger("Idle");
             _timeBeforeIdle = 5f;
         }
 
@@ -54,7 +56,7 @@ public class PlayerAnimations : MonoBehaviour
     
     IEnumerator IdleCoroutine()
     {
-        _animator.SetTrigger("Idle");
+        _animator.CrossFade("Idle_Chara_Sword_2",0.01f);
         _timeBeforeIdle = 5f;
         yield break;
     }
