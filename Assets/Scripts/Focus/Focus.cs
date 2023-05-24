@@ -29,6 +29,7 @@ public class Focus : MonoBehaviour
     private GameObject _noFocusVirtualCamera;
     private IFocusable _lastCachedTarget;
     private bool _isTransitioning;
+    private bool _inputFocusIsPressed;
     #region Properties
 
     public List<IFocusable> FocusablesAvailable => _FocusableAvailable;
@@ -251,16 +252,18 @@ public class Focus : MonoBehaviour
         }
         return index;
     }
-    private void InputEnableFocusOnChanged(bool value)
+    IEnumerator TryFocus()
     {
-        if (value)
+        while (_inputFocusIsPressed)
         {
+            //postprocessActivate
+            //TryFocus
             if (CanFocus())
             {
-                FocusIsEnable = !FocusIsEnable;
                 // Focus will be enabled
-                if (FocusIsEnable)
+                if (!FocusIsEnable)
                 {
+                    FocusIsEnable = true;
                     CurrentTargetIndex = 0;
                     // Active the camera focus
                     cameraVirtualFocus.gameObject.SetActive(true);
@@ -273,27 +276,38 @@ public class Focus : MonoBehaviour
                     Switch();
                     try
                     {
-                        if(CurrentTarget != null)
+                        if (CurrentTarget != null)
                             CurrentTarget.OnFocus();
                     }
                     catch
                     {
                         Debug.LogWarning("A IFocusable has been destroyed ! Its better to not destroy them in a same scene");
                     }
-                
-                }
+
+                }/*
                 else
                 {
                     DisableFocus();
-                }
+                }*/
             }
             else if (FocusIsEnable)
-            {
-                FocusIsEnable = false;
+            {/*
+                FocusIsEnable = false;*/
                 DisableFocus();
             }
+            yield return null;
         }
-        
+        //CancelTryFocus
+        DisableFocus();
+        //postprocessDisActivate
+    }
+    private void InputEnableFocusOnChanged(bool value)
+    {
+        _inputFocusIsPressed = value;
+        if(value)
+        {
+            StartCoroutine(TryFocus());
+        }
     }
     private bool CanFocus()
     {

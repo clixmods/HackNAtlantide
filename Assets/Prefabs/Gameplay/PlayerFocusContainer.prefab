@@ -301,34 +301,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FocusEnable:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2817397358450444370}
-        m_TargetAssemblyTypeName: PostProcessWeightTransition, Assembly-CSharp
-        m_MethodName: SetWeightVolume
-        m_Mode: 4
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 1
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   FocusDisable:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2817397358450444370}
-        m_TargetAssemblyTypeName: PostProcessWeightTransition, Assembly-CSharp
-        m_MethodName: SetWeightVolume
-        m_Mode: 4
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   FocusNoTarget:
     m_PersistentCalls:
       m_Calls: []
@@ -390,6 +366,7 @@ GameObject:
   - component: {fileID: 4496471978079778954}
   - component: {fileID: 2654589201879034005}
   - component: {fileID: 2817397358450444370}
+  - component: {fileID: 3974756496563648459}
   m_Layer: 0
   m_Name: Global Volume_001
   m_TagString: Untagged
@@ -442,3 +419,47 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeTransition: 0.5
+--- !u!114 &3974756496563648459
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8048790603070385323}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ff66007dfe4bec47900ec5c25eca62a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputToListen: {fileID: 11400000, guid: f80c46dfb20a52241ad87b243d5f800f, type: 2}
+  alwaysListen: 1
+  InputValueTrue:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2817397358450444370}
+        m_TargetAssemblyTypeName: PostProcessWeightTransition, Assembly-CSharp
+        m_MethodName: SetWeightVolume
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 1
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  InputValueFalse:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2817397358450444370}
+        m_TargetAssemblyTypeName: PostProcessWeightTransition, Assembly-CSharp
+        m_MethodName: SetWeightVolume
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
