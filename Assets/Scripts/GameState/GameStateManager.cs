@@ -34,6 +34,10 @@ public class CinematiqueState : GameState
         stateOverride.timeScale = 1f;
         stateOverride.allInputActive = false;
         stateOverride.inputPauseActive = false;
+        stateOverride.inputInteractActive = false;
+        stateOverride.inputMovementActive = false;
+        stateOverride.inputCombatActive = false;
+        stateOverride.inputDashActive = false;
     }
 }
 public class MainMenuState : GameState
@@ -196,6 +200,7 @@ public class GameStateManager : MonoBehaviour
     public GameObject runTimeStateObject;
     public GameObject combatStateObject;
     public GameObject deadStateObject;
+    public GameObject cinematicStateObject;
     [SerializeField] ScriptableEventBool pauseEvent;
     [SerializeField] ScriptableEvent restartEvent;
 

@@ -39,6 +39,45 @@ MonoBehaviour:
       restoreCamera: 1
       offset: {x: 0, y: 0, z: 0, w: 0}
       cameraFieldOfView: 60
+--- !u!114 &-8027016938653702166
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b3d386ba5cd94485973aee1479b272e, type: 3}
+  m_Name: fix blur
+  m_EditorClassIdentifier: 
+  m_Active: 1
+  settings:
+    passTag: RenderObjects
+    Event: 230
+    filterSettings:
+      RenderQueueType: 0
+      LayerMask:
+        serializedVersion: 2
+        m_Bits: 131072
+      PassNames: []
+    overrideMaterial: {fileID: 2100000, guid: 1b782977873676e4cb2cf15ae29cd882, type: 2}
+    overrideMaterialPassIndex: 167
+    overrideDepthState: 1
+    depthCompareFunction: 8
+    enableWrite: 1
+    stencilSettings:
+      overrideStencilState: 0
+      stencilReference: 0
+      stencilCompareFunction: 8
+      passOperation: 0
+      failOperation: 0
+      zFailOperation: 0
+    cameraSettings:
+      overrideCamera: 0
+      restoreCamera: 1
+      offset: {x: 0, y: 0, z: 0, w: 0}
+      cameraFieldOfView: 60
 --- !u!114 &-7488993601261411520
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -54,7 +93,7 @@ MonoBehaviour:
   m_Active: 1
   settings:
     passTag: RenderObjects
-    Event: 350
+    Event: 550
     filterSettings:
       RenderQueueType: 0
       LayerMask:
@@ -161,11 +200,12 @@ MonoBehaviour:
       type: 3}
   m_RendererFeatures:
   - {fileID: -8097711420679784806}
+  - {fileID: -8027016938653702166}
   - {fileID: -7488993601261411520}
   - {fileID: -1878332245247344467}
   - {fileID: -1195001646372009084}
   - {fileID: -5915187067770481327}
-  m_RendererFeatureMap: 9af6c1cc5d269f8f40e3a37fffbf1198adc0de57c6d2eee5844bfd8155806aef51558eadb308e9ad
+  m_RendererFeatureMap: 9af6c1cc5d269f8feaa7808d9f4e9a9040e3a37fffbf1198adc0de57c6d2eee5844bfd8155806aef51558eadb308e9ad
   m_UseNativeRenderPass: 0
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
   xrSystemData: {fileID: 11400000, guid: 60e1133243b97e347b653163a8c01b64, type: 2}
