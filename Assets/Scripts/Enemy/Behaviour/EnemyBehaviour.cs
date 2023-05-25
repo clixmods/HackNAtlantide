@@ -53,14 +53,14 @@ public class EnemyBehaviour : MonoBehaviour
     private void Update()
     {
         _distanceWithPlayer = Vector3.Distance(transform.position, PlayerInstanceScriptableObject.Player.transform.position);
-        
+        Animator.SetFloat("Walk_Speed", _agent.velocity.magnitude / _agent.speed);
     }
-    public void Move(Vector3 target)
+    public virtual void Move(Vector3 target)
     {
         if(_isAwake && _canMove)
         {
             _agent.SetDestination(target);
-            FaceTarget(target);
+            //FaceTarget(target);
         }
         else
         {
@@ -74,7 +74,7 @@ public class EnemyBehaviour : MonoBehaviour
         while (_canMove && _isAwake && !_returnToStartPos)
         {
             Move(PlayerInstanceScriptableObject.Player.transform.position);
-            FaceTarget(PlayerInstanceScriptableObject.Player.transform.position);
+            //FaceTarget(PlayerInstanceScriptableObject.Player.transform.position);
             yield return null;
         }
         
@@ -144,9 +144,10 @@ public class EnemyBehaviour : MonoBehaviour
         _isAwake = false;
         _state = EnemyState.Sleeping;
     }
-    public void WakeUp()
+    public virtual void WakeUp()
     {
         _isAwake = true;
         StartCoroutine(MoveToPlayer());
+        
     }
 }

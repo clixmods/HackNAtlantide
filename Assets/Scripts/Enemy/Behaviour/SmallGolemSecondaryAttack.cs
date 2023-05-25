@@ -2,19 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SmallGolemPrimaryAttack : EnemyAttackBehaviour
+public class SmallGolemSecondaryAttack : EnemyAttackBehaviour
 {
-    int AttackAnimID = Animator.StringToHash("Attaque_1_Golem");
+    int AttackAnimID = Animator.StringToHash("Attaque_2_Golem");
     public override void Attack()
     {
         StartCoroutine(AttackBehaviour());
         _onAttack?.Invoke();
         Priority += CoolDown;
-        if (!_enemyBehaviour.Animator.GetCurrentAnimatorStateInfo(0).IsName("Attaque_1_Golem"))
+        if (!_enemyBehaviour.Animator.GetCurrentAnimatorStateInfo(0).IsName("Attaque_2_Golem"))
         {
             _enemyBehaviour.Animator.CrossFadeInFixedTime(AttackAnimID, 0f);
         }
-        
     }
     IEnumerator AttackBehaviour()
     {

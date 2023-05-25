@@ -74,10 +74,13 @@ public class PlayerHealth : Character
     {
         _postProcessWeightTransition.SetWeightVolume(1);
         float timescale = GameStateManager.Instance.GameStateOverride.timeScale;
+        _isInvincible = true;
         Time.timeScale = 0.2f;
         yield return new WaitForSecondsRealtime(0.15f);
         Time.timeScale = timescale;
         _postProcessWeightTransition.SetWeightVolume(0);
+        yield return new WaitForSecondsRealtime(0.15f);
+        _isInvincible = false;
     }
 
 }
