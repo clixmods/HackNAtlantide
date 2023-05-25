@@ -30,6 +30,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float _moveSpeed;
     private float _speed;
     private Vector3 _smoothMoveVelocity;
+    private Vector3 _dashDirection;
     public Vector3 MoveAmount { get { return _moveAmount; } }
     private Vector3 _moveAmount;
     [SerializeField] private float _smoothTimeAcceleration;
@@ -121,6 +122,7 @@ public class PlayerMovement : MonoBehaviour
     void MoveInput(Vector2 direction)
     {
         //Projects the camera forward on 2D horizontal plane
+        
         Vector3 camForwardOnPlane = new Vector3(_camera.transform.forward.x, 0, _camera.transform.forward.z).normalized;
         Vector3 camRightOnPlane = new Vector3(_camera.transform.right.x, 0, _camera.transform.right.z).normalized;
         _moveDirection = direction.x * camRightOnPlane + direction.y * camForwardOnPlane;
@@ -145,12 +147,13 @@ public class PlayerMovement : MonoBehaviour
     
     private void Move()
     {
+        Vector3 targetmoveAmount = Vector3.zero;
         _rigidbody.velocity = new Vector3(0,_rigidbody.velocity.y,0);
         //direction in which player wants to move
-        Vector3 targetmoveAmount = _moveDirection * _speed * Time.fixedDeltaTime;
 
         if(_isDashing)
         {
+            targetmoveAmount = _dashDirection * (_speed * Time.fixedDeltaTime);
             //calculated direction based of his movedirection of the precedent frame
             _moveAmount = Vector3.SmoothDamp(_moveAmount, targetmoveAmount, ref _smoothMoveVelocity, _smoothTimeAccelerationDash);
 
@@ -158,6 +161,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else if (_isDashingAttack)
         {
+            targetmoveAmount = _dashDirection * (_speed * Time.fixedDeltaTime);
             //calculated direction based of his movedirection of the precedent frame
             _moveAmount = Vector3.SmoothDamp(_moveAmount, targetmoveAmount, ref _smoothMoveVelocity, _smoothTimeAccelerationDash);
 
@@ -165,6 +169,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
+            targetmoveAmount = _moveDirection * (_speed * Time.fixedDeltaTime);
             //calculated direction based of his movedirection of the precedent frame
             _moveAmount = Vector3.SmoothDamp(_moveAmount, targetmoveAmount, ref _smoothMoveVelocity, _smoothTimeAcceleration);
             if(_moveAmount.sqrMagnitude > 0.0005f)
@@ -260,6 +265,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (value && _canDash && _playerStamina.CanUseStamina(1)&& _moveDirection.sqrMagnitude > 0.1f)
         {
+            _dashDirection = _moveDirection;
             _playerStamina.UseStamina(1);
             _speed = _dashSpeed;
             _isDashing = true;
@@ -280,7 +286,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (value && _canDashAttack && _playerStamina.CanUseStamina(1.5f)&& _moveDirection.sqrMagnitude > 0.1f)
         {
-            // TODO - LaunchDashAttackAnim
+            _dashDirection = _moveDirection;
             _dashAttackEvent.LaunchEvent();
             _playerStamina.UseStamina(1.5f);
             _speed = _dashAttackSpeed;
