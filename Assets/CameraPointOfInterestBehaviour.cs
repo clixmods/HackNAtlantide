@@ -2,13 +2,11 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class CameraPointOfInterestBehaviour : MonoBehaviour
 {
-    private void Awake()
-    {
-        gameObject.SetActive(false);
-    }
+    public UnityEvent CameraDisable;
 
     public void EnableCameraForSeconds(float secondToShow)
     {
@@ -20,7 +18,9 @@ public class CameraPointOfInterestBehaviour : MonoBehaviour
     {
         GameStateManager.Instance.cinematicStateObject.SetActive(true);
         yield return new WaitForSeconds(secondToShow);
+        
         gameObject.SetActive(false);
         GameStateManager.Instance.cinematicStateObject.SetActive(false);
+        CameraDisable?.Invoke();
     }
 }
