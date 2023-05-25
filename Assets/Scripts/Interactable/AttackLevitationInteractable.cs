@@ -107,7 +107,11 @@ public class AttackLevitationInteractable : Interactable
         }
         else if(_hasInteract)
         {
-           transform.position = _playerDetectionScriptableObject.PlayerPosition + Vector3.up * 4;
+            if (_playerStamina.Value > _playerStamina.MaxStamina - 1)
+            {
+                _playerStamina.UseStamina(_playerStamina.SpeedToRecharge*Time.deltaTime);
+            }
+            transform.position = _playerDetectionScriptableObject.PlayerPosition + Vector3.up * 4;
         }
     }
     
@@ -194,13 +198,14 @@ public class AttackLevitationInteractable : Interactable
             _uiChargeInputHelper.SetFillValue(t);
             transform.position = Vector3.Lerp(startPosition, destinationPosition, t);
             timeElapsed += Time.deltaTime;
+            _playerStamina.UseStamina((Time.deltaTime / timeToBeCharged) * useStaminaAmount );
             yield return null;
         }
         _uiChargeInputHelper.SetFillValue(1);
         _inputHelper.enabled = false;
         _hasInteract = true;
        
-        _playerStamina.UseStamina(useStaminaAmount);
+        
         _rigidBody.useGravity = false;
         
         _isCharging = false;
