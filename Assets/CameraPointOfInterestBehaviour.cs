@@ -8,6 +8,11 @@ public class CameraPointOfInterestBehaviour : MonoBehaviour
 {
     public UnityEvent CameraDisable;
 
+    private void Awake()
+    {
+        gameObject.SetActive(false);
+    }
+
     public void EnableCameraForSeconds(float secondToShow)
     {
         gameObject.SetActive(true);
@@ -18,7 +23,6 @@ public class CameraPointOfInterestBehaviour : MonoBehaviour
     {
         GameStateManager.Instance.cinematicStateObject.SetActive(true);
         yield return new WaitForSeconds(secondToShow);
-        
         gameObject.SetActive(false);
         GameStateManager.Instance.cinematicStateObject.SetActive(false);
         CameraDisable?.Invoke();
