@@ -32,11 +32,11 @@ RenderSettings:
   m_FlareFadeSpeed: 3
   m_HaloTexture: {fileID: 0}
   m_SpotCookie: {fileID: 10001, guid: 0000000000000000e000000000000000, type: 0}
-  m_DefaultReflectionMode: 0
+  m_DefaultReflectionMode: 1
   m_DefaultReflectionResolution: 128
   m_ReflectionBounces: 1
   m_ReflectionIntensity: 1
-  m_CustomReflection: {fileID: 0}
+  m_CustomReflection: {fileID: 8900000, guid: bf55ae9a40636c44096e36d627d86301, type: 3}
   m_Sun: {fileID: 0}
   m_IndirectSpecularColor: {r: 0.32761228, g: 0.34573942, b: 0.42263716, a: 1}
   m_UseRadianceAmbientProbe: 0
@@ -1270,7 +1270,7 @@ GameObject:
   - component: {fileID: 813098464}
   - component: {fileID: 813098463}
   m_Layer: 0
-  m_Name: Reflection Probe
+  m_Name: Global Reflection Probe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2105,8 +2105,8 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 0.9137255, g: 0.6664452, b: 0.29019606, a: 1}
-  m_Intensity: 2.5
+  m_Color: {r: 0.9528302, g: 0.74326605, b: 0.39101997, a: 1}
+  m_Intensity: 1.22
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -2189,8 +2189,8 @@ MonoBehaviour:
   m_LightLayerMask: 1
   m_CustomShadowLayers: 0
   m_ShadowLayerMask: 1
-  m_LightCookieSize: {x: 128, y: 128}
-  m_LightCookieOffset: {x: 0, y: 0}
+  m_LightCookieSize: {x: 156, y: 156}
+  m_LightCookieOffset: {x: 16.5, y: 0}
 --- !u!114 &1464707201
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4235,7 +4235,7 @@ PrefabInstance:
     - target: {fileID: 3553952041792026868, guid: 6e89c88e5e0a93f438facd12ab41fda8,
         type: 3}
       propertyPath: m_Intensity
-      value: 5
+      value: 6.81
       objectReference: {fileID: 0}
     - target: {fileID: 3599527990364606853, guid: 6e89c88e5e0a93f438facd12ab41fda8,
         type: 3}
@@ -4290,12 +4290,12 @@ PrefabInstance:
     - target: {fileID: 4755717476144828550, guid: 6e89c88e5e0a93f438facd12ab41fda8,
         type: 3}
       propertyPath: m_Range
-      value: 5
+      value: 8.88
       objectReference: {fileID: 0}
     - target: {fileID: 4755717476144828550, guid: 6e89c88e5e0a93f438facd12ab41fda8,
         type: 3}
       propertyPath: m_Intensity
-      value: 5
+      value: 9.35
       objectReference: {fileID: 0}
     - target: {fileID: 4859393076718669647, guid: 6e89c88e5e0a93f438facd12ab41fda8,
         type: 3}
