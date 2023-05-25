@@ -21,7 +21,7 @@ public class PlayerCombat : MonoBehaviour,ICombat
     [SerializeField] private bool stopAnimation;
     
     // TODO - TEMPORARY
-    private float damage = 1f;
+    private float _damage = 1f;
     
     [SerializeField] private InputButtonScriptableObject _inputAttack;
     [SerializeField] private InputButtonScriptableObject _inputDashAttack;
@@ -57,6 +57,19 @@ public class PlayerCombat : MonoBehaviour,ICombat
 
     private void Update()
     {
+        if (_animator.GetCurrentAnimatorStateInfo(0).IsName("Attaque_Chara_Sword_1"))
+        {
+            _damage = 1f;
+        }
+        else if (_animator.GetCurrentAnimatorStateInfo(0).IsName("Attaque_Chara_Sword_2"))
+        {
+            _damage = 1.5f;
+        }
+        else if (_animator.GetCurrentAnimatorStateInfo(0).IsName("Attaque_Chara_Sword_3") || _animator.GetCurrentAnimatorStateInfo(0).IsName("Dash_Attack_Chara") || _animator.GetCurrentAnimatorStateInfo(0).IsName("Dash_Attack_Chara_2"))
+        {
+            _damage = 2f;
+        }
+        
         if (stopAnimation)
         {
             _animator.enabled = false;
@@ -71,7 +84,7 @@ public class PlayerCombat : MonoBehaviour,ICombat
     {
         if (eventArgs is AttackDamageableEventArgs mDamageableEventArgs && canAttack)
         {
-            mDamageableEventArgs.idamageable.DoDamage(damage, _attackCollider.gameObject.transform.position);
+            mDamageableEventArgs.idamageable.DoDamage(_damage, _attackCollider.gameObject.transform.position);
         }
     }
     
