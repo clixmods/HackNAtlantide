@@ -25,13 +25,12 @@ public abstract class EnemyAttackBehaviour : MonoBehaviour
     [SerializeField] private bool _facePlayer;
     public bool FacePlayer { get { return _facePlayer; } set { _facePlayer = value; } }
 
-    [SerializeField] private UnityEvent _onAttack;
+    [SerializeField] protected UnityEvent _onAttack;
     public UnityEvent OnAttack {get { return _onAttack; }}
 
     //Components
 
-    private EnemyBehaviour _enemyBehaviour;
-    public EnemyBehaviour EnemyBehaviour { get { return _enemyBehaviour; } }
+    protected EnemyBehaviour _enemyBehaviour;
 
     #endregion
 

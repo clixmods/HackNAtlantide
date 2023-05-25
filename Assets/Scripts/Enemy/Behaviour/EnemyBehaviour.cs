@@ -14,14 +14,17 @@ public enum EnemyState
     Dead,
 }
 [RequireComponent(typeof(NavMeshAgent))]
+[RequireComponent(typeof(EnemyWakeUpBehaviour))]
 public class EnemyBehaviour : MonoBehaviour
 {
     #region properties
     //states
     bool _isAwake;
-    [SerializeField] bool _canSleepAfterAwake;
     bool _isAttacking;
+    public bool IsAttacking { get { return _isAttacking; } }
     bool _canMove;
+    bool _returnToStartPos;
+    public bool ReturnToStartPos { get { return _returnToStartPos; } set { _returnToStartPos = value; } }
     EnemyState _state = EnemyState.Sleeping;
 
     //RequiredComponents
@@ -36,6 +39,8 @@ public class EnemyBehaviour : MonoBehaviour
     private List<EnemyAttackBehaviour> _ennemyAttacks;
     EnemyAttackBehaviour _currentAttack;
     [SerializeField] private float _rotationSpeed;
+    private float _distanceWithPlayer = 1000000;
+    public float DistanceWithPlayer { get { return _distanceWithPlayer; } }
     #endregion
 
     #region MonoBehaviour
@@ -43,32 +48,44 @@ public class EnemyBehaviour : MonoBehaviour
     {
         _agent = GetComponent<NavMeshAgent>();
         _animator = GetComponent<Animator>();
-        WakeUp();
     }
     #endregion
-
-    private void Move(Vector3 target)
+    private void Update()
     {
-        _agent.SetDestination(target);
+        _distanceWithPlayer = Vector3.Distance(transform.position, PlayerInstanceScriptableObject.Player.transform.position);
+        
     }
-    IEnumerator MoveToPlayer()
+    public void Move(Vector3 target)
+    {
+        if(_isAwake && _canMove)
+        {
+            _agent.SetDestination(target);
+            FaceTarget(target);
+        }
+        else
+        {
+            _agent.SetDestination(transform.position);
+        }
+        
+    }
+    public IEnumerator MoveToPlayer()
     {
         _canMove = true;
-        while(_canMove)
+        while (_canMove && _isAwake && !_returnToStartPos)
         {
             Move(PlayerInstanceScriptableObject.Player.transform.position);
-            FacePlayer();
+            FaceTarget(PlayerInstanceScriptableObject.Player.transform.position);
             yield return null;
         }
         
     }
-    public void FacePlayer()
-    {
-        Vector3 playerFlatPos = new Vector3(PlayerInstanceScriptableObject.Player.transform.position.x, 0,PlayerInstanceScriptableObject.Player.transform.position.z);
-        Vector3 flatPos = new Vector3(transform.position.x, 0, transform.position.z);
-        Quaternion _targetRotation = Quaternion.LookRotation((playerFlatPos - transform.position), Vector3.up);
 
-        transform.rotation = Quaternion.Slerp(transform.rotation, _targetRotation, _rotationSpeed * Time.deltaTime) ;
+    public void FaceTarget(Vector3 target)
+    {
+            Vector3 playerFlatPos = new Vector3(target.x, 0, target.z);
+            Vector3 flatPos = new Vector3(transform.position.x, 0, transform.position.z);
+            Quaternion _targetRotation = Quaternion.LookRotation((playerFlatPos - flatPos), Vector3.up);
+            transform.rotation = Quaternion.Slerp(transform.rotation, _targetRotation, _rotationSpeed * Time.deltaTime);
     }
     
 
@@ -97,7 +114,6 @@ public class EnemyBehaviour : MonoBehaviour
         }
         _canMove = false;
         _agent.SetDestination(transform.position);
-        Debug.Log("Current CoolDown is : " + _currentAttack.CoolDown);
         //attends le coolDown de l'attaque qui est joué pour commencer a rechercher une nouvelle attaque
         yield return new WaitForSeconds(_currentAttack.CoolDown);
         _currentAttack.StartCoroutine(_currentAttack.RechargePriority());
@@ -123,18 +139,14 @@ public class EnemyBehaviour : MonoBehaviour
 
         return allEnemyAttacksInOrder;
     }
-    private void Sleep()
+    public void Sleep()
     {
         _isAwake = false;
         _state = EnemyState.Sleeping;
     }
-    private void WakeUp()
+    public void WakeUp()
     {
         _isAwake = true;
         StartCoroutine(MoveToPlayer());
-    }
-    public float DistanceWithPlayer()
-    {
-        return Vector3.Distance(transform.position, PlayerInstanceScriptableObject.Player.transform.position); 
     }
 }

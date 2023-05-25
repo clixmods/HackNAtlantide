@@ -8,12 +8,11 @@ public class SmallGolemPrimaryAttack : EnemyAttackBehaviour
     public override void Attack()
     {
         StartCoroutine(AttackBehaviour());
-        OnAttack?.Invoke();
+        _onAttack?.Invoke();
         Priority += CoolDown*2;
 
         Debug.Log("attack");
-        //EnemyBehaviour.Animator.SetTrigger(AttackAnimID);
-        //EnemyBehaviour.Agent.isStopped = true;
+        //_enemyBehaviour.Animator.SetTrigger(AttackAnimID);
     }
     IEnumerator AttackBehaviour()
     {
@@ -22,7 +21,7 @@ public class SmallGolemPrimaryAttack : EnemyAttackBehaviour
         {
             if(FacePlayer)
             {
-                EnemyBehaviour.FacePlayer();
+                _enemyBehaviour.FaceTarget(PlayerInstanceScriptableObject.Player.transform.position);
             }
             time -= Time.deltaTime;
             yield return null;
@@ -31,8 +30,6 @@ public class SmallGolemPrimaryAttack : EnemyAttackBehaviour
 
     public override bool CanAttack()
     {
-        float distanceWithPlayer = EnemyBehaviour.DistanceWithPlayer();
-
-        return distanceWithPlayer > MinDistanceToAttack && distanceWithPlayer < MaxDistanceToAttack;
+        return _enemyBehaviour.DistanceWithPlayer > MinDistanceToAttack && _enemyBehaviour.DistanceWithPlayer < MaxDistanceToAttack;
     }
 }

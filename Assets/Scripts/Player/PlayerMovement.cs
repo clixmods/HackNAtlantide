@@ -234,7 +234,7 @@ public class PlayerMovement : MonoBehaviour
                 _buffer[i], _buffer[i].transform.position, _buffer[i].transform.rotation,
                                        out Vector3 direction, out float distance))
             {
-                _rigidbody.MovePosition(_rigidbody.position + (direction * (distance)));
+                _rigidbody.MovePosition(_rigidbody.position + (direction * (Physics.defaultContactOffset + (distance))));
             }
         }
     }
