@@ -29,7 +29,10 @@ public class EnemyWakeUpBehaviour : MonoBehaviour
             }
             else
             {
-                _enemyBehaviour.StartCoroutine(_enemyBehaviour.MoveToPlayer());
+                if (!_enemyBehaviour.MovecoroutineIsPlayed)
+                {
+                    StartCoroutine(_enemyBehaviour.MoveToPlayer());
+                }
             }
         }
         else

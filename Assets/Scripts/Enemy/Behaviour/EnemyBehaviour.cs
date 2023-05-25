@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.IO.LowLevel.Unsafe;
+using Unity.VisualScripting;
 using Unity.VisualScripting.Antlr3.Runtime.Collections;
 using UnityEngine;
 using UnityEngine.AI;
@@ -41,6 +42,8 @@ public class EnemyBehaviour : MonoBehaviour
     [SerializeField] private float _rotationSpeed;
     private float _distanceWithPlayer = 1000000;
     public float DistanceWithPlayer { get { return _distanceWithPlayer; } }
+    bool _movecoroutineIsPlayed = false;
+    public bool MovecoroutineIsPlayed { get { return _movecoroutineIsPlayed; } }
     #endregion
 
     #region MonoBehaviour
@@ -70,14 +73,15 @@ public class EnemyBehaviour : MonoBehaviour
     }
     public IEnumerator MoveToPlayer()
     {
+        _movecoroutineIsPlayed = true;
         _canMove = true;
         while (_canMove && _isAwake && !_returnToStartPos)
         {
             Move(PlayerInstanceScriptableObject.Player.transform.position);
-            //FaceTarget(PlayerInstanceScriptableObject.Player.transform.position);
             yield return null;
         }
-        
+        _movecoroutineIsPlayed = false;
+
     }
 
     public void FaceTarget(Vector3 target)
@@ -124,7 +128,10 @@ public class EnemyBehaviour : MonoBehaviour
 
         //recommence a attaquer
         StartCoroutine(Attack());
-        StartCoroutine(MoveToPlayer());
+        if(!_movecoroutineIsPlayed)
+        {
+            StartCoroutine(MoveToPlayer());
+        }
     }
 
     //A Tester
