@@ -101,7 +101,7 @@ public class Character : MonoBehaviour,  IDamageable
         OnDeath?.Invoke(this, null);
     }
 
-    public void AddHealth(float amount)
+    public virtual void AddHealth(float amount)
     {
         health += amount;
         OnChangeHealth?.Invoke(this,null);

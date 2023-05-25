@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
 public class PlayerHealth : Character
@@ -11,7 +12,7 @@ public class PlayerHealth : Character
     [SerializeField] PlayerMovementStateScriptableObject _movementState;
     [SerializeField] PostProcessWeightTransition _postProcessWeightTransition;
     [SerializeField] private ScriptableValueFloat healthValue;
-    
+    public UnityEvent HealthGain;
     public override float health
     {
         get => healthValue.Value; 
@@ -70,6 +71,14 @@ public class PlayerHealth : Character
         }
         
     }
+
+    public override void AddHealth(float amount)
+    {
+        base.AddHealth(amount);
+        HealthGain?.Invoke();
+    }
+
+
     IEnumerator PostProcessHit()
     {
         _postProcessWeightTransition.SetWeightVolume(1);

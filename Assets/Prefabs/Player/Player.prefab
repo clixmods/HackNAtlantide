@@ -9774,6 +9774,21 @@ MonoBehaviour:
   _movementState: {fileID: 11400000, guid: cbdc9ceb96c20ac4cb9cc17112219e5d, type: 2}
   _postProcessWeightTransition: {fileID: 1234154991212548022}
   healthValue: {fileID: 11400000, guid: 7368ba06a7477a942b281a13774a908f, type: 2}
+  HealthGain:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5549328840153610252}
+        m_TargetAssemblyTypeName: UnityEngine.ParticleSystem, UnityEngine
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2163970336209644009
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15204,9 +15219,49 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6069037962613602363, guid: 0b9ce77acdb604b4ba580a3e526f18b9,
         type: 3}
+      propertyPath: lengthInSec
+      value: 1.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6069037962613602363, guid: 0b9ce77acdb604b4ba580a3e526f18b9,
+        type: 3}
+      propertyPath: NoiseModule.damping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6069037962613602363, guid: 0b9ce77acdb604b4ba580a3e526f18b9,
+        type: 3}
+      propertyPath: NoiseModule.enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6069037962613602363, guid: 0b9ce77acdb604b4ba580a3e526f18b9,
+        type: 3}
+      propertyPath: NoiseModule.quality
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6069037962613602363, guid: 0b9ce77acdb604b4ba580a3e526f18b9,
+        type: 3}
+      propertyPath: LightsModule.enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6069037962613602363, guid: 0b9ce77acdb604b4ba580a3e526f18b9,
+        type: 3}
+      propertyPath: InitialModule.startSpeed.scalar
+      value: 0.28
+      objectReference: {fileID: 0}
+    - target: {fileID: 6069037962613602363, guid: 0b9ce77acdb604b4ba580a3e526f18b9,
+        type: 3}
       propertyPath: ShapeModule.m_SkinnedMeshRenderer
       value: 
       objectReference: {fileID: 8662073844750551201}
+    - target: {fileID: 6069037962613602363, guid: 0b9ce77acdb604b4ba580a3e526f18b9,
+        type: 3}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 408.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6069037962613602363, guid: 0b9ce77acdb604b4ba580a3e526f18b9,
+        type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 0.55
+      objectReference: {fileID: 0}
     - target: {fileID: 7849483478399282750, guid: 0b9ce77acdb604b4ba580a3e526f18b9,
         type: 3}
       propertyPath: m_RootOrder
@@ -15264,6 +15319,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0b9ce77acdb604b4ba580a3e526f18b9, type: 3}
+--- !u!198 &5549328840153610252 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 6069037962613602363, guid: 0b9ce77acdb604b4ba580a3e526f18b9,
+    type: 3}
+  m_PrefabInstance: {fileID: 1817942363035533367}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8490507199189577225 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7849483478399282750, guid: 0b9ce77acdb604b4ba580a3e526f18b9,
