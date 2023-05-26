@@ -10781,6 +10781,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c6c551db3ff69643b3d6385a5c88a35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnInteract:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2634381260045581433}
+        m_TargetAssemblyTypeName: MaterialFloatInterpolation, Assembly-CSharp
+        m_MethodName: ActiveEmissive
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 2
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnResetInteract:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2634381260045581433}
+        m_TargetAssemblyTypeName: MaterialFloatInterpolation, Assembly-CSharp
+        m_MethodName: ResetEmissive
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   _playerDetectionScriptableObject: {fileID: 11400000, guid: 87208dfddc03fc14d9db2baa6f705322,
     type: 2}
   _playerStamina: {fileID: 11400000, guid: 7a3b5b3b905bbfe4fb4ea9ada55960e1, type: 2}
@@ -10791,3 +10821,20 @@ MonoBehaviour:
   damageAmount: 1
   _speedExplosion: 5
   _maxRadius: 1
+--- !u!114 &2634381260045581433
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8792061954932892415}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d564e90d4fca86e45a9bf8aa93643e0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  floatName: _Amount
+  meshRenderer: {fileID: 0}
+  emissiveColor: {r: 0, g: 0, b: 0, a: 0}
+  timeToActiveEmissive: 1
+  timeToResetEmissive: 0.5

@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.Serialization;
 
 [RequireComponent(typeof(Rigidbody))]
-public class BallInteractable : MonoBehaviour , IInteractable
+public class BallInteractable : Interactable
 {
     private Rigidbody _rigidbody; 
     [SerializeField] private InputVectorScriptableObject inputVectorScriptableObject;
@@ -35,25 +35,27 @@ public class BallInteractable : MonoBehaviour , IInteractable
            
     }
 
-    public bool Interact()
+    public override bool Interact()
     {
         _isInteract = true;
         _rigidbody.WakeUp();
+        LaunchOnInteract();
         return true;
     }
 
-    public void CancelInteract()
+    public override void CancelInteract()
     {
         _isInteract = false;
         _rigidbody.Sleep();
+        LaunchOnResetInteract();
     }
 
-    public void ResetInteract()
+    public override void ResetInteract()
     {
         throw new System.NotImplementedException();
     }
 
-    public void ResetTransform()
+    public override void ResetTransform()
     {
         throw new System.NotImplementedException();
     }

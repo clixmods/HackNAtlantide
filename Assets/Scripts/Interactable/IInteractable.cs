@@ -5,8 +5,8 @@ using UnityEngine;
 public interface IInteractable
 {
     Transform transform { get; }
-    public bool Interact();
-    public void CancelInteract();
-    public void ResetInteract();
-    public void ResetTransform();
+    public abstract bool Interact();
+    public abstract void CancelInteract();
+    public abstract void ResetInteract();
+    public abstract void ResetTransform();
 }

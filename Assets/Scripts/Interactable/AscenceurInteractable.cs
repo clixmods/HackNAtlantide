@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AscenceurInteractable : MonoBehaviour,IInteractable
+public class AscenceurInteractable : Interactable
 {
     [SerializeField] Transform _startPos;
     [SerializeField] Transform _endPos;
@@ -61,26 +61,28 @@ public class AscenceurInteractable : MonoBehaviour,IInteractable
             }
         }
     }
-    public void CancelInteract()
+    public override void CancelInteract()
     {
         _isInteract = false;
         _playerStamina.CanRechargeStamina = true;
+        LaunchOnResetInteract();
     }
 
-    public bool Interact()
+    public override bool Interact()
     {
         _collider.enabled = true;
         _isInteract = true;
         _playerStamina.CanRechargeStamina = false;
+        LaunchOnInteract();
         return true;
     }
 
-    public void ResetInteract()
+    public override void ResetInteract()
     {
         _isInteract= false;
     }
 
-    public void ResetTransform()
+    public override void ResetTransform()
     {
         throw new System.NotImplementedException();
     }

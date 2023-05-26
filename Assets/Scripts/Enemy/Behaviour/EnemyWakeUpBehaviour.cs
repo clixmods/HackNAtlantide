@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class EnemyWakeUpBehaviour : MonoBehaviour
 {
@@ -8,6 +9,8 @@ public class EnemyWakeUpBehaviour : MonoBehaviour
     [SerializeField] float _distanceToWakeUp;
     [SerializeField] float _distanceToSleep;
     [SerializeField] private bool _goBackToStartPosToSleep = true;
+    public UnityEvent OnAwake;
+    public UnityEvent OnSleep;
     private bool _isAwake;
     private Vector3 _startPos;
     
@@ -42,6 +45,10 @@ public class EnemyWakeUpBehaviour : MonoBehaviour
             {
                 WakeUp();
             }
+            if(Vector3.Distance(_startPos,transform.position) < 0.3f && _goBackToStartPosToSleep)
+            {
+                Sleep();
+            }
         }
     }
 
@@ -50,12 +57,21 @@ public class EnemyWakeUpBehaviour : MonoBehaviour
     {
         _isAwake = true;
         _enemyBehaviour.WakeUp();
+        OnAwake?.Invoke();
     }
 
     public void ReturnToStartPos()
     {
+        _goBackToStartPosToSleep = true;
         _enemyBehaviour.StopCoroutine(_enemyBehaviour.MoveToPlayer());
         _enemyBehaviour.Move(_startPos);
+    }
+
+    public void Sleep()
+    {
+        _goBackToStartPosToSleep = false;
+        _isAwake = false;
+        OnSleep?.Invoke();
     }
 
 }

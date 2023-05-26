@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2977377248358746970}
   - component: {fileID: 2977377248358746971}
   - component: {fileID: 2977377248358746968}
+  - component: {fileID: 7414898899019553429}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -63,7 +64,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 2d10dc9b23fe023408b0845b7755567c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -110,12 +111,59 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26794216b1b5fe84bb9bb0d92b1ac738, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnInteract:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7414898899019553429}
+        m_TargetAssemblyTypeName: MaterialFloatInterpolation, Assembly-CSharp
+        m_MethodName: ActiveEmissive
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 2
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnResetInteract:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7414898899019553429}
+        m_TargetAssemblyTypeName: MaterialFloatInterpolation, Assembly-CSharp
+        m_MethodName: ResetEmissive
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   _startPos: {fileID: 2977377248484964489}
   _endPos: {fileID: 2977377248745596924}
   _speedUp: 5
   _speedDown: 5
   _playerStamina: {fileID: 11400000, guid: 7a3b5b3b905bbfe4fb4ea9ada55960e1, type: 2}
   costStamina: 3
+--- !u!114 &7414898899019553429
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2977377248358746965}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d564e90d4fca86e45a9bf8aa93643e0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  floatName: _Amount
+  meshRenderer: {fileID: 0}
+  emissiveColor: {r: 0, g: 0, b: 0, a: 0}
+  timeToActiveEmissive: 1
+  timeToResetEmissive: 0.5
 --- !u!1 &2977377248484964490
 GameObject:
   m_ObjectHideFlags: 0

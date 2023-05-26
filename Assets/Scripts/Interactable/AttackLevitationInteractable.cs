@@ -8,7 +8,7 @@ using Random = UnityEngine.Random;
 [RequireComponent(typeof(InputHelper))]
 [RequireComponent(typeof(IAttackCollider))]
 [RequireComponent(typeof(SphereCollider))]
-public class AttackLevitationInteractable : MonoBehaviour, IInteractable
+public class AttackLevitationInteractable : Interactable
 {
     private Rigidbody _rigidBody;
     /// <summary>
@@ -215,7 +215,7 @@ public class AttackLevitationInteractable : MonoBehaviour, IInteractable
     }
     #endif
     #region IInteractable
-    public bool Interact()
+    public override bool Interact()
     {
         if (_isAttacking)
         {
@@ -223,12 +223,13 @@ public class AttackLevitationInteractable : MonoBehaviour, IInteractable
         }
         if (!_hasInteract && _playerStamina.CanUseStamina(useStaminaAmount))
         {
+            LaunchOnInteract();
             StartCoroutine(ChargeObject());
             return true;
         }
         return false;
     }
-    public void CancelInteract()
+    public override void CancelInteract()
     {
         _inputHelper.enabled = false;
         _uiChargeInputHelper.SetFillValue(1);
@@ -259,7 +260,7 @@ public class AttackLevitationInteractable : MonoBehaviour, IInteractable
         ResetInteract();
     }
 
-    public void ResetInteract()
+    public override void ResetInteract()
     {
         if (_hasInteract && !_isAttacking)
         {
@@ -273,11 +274,13 @@ public class AttackLevitationInteractable : MonoBehaviour, IInteractable
         _hasInteract = false;
         // Renable gravity
         _rigidBody.useGravity = true;
+
+        LaunchOnResetInteract();
     }
 
     #endregion
 
-    public void ResetTransform()
+    public override void ResetTransform()
     {
         transform.position = _initialPosition;
         transform.rotation = _initialRotation;
