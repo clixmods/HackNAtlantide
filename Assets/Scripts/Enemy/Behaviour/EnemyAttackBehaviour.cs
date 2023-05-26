@@ -27,8 +27,11 @@ public abstract class EnemyAttackBehaviour : MonoBehaviour, ICombat
     [SerializeField] private bool _facePlayer;
     public bool FacePlayer { get { return _facePlayer; } set { _facePlayer = value; } }
 
-    [SerializeField] protected UnityEvent _onAttack;
-    public UnityEvent OnAttack {get { return _onAttack; }}
+    [SerializeField] public event Action OnAttack;
+    public void LaunchAttackEvent()
+    {
+        OnAttack?.Invoke();
+    }
     private bool _canAttack;
     public bool canAttack
     {
@@ -38,6 +41,7 @@ public abstract class EnemyAttackBehaviour : MonoBehaviour, ICombat
             _canAttack = value;
             if (_canAttack)
             {
+                Debug.Log("attackevent");
                 OnAttack?.Invoke();
             };
 

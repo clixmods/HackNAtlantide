@@ -84,11 +84,11 @@ public class PlayerCombatTuto : MonoBehaviour
         {
             try
             {
-                if (_focus.CurrentTarget.transform.TryGetComponent<EnemyController>(out EnemyController enemy) && !_listenToEventAttack)
+                if (_focus.CurrentTarget.transform.TryGetComponent<EnemyAttackBehaviour>(out EnemyAttackBehaviour enemy) && !_listenToEventAttack)
                 {
                    
                     enemy.GetComponent<Animator>().speed = 0.8f;
-                    enemy._attackEvent += DashQTE;
+                    enemy.OnAttack += DashQTE;
                     _listenToEventAttack = true;
                 }
             }
@@ -100,7 +100,6 @@ public class PlayerCombatTuto : MonoBehaviour
             //Focus
             if (!_hasDoneFocusQte)
             {
-                Debug.Log("Dans le IF ");
                 _qTEHandler.LaunchCutScene(InputType.Focus);
                 _isInCutScene = true;
                 _qTEHandler.ActiveInputType(InputType.Move, false);
@@ -110,11 +109,10 @@ public class PlayerCombatTuto : MonoBehaviour
             //Attack
             if (!_hasDoneAttackQte)
             {
-                if ((_focus.CurrentTarget.transform.position - transform.position).magnitude <4.5f)
+                if ((_focus.CurrentTarget.transform.position - transform.position).magnitude <3.5f)
                 {
                     //_qTEHandler.ActiveInputType(InputType.Move, false);
                     _qTEHandler.CancelMove();
-                    Debug.Log("QTE Attack");
                     _qTEHandler.LaunchCutScene(InputType.Attack);
                     _isInCutScene = true;
                 }
@@ -124,7 +122,6 @@ public class PlayerCombatTuto : MonoBehaviour
             {
                 if ((_focus.CurrentTarget.transform.position - transform.position).magnitude < 5f && (_focus.CurrentTarget.transform.position - transform.position).magnitude > 2f)
                 {
-                    Debug.Log("QTE DashAttack");
                     //_qTEHandler.ActiveInputType(InputType.Move, true);
                     _qTEHandler.LaunchCutScene(InputType.DashAttack);
                     _isInCutScene = true;
@@ -134,14 +131,12 @@ public class PlayerCombatTuto : MonoBehaviour
         void DashQTE()
         {
             //Dash
-            if (_focus.CurrentTarget != null && !_isInCutScene)
+            if (!_isInCutScene)
             {
-                if (_hasDoneAttackQte && !_hasDoneDashQte && _focus.CurrentTarget.transform.TryGetComponent<EnemyController>(out EnemyController enemy))
+                if (_hasDoneAttackQte && !_hasDoneDashQte)
                 {
                     if ((_focus.CurrentTarget.transform.position - transform.position).magnitude < 5f)
                     {
-
-                        Debug.Log("QTE Dash");
                         _qTEHandler.LaunchCutScene(InputType.Dash);
                         _qTEHandler.ActiveInputType(InputType.Move, true);
                         _isInCutScene = true;

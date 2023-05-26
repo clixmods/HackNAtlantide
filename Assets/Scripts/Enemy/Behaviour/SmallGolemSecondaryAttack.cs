@@ -8,7 +8,7 @@ public class SmallGolemSecondaryAttack : EnemyAttackBehaviour
     public override void Attack()
     {
         StartCoroutine(AttackBehaviour());
-        _onAttack?.Invoke();
+        LaunchAttackEvent();
         Priority += CoolDown;
         if (!_enemyBehaviour.Animator.GetCurrentAnimatorStateInfo(0).IsName("Attaque_2_Golem"))
         {
