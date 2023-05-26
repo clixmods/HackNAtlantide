@@ -10,7 +10,8 @@ public class GetSurfaceType : MonoBehaviour
     public string SphereCast()
     {
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, -transform.up, out hit, 1))
+        int layer_mask = LayerMask.GetMask("Default");
+        if (Physics.Raycast(transform.position+transform.up, -transform.up, out hit, 2,layer_mask, QueryTriggerInteraction.Collide))
         {
             var material = hit.collider.gameObject.GetComponent<MeshRenderer>().sharedMaterials[0];
             return XMaterialsData.GetSurfaceType(material);

@@ -34,6 +34,7 @@ namespace XMaterial
                 xMaterials = GetXMaterials();
                 GenerateSurfaceTypes();
             #endif
+            Generate();
         }
         
 #if UNITY_EDITOR

@@ -267,16 +267,19 @@ namespace AudioAliase
             if (alias.UseSurfaceDetection)
             {
                 var surfaceName = GetComponent<GetSurfaceType>().SphereCast();
-                if (surfaceName != null && AudioManager.GetAlias(alias.dictSurfacesAlias[surfaceName], out Alias aliasSurface))
+                if (surfaceName != null &&alias.dictSurfacesAlias.TryGetValue(surfaceName, out int value))
                 {
-                    Debug.Log(surfaceName);
-                    Play(aliasSurface);
-                    return;
+                    if ( AudioManager.GetAlias(value, out Alias aliasSurface))
+                    {
+                        Debug.Log(surfaceName);
+                        Play(aliasSurface);
+                        return;
+                    }
+
                 }
-                else
-                {
-                    Source.clip = alias.Audio;
-                }
+                
+                Source.clip = alias.Audio;
+                
             }
             else
             {

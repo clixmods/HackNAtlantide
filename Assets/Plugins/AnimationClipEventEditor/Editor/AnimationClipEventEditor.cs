@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Audio.Editor;
 using AudioAliase;
+using Unity.Plastic.Antlr3.Runtime.Misc;
 using UnityEditor;
 using UnityEngine;
 
@@ -16,6 +17,11 @@ namespace Plugins.AnimationClipEventEditor.Editor
             var window = GetWindow<AnimationClipEventEditor>();
             window.titleContent = new UnityEngine.GUIContent("Animation Event Editor");
             window.Show();
+            GetAnimsWithEventAndGenerateButton();
+        }
+
+        private static void GetAnimsWithEventAndGenerateButton()
+        {
             _animationClips = GetAllInstances();
             _showButtons = new bool[_animationClips.Length];
         }
@@ -24,8 +30,7 @@ namespace Plugins.AnimationClipEventEditor.Editor
         {
             if (_animationClips == null)
             {
-                _animationClips = GetAllInstances();
-                _showButtons = new bool[_animationClips.Length];
+                GetAnimsWithEventAndGenerateButton();
             }
            
            
@@ -67,14 +72,40 @@ namespace Plugins.AnimationClipEventEditor.Editor
         static AnimationClip[] GetAllInstances()
         {
             string[] guids = AssetDatabase.FindAssets("t:" + typeof(AnimationClip).Name);  //FindAssets uses tags check documentation for more info
+            
+            var guidsFBX = AssetDatabase.FindAssets("mesh");
+            List<AnimationClip> animationClipsFromFBX = new List<AnimationClip>();
+            for (int i = 0; i < guidsFBX.Length; i++)
+            {
+                string path = AssetDatabase.GUIDToAssetPath(guidsFBX[i]);
+                var fbxGameObject = AssetDatabase.LoadAssetAtPath<GameObject>(path);
+                if (fbxGameObject != null)
+                {
+                    AnimationClip[] animations = AnimationUtility.GetAnimationClips(fbxGameObject);
+                    for (int j = 0; j < animations.Length; j++)
+                    {
+                        animationClipsFromFBX.Add(animations[i]);
+                    }
+                }
+                
+            }
+            
+            
+            
+            
             int count = guids.Length;
-            AnimationClip[] a = new AnimationClip[count];
+            AnimationClip[] a = new AnimationClip[count+animationClipsFromFBX.Count];
             for (int i = 0; i < count; i++)         //probably could get optimized 
             {
                 string path = AssetDatabase.GUIDToAssetPath(guids[i]);
                 a[i] = AssetDatabase.LoadAssetAtPath<AnimationClip>(path);
             }
 
+            for (int i = count; i < count+animationClipsFromFBX.Count; i++)
+            {
+                a[i] = animationClipsFromFBX[i-count];
+            }
+            
             return a;
 
         }

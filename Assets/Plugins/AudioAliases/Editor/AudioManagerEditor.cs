@@ -1,5 +1,6 @@
 using AudioAliase;
 using UnityEditor;
+using UnityEngine;
 
 namespace Audio.Editor
 {
@@ -12,7 +13,11 @@ namespace Audio.Editor
         public override void OnInspectorGUI()
         {
             base.DrawDefaultInspector();
+            AudioManager audioManager = (AudioManager) target;
+           
             var serializedProperty = serializedObject.FindProperty("_audioManagerData");
+            if(serializedProperty.objectReferenceValue == null)
+                serializedProperty.objectReferenceValue  = (AudioManagerData) Resources.Load("AudioManager Data") ;
             _foldSO = EditorGUILayout.InspectorTitlebar(_foldSO, serializedProperty.objectReferenceValue);
             if (_foldSO)
             {

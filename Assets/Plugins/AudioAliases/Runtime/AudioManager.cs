@@ -109,7 +109,18 @@ namespace AudioAliase
         }
         private void Awake()
         {
-            Instance = this;
+            if (_instance != null)
+            {
+                Destroy(gameObject);
+            }
+            else
+            {
+                Instance = this;
+                DontDestroyOnLoad(gameObject);
+
+            }
+            
+            
             _audioManagerData = (AudioManagerData) Resources.Load("AudioManager Data") ;
             InitAudioSources();
         }
