@@ -5,8 +5,7 @@ using UnityEngine.Events;
 
 public class TutoStateBehaviour : MonoBehaviour, IGameStateCallBack
 {
-    public UnityEvent Enable;
-    public UnityEvent Disable;
+    public UnityEvent ApplyGameStateOverride;
     private TutoState state;
     [SerializeField] GameStateManager _gameStateManager;
     private void OnEnable()
@@ -15,17 +14,16 @@ public class TutoStateBehaviour : MonoBehaviour, IGameStateCallBack
 
         _gameStateManager.RegisterCallback(this);
         _gameStateManager.ApplyState(state);
-        Enable?.Invoke();
+        
     }
     private void OnDisable()
     {
         _gameStateManager.RemoveState(state);
         _gameStateManager.UnRegisterCallback(this);
-        Disable?.Invoke();
     }
 
     public void OnApplyGameStateOverride(GameStateOverride stateOverride)
     {
-
+        ApplyGameStateOverride?.Invoke();
     }
 }

@@ -110,6 +110,7 @@ public class GameStateOverride
     public bool inputInteractActive = true;
     public bool inputPauseActive = true;
     public bool allInputActive = true;
+    
     public void Reset()
     {
         isPaused = false;
