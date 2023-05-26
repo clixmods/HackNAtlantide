@@ -21,6 +21,7 @@ public class EnemyBehaviour : MonoBehaviour
     #region properties
     //states
     bool _isAwake;
+    public bool IsAwake { get { return _isAwake; } set { _isAwake = value; } }
     bool _isAttacking;
     public bool IsAttacking { get { return _isAttacking; } }
     bool _canMove;
@@ -44,6 +45,7 @@ public class EnemyBehaviour : MonoBehaviour
     public float DistanceWithPlayer { get { return _distanceWithPlayer; } }
     bool _movecoroutineIsPlayed = false;
     public bool MovecoroutineIsPlayed { get { return _movecoroutineIsPlayed; } }
+    Rigidbody _rigidBody;
     #endregion
 
     #region MonoBehaviour
@@ -51,19 +53,24 @@ public class EnemyBehaviour : MonoBehaviour
     {
         _agent = GetComponent<NavMeshAgent>();
         _animator = GetComponent<Animator>();
+        _rigidBody = GetComponent<Rigidbody>();
     }
     #endregion
     private void Update()
     {
         _distanceWithPlayer = Vector3.Distance(transform.position, PlayerInstanceScriptableObject.Player.transform.position);
-        Animator.SetFloat("Walk_Speed", _agent.velocity.magnitude / _agent.speed);
+        if(_isAwake)
+        {
+            Animator.SetFloat("Walk_Speed", _agent.velocity.magnitude / _agent.speed);
+            
+        }
+        _rigidBody.isKinematic = _distanceWithPlayer > 1f;
     }
     public virtual void Move(Vector3 target)
     {
         if(_isAwake && _canMove)
         {
             _agent.SetDestination(target);
-            //FaceTarget(target);
         }
         else
         {
@@ -110,6 +117,7 @@ public class EnemyBehaviour : MonoBehaviour
                     _currentAttack = _ennemyAttacks[i];
                     _isAttacking = true;
                     _state = EnemyState.Attacking;
+                    _agent.updateRotation = false;
                     break;
                 }
             }
@@ -123,7 +131,7 @@ public class EnemyBehaviour : MonoBehaviour
         _currentAttack.StartCoroutine(_currentAttack.RechargePriority());
 
         _isAttacking = false;
-
+        _agent.updateRotation = true;
         _currentAttack = null;
 
         //recommence a attaquer
@@ -153,8 +161,12 @@ public class EnemyBehaviour : MonoBehaviour
     }
     public virtual void WakeUp()
     {
+        StartCoroutine(WakeUpCoroutine());
+    }
+    public virtual IEnumerator WakeUpCoroutine()
+    {
+        yield return new WaitForSeconds(2f);
         _isAwake = true;
         StartCoroutine(MoveToPlayer());
-        
     }
 }

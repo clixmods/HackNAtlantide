@@ -38,7 +38,7 @@ public class EnemyWakeUpBehaviour : MonoBehaviour
         else
         {
             //attends que le joueur soit à une distance minimale et qu'il ne soit pas réveiller
-            if (_wakeUpByDistance && _enemyBehaviour.DistanceWithPlayer > _distanceToWakeUp && !_isAwake)
+            if (_wakeUpByDistance && _enemyBehaviour.DistanceWithPlayer < _distanceToWakeUp && !_isAwake)
             {
                 WakeUp();
             }

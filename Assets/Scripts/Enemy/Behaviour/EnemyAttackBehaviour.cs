@@ -44,7 +44,8 @@ public abstract class EnemyAttackBehaviour : MonoBehaviour, ICombat
         }
     }
 
-    private IAttackCollider _attackCollider;
+    [SerializeField] private AttackCollider _attackColliderRight;
+    [SerializeField] private AttackCollider _attackColliderLeft;
 
     //Components
 
@@ -57,14 +58,13 @@ public abstract class EnemyAttackBehaviour : MonoBehaviour, ICombat
     {
         _enemyBehaviour = GetComponent<EnemyBehaviour>();
         _currentPriority = _minPriority;
-        _attackCollider = GetComponentInChildren<AttackCollider>();
-        if (_attackCollider != null)
+        if (_attackColliderRight != null)
         {
-            _attackCollider.OnCollideWithIDamageable += AttackColliderOnOnCollideWithIDamageable;
+            _attackColliderRight.OnCollideWithIDamageable += AttackColliderOnOnCollideWithIDamageable;
         }
-        else
+        if (_attackColliderLeft != null)
         {
-            Debug.LogError("No attackCollider find, this enemy can't attack.", gameObject);
+            _attackColliderLeft.OnCollideWithIDamageable += AttackColliderOnOnCollideWithIDamageable;
         }
     }
 
@@ -90,9 +90,9 @@ public abstract class EnemyAttackBehaviour : MonoBehaviour, ICombat
     #region Animation Event Methods
     public void SetDamageActive(int value)
     {
-        canAttack = value == 1;
-        _attackCollider.enabled = canAttack;
-
+        canAttack = (value == 1|| value == 2);
+        _attackColliderRight.enabled = canAttack;
+        _attackColliderLeft.enabled = value == 2;
     }
     #endregion
 }
