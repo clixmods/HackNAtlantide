@@ -201,6 +201,10 @@ public class PlayerMovement : MonoBehaviour
             //ClampDistance with contact offset;
             distance = Mathf.Max(0f, hit.distance - Physics.defaultContactOffset);
             displacement = velocity.normalized * distance;
+            if (hit.collider.TryGetComponent<Rigidbody>(out Rigidbody hitRB))
+            {
+                hitRB.AddForceAtPosition(-hit.normal * 5000f, hit.point);
+            }
         }
         _rigidbody.MovePosition(_rigidbody.position + displacement);
 

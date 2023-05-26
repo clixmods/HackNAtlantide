@@ -64,7 +64,7 @@ public class EnemyBehaviour : MonoBehaviour
             Animator.SetFloat("Walk_Speed", _agent.velocity.magnitude / _agent.speed);
             
         }
-        _rigidBody.isKinematic = _distanceWithPlayer > 1f;
+        _rigidBody.isKinematic = _distanceWithPlayer > 2.5f;
     }
     public virtual void Move(Vector3 target)
     {
