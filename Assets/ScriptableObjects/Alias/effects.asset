@@ -1,0 +1,341 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9817e14b48e6f754c9c8cbaf0fc1c032, type: 3}
+  m_Name: effects
+  m_EditorClassIdentifier: 
+  DontLoad: 0
+  defaultMixerGroup: {fileID: 0}
+  aliases:
+  - name: glass_explosion
+    description: 
+    Tag: 
+    MixerGroup: {fileID: 0}
+    audio:
+    - {fileID: 8300000, guid: e9f4e90dae268a44d9857f460fa8816a, type: 3}
+    soundType: 0
+    randomizeClips: 0
+    Secondary: 0
+    bypassEffects: 0
+    bypassListenerEffects: 0
+    bypassReverbZones: 0
+    priority: 0
+    volume: 0
+    minVolume: 0.8
+    maxVolume: 0.8
+    limitCount: 0
+    isLooping: 0
+    startAliase: 0
+    endAliase: 0
+    UseDelayLoop: 0
+    minDelayLoop: 0
+    maxDelayLoop: 0
+    minPitch: 1
+    maxPitch: 1.01
+    stereoPan: 0
+    spatialBlend: 1
+    reverbZoneMix: 1
+    dopplerLevel: 1
+    Spread: 1
+    MinDistance: 0
+    MaxDistance: 500
+    CurveType: 0
+    distanceCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 0
+      m_PostInfinity: 0
+      m_RotationOrder: 0
+    Text: 
+    customDuration: 0
+    isInit: 0
+    isPlaceholder: 1
+    audioPlayers: []
+    UseSurfaceDetection: 0
+    surfacesAlias:
+    - surfaceName: MaterialType/asphalt
+      alias: 0
+    - surfaceName: MaterialType/brick
+      alias: 0
+    - surfaceName: MaterialType/ceramic
+      alias: 0
+    - surfaceName: MaterialType/concrete
+      alias: 0
+    - surfaceName: MaterialType/dirt
+      alias: 0
+    - surfaceName: MaterialType/metal
+      alias: 0
+    - surfaceName: MaterialType/carpet
+      alias: 0
+    - surfaceName: MaterialType/Cloth
+      alias: 0
+    - surfaceName: MaterialType/Flesh
+      alias: 0
+    - surfaceName: MaterialType/foliage
+      alias: 0
+    - surfaceName: MaterialType/Glass
+      alias: 0
+    - surfaceName: MaterialType/Gravel
+      alias: 0
+    - surfaceName: MaterialType/Ice
+      alias: 0
+    - surfaceName: MaterialType/Mud
+      alias: 0
+    - surfaceName: MaterialType/Paper
+      alias: 0
+    - surfaceName: MaterialType/Plaster
+      alias: 0
+    - surfaceName: MaterialType/Plastic
+      alias: 0
+    - surfaceName: MaterialType/Rock
+      alias: 0
+    - surfaceName: MaterialType/Water
+      alias: 0
+    - surfaceName: MaterialType/Sand
+      alias: 0
+    - surfaceName: MaterialType/Snow
+      alias: 0
+    guid: -2016789713
+  - name: glass_explosion_on_floor
+    description: 
+    Tag: 
+    MixerGroup: {fileID: 0}
+    audio:
+    - {fileID: 8300000, guid: 233431c84b2d2924e9556055d04cfd05, type: 3}
+    soundType: 0
+    randomizeClips: 0
+    Secondary: 0
+    bypassEffects: 0
+    bypassListenerEffects: 0
+    bypassReverbZones: 0
+    priority: 0
+    volume: 0
+    minVolume: 0.8
+    maxVolume: 0.8
+    limitCount: 0
+    isLooping: 0
+    startAliase: 0
+    endAliase: 0
+    UseDelayLoop: 0
+    minDelayLoop: 0
+    maxDelayLoop: 0
+    minPitch: 1
+    maxPitch: 1.01
+    stereoPan: 0
+    spatialBlend: 1
+    reverbZoneMix: 1
+    dopplerLevel: 1
+    Spread: 1
+    MinDistance: 0
+    MaxDistance: 500
+    CurveType: 0
+    distanceCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 0
+      m_PostInfinity: 0
+      m_RotationOrder: 0
+    Text: 
+    customDuration: 0
+    isInit: 0
+    isPlaceholder: 1
+    audioPlayers: []
+    UseSurfaceDetection: 0
+    surfacesAlias: []
+    guid: -1929527666
+  - name: door_noise
+    description: 
+    Tag: 
+    MixerGroup: {fileID: 0}
+    audio:
+    - {fileID: 8300000, guid: 23e134067515bc24cbc0eaffed63019d, type: 3}
+    soundType: 0
+    randomizeClips: 0
+    Secondary: 0
+    bypassEffects: 0
+    bypassListenerEffects: 0
+    bypassReverbZones: 0
+    priority: 0
+    volume: 0
+    minVolume: 0.8
+    maxVolume: 0.8
+    limitCount: 0
+    isLooping: 0
+    startAliase: 0
+    endAliase: 0
+    UseDelayLoop: 0
+    minDelayLoop: 0
+    maxDelayLoop: 0
+    minPitch: 1
+    maxPitch: 1.01
+    stereoPan: 0
+    spatialBlend: 1
+    reverbZoneMix: 1
+    dopplerLevel: 1
+    Spread: 1
+    MinDistance: 0
+    MaxDistance: 500
+    CurveType: 0
+    distanceCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 0
+      m_PostInfinity: 0
+      m_RotationOrder: 0
+    Text: 
+    customDuration: 0
+    isInit: 0
+    isPlaceholder: 1
+    audioPlayers: []
+    UseSurfaceDetection: 0
+    surfacesAlias: []
+    guid: 217702580
+  - name: door_open_close
+    description: 
+    Tag: 
+    MixerGroup: {fileID: 0}
+    audio:
+    - {fileID: 8300000, guid: 364d34e57eccea241b00d1745bf4344a, type: 3}
+    soundType: 0
+    randomizeClips: 0
+    Secondary: 0
+    bypassEffects: 0
+    bypassListenerEffects: 0
+    bypassReverbZones: 0
+    priority: 0
+    volume: 0
+    minVolume: 0.8
+    maxVolume: 0.8
+    limitCount: 0
+    isLooping: 0
+    startAliase: 0
+    endAliase: 0
+    UseDelayLoop: 0
+    minDelayLoop: 0
+    maxDelayLoop: 0
+    minPitch: 1
+    maxPitch: 1.01
+    stereoPan: 0
+    spatialBlend: 1
+    reverbZoneMix: 1
+    dopplerLevel: 1
+    Spread: 1
+    MinDistance: 0
+    MaxDistance: 500
+    CurveType: 0
+    distanceCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 0
+      m_PostInfinity: 0
+      m_RotationOrder: 0
+    Text: 
+    customDuration: 0
+    isInit: 0
+    isPlaceholder: 1
+    audioPlayers: []
+    UseSurfaceDetection: 0
+    surfacesAlias: []
+    guid: -1639124178
+  - name: torch_turn_on
+    description: 
+    Tag: 
+    MixerGroup: {fileID: 0}
+    audio:
+    - {fileID: 8300000, guid: f05c6a4ade3aff44f974b5e261082133, type: 3}
+    soundType: 0
+    randomizeClips: 0
+    Secondary: 0
+    bypassEffects: 0
+    bypassListenerEffects: 0
+    bypassReverbZones: 0
+    priority: 0
+    volume: 0
+    minVolume: 0.99662924
+    maxVolume: 1
+    limitCount: 0
+    isLooping: 0
+    startAliase: 0
+    endAliase: 0
+    UseDelayLoop: 0
+    minDelayLoop: 0
+    maxDelayLoop: 0
+    minPitch: 1
+    maxPitch: 1.01
+    stereoPan: 0
+    spatialBlend: 1
+    reverbZoneMix: 1
+    dopplerLevel: 1
+    Spread: 1
+    MinDistance: 0
+    MaxDistance: 500
+    CurveType: 0
+    distanceCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 0
+      m_PostInfinity: 0
+      m_RotationOrder: 0
+    Text: 
+    customDuration: 0
+    isInit: 0
+    isPlaceholder: 1
+    audioPlayers: []
+    UseSurfaceDetection: 0
+    surfacesAlias: []
+    guid: 119952813
+  - name: torch_turn_off
+    description: 
+    Tag: 
+    MixerGroup: {fileID: 0}
+    audio:
+    - {fileID: 8300000, guid: 7e622803cda05344799a06d8c7fa94af, type: 3}
+    soundType: 0
+    randomizeClips: 0
+    Secondary: 0
+    bypassEffects: 0
+    bypassListenerEffects: 0
+    bypassReverbZones: 0
+    priority: 0
+    volume: 0
+    minVolume: 0.9853933
+    maxVolume: 1
+    limitCount: 0
+    isLooping: 0
+    startAliase: 0
+    endAliase: 0
+    UseDelayLoop: 0
+    minDelayLoop: 0
+    maxDelayLoop: 0
+    minPitch: 1
+    maxPitch: 1.01
+    stereoPan: 0
+    spatialBlend: 1
+    reverbZoneMix: 1
+    dopplerLevel: 1
+    Spread: 1
+    MinDistance: 0
+    MaxDistance: 500
+    CurveType: 0
+    distanceCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 0
+      m_PostInfinity: 0
+      m_RotationOrder: 0
+    Text: 
+    customDuration: 0
+    isInit: 0
+    isPlaceholder: 1
+    audioPlayers: []
+    UseSurfaceDetection: 0
+    surfacesAlias: []
+    guid: -673688322

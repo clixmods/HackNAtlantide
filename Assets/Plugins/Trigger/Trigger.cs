@@ -13,6 +13,7 @@ public abstract class Trigger : MonoBehaviour
      /// Event when the volume is triggered by Enter
      /// </summary>
      public UnityEvent EventOnTriggerEnter;
+     [SerializeField] private float triggerStayCooldown = 1f;
      /// <summary>
      /// Event when the volume is triggered by Stay
      /// </summary>
@@ -26,8 +27,6 @@ public abstract class Trigger : MonoBehaviour
      [SerializeField] private bool disableAfterOnTriggerExit;
      [SerializeField] private LayerMask interactWithLayers;
      
- 
-     [Header("Settings")] [SerializeField] private float triggerStayCooldown = 1f;
      private bool CanDoStay => _currentCooldown <= 0;
      private float _currentCooldown = 0;
      #region MonoBehaviour
@@ -39,7 +38,7 @@ public abstract class Trigger : MonoBehaviour
           // Hide renderer in play mode
           _meshRenderer.enabled = false;
      }
-     private void OnValidate()
+     protected virtual void OnValidate()
      {
           SetupCollider();
           GetMeshComponents();

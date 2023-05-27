@@ -9,6 +9,6 @@ public class AudioMixerGroupManipulator : MonoBehaviour
 
     public void SetVolume(float value)
     {
-        audioMixerGroup.audioMixer.SetFloat()
+        //audioMixerGroup.audioMixer.SetFloat()
     }
 }
