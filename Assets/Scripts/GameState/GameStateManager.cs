@@ -54,8 +54,7 @@ public class CombatState : GameState
 
     public override void ApplyOverride(GameStateOverride stateOverride)
     {
-        stateOverride.isPaused = false;
-        stateOverride.timeScale = 0f;
+
     }
 }
 public class TutoState : GameState
@@ -303,15 +302,6 @@ public class GameStateManager : MonoBehaviour
         for (int i = callbacks.Count; i-- > 0;)
         {
             callbacks[i].OnApplyGameStateOverride(gameStateOverride);
-        }
-
-        if(GetCurrentGameState(out GameState state))
-        {
-            Debug.Log($"CurrentState => {state.ToString()}");
-        }
-        else
-        {
-            Debug.LogWarning("No active state");
         }
     }
 }

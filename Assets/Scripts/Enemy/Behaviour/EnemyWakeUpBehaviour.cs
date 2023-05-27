@@ -15,6 +15,7 @@ public class EnemyWakeUpBehaviour : MonoBehaviour
     private Vector3 _startPos;
     
     EnemyBehaviour _enemyBehaviour;
+    [SerializeField] ScriptableValueListGameObject _allEnemyAwake;
 
     private void Awake()
     {
@@ -58,6 +59,7 @@ public class EnemyWakeUpBehaviour : MonoBehaviour
         _isAwake = true;
         _enemyBehaviour.WakeUp();
         OnAwake?.Invoke();
+        _allEnemyAwake.AddUnique(this.gameObject);
     }
 
     public void ReturnToStartPos()
@@ -72,6 +74,7 @@ public class EnemyWakeUpBehaviour : MonoBehaviour
         _goBackToStartPosToSleep = false;
         _isAwake = false;
         OnSleep?.Invoke();
+        _allEnemyAwake.RemoveUnique(this.gameObject);
     }
 
 }

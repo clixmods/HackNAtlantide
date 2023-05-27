@@ -54,7 +54,6 @@ namespace UI.UITransformFollower
         private void IdamageableOnDamage(object sender, EventArgs e)
         {
             _slider.value = idamageable.health / idamageable.maxHealth;
-            Debug.Log(idamageable.health /idamageable.maxHealth);
         }
         
     }

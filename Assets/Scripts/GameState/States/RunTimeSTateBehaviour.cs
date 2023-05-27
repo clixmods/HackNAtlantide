@@ -21,6 +21,6 @@ public class RunTimeSTateBehaviour : MonoBehaviour,IGameStateCallBack
 
     public void OnApplyGameStateOverride(GameStateOverride stateOverride)
     {
-        Debug.Log("Update => " + stateOverride.isPaused);
+
     }
 }
