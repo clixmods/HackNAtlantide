@@ -146,7 +146,7 @@ public class QTEHandler : MonoBehaviour
                 break;
 
             case InputType.Focus:
-                _focus.IsActive = active;
+                _focus.IsActive = true;
                 break;
 
             case InputType.Move:
