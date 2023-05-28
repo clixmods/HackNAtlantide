@@ -7,7 +7,11 @@ using UnityEngine.Serialization;
 
 public class AttackCollider : MonoBehaviour , IAttackCollider
 {
-    private List<IDamageable> _damageableHitted; 
+    private List<IDamageable> _damageableHitted;
+    public void ResetListDamageableHitted()
+    {
+        _damageableHitted = new List<IDamageable>();
+    }
     public event EventHandler OnCollideWithIDamageable;
     AnimationEvent _damageActiveAnimatorEvent;
     

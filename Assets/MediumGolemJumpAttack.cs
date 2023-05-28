@@ -30,6 +30,7 @@ public class MediumGolemJumpAttack : EnemyAttackBehaviour
     [SerializeField] UnityAction OnExplosionStart;
     [SerializeField] private AttackCollider _attackColliderExplosion;
     [SerializeField] ParticleSystem ExplosionFx;
+    SphereCollider explosionCollider;
 
     public override void Attack()
     {
@@ -38,6 +39,13 @@ public class MediumGolemJumpAttack : EnemyAttackBehaviour
         LaunchAttackEvent();
         Priority += CoolDown;
         _enemyBehaviour.Agent.enabled = false;
+    }
+    private void Start()
+    {
+
+        explosionCollider = explosionObject.GetComponent<SphereCollider>();
+        explosionCollider.radius = 0f;
+        ExplosionFx.transform.localScale = Vector3.zero;
     }
     IEnumerator AttackBehaviour()
     {
@@ -82,21 +90,23 @@ public class MediumGolemJumpAttack : EnemyAttackBehaviour
     }
     IEnumerator ExplosionAttack()
     {
-
+        _attackColliderExplosion.ResetListDamageableHitted();
         OnExplosionStart?.Invoke();
-        SphereCollider explosionCollider = explosionObject.GetComponent<SphereCollider>();
 
         //listenToEventExplosionDamage
         _attackColliderExplosion.OnCollideWithIDamageable += AttackColliderOnOnCollideWithIDamageableExplosion;
         ExplosionFx.Play();
+        
         float time=0f;
         while(time < explosionTime)
         {
             time += Time.deltaTime;
             explosionCollider.radius = Mathf.Lerp(0, explosionRadius, time / explosionTime);
+            ExplosionFx.transform.localScale = explosionCollider.radius * Vector3.one;
             yield return null;
         }
         explosionCollider.radius = 0f;
+        ExplosionFx.transform.localScale = Vector3.zero;
         _attackColliderExplosion.OnCollideWithIDamageable -= AttackColliderOnOnCollideWithIDamageableExplosion;
     }
 
@@ -104,7 +114,6 @@ public class MediumGolemJumpAttack : EnemyAttackBehaviour
     {
         if (eventArgs is AttackDamageableEventArgs mDamageableEventArgs)
         {
-            Debug.Log("collision playere^plosion");
             mDamageableEventArgs.idamageable.DoDamage(damageOnExplosion);
         }
     }
