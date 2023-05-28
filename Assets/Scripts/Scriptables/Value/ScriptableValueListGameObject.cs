@@ -6,7 +6,7 @@ using UnityEngine;
 public class ScriptableValueListGameObject : ScriptableValue<List<GameObject>>
 {
     public override List<GameObject> Value { get => base.Value; set => base.Value = value; }
-    public float count;
+
     public void AddUnique(GameObject gameObject)
     {
         /*bool isInList = false;
@@ -22,7 +22,6 @@ public class ScriptableValueListGameObject : ScriptableValue<List<GameObject>>
             Value.Add(gameObject);
         }*/
         Value.Add(gameObject);
-        count = Value.Count;
         ApplyGameStateCombat();
     }
     public void RemoveUnique(GameObject gameObject)
@@ -36,8 +35,12 @@ public class ScriptableValueListGameObject : ScriptableValue<List<GameObject>>
             }
         }*/
         Value.Remove(gameObject);
-        count = Value.Count;
         ApplyGameStateCombat();
+    }
+    public void ResetList()
+    {
+        Debug.Log("reset");
+        Value.RemoveRange(0, Value.Count);
     }
     //TODO A changer de place ou renommmer la classe ?
     void ApplyGameStateCombat()

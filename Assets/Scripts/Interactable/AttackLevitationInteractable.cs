@@ -162,7 +162,7 @@ public class AttackLevitationInteractable : Interactable
                 Rigidbody[] childrb = _meshDestroy.GetComponentsInChildren<Rigidbody>();
                 foreach(Rigidbody rb in childrb)
                 {
-                    rb.AddExplosionForce(Random.value, rb.position + Random.onUnitSphere, Random.value);
+                    rb.AddForce(Random.onUnitSphere*5f,ForceMode.Impulse);
                 }
             }
             Destroy(GetComponent<MeshRenderer>());

@@ -11,5 +11,10 @@ public class DeathEnemyEffect : MonoBehaviour
             _meshDestroy.transform.position = transform.position;
             _meshDestroy.transform.rotation = transform.rotation;
             _meshDestroy.SetActive(true);
+            Rigidbody[] childrb = _meshDestroy.GetComponentsInChildren<Rigidbody>();
+            foreach (Rigidbody rb in childrb)
+            {
+                rb.AddForce(Random.onUnitSphere * 5f, ForceMode.Impulse);
+            }
     }
 }

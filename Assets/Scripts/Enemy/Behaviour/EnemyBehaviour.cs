@@ -64,25 +64,27 @@ public class EnemyBehaviour : MonoBehaviour
             Animator.SetFloat("Walk_Speed", _agent.velocity.magnitude / _agent.speed);
             
         }
-        _rigidBody.isKinematic = _distanceWithPlayer > 2.5f;
+        //_rigidBody.isKinematic = _distanceWithPlayer > 2.5f;
     }
     public virtual void Move(Vector3 target)
     {
-        if(_isAwake && _canMove)
+        if(_agent.enabled)
         {
-            _agent.SetDestination(target);
+            if (_isAwake && _canMove)
+            {
+                _agent.SetDestination(target);
+            }
+            else
+            {
+                _agent.SetDestination(transform.position);
+            }
         }
-        else
-        {
-            _agent.SetDestination(transform.position);
-        }
-        
     }
     public IEnumerator MoveToPlayer()
     {
         _movecoroutineIsPlayed = true;
         _canMove = true;
-        while (_canMove && _isAwake && !_returnToStartPos)
+        while (_canMove && _isAwake && !_returnToStartPos &&_agent.enabled)
         {
             Move(PlayerInstanceScriptableObject.Player.transform.position);
             yield return null;
@@ -125,7 +127,10 @@ public class EnemyBehaviour : MonoBehaviour
             yield return null;
         }
         _canMove = false;
-        _agent.SetDestination(transform.position);
+        if(_agent.enabled)
+        {
+            _agent.SetDestination(transform.position);
+        }
         //attends le coolDown de l'attaque qui est joué pour commencer a rechercher une nouvelle attaque
         yield return new WaitForSeconds(_currentAttack.CoolDown);
         _currentAttack.StartCoroutine(_currentAttack.RechargePriority());
