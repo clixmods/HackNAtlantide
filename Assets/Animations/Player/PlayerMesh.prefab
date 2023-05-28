@@ -530,6 +530,7 @@ GameObject:
   - component: {fileID: 1070411192388846058}
   - component: {fileID: 2977943209157004142}
   - component: {fileID: 5947598796426845155}
+  - component: {fileID: 2182707137954003242}
   m_Layer: 0
   m_Name: PlayerMesh
   m_TagString: Untagged
@@ -630,12 +631,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerMovement: {fileID: 0}
   noOfClicks: 0
-  canClick: 0
   stopAnimation: 0
   _inputAttack: {fileID: 11400000, guid: fdbbc2eed1d30cb48b96b3abfe6f859e, type: 2}
   _inputDashAttack: {fileID: 11400000, guid: 6a4e272f294a6a94185c64218df86d2e, type: 2}
   _trailSwordDistortion: {fileID: 0}
   _dashAttackEvent: {fileID: 11400000, guid: 733024fddf927b548ae5d341d936d018, type: 2}
+--- !u!114 &2182707137954003242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4085063885494343856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9f8fac605c857e4ea8d809f235f1e10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4267403824807156169
 GameObject:
   m_ObjectHideFlags: 0
@@ -1019,6 +1031,7 @@ MonoBehaviour:
   interactWithLayers:
     serializedVersion: 2
     m_Bits: 2048
+  _hitVfx: {fileID: 0}
 --- !u!1 &7190152867788724349
 GameObject:
   m_ObjectHideFlags: 0

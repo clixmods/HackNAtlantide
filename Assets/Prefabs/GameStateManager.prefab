@@ -178,6 +178,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59c4f8b35ce19fb4aa71f182ba36bf25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ApplyGameStateOverride:
+    m_PersistentCalls:
+      m_Calls: []
+  _gameStateManager: {fileID: 7106371341753771}
   inputsData:
   - {fileID: 11400000, guid: fdbbc2eed1d30cb48b96b3abfe6f859e, type: 2}
   - {fileID: 11400000, guid: 6a4e272f294a6a94185c64218df86d2e, type: 2}
@@ -185,7 +189,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f80c46dfb20a52241ad87b243d5f800f, type: 2}
   - {fileID: 11400000, guid: 67380d3709d97c74e85b3aafe21013ad, type: 2}
   activeInputs: 
-  _gameStateManager: {fileID: 7106371341753771}
 --- !u!1 &1591383525252357313
 GameObject:
   m_ObjectHideFlags: 0
@@ -230,40 +233,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e6d3e92a7c1b0042920561fe5e2e6e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Enable:
+  ApplyGameStateOverride:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 24100000, guid: 5da2c8dde8bb9094f8aaeafbe0aca20b, type: 2}
-        m_TargetAssemblyTypeName: UnityEditor.Audio.AudioMixerController, UnityEditor.CoreModule
-        m_MethodName: set_startSnapshot
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: -4588547273872508165, guid: 5da2c8dde8bb9094f8aaeafbe0aca20b,
-            type: 2}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Audio.AudioMixerSnapshot,
-            UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  Disable:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 24100000, guid: 5da2c8dde8bb9094f8aaeafbe0aca20b, type: 2}
-        m_TargetAssemblyTypeName: UnityEditor.Audio.AudioMixerController, UnityEditor.CoreModule
-        m_MethodName: RemoveSnapshot
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: -4588547273872508165, guid: 5da2c8dde8bb9094f8aaeafbe0aca20b,
-            type: 2}
-          m_ObjectArgumentAssemblyTypeName: UnityEditor.Audio.AudioMixerSnapshotController,
-            UnityEditor.CoreModule
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   _gameStateManager: {fileID: 7106371341753771}
 --- !u!1 &2429983320477910080
 GameObject:
@@ -309,6 +281,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c68ddbb45eb02604b8afc3270c736b78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ApplyGameStateOverride:
+    m_PersistentCalls:
+      m_Calls: []
   _gameStateManager: {fileID: 7106371341753771}
 --- !u!1 &4288646400128476734
 GameObject:
@@ -354,6 +329,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59a3ea53ee9182045bcb77a2266c460a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ApplyGameStateOverride:
+    m_PersistentCalls:
+      m_Calls: []
   _gameStateManager: {fileID: 7106371341753771}
 --- !u!1 &5505274476436708543
 GameObject:
@@ -427,6 +405,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1386675477318627018}
   - component: {fileID: 7890615222439260586}
+  - component: {fileID: 706871211742272839}
   m_Layer: 0
   m_Name: DeadState
   m_TagString: Untagged
@@ -461,4 +440,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 184e3ecb05494854aa474d1123f9200d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ApplyGameStateOverride:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 706871211742272839}
+        m_TargetAssemblyTypeName: PlayAliasListener, AudioAliase
+        m_MethodName: PlayAlias
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   _gameStateManager: {fileID: 7106371341753771}
+--- !u!114 &706871211742272839
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5613220769334558257}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8405162337adc244b955ceb77b14e03a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  aliasToPlay: 547930293

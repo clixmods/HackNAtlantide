@@ -18,13 +18,21 @@ namespace Audio.Editor
             return myList;
         }
         
-        public static List<string> GetListDisplayName(this List<int> list)
+        public static List<string> GetListDisplayName(this List<int> list, int elementToHide = -1)
         {
             List<string> myList = new List<string>();
             for (int i = 0; i < list.Count; i++)
             {
-                if(AliasesEditorWindow.Dictionary.TryGetValue(list[i],out Alias value))
+
+                if (AliasesEditorWindow.Dictionary.TryGetValue(list[i], out Alias value))
+                {
+                    // if (elementToHide > -1 && elementToHide == value.GUID)
+                    // {
+                    //     continue;
+                    // }
                     myList.Add(value.name);
+                }
+                    
                 else
                 {
                     myList.Add("None");

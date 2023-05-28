@@ -747,6 +747,7 @@ GameObject:
   - component: {fileID: 3565349656382750047}
   - component: {fileID: 825352634235196092}
   - component: {fileID: 5218115484323504872}
+  - component: {fileID: 3525337788929453197}
   m_Layer: 11
   m_Name: Enemy
   m_TagString: Untagged
@@ -967,7 +968,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 5616302777809644121}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: TransformAddon, Assembly-CSharp
         m_MethodName: SetParentToNull
         m_Mode: 1
@@ -1120,6 +1121,18 @@ MonoBehaviour:
   - {fileID: 3565349656382750047}
   - {fileID: 4362007272226298778}
   _rotationSpeed: 5
+--- !u!114 &3525337788929453197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6444109697107675426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9f8fac605c857e4ea8d809f235f1e10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8585242945334140800
 GameObject:
   m_ObjectHideFlags: 0
@@ -1715,24 +1728,6 @@ ParticleSystem:
     type: 3}
   m_PrefabInstance: {fileID: 2891971470454523595}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &5626472402715811261 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7365468337740684150, guid: ac40384c730c3c84094780d7d1f6e7e1,
-    type: 3}
-  m_PrefabInstance: {fileID: 2891971470454523595}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &5616302777809644121
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5626472402715811261}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bbc1817c3f1afa49b4b8bc1c2351d95, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &8860167534709979751 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5969516732372991148, guid: ac40384c730c3c84094780d7d1f6e7e1,

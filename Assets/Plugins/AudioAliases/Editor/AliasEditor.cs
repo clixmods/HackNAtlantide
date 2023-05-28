@@ -80,6 +80,7 @@ namespace Audio.Editor
             }
             _tags = GetTags();
             currentElemFromArraySelected = property;
+            int guid = currentElemFromArraySelected.FindPropertyRelative("guid").intValue;
             DrawField("name", true);
             DrawField("description", true);
             int selectedTag = GetIndexFromNameTag();
@@ -102,15 +103,15 @@ namespace Audio.Editor
             DrawField("randomizeClips", true);
             
             var secondaryProp = currentElemFromArraySelected.FindPropertyRelative("Secondary");
-            int selectedAll = AliasUtilityEditor.GetIndexFrom(secondaryProp.intValue, AliasesEditorWindow._aliasesOptions);
-            selectedAll = EditorGUILayout.Popup("Secondary", selectedAll, AliasesEditorWindow._aliasesOptions.GetListDisplayName().ToArray());
+            int selectedAll = AliasUtilityEditor.GetIndexFrom(secondaryProp.intValue, AliasesEditorWindow.AliasesOptions);
+            selectedAll = EditorGUILayout.Popup("Secondary", selectedAll, AliasesEditorWindow.AliasesOptions.GetListDisplayName(guid).ToArray());
            
             DrawToolTip(secondaryProp);
 
-            if (selectedAll == 0 || AliasUtilityEditor.GetIndexFrom(currentElemFromArraySelected.FindPropertyRelative("guid").intValue, AliasesEditorWindow._aliasesOptions ) == selectedAll)
+            if (selectedAll == 0 || AliasUtilityEditor.GetIndexFrom(currentElemFromArraySelected.FindPropertyRelative("guid").intValue, AliasesEditorWindow.AliasesOptions ) == selectedAll)
                 secondaryProp.intValue = 0;
             else
-                secondaryProp.intValue = AliasesEditorWindow._aliasesOptions[selectedAll];
+                secondaryProp.intValue = AliasesEditorWindow.AliasesOptions[selectedAll];
             
             DrawField("bypassEffects", true);
             DrawField("bypassListenerEffects", true);
@@ -136,24 +137,24 @@ namespace Audio.Editor
                 DrawMinMaxSlider(minDelayLoop, maxDelayLoop, 0,60,"Delay Loop");
                 // Start alias
                 var startProp = currentElemFromArraySelected.FindPropertyRelative("startAliase");
-                int selectedStartAll = AliasUtilityEditor.GetIndexFrom(startProp.intValue ,AliasesEditorWindow._startLoopAliasesOptions);
-                var displayNameStartAlias = AliasesEditorWindow._startLoopAliasesOptions.GetListDisplayName().ToArray();
+                int selectedStartAll = AliasUtilityEditor.GetIndexFrom(startProp.intValue ,AliasesEditorWindow.StartLoopAliasesOptions);
+                var displayNameStartAlias = AliasesEditorWindow.StartLoopAliasesOptions.GetListDisplayName(guid).ToArray();
                 selectedStartAll = EditorGUILayout.Popup("Start Aliase", selectedStartAll, displayNameStartAlias);
                 var guidValue = currentElemFromArraySelected.FindPropertyRelative("guid").intValue;
-                if (selectedStartAll == 0 || AliasUtilityEditor.GetIndexFrom(guidValue, AliasesEditorWindow._startLoopAliasesOptions ) == selectedStartAll)
+                if (selectedStartAll == 0 || AliasUtilityEditor.GetIndexFrom(guidValue, AliasesEditorWindow.StartLoopAliasesOptions ) == selectedStartAll)
                     startProp.intValue = 0;
                 else
-                    startProp.intValue = AliasesEditorWindow._startLoopAliasesOptions[selectedStartAll];
+                    startProp.intValue = AliasesEditorWindow.StartLoopAliasesOptions[selectedStartAll];
                 
                 
                 
                 var endProp = currentElemFromArraySelected.FindPropertyRelative("endAliase");
-                int selectedendAll = AliasUtilityEditor.GetIndexFrom(endProp.intValue, AliasesEditorWindow._endLoopAliasesOptions);
-                selectedendAll = EditorGUILayout.Popup("End Aliase", selectedendAll, AliasesEditorWindow._endLoopAliasesOptions.GetListDisplayName().ToArray());
-                if (selectedendAll == 0 || AliasUtilityEditor.GetIndexFrom(currentElemFromArraySelected.FindPropertyRelative("guid").intValue, AliasesEditorWindow._endLoopAliasesOptions ) == selectedendAll)
+                int selectedendAll = AliasUtilityEditor.GetIndexFrom(endProp.intValue, AliasesEditorWindow.EndLoopAliasesOptions);
+                selectedendAll = EditorGUILayout.Popup("End Aliase", selectedendAll, AliasesEditorWindow.EndLoopAliasesOptions.GetListDisplayName(guid).ToArray());
+                if (selectedendAll == 0 || AliasUtilityEditor.GetIndexFrom(currentElemFromArraySelected.FindPropertyRelative("guid").intValue, AliasesEditorWindow.EndLoopAliasesOptions ) == selectedendAll)
                     endProp.intValue = 0;
                 else
-                    endProp.intValue = AliasesEditorWindow._endLoopAliasesOptions[selectedendAll];
+                    endProp.intValue = AliasesEditorWindow.EndLoopAliasesOptions[selectedendAll];
             
                 EditorGUILayout.EndToggleGroup();
             }
@@ -241,14 +242,14 @@ namespace Audio.Editor
                                     stringSurface.stringValue = XMaterialsData.SurfaceTypeNames[i];
                                 }
         
-                                int selectedSurface = AliasUtilityEditor.GetIndexFrom(guidAliasSurface.intValue, AliasesEditorWindow._surfaceAliasesOptions);
-                                selectedSurface = EditorGUILayout.Popup("Alias", selectedSurface, AliasesEditorWindow._surfaceAliasesOptions.GetListDisplayName().ToArray());
+                                int selectedSurface = AliasUtilityEditor.GetIndexFrom(guidAliasSurface.intValue, AliasesEditorWindow.SurfaceAliasesOptions);
+                                selectedSurface = EditorGUILayout.Popup("Alias", selectedSurface, AliasesEditorWindow.SurfaceAliasesOptions.GetListDisplayName(guid).ToArray());
                                 if (selectedSurface == 0 ||
                                     AliasUtilityEditor.GetIndexFrom(currentElemFromArraySelected.FindPropertyRelative("guid").intValue,
-                                        AliasesEditorWindow._surfaceAliasesOptions) == selectedSurface)
+                                        AliasesEditorWindow.SurfaceAliasesOptions) == selectedSurface)
                                     guidAliasSurface.intValue = 0;
                                 else
-                                    guidAliasSurface.intValue = AliasesEditorWindow._surfaceAliasesOptions[selectedSurface];
+                                    guidAliasSurface.intValue = AliasesEditorWindow.SurfaceAliasesOptions[selectedSurface];
                             }
                         }
                        

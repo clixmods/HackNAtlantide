@@ -19,26 +19,39 @@ namespace Audio.Editor
         bool _fold;
         Transform selectedTransform;
         private List<string> _options;
+
+        private static List<int> _aliases;
+
         /// <summary>
         /// List of all aliases created in the project
         /// </summary>
-        public static List<int> _aliases;
+        public static List<int> Aliases
+        {
+            get
+            {
+                return _aliases;
+            }
+            set
+            {
+                _aliases = value;
+            }
+        }
         /// <summary>
         /// List of all aliases created in the project for selection with none value
         /// </summary>
-        public static List<int> _aliasesOptions;
+        public static List<int> AliasesOptions;
         /// <summary>
         /// List of all start aliases (used in loop) created in the project for selection with none value
         /// </summary>
-        public static List<int> _startLoopAliasesOptions;
+        public static List<int> StartLoopAliasesOptions;
         /// <summary>
         /// List of all end aliases (used in loop) created in the project for selection with none value
         /// </summary>
-        public static List<int> _endLoopAliasesOptions;
+        public static List<int> EndLoopAliasesOptions;
         /// <summary>
         /// List of all surface alias created in the project for selection with none value
         /// </summary>
-        public static List<int> _surfaceAliasesOptions;
+        public static List<int> SurfaceAliasesOptions;
 
 
         public static Dictionary<int, Alias> Dictionary = new Dictionary<int, Alias>();
@@ -150,19 +163,19 @@ namespace Audio.Editor
         /// </summary>
         private void UpdateAliasesList()
         {
-            _aliases = new List<int>();
+            Aliases = new List<int>();
             //
-            _aliasesOptions = new List<int>();
-            _aliasesOptions.Add(0);
+            AliasesOptions = new List<int>();
+            AliasesOptions.Add(0);
             //
-            _startLoopAliasesOptions = new List<int>();
-            _startLoopAliasesOptions.Add(0);
+            StartLoopAliasesOptions = new List<int>();
+            StartLoopAliasesOptions.Add(0);
             //
-            _endLoopAliasesOptions = new List<int>();
-            _endLoopAliasesOptions.Add(0);
+            EndLoopAliasesOptions = new List<int>();
+            EndLoopAliasesOptions.Add(0);
             //
-            _surfaceAliasesOptions = new List<int>();
-            _surfaceAliasesOptions.Add(0);
+            SurfaceAliasesOptions = new List<int>();
+            SurfaceAliasesOptions.Add(0);
             //
 
             var listoof = GetAllInstances<AliasesScriptableObject>();
@@ -196,22 +209,22 @@ namespace Audio.Editor
                 foreach (SerializedProperty p in aliasesListProp)
                 {
                     var aliasGUID = p.FindPropertyRelative("guid").intValue;
-                    _aliases.Add(aliasGUID);
+                    Aliases.Add(aliasGUID);
                     if (p.FindPropertyRelative("soundType").enumValueIndex == (int) SoundType.Root)
                     {
-                        _aliasesOptions.Add(aliasGUID);
+                        AliasesOptions.Add(aliasGUID);
                     }
                     if (p.FindPropertyRelative("soundType").enumValueIndex == (int) SoundType.Start)
                     {
-                        _startLoopAliasesOptions.Add(aliasGUID);
+                        StartLoopAliasesOptions.Add(aliasGUID);
                     }
                     else if (p.FindPropertyRelative("soundType").enumValueIndex == (int) SoundType.End)
                     {
-                        _endLoopAliasesOptions.Add(aliasGUID);
+                        EndLoopAliasesOptions.Add(aliasGUID);
                     }
                     else if (p.FindPropertyRelative("soundType").enumValueIndex == (int) SoundType.Surface)
                     {
-                        _surfaceAliasesOptions.Add(aliasGUID);
+                        SurfaceAliasesOptions.Add(aliasGUID);
                     }
                 }
             }
@@ -246,6 +259,7 @@ namespace Audio.Editor
                     {
                         currentProperty.InsertArrayElementAtIndex(currentProperty.arraySize);
                         ApplyAliaseDefaultValue(currentProperty.GetArrayElementAtIndex(currentProperty.arraySize-1));
+                        UpdateAliasesList();
                         
                         return;
                     }
@@ -359,7 +373,7 @@ namespace Audio.Editor
                 }
                 // We draw a sidebar for each file converted into SerializedObject
                 EditorGUILayout.BeginHorizontal();
-                if (GUILayout.Button($" All Count : {_aliases.Count}"))
+                if (GUILayout.Button($" All Count : {Aliases.Count}"))
                 {
                     showAll = true;
                 }
@@ -380,10 +394,10 @@ namespace Audio.Editor
         private void DrawRightPanel()
         {
             EditorGUILayout.BeginVertical();
-            _selected = EditorGUILayout.Popup("Sound", _selected, _aliasesOptions.GetListDisplayName().ToArray());
+            _selected = EditorGUILayout.Popup("Sound", _selected, AliasesOptions.GetListDisplayName().ToArray());
             if (GUILayout.Button("Play sound"))
             {
-                int aliaseGUID = _aliasesOptions[_selected];
+                int aliaseGUID = AliasesOptions[_selected];
                 AudioManager.PlaySoundAtPosition(aliaseGUID, Camera.main.transform.position);
                 this.ShowNotification(new GUIContent($"Sound {aliaseGUID} played"));
             }

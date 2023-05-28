@@ -20,14 +20,15 @@ MonoBehaviour:
     Tag: Audio Aliase/Player
     MixerGroup: {fileID: 0}
     audio:
-    - {fileID: 8300000, guid: 393ba8f64fb5d9148950e7b0b7172075, type: 3}
-    - {fileID: 8300000, guid: af5e486c55535494f937149b4c0e4c87, type: 3}
-    - {fileID: 8300000, guid: b4a61167f7e13464982a0d4f8344ee97, type: 3}
-    - {fileID: 8300000, guid: ca49055f8d033044fbc96a27ab3dbf27, type: 3}
-    - {fileID: 8300000, guid: 6205a605c11e41d4e80043d2cef4fb56, type: 3}
+    - {fileID: 8300000, guid: ed85a314572cb5b4e97a9800f2a365f7, type: 3}
+    - {fileID: 8300000, guid: f939a400665fd864d9861abe3abc96f1, type: 3}
+    - {fileID: 8300000, guid: e39880e481aa52b4a9ab56fe2a7cbe1b, type: 3}
+    - {fileID: 8300000, guid: 929f780f04ba9df429b7f7e6bd11ee2c, type: 3}
+    - {fileID: 8300000, guid: 93d16e6bfcb574644afe669ece26513b, type: 3}
+    - {fileID: 8300000, guid: f904387280ff72746b9168569efc5fbd, type: 3}
     soundType: 0
     randomizeClips: 1
-    Secondary: 0
+    Secondary: 1237006859
     bypassEffects: 0
     bypassListenerEffects: 0
     bypassReverbZones: 0
@@ -179,8 +180,7 @@ MonoBehaviour:
     customDuration: 0
     isInit: 0
     isPlaceholder: 1
-    audioPlayers:
-    - {fileID: 0}
+    audioPlayers: []
     UseSurfaceDetection: 1
     surfacesAlias:
     - surfaceName: MaterialType/concrete
@@ -356,3 +356,123 @@ MonoBehaviour:
     - surfaceName: MaterialType/water
       alias: 0
     guid: 1706060336
+  - name: player_footstep_impact
+    description: 
+    Tag: Audio Aliase/Player
+    MixerGroup: {fileID: 0}
+    audio:
+    - {fileID: 8300000, guid: 790e5d0371eba4e4d8bbbe68765d09ca, type: 3}
+    - {fileID: 8300000, guid: 9f9117586d7f14d4b86a666621ccc207, type: 3}
+    - {fileID: 8300000, guid: 5e7a077e7611fa248a6e3633a09eecea, type: 3}
+    - {fileID: 8300000, guid: c0f2e8abdc4240f4e8cc9065480f34f7, type: 3}
+    - {fileID: 8300000, guid: 4da76d92c5d9f454d8aa0f652681372e, type: 3}
+    - {fileID: 8300000, guid: b4f34d861df11064ca6337321da6e3cd, type: 3}
+    soundType: 0
+    randomizeClips: 1
+    Secondary: 1343800353
+    bypassEffects: 0
+    bypassListenerEffects: 0
+    bypassReverbZones: 0
+    priority: 0
+    volume: 0
+    minVolume: 0.8
+    maxVolume: 0.8
+    limitCount: 0
+    isLooping: 0
+    startAliase: 0
+    endAliase: 0
+    UseDelayLoop: 0
+    minDelayLoop: 0
+    maxDelayLoop: 0
+    minPitch: 1
+    maxPitch: 1.01
+    stereoPan: 0
+    spatialBlend: 0.776
+    reverbZoneMix: 1
+    dopplerLevel: 1
+    Spread: 1
+    MinDistance: 0
+    MaxDistance: 500.00006
+    CurveType: 0
+    distanceCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 0
+      m_PostInfinity: 0
+      m_RotationOrder: 0
+    Text: 
+    customDuration: 0
+    isInit: 0
+    isPlaceholder: 1
+    audioPlayers: []
+    UseSurfaceDetection: 0
+    surfacesAlias:
+    - surfaceName: MaterialType/concrete
+      alias: 0
+    - surfaceName: MaterialType/water
+      alias: 0
+    - surfaceName: MaterialType/wood
+      alias: 0
+    - surfaceName: MaterialType/grass
+      alias: 0
+    - surfaceName: MaterialType/Metal
+      alias: 0
+    guid: 1237006859
+  - name: player_footstep_cloth
+    description: 
+    Tag: Audio Aliase/Player
+    MixerGroup: {fileID: 0}
+    audio:
+    - {fileID: 8300000, guid: 63b88e8bae9f5924d948ac2f4035cf98, type: 3}
+    - {fileID: 8300000, guid: d1bcbadf8ecddd949bbed7d451e5b2e6, type: 3}
+    soundType: 0
+    randomizeClips: 1
+    Secondary: 0
+    bypassEffects: 0
+    bypassListenerEffects: 0
+    bypassReverbZones: 0
+    priority: 0
+    volume: 0
+    minVolume: 0.89683795
+    maxVolume: 1
+    limitCount: 0
+    isLooping: 0
+    startAliase: 0
+    endAliase: 0
+    UseDelayLoop: 0
+    minDelayLoop: 0
+    maxDelayLoop: 0
+    minPitch: 0.798419
+    maxPitch: 1.1878656
+    stereoPan: 0
+    spatialBlend: 0.936
+    reverbZoneMix: 1
+    dopplerLevel: 1
+    Spread: 1
+    MinDistance: 0
+    MaxDistance: 500
+    CurveType: 0
+    distanceCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 0
+      m_PostInfinity: 0
+      m_RotationOrder: 0
+    Text: 
+    customDuration: 0
+    isInit: 0
+    isPlaceholder: 1
+    audioPlayers: []
+    UseSurfaceDetection: 0
+    surfacesAlias:
+    - surfaceName: MaterialType/concrete
+      alias: 0
+    - surfaceName: MaterialType/water
+      alias: 0
+    - surfaceName: MaterialType/wood
+      alias: 0
+    - surfaceName: MaterialType/grass
+      alias: 0
+    - surfaceName: MaterialType/Metal
+      alias: 0
+    guid: 1343800353

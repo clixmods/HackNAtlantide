@@ -2,30 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PauseStateBehaviour : MonoBehaviour, IGameStateCallBack
+public class PauseStateBehaviour : GameStateBehaviour<PauseGameState>
 {
     private PauseGameState state;
     private float timeScaleBeforePause;
     [SerializeField] List<InputScriptableObject<bool>> inputsData;
     [SerializeField] List<bool> activeInputs;
-    [SerializeField] GameStateManager _gameStateManager;
-    private void OnEnable()
-    {
-        state = new PauseGameState();
+    protected override void OnPreRegisterApplyState()
+    { 
         RegisterInputs();
         timeScaleBeforePause = Time.timeScale;
-        _gameStateManager.RegisterCallback(this);
-        _gameStateManager.ApplyState(state);
     }
-    private void OnDisable()
+    protected override void OnPostUnRegisterRemoveState()
     {
-        _gameStateManager.RemoveState(state);
-        _gameStateManager.UnRegisterCallback(this);
         Time.timeScale = timeScaleBeforePause;
         ApplyInputs();
     }
 
-    public void OnApplyGameStateOverride(GameStateOverride stateOverride)
+    protected override void OnApplyGameStateOverrideImplement(GameStateOverride stateOverride)
     {
         Debug.Log("Update => " + stateOverride.isPaused);
     }

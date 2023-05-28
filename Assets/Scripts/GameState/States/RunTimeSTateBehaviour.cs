@@ -1,27 +1,10 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-public class RunTimeSTateBehaviour : MonoBehaviour,IGameStateCallBack
+public class RunTimeSTateBehaviour : GameStateBehaviour<RuntimeGameState>
 {
-    public UnityEvent ApplyGameStateOverride;
-    private RuntimeGameState state;
-    [SerializeField] GameStateManager _gameStateManager;
-    private void OnEnable()
-    {
-        state = new RuntimeGameState();
-
-        _gameStateManager.RegisterCallback(this);
-        _gameStateManager.ApplyState(state);
-    }
-    private void OnDisable()
-    {
-        _gameStateManager.RemoveState(state);
-        _gameStateManager.UnRegisterCallback(this);
+    protected override void OnApplyGameStateOverrideImplement(GameStateOverride stateOverride)
     
-    }
-
-    public void OnApplyGameStateOverride(GameStateOverride stateOverride)
-    {
-
-    }
+      
+    
 }

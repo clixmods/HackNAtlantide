@@ -11,6 +11,8 @@ namespace Plugins.AnimationClipEventEditor.Editor
     {
         private static AnimationClip[] _animationClips;
         private static bool[] _showButtons;
+        private static bool[] _showButtonsModels;
+        private static Object[] _sourceModel;
         [MenuItem("Tools/Animation Event Editor")]
         private static void ShowWindow()
         {
@@ -24,6 +26,20 @@ namespace Plugins.AnimationClipEventEditor.Editor
         {
             _animationClips = GetAllInstances();
             _showButtons = new bool[_animationClips.Length];
+
+            int countAnimFromModel = 0;
+            var guidsFBX = AssetDatabase.FindAssets("t:Model", new[] {"Assets"});
+            ;
+            foreach (var guid in guidsFBX)
+            {
+                var asset = AssetImporter.GetAtPath(AssetDatabase.GUIDToAssetPath(guid));
+                if (asset is ModelImporter importer)
+                {
+                    countAnimFromModel += importer.clipAnimations.Length;
+                }
+            }
+
+            _showButtonsModels = new bool[countAnimFromModel];
         }
 
         private void OnGUI()
@@ -32,8 +48,8 @@ namespace Plugins.AnimationClipEventEditor.Editor
             {
                 GetAnimsWithEventAndGenerateButton();
             }
-           
-           
+
+
             for (int i = 0; i < _animationClips.Length; i++)
             {
                 var animationCLip = _animationClips[i];
@@ -51,72 +67,112 @@ namespace Plugins.AnimationClipEventEditor.Editor
                                 using (new GUILayout.HorizontalScope())
                                 {
                                     AnimationEvent animationEvent = events[j];
-                                    EditorGUILayout.LabelField(
-                                        $"Frame : {animationEvent.time * animationCLip.frameRate}");
-                                    if (events[j].functionName.Contains("Alias"))
+                                    if (animationEvent != null)
                                     {
-                                        events[j].intParameter =
-                                            guidAliases[DrawPopupAlias(animationCLip.events[j].intParameter)];
+                                        EditorGUILayout.LabelField(
+                                            $"Frame : {animationEvent.time * animationCLip.frameRate}");
+                                        if (animationEvent.functionName.Contains("Alias"))
+                                        {
+                                            animationEvent.intParameter = guidAliases[DrawPopupAlias(animationEvent.intParameter)];
+                                        }
                                     }
+                                   
                                 }
                             }
                         }
 
                         AnimationUtility.SetAnimationEvents(animationCLip, events);
+
                         EditorGUI.indentLevel--;
                     }
                 }
             }
-            
+            int indexButton = -1;
+            var guidsFBX = AssetDatabase.FindAssets("t:Model", new[] {"Assets"});
+            _sourceModel = new Object[guidsFBX.Length];
+            for(int index = 0 ; index < guidsFBX.Length; index++)
+            {
+                string guid = guidsFBX[index];
+                var asset = AssetImporter.GetAtPath(AssetDatabase.GUIDToAssetPath(guid));
+                if (asset is ModelImporter importer)
+                {
+                    EditorGUILayout.Separator();
+                    EditorGUILayout.LabelField(asset.name);
+                    EditorGUI.indentLevel++;
+                   
+                    var clipAnimations = importer.clipAnimations;
+                   
+                    for (int i = 0; i < clipAnimations.Length; i++)
+                    {
+                        var clipAnimation = clipAnimations[i];
+                        using (new GUILayout.VerticalScope())
+                        {
+                            indexButton++;
+                            
+                            _showButtonsModels[indexButton] = EditorGUILayout.Foldout(_showButtonsModels[indexButton], clipAnimation.name);
+                            if (_showButtonsModels[indexButton])
+                            {
+                                EditorGUI.indentLevel++;
+                                using (new GUILayout.VerticalScope())
+                                {
+                                    for (int j = 0; j < clipAnimation.events.Length; j++)
+                                    {
+                                        AnimationEvent animationEvent = clipAnimation.events[j];
+                                        if (animationEvent != null)
+                                        {
+                                            using (new GUILayout.HorizontalScope())
+                                            {
+                                                EditorGUI.BeginChangeCheck();
+                                                EditorGUILayout.LabelField(
+                                                    $"Frame : {animationEvent.time}");
+                                                if (animationEvent.functionName.Contains("Alias"))
+                                                {
+                                                    animationEvent.intParameter =
+                                                        guidAliases[DrawPopupAlias(animationEvent.intParameter)];
+                                                }
+
+                                                // End the code block and update the label if a change occurred
+                                                if (EditorGUI.EndChangeCheck())
+                                                {
+                                                    importer.clipAnimations = clipAnimations;
+                                                    importer.SaveAndReimport();
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                EditorGUI.indentLevel--;
+                            }
+                        }
+                    }
+                    EditorGUI.indentLevel--;
+                }
+            }
         }
+
         static AnimationClip[] GetAllInstances()
         {
-            string[] guids = AssetDatabase.FindAssets("t:" + typeof(AnimationClip).Name);  //FindAssets uses tags check documentation for more info
-            
-            var guidsFBX = AssetDatabase.FindAssets("mesh");
-            List<AnimationClip> animationClipsFromFBX = new List<AnimationClip>();
-            for (int i = 0; i < guidsFBX.Length; i++)
-            {
-                string path = AssetDatabase.GUIDToAssetPath(guidsFBX[i]);
-                var fbxGameObject = AssetDatabase.LoadAssetAtPath<GameObject>(path);
-                if (fbxGameObject != null)
-                {
-                    AnimationClip[] animations = AnimationUtility.GetAnimationClips(fbxGameObject);
-                    for (int j = 0; j < animations.Length; j++)
-                    {
-                        animationClipsFromFBX.Add(animations[i]);
-                    }
-                }
-                
-            }
-            
-            
-            
-            
+            string[]
+                guids = AssetDatabase.FindAssets("t:" + typeof(AnimationClip)
+                    .Name); //FindAssets uses tags check documentation for more info
             int count = guids.Length;
-            AnimationClip[] a = new AnimationClip[count+animationClipsFromFBX.Count];
-            for (int i = 0; i < count; i++)         //probably could get optimized 
+            AnimationClip[] a = new AnimationClip[count];
+            for (int i = 0; i < count; i++) //probably could get optimized 
             {
                 string path = AssetDatabase.GUIDToAssetPath(guids[i]);
                 a[i] = AssetDatabase.LoadAssetAtPath<AnimationClip>(path);
             }
 
-            for (int i = count; i < count+animationClipsFromFBX.Count; i++)
-            {
-                a[i] = animationClipsFromFBX[i-count];
-            }
-            
             return a;
-
         }
-        
+
         private List<string> nameScenes;
         private List<int> guidAliases;
         private AliasesScriptableObject[] _aliasesArray;
-        
-        public int DrawPopupAlias( int intValue)
+
+        public int DrawPopupAlias(int intValue)
         {
-            using (new GUILayout.HorizontalScope(GUILayout.MinWidth(10),GUILayout.MaxWidth(350)) ) 
+            using (new GUILayout.HorizontalScope(GUILayout.MinWidth(10), GUILayout.MaxWidth(350)))
             {
                 if (_aliasesArray == null || _aliasesArray.Length == 0)
                 {
@@ -143,26 +199,29 @@ namespace Plugins.AnimationClipEventEditor.Editor
                     AliasesEditorWindow.Open();
                 }
 
-                int index = EditorGUILayout.Popup("Alias to Play", AliasUtilityEditor.GetIndexFrom(intValue, guidAliases),
+                int index = EditorGUILayout.Popup("Alias to Play",
+                    AliasUtilityEditor.GetIndexFrom(intValue, guidAliases),
                     nameScenes.ToArray());
                 return index;
             }
         }
-        
-        
+
+
         private static T[] GetAllInstances<T>() where T : ScriptableObject
         {
-            string[] guids = AssetDatabase.FindAssets("t:" + typeof(T).Name);  //FindAssets uses tags check documentation for more info
+            string[]
+                guids = AssetDatabase.FindAssets("t:" +
+                                                 typeof(T)
+                                                     .Name); //FindAssets uses tags check documentation for more info
             int count = guids.Length;
             T[] a = new T[count];
-            for (int i = 0; i < count; i++)         //probably could get optimized 
+            for (int i = 0; i < count; i++) //probably could get optimized 
             {
                 string path = AssetDatabase.GUIDToAssetPath(guids[i]);
                 a[i] = AssetDatabase.LoadAssetAtPath<T>(path);
             }
 
             return a;
-
         }
     }
 }
