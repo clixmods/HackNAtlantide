@@ -9,22 +9,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b180f2b187a4f54c9064e0871acf6ae, type: 3}
-  m_Name: player_footstep_wood
+  m_Script: {fileID: 11500000, guid: acfaebaa19219ea448a0f03582848d39, type: 3}
+  m_Name: player_ondeath
   m_EditorClassIdentifier: 
-  aliasName: player_footstep_wood
+  aliasName: player_ondeath
   description: 
-  Tag: Audio Aliase/Player
+  Tag: 
   MixerGroup: {fileID: 0}
   audio:
-  - {fileID: 8300000, guid: 20bd13ca6d97c054e9a4cd41537d8a13, type: 3}
-  - {fileID: 8300000, guid: a1e945a23c15c974cb74e08592832cb3, type: 3}
-  - {fileID: 8300000, guid: d298cf69182d8834490636190a41007d, type: 3}
-  - {fileID: 8300000, guid: ac1ab3bc5b33add44a3add667b46b78c, type: 3}
-  - {fileID: 8300000, guid: 4249bab44748dba4593ea6727b061508, type: 3}
-  - {fileID: 8300000, guid: 478d6fb12da948b4d90e3102e6ac25a8, type: 3}
-  soundType: 3
-  randomizeClips: 1
+  - {fileID: 8300000, guid: b3242f55973f30a4eb6b85da7454dd84, type: 3}
+  soundType: 0
+  randomizeClips: 0
   Secondary: {fileID: 0}
   bypassEffects: 0
   bypassListenerEffects: 0
@@ -43,7 +38,7 @@ MonoBehaviour:
   minPitch: 1
   maxPitch: 1.01
   stereoPan: 0
-  spatialBlend: 0.908
+  spatialBlend: 0
   reverbZoneMix: 1
   dopplerLevel: 1
   Spread: 1
@@ -61,10 +56,6 @@ MonoBehaviour:
   isInit: 0
   isPlaceholder: 1
   audioPlayers: []
-  UseSurfaceDetection: 1
-  surfacesAlias:
-  - surfaceName: MaterialType/concrete
-    alias: {fileID: 0}
-  - surfaceName: MaterialType/water
-    alias: {fileID: 0}
-  guid: 2079912336
+  UseSurfaceDetection: 0
+  surfacesAlias: []
+  guid: 335345389

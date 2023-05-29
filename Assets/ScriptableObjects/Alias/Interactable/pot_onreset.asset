@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: acfaebaa19219ea448a0f03582848d39, type: 3}
-  m_Name: player_ondeath
+  m_Name: pot_onreset
   m_EditorClassIdentifier: 
-  aliasName: player_ondeath
+  aliasName: 
   description: 
   Tag: 
   MixerGroup: {fileID: 0}
@@ -24,7 +24,7 @@ MonoBehaviour:
   bypassListenerEffects: 0
   bypassReverbZones: 0
   priority: 0
-  volume: 0
+  volume: 0.8
   minVolume: 0.8
   maxVolume: 0.8
   limitCount: 0
@@ -41,15 +41,33 @@ MonoBehaviour:
   reverbZoneMix: 1
   dopplerLevel: 1
   Spread: 1
-  MinDistance: 0
+  MinDistance: 1
   MaxDistance: 500
   CurveType: 0
   distanceCurve:
     serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 0
-    m_PostInfinity: 0
-    m_RotationOrder: 0
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   Text: 
   customDuration: 0
   isInit: 0
@@ -57,4 +75,4 @@ MonoBehaviour:
   audioPlayers: []
   UseSurfaceDetection: 0
   surfacesAlias: []
-  guid: 335345389
+  guid: -1243045219

@@ -9,22 +9,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b180f2b187a4f54c9064e0871acf6ae, type: 3}
-  m_Name: player_footstep_grass
+  m_Script: {fileID: 11500000, guid: acfaebaa19219ea448a0f03582848d39, type: 3}
+  m_Name: small_golem_ondeath
   m_EditorClassIdentifier: 
-  aliasName: player_footstep_grass
+  aliasName: small_golem_ondeath
   description: 
-  Tag: Audio Aliase/Player
+  Tag: 
   MixerGroup: {fileID: 0}
   audio:
-  - {fileID: 8300000, guid: 6a73bdf92bd56f04a9c86503ea093d71, type: 3}
-  - {fileID: 8300000, guid: b980d994572d1704f924fb10ccbe430f, type: 3}
-  - {fileID: 8300000, guid: b852c2db3a520154091c5b4eda92f995, type: 3}
-  - {fileID: 8300000, guid: e0ee25ef319aee84fb37782040acb529, type: 3}
-  - {fileID: 8300000, guid: 2c9b7c5e2beabb74e89cde7215deb40a, type: 3}
-  - {fileID: 8300000, guid: c47ff8e0398f7494793757d164e70724, type: 3}
-  - {fileID: 8300000, guid: fec21bc3cff2dd54fbbda98c81b32571, type: 3}
-  soundType: 3
+  - {fileID: 8300000, guid: 927844b1725abaf4ca2fb100e598a2f5, type: 3}
+  soundType: 0
   randomizeClips: 1
   Secondary: {fileID: 0}
   bypassEffects: 0
@@ -32,7 +26,7 @@ MonoBehaviour:
   bypassReverbZones: 0
   priority: 0
   volume: 0
-  minVolume: 0.91138613
+  minVolume: 0.9274193
   maxVolume: 1
   limitCount: 0
   isLooping: 0
@@ -41,10 +35,10 @@ MonoBehaviour:
   UseDelayLoop: 0
   minDelayLoop: 0
   maxDelayLoop: 0
-  minPitch: 1
-  maxPitch: 1.01
+  minPitch: 0.87903225
+  maxPitch: 1.2035484
   stereoPan: 0
-  spatialBlend: 0.956
+  spatialBlend: 0
   reverbZoneMix: 1
   dopplerLevel: 1
   Spread: 1
@@ -62,10 +56,6 @@ MonoBehaviour:
   isInit: 0
   isPlaceholder: 1
   audioPlayers: []
-  UseSurfaceDetection: 1
-  surfacesAlias:
-  - surfaceName: MaterialType/concrete
-    alias: {fileID: 0}
-  - surfaceName: MaterialType/water
-    alias: {fileID: 0}
-  guid: -2066344411
+  UseSurfaceDetection: 0
+  surfacesAlias: []
+  guid: 1206223604

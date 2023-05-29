@@ -10,18 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1b180f2b187a4f54c9064e0871acf6ae, type: 3}
-  m_Name: player_footstep_metal
+  m_Name: player_footstep_grass
   m_EditorClassIdentifier: 
-  aliasName: player_footstep_metal
+  aliasName: player_footstep_grass
   description: 
   Tag: Audio Aliase/Player
   MixerGroup: {fileID: 0}
   audio:
-  - {fileID: 8300000, guid: e793ecbe810683746a699f4c1f4e8867, type: 3}
-  - {fileID: 8300000, guid: 4277876b17e700f42a28fbf648c6a627, type: 3}
-  - {fileID: 8300000, guid: 742ae2267e53e7a478df223964e835d9, type: 3}
-  - {fileID: 8300000, guid: 26f84c19fb4ae1a47aaf8c9cefdaf5ba, type: 3}
-  - {fileID: 8300000, guid: b3da62bafbcc35946a249e5d5c3aa1ba, type: 3}
+  - {fileID: 8300000, guid: 6a73bdf92bd56f04a9c86503ea093d71, type: 3}
+  - {fileID: 8300000, guid: b980d994572d1704f924fb10ccbe430f, type: 3}
+  - {fileID: 8300000, guid: b852c2db3a520154091c5b4eda92f995, type: 3}
+  - {fileID: 8300000, guid: e0ee25ef319aee84fb37782040acb529, type: 3}
+  - {fileID: 8300000, guid: 2c9b7c5e2beabb74e89cde7215deb40a, type: 3}
+  - {fileID: 8300000, guid: c47ff8e0398f7494793757d164e70724, type: 3}
+  - {fileID: 8300000, guid: fec21bc3cff2dd54fbbda98c81b32571, type: 3}
   soundType: 3
   randomizeClips: 1
   Secondary: {fileID: 0}
@@ -30,8 +32,8 @@ MonoBehaviour:
   bypassReverbZones: 0
   priority: 0
   volume: 0
-  minVolume: 0.8
-  maxVolume: 0.8
+  minVolume: 0.91138613
+  maxVolume: 1
   limitCount: 0
   isLooping: 0
   startAliase: {fileID: 0}
@@ -42,7 +44,7 @@ MonoBehaviour:
   minPitch: 1
   maxPitch: 1.01
   stereoPan: 0
-  spatialBlend: 0.919
+  spatialBlend: 0.956
   reverbZoneMix: 1
   dopplerLevel: 1
   Spread: 1
@@ -60,10 +62,10 @@ MonoBehaviour:
   isInit: 0
   isPlaceholder: 1
   audioPlayers: []
-  UseSurfaceDetection: 1
+  UseSurfaceDetection: 0
   surfacesAlias:
   - surfaceName: MaterialType/concrete
     alias: {fileID: 0}
   - surfaceName: MaterialType/water
     alias: {fileID: 0}
-  guid: 1706060336
+  guid: -2066344411
