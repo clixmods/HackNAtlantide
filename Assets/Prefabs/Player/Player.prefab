@@ -9805,10 +9805,10 @@ MonoBehaviour:
   OnDamage:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3254360785627689518}
-        m_TargetAssemblyTypeName: Cinemachine.CinemachineImpulseSource, Cinemachine
-        m_MethodName: GenerateImpulseWithForce
-        m_Mode: 4
+      - m_Target: {fileID: 11400000, guid: c6a189389b0d1854fb89786ebef2cd83, type: 2}
+        m_TargetAssemblyTypeName: CameraShakeScriptableObject, Assembly-CSharp
+        m_MethodName: Shake
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -9883,10 +9883,10 @@ MonoBehaviour:
   OnAttackHit:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3254360785627689518}
-        m_TargetAssemblyTypeName: Cinemachine.CinemachineImpulseSource, Cinemachine
-        m_MethodName: GenerateImpulseWithForce
-        m_Mode: 4
+      - m_Target: {fileID: 11400000, guid: 4004511b6686d7c4dbbed19355dff4e8, type: 2}
+        m_TargetAssemblyTypeName: CameraShakeScriptableObject, Assembly-CSharp
+        m_MethodName: Shake
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

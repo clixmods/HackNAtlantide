@@ -1,4 +1,5 @@
 using Attack;
+using Cinemachine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -32,6 +33,7 @@ public class MediumGolemJumpAttack : EnemyAttackBehaviour
     [SerializeField] ParticleSystem ExplosionFx;
     SphereCollider explosionCollider;
     [SerializeField] GameObject groundCrackDecal;
+    [SerializeField] CameraShakeScriptableObject attackLandingShake;
 
     public override void Attack()
     {
@@ -85,10 +87,12 @@ public class MediumGolemJumpAttack : EnemyAttackBehaviour
             yield return null;
         }
         _enemyBehaviour.Agent.enabled = true;
+        attackLandingShake.ShakeByDistance(_enemyBehaviour.DistanceWithPlayer/5f);
 
         //launchExplosion
         StartCoroutine(ExplosionAttack());
     }
+
     IEnumerator ExplosionAttack()
     {
         Instantiate(groundCrackDecal,transform.position+Vector3.up*2,Quaternion.identity);
