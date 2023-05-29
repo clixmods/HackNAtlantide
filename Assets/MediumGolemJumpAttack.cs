@@ -49,7 +49,11 @@ public class MediumGolemJumpAttack : EnemyAttackBehaviour
         explosionCollider = explosionObject.GetComponent<SphereCollider>();
         explosionCollider.radius = 0f;
         ExplosionFx.transform.localScale = Vector3.zero;
+
+        //listenToEventExplosionDamage
+        _attackColliderExplosion.OnCollideWithIDamageable += AttackColliderOnOnCollideWithIDamageableExplosion;
     }
+    
     IEnumerator AttackBehaviour()
     {
         // joue le jump anim et attend le bon moment pour sauter
@@ -96,11 +100,9 @@ public class MediumGolemJumpAttack : EnemyAttackBehaviour
     IEnumerator ExplosionAttack()
     {
         Instantiate(groundCrackDecal,transform.position+Vector3.up*2,Quaternion.identity);
-        _attackColliderExplosion.ResetListDamageableHitted();
+        _attackColliderExplosion.enabled = true;
         OnExplosionStart?.Invoke();
 
-        //listenToEventExplosionDamage
-        _attackColliderExplosion.OnCollideWithIDamageable += AttackColliderOnOnCollideWithIDamageableExplosion;
         ExplosionFx.Play();
         
         float time=0f;
@@ -113,7 +115,8 @@ public class MediumGolemJumpAttack : EnemyAttackBehaviour
         }
         explosionCollider.radius = 0f;
         ExplosionFx.transform.localScale = Vector3.zero;
-        _attackColliderExplosion.OnCollideWithIDamageable -= AttackColliderOnOnCollideWithIDamageableExplosion;
+
+        _attackColliderExplosion.enabled = false;
     }
 
     private void AttackColliderOnOnCollideWithIDamageableExplosion(object sender, EventArgs eventArgs)

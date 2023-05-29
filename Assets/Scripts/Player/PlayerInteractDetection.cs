@@ -60,7 +60,6 @@ public class PlayerInteractDetection : MonoBehaviour
  
     void InteractInput(bool value)
     {
-        Debug.Log("Value Input "+value);
         // if (_currentInteractable == null)
         // {
         //     DetectInteract();

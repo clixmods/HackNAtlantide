@@ -58,7 +58,16 @@ public class EnemyBehaviour : MonoBehaviour
     #endregion
     private void Update()
     {
-        _distanceWithPlayer = Vector3.Distance(transform.position, PlayerInstanceScriptableObject.Player.transform.position);
+        if(_isAwake && Agent.enabled)
+        {
+            NavMeshPath pathToPlayer = new NavMeshPath();
+            _agent.CalculatePath(PlayerInstanceScriptableObject.Player.transform.position, pathToPlayer);
+            _distanceWithPlayer = GetPathLength(pathToPlayer);
+        }
+        else
+        {
+            _distanceWithPlayer = float.MaxValue;
+        }
         if(_isAwake)
         {
             Animator.SetFloat("Walk_Speed", _agent.velocity.magnitude / _agent.speed);
@@ -173,5 +182,23 @@ public class EnemyBehaviour : MonoBehaviour
         yield return new WaitForSeconds(2f);
         _isAwake = true;
         StartCoroutine(MoveToPlayer());
+    }
+    public float GetPathLength(NavMeshPath path)
+    {
+        float lng = 0.0f;
+
+        if ((path.status ==NavMeshPathStatus.PathComplete))
+        {
+            for (int i = 1; i < path.corners.Length; ++i)
+            {
+                lng += Vector3.Distance(path.corners[i - 1], path.corners[i]);
+            }
+        }
+        else
+        {
+            lng = float.MaxValue;
+        }
+
+        return lng;
     }
 }

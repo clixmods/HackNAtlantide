@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Attack;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Serialization;
 
 public class AttackCollider : MonoBehaviour , IAttackCollider
@@ -13,6 +14,7 @@ public class AttackCollider : MonoBehaviour , IAttackCollider
         _damageableHitted = new List<IDamageable>();
     }
     public event EventHandler OnCollideWithIDamageable;
+    public UnityEvent OnHitEvent;
     AnimationEvent _damageActiveAnimatorEvent;
     
     [SerializeField] private bool sendEventOnEnter = true;
@@ -20,8 +22,6 @@ public class AttackCollider : MonoBehaviour , IAttackCollider
     [SerializeField] private bool sendEventOnExit = false;
 
     [SerializeField] private LayerMask interactWithLayers;
-
-    [SerializeField] ParticleSystem _hitVfx;
     private void OnEnable()
     {
         _damageableHitted = new List<IDamageable>();
@@ -37,9 +37,11 @@ public class AttackCollider : MonoBehaviour , IAttackCollider
         if (_damageableHitted.Contains(damageable)) return;
         
         _damageableHitted.Add(damageable);
+        OnHitEvent?.Invoke();
         OnCollideWithIDamageable?.Invoke(this, new AttackDamageableEventArgs()
         {
             idamageable = damageable
+
         });
     }
     private void OnTriggerEnter(Collider other)
@@ -51,7 +53,6 @@ public class AttackCollider : MonoBehaviour , IAttackCollider
         if(other.TryGetComponent<IDamageable>(out var damageable))
         {
             OnHit(damageable);
-            _hitVfx.Play();
         }
     }
     private void OnTriggerStay(Collider other)
@@ -62,7 +63,6 @@ public class AttackCollider : MonoBehaviour , IAttackCollider
         if(other.TryGetComponent<IDamageable>(out var damageable))
         {
             OnHit(damageable);
-            _hitVfx.Play();
         }
     }
     private void OnTriggerExit(Collider other)

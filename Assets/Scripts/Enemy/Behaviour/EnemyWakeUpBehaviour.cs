@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.Events;
 
 public class EnemyWakeUpBehaviour : MonoBehaviour
@@ -41,8 +42,10 @@ public class EnemyWakeUpBehaviour : MonoBehaviour
         }
         else
         {
+            NavMeshPath pathToPlayer = new NavMeshPath();
+            _enemyBehaviour.Agent.CalculatePath(PlayerInstanceScriptableObject.Player.transform.position, pathToPlayer);
             //attends que le joueur soit à une distance minimale et qu'il ne soit pas réveiller
-            if (_wakeUpByDistance && _enemyBehaviour.DistanceWithPlayer < _distanceToWakeUp && !_isAwake)
+            if (_wakeUpByDistance && _enemyBehaviour.GetPathLength(pathToPlayer) < _distanceToWakeUp && !_isAwake)
             {
                 WakeUp();
             }
@@ -76,5 +79,4 @@ public class EnemyWakeUpBehaviour : MonoBehaviour
         OnSleep?.Invoke();
         _allEnemyAwake.RemoveUnique(this.gameObject);
     }
-
 }

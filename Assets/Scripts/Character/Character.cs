@@ -69,18 +69,21 @@ public class Character : MonoBehaviour,  IDamageable
         {
             return;
         }
-            
-        
+
         health -= damage;
-        AttackFeedback();
-        OnDamage?.Invoke(this,new DoDamageEventArgs
+        if(damage > 0)
+        {
+            AttackFeedback();
+            OnDamage?.Invoke(this, new DoDamageEventArgs
             {
                 damage = damage,
                 attackPosition = attackLocation,
                 attacker = this
             }
-            
+
             );
+        }
+        
         
         if(health <= 0f)
         {

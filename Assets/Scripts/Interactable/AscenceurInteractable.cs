@@ -19,7 +19,6 @@ public class AscenceurInteractable : Interactable
     {
         _collider = GetComponent<BoxCollider>();
         distance = Mathf.Abs(_endPos.position.y - _startPos.position.y);
-        Debug.Log(distance);
 
     }
     private void Update()
@@ -36,7 +35,6 @@ public class AscenceurInteractable : Interactable
 
 
                     totaluse += cost;
-                    Debug.Log(totaluse);
                 }
             }
             else

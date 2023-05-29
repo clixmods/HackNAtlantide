@@ -221,6 +221,8 @@ public class GameStateManager : MonoBehaviour
     private void Start()
     {
         RefreshState();
+        //Add runtimestatelater cause of orderexecutio
+        StartCoroutine(RunTimeState());
     }
     private void OnEnable()
     {
@@ -321,5 +323,10 @@ public class GameStateManager : MonoBehaviour
         }
             
         
+    }
+    IEnumerator RunTimeState()
+    {
+        yield return new WaitForSeconds(0.5f);
+        runTimeStateObject.SetActive(true);
     }
 }

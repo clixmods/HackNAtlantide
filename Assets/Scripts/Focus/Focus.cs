@@ -237,7 +237,6 @@ public class Focus : MonoBehaviour
         Vector3 inputDirection = inputValue.x * camRightOnPlane + inputValue.y * camForwardOnPlane;
 
         Vector3 playerPos = PlayerInstanceScriptableObject.Player.transform.position;
-        Debug.Log(inputValue);
         int index = 0;
         float closestdot = -2;
         for(int i = 0; i < _FocusableAvailable.Count; i++)
