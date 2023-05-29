@@ -228,7 +228,11 @@ namespace AudioAliase
         {
             foreach (AudioPlayer aS in Instance._audioSource)
             {
-                aS.Source.UnPause();
+                if (aS.Source != null)
+                {
+                    aS.Source.UnPause();
+                }
+             
             }
         }
         private static bool IsValidAliase()
