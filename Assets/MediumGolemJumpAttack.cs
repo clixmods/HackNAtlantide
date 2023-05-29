@@ -31,6 +31,7 @@ public class MediumGolemJumpAttack : EnemyAttackBehaviour
     [SerializeField] private AttackCollider _attackColliderExplosion;
     [SerializeField] ParticleSystem ExplosionFx;
     SphereCollider explosionCollider;
+    [SerializeField] GameObject groundCrackDecal;
 
     public override void Attack()
     {
@@ -90,6 +91,7 @@ public class MediumGolemJumpAttack : EnemyAttackBehaviour
     }
     IEnumerator ExplosionAttack()
     {
+        Instantiate(groundCrackDecal,transform.position+Vector3.up*2,Quaternion.identity);
         _attackColliderExplosion.ResetListDamageableHitted();
         OnExplosionStart?.Invoke();
 
