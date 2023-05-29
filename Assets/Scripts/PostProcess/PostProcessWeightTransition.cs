@@ -27,7 +27,11 @@ public class PostProcessWeightTransition : MonoBehaviour
         if( !_isTransitioning)
             StartCoroutine(WeightTransition());
     }
-    
+    public void SetWeightVolume(float value, float timeToTransit)
+    {
+        timeTransition = timeToTransit;
+        SetWeightVolume(value);
+    }
     IEnumerator WeightTransition()
     {
         _isTransitioning = true;
@@ -41,5 +45,7 @@ public class PostProcessWeightTransition : MonoBehaviour
         }
         _isTransitioning = false;
     }
+
+    
 
 }

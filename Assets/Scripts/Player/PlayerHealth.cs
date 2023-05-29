@@ -67,7 +67,7 @@ public class PlayerHealth : Character
         if(_movementState.MovementState != MovementState.dashing && !_isInvincible)
         {
             base.DoDamage(damage,  attackLocation);
-            StartCoroutine(PostProcessHit());
+            StartCoroutine(Hit());
         }
         
     }
@@ -79,15 +79,15 @@ public class PlayerHealth : Character
     }
 
 
-    IEnumerator PostProcessHit()
+    IEnumerator Hit()
     {
-        _postProcessWeightTransition.SetWeightVolume(1);
+        _postProcessWeightTransition.SetWeightVolume(1,0.1f);
         float timescale = GameStateManager.Instance.GameStateOverride.timeScale;
         _isInvincible = true;
         Time.timeScale = 0.2f;
         yield return new WaitForSecondsRealtime(0.15f);
         Time.timeScale = timescale;
-        _postProcessWeightTransition.SetWeightVolume(0);
+        _postProcessWeightTransition.SetWeightVolume(0,0.1f);
         yield return new WaitForSecondsRealtime(0.15f);
         _isInvincible = false;
     }
