@@ -16,7 +16,7 @@ namespace Audio.Editor
         protected SerializedProperty currentElemFromArraySelected;
         protected bool showAll = false;
 
-        protected const string AliasesPropertyName = "aliases";
+        protected const string AliasesPropertyName = "AliasesSubAsset";
         protected const string AliasesTagCategoryName = "Audio Aliase/";
         
         protected void DrawSidebar(SerializedObject prop)

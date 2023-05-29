@@ -122,6 +122,20 @@ namespace Audio.Editor
 
             }
         }
+        static T[] GetAllInstances<T>() where T : ScriptableObject
+        {
+            string[] guids = AssetDatabase.FindAssets("t:" + typeof(T).Name);  //FindAssets uses tags check documentation for more info
+            int count = guids.Length;
+            T[] a = new T[count];
+            for (int i = 0; i < count; i++)         //probably could get optimized 
+            {
+                string path = AssetDatabase.GUIDToAssetPath(guids[i]);
+                a[i] = AssetDatabase.LoadAssetAtPath<T>(path);
+            }
+
+            return a;
+
+        }
         void UpdateAliasesFileList()
         {
             serializedObject = new List<SerializedObject>();
@@ -181,48 +195,35 @@ namespace Audio.Editor
             var listoof = GetAllInstances<AliasesScriptableObject>();
             foreach (var aliases in listoof)
             {
-                foreach (var alias in aliases.aliases)
+                foreach (var alias in aliases.AliasesSubAsset)
                 {
                     Dictionary[alias.GUID] = alias;
                 }
             }
            
-             static T[] GetAllInstances<T>() where T : ScriptableObject
-            {
-                string[] guids = AssetDatabase.FindAssets("t:" + typeof(T).Name);  //FindAssets uses tags check documentation for more info
-                int count = guids.Length;
-                T[] a = new T[count];
-                for (int i = 0; i < count; i++)         //probably could get optimized 
-                {
-                    string path = AssetDatabase.GUIDToAssetPath(guids[i]);
-                    a[i] = AssetDatabase.LoadAssetAtPath<T>(path);
-                }
-
-                return a;
-
-            }
+         
             
             foreach (SerializedObject o in serializedObject)
             {
-                var aliasesListProp = o.FindProperty(AliasesPropertyName);
+                var aliasesListProp =  o.FindProperty(AliasesPropertyName);
                 
                 foreach (SerializedProperty p in aliasesListProp)
                 {
-                    var aliasGUID = p.FindPropertyRelative("guid").intValue;
+                    var aliasGUID = p.serializedObject.FindProperty("guid").intValue;
                     Aliases.Add(aliasGUID);
-                    if (p.FindPropertyRelative("soundType").enumValueIndex == (int) SoundType.Root)
+                    if (p.serializedObject.FindProperty("soundType").enumValueIndex == (int) SoundType.Root)
                     {
                         AliasesOptions.Add(aliasGUID);
                     }
-                    if (p.FindPropertyRelative("soundType").enumValueIndex == (int) SoundType.Start)
+                    if (p.serializedObject.FindProperty("soundType").enumValueIndex == (int) SoundType.Start)
                     {
                         StartLoopAliasesOptions.Add(aliasGUID);
                     }
-                    else if (p.FindPropertyRelative("soundType").enumValueIndex == (int) SoundType.End)
+                    else if (p.serializedObject.FindProperty("soundType").enumValueIndex == (int) SoundType.End)
                     {
                         EndLoopAliasesOptions.Add(aliasGUID);
                     }
-                    else if (p.FindPropertyRelative("soundType").enumValueIndex == (int) SoundType.Surface)
+                    else if (p.serializedObject.FindProperty("soundType").enumValueIndex == (int) SoundType.Surface)
                     {
                         SurfaceAliasesOptions.Add(aliasGUID);
                     }
@@ -275,7 +276,7 @@ namespace Audio.Editor
 
         private void ApplyAliaseDefaultValue(SerializedProperty serializedProperty)
         {
-            serializedProperty.FindPropertyRelative("name").stringValue = "NewAliase"; 
+            serializedProperty.FindPropertyRelative("aliasName").stringValue = "NewAliase"; 
             serializedProperty.FindPropertyRelative("minPitch").floatValue = 1;
             serializedProperty.FindPropertyRelative("maxPitch").floatValue = 1.01f;
             serializedProperty.FindPropertyRelative("MinDistance").floatValue = 0;
@@ -303,7 +304,7 @@ namespace Audio.Editor
                if (currentElemFromArraySelected == null)
                    continue;
                
-                if ( !String.IsNullOrEmpty(_searchValue) && !currentElemFromArraySelected.FindPropertyRelative("name").stringValue.Contains(_searchValue))
+                if ( !String.IsNullOrEmpty(_searchValue) && !currentElemFromArraySelected.FindPropertyRelative("aliasName").stringValue.Contains(_searchValue))
                 {
                     continue;
                 }

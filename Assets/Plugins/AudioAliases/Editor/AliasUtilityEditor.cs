@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using AudioAliase;
+using UnityEngine;
 
 namespace Audio.Editor
 {
@@ -43,6 +44,11 @@ namespace Audio.Editor
         
         public static int GetIndexFrom(int guid, List<int> array)
         {
+            if (array == null)
+            {
+                Debug.LogError("Array is not defined");
+                return -1;
+            }
             int length = array.Count;
             if (guid == 0)
                 return 0;

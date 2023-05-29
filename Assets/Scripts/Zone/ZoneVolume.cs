@@ -90,7 +90,7 @@
 //         GameObject go = new GameObject("Zone Volume");
 //         GameObjectUtility.SetParentAndAlign(go, menuCommand.context as GameObject);
 //         // Register the creation in the undo system
-//         Undo.RegisterCreatedObjectUndo(go, "Create " + go.name);
+//         Undo.RegisterCreatedObjectUndo(go, "Create " + go.aliasName);
 //         Selection.activeObject = go;
 //         go.AddComponent<ZoneVolume>();
 //     }

@@ -1,13 +1,23 @@
-﻿using System.Collections.Generic;
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
-using UnityEngine.Serialization;
+using Object = UnityEngine.Object;
+using Random = UnityEngine.Random;
 
 namespace AudioAliase
 {
-    public class Alias : ScriptableObject
+
+    [Serializable]
+    public struct SurfaceAlias
     {
-         [FormerlySerializedAs("name")] public string aliasName;
+        public string surfaceName;
+        public int alias;
+    }
+    [System.Serializable]
+    public class AliasClassBullshit
+    {
+        public string name;
         public string description;
         public string Tag;
         [Tooltip("Yo")]
@@ -87,7 +97,7 @@ namespace AudioAliase
         public bool UseSurfaceDetection;
         public SurfaceAlias[] surfacesAlias;
         public Dictionary<string, int> dictSurfacesAlias ;
-        [SerializeField] public int guid = AliasUtility.GenerateID();
+        [SerializeField] private int guid = AliasUtility.GenerateID();
         public int GUID => guid; 
         public AudioClip Audio
         {
@@ -121,20 +131,20 @@ namespace AudioAliase
         // Give default value for a new aliase
         // We override the default constructor, because Unity doesnt give default value when we initialize variable
         // will be fix by unity in the future...
-        // private void Awake()
-        // {
-        //     aliasName = "newAliase";
-        //     volume = 0.8f;
-        //     minVolume = 0.8f;
-        //     maxVolume = 0.8f;
-        //     minPitch = 1f;
-        //     maxPitch = 1.01f;
-        //     reverbZoneMix = 1;
-        //     dopplerLevel = 1;
-        //     Spread = 1;
-        //     MinDistance = 1;
-        //     MaxDistance = 500;
-        // }
+        public AliasClassBullshit()
+        {
+            name = "newAliase";
+            volume = 0.8f;
+            minVolume = 0.8f;
+            maxVolume = 0.8f;
+            minPitch = 1f;
+            maxPitch = 1.01f;
+            reverbZoneMix = 1;
+            dopplerLevel = 1;
+            Spread = 1;
+            MinDistance = 1;
+            MaxDistance = 500;
+        }
 
         public bool IsPlayable()
         {
@@ -143,10 +153,7 @@ namespace AudioAliase
 
             return limitCount > audioPlayers.Count;
         }
-
-        public void Play()
-        {
-            
-        }
+        
     }
+
 }

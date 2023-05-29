@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
-
 public abstract class GameStateBehaviour<T> : MonoBehaviour, IGameStateCallBack where T : GameState, new()
 {
     public UnityEvent ApplyGameStateOverride;

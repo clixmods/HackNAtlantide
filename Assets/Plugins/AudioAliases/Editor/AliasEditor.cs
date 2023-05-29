@@ -7,8 +7,8 @@ using XMaterial;
 
 namespace Audio.Editor
 {
-    [CustomPropertyDrawer(typeof(Alias))]
-    public class AliasEditorDrawer : PropertyDrawer
+    [CustomEditor(typeof(Alias))]
+    public class AliasEditorDrawer : UnityEditor.Editor
     {
         int _numberTags;    
         private static string[] _tags;
@@ -18,7 +18,7 @@ namespace Audio.Editor
         private bool showSurfaceSettings;
         protected const string AliasesPropertyName = "aliases";
         protected const string AliasesTagCategoryName = "Audio Aliase/";
-        public SerializedProperty currentElemFromArraySelected;
+        public SerializedObject currentElemFromArraySelected;
         #region Serialized Properties
         public SerializedProperty nameAlias { get; private set; }
         public SerializedProperty description { get; private set; }
@@ -56,32 +56,42 @@ namespace Audio.Editor
         {
             if (relative && currentElemFromArraySelected != null)
             {
-                SerializedProperty sP = currentElemFromArraySelected.FindPropertyRelative(propName);
+                SerializedProperty sP = currentElemFromArraySelected.FindProperty(propName);
                 EditorGUILayout.PropertyField(sP, true);
             }
-            else if (currentElemFromArraySelected.serializedObject != null)
+            else if (currentElemFromArraySelected != null)
             {
-                EditorGUILayout.PropertyField(currentElemFromArraySelected.serializedObject.FindProperty(propName),
+                EditorGUILayout.PropertyField(currentElemFromArraySelected.FindProperty(propName),
                     true);
             }
         }
-    
-        public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
+        
+        public override void OnInspectorGUI()
         {
-            //var window = UnityEditor.EditorWindow.GetWindow<AliasesEditorWindow>();
-            if (!EditorWindow.HasOpenInstances<AliasesEditorWindow>())
-            {
-                base.OnGUI(position, property, label);
-                if (GUI.Button(position,"Open Alias Editor"))
-                {
-                    AliasesEditorWindow.Open();
-                }
-                return;
-            }
             _tags = GetTags();
-            currentElemFromArraySelected = property;
-            int guid = currentElemFromArraySelected.FindPropertyRelative("guid").intValue;
-            DrawField("name", true);
+            currentElemFromArraySelected = serializedObject;
+            // switch (currentElemFromArraySelected.FindProperty("soundType").enumValueIndex)
+            // {
+            //         case (int) SoundType.Root:
+            //             currentElemFromArraySelected.FindProperty("m_Script").objectReferenceValue = AssetDatabase.LoadAssetAtPath<Object>(AssetDatabase.FindAssets("AliasBase.cs")[0]);
+            //             break;
+            //         case (int) SoundType.Start:
+            //             currentElemFromArraySelected.FindProperty("m_Script").objectReferenceValue = AssetDatabase.LoadAssetAtPath<Object>(AssetDatabase.FindAssets("AliasStart.cs")[0]);
+            //             break;
+            //         case (int) SoundType.End:
+            //             currentElemFromArraySelected.FindProperty("m_Script").objectReferenceValue = AssetDatabase.LoadAssetAtPath<Object>(AssetDatabase.FindAssets("AliasEnd.cs")[0]);
+            //             break;
+            //         case (int)SoundType.Surface:
+            //             currentElemFromArraySelected.FindProperty("m_Script").objectReferenceValue = AssetDatabase.LoadAssetAtPath<Object>(AssetDatabase.FindAssets("AliasSurface.cs")[0]);
+            //             break;
+            // }
+            
+            
+            
+            
+        
+            int guid = currentElemFromArraySelected.FindProperty("guid").intValue;
+            DrawField("aliasName", true);
             DrawField("description", true);
             int selectedTag = GetIndexFromNameTag();
             selectedTag = EditorGUILayout.Popup("Tag", selectedTag, _tags);
@@ -91,7 +101,7 @@ namespace Audio.Editor
             }
             else
             {
-                var tagProp = currentElemFromArraySelected.FindPropertyRelative("Tag");
+                var tagProp = currentElemFromArraySelected.FindProperty("Tag");
                 if (selectedTag == 0)
                     tagProp.stringValue = string.Empty;
                 else
@@ -102,13 +112,13 @@ namespace Audio.Editor
             DrawField("audio", true);
             DrawField("randomizeClips", true);
             
-            var secondaryProp = currentElemFromArraySelected.FindPropertyRelative("Secondary");
+            var secondaryProp = currentElemFromArraySelected.FindProperty("Secondary");
             int selectedAll = AliasUtilityEditor.GetIndexFrom(secondaryProp.intValue, AliasesEditorWindow.AliasesOptions);
             selectedAll = EditorGUILayout.Popup("Secondary", selectedAll, AliasesEditorWindow.AliasesOptions.GetListDisplayName(guid).ToArray());
            
             DrawToolTip(secondaryProp);
 
-            if (selectedAll == 0 || AliasUtilityEditor.GetIndexFrom(currentElemFromArraySelected.FindPropertyRelative("guid").intValue, AliasesEditorWindow.AliasesOptions ) == selectedAll)
+            if (selectedAll == 0 || AliasUtilityEditor.GetIndexFrom(currentElemFromArraySelected.FindProperty("guid").intValue, AliasesEditorWindow.AliasesOptions ) == selectedAll)
                 secondaryProp.intValue = 0;
             else
                 secondaryProp.intValue = AliasesEditorWindow.AliasesOptions[selectedAll];
@@ -121,26 +131,26 @@ namespace Audio.Editor
             DrawField("limitCount", true);
     
             // draw volume field
-            SerializedProperty minVolume = currentElemFromArraySelected.FindPropertyRelative("minVolume");
-            SerializedProperty maxVolume = currentElemFromArraySelected.FindPropertyRelative("maxVolume");
+            SerializedProperty minVolume = currentElemFromArraySelected.FindProperty("minVolume");
+            SerializedProperty maxVolume = currentElemFromArraySelected.FindProperty("maxVolume");
             DrawMinMaxSlider(minVolume, maxVolume, 0,1,"Volume");
             
             //float widthLabel = 75;
             // Only root sound can be looped sound
-            if (currentElemFromArraySelected.FindPropertyRelative("soundType").enumValueIndex == (int) SoundType.Root)
+            if (currentElemFromArraySelected.FindProperty("soundType").enumValueIndex == (int) SoundType.Root)
             {
                 // Loop part
-                SerializedProperty sP = currentElemFromArraySelected.FindPropertyRelative("isLooping");
+                SerializedProperty sP = currentElemFromArraySelected.FindProperty("isLooping");
                 sP.boolValue = EditorGUILayout.BeginToggleGroup("Is Looping", sP.boolValue);
-                SerializedProperty minDelayLoop = currentElemFromArraySelected.FindPropertyRelative("minDelayLoop");
-                SerializedProperty maxDelayLoop  = currentElemFromArraySelected.FindPropertyRelative("maxDelayLoop");
+                SerializedProperty minDelayLoop = currentElemFromArraySelected.FindProperty("minDelayLoop");
+                SerializedProperty maxDelayLoop  = currentElemFromArraySelected.FindProperty("maxDelayLoop");
                 DrawMinMaxSlider(minDelayLoop, maxDelayLoop, 0,60,"Delay Loop");
                 // Start alias
-                var startProp = currentElemFromArraySelected.FindPropertyRelative("startAliase");
+                var startProp = currentElemFromArraySelected.FindProperty("startAliase");
                 int selectedStartAll = AliasUtilityEditor.GetIndexFrom(startProp.intValue ,AliasesEditorWindow.StartLoopAliasesOptions);
                 var displayNameStartAlias = AliasesEditorWindow.StartLoopAliasesOptions.GetListDisplayName(guid).ToArray();
                 selectedStartAll = EditorGUILayout.Popup("Start Aliase", selectedStartAll, displayNameStartAlias);
-                var guidValue = currentElemFromArraySelected.FindPropertyRelative("guid").intValue;
+                var guidValue = currentElemFromArraySelected.FindProperty("guid").intValue;
                 if (selectedStartAll == 0 || AliasUtilityEditor.GetIndexFrom(guidValue, AliasesEditorWindow.StartLoopAliasesOptions ) == selectedStartAll)
                     startProp.intValue = 0;
                 else
@@ -148,10 +158,10 @@ namespace Audio.Editor
                 
                 
                 
-                var endProp = currentElemFromArraySelected.FindPropertyRelative("endAliase");
+                var endProp = currentElemFromArraySelected.FindProperty("endAliase");
                 int selectedendAll = AliasUtilityEditor.GetIndexFrom(endProp.intValue, AliasesEditorWindow.EndLoopAliasesOptions);
                 selectedendAll = EditorGUILayout.Popup("End Aliase", selectedendAll, AliasesEditorWindow.EndLoopAliasesOptions.GetListDisplayName(guid).ToArray());
-                if (selectedendAll == 0 || AliasUtilityEditor.GetIndexFrom(currentElemFromArraySelected.FindPropertyRelative("guid").intValue, AliasesEditorWindow.EndLoopAliasesOptions ) == selectedendAll)
+                if (selectedendAll == 0 || AliasUtilityEditor.GetIndexFrom(currentElemFromArraySelected.FindProperty("guid").intValue, AliasesEditorWindow.EndLoopAliasesOptions ) == selectedendAll)
                     endProp.intValue = 0;
                 else
                     endProp.intValue = AliasesEditorWindow.EndLoopAliasesOptions[selectedendAll];
@@ -160,8 +170,8 @@ namespace Audio.Editor
             }
     
             
-            SerializedProperty minPitch = currentElemFromArraySelected.FindPropertyRelative("minPitch");
-            SerializedProperty maxPitch = currentElemFromArraySelected.FindPropertyRelative("maxPitch");
+            SerializedProperty minPitch = currentElemFromArraySelected.FindProperty("minPitch");
+            SerializedProperty maxPitch = currentElemFromArraySelected.FindProperty("maxPitch");
             DrawMinMaxSlider(minPitch, maxPitch, -3,3,"Pitch");
             
             DrawField("stereoPan", true);
@@ -180,8 +190,8 @@ namespace Audio.Editor
                 DrawField("MinDistance", true);
                 DrawField("MaxDistance", true);
     
-                SerializedProperty minDistance = currentElemFromArraySelected.FindPropertyRelative("MinDistance");
-                SerializedProperty maxDistance = currentElemFromArraySelected.FindPropertyRelative("MaxDistance");
+                SerializedProperty minDistance = currentElemFromArraySelected.FindProperty("MinDistance");
+                SerializedProperty maxDistance = currentElemFromArraySelected.FindProperty("MaxDistance");
                 float minDistanceValue = minDistance.floatValue;
                 float maxDistanceValue = maxDistance.floatValue;
                 EditorGUILayout.PrefixLabel("Min and Max distance");
@@ -195,7 +205,7 @@ namespace Audio.Editor
             EditorGUILayout.EndVertical();
     
             #endregion
-            if (currentElemFromArraySelected.FindPropertyRelative("soundType").enumValueIndex == (int)SoundType.Root)
+            if (currentElemFromArraySelected.FindProperty("soundType").enumValueIndex == (int)SoundType.Root)
             {
                 DrawField("Text", true);
                 DrawField("customDuration", true);
@@ -205,14 +215,14 @@ namespace Audio.Editor
             DrawField("isPlaceholder", true);
            
             
-            if (currentElemFromArraySelected.FindPropertyRelative("soundType").enumValueIndex != (int)SoundType.Surface)
+            if (currentElemFromArraySelected.FindProperty("soundType").enumValueIndex != (int)SoundType.Surface)
             {
                 //#if XMATERIAL
                 
                 
                 
                 
-                SerializedProperty sPUseSurface = currentElemFromArraySelected.FindPropertyRelative("UseSurfaceDetection");
+                SerializedProperty sPUseSurface = currentElemFromArraySelected.FindProperty("UseSurfaceDetection");
                 EditorGUILayout.LabelField("Surface Detection");
                 DrawToolTip(sPUseSurface);
                 sPUseSurface.boolValue = EditorGUILayout.BeginToggleGroup("UseSurfaceDetection", sPUseSurface.boolValue);
@@ -227,7 +237,7 @@ namespace Audio.Editor
                             using (new GUILayout.HorizontalScope())
                             {
                                 EditorGUILayout.LabelField(XMaterialsData.SurfaceTypeNames[i]);
-                                var aliasSurface = currentElemFromArraySelected.FindPropertyRelative("surfacesAlias");
+                                var aliasSurface = currentElemFromArraySelected.FindProperty("surfacesAlias");
                                 var structElem = aliasSurface.GetArrayElementAtIndex(i);
                                 if (structElem == null)
                                 {
@@ -245,7 +255,7 @@ namespace Audio.Editor
                                 int selectedSurface = AliasUtilityEditor.GetIndexFrom(guidAliasSurface.intValue, AliasesEditorWindow.SurfaceAliasesOptions);
                                 selectedSurface = EditorGUILayout.Popup("Alias", selectedSurface, AliasesEditorWindow.SurfaceAliasesOptions.GetListDisplayName(guid).ToArray());
                                 if (selectedSurface == 0 ||
-                                    AliasUtilityEditor.GetIndexFrom(currentElemFromArraySelected.FindPropertyRelative("guid").intValue,
+                                    AliasUtilityEditor.GetIndexFrom(currentElemFromArraySelected.FindProperty("guid").intValue,
                                         AliasesEditorWindow.SurfaceAliasesOptions) == selectedSurface)
                                     guidAliasSurface.intValue = 0;
                                 else
@@ -260,7 +270,7 @@ namespace Audio.Editor
                // #endif
             }
 
-            EditorGUILayout.TextField("GUID",currentElemFromArraySelected.FindPropertyRelative("guid").intValue.ToString());
+            EditorGUILayout.TextField("GUID",currentElemFromArraySelected.FindProperty("guid").intValue.ToString());
         }
 
         private static void DrawToolTip(SerializedProperty property)
@@ -301,7 +311,7 @@ namespace Audio.Editor
             string lastString = _tags[_tags.Length - 1];
             for (int i = 0; i < _tags.Length; i++)
             {
-                var tagProp = currentElemFromArraySelected.FindPropertyRelative("Tag");
+                var tagProp = currentElemFromArraySelected.FindProperty("Tag");
                 string valueFromProperty = tagProp.stringValue;
                 if(valueFromProperty == lastString)
                 {

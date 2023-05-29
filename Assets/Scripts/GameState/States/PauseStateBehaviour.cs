@@ -1,7 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class PauseStateBehaviour : GameStateBehaviour<PauseGameState>
 {
     private PauseGameState state;

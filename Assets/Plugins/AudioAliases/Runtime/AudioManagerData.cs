@@ -42,7 +42,7 @@ namespace AudioAliase
                 AliasesScriptableObject currentAliasesScriptableObject = aliases[i];
                 for (int j = 0; j < aliases[i].aliases.Count; j++)
                 {
-                    Alias currentAlias = currentAliasesScriptableObject.aliases[j];
+                    Alias currentAlias = currentAliasesScriptableObject.AliasesSubAsset[j];
                     DictionaryAliases[currentAlias.GUID] = currentAlias;
                 }
             }
