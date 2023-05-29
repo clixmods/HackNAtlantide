@@ -1560,7 +1560,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &59637859
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1627,6 +1627,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c383a7e7d6d43c4b9a5eb7120b4bff4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CameraDisable:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!43 &85286927
 Mesh:
   m_ObjectHideFlags: 0
@@ -4821,37 +4824,37 @@ PrefabInstance:
     - target: {fileID: 5385849557459567687, guid: b77b45d696911824da7f8bf5a53304ad,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -62.217266
+      value: -16.64
       objectReference: {fileID: 0}
     - target: {fileID: 5385849557459567687, guid: b77b45d696911824da7f8bf5a53304ad,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 15.0727005
+      value: 14.2
       objectReference: {fileID: 0}
     - target: {fileID: 5385849557459567687, guid: b77b45d696911824da7f8bf5a53304ad,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 52.140785
+      value: 15.81
       objectReference: {fileID: 0}
     - target: {fileID: 5385849557459567687, guid: b77b45d696911824da7f8bf5a53304ad,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.15352723
+      value: 0.37942657
       objectReference: {fileID: 0}
     - target: {fileID: 5385849557459567687, guid: b77b45d696911824da7f8bf5a53304ad,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.020444712
+      value: 0.10787884
       objectReference: {fileID: 0}
     - target: {fileID: 5385849557459567687, guid: b77b45d696911824da7f8bf5a53304ad,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.97928804
+      value: 0.88387966
       objectReference: {fileID: 0}
     - target: {fileID: 5385849557459567687, guid: b77b45d696911824da7f8bf5a53304ad,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.13040856
+      value: -0.2513053
       objectReference: {fileID: 0}
     - target: {fileID: 5385849557459567704, guid: b77b45d696911824da7f8bf5a53304ad,
         type: 3}
@@ -4861,7 +4864,7 @@ PrefabInstance:
     - target: {fileID: 5385849557459567704, guid: b77b45d696911824da7f8bf5a53304ad,
         type: 3}
       propertyPath: field of view
-      value: 44.997883
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 5385849557459567704, guid: b77b45d696911824da7f8bf5a53304ad,
         type: 3}
@@ -29209,6 +29212,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eebf9283b3850644080954eac5b7f3ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnInteract:
+    m_PersistentCalls:
+      m_Calls: []
+  OnResetInteract:
+    m_PersistentCalls:
+      m_Calls: []
   inputVectorScriptableObject: {fileID: 11400000, guid: f723c9ff06fee8f4b84dfde16114e058,
     type: 2}
   forceMultiplier: 10
@@ -41136,7 +41145,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1258462080
 Transform:
   m_ObjectHideFlags: 0
@@ -41144,7 +41153,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1258462079}
-  m_LocalRotation: {x: -0.020444712, y: 0.97928804, z: -0.13040856, w: -0.15352723}
+  m_LocalRotation: {x: -0.020444712, y: 0.97928804, z: -0.13040856, w: -0.15352724}
   m_LocalPosition: {x: 23.242737, y: 6.4847, z: 16.432785}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -41165,6 +41174,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c383a7e7d6d43c4b9a5eb7120b4bff4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CameraDisable:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &1258462082
 MonoBehaviour:
   m_ObjectHideFlags: 0
