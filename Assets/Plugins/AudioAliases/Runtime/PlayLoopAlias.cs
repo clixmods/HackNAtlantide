@@ -7,27 +7,41 @@ using UnityEngine.Serialization;
 
 public class PlayLoopAlias : MonoBehaviour
 {
-    [Aliase] [SerializeField] private int aliasToPlay;
+    [SerializeField] private Alias aliasToPlay;
     private AudioPlayer _audioPlayer;
 
     private void OnValidate()
     {
         #if UNITY_EDITOR
-            if (aliasToPlay != 0)
+            if (aliasToPlay != null)
             {
-                if(AudioManager.GetAlias(aliasToPlay, out Alias alias))
-                    gameObject.name = $"Play Loop : {alias.name}";
+                gameObject.name = $"Play Loop : {aliasToPlay.name}";
             }
         #endif
     }
 
-    private void Start()
+    private void OnEnable()
     {
         PlayAlias();
+    }
+
+    private void OnDestroy()
+    {
+        StopAlias();
+    }
+
+    private void OnDisable()
+    {
+        StopAlias();
     }
 
     public void PlayAlias()
     {
         transform.PlayLoopSound(aliasToPlay,ref _audioPlayer );
+    }
+    
+    public void StopAlias()
+    {
+        _audioPlayer.StopSound(StopLoopBehavior.Direct);
     }
 }

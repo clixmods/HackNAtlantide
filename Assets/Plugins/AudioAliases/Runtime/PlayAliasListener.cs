@@ -9,9 +9,23 @@ public class PlayAliasListener : MonoBehaviour
 {
      [SerializeField] private Alias aliasToPlay;
 
-    private void Start()
+     private void OnValidate()
+     {
+#if UNITY_EDITOR
+         if (aliasToPlay != null)
+         {
+             gameObject.name = $"Play  : {aliasToPlay.name}";
+         }
+#endif
+     }
+    private void OnEnable()
     {
         PlayAlias();
+    }
+
+    private void OnDisable()
+    {
+        
     }
 
     public void PlayAlias()

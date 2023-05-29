@@ -74,7 +74,7 @@ PrefabInstance:
     - target: {fileID: 6247656628101972032, guid: cda17fa97f49abc49885291024a072af,
         type: 3}
       propertyPath: EventOnTriggerEnter.m_PersistentCalls.m_Calls.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6247656628101972032, guid: cda17fa97f49abc49885291024a072af,
         type: 3}
@@ -90,6 +90,11 @@ PrefabInstance:
         type: 3}
       propertyPath: EventOnTriggerEnter.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6247656628101972032, guid: cda17fa97f49abc49885291024a072af,
+        type: 3}
+      propertyPath: EventOnTriggerEnter.m_PersistentCalls.m_Calls.Array.data[3].m_Mode
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6247656628101972032, guid: cda17fa97f49abc49885291024a072af,
         type: 3}
@@ -110,12 +115,23 @@ PrefabInstance:
       objectReference: {fileID: 3553384827797536344}
     - target: {fileID: 6247656628101972032, guid: cda17fa97f49abc49885291024a072af,
         type: 3}
+      propertyPath: EventOnTriggerEnter.m_PersistentCalls.m_Calls.Array.data[3].m_Target
+      value: 
+      objectReference: {fileID: 11400000, guid: b6127fecfc67fef42927332a8876e58e,
+        type: 2}
+    - target: {fileID: 6247656628101972032, guid: cda17fa97f49abc49885291024a072af,
+        type: 3}
       propertyPath: EventOnTriggerEnter.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6247656628101972032, guid: cda17fa97f49abc49885291024a072af,
         type: 3}
       propertyPath: EventOnTriggerEnter.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6247656628101972032, guid: cda17fa97f49abc49885291024a072af,
+        type: 3}
+      propertyPath: EventOnTriggerEnter.m_PersistentCalls.m_Calls.Array.data[3].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6247656628101972032, guid: cda17fa97f49abc49885291024a072af,
@@ -135,6 +151,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6247656628101972032, guid: cda17fa97f49abc49885291024a072af,
         type: 3}
+      propertyPath: EventOnTriggerEnter.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
+      value: Play
+      objectReference: {fileID: 0}
+    - target: {fileID: 6247656628101972032, guid: cda17fa97f49abc49885291024a072af,
+        type: 3}
       propertyPath: EventOnTriggerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: ScriptableValueFloat, Assembly-CSharp
       objectReference: {fileID: 0}
@@ -147,6 +168,11 @@ PrefabInstance:
         type: 3}
       propertyPath: EventOnTriggerEnter.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
       value: UnityEngine.GameObject, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 6247656628101972032, guid: cda17fa97f49abc49885291024a072af,
+        type: 3}
+      propertyPath: EventOnTriggerEnter.m_PersistentCalls.m_Calls.Array.data[3].m_TargetAssemblyTypeName
+      value: AudioAliase.Alias, AudioAliase
       objectReference: {fileID: 0}
     - target: {fileID: 6247656628101972032, guid: cda17fa97f49abc49885291024a072af,
         type: 3}
@@ -171,6 +197,11 @@ PrefabInstance:
     - target: {fileID: 6247656628101972032, guid: cda17fa97f49abc49885291024a072af,
         type: 3}
       propertyPath: EventOnTriggerEnter.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 6247656628101972032, guid: cda17fa97f49abc49885291024a072af,
+        type: 3}
+      propertyPath: EventOnTriggerEnter.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []

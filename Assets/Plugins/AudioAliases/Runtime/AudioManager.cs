@@ -17,11 +17,11 @@ namespace AudioAliase
 
     public static class AudioManagerExtension 
     {
-        public static void PlayLoopSound(this Transform transform, int aliaseName, ref AudioPlayer audioPlayerLoop)
+        public static void PlayLoopSound(this Transform transform, Alias aliaseName, ref AudioPlayer audioPlayerLoop)
         {
             AudioManager.PlayLoopSound(aliaseName, transform, ref audioPlayerLoop);
         }
-        public static void PlayLoopSound(this GameObject gameObject, int aliaseName, ref AudioPlayer audioPlayerLoop)
+        public static void PlayLoopSound(this GameObject gameObject, Alias aliaseName, ref AudioPlayer audioPlayerLoop)
         {
             AudioManager.PlayLoopSound(aliaseName, gameObject.transform, ref audioPlayerLoop);
         }
@@ -280,7 +280,7 @@ namespace AudioAliase
         /// <param guid="aliaseName"></param>
         /// <param guid="transformToTarget">Transform to follow</param>
         /// <param guid="audioPlayerLoop"> A ref to AudioPlayer, it can be used with the method StopLoopSound</param>
-        public static void PlayLoopSound(int aliaseName, Transform transformToTarget, ref AudioPlayer audioPlayerLoop)
+        public static void PlayLoopSound(Alias aliaseName, Transform transformToTarget, ref AudioPlayer audioPlayerLoop)
         {
             PlayLoopSound(aliaseName, transformToTarget.position, ref audioPlayerLoop);
             if (audioPlayerLoop != null)
@@ -295,7 +295,7 @@ namespace AudioAliase
         /// <param guid="aliaseName"></param>
         /// <param guid="position">The position of the loop sound</param>
         /// <param guid="audioPlayerLoop"> A ref to <see cref="AudioPlayer"/>, it can be used with the method StopLoopSound</param>
-        public static void PlayLoopSound(int aliaseName, Vector3 position, ref AudioPlayer audioPlayerLoop )
+        public static void PlayLoopSound(Alias aliaseName, Vector3 position, ref AudioPlayer audioPlayerLoop )
         {
             // Check if the AudioPlayer is keep by the caller object is valid.
             if (audioPlayerLoop != null && !audioPlayerLoop.IsUsable)
@@ -308,7 +308,7 @@ namespace AudioAliase
             }
           
             // Check if the alias is valid
-            if (!GetAlias(aliaseName, out Alias alias))
+            if (aliaseName == null)
             {
                 return ;
             }
@@ -318,12 +318,12 @@ namespace AudioAliase
                 if(ShowDebugText) Debug.LogWarning($"AudioManager :green; ► Limits exceded for _audioSource, maybe you need to increase your audioSourcePoolSize (Size = {Instance.audioSourcePoolSize})");
                 return ;
             }
-            audioPlayer.Setup(alias , position);
-            if (alias.isPlaceholder)
+            audioPlayer.Setup(aliaseName , position);
+            if (aliaseName.isPlaceholder)
             {
                 if(ShowDebugText) Debug.LogWarning("[AudioManager] Placeholder sound was played, guid " + aliaseName);
             }
-            PlaySoundAtPosition(alias.Secondary, position);
+            PlaySoundAtPosition(aliaseName.Secondary, position);
             audioPlayerLoop = audioPlayer;
         }
         public static void StopLoopSound(ref AudioPlayer audioPlayer, StopLoopBehavior stopLoopBehavior = StopLoopBehavior.FinishCurrentPlay)

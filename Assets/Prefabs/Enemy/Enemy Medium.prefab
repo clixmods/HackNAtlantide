@@ -578,6 +578,7 @@ Transform:
   - {fileID: 8738137085867927896}
   - {fileID: 7465899794655859157}
   - {fileID: 644036888145065289}
+  - {fileID: 3898882482529786046}
   m_Father: {fileID: 5919351741948662680}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -11100,6 +11101,51 @@ Transform:
   m_Father: {fileID: 247737344801133454}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8017136958376758029
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3898882482529786046}
+  - component: {fileID: 840940622119028433}
+  m_Layer: 11
+  m_Name: 'Play  : rock_pile_fall'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3898882482529786046
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8017136958376758029}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2058166065751741970}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &840940622119028433
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8017136958376758029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8405162337adc244b955ceb77b14e03a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  aliasToPlay: {fileID: 11400000, guid: 9e019bbae92a0d34fa77d8766bd4fa26, type: 2}
 --- !u!1 &8585242945334140800
 GameObject:
   m_ObjectHideFlags: 0

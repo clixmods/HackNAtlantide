@@ -10,31 +10,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: acfaebaa19219ea448a0f03582848d39, type: 3}
-  m_Name: golem_footstep
+  m_Name: player_upgrade_heal
   m_EditorClassIdentifier: 
-  aliasName: golem_footstep
+  aliasName: 
   description: 
   Tag: 
   MixerGroup: {fileID: 0}
   audio:
-  - {fileID: 8300000, guid: 0244495e070c974458b93be2d8b1d3b3, type: 3}
-  - {fileID: 8300000, guid: c3fea740e086ebd4da82aa00ddc5974b, type: 3}
-  - {fileID: 8300000, guid: 523b0fce82e0825458c8a09b3ccf1a68, type: 3}
-  - {fileID: 8300000, guid: 1feddc83b0574bc4bbeff29ffe325baf, type: 3}
-  - {fileID: 8300000, guid: b6c604cae4648e941839e3708789a3d3, type: 3}
-  - {fileID: 8300000, guid: b0fe30f42824bc24cb25835c939c443e, type: 3}
-  - {fileID: 8300000, guid: 3e0553c6467d5914d8d0086b76479338, type: 3}
-  - {fileID: 8300000, guid: 70a1a52b8e789dd4cb9beac20cbbb501, type: 3}
+  - {fileID: 8300000, guid: faadd951366d94b41a823d24d6be4296, type: 3}
   soundType: 0
-  randomizeClips: 1
+  randomizeClips: 0
   Secondary: {fileID: 0}
   bypassEffects: 0
   bypassListenerEffects: 0
   bypassReverbZones: 0
   priority: 0
-  volume: 0
-  minVolume: 0.92257607
-  maxVolume: 1
+  volume: 0.8
+  minVolume: 0.8
+  maxVolume: 0.8
   limitCount: 0
   isLooping: 0
   startAliase: {fileID: 0}
@@ -42,22 +35,40 @@ MonoBehaviour:
   UseDelayLoop: 0
   minDelayLoop: 0
   maxDelayLoop: 0
-  minPitch: 0.80645555
-  maxPitch: 1.5569618
+  minPitch: 1
+  maxPitch: 1.01
   stereoPan: 0
-  spatialBlend: 1
+  spatialBlend: 0
   reverbZoneMix: 1
   dopplerLevel: 1
   Spread: 1
-  MinDistance: 0
+  MinDistance: 1
   MaxDistance: 500
   CurveType: 0
   distanceCurve:
     serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 0
-    m_PostInfinity: 0
-    m_RotationOrder: 0
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   Text: 
   customDuration: 0
   isInit: 0
@@ -65,4 +76,4 @@ MonoBehaviour:
   audioPlayers: []
   UseSurfaceDetection: 0
   surfacesAlias: []
-  guid: 1461169561
+  guid: 828547813

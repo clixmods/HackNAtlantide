@@ -16,7 +16,7 @@ public class PlayLoopSoundUIMenu : MonoBehaviour
     [Header("Aliases")] 
     // private float _currentDelay;
     // [SerializeField] private float delayBeforeStartLoop;
-    [Aliase] [SerializeField] private int MusicLoop;
+    [SerializeField] private Alias MusicLoop;
 
     private AudioPlayer _audioPlayer;
     private void Awake()
