@@ -9,15 +9,15 @@ namespace AudioAliase
         ISelectHandler, IDeselectHandler,IPointerClickHandler
     {
         [Header("Alias Click")]
-        [Aliase] [SerializeField] private int aliasOnClick;
+         [SerializeField] private Alias aliasOnClick;
         [Header("Alias Navigation")]
-        [Aliase] [SerializeField] private int aliasOnMove;
-        [Aliase] [SerializeField] private int aliasOnPointerDown;
-        [Aliase] [SerializeField] private int aliasOnPointerUp;
-        [Aliase] [SerializeField] private int aliasOnPointerEnter;
-        [Aliase] [SerializeField] private int aliasOnPointerExit;
-        [Aliase] [SerializeField] private int aliasOnSelect;
-        [Aliase] [SerializeField] private int aliasOnDeselect;
+       [SerializeField] private Alias aliasOnMove;
+        [SerializeField] private Alias aliasOnPointerDown;
+         [SerializeField] private Alias aliasOnPointerUp;
+       [SerializeField] private Alias aliasOnPointerEnter;
+        [SerializeField] private Alias aliasOnPointerExit;
+         [SerializeField] private Alias aliasOnSelect;
+         [SerializeField] private Alias aliasOnDeselect;
         public void OnMove(AxisEventData eventData)
         {
             AudioManager.PlaySoundAtPosition(aliasOnMove);

@@ -5,9 +5,10 @@ using UnityEngine;
 
 public class AnimationEventPlayAlias : MonoBehaviour
 {
-     public void PlayAlias(int aliasID)
+     public void PlayAlias(Alias aliasID)
      {
-        transform.PlaySoundAtPosition(aliasID);
+        // if(aliasID is Alias alias)
+            transform.PlaySoundAtPosition(aliasID);
      }
     
 }

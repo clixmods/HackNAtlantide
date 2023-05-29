@@ -32,28 +32,34 @@ namespace AudioAliase
                 
                 // Create a simple material asset
 
-                AliasesScriptableObject aliasesScriptableObject = ScriptableObject.CreateInstance<AliasesScriptableObject>();
-                aliasesScriptableObject.name = name;
-                AssetDatabase.CreateAsset(aliasesScriptableObject, $"Assets/{name}.asset");
-
-                
-           
-
-                foreach (var aliasClass in aliases)
+//                AliasesScriptableObject aliasesScriptableObject = ScriptableObject.CreateInstance<AliasesScriptableObject>();
+  //              aliasesScriptableObject.name = name;
+                // AssetDatabase.CreateAsset(aliasesScriptableObject, $"Assets/{name}.asset");
+                //
+                //
+                //
+                //
+                // foreach (var aliasClass in aliases)
+                // {
+                //     Alias instance = ScriptableObject.CreateInstance<Alias>();
+                //     ConvertAliasClassToScriptable(instance, aliasClass);
+                //     string path = $"Assets/{aliasClass.name}.asset";
+                //     
+                //     AssetDatabase.AddObjectToAsset(instance, aliasesScriptableObject);
+                //
+                //     // Reimport the asset after adding an object.
+                //     // Otherwise the change only shows up when saving the project
+                //     AssetDatabase.ImportAsset(AssetDatabase.GetAssetPath(instance));
+                //     AssetDatabase.Refresh();
+                //     
+                // }
+                AliasesSubAsset = GetSubObjectsOfType<Alias>(this);
+                foreach (Alias aliasSubAsset in AliasesSubAsset)
                 {
-                    Alias instance = ScriptableObject.CreateInstance<Alias>();
-                    ConvertAliasClassToScriptable(instance, aliasClass);
-                    string path = $"Assets/{aliasClass.name}.asset";
-                    
-                    AssetDatabase.AddObjectToAsset(instance, aliasesScriptableObject);
-
-                    // Reimport the asset after adding an object.
-                    // Otherwise the change only shows up when saving the project
-                    AssetDatabase.ImportAsset(AssetDatabase.GetAssetPath(instance));
-                    AssetDatabase.Refresh();
-                    
+                   // Alias alias = ScriptableObject.CreateInstance<Alias>();
+                   AssetDatabase.RemoveObjectFromAsset(aliasSubAsset);
+                    AssetDatabase.CreateAsset(aliasSubAsset, $"Assets/{aliasSubAsset.name}.asset");
                 }
-                aliasesScriptableObject.AliasesSubAsset = GetSubObjectsOfType<Alias>(aliasesScriptableObject);
                 ConvertAliasToScriptableObject = false;
             }
             //AudioManager.AddAliases(this);
@@ -85,7 +91,7 @@ namespace AudioAliase
             instance.randomizeClips = aliasClass.randomizeClips;
 
 
-            instance.Secondary = aliasClass.Secondary;
+            //instance.Secondary = aliasClass.Secondary;
 
             instance.bypassEffects = aliasClass.bypassEffects;
             instance.bypassListenerEffects = aliasClass.bypassListenerEffects;
@@ -98,9 +104,9 @@ namespace AudioAliase
 
             instance.isLooping = aliasClass.isLooping;
 
-            instance.startAliase = aliasClass.startAliase;
+            //instance.startAliase = aliasClass.startAliase;
 
-            instance.endAliase = aliasClass.endAliase;
+           // instance.endAliase = aliasClass.endAliase;
             instance.UseDelayLoop = aliasClass.UseDelayLoop;
             instance.minDelayLoop = aliasClass.minDelayLoop;
             instance.maxDelayLoop = aliasClass.maxDelayLoop;
@@ -125,7 +131,7 @@ namespace AudioAliase
             instance.audioPlayers = aliasClass.audioPlayers;
             instance.UseSurfaceDetection = aliasClass.UseSurfaceDetection;
             instance.surfacesAlias = aliasClass.surfacesAlias;
-            instance.dictSurfacesAlias = aliasClass.dictSurfacesAlias;
+           // instance.dictSurfacesAlias = aliasClass.dictSurfacesAlias;
             instance.guid = aliasClass.GUID;
         }
 
@@ -143,7 +149,7 @@ namespace AudioAliase
             {
                 alias.audioPlayers.Clear();
 
-                alias.dictSurfacesAlias = new Dictionary<string, int>();
+                alias.dictSurfacesAlias = new Dictionary<string, Alias>();
                 if (alias.surfacesAlias != null)
                 {
                     for (int i = 0; i < alias.surfacesAlias.Length ; i++)

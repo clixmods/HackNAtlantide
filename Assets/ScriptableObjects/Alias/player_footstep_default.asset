@@ -1,0 +1,76 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acfaebaa19219ea448a0f03582848d39, type: 3}
+  m_Name: player_footstep_default
+  m_EditorClassIdentifier: 
+  aliasName: player_footstep_default
+  description: 
+  Tag: Audio Aliase/Player
+  MixerGroup: {fileID: 0}
+  audio:
+  - {fileID: 8300000, guid: ed85a314572cb5b4e97a9800f2a365f7, type: 3}
+  - {fileID: 8300000, guid: f939a400665fd864d9861abe3abc96f1, type: 3}
+  - {fileID: 8300000, guid: e39880e481aa52b4a9ab56fe2a7cbe1b, type: 3}
+  - {fileID: 8300000, guid: 929f780f04ba9df429b7f7e6bd11ee2c, type: 3}
+  - {fileID: 8300000, guid: 93d16e6bfcb574644afe669ece26513b, type: 3}
+  - {fileID: 8300000, guid: f904387280ff72746b9168569efc5fbd, type: 3}
+  soundType: 0
+  randomizeClips: 1
+  Secondary: {fileID: 0}
+  bypassEffects: 0
+  bypassListenerEffects: 0
+  bypassReverbZones: 0
+  priority: 0
+  volume: 0
+  minVolume: 0.52962965
+  maxVolume: 0.6
+  limitCount: 0
+  isLooping: 0
+  startAliase: {fileID: 0}
+  endAliase: {fileID: 0}
+  UseDelayLoop: 0
+  minDelayLoop: 0
+  maxDelayLoop: 0
+  minPitch: 0.48888886
+  maxPitch: 1.4322222
+  stereoPan: 0
+  spatialBlend: 0.623
+  reverbZoneMix: 1
+  dopplerLevel: 1
+  Spread: 1
+  MinDistance: 0
+  MaxDistance: 500
+  CurveType: 0
+  distanceCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 0
+    m_PostInfinity: 0
+    m_RotationOrder: 0
+  Text: 
+  customDuration: 0
+  isInit: 0
+  isPlaceholder: 1
+  audioPlayers: []
+  UseSurfaceDetection: 1
+  surfacesAlias:
+  - surfaceName: MaterialType/concrete
+    alias: {fileID: 11400000, guid: b796ba4cac7d9cb46a2f7fe7b0af286b, type: 2}
+  - surfaceName: MaterialType/water
+    alias: {fileID: 11400000, guid: 14b8914f06294eb478cd074229fd57e4, type: 2}
+  - surfaceName: MaterialType/wood
+    alias: {fileID: 11400000, guid: 087bcc81ead8a9b4fb6f2171f536202c, type: 2}
+  - surfaceName: MaterialType/grass
+    alias: {fileID: 11400000, guid: 2f44694086795a144a268f0caeb575e2, type: 2}
+  - surfaceName: MaterialType/Metal
+    alias: {fileID: 11400000, guid: f00d4305d1b042149a23b2c63489a892, type: 2}
+  guid: -805940854

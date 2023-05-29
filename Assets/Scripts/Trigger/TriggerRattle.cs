@@ -7,8 +7,7 @@ public abstract class TriggerRattle : Trigger
     [Header("Settings Alias")]
     [SerializeField]
     [Tooltip("The alias ID for the rattling sound")]
-    [Aliase]
-    private int aliasRattle;
+    private Alias aliasRattle;
 
     [SerializeField] private bool playAliasOnTriggerEnter = true;
     [SerializeField] private bool playAliasOnTriggerStay;
@@ -20,10 +19,9 @@ public abstract class TriggerRattle : Trigger
     {
         base.OnValidate();
         #if UNITY_EDITOR
-        if (aliasRattle != 0)
+        if (aliasRattle != null)
         {
-            if (AudioManager.GetAlias(aliasRattle, out Alias alias))
-               gameObject.name = $"Rattle Sound : {alias.name}";
+            gameObject.name = $"Rattle Sound : {aliasRattle.aliasName}";
         }
         #endif
     }

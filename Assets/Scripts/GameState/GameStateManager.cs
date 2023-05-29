@@ -97,6 +97,7 @@ public class DeadState : GameState
 public interface IGameStateCallBack
 {
     void OnApplyGameStateOverride(GameStateOverride stateOverride);
+    void OnApplyCallback();
 }
 
 [Serializable]
@@ -206,6 +207,7 @@ public class GameStateManager : MonoBehaviour
     [SerializeField] ScriptableEventBool pauseEvent;
     [SerializeField] ScriptableEvent restartEvent;
 
+    private IGameStateCallBack _lastCallBackCalled;
     //------------------------
     private void Awake()
     {
@@ -239,6 +241,7 @@ public class GameStateManager : MonoBehaviour
     public void RegisterCallback(IGameStateCallBack callback)
     {
         callbacks.Add(callback);
+        
     }
 
     public void UnRegisterCallback(IGameStateCallBack callback)
@@ -310,5 +313,13 @@ public class GameStateManager : MonoBehaviour
         {
             callbacks[i].OnApplyGameStateOverride(gameStateOverride);
         }
+
+        if (callbacks.Count > 0 && callbacks[^1] != _lastCallBackCalled)
+        {
+            _lastCallBackCalled = callbacks[^1];
+            callbacks[^1].OnApplyCallback();
+        }
+            
+        
     }
 }

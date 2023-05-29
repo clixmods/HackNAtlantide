@@ -7,7 +7,7 @@ using UnityEngine.Serialization;
 
 public class PlayAliasListener : MonoBehaviour
 {
-    [Aliase] [SerializeField] private int aliasToPlay;
+     [SerializeField] private Alias aliasToPlay;
 
     private void Start()
     {

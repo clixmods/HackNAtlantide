@@ -11,11 +11,11 @@ namespace AudioAliase
         [Serializable]
         struct MovementLength
         {
-            [Aliase] public int aliasName;
+             public Alias aliasName;
             public float movementLenghtToPlaySound;
             public float velocityMagnitudeCondition;
 
-            public MovementLength(int aliasName,float movementLenghtToPlaySound, float velocityMagnitude)
+            public MovementLength(Alias aliasName,float movementLenghtToPlaySound, float velocityMagnitude)
             {
                 this.aliasName = aliasName;
                 this.movementLenghtToPlaySound = movementLenghtToPlaySound;

@@ -13,8 +13,9 @@ using UnityEngine.UI;
 [AddComponentMenu("#Survival Game/UI/UI Menu PlaySound alias")]
 public class PlaySoundUIMenu : MonoBehaviour
 {
-    [Header("Aliases")] [Aliase] [SerializeField]
-    private int MusicLoop;
+    [Header("Aliases")]
+    [SerializeField]
+    private Alias MusicLoop;
 
     private void Awake()
     {

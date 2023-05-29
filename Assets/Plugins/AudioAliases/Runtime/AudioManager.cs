@@ -25,11 +25,11 @@ namespace AudioAliase
         {
             AudioManager.PlayLoopSound(aliaseName, gameObject.transform, ref audioPlayerLoop);
         }
-        public static Alias PlaySoundAtPosition(this GameObject gameObject, int aliaseName)
+        public static Alias PlaySoundAtPosition(this GameObject gameObject, Alias aliaseName)
         {
             return AudioManager.PlaySoundAtPosition(aliaseName, gameObject.transform.position);
         }
-        public static Alias PlaySoundAtPosition(this Transform transform, int aliaseName)
+        public static Alias PlaySoundAtPosition(this Transform transform, Alias aliaseName)
         {
             return AudioManager.PlaySoundAtPosition(aliaseName, transform.position);
         }
@@ -244,18 +244,18 @@ namespace AudioAliase
         {
             
         }
-        public static Alias PlaySoundAtPosition(int aliaseName, Vector3 position = default)
+        public static Alias PlaySoundAtPosition(Alias aliaseName, Vector3 position = default)
         {
-            if(GetAlias(aliaseName, out Alias clip) && GetAudioPlayer(out AudioPlayer audioPlayer))
+            if(aliaseName != null && GetAudioPlayer(out AudioPlayer audioPlayer))
             {
-                audioPlayer.Setup(clip, position);
+                audioPlayer.Setup(aliaseName, position);
 
-                if (clip.isPlaceholder)
+                if (aliaseName.isPlaceholder)
                 {
                     if(ShowDebugText) Debug.LogWarning("Un son placeholder a été jouer, il faut le changer , nom de l'aliase " + aliaseName);
                 }
-                PlaySoundAtPosition(clip.Secondary, position);
-                return clip;
+                PlaySoundAtPosition(aliaseName.Secondary, position);
+                return aliaseName;
             }
 
             return null;

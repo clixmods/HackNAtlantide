@@ -398,9 +398,9 @@ namespace Audio.Editor
             _selected = EditorGUILayout.Popup("Sound", _selected, AliasesOptions.GetListDisplayName().ToArray());
             if (GUILayout.Button("Play sound"))
             {
-                int aliaseGUID = AliasesOptions[_selected];
-                AudioManager.PlaySoundAtPosition(aliaseGUID, Camera.main.transform.position);
-                this.ShowNotification(new GUIContent($"Sound {aliaseGUID} played"));
+                //int aliaseGUID = AliasesOptions[_selected];
+                //AudioManager.PlaySoundAtPosition(aliaseGUID, Camera.main.transform.position);
+                //this.ShowNotification(new GUIContent($"Sound {aliaseGUID} played"));
             }
 
             EditorGUILayout.FloatField(0.5f);

@@ -29,6 +29,11 @@ public abstract class GameStateBehaviour<T> : MonoBehaviour, IGameStateCallBack 
     public void OnApplyGameStateOverride(GameStateOverride stateOverride)
     {
         OnApplyGameStateOverrideImplement(stateOverride);
+       
+    }
+
+    public void OnApplyCallback()
+    {
         ApplyGameStateOverride?.Invoke();
     }
 

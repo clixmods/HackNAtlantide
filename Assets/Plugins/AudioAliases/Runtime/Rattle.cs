@@ -12,8 +12,7 @@ public class Rattle : MonoBehaviour
 {
     [SerializeField]
     [Tooltip("The alias ID for the rattling sound")]
-    [Aliase]
-    private int aliasRattle;
+    private Alias aliasRattle;
 
     [SerializeField]
     [Tooltip("Determines if the sound should play on trigger enter")]
@@ -29,10 +28,9 @@ public class Rattle : MonoBehaviour
     private void OnValidate()
     {
         #if UNITY_EDITOR
-        if (aliasRattle != 0)
+        if (aliasRattle != null)
         {
-            if (AudioManager.GetAlias(aliasRattle, out Alias alias))
-                gameObject.name = $"Rattle Sound : {alias.name}";
+            gameObject.name = $"Rattle Sound : {aliasRattle.aliasName}";
         }
         #endif
     }

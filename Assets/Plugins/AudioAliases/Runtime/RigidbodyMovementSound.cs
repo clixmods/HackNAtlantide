@@ -9,7 +9,7 @@ namespace AudioAliase
     [Serializable]
     struct MovementLength
     {
-        [Aliase] public int aliasName; // Alias for the sound name to play
+        public Alias aliasName; // Alias for the sound name to play
         public float movementLenghtToPlaySound; // Movement length required to trigger the sound
         public float velocityMagnitudeCondition; // Velocity magnitude condition to trigger the sound
 
@@ -19,7 +19,7 @@ namespace AudioAliase
         /// <param name="aliasName">Alias for the sound name to play.</param>
         /// <param name="movementLenghtToPlaySound">Movement length required to trigger the sound.</param>
         /// <param name="velocityMagnitude">Velocity magnitude condition to trigger the sound.</param>
-        public MovementLength(int aliasName, float movementLenghtToPlaySound, float velocityMagnitude)
+        public MovementLength(Alias aliasName, float movementLenghtToPlaySound, float velocityMagnitude)
         {
             this.aliasName = aliasName;
             this.movementLenghtToPlaySound = movementLenghtToPlaySound;

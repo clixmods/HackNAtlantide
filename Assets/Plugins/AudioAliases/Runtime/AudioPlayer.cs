@@ -1,4 +1,3 @@
-
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,37 +16,47 @@ namespace AudioAliase
         Base,
         End,
     }
+
     [RequireComponent(typeof(AudioSource))]
     [RequireComponent(typeof(GetSurfaceType))]
     public class AudioPlayer : MonoBehaviour
     {
         public Queue<Alias> _clips = new();
-        [FormerlySerializedAs("_lastAliasePlayed")] [SerializeReference] private Alias lastAliasPlayed;
+
+        [FormerlySerializedAs("_lastAliasePlayed")] [SerializeReference]
+        private Alias lastAliasPlayed;
+
         [SerializeField] private bool forceStop;
-        
+
         private bool _isStopping;
         private StopLoopBehavior _stopLoopBehavior;
-        [SerializeField] [Aliase]  private int OnStartAliaseToPlay;
+        [SerializeField] private Alias OnStartAliaseToPlay;
         private float _delayLoop = 0;
+
         #region Private Variable
-        
+
         private bool _startWasPlayed;
+
         // TODO : Not good to use aliase in properties because it will be copied (serialize shit), we need to use simply string
         private Alias _nextSound;
         private Transform _transformToFollow;
         private float _timePlayed = 0;
         private CurrentlyPlaying _state = CurrentlyPlaying.Start;
+
         #endregion
-        
+
         public AudioSource Source { get; private set; }
+
         /// <summary>
         /// AudioPlayer is available ? 
         /// </summary>
         public bool IsUsable => _clips.Count == 0 && !Source.isPlaying && !gameObject.activeSelf;
+
         public bool IsFollowingTransform => _transformToFollow != null;
 
-        [Tooltip("Specify if the audioplayer is reserved by another object, the pool will not use it")]
-        [SerializeField] private bool isReserved;
+        [Tooltip("Specify if the audioplayer is reserved by another object, the pool will not use it")] [SerializeField]
+        private bool isReserved;
+
         /// <summary>
         /// Specify if the audioplayer is reserved by another object, the pool will not use it
         /// </summary>
@@ -61,129 +70,140 @@ namespace AudioAliase
         {
             _transformToFollow = transformTarget;
         }
-        
+
         #region MonoBehaviour
-        
-            private void Awake()
+
+        private void Awake()
+        {
+            Source = transform.GetComponent<AudioSource>();
+        }
+
+        private void Start()
+        {
+            if (OnStartAliaseToPlay != null)
             {
-                Source = transform.GetComponent<AudioSource>();
+                Play(OnStartAliaseToPlay);
             }
-            private void Start()
+        }
+
+        // Update is called once per frame
+        private void Update()
+        {
+            if (lastAliasPlayed == null) gameObject.SetActive(false);
+            FollowTransform();
+            if (Source.clip == null)
             {
-                if (OnStartAliaseToPlay != 0)
+                gameObject.SetActive(false);
+                Reset();
+                return;
+            }
+                
+            // Audio play have finish the play
+            if (_timePlayed >= (Source.clip.length * Source.pitch) + _delayLoop)
+            {
+                if (_isStopping)
                 {
-                    Play(OnStartAliaseToPlay);
+                    gameObject.SetActive(false);
+                    Reset();
+                    return;
                 }
-            }
-            // Update is called once per frame
-            private void Update()
-            {
-                if(lastAliasPlayed == null)  gameObject.SetActive(false);
-                FollowTransform();
-                // Audio play have finish the play
-                if (_timePlayed  >= (Source.clip.length* Source.pitch ) + _delayLoop)
+
+                if (lastAliasPlayed.isLooping)
                 {
-                    if (_isStopping)
+                    SetupAudioSource(lastAliasPlayed);
+                    if (_delayLoop != 0)
+                        Source.Play();
+
+                    _timePlayed = 0;
+                }
+                else // End of the sound
+                {
+                    switch (_state)
                     {
-                        gameObject.SetActive(false);
-                        Reset();
-                        return;
-                    }
-                        
-                    if (lastAliasPlayed.isLooping )
-                    {
-                        SetupAudioSource(lastAliasPlayed);
-                        if (_delayLoop != 0)
+                        case CurrentlyPlaying.Start:
+                            //_state = CurrentlyPlaying.Base;
+                            SetupAudioSource(_nextSound);
+                            //Source.clip = _nextSound.Audio; 
                             Source.Play();
-                        
-                        _timePlayed = 0;
+                            break;
+                        case CurrentlyPlaying.Base:
+                            StopSound(_stopLoopBehavior);
+                            break;
+                        case CurrentlyPlaying.End:
+                        default:
+                            gameObject.SetActive(false);
+                            Reset();
+                            break;
                     }
-                    else // End of the sound
-                    {
-                        switch(_state)
-                        {
-                            case CurrentlyPlaying.Start:
-                                //_state = CurrentlyPlaying.Base;
-                                SetupAudioSource(_nextSound);
-                                //Source.clip = _nextSound.Audio; 
-                                Source.Play();
-                                break;
-                            case CurrentlyPlaying.Base:
-                                StopSound(_stopLoopBehavior);
-                                break;
-                            case CurrentlyPlaying.End:
-                            default:
-                                gameObject.SetActive(false);
-                                Reset();
-                                break;
-                        }
 
-                        _timePlayed = 0;
-                        _state++;
-                    }
+                    _timePlayed = 0;
+                    _state++;
                 }
-                else
-                {
-                    _timePlayed += Time.unscaledDeltaTime;
-                }
-    
             }
-            private void Reset()
+            else
             {
-                Source.Stop();
-                lastAliasPlayed = null;
-                _transformToFollow = null;
-                _state = CurrentlyPlaying.Start;
-                _timePlayed = 0;
-                _nextSound = null;
+                _timePlayed += Time.unscaledDeltaTime;
             }
+        }
 
+        private void Reset()
+        {
+            Source.Stop();
+            lastAliasPlayed = null;
+            _transformToFollow = null;
+            _state = CurrentlyPlaying.Start;
+            _timePlayed = 0;
+            _nextSound = null;
+        }
 
         #endregion
-        
+
         private void Play(Alias aliasToPlay)
         {
             // If a start aliase is available, we need to play it before the base aliase
-            if (_state == CurrentlyPlaying.Start && AudioManager.GetAlias(aliasToPlay.startAliase, out Alias startLoop))
+            if (_state == CurrentlyPlaying.Start && aliasToPlay.startAliase != null)
             {
-                SetupAudioSource(startLoop);
+                SetupAudioSource(aliasToPlay.startAliase);
                 //Source.clip = startLoop.Audio;
                 Source.Play();
                 _nextSound = aliasToPlay;
                 return;
             }
+
             _state = CurrentlyPlaying.Base; // Sinon ca fait le bug du next sound pas def
             //Setup the base aliase
             SetupAudioSource(aliasToPlay);
             //Source.clip = aliasToPlay.Audio;
             Source.Play();
-            
-            
         }
+
         private void Play(int onStartAliasToPlay)
         {
             AudioManager.GetAlias(onStartAliasToPlay, out var aliase);
             Play(aliase);
         }
-        public void Setup(Alias aliasToPlay , Vector3 position )
+
+        public void Setup(Alias aliasToPlay, Vector3 position)
         {
             transform.position = position;
             gameObject.SetActive(true);
             Reset();
             Play(aliasToPlay);
         }
+
         private void FollowTransform()
         {
             if (IsFollowingTransform)
             {
                 transform.position = _transformToFollow.position;
-            } 
+            }
         }
+
         public void StopSound(StopLoopBehavior stopLoopBehavior)
         {
-            if(lastAliasPlayed != null && lastAliasPlayed.audioPlayers.Contains(this))
+            if (lastAliasPlayed != null && lastAliasPlayed.audioPlayers.Contains(this))
                 lastAliasPlayed.audioPlayers.Remove(this);
-            
+
             _stopLoopBehavior = stopLoopBehavior;
             if (_state == CurrentlyPlaying.Start)
             {
@@ -199,15 +219,14 @@ namespace AudioAliase
                         gameObject.SetActive(false);
                         break;
                 }
-               
+
                 return;
             }
-            
+
             if (_state == CurrentlyPlaying.Base
-                && lastAliasPlayed.endAliase != 0
-                && AudioManager.GetAlias(lastAliasPlayed.endAliase, out Alias stopLoop) )
+                && lastAliasPlayed.endAliase != null)
             {
-                SetupAudioSource(stopLoop);
+                SetupAudioSource(lastAliasPlayed.endAliase);
                 //Source.clip = stopLoop.Audio;
                 Source.Play();
             }
@@ -229,33 +248,35 @@ namespace AudioAliase
 
             _state++;
         }
+
         public void SetupAudioSource(Alias alias)
         {
             if (alias == null)
             {
-                if(AudioManager.ShowDebugText) Debug.LogError("What the fuck ?");
+                if (AudioManager.ShowDebugText) 
+                    Debug.LogError("What the fuck ?");
             }
-            if(lastAliasPlayed != null && lastAliasPlayed.audioPlayers.Contains(this))
+
+            if (lastAliasPlayed != null && lastAliasPlayed.audioPlayers.Contains(this))
                 lastAliasPlayed.audioPlayers.Remove(this);
-            
-            if(!alias.audioPlayers.Contains(this))
+
+            if (!alias.audioPlayers.Contains(this))
                 alias.audioPlayers.Add(this);
-            
+
             _timePlayed = 0;
             _isStopping = false;
-           
+
             lastAliasPlayed = alias;
             var audiosource = Source;
             audiosource.volume = Random.Range(alias.minVolume, alias.maxVolume);
-            if ( alias.isLooping)
+            if (alias.isLooping)
             {
-                
                 _delayLoop = alias.DelayLoop;
                 if (alias.HasDelayLoop)
                 {
                     Source.loop = true;
                 }
-             
+
                 //Source.clip = alias.Audio;
             }
             else
@@ -267,26 +288,21 @@ namespace AudioAliase
             if (alias.UseSurfaceDetection)
             {
                 var surfaceName = GetComponent<GetSurfaceType>().SphereCast();
-                if (surfaceName != null &&alias.dictSurfacesAlias.TryGetValue(surfaceName, out int value))
+                if (surfaceName != null && alias.dictSurfacesAlias.TryGetValue(surfaceName, out Alias value))
                 {
-                    if ( AudioManager.GetAlias(value, out Alias aliasSurface))
-                    {
-                        Debug.Log(surfaceName);
-                        Play(aliasSurface);
-                        return;
-                    }
-
+                    Debug.Log(surfaceName);
+                    Play(value);
+                    return;
                 }
-                
+
                 Source.clip = alias.Audio;
-                
             }
             else
             {
                 Source.clip = alias.Audio;
             }
-            
-            
+
+
             audiosource.pitch = Random.Range(alias.minPitch, alias.maxPitch);
             audiosource.spatialBlend = alias.spatialBlend;
             if (alias.MixerGroup != null)
@@ -302,9 +318,7 @@ namespace AudioAliase
                     audiosource.rolloffMode = alias.CurveType;
                     audiosource.SetCustomCurve(AudioSourceCurveType.CustomRolloff, alias.distanceCurve);
                     break;
-
             }
-            
         }
     }
 }

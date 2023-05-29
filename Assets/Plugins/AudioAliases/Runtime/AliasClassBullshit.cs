@@ -12,7 +12,7 @@ namespace AudioAliase
     public struct SurfaceAlias
     {
         public string surfaceName;
-        public int alias;
+        public AliasSurface alias;
     }
     [System.Serializable]
     public class AliasClassBullshit
@@ -96,7 +96,7 @@ namespace AudioAliase
         [Tooltip("The alias will detect surface from material to play the adequat alias [XMaterials plugin required]")]
         public bool UseSurfaceDetection;
         public SurfaceAlias[] surfacesAlias;
-        public Dictionary<string, int> dictSurfacesAlias ;
+        public Dictionary<string, Alias> dictSurfacesAlias ;
         [SerializeField] private int guid = AliasUtility.GenerateID();
         public int GUID => guid; 
         public AudioClip Audio

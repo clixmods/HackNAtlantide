@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.Serialization;
+using Random = UnityEngine.Random;
 
 namespace AudioAliase
 {
@@ -22,7 +24,7 @@ namespace AudioAliase
         int _indexRandomize = 0;
 
         [Tooltip("Secondary aliase played with the primary aliase")]
-        public int Secondary;
+        public AliasBase Secondary;
 
         public bool bypassEffects;
         public bool bypassListenerEffects;
@@ -45,9 +47,9 @@ namespace AudioAliase
          */
         public bool isLooping;
         [Tooltip("AliasClassBullshit played in the start of a looped alias")]
-        public int startAliase;
+        public AliasStart startAliase;
         [Tooltip("AliasClassBullshit played when a looped alias is stopped")]
-        public int endAliase;
+        public AliasEnd endAliase;
         public bool UseDelayLoop;
         public float minDelayLoop = 0;
         public float maxDelayLoop = 0;
@@ -86,9 +88,12 @@ namespace AudioAliase
         [Tooltip("The alias will detect surface from material to play the adequat alias [XMaterials plugin required]")]
         public bool UseSurfaceDetection;
         public SurfaceAlias[] surfacesAlias;
-        public Dictionary<string, int> dictSurfacesAlias ;
+        public Dictionary<string, Alias> dictSurfacesAlias ;
         [SerializeField] public int guid = AliasUtility.GenerateID();
-        public int GUID => guid; 
+        public int GUID => guid;
+
+     
+
         public AudioClip Audio
         {
             get
@@ -143,10 +148,37 @@ namespace AudioAliase
 
             return limitCount > audioPlayers.Count;
         }
+        private void Awake()
+        {
+          
+            audioPlayers = new List<AudioPlayer>();
+
+
+        }
+      
+        private void OnEnable()
+        {
+            GenerateDictSurfacesAlias();
+            audioPlayers = new List<AudioPlayer>();
+        }
+
+        private void OnValidate()
+        {
+            GenerateDictSurfacesAlias();
+        }
+        void GenerateDictSurfacesAlias()
+        {
+            dictSurfacesAlias = new Dictionary<string, Alias>();
+            foreach (var surfaceAlias in surfacesAlias)
+            {
+                dictSurfacesAlias.Add(surfaceAlias.surfaceName,surfaceAlias.alias);
+            }
+
+        }
 
         public void Play()
         {
-            
+            AudioManager.PlaySoundAtPosition(this);
         }
     }
 }
