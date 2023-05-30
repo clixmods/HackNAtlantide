@@ -9,10 +9,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
+<<<<<<<< HEAD:Assets/ScriptableObjects/Alias/player/player_attack_interactable_hit.asset
   m_Script: {fileID: 11500000, guid: acfaebaa19219ea448a0f03582848d39, type: 3}
   m_Name: player_attack_interactable_hit
   m_EditorClassIdentifier: 
   aliasName: player_attack_interactable
+========
+  m_Script: {fileID: 11500000, guid: d2a9cdb8d4d481743994835d593310ce, type: 3}
+  m_Name: altar_available_start
+  m_EditorClassIdentifier: 
+  aliasName: 
+>>>>>>>> 55d770a0 (wip):Assets/ScriptableObjects/Alias/altar_available_start.asset
   description: 
   Tag: 
   MixerGroup: {fileID: 0}
@@ -37,19 +44,48 @@ MonoBehaviour:
   minPitch: 1
   maxPitch: 1.01
   stereoPan: 0
+<<<<<<<< HEAD:Assets/ScriptableObjects/Alias/player/player_attack_interactable_hit.asset
   spatialBlend: 0
+========
+  spatialBlend: 0.785
+>>>>>>>> 55d770a0 (wip):Assets/ScriptableObjects/Alias/altar_available_start.asset
   reverbZoneMix: 1
   dopplerLevel: 1
   Spread: 1
-  MinDistance: 0
+  MinDistance: 1
   MaxDistance: 500
   CurveType: 0
   distanceCurve:
     serializedVersion: 2
+<<<<<<<< HEAD:Assets/ScriptableObjects/Alias/player/player_attack_interactable_hit.asset
     m_Curve: []
     m_PreInfinity: 0
     m_PostInfinity: 0
     m_RotationOrder: 0
+========
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+>>>>>>>> 55d770a0 (wip):Assets/ScriptableObjects/Alias/altar_available_start.asset
   OpenFadeInSeconds: 0
   CloseFadeInSeconds: 0
   Text: 
@@ -59,4 +95,8 @@ MonoBehaviour:
   audioPlayers: []
   UseSurfaceDetection: 0
   surfacesAlias: []
+<<<<<<<< HEAD:Assets/ScriptableObjects/Alias/player/player_attack_interactable_hit.asset
   guid: 1491301672
+========
+  guid: 1972842902
+>>>>>>>> 55d770a0 (wip):Assets/ScriptableObjects/Alias/altar_available_start.asset
