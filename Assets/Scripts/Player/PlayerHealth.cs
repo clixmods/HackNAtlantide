@@ -32,10 +32,7 @@ public class PlayerHealth : Character
         } 
         set
         {
-            if (value > healthValue.MaxValue)
-            {
-                MaxHealthIncrease?.Invoke();
-            }
+            
             base.maxHealth = value;
             healthValue.MaxValue = value; 
             
@@ -51,6 +48,19 @@ public class PlayerHealth : Character
     private void Start()
     {
         _postProcessWeightTransition.SetWeightVolume(0);
+    }
+
+    private void OnEnable()
+    {
+        healthValue.OnMaxValueChanged += OnMaxValueChanged;
+    }
+    private void OnDisable()
+    {
+        healthValue.OnMaxValueChanged -= OnMaxValueChanged;
+    }
+    private void OnMaxValueChanged(float maxValue)
+    {
+        MaxHealthIncrease?.Invoke();
     }
 
     protected override void InitHealth()
@@ -96,10 +106,7 @@ public class PlayerHealth : Character
             HealthGainFull?.Invoke();
         }
     }
-
-
-
-
+    
     IEnumerator Hit()
     {
         _postProcessWeightTransition.SetWeightVolume(1,0.1f);

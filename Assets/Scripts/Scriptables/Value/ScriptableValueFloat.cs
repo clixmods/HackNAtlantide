@@ -1,11 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
-
 [CreateAssetMenu(menuName = "Data/Value/float")]
 public class ScriptableValueFloat : ScriptableValue<float>
 {
     [SerializeField] private float _maxValue;
+    public Action<float> OnMaxValueChanged;
     [Header("Default")]
     [SerializeField] protected float defaultValue = 0;
     [SerializeField] protected float defaultMaxValue = 0;
@@ -19,8 +18,11 @@ public class ScriptableValueFloat : ScriptableValue<float>
         get => _maxValue;
         set
         {
-            _maxValue = value; 
-            OnValueChanged?.Invoke(Value);
+            if (_maxValue < value)
+            {
+                OnMaxValueChanged?.Invoke(Value);
+            }
+            _maxValue = value;
         }
     }
 

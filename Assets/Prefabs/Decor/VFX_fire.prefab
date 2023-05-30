@@ -126,6 +126,7 @@ GameObject:
   - component: {fileID: 7592603801735910156}
   - component: {fileID: 3980593738154708790}
   - component: {fileID: 7752142679618392918}
+  - component: {fileID: 8792199365929972612}
   m_Layer: 0
   m_Name: VFX_fire
   m_TagString: Untagged
@@ -159,7 +160,7 @@ VisualEffect:
   m_Enabled: 1
   m_Asset: {fileID: 8926484042661614526, guid: 8b8facfb381070b4699ef045c862fc14, type: 3}
   m_InitialEventName: OnPlay
-  m_InitialEventNameOverriden: 0
+  m_InitialEventNameOverriden: 1
   m_StartSeed: 0
   m_ResetSeedOnPlay: 1
   m_ResourceVersion: 1
@@ -172,7 +173,7 @@ VisualEffect:
       m_Array: []
     m_Vector4f:
       m_Array:
-      - m_Value: {x: 0, y: 16.392946, z: 31.626795, w: 0}
+      - m_Value: {x: 0, y: 3.9223979, z: 7.4642644, w: 0}
         m_Name: Color
         m_Overridden: 1
     m_Uint:
@@ -229,3 +230,16 @@ VFXRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
+--- !u!114 &8792199365929972612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5508342029991806205}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00ab22cd1a161854495aec06122cd637, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  alias: {fileID: 11400000, guid: 86564b03135e9a840a81c22de12f7c51, type: 2}

@@ -115,13 +115,13 @@ namespace AudioAliase
         // Update is called once per frame
         private void Update()
         {
-            if (lastAliasPlayed == null) gameObject.SetActive(false);
+            if (lastAliasPlayed == null) 
+                gameObject.SetActive(false);
+            
             FollowTransform();
             if (Source.clip == null)
             {
-                gameObject.SetActive(false);
-               
-                Reset();
+                StartCoroutine(StopAliasVolume());
                 return;
             }
                 

@@ -9,7 +9,7 @@ using Object = UnityEngine.Object;
 
 namespace AudioAliase
 {
-    [CreateAssetMenu(fileName = "new_aliases", menuName = "Audio/aliases", order = 1)]
+    //[CreateAssetMenu(fileName = "new_aliases", menuName = "Audio/aliases", order = 1)]
     public class AliasesScriptableObject : ScriptableObject
     {
         public bool DontLoad;

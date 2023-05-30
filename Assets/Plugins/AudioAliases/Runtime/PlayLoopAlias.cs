@@ -7,7 +7,7 @@ using UnityEngine.Serialization;
 
 public class PlayLoopAlias : MonoBehaviour
 {
-    [SerializeField] private Alias aliasToPlay;
+    [SerializeField] private AliasLoop aliasToPlay;
     private AudioPlayer _audioPlayer;
 
     private void OnValidate()
@@ -42,6 +42,6 @@ public class PlayLoopAlias : MonoBehaviour
     
     public void StopAlias()
     {
-        _audioPlayer.StopSound(StopLoopBehavior.Direct);
+        AudioManager.StopLoopSound(ref _audioPlayer, StopLoopBehavior.Direct);
     }
 }
