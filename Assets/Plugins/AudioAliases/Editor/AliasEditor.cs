@@ -69,6 +69,7 @@ namespace Audio.Editor
         public override void OnInspectorGUI()
         {
             _tags = GetTags();
+            Alias alias = (Alias) target;
             currentElemFromArraySelected = serializedObject;
             // switch (currentElemFromArraySelected.FindProperty("soundType").enumValueIndex)
             // {
@@ -135,7 +136,7 @@ namespace Audio.Editor
             
             //float widthLabel = 75;
             // Only root sound can be looped sound
-            if (currentElemFromArraySelected.FindProperty("soundType").enumValueIndex == (int) SoundType.Root)
+            if ( alias is AliasLoop)
             {
                 // Loop part
                 SerializedProperty sP = currentElemFromArraySelected.FindProperty("isLooping");
@@ -203,7 +204,9 @@ namespace Audio.Editor
             EditorGUILayout.EndVertical();
     
             #endregion
-            if (currentElemFromArraySelected.FindProperty("soundType").enumValueIndex == (int)SoundType.Root)
+            DrawField("OpenFadeInSeconds", true);
+            DrawField("CloseFadeInSeconds", true);
+            if (alias is AliasBase)
             {
                 DrawField("Text", true);
                 DrawField("customDuration", true);
@@ -213,7 +216,7 @@ namespace Audio.Editor
             DrawField("isPlaceholder", true);
            
             
-            if (currentElemFromArraySelected.FindProperty("soundType").enumValueIndex != (int)SoundType.Surface)
+            if (alias is not AliasSurface)
             {
                 //#if XMATERIAL
                 

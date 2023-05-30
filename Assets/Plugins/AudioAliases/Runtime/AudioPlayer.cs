@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -22,9 +23,8 @@ namespace AudioAliase
     public class AudioPlayer : MonoBehaviour
     {
         public Queue<Alias> _clips = new();
-
-        [FormerlySerializedAs("_lastAliasePlayed")] [SerializeReference]
-        private Alias lastAliasPlayed;
+        
+        [SerializeField] private Alias lastAliasPlayed;
 
         [SerializeField] private bool forceStop;
 
@@ -86,6 +86,32 @@ namespace AudioAliase
             }
         }
 
+        IEnumerator StopAliasVolume()
+        {
+            float timeElapsed = 0;
+            float currentVolume = Source.volume;
+            while (timeElapsed < lastAliasPlayed.CloseFadeInSeconds )
+            {
+                float t = timeElapsed / lastAliasPlayed.CloseFadeInSeconds;
+                Source.volume = Mathf.Clamp(Mathf.Lerp(currentVolume, 0, t) ,0,1);
+                timeElapsed += Time.deltaTime;
+                yield return null;
+            }
+            gameObject.SetActive(false);
+            Reset();
+        }
+        IEnumerator StartAliasVolume()
+        {
+            float timeElapsed = 0;
+            float targetVolume = lastAliasPlayed.volume;
+            while (timeElapsed < lastAliasPlayed.OpenFadeInSeconds )
+            {
+                float t = timeElapsed / lastAliasPlayed.CloseFadeInSeconds;
+                Source.volume = Mathf.Clamp(Mathf.Lerp(0, targetVolume, t) ,0,1);
+                timeElapsed += Time.deltaTime;
+                yield return null;
+            }
+        }
         // Update is called once per frame
         private void Update()
         {
@@ -94,17 +120,18 @@ namespace AudioAliase
             if (Source.clip == null)
             {
                 gameObject.SetActive(false);
+               
                 Reset();
                 return;
             }
                 
             // Audio play have finish the play
-            if (_timePlayed >= (Source.clip.length * Source.pitch) + _delayLoop)
+            if (_timePlayed + lastAliasPlayed.CloseFadeInSeconds >= (Source.clip.length * Source.pitch) + _delayLoop)
             {
                 if (_isStopping)
                 {
-                    gameObject.SetActive(false);
-                    Reset();
+                    StartCoroutine(StopAliasVolume());
+                   
                     return;
                 }
 
@@ -131,8 +158,7 @@ namespace AudioAliase
                             break;
                         case CurrentlyPlaying.End:
                         default:
-                            gameObject.SetActive(false);
-                            Reset();
+                            StartCoroutine(StopAliasVolume());
                             break;
                     }
 
@@ -210,13 +236,13 @@ namespace AudioAliase
                 switch (stopLoopBehavior)
                 {
                     case StopLoopBehavior.Direct:
-                        gameObject.SetActive(false);
+                        StartCoroutine(StopAliasVolume());
                         break;
                     case StopLoopBehavior.FinishCurrentPlay:
                         _isStopping = true;
                         break;
                     default:
-                        gameObject.SetActive(false);
+                        StartCoroutine(StopAliasVolume());
                         break;
                 }
 
@@ -235,13 +261,13 @@ namespace AudioAliase
                 switch (stopLoopBehavior)
                 {
                     case StopLoopBehavior.Direct:
-                        gameObject.SetActive(false);
+                        StartCoroutine(StopAliasVolume());
                         break;
                     case StopLoopBehavior.FinishCurrentPlay:
                         _isStopping = true;
                         break;
                     default:
-                        gameObject.SetActive(false);
+                        StartCoroutine(StopAliasVolume());
                         break;
                 }
             }
@@ -268,7 +294,9 @@ namespace AudioAliase
 
             lastAliasPlayed = alias;
             var audiosource = Source;
-            audiosource.volume = Random.Range(alias.minVolume, alias.maxVolume);
+            audiosource.volume = lastAliasPlayed.volume;
+            StartCoroutine(StartAliasVolume());
+            // Check if Looping
             if (alias.isLooping)
             {
                 _delayLoop = alias.DelayLoop;
@@ -276,15 +304,13 @@ namespace AudioAliase
                 {
                     Source.loop = true;
                 }
-
-                //Source.clip = alias.Audio;
             }
             else
             {
                 Source.loop = false;
                 _delayLoop = 0;
             }
-
+            // Setup audio clip
             if (alias.UseSurfaceDetection)
             {
                 var surfaceName = GetComponent<GetSurfaceType>().SphereCast();

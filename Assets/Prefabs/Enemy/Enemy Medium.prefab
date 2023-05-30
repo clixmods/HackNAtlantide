@@ -6140,10 +6140,34 @@ MonoBehaviour:
   _goBackToStartPosToSleep: 1
   OnAwake:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 8b9dfcc51164c3e47aa8cf1a568d28c8, type: 2}
+        m_TargetAssemblyTypeName: AudioAliase.Alias, AudioAliase
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnSleep:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: f10904664d3251645bf371ddd8fe2415, type: 2}
+        m_TargetAssemblyTypeName: AudioAliase.Alias, AudioAliase
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   _allEnemyAwake: {fileID: 11400000, guid: 2163a8b50e7f04c4b927a1597d16eff1, type: 2}
 --- !u!114 &8694408749849937452
 MonoBehaviour:

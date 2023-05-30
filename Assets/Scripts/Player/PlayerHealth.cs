@@ -13,6 +13,8 @@ public class PlayerHealth : Character
     [SerializeField] PostProcessWeightTransition _postProcessWeightTransition;
     [SerializeField] private ScriptableValueFloat healthValue;
     public UnityEvent HealthGain;
+    public UnityEvent HealthGainFull;
+    public UnityEvent MaxHealthIncrease;
     public override float health
     {
         get => healthValue.Value; 
@@ -30,10 +32,18 @@ public class PlayerHealth : Character
         } 
         set
         {
+            if (value > healthValue.MaxValue)
+            {
+                MaxHealthIncrease?.Invoke();
+            }
             base.maxHealth = value;
             healthValue.MaxValue = value; 
+            
+            
         }
     } 
+    
+    public bool IsFullHealth => Math.Abs(health - maxHealth) < 0.05f;
 
 
     bool _isInvincible = false;
@@ -74,9 +84,20 @@ public class PlayerHealth : Character
 
     public override void AddHealth(float amount)
     {
+        if (IsFullHealth)
+        {
+            return;
+        }
         base.AddHealth(amount);
+     
         HealthGain?.Invoke();
+        if (IsFullHealth)
+        {
+            HealthGainFull?.Invoke();
+        }
     }
+
+
 
 
     IEnumerator Hit()

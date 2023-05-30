@@ -31,9 +31,7 @@ namespace AudioAliase
         public bool bypassReverbZones;
         [Range(0, 256)]
         public float priority;
-        // TODO : Do a random range
-        [Range(0, 1)]
-        public float volume = 0.8f; // Obsoletes
+        public float volume => Random.Range(minVolume, maxVolume);
         [Tooltip("Min and Max volume range")]
         public float minVolume = 0.8f;
         public float maxVolume = 0.8f;
@@ -76,6 +74,10 @@ namespace AudioAliase
         public float MaxDistance = 500;
         public AudioRolloffMode CurveType = AudioRolloffMode.Logarithmic;
         public AnimationCurve distanceCurve = new AnimationCurve(new Keyframe[] { new Keyframe(0, 1), new Keyframe(1, 0) });
+
+        [Header("Fade Settings")] 
+        public float OpenFadeInSeconds = 0;
+        public float CloseFadeInSeconds = 0;
         
         [Header("Subtitle")]
         public string Text;
@@ -98,6 +100,10 @@ namespace AudioAliase
         {
             get
             {
+
+                if (audio.Length == 0)
+                    return null;
+                
                 if (randomizeClips)
                 {
                     _indexRandomize = Random.Range(0, audio.Length);
@@ -150,10 +156,7 @@ namespace AudioAliase
         }
         private void Awake()
         {
-          
             audioPlayers = new List<AudioPlayer>();
-
-
         }
       
         private void OnEnable()
@@ -165,7 +168,14 @@ namespace AudioAliase
         private void OnValidate()
         {
             GenerateDictSurfacesAlias();
+            Init();
         }
+
+        protected virtual void Init()
+        {
+            
+        }
+
         void GenerateDictSurfacesAlias()
         {
             dictSurfacesAlias = new Dictionary<string, Alias>();

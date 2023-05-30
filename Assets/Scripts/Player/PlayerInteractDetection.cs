@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using AudioAliase;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
@@ -23,7 +24,10 @@ public class PlayerInteractDetection : MonoBehaviour
 
     public UnityEvent<IInteractable> InteractableSelected;
     public UnityEvent InteractableDeselected;
-    
+
+    [SerializeField] private AliasLoop AliasOnInteract;
+    private AudioPlayer _audioPlayer;
+
 
     void OnEnable()
     {
@@ -79,6 +83,8 @@ public class PlayerInteractDetection : MonoBehaviour
                 
                 _currentInteractable = closestObject;
                 InteractableSelected?.Invoke(_currentInteractable);
+                Debug.Log("AliasOnInteract");
+                transform.PlayLoopSound(AliasOnInteract, ref _audioPlayer);
             }
         }
         else
@@ -86,6 +92,8 @@ public class PlayerInteractDetection : MonoBehaviour
             if (_currentInteractable != null)
             {
                 _currentInteractable.CancelInteract();
+                Debug.Log("DeAliasOnInteract");
+                AudioManager.StopLoopSound(ref _audioPlayer, StopLoopBehavior.Direct);
                 _currentInteractable = null;
                 InteractableDeselected?.Invoke();
             }

@@ -4,10 +4,10 @@ using System.Collections.Generic;
 using AudioAliase;
 using UnityEngine;
 
-public class UnityEventForParticleSystem : MonoBehaviour
+public class ParticleSystemListener : MonoBehaviour
 {
     private ParticleSystem _particleSystem;
-    [SerializeField] private Alias alias;
+    [SerializeField] private AliasBase alias;
     private bool _aliasIsPlayed;
 
     private void Awake()

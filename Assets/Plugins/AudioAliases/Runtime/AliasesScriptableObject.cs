@@ -97,7 +97,7 @@ namespace AudioAliase
             instance.bypassListenerEffects = aliasClass.bypassListenerEffects;
             instance.bypassReverbZones = aliasClass.bypassReverbZones;
             instance.priority = aliasClass.priority;
-            instance.volume = aliasClass.volume;
+            //instance.volume = aliasClass.volume;
             instance.minVolume = aliasClass.minVolume;
             instance.maxVolume = aliasClass.maxVolume;
             instance.limitCount = aliasClass.limitCount;
