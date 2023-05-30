@@ -1,27 +1,43 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class BalanceTrigger : MonoBehaviour
 {
-    [SerializeField] private BalanceBehaviour _balanceBehaviour;
+    [SerializeField] private BalanceBehaviour balanceBehaviour;
     public bool isRight;
+    public List<Rigidbody> rbList;
     
     private void OnTriggerEnter(Collider other)
     {
-        if (!TryGetComponent(out Rigidbody rb)) return;
-        if (isRight)
-            _balanceBehaviour.rightWeight += rb.mass;
-        else
-            _balanceBehaviour.leftWeight += rb.mass;
+        // il TryGetComponent le rb de la platform et pas du pot
+        if (other.TryGetComponent(out Rigidbody rb) && !rbList.Contains(rb))
+        {
+            rbList.Add(other.gameObject.GetComponent<Rigidbody>());
+            if (isRight)
+            {
+                balanceBehaviour.rightWeight += rb.mass;
+                Debug.Log(rb.mass);
+            }
+            else
+            {
+                balanceBehaviour.leftWeight += rb.mass;
+                Debug.Log(rb.mass);
+            }
+        }
     }
     
     private void OnTriggerExit(Collider other)
     {
-        if (!TryGetComponent(out Rigidbody rb)) return;
-        if (isRight)
-            _balanceBehaviour.rightWeight -= rb.mass;
-        else
-            _balanceBehaviour.leftWeight -= rb.mass;
+        // il TryGetComponent le rb de la platform et pas du pot
+        if (other.TryGetComponent(out Rigidbody rb) && rbList.Contains(rb))
+        {
+            rbList.Remove(other.gameObject.GetComponent<Rigidbody>());
+            if (isRight)
+                balanceBehaviour.rightWeight -= rb.mass;
+            else
+                balanceBehaviour.leftWeight -= rb.mass;
+        }
     }
 }
