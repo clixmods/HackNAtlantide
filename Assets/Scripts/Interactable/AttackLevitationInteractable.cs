@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using Attack;
 using UnityEngine;
+using UnityEngine.Events;
 using Random = UnityEngine.Random;
 
 [RequireComponent(typeof(Rigidbody))]
@@ -42,6 +43,8 @@ public class AttackLevitationInteractable : Interactable
     private InputHelper _inputHelper;
     private UIChargeInputHelper _uiChargeInputHelper;
 
+    public UnityEvent LaunchAttack;
+    
     //Explosiopn
     SphereCollider _colliderExplosion;
     [SerializeField] float _speedExplosion;
@@ -257,6 +260,7 @@ public class AttackLevitationInteractable : Interactable
             Focus.OnFocusSwitch -= SetDestination;
             Focus.OnFocusNoTarget -= RemoveTarget;
             _isAttacking = true;
+            LaunchAttack?.Invoke();
             _attackCollider.enabled = true;
             _inputHelper.enabled = false;
             return;

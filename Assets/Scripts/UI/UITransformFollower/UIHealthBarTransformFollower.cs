@@ -36,9 +36,9 @@ namespace UI.UITransformFollower
             _rectTransform.sizeDelta = new Vector2 (_striLength * idamageable.maxHealth, _rectTransform.sizeDelta.y);
         }
 
-        private void IdamageableOnOnChangeHealth(object sender, EventArgs e)
+        private void IdamageableOnOnChangeHealth(float health, float maxHealth)
         {
-            _rectTransform.sizeDelta = new Vector2 (_striLength * idamageable.maxHealth, _rectTransform.sizeDelta.y);
+            _rectTransform.sizeDelta = new Vector2 (_striLength * maxHealth, _rectTransform.sizeDelta.y);
         }
 
         private void Start()

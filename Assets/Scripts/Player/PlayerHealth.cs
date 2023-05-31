@@ -1,11 +1,7 @@
-using DG.Tweening;
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.SceneManagement;
 
 public class PlayerHealth : Character
 {
@@ -17,8 +13,8 @@ public class PlayerHealth : Character
     public UnityEvent MaxHealthIncrease;
     public override float health
     {
-        get => healthValue.Value; 
-        set
+        get => healthValue.Value;
+        protected set
         {
             base.health = value;
             healthValue.Value = value; 

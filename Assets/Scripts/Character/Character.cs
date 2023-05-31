@@ -21,7 +21,8 @@ public class Character : MonoBehaviour,  IDamageable
     #region Events
     public event EventHandler OnDamage;
     public event EventHandler OnDeath;
-    public event EventHandler OnChangeHealth;
+    
+    public event IDamageable.EventHealth OnChangeHealth;
     public Action<bool> OnInvulnerable;
     #endregion
 
@@ -33,8 +34,9 @@ public class Character : MonoBehaviour,  IDamageable
         }
         set
         {
-            OnChangeHealth?.Invoke(this,null);
             _maxHealth = value;
+            OnChangeHealth?.Invoke(health, value);
+           
         }
     }
     public virtual float health
@@ -43,10 +45,11 @@ public class Character : MonoBehaviour,  IDamageable
         {
             return _health;
         }
-        set
+        protected set
         {
-            OnChangeHealth?.Invoke(this,null);
             _health = value;
+            OnChangeHealth?.Invoke(value,maxHealth);
+            
         }
     }
     void Awake()
@@ -107,7 +110,7 @@ public class Character : MonoBehaviour,  IDamageable
     public virtual void AddHealth(float amount)
     {
         health += amount;
-        OnChangeHealth?.Invoke(this,null);
+        OnChangeHealth?.Invoke(health,maxHealth);
         if (health > maxHealth)
         {
             health = maxHealth;

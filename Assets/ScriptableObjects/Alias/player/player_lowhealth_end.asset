@@ -9,15 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: acfaebaa19219ea448a0f03582848d39, type: 3}
-  m_Name: player_attack_dash_hit
+  m_Script: {fileID: 11500000, guid: edbc58f839764814193b82ea8fd89622, type: 3}
+  m_Name: player_lowhealth_end
   m_EditorClassIdentifier: 
-  aliasName: player_attack_dash_hit
+  aliasName: 
   description: 
   Tag: 
   MixerGroup: {fileID: 0}
   audio:
-  - {fileID: 8300000, guid: cd7a3944307c1f1419967a22682a93e8, type: 3}
+  - {fileID: 8300000, guid: 1f59583fad6ef00438776238332c8a32, type: 3}
   soundType: 0
   randomizeClips: 0
   Secondary: {fileID: 0}
@@ -25,8 +25,8 @@ MonoBehaviour:
   bypassListenerEffects: 0
   bypassReverbZones: 0
   priority: 0
-  minVolume: 0.9751055
-  maxVolume: 1
+  minVolume: 0.8
+  maxVolume: 0.8
   limitCount: 0
   isLooping: 0
   startAliase: {fileID: 0}
@@ -37,19 +37,37 @@ MonoBehaviour:
   minPitch: 1
   maxPitch: 1.01
   stereoPan: 0
-  spatialBlend: 0.899
+  spatialBlend: 0
   reverbZoneMix: 1
   dopplerLevel: 1
   Spread: 1
-  MinDistance: 0
+  MinDistance: 1
   MaxDistance: 500
   CurveType: 0
   distanceCurve:
     serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 0
-    m_PostInfinity: 0
-    m_RotationOrder: 0
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   OpenFadeInSeconds: 0
   CloseFadeInSeconds: 0
   Text: 
@@ -59,4 +77,4 @@ MonoBehaviour:
   audioPlayers: []
   UseSurfaceDetection: 0
   surfacesAlias: []
-  guid: 454293504
+  guid: 459758684

@@ -10801,7 +10801,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   OnHitEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 46ddd71d506423c4287715950f44ffb8, type: 2}
+        m_TargetAssemblyTypeName: AudioAliase.Alias, AudioAliase
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   sendEventOnEnter: 1
   sendEventOnStay: 0
   sendEventOnExit: 0
@@ -10900,6 +10912,21 @@ MonoBehaviour:
   useStaminaAmount: 1
   _meshDestroy: {fileID: 5417445413406898535}
   damageAmount: 1
+  LaunchAttack:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 428c2c93ff7aad14594c09834a890de7, type: 2}
+        m_TargetAssemblyTypeName: AudioAliase.Alias, AudioAliase
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   _speedExplosion: 5
   _maxRadius: 1
 --- !u!114 &2634381260045581433

@@ -14,12 +14,13 @@ public class DoDamageEventArgs : EventArgs
 
 public interface IDamageable
 {
+    delegate void EventHealth(float health,float maxHealth);
     event EventHandler OnDamage;  
     event EventHandler OnDeath;
     /// <summary>
     /// Event when the health have a changed, warning all damageable inheritors need to invoke it when its happen
     /// </summary>
-    event EventHandler OnChangeHealth;
+    event EventHealth OnChangeHealth;
     /// <summary>
     /// Max health of the damageable
     /// </summary>
