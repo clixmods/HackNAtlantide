@@ -100,24 +100,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Boussole"",
-                    ""type"": ""Button"",
-                    ""id"": ""ee7bc772-9438-422a-a40f-abd2b0b44e7e"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Release"",
-                    ""type"": ""Button"",
-                    ""id"": ""0cfc96d6-e9d1-4de1-84ac-1db5384648b9"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""Book"",
                     ""type"": ""Button"",
                     ""id"": ""e79f226c-6fa3-4cdc-8d8e-af4e8034fe3a"",
@@ -337,28 +319,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""836e109d-c162-43f5-a523-084b76139b64"",
-                    ""path"": ""<Gamepad>/dpad/down"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""Boussole"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""ab81de05-b3e1-422a-a817-a2953080d82b"",
-                    ""path"": ""<Keyboard>/1"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""PC"",
-                    ""action"": ""Boussole"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""e6823d1f-6c90-471a-999a-d19e5b1b0673"",
                     ""path"": ""<Gamepad>/dpad/up"",
                     ""interactions"": """",
@@ -505,8 +465,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_InGame_Focus = m_InGame.FindAction("Focus", throwIfNotFound: true);
         m_InGame_SwitchFocus = m_InGame.FindAction("SwitchFocus", throwIfNotFound: true);
         m_InGame_Pause = m_InGame.FindAction("Pause", throwIfNotFound: true);
-        m_InGame_Boussole = m_InGame.FindAction("Boussole", throwIfNotFound: true);
-        m_InGame_Release = m_InGame.FindAction("Release", throwIfNotFound: true);
         m_InGame_Book = m_InGame.FindAction("Book", throwIfNotFound: true);
         m_InGame_CheatMenu = m_InGame.FindAction("CheatMenu", throwIfNotFound: true);
         // binding
@@ -579,8 +537,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_InGame_Focus;
     private readonly InputAction m_InGame_SwitchFocus;
     private readonly InputAction m_InGame_Pause;
-    private readonly InputAction m_InGame_Boussole;
-    private readonly InputAction m_InGame_Release;
     private readonly InputAction m_InGame_Book;
     private readonly InputAction m_InGame_CheatMenu;
     public struct InGameActions
@@ -595,8 +551,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @Focus => m_Wrapper.m_InGame_Focus;
         public InputAction @SwitchFocus => m_Wrapper.m_InGame_SwitchFocus;
         public InputAction @Pause => m_Wrapper.m_InGame_Pause;
-        public InputAction @Boussole => m_Wrapper.m_InGame_Boussole;
-        public InputAction @Release => m_Wrapper.m_InGame_Release;
         public InputAction @Book => m_Wrapper.m_InGame_Book;
         public InputAction @CheatMenu => m_Wrapper.m_InGame_CheatMenu;
         public InputActionMap Get() { return m_Wrapper.m_InGame; }
@@ -632,12 +586,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Pause.started -= m_Wrapper.m_InGameActionsCallbackInterface.OnPause;
                 @Pause.performed -= m_Wrapper.m_InGameActionsCallbackInterface.OnPause;
                 @Pause.canceled -= m_Wrapper.m_InGameActionsCallbackInterface.OnPause;
-                @Boussole.started -= m_Wrapper.m_InGameActionsCallbackInterface.OnBoussole;
-                @Boussole.performed -= m_Wrapper.m_InGameActionsCallbackInterface.OnBoussole;
-                @Boussole.canceled -= m_Wrapper.m_InGameActionsCallbackInterface.OnBoussole;
-                @Release.started -= m_Wrapper.m_InGameActionsCallbackInterface.OnRelease;
-                @Release.performed -= m_Wrapper.m_InGameActionsCallbackInterface.OnRelease;
-                @Release.canceled -= m_Wrapper.m_InGameActionsCallbackInterface.OnRelease;
                 @Book.started -= m_Wrapper.m_InGameActionsCallbackInterface.OnBook;
                 @Book.performed -= m_Wrapper.m_InGameActionsCallbackInterface.OnBook;
                 @Book.canceled -= m_Wrapper.m_InGameActionsCallbackInterface.OnBook;
@@ -672,12 +620,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Pause.started += instance.OnPause;
                 @Pause.performed += instance.OnPause;
                 @Pause.canceled += instance.OnPause;
-                @Boussole.started += instance.OnBoussole;
-                @Boussole.performed += instance.OnBoussole;
-                @Boussole.canceled += instance.OnBoussole;
-                @Release.started += instance.OnRelease;
-                @Release.performed += instance.OnRelease;
-                @Release.canceled += instance.OnRelease;
                 @Book.started += instance.OnBook;
                 @Book.performed += instance.OnBook;
                 @Book.canceled += instance.OnBook;
@@ -749,8 +691,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnFocus(InputAction.CallbackContext context);
         void OnSwitchFocus(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
-        void OnBoussole(InputAction.CallbackContext context);
-        void OnRelease(InputAction.CallbackContext context);
         void OnBook(InputAction.CallbackContext context);
         void OnCheatMenu(InputAction.CallbackContext context);
     }
