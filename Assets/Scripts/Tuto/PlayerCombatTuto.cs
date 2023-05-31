@@ -28,7 +28,6 @@ public class PlayerCombatTuto : MonoBehaviour
     private void OnDisable()
     {
         _qTEHandler.cutSceneSuccess -= CutSceneSuccess;
-        //GetComponent<PlayerLevitationTuto>().enabled = true;
         GameStateManager.Instance.tutoStateObject.SetActive(false);
     }
 
@@ -111,7 +110,6 @@ public class PlayerCombatTuto : MonoBehaviour
             {
                 if ((_focus.CurrentTarget.transform.position - transform.position).magnitude <3.5f)
                 {
-                    //_qTEHandler.ActiveInputType(InputType.Move, false);
                     _qTEHandler.CancelMove();
                     _qTEHandler.LaunchCutScene(InputType.Attack);
                     _isInCutScene = true;
@@ -120,9 +118,8 @@ public class PlayerCombatTuto : MonoBehaviour
             //DashAttack
             if (!_hasDoneDashAttackQte && _hasDoneAttackQte && _hasDoneDashQte)
             {
-                if ((_focus.CurrentTarget.transform.position - transform.position).magnitude < 5f && (_focus.CurrentTarget.transform.position - transform.position).magnitude > 2f)
+                if ((_focus.CurrentTarget.transform.position - transform.position).magnitude < 3.5f && (_focus.CurrentTarget.transform.position - transform.position).magnitude > 2f)
                 {
-                    //_qTEHandler.ActiveInputType(InputType.Move, true);
                     _qTEHandler.LaunchCutScene(InputType.DashAttack);
                     _isInCutScene = true;
                 }
