@@ -43,6 +43,7 @@ public class BezierCurveGenerate : MonoBehaviour
 
         return Quaternion.LookRotation(tangent); ;
     }
+#if UNITY_EDITOR
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.white;
@@ -56,4 +57,5 @@ public class BezierCurveGenerate : MonoBehaviour
         Gizmos.DrawSphere(GetPointBezierCurve(t), 0.1f);
         Gizmos.color = Color.white;
     }
+#endif
 }

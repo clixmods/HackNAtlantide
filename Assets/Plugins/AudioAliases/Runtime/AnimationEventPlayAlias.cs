@@ -10,5 +10,4 @@ public class AnimationEventPlayAlias : MonoBehaviour
         // if(aliasID is Alias alias)
             transform.PlaySoundAtPosition(aliasID);
      }
-    
 }

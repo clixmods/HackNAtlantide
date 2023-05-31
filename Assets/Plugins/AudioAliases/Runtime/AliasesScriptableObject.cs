@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
-using UnityEditor.VersionControl;
 using UnityEngine;
 using UnityEngine.Audio;
 using Object = UnityEngine.Object;
@@ -18,6 +17,8 @@ namespace AudioAliase
         public List<Alias> AliasesSubAsset;
         public Dictionary<string, Queue<Alias>> aliasesDictionnary;
         public bool ConvertAliasToScriptableObject;
+
+#if UNITY_EDITOR
         private void OnValidate()
         {
             this.AliasesSubAsset = GetSubObjectsOfType<Alias>(this);
@@ -26,7 +27,7 @@ namespace AudioAliase
                 return;
             if (ConvertAliasToScriptableObject)
             {
-                var assetPath = AssetDatabase.GetAssetPath(this);
+                //var assetPath = AssetDatabase.GetAssetPath(this);
                 //var AssetDatabase.LoadAssetAtPath<AliasesScriptableObject>(assetPath);
                 // Add an animation clip to it
                 
@@ -64,6 +65,7 @@ namespace AudioAliase
             }
             //AudioManager.AddAliases(this);
         }
+
         public static List<T> GetSubObjectsOfType<T>(Object asset) where T : Object{
             Object[] objs = AssetDatabase.LoadAllAssetsAtPath(AssetDatabase.GetAssetPath(asset));
             List<T> ofType = new List<T>();
@@ -74,7 +76,7 @@ namespace AudioAliase
             }
             return ofType;
         }
-
+#endif
         private static void ConvertAliasClassToScriptable(Alias instance, AliasClassBullshit aliasClass)
         {
             instance.name = aliasClass.name;
