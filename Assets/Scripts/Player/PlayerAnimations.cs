@@ -18,7 +18,7 @@ public class PlayerAnimations : MonoBehaviour
         set => _timeBeforeIdle = value;
     }
 
-    private float _timeBeforeIdle = 5f;
+    private float _timeBeforeIdle = 15f;
     
     private static readonly int Blend = Animator.StringToHash("Blend");
 
@@ -40,7 +40,7 @@ public class PlayerAnimations : MonoBehaviour
         else if (_playerMovement.MoveAmount.magnitude / 0.06f >= 0.1f)
         {
             _animator.SetTrigger("Idle");
-            _timeBeforeIdle = 5f;
+            _timeBeforeIdle = 15f;
         }
 
         if (_timeBeforeIdle <= 0f)
@@ -54,6 +54,11 @@ public class PlayerAnimations : MonoBehaviour
         _animator.CrossFade("Idle",0.01f);
     }
 
+    public void ResetIdle2()
+    {
+        _timeBeforeIdle = 15f;
+    }
+
     public void Dash()
     {
         StartCoroutine(DashCoroutine());
@@ -62,12 +67,13 @@ public class PlayerAnimations : MonoBehaviour
     IEnumerator IdleCoroutine()
     {
         _animator.CrossFade("Idle_Chara_Sword_2",0.01f);
-        _timeBeforeIdle = 5f;
+        _timeBeforeIdle = 15f;
         yield break;
     }
 
     IEnumerator DashCoroutine()
     {
+        _animator.CrossFade("Roulade_Chara_Sword", 0f);
         _animator.SetBool("dash", true);
 
         yield return new WaitForSeconds(.5f);
