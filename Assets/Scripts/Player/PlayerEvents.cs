@@ -30,11 +30,14 @@ public struct InputUnityEvent
 public class PlayerEvents : MonoBehaviour
 {
     [SerializeField] private InputUnityEvent[] _inputsUnityEvent;
-    public UnityEvent OnDamage, OnDeath, OnAttackHit , OnInteract;
+    public UnityEvent OnDamage, OnDeath, OnAttackHit , OnDashAttackHit, OnInteract;
     private IDamageable _damageable;
     private IAttackCollider _attackCollider;
+    private PlayerCombat _playerCombat;
+
     private void Awake()
     {
+        _playerCombat = GetComponent<PlayerCombat>();
         _damageable = GetComponentInChildren<IDamageable>(); 
         _damageable .OnDamage += OnOnDamage;
         _damageable.OnDeath += OnOnDeath;
@@ -59,7 +62,15 @@ public class PlayerEvents : MonoBehaviour
 
     private void OnOnCollideWithIDamageable(object sender, EventArgs e)
     {
-        OnAttackHit?.Invoke();
+        if (_playerCombat.IsDashingAttack)
+        {
+            OnDashAttackHit?.Invoke();
+        }
+        else
+        {
+            OnAttackHit?.Invoke();
+        }
+        
     }
     private void OnOnDeath(object sender, EventArgs e)
     {

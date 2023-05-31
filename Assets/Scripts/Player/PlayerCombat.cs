@@ -30,6 +30,8 @@ public class PlayerCombat : MonoBehaviour,ICombat
     [SerializeField] TrailRenderer _trailSwordDistortion;
 
     [SerializeField] private ScriptableEvent _dashAttackEvent;
+    
+    public bool IsDashingAttack => _animator.GetBool("dashAttack");
 
     private void OnEnable()
     {
