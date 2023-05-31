@@ -19,8 +19,6 @@ public class PlayerAnimations : MonoBehaviour
     }
 
     private float _timeBeforeIdle = 15f;
-    
-    private static readonly int Blend = Animator.StringToHash("Blend");
 
     private void Awake()
     {
@@ -30,8 +28,19 @@ public class PlayerAnimations : MonoBehaviour
 
     private void Update()
     {
-        _animator.SetFloat(Blend, Mathf.Clamp(_playerMovement.MoveAmount.magnitude / 0.06f, 0, 1));
-
+        float Blend;
+        Blend = Mathf.Clamp(_playerMovement.MoveAmount.magnitude / 0.06f, 0f, 1f);
+        if (Blend < 0.1f)
+        {
+            Debug.Log("Set Blend to zero");
+            Blend *= 2f;
+        }
+        if (Blend < 0.01f)
+        {
+            Debug.Log("Set Blend to zero");
+            Blend = 0f;
+        }
+        _animator.SetFloat("Blend", Blend);
         if (_playerMovement.MoveAmount.magnitude / 0.06f <= 0.1f)
         {
             _animator.ResetTrigger("Idle");

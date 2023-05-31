@@ -265,7 +265,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (value && _canDash && _playerStamina.CanUseStamina(1)&& _moveDirection.sqrMagnitude > 0.1f)
         {
-            _dashDirection = _moveDirection;
+            _dashDirection = _moveDirection.normalized;
             _playerStamina.UseStamina(1);
             _speed = _dashSpeed;
             _isDashing = true;
@@ -286,7 +286,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (value && _canDashAttack && _playerStamina.CanUseStamina(1.5f)&& _moveDirection.sqrMagnitude > 0.1f)
         {
-            _dashDirection = _moveDirection;
+            _dashDirection = _moveDirection.normalized;
             _dashAttackEvent.LaunchEvent();
             _playerStamina.UseStamina(1.5f);
             _speed = _dashAttackSpeed;
@@ -310,9 +310,6 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(_dashTime);
 
         _speed = _moveSpeed;
-        
-        
-        
 
         StartCoroutine(ReloadDash());
 
@@ -327,7 +324,6 @@ public class PlayerMovement : MonoBehaviour
         _speed = _moveSpeed;
         
         _transformLock = _transformLockTempForDash;
-        
 
         StartCoroutine(ReloadDashAttack());
 
