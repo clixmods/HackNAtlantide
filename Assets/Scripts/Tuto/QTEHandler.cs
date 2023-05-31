@@ -101,7 +101,7 @@ public class QTEHandler : MonoBehaviour
     {
         if(!_isInCutScene)
         {
-            StartCoroutine(Cutscene(inputType));
+            StartCoroutine(Cutscene(inputType, stopTimeScale));
         }
     }
     IEnumerator Cutscene(InputType inputType, bool stopTimeScale = true)
@@ -123,6 +123,7 @@ public class QTEHandler : MonoBehaviour
             yield return null;
         }
         ActiveInputType(inputType, false);
+
         if (stopTimeScale)
         {
             DOTween.To(() => Time.timeScale, x => Time.timeScale = x, 1, 0.2f).SetUpdate(true);
