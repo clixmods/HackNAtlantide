@@ -10033,6 +10033,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _timeToDestroy: 3
   _randomValue: 1
+  _shrink: 1
 --- !u!1 &1043134337296141945 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 795584770842386238, guid: c1699365285f26141a12f4395268fec9,
@@ -10069,6 +10070,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _timeToDestroy: 3
   _randomValue: 1
+  _shrink: 1
 --- !u!1 &1061996426668741953 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 851023215258682374, guid: c1699365285f26141a12f4395268fec9,
@@ -10105,6 +10107,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _timeToDestroy: 3
   _randomValue: 1
+  _shrink: 1
 --- !u!1 &1191584106490336896 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1583809576347781063, guid: c1699365285f26141a12f4395268fec9,
@@ -10141,6 +10144,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _timeToDestroy: 3
   _randomValue: 1
+  _shrink: 1
 --- !u!1 &3151497968641210759 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3373151805133334720, guid: c1699365285f26141a12f4395268fec9,
@@ -10177,6 +10181,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _timeToDestroy: 3
   _randomValue: 1
+  _shrink: 1
 --- !u!1 &6049027858981347128 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6233544613283466879, guid: c1699365285f26141a12f4395268fec9,
@@ -10213,6 +10218,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _timeToDestroy: 3
   _randomValue: 1
+  _shrink: 1
 --- !u!1 &6132638898556528699 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5793893648235870588, guid: c1699365285f26141a12f4395268fec9,
@@ -10249,6 +10255,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _timeToDestroy: 3
   _randomValue: 1
+  _shrink: 1
 --- !u!1 &6172888212038150851 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5825696504801868676, guid: c1699365285f26141a12f4395268fec9,
@@ -10297,6 +10304,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _timeToDestroy: 3
   _randomValue: 1
+  _shrink: 1
 --- !u!1001 &8557617840307134382
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10473,13 +10481,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5b86aa4926329d4386be4f9e91c7444, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnHitEvent:
+    m_PersistentCalls:
+      m_Calls: []
   sendEventOnEnter: 1
   sendEventOnStay: 0
   sendEventOnExit: 0
   interactWithLayers:
     serializedVersion: 2
     m_Bits: 2048
-  _hitVfx: {fileID: 5198298009378133111}
 --- !u!114 &851311337322998931
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10510,6 +10520,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c6c551db3ff69643b3d6385a5c88a35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnInteract:
+    m_PersistentCalls:
+      m_Calls: []
+  OnResetInteract:
+    m_PersistentCalls:
+      m_Calls: []
   _playerDetectionScriptableObject: {fileID: 11400000, guid: 87208dfddc03fc14d9db2baa6f705322,
     type: 2}
   _playerStamina: {fileID: 11400000, guid: 7a3b5b3b905bbfe4fb4ea9ada55960e1, type: 2}
@@ -10518,5 +10534,9 @@ MonoBehaviour:
   useStaminaAmount: 1
   _meshDestroy: {fileID: 6172888212038150851}
   damageAmount: 1
+  LaunchAttack:
+    m_PersistentCalls:
+      m_Calls: []
   _speedExplosion: 5
   _maxRadius: 1
+  _timeToDestroyIfNoHit: 1.5

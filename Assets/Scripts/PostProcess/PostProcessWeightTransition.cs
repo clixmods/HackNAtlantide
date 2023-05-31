@@ -40,9 +40,11 @@ public class PostProcessWeightTransition : MonoBehaviour
         {
             float t = _timeElapsed / timeTransition;
             _volume.weight = Mathf.Clamp(Mathf.Lerp(_weightPrevious, _weightTarget, t) ,0,1);
-            _timeElapsed += Time.deltaTime;
+            _timeElapsed += Time.unscaledDeltaTime;
             yield return null;
         }
+
+        _volume.weight = _weightTarget;
         _isTransitioning = false;
     }
 

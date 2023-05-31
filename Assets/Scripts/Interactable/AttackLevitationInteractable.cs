@@ -52,6 +52,8 @@ public class AttackLevitationInteractable : Interactable
     bool explosion;
 
     private int _layerBase;
+    [SerializeField] float _timeToDestroyIfNoHit = 3f;
+
     #region Monobehaviour
     private void Awake()
     {
@@ -86,10 +88,6 @@ public class AttackLevitationInteractable : Interactable
         _uiChargeInputHelper = (UIChargeInputHelper)(_inputHelper.UIInputHelper);
         _inputHelper.enabled = false;
     }
-    private void Update()
-    {
-        Explosion();
-    }
     // We need to use late update, sometimes, the position targeted glitch because nav agent is bullshit
     private void LateUpdate()
     {
@@ -119,66 +117,52 @@ public class AttackLevitationInteractable : Interactable
     }
     
     #endregion
-    void Explosion()
+    
+    private void AttackColliderOnOnCollideWithIDamageable(object sender, EventArgs e)
     {
-        if (explosion)
+        if (e is AttackDamageableEventArgs mDamageableEventArgs)
         {
-            if (_colliderExplosion.radius > _maxRadius)
-            {
-                _colliderExplosion.enabled = false;
-                Destroy(gameObject);
-            }
-            else
-            {
-                _colliderExplosion.radius += Time.deltaTime * _speedExplosion;
-            }
+            mDamageableEventArgs.idamageable.DoDamage(damageAmount, transform.position);
+            DestroyInteractable();
         }
     }
-        private void AttackColliderOnOnCollideWithIDamageable(object sender, EventArgs e)
+    private void SetDestination(IFocusable target = null)
+    {
+        if (Focus.FocusIsEnable)
         {
-            if (e is AttackDamageableEventArgs mDamageableEventArgs)
-            {
-                mDamageableEventArgs.idamageable.DoDamage(damageAmount , transform.position);
-                DestroyInteractable();
-            }
+            transformDestination = target.focusableTransform;
         }
-        private void SetDestination(IFocusable target = null) 
-        {
-            if (Focus.FocusIsEnable)
-            {
-                transformDestination = target.focusableTransform;
-            }
-            else
-            {
-                transformDestination = null;
-            }
-            
-        }
-        
-        private void DestroyInteractable()
-        {
-            if (_meshDestroy != null)
-            {
-                _meshDestroy.transform.position = transform.position;
-                _meshDestroy.transform.rotation = transform.rotation;
-                _meshDestroy.SetActive(true);
-                Rigidbody[] childrb = _meshDestroy.GetComponentsInChildren<Rigidbody>();
-                foreach(Rigidbody rb in childrb)
-                {
-                    rb.AddForce(Random.onUnitSphere*5f,ForceMode.Impulse);
-                }
-            }
-            Destroy(GetComponent<MeshRenderer>());
-            Destroy(GetComponent<BoxCollider>());
-            
-            _rigidBody.isKinematic = true ;
-            explosion = true;
-        }
-        
-        private void RemoveTarget()
+        else
         {
             transformDestination = null;
         }
+
+    }
+
+    private void DestroyInteractable()
+    {
+        if (_meshDestroy != null)
+        {
+            _meshDestroy.transform.position = transform.position;
+            _meshDestroy.transform.rotation = transform.rotation;
+            _meshDestroy.SetActive(true);
+            Rigidbody[] childrb = _meshDestroy.GetComponentsInChildren<Rigidbody>();
+            foreach (Rigidbody rb in childrb)
+            {
+                rb.AddForce(Random.onUnitSphere * 5f, ForceMode.Impulse);
+            }
+        }
+        Destroy(GetComponent<MeshRenderer>());
+        Destroy(GetComponent<BoxCollider>());
+
+        _rigidBody.isKinematic = true;
+        StartCoroutine(Explosion());
+    }
+
+    private void RemoveTarget()
+    {
+        transformDestination = null;
+    }
     IEnumerator ChargeObject()
     {
         _isCharging = true;
@@ -213,15 +197,23 @@ public class AttackLevitationInteractable : Interactable
         
         _isCharging = false;
     }
-    #if UNITY_EDITOR
-    private void OnDrawGizmos()
+    IEnumerator Explosion()
     {
-        if (transformDestination != null)
+        explosion = true;
+        while (_colliderExplosion.radius < _maxRadius)
         {
-            Gizmos.DrawLine(transform.position, transformDestination.position );
+            _colliderExplosion.radius += Time.deltaTime * _speedExplosion;
+            yield return null;
         }
+        _colliderExplosion.enabled = false;
+        Destroy(gameObject);
     }
-    #endif
+    IEnumerator WaitForDestroy()
+    {
+        yield return new WaitForSeconds(_timeToDestroyIfNoHit);
+        if(!explosion)
+            DestroyInteractable();
+    }
     #region IInteractable
     public override bool Interact()
     {
@@ -263,6 +255,9 @@ public class AttackLevitationInteractable : Interactable
             LaunchAttack?.Invoke();
             _attackCollider.enabled = true;
             _inputHelper.enabled = false;
+
+            StartCoroutine(WaitForDestroy());
+
             return;
         }
 
