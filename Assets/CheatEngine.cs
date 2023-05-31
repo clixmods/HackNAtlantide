@@ -10,7 +10,8 @@ using XEditor.Editor;
 public class CheatEngine : MonoBehaviour
 {
     public bool isInvicible;
-    public TMP_InputField TimeScaleField;
+    public Slider sliderTimeScale;
+    public TextMeshProUGUI textTimeScaleValue;
     public ScriptableEvent[] events;
     public ScriptableEventType<float>[] eventsFloat;
     public ScriptableEventType<bool>[] eventsBool;
@@ -22,6 +23,10 @@ public class CheatEngine : MonoBehaviour
     public GameObject EventsPanelPrefab;
     public List<GameObject> EventsPanelPrefabs = new List<GameObject>();
 
+    public LayerMask LayerToIgnoreCollisionWallEnnemiePlayer;
+    LayerMask layerBeforeIgnoring;
+    public Toggle toggleIgnoreCollision;
+    public Toggle toggleFly;
 #if UNITY_EDITOR
     private void OnValidate()
     {
@@ -45,6 +50,7 @@ public class CheatEngine : MonoBehaviour
     }
     void OpenMenu(bool value)
     {
+        Debug.Log("opencheat");
         if(value)
         {
             UI.SetActive(!UI.activeSelf);
@@ -94,9 +100,10 @@ public class CheatEngine : MonoBehaviour
         }
     }
 
-    public void TimeScale(string value)
+    public void TimeScale()
     {
-        Time.timeScale = float.Parse(TimeScaleField.text);
+        Time.timeScale = sliderTimeScale.value;
+        textTimeScaleValue.text = Time.timeScale.ToString();
     }
     public void AddHealth()
     {
@@ -105,5 +112,36 @@ public class CheatEngine : MonoBehaviour
     public void Invincible(bool value)
     {
         FindObjectOfType<PlayerHealth>().IsInvincible = value;
+    }
+    public void ChangeCollision()
+    {
+        if (toggleIgnoreCollision.isOn)
+        {
+            Debug.Log("cancelcollision");
+            Physics.IgnoreLayerCollision(6, 11);
+            Physics.IgnoreLayerCollision(6, 3);
+            layerBeforeIgnoring = FindObjectOfType<PlayerMovement>().LayerToIgnore ;
+            FindObjectOfType<PlayerMovement>().LayerToIgnore = LayerToIgnoreCollisionWallEnnemiePlayer;
+        }
+        else
+        {
+            Debug.Log("activecollision");
+            Physics.IgnoreLayerCollision(6, 11,false);
+            Physics.IgnoreLayerCollision(6, 3,false);
+            FindObjectOfType<PlayerMovement>().LayerToIgnore = layerBeforeIgnoring;
+        }
+    }
+    public void Fly()
+    {
+        if (toggleFly.isOn)
+        {
+            FindObjectOfType<PlayerMovement>().GetComponent<Rigidbody>().useGravity = false;
+            FindObjectOfType<PlayerMovement>().fly = true;
+        }
+        else
+        {
+            FindObjectOfType<PlayerMovement>().GetComponent<Rigidbody>().useGravity = true;
+            FindObjectOfType<PlayerMovement>().fly = false;
+        }
     }
 }

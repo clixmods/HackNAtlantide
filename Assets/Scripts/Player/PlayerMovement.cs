@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private PlayerMovementStateScriptableObject _playerMovementState;
     [SerializeField] private PlayerInstanceScriptableObject _playerInstanceSO;
     [SerializeField] private LayerMask _layerToIgnore;
+    public LayerMask LayerToIgnore { get { return _layerToIgnore; } set { _layerToIgnore = value; } }
 
     //Input
     [Header("INPUT")]
@@ -85,6 +86,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] ScriptableEvent _dashAttackEvent;
 
     #endregion
+    //CheatENgine ToRemove
+    public bool fly;
 
     // Start is called before the first frame update
     void Awake()
@@ -372,7 +375,8 @@ public class PlayerMovement : MonoBehaviour
     
     private void StayGrounded()
     {
-        _rigidbody.AddForce(Vector3.down * 1000000 * Time.fixedDeltaTime);
+        if(!fly)
+            _rigidbody.AddForce(Vector3.down * 1000000 * Time.fixedDeltaTime);
         /*float distance = 0f;
         Vector3 displacement = Vector3.zero;
         float magnitudeCheck = IsDashing || IsDashingAttack ? 0.6f : 0.3f;

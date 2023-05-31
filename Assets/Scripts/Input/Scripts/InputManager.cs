@@ -112,6 +112,9 @@ public class InputManager : MonoBehaviour
         // Pause
         _input.InGame.Pause.performed += ctx => _pause.ChangeValue(true);
 
+        _input.InGame.CheatMenu.performed += ctx => _openCheatMenu.ChangeValue(true);
+
+
     }
     void DisableGameInput()
     {
@@ -140,6 +143,7 @@ public class InputManager : MonoBehaviour
         // Pause
         _input.InGame.Pause.performed -= ctx =>  _pause.ChangeValue(true);
 
+        _input.InGame.CheatMenu.performed -= ctx => _openCheatMenu.ChangeValue(true);
 
         _input.Disable();
     }
