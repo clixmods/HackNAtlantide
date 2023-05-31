@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using _2DGame.Scripts.Save;
 using UnityEngine;
+using UnityEngine.Events;
 
 [CreateAssetMenu(menuName = "Data/PlayerStamina")]
 public class PlayerStaminaScriptableObject : ScriptableValueFloatSaveable
@@ -35,6 +36,7 @@ public class PlayerStaminaScriptableObject : ScriptableValueFloatSaveable
     public Action<float> OnValueChanged;
     public Action OnStaminaIsEmpty;
     public Action FailUseStamina;
+    public UnityEvent UnityEventFailUseStamina;
     public bool CanUseStamina(float amount)
     {
         if(Value - amount >= 0)
@@ -42,6 +44,7 @@ public class PlayerStaminaScriptableObject : ScriptableValueFloatSaveable
             return true;
         }
         FailUseStamina?.Invoke();
+        UnityEventFailUseStamina?.Invoke();
         return false; 
     }
     public Action<float> OnUseStamina;

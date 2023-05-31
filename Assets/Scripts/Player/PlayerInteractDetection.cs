@@ -80,10 +80,8 @@ public class PlayerInteractDetection : MonoBehaviour
             // No interactableTransform used, so we need to check the closest and use it
             if(closestObject != null && closestObject.Interact())
             {
-                
                 _currentInteractable = closestObject;
                 InteractableSelected?.Invoke(_currentInteractable);
-                Debug.Log("AliasOnInteract");
                 transform.PlayLoopSound(AliasOnInteract, ref _audioPlayer);
             }
         }
@@ -92,7 +90,6 @@ public class PlayerInteractDetection : MonoBehaviour
             if (_currentInteractable != null)
             {
                 _currentInteractable.CancelInteract();
-                Debug.Log("DeAliasOnInteract");
                 AudioManager.StopLoopSound(ref _audioPlayer, StopLoopBehavior.Direct);
                 _currentInteractable = null;
                 InteractableDeselected?.Invoke();
