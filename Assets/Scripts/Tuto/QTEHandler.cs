@@ -97,19 +97,23 @@ public class QTEHandler : MonoBehaviour
     {
         _hasFocus = value;
     }
-    public void LaunchCutScene(InputType inputType)
+    public void LaunchCutScene(InputType inputType, bool stopTimeScale = true)
     {
         if(!_isInCutScene)
         {
             StartCoroutine(Cutscene(inputType));
         }
     }
-    IEnumerator Cutscene(InputType inputType)
+    IEnumerator Cutscene(InputType inputType, bool stopTimeScale = true)
     {
         _isInCutScene = true;
        
         //_postProcessWeightTransition.SetWeightVolume(1f);
-        DOTween.To(() => Time.timeScale, x => Time.timeScale = x, 0, 0.2f).SetUpdate(true);
+        if(stopTimeScale)
+        {
+            DOTween.To(() => Time.timeScale, x => Time.timeScale = x, 0, 0.2f).SetUpdate(true);
+        }
+        
 
         ActiveInputType(inputType, true);
         
@@ -119,7 +123,10 @@ public class QTEHandler : MonoBehaviour
             yield return null;
         }
         ActiveInputType(inputType, false);
-        DOTween.To(() => Time.timeScale, x => Time.timeScale = x, 1, 0.2f).SetUpdate(true);
+        if (stopTimeScale)
+        {
+            DOTween.To(() => Time.timeScale, x => Time.timeScale = x, 1, 0.2f).SetUpdate(true);
+        }
         //_postProcessWeightTransition.SetWeightVolume(0f);
         _isInCutScene = false;
         cutSceneSuccess?.Invoke(inputType);

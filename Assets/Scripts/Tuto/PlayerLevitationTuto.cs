@@ -58,16 +58,9 @@ public class PlayerLevitationTuto : MonoBehaviour
         {
             if (_focus != null && _focus.CurrentTarget != null && !_isInCutScene)
             {
-                _qTEHandler.LaunchCutScene(InputType.Focus);
+                _qTEHandler.LaunchCutScene(InputType.Focus, false);
                 _isInCutScene = true;
             }
         }
-            
-        /*if(interactDetection.ClosestInteractable() != null && _hasDoneFocusQte)
-        {
-            _qTEHandler.LaunchCutScene(InputType.Interact);
-            _isInCutScene = true;
-        }*/
-
     }
 }
