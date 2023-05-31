@@ -37,7 +37,7 @@ public class PlayerEvents : MonoBehaviour
 
     private void Awake()
     {
-        _playerCombat = GetComponent<PlayerCombat>();
+        _playerCombat = GetComponentInChildren<PlayerCombat>();
         _damageable = GetComponentInChildren<IDamageable>(); 
         _damageable .OnDamage += OnOnDamage;
         _damageable.OnDeath += OnOnDeath;
