@@ -321,8 +321,6 @@ public class GameStateManager : MonoBehaviour
             _lastCallBackCalled = callbacks[^1];
             callbacks[^1].OnApplyCallback();
         }
-            
-        
     }
     IEnumerator RunTimeState()
     {

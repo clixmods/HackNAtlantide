@@ -16,8 +16,6 @@ public class InputManager : MonoBehaviour
     [SerializeField] private InputVectorScriptableObject _switchFocus;
     [SerializeField] private InputButtonScriptableObject _focus;
     [SerializeField] private InputButtonScriptableObject _pause;
-    [SerializeField] private InputButtonScriptableObject _boussole;
-    [SerializeField] private InputButtonScriptableObject _release;
 
     [SerializeField] private InputButtonScriptableObject _openCheatMenu;
 
@@ -75,14 +73,13 @@ public class InputManager : MonoBehaviour
         _move.IsActive = value;
         _switchFocus.IsActive = value;
         _focus.IsActive = value;
-        _boussole.IsActive = value;
-        _release.IsActive = value;
     }
     public void ActiveInputCombat(bool value)
     {
         _attack.IsActive = value;
         _dashAttack.IsActive = value;
         _focus.IsActive = value;
+        _switchFocus.IsActive = value;
     }
     public void EnableGameInput()
     {
@@ -114,16 +111,7 @@ public class InputManager : MonoBehaviour
         _input.InGame.SwitchFocus.canceled += ctx => _switchFocus.ChangeValue(Vector2.zero);
         // Pause
         _input.InGame.Pause.performed += ctx => _pause.ChangeValue(true);
-        //Boussole
-        _input.InGame.Boussole.performed += ctx => _boussole.ChangeValue(true);
-        _input.InGame.Boussole.canceled += ctx => _boussole.ChangeValue(false);
-        // Release
-        _input.InGame.Release.performed += ctx => _release.ChangeValue(true);
-        _input.InGame.Release.canceled += ctx => _release.ChangeValue(false);
 
-        // Release
-        _input.InGame.CheatMenu.performed += ctx => _openCheatMenu.ChangeValue(true);
-        _input.InGame.CheatMenu.canceled += ctx => _openCheatMenu.ChangeValue(false);
     }
     void DisableGameInput()
     {
@@ -152,12 +140,6 @@ public class InputManager : MonoBehaviour
         // Pause
         _input.InGame.Pause.performed -= ctx =>  _pause.ChangeValue(true);
 
-        //Boussole
-        _input.InGame.Boussole.performed -= ctx => _boussole.ChangeValue(true);
-        _input.InGame.Boussole.canceled -= ctx => _boussole.ChangeValue(false);
-        // Release
-        _input.InGame.Release.performed -= ctx => _release.ChangeValue(true);
-        _input.InGame.Release.canceled -= ctx => _release.ChangeValue(false);
 
         _input.Disable();
     }
