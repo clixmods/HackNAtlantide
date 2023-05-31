@@ -29,6 +29,8 @@ public class DamageableLowHealthListener : MonoBehaviour
    #endregion
    private void DamageableOnChangeHealth(float health, float maxHealth)
    {
+         if (Math.Abs(health - maxHealth) < 0.1f)
+            return;
        //  float health = _damageable.health;
          if (health > 1 && _isLowHealth)
          {

@@ -11,6 +11,7 @@ public class PlayerHealth : Character
     public UnityEvent HealthGain;
     public UnityEvent HealthGainFull;
     public UnityEvent MaxHealthIncrease;
+    
     public override float health
     {
         get => healthValue.Value;
@@ -68,8 +69,20 @@ public class PlayerHealth : Character
         }
         health = healthValue.Value;
         maxHealth = healthValue.MaxValue;
+        //healthValue.OnMaxValueChanged += MaxValueChanged;
+        //healthValue.OnValueChanged += ValueChanged;
         return;
         base.InitHealth();
+    }
+
+    private void ValueChanged(float value)
+    {
+        //OnChangeHealth?.Invoke(health,maxHealth);
+    }
+
+    private void MaxValueChanged(float maxValue)
+    {
+       // throw new NotImplementedException();
     }
 
     public override void Dead()

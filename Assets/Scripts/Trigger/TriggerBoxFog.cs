@@ -22,6 +22,7 @@ public class TriggerBoxFog : TriggerBox
     #endif
     private void OnValidate()
     {
+        base.OnValidate();
         RenderSettings.fogDensity = fogSetting.fogDensity;
         RenderSettings.fogEndDistance = fogSetting.fogEndDistance;
         RenderSettings.fogStartDistance = fogSetting.fogStartDistance;
