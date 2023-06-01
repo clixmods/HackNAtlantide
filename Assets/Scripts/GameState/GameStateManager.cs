@@ -346,9 +346,9 @@ public class GameStateManager : MonoBehaviour
             callbacks[i].OnApplyGameStateOverride(gameStateOverride);
         }
 
-        if (callbacks.Count > 0 && callbacks[^1] != _lastCallBackCalled)
+        if (callbacks.Count > 0   )
         {
-            _lastCallBackCalled = callbacks[^1];
+            //_lastCallBackCalled = callbacks[^1];
             callbacks[^1].OnApplyCallback();
         }
     }

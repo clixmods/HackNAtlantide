@@ -5000,7 +5000,7 @@ PrefabInstance:
     - target: {fileID: 3074646139590633209, guid: b77b45d696911824da7f8bf5a53304ad,
         type: 3}
       propertyPath: m_Gain
-      value: 0.5
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 3248260827453762567, guid: b77b45d696911824da7f8bf5a53304ad,
         type: 3}
@@ -5355,22 +5355,22 @@ PrefabInstance:
     - target: {fileID: 5385849557459567687, guid: b77b45d696911824da7f8bf5a53304ad,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.37942657
+      value: 0.37942663
       objectReference: {fileID: 0}
     - target: {fileID: 5385849557459567687, guid: b77b45d696911824da7f8bf5a53304ad,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.10787884
+      value: 0.107878834
       objectReference: {fileID: 0}
     - target: {fileID: 5385849557459567687, guid: b77b45d696911824da7f8bf5a53304ad,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.88387966
+      value: 0.8838797
       objectReference: {fileID: 0}
     - target: {fileID: 5385849557459567687, guid: b77b45d696911824da7f8bf5a53304ad,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.2513053
+      value: -0.25130528
       objectReference: {fileID: 0}
     - target: {fileID: 5385849557459567704, guid: b77b45d696911824da7f8bf5a53304ad,
         type: 3}
@@ -6225,18 +6225,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b77b45d696911824da7f8bf5a53304ad, type: 3}
---- !u!114 &168529113 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7557955886810226575, guid: b77b45d696911824da7f8bf5a53304ad,
-    type: 3}
-  m_PrefabInstance: {fileID: 168529112}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 78f0bfffcac09d24f8b820245fd5d31e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!43 &168955346
 Mesh:
   m_ObjectHideFlags: 0
@@ -28310,7 +28298,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec8b92431f1a7b843a12d4c0cae45ca1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  loadingScreen: {fileID: 168529113}
   sceneToLoad: 2
 --- !u!114 &779283349
 MonoBehaviour:
@@ -28341,8 +28328,8 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 779283348}
-        m_TargetAssemblyTypeName: LoadSceneWithLoadingScreen, Assembly-CSharp
-        m_MethodName: LoadScene
+        m_TargetAssemblyTypeName: Loading.LoaderBehaviour, Assembly-CSharp
+        m_MethodName: StartLoader
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -28359,7 +28346,7 @@ MonoBehaviour:
   EventOnTriggerEnd:
     m_PersistentCalls:
       m_Calls: []
-  disableAfterOnTriggerEnter: 0
+  disableAfterOnTriggerEnter: 1
   disableAfterOnTriggerStay: 0
   disableAfterOnTriggerExit: 0
   interactWithLayers:

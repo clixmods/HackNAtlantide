@@ -851,8 +851,8 @@ MonoBehaviour:
           m_BoolArgument: 1
         m_CallState: 2
       - m_Target: {fileID: 3682160157450158012}
-        m_TargetAssemblyTypeName: LoadSceneWithLoadingScreen, Assembly-CSharp
-        m_MethodName: LoadScene
+        m_TargetAssemblyTypeName: Loading.LoaderBehaviour, Assembly-CSharp
+        m_MethodName: StartLoader
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -886,7 +886,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec8b92431f1a7b843a12d4c0cae45ca1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  loadingScreen: {fileID: 0}
   sceneToLoad: 0
 --- !u!114 &9094874836051262611
 MonoBehaviour:
@@ -1467,8 +1466,8 @@ MonoBehaviour:
           m_BoolArgument: 1
         m_CallState: 2
       - m_Target: {fileID: 4870286295579369509}
-        m_TargetAssemblyTypeName: ButtonLoadScene, Assembly-CSharp
-        m_MethodName: LoadScene
+        m_TargetAssemblyTypeName: Loading.LoaderBehaviour, Assembly-CSharp
+        m_MethodName: StartLoader
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1502,7 +1501,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec8b92431f1a7b843a12d4c0cae45ca1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  loadingScreen: {fileID: 0}
   sceneToLoad: 1
 --- !u!114 &1286601738688296322
 MonoBehaviour:
@@ -2035,5 +2033,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec8b92431f1a7b843a12d4c0cae45ca1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  loadingScreen: {fileID: 0}
   sceneToLoad: 7

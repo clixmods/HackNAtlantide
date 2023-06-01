@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
-public class ImageAlphaTransition : MonoBehaviour
+public class ImageAlphaTransition : LoadingWorkerBehaviour
 {
     enum StateTransition
     {
@@ -15,8 +15,11 @@ public class ImageAlphaTransition : MonoBehaviour
     [SerializeField] private float timeToActiveEmissive = 1f;
     [SerializeField] private float timeToResetEmissive = 0.5f;
     private StateTransition _stateTransition = StateTransition.IsDisabling;
+    public override bool WorkIsDone { get; set; }
+
     private void Awake()
     {
+        base.Awake();
         _image = GetComponentInChildren<Image>();
     }
     public void ActiveBlackScreen()
@@ -31,6 +34,8 @@ public class ImageAlphaTransition : MonoBehaviour
     
     IEnumerator LerpColor( Color colorTarget, float timeTransition, StateTransition stateTransition)
     {
+        WorkIsDone = false;
+        yield return new WaitForSecondsRealtime(1);
         _stateTransition = stateTransition;
         float timeElapsed = 0;
         // Assign our new value.
@@ -42,11 +47,13 @@ public class ImageAlphaTransition : MonoBehaviour
             {
                 yield break;
             }
-            timeElapsed += Time.deltaTime;
+            timeElapsed += Time.unscaledDeltaTime;
             var t = timeElapsed / timeTransition;
             // Assign our new value.
             _image.color = Color.Lerp(initialColor, colorTarget, t);
             yield return null;
         }
+        WorkIsDone = true;
+      
     }
 }

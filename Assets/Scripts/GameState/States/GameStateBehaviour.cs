@@ -4,7 +4,7 @@ public abstract class GameStateBehaviour<T> : MonoBehaviour, IGameStateCallBack 
 {
     public UnityEvent ApplyGameStateOverride;
     [SerializeField] protected GameStateManager _gameStateManager;
-    private T state;
+    protected T state;
 
     private void OnEnable()
     {
@@ -29,7 +29,6 @@ public abstract class GameStateBehaviour<T> : MonoBehaviour, IGameStateCallBack 
     public void OnApplyGameStateOverride(GameStateOverride stateOverride)
     {
         OnApplyGameStateOverrideImplement(stateOverride);
-       
     }
 
     public void OnApplyCallback()

@@ -12,7 +12,7 @@ public class LoadingScreen : MonoBehaviour
     public Slider LoadingBarFill;
     public float speed;
 
-
+    
     public void LoadScene(int sceneId)
     {
         gameObject.SetActive(true);

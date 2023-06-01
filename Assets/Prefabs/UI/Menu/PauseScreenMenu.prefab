@@ -989,8 +989,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 4705276421055997562}
-        m_TargetAssemblyTypeName: ButtonLoadScene, Assembly-CSharp
-        m_MethodName: LoadScene
+        m_TargetAssemblyTypeName: Loading.LoaderBehaviour, Assembly-CSharp
+        m_MethodName: StartLoader
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1012,7 +1012,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec8b92431f1a7b843a12d4c0cae45ca1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  loadingScreen: {fileID: 0}
   sceneToLoad: 0
 --- !u!1 &8454662116409943623
 GameObject:

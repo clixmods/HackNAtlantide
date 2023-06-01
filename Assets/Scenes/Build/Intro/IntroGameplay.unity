@@ -20457,8 +20457,8 @@ MonoBehaviour:
           m_BoolArgument: 1
         m_CallState: 2
       - m_Target: {fileID: 1531782413}
-        m_TargetAssemblyTypeName: LoadSceneWithLoadingScreen, Assembly-CSharp
-        m_MethodName: LoadScene
+        m_TargetAssemblyTypeName: Loading.LoaderBehaviour, Assembly-CSharp
+        m_MethodName: StartLoader
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -20571,7 +20571,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec8b92431f1a7b843a12d4c0cae45ca1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  loadingScreen: {fileID: 2546023470410809345}
   sceneToLoad: 2
 --- !u!43 &1574451529
 Mesh:
@@ -28778,18 +28777,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0d09c0515b2885647b380434ea8ed7a8, type: 3}
---- !u!114 &2546023470410809345 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2476172164437106349, guid: 0d09c0515b2885647b380434ea8ed7a8,
-    type: 3}
-  m_PrefabInstance: {fileID: 2546023470410809344}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 78f0bfffcac09d24f8b820245fd5d31e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2546023470410809346 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7540139582676837868, guid: 0d09c0515b2885647b380434ea8ed7a8,

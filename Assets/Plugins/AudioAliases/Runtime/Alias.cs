@@ -93,9 +93,11 @@ namespace AudioAliase
         public SurfaceAlias[] surfacesAlias;
         public Dictionary<string, Alias> dictSurfacesAlias ;
         [SerializeField] public int guid = AliasUtility.GenerateID();
+        
+        
         public int GUID => guid;
 
-     
+        public bool HasAudioClip => audio.Length > 0;
 
         public AudioClip Audio
         {

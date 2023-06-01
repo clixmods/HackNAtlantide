@@ -15,7 +15,7 @@ MonoBehaviour:
   aliasName: player_footstep_wood
   description: 
   Tag: Audio Aliase/Player
-  MixerGroup: {fileID: 0}
+  MixerGroup: {fileID: 24300002, guid: 5da2c8dde8bb9094f8aaeafbe0aca20b, type: 2}
   audio:
   - {fileID: 8300000, guid: 20bd13ca6d97c054e9a4cd41537d8a13, type: 3}
   - {fileID: 8300000, guid: a1e945a23c15c974cb74e08592832cb3, type: 3}
@@ -30,7 +30,6 @@ MonoBehaviour:
   bypassListenerEffects: 0
   bypassReverbZones: 0
   priority: 0
-  volume: 0
   minVolume: 0.8
   maxVolume: 0.8
   limitCount: 0
@@ -56,6 +55,8 @@ MonoBehaviour:
     m_PreInfinity: 0
     m_PostInfinity: 0
     m_RotationOrder: 0
+  OpenFadeInSeconds: 0
+  CloseFadeInSeconds: 0
   Text: 
   customDuration: 0
   isInit: 0

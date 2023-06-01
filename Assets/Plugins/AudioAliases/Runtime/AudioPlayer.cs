@@ -103,7 +103,7 @@ namespace AudioAliase
         // Update is called once per frame
         private void Update()
         {
-            if (lastAliasPlayed == null) 
+            if (lastAliasPlayed == null ) 
                 gameObject.SetActive(false);
             
             FollowTransform();
@@ -199,6 +199,8 @@ namespace AudioAliase
         }
         IEnumerator StartAliasVolume()
         {
+            if(Source.clip == null) yield break;
+            
             float timeElapsed = 0;
             Source.volume = 0;
             float targetVolume = lastAliasPlayed.volume;
@@ -223,7 +225,7 @@ namespace AudioAliase
         private void Play(Alias aliasToPlay)
         {
             // If a start aliase is available, we need to play it before the base aliase
-            if (_state == CurrentlyPlaying.Start && aliasToPlay.startAliase != null)
+            if (_state == CurrentlyPlaying.Start && aliasToPlay.startAliase != null && aliasToPlay.startAliase.HasAudioClip)
             {
                 SetupAudioSource(aliasToPlay.startAliase);
                 //Source.clip = startLoop.Audio;
@@ -231,7 +233,7 @@ namespace AudioAliase
                 _nextSound = aliasToPlay;
                 return;
             }
-
+            
             _state = CurrentlyPlaying.Base; // Sinon ca fait le bug du next sound pas def
             //Setup the base aliase
             SetupAudioSource(aliasToPlay);
