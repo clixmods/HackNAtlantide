@@ -102,6 +102,10 @@ public class Settings : MonoBehaviourSaveable
     {
         DataPersistentHandler.Save(this, this.SaveID.ToString());
     }
+    public void Save()
+    {
+        DataPersistentHandler.Save(this, this.SaveID.ToString());
+    }
     
     public class SettingsSaveData : SaveData
     {

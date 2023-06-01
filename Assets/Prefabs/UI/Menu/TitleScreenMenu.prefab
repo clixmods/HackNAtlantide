@@ -372,7 +372,31 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4870286295579369509}
+      - m_Target: {fileID: 11400000, guid: 2a8894600e41b1b4da912bb02b84e087, type: 2}
+        m_TargetAssemblyTypeName: DataPersistentHandler, DataPersistent
+        m_MethodName: ResetAll
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 11400000, guid: 2a8894600e41b1b4da912bb02b84e087, type: 2}
+        m_TargetAssemblyTypeName: DataPersistentHandler, DataPersistent
+        m_MethodName: SaveAll
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ButtonLoadScene, Assembly-CSharp
         m_MethodName: LoadScene
         m_Mode: 1
@@ -384,7 +408,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 4870286294504944088}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UIMenu, Assembly-CSharp
         m_MethodName: CloseMenu
         m_Mode: 6

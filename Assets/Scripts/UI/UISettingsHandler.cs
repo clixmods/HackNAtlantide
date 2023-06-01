@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,6 +15,8 @@ public class UISettingsHandler : MonoBehaviour
     // Start is called before the first frame update
     void OnEnable()
     {
+        LoadSettingsValues();
+
         _generalVolumeSlider.onValueChanged.AddListener(GeneralSlider);
         _volumeSFXSlider.onValueChanged.AddListener(SFXSlider);
         _volumeMusicSlider.onValueChanged.AddListener(MusicSlider);
@@ -27,6 +30,8 @@ public class UISettingsHandler : MonoBehaviour
         _volumeMusicSlider.onValueChanged.RemoveListener(MusicSlider);
         _rumblerDropDown.onValueChanged.RemoveListener(RumblerDropDown);
         _windowModeDropDown.onValueChanged.RemoveListener(WindowModeDropDown);
+
+        SaveSettings();
     }
 
     private void Start()
@@ -61,5 +66,9 @@ public class UISettingsHandler : MonoBehaviour
     void WindowModeDropDown(int value)
     {
         Settings.Instance.WindowMode = (FullScreenMode)value;
+    }
+    public void SaveSettings()
+    {
+        Settings.Instance.Save();
     }
 }
