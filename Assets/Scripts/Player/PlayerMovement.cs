@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Serialization;
 
 public class PlayerMovement : MonoBehaviour
@@ -89,6 +90,7 @@ public class PlayerMovement : MonoBehaviour
     //CheatENgine ToRemove
     public bool fly;
 
+    public UnityEvent OnTeleport;
     // Start is called before the first frame update
     void Awake()
     {
@@ -396,7 +398,12 @@ public class PlayerMovement : MonoBehaviour
     }
     public void Teleport(Vector3 position)
     {
+        if (Vector3.Distance(position , transform.position) > 5)
+        {
+            OnTeleport?.Invoke();
+        }
         transform.position = position;
+       
     }
     public void TeleportWorldSpawn(Vector3 position)
     {

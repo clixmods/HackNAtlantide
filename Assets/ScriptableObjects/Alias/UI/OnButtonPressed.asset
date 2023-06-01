@@ -9,15 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e6e18e9f14a86004485fd8130044cc4c, type: 3}
-  m_Name: amb_fire_blue_loop
+  m_Script: {fileID: 11500000, guid: acfaebaa19219ea448a0f03582848d39, type: 3}
+  m_Name: OnButtonPressed
   m_EditorClassIdentifier: 
   aliasName: 
   description: 
   Tag: 
   MixerGroup: {fileID: 0}
   audio:
-  - {fileID: 8300000, guid: f53fb4f1efe1c1d48b78cf79fa16be07, type: 3}
+  - {fileID: 8300000, guid: 7d419b1054a3479428c4fcec70eb1e8b, type: 3}
   soundType: 0
   randomizeClips: 0
   Secondary: {fileID: 0}
@@ -25,19 +25,19 @@ MonoBehaviour:
   bypassListenerEffects: 0
   bypassReverbZones: 0
   priority: 0
-  minVolume: 0.99431646
-  maxVolume: 1
-  limitCount: 4
-  isLooping: 1
+  minVolume: 0.8
+  maxVolume: 0.8
+  limitCount: 0
+  isLooping: 0
   startAliase: {fileID: 0}
   endAliase: {fileID: 0}
   UseDelayLoop: 0
   minDelayLoop: 0
   maxDelayLoop: 0
-  minPitch: 0.88940096
-  maxPitch: 1.110599
+  minPitch: 1
+  maxPitch: 1.01
   stereoPan: 0
-  spatialBlend: 1
+  spatialBlend: 0
   reverbZoneMix: 1
   dopplerLevel: 1
   Spread: 1
@@ -77,4 +77,4 @@ MonoBehaviour:
   audioPlayers: []
   UseSurfaceDetection: 0
   surfacesAlias: []
-  guid: 172614684
+  guid: 995847551

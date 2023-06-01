@@ -90,11 +90,16 @@ namespace AudioAliase
         {
             float timeElapsed = 0;
             float currentVolume = Source.volume;
-            while (timeElapsed < lastAliasPlayed.CloseFadeInSeconds )
+            while (Source.volume > 0 )
             {
                 float t = timeElapsed / lastAliasPlayed.CloseFadeInSeconds;
+                if (lastAliasPlayed.CloseFadeInSeconds <= 0)
+                {
+                    t = 1;
+                }
+                
                 Source.volume = Mathf.Clamp(Mathf.Lerp(currentVolume, 0, t) ,0,1);
-                timeElapsed += Time.deltaTime;
+                timeElapsed += Time.unscaledDeltaTime;
                 yield return null;
             }
             gameObject.SetActive(false);
@@ -103,12 +108,23 @@ namespace AudioAliase
         IEnumerator StartAliasVolume()
         {
             float timeElapsed = 0;
+            Source.volume = 0;
             float targetVolume = lastAliasPlayed.volume;
-            while (timeElapsed < lastAliasPlayed.OpenFadeInSeconds )
+            
+            
+            if (Source.clip.length < lastAliasPlayed.OpenFadeInSeconds)
             {
-                float t = timeElapsed / lastAliasPlayed.CloseFadeInSeconds;
+                lastAliasPlayed.OpenFadeInSeconds = Source.clip.length;
+            }
+            while (Source.volume < targetVolume )
+            {
+                float t = timeElapsed / lastAliasPlayed.OpenFadeInSeconds;
+                if (lastAliasPlayed.OpenFadeInSeconds <= 0)
+                {
+                    t = 1;
+                }
                 Source.volume = Mathf.Clamp(Mathf.Lerp(0, targetVolume, t) ,0,1);
-                timeElapsed += Time.deltaTime;
+                timeElapsed += Time.unscaledDeltaTime;
                 yield return null;
             }
         }
@@ -119,12 +135,18 @@ namespace AudioAliase
                 gameObject.SetActive(false);
             
             FollowTransform();
+            
             if (Source.clip == null)
             {
                 StartCoroutine(StopAliasVolume());
                 return;
             }
-                
+
+
+            if (Source.clip.length < lastAliasPlayed.CloseFadeInSeconds)
+            {
+                lastAliasPlayed.CloseFadeInSeconds = Source.clip.length;
+            }
             // Audio play have finish the play
             if (_timePlayed + lastAliasPlayed.CloseFadeInSeconds >= (Source.clip.length * Source.pitch) + _delayLoop)
             {

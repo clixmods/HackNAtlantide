@@ -77,6 +77,7 @@ namespace AudioAliase
 
         [Header("Fade Settings")] 
         public float OpenFadeInSeconds = 0;
+        
         public float CloseFadeInSeconds = 0;
         
         [Header("Subtitle")]
@@ -88,7 +89,7 @@ namespace AudioAliase
         [Header("Instance")] 
         public List<AudioPlayer> audioPlayers;
         [Tooltip("The alias will detect surface from material to play the adequat alias [XMaterials plugin required]")]
-        public bool UseSurfaceDetection;
+        public bool UseSurfaceDetection = false;
         public SurfaceAlias[] surfacesAlias;
         public Dictionary<string, Alias> dictSurfacesAlias ;
         [SerializeField] public int guid = AliasUtility.GenerateID();
@@ -169,6 +170,7 @@ namespace AudioAliase
         {
             GenerateDictSurfacesAlias();
             Init();
+            
         }
 
         protected virtual void Init()
