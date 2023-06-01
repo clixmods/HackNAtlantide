@@ -22,6 +22,11 @@ namespace AudioAliase
     [RequireComponent(typeof(GetSurfaceType))]
     public class AudioPlayer : MonoBehaviour
     {
+        public delegate void AudioPlayerEvent();
+
+        public AudioPlayerEvent OnAudioDisable;
+        public AudioPlayerEvent OnAudioEnable;
+        
         public Queue<Alias> _clips = new();
         
         [SerializeField] private Alias lastAliasPlayed;
@@ -44,9 +49,7 @@ namespace AudioAliase
         private CurrentlyPlaying _state = CurrentlyPlaying.Start;
 
         #endregion
-
         public AudioSource Source { get; private set; }
-
         /// <summary>
         /// AudioPlayer is available ? 
         /// </summary>
@@ -73,6 +76,16 @@ namespace AudioAliase
 
         #region MonoBehaviour
 
+        private void OnEnable()
+        {
+            OnAudioEnable?.Invoke();
+        }
+
+        private void OnDisable()
+        {
+            OnAudioDisable?.Invoke();
+        }
+
         private void Awake()
         {
             Source = transform.GetComponent<AudioSource>();
@@ -86,48 +99,7 @@ namespace AudioAliase
             }
         }
 
-        IEnumerator StopAliasVolume()
-        {
-            float timeElapsed = 0;
-            float currentVolume = Source.volume;
-            while (Source.volume > 0 )
-            {
-                float t = timeElapsed / lastAliasPlayed.CloseFadeInSeconds;
-                if (lastAliasPlayed.CloseFadeInSeconds <= 0)
-                {
-                    t = 1;
-                }
-                
-                Source.volume = Mathf.Clamp(Mathf.Lerp(currentVolume, 0, t) ,0,1);
-                timeElapsed += Time.unscaledDeltaTime;
-                yield return null;
-            }
-            gameObject.SetActive(false);
-            Reset();
-        }
-        IEnumerator StartAliasVolume()
-        {
-            float timeElapsed = 0;
-            Source.volume = 0;
-            float targetVolume = lastAliasPlayed.volume;
-            
-            
-            if (Source.clip.length < lastAliasPlayed.OpenFadeInSeconds)
-            {
-                lastAliasPlayed.OpenFadeInSeconds = Source.clip.length;
-            }
-            while (Source.volume < targetVolume )
-            {
-                float t = timeElapsed / lastAliasPlayed.OpenFadeInSeconds;
-                if (lastAliasPlayed.OpenFadeInSeconds <= 0)
-                {
-                    t = 1;
-                }
-                Source.volume = Mathf.Clamp(Mathf.Lerp(0, targetVolume, t) ,0,1);
-                timeElapsed += Time.unscaledDeltaTime;
-                yield return null;
-            }
-        }
+       
         // Update is called once per frame
         private void Update()
         {
@@ -206,6 +178,48 @@ namespace AudioAliase
 
         #endregion
 
+        IEnumerator StopAliasVolume()
+        {
+            float timeElapsed = 0;
+            float currentVolume = Source.volume;
+            while (Source.volume > 0 )
+            {
+                float t = timeElapsed / lastAliasPlayed.CloseFadeInSeconds;
+                if (lastAliasPlayed.CloseFadeInSeconds <= 0)
+                {
+                    t = 1;
+                }
+                
+                Source.volume = Mathf.Clamp(Mathf.Lerp(currentVolume, 0, t) ,0,1);
+                timeElapsed += Time.unscaledDeltaTime;
+                yield return null;
+            }
+            gameObject.SetActive(false);
+            Reset();
+        }
+        IEnumerator StartAliasVolume()
+        {
+            float timeElapsed = 0;
+            Source.volume = 0;
+            float targetVolume = lastAliasPlayed.volume;
+            
+            
+            if (Source.clip.length < lastAliasPlayed.OpenFadeInSeconds)
+            {
+                lastAliasPlayed.OpenFadeInSeconds = Source.clip.length;
+            }
+            while (Source.volume < targetVolume )
+            {
+                float t = timeElapsed / lastAliasPlayed.OpenFadeInSeconds;
+                if (lastAliasPlayed.OpenFadeInSeconds <= 0)
+                {
+                    t = 1;
+                }
+                Source.volume = Mathf.Clamp(Mathf.Lerp(0, targetVolume, t) ,0,1);
+                timeElapsed += Time.unscaledDeltaTime;
+                yield return null;
+            }
+        }
         private void Play(Alias aliasToPlay)
         {
             // If a start aliase is available, we need to play it before the base aliase

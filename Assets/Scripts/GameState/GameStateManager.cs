@@ -50,6 +50,22 @@ public class CinematiqueState : GameState
         stateOverride.inputDashActive = false;
     }
 }
+public class LoadingState : GameState
+{
+    public override int Priority => GameStateUtility.LoadingPriority;
+
+    public override void ApplyOverride(GameStateOverride stateOverride)
+    {
+        stateOverride.isPaused = false;
+        stateOverride.timeScale = 1f;
+        stateOverride.allInputActive = false;
+        stateOverride.inputPauseActive = false;
+        stateOverride.inputInteractActive = false;
+        stateOverride.inputMovementActive = false;
+        stateOverride.inputCombatActive = false;
+        stateOverride.inputDashActive = false;
+    }
+}
 public class MainMenuState : GameState
 {
     public override int Priority => GameStateUtility.MainMenuPriority;

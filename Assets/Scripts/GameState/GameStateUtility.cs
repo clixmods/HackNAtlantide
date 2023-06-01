@@ -5,6 +5,7 @@ using UnityEngine;
 public static class GameStateUtility
 {
     //the lower has the priority
+    public const int LoadingPriority = 1;
     public const int MainMenuPriority = 2;
     public const int DeadPriority = 3;
     public const int PausePriority = 5;
