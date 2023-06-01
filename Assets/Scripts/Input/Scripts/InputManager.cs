@@ -8,6 +8,7 @@ public class InputManager : MonoBehaviour
 {
     public static InputManager Instance;
     public static PlayerControls _input { private set; get; }
+    [Header("Game")]
     [SerializeField] private InputButtonScriptableObject _interact;
     [SerializeField] private InputButtonScriptableObject _attack;
     [SerializeField] private InputButtonScriptableObject _dash;
@@ -18,6 +19,11 @@ public class InputManager : MonoBehaviour
     [SerializeField] private InputButtonScriptableObject _pause;
 
     [SerializeField] private InputButtonScriptableObject _openCheatMenu;
+
+    [Header("UI")]
+
+    [SerializeField] private InputButtonScriptableObject _back;
+    [SerializeField] private InputButtonScriptableObject _unPause;
 
     [SerializeField] private InputActionIcon _actionIcon;
     private bool _isGamepad { get; set; }
@@ -80,6 +86,44 @@ public class InputManager : MonoBehaviour
         _dashAttack.IsActive = value;
         _focus.IsActive = value;
         _switchFocus.IsActive = value;
+    }
+    public void SwitchInputActionMap(bool inputGame)
+    {
+        if(inputGame)
+        {
+            DisableUIInput();
+            _input.UI.Disable();
+            _input.InGame.Enable();
+            EnableGameInput();
+        }
+        else
+        {
+            DisableGameInput();
+            _input.InGame.Disable();
+            _input.UI.Enable();
+            EnableUIInput();
+        }
+    }
+    public void EnableUIInput()
+    {
+        _input.UI.Enable();
+        //back
+        _input.UI.Back.performed += ctx => _back.ChangeValue(true);
+        _input.UI.Back.canceled += ctx => _back.ChangeValue(false);
+        // Attack
+        _input.UI.Unpause.performed += ctx => _unPause.ChangeValue(true);
+        _input.UI.Unpause.canceled += ctx => _unPause.ChangeValue(false);
+    }
+    public void DisableUIInput()
+    {
+        //back
+        _input.UI.Back.performed -= ctx => _back.ChangeValue(true);
+        _input.UI.Back.canceled -= ctx => _back.ChangeValue(false);
+        // Attack
+        _input.UI.Unpause.performed -= ctx => _unPause.ChangeValue(true);
+        _input.UI.Unpause.canceled -= ctx => _unPause.ChangeValue(false);
+
+        _input.UI.Disable();
     }
     public void EnableGameInput()
     {

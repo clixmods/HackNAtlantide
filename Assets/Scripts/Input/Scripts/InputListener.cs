@@ -12,6 +12,7 @@ public class InputListener : MonoBehaviour
     [SerializeField] private bool alwaysListen = true;
     public UnityEvent InputValueTrue;
     public UnityEvent InputValueFalse;
+    [SerializeField] bool listenInputWithDelay = false;
 
     private void Awake()
     {
@@ -21,12 +22,25 @@ public class InputListener : MonoBehaviour
         }
     }
 
+
     private void OnEnable()
     {
         if (!alwaysListen)
         {
-            inputToListen.OnValueChanged += ListenerBehaviour;
+            if (listenInputWithDelay)
+            {
+                StartCoroutine(AddListener());
+            }
+            else
+            {
+                inputToListen.OnValueChanged += ListenerBehaviour;
+            }
         }
+    }
+    IEnumerator AddListener()
+    {
+        yield return new WaitForEndOfFrame();
+        inputToListen.OnValueChanged += ListenerBehaviour;
     }
 
     private void OnDisable()
@@ -46,6 +60,5 @@ public class InputListener : MonoBehaviour
         {
             InputValueFalse?.Invoke();
         }
-            
     }
 }

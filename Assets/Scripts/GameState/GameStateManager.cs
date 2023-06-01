@@ -12,6 +12,7 @@ public class RuntimeGameState : GameState
     public override void ApplyOverride(GameStateOverride stateOverride)
     {
         stateOverride.timeScale = 1f;
+        stateOverride.inputUIActive = false;
     }
 }
 public class PauseGameState : GameState
@@ -22,7 +23,15 @@ public class PauseGameState : GameState
     {
         stateOverride.isPaused = true;
         stateOverride.timeScale = 0f;
+
         stateOverride.allInputActive = false;
+        stateOverride.inputPauseActive = false;
+        stateOverride.inputInteractActive = false;
+        stateOverride.inputMovementActive = false;
+        stateOverride.inputCombatActive = false;
+        stateOverride.inputDashActive = false;
+
+        stateOverride.inputUIActive = true;
     }
 }
 public class CinematiqueState : GameState
@@ -51,6 +60,7 @@ public class MainMenuState : GameState
         stateOverride.timeScale = 0f;
         stateOverride.allInputActive = false;
         stateOverride.inputPauseActive = false;
+        stateOverride.inputUIActive = true;
     }
 }
 public class CombatState : GameState
@@ -92,6 +102,7 @@ public class DeadState : GameState
         stateOverride.inputDashActive = false;
         stateOverride.inputPauseActive = false;
 
+
     }
 }
 public interface IGameStateCallBack
@@ -111,6 +122,7 @@ public class GameStateOverride
     public bool inputInteractActive = true;
     public bool inputPauseActive = true;
     public bool allInputActive = true;
+    public bool inputUIActive = false;
     
     public void Reset()
     {
@@ -131,6 +143,7 @@ public class GameStateOverride
         InputManager.Instance.ActiveInputInteract(inputInteractActive);
         InputManager.Instance.ActiveInputMovement(inputMovementActive);
         InputManager.Instance.ActiveInputPause(inputPauseActive);
+        InputManager.Instance.SwitchInputActionMap(!inputUIActive);
     }
 }
 [Serializable]
@@ -204,6 +217,7 @@ public class GameStateManager : MonoBehaviour
     public GameObject combatStateObject;
     public GameObject deadStateObject;
     public GameObject cinematicStateObject;
+    public GameObject mainMenuStateObject;
     [SerializeField] ScriptableEventBool pauseEvent;
     [SerializeField] ScriptableEvent restartEvent;
 
