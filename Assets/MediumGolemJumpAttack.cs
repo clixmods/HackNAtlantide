@@ -1,12 +1,11 @@
 using Attack;
-using Cinemachine;
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Events;
+using UnityEngine.UIElements;
+using Random = UnityEngine.Random;
 
 public class MediumGolemJumpAttack : EnemyAttackBehaviour
 {
@@ -52,7 +51,7 @@ public class MediumGolemJumpAttack : EnemyAttackBehaviour
         ExplosionFx.transform.localScale = Vector3.zero;
 
         //listenToEventExplosionDamage
-        _attackColliderExplosion.OnCollideWithIDamageable += AttackColliderOnOnCollideWithIDamageableExplosion;
+
     }
     
     IEnumerator AttackBehaviour()
@@ -76,13 +75,6 @@ public class MediumGolemJumpAttack : EnemyAttackBehaviour
             float interpolationPosition = timeToJump / jumpTime;
             transform.position = bezierCurve.GetPointBezierCurve(interpolationPosition);
 
-            //Anim
-            //Joue le mid air animation a partir de 20% du saut
-            /*if(!_enemyBehaviour.Animator.GetCurrentAnimatorStateInfo(0).IsName("Jump_Golem") && interpolationPosition > 0.2f)
-            {
-                _enemyBehaviour.Animator.CrossFadeInFixedTime(MidAirAnimID, 0f);
-            }*/
-
             //Joue l'attack animation a partir de 60% du saut
             if (!_enemyBehaviour.Animator.GetCurrentAnimatorStateInfo(0).IsName("Landing_Golem_M") && interpolationPosition > 0.6f)
             {
@@ -100,9 +92,12 @@ public class MediumGolemJumpAttack : EnemyAttackBehaviour
 
     IEnumerator ExplosionAttack()
     {
-        OnAttackStarted();
-        Instantiate(groundCrackDecal,transform.position+Vector3.up*2,Quaternion.identity);
         _attackColliderExplosion.enabled = true;
+        _attackColliderExplosion.OnCollideWithIDamageable += AttackColliderOnOnCollideWithIDamageableExplosion;
+
+        Instantiate(groundCrackDecal,transform.position+Vector3.up*2,Quaternion.identity);
+
+
         OnExplosionStart?.Invoke();
 
         ExplosionFx.Play();
@@ -118,22 +113,24 @@ public class MediumGolemJumpAttack : EnemyAttackBehaviour
         explosionCollider.radius = 0f;
         ExplosionFx.transform.localScale = Vector3.zero;
 
+        _attackColliderExplosion.OnCollideWithIDamageable -= AttackColliderOnOnCollideWithIDamageableExplosion;
         _attackColliderExplosion.enabled = false;
-        OnAttackFinished();
     }
 
     private void AttackColliderOnOnCollideWithIDamageableExplosion(object sender, EventArgs eventArgs)
     {
         if (eventArgs is AttackDamageableEventArgs mDamageableEventArgs)
         {
-            mDamageableEventArgs.idamageable.DoDamage(Mathf.Lerp(damageOnExplosion, 0,Mathf.Clamp((_enemyBehaviour.DistanceWithPlayer / explosionRadius),0,1)));
+            float damage = Mathf.Lerp(damageOnExplosion, 0, Mathf.Clamp(((transform.position - mDamageableEventArgs.idamageable.transform.position).magnitude / explosionRadius), 0, 1));
+            //ZEBI
+            mDamageableEventArgs.idamageable.DoDamage(damage);
         }
     }
     void CalculatePath()
     {
         startPosition.parent = null;
         startPosition.position = transform.position;
-        endPoint.position = PlayerInstanceScriptableObject.Player.transform.position;
+        endPoint.position = PlayerInstanceScriptableObject.Player.transform.position + new Vector3(Random.value,0,Random.value)*2;
         highPoint1.position = transform.position + (endPoint.position - transform.position) / 4f + Vector3.up * 10f;
         highPoint2.position = transform.position + 3 * (endPoint.position - transform.position) / 4f + Vector3.up * 10f;
         

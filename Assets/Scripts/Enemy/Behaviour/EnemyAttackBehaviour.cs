@@ -62,6 +62,7 @@ public abstract class EnemyAttackBehaviour : MonoBehaviour, ICombat
     {
         _enemyBehaviour = GetComponent<EnemyBehaviour>();
         _currentPriority = _minPriority;
+
     }
 
     public void OnAttackStarted()

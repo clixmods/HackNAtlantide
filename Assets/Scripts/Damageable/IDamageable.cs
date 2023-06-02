@@ -36,5 +36,6 @@ public interface IDamageable
     /// </summary>
     public void Dead();
     public void AddHealth(float health);
+    public Transform transform { get; }
 
 }

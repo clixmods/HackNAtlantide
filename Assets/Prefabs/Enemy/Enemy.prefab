@@ -1099,7 +1099,7 @@ MonoBehaviour:
   _minDistanceToAttack: 0
   _maxDistanceToAttack: 2.5
   _facePlayer: 1
-  _attackColliderRight: {fileID: 2169866490069815679}
+  _attackColliderRight: {fileID: 6530721446332279865}
   _attackColliderLeft: {fileID: 2550468937616992568}
 --- !u!114 &3565349656382750047
 MonoBehaviour:
@@ -2184,7 +2184,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 7378593395098648404}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 6528547297065914703}
   m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a5b86aa4926329d4386be4f9e91c7444, type: 3}
@@ -2220,3 +2220,30 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 7378593395098648404}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &6528547297065914703 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4394396906602016283, guid: e3e47316f53734d4b97fdd17f181ea47,
+    type: 3}
+  m_PrefabInstance: {fileID: 7378593395098648404}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6530721446332279865
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6528547297065914703}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5b86aa4926329d4386be4f9e91c7444, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnHitEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  sendEventOnEnter: 1
+  sendEventOnStay: 0
+  sendEventOnExit: 0
+  interactWithLayers:
+    serializedVersion: 2
+    m_Bits: 0

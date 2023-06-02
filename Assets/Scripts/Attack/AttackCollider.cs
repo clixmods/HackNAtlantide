@@ -34,15 +34,18 @@ public class AttackCollider : MonoBehaviour , IAttackCollider
 
     private void OnHit(IDamageable damageable)
     {
-        if (_damageableHitted.Contains(damageable)) return;
+        if (_damageableHitted.Contains(damageable)) { return; }
         
         _damageableHitted.Add(damageable);
         OnHitEvent?.Invoke();
+
+       // damageable.DoDamage(1);
+
         OnCollideWithIDamageable?.Invoke(this, new AttackDamageableEventArgs()
         {
             idamageable = damageable
 
-        });
+        });  
     }
     private void OnTriggerEnter(Collider other)
     {

@@ -5029,6 +5029,7 @@ GameObject:
   - component: {fileID: 3396630250994205294}
   - component: {fileID: 8534134945917972702}
   - component: {fileID: 3780594615718789745}
+  - component: {fileID: 7001511745316172872}
   m_Layer: 11
   m_Name: Explosion
   m_TagString: Untagged
@@ -5080,25 +5081,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   OnHitEvent:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 4025376379957053087}
-        m_TargetAssemblyTypeName: UnityEngine.ParticleSystem, UnityEngine
-        m_MethodName: Play
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   sendEventOnEnter: 1
   sendEventOnStay: 0
   sendEventOnExit: 0
   interactWithLayers:
     serializedVersion: 2
-    m_Bits: 3136
+    m_Bits: 35905
+--- !u!114 &7001511745316172872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2821260110853030283}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 961464f1c97f5b74b8f3101054df1a84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  explosionForce: 500
 --- !u!1 &3977359411452837262
 GameObject:
   m_ObjectHideFlags: 0
@@ -15293,8 +15295,8 @@ MonoBehaviour:
   _minDistanceToAttack: 15
   _maxDistanceToAttack: 35
   _facePlayer: 1
-  _attackColliderRight: {fileID: 2074869903953982366}
-  _attackColliderLeft: {fileID: 9055717818441153204}
+  _attackColliderRight: {fileID: 0}
+  _attackColliderLeft: {fileID: 0}
   damageOnExplosion: 2
   _jumpForce: 0
   jumpHorizontalSpeed: 0

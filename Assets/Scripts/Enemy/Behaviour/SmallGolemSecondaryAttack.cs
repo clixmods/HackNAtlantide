@@ -8,7 +8,6 @@ public class SmallGolemSecondaryAttack : EnemyAttackBehaviour
     public override void Awake()
     {
         base.Awake();
-        OnAttackStarted();
     }
     public override void Attack()
     {
@@ -22,7 +21,7 @@ public class SmallGolemSecondaryAttack : EnemyAttackBehaviour
     }
     IEnumerator AttackBehaviour()
     {
-        //OnAttackStarted();
+        OnAttackStarted();
         float time = CoolDown/2f;
         while(time > 0)
         {
@@ -33,7 +32,7 @@ public class SmallGolemSecondaryAttack : EnemyAttackBehaviour
             time -= Time.deltaTime;
             yield return null;
         }
-        //OnAttackFinished();
+        OnAttackFinished();
     }
 
     public override bool CanAttack()

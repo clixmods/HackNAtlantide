@@ -74,7 +74,6 @@ public class Character : MonoBehaviour,  IDamageable
         }
 
         health -= damage;
-        Debug.Log("dodamage : "+ damage);
         if (damage > 0)
         {
             AttackFeedback();
