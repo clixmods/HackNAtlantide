@@ -24,6 +24,7 @@ public class InputManager : MonoBehaviour
 
     [SerializeField] private InputButtonScriptableObject _back;
     [SerializeField] private InputButtonScriptableObject _unPause;
+    [SerializeField] private InputButtonScriptableObject _anyKeyUI;
 
     [SerializeField] private InputActionIcon _actionIcon;
     private bool _isGamepad { get; set; }
@@ -110,18 +111,24 @@ public class InputManager : MonoBehaviour
         //back
         _input.UI.Back.performed += ctx => _back.ChangeValue(true);
         _input.UI.Back.canceled += ctx => _back.ChangeValue(false);
-        // Attack
+        // UnPause
         _input.UI.Unpause.performed += ctx => _unPause.ChangeValue(true);
         _input.UI.Unpause.canceled += ctx => _unPause.ChangeValue(false);
+
+        _input.UI.AnyKey.performed += ctx => _anyKeyUI.ChangeValue(true);
+        _input.UI.AnyKey.canceled += ctx => _anyKeyUI.ChangeValue(false);
     }
     public void DisableUIInput()
     {
         //back
         _input.UI.Back.performed -= ctx => _back.ChangeValue(true);
         _input.UI.Back.canceled -= ctx => _back.ChangeValue(false);
-        // Attack
+        // Unpause
         _input.UI.Unpause.performed -= ctx => _unPause.ChangeValue(true);
         _input.UI.Unpause.canceled -= ctx => _unPause.ChangeValue(false);
+
+        _input.UI.AnyKey.performed -= ctx => _anyKeyUI.ChangeValue(true);
+        _input.UI.AnyKey.canceled -= ctx => _anyKeyUI.ChangeValue(false);
 
         _input.UI.Disable();
     }

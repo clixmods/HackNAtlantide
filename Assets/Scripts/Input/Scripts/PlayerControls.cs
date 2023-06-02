@@ -535,6 +535,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""AnyKey"",
+                    ""type"": ""Button"",
+                    ""id"": ""7b5943ee-9761-4255-8f7d-2969d17be5ff"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -1010,6 +1019,61 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""action"": ""Unpause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d6f0b6ed-fa9c-4225-b81b-ad09054b9650"",
+                    ""path"": ""<Keyboard>/anyKey"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AnyKey"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""703bb287-7104-45dc-a875-ea7481715e53"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AnyKey"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bf8582ca-456b-48da-81ca-64609aba1ac3"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AnyKey"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2fed5aa6-1140-4156-9ce2-13fbe75ca6a5"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AnyKey"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""04d02321-632c-4abb-b62f-0c16542d11a4"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AnyKey"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -1073,6 +1137,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_UI_TrackedDeviceOrientation = m_UI.FindAction("TrackedDeviceOrientation", throwIfNotFound: true);
         m_UI_Back = m_UI.FindAction("Back", throwIfNotFound: true);
         m_UI_Unpause = m_UI.FindAction("Unpause", throwIfNotFound: true);
+        m_UI_AnyKey = m_UI.FindAction("AnyKey", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1282,6 +1347,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_UI_TrackedDeviceOrientation;
     private readonly InputAction m_UI_Back;
     private readonly InputAction m_UI_Unpause;
+    private readonly InputAction m_UI_AnyKey;
     public struct UIActions
     {
         private @PlayerControls m_Wrapper;
@@ -1298,6 +1364,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @TrackedDeviceOrientation => m_Wrapper.m_UI_TrackedDeviceOrientation;
         public InputAction @Back => m_Wrapper.m_UI_Back;
         public InputAction @Unpause => m_Wrapper.m_UI_Unpause;
+        public InputAction @AnyKey => m_Wrapper.m_UI_AnyKey;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1343,6 +1410,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Unpause.started -= m_Wrapper.m_UIActionsCallbackInterface.OnUnpause;
                 @Unpause.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnUnpause;
                 @Unpause.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnUnpause;
+                @AnyKey.started -= m_Wrapper.m_UIActionsCallbackInterface.OnAnyKey;
+                @AnyKey.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnAnyKey;
+                @AnyKey.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnAnyKey;
             }
             m_Wrapper.m_UIActionsCallbackInterface = instance;
             if (instance != null)
@@ -1383,6 +1453,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Unpause.started += instance.OnUnpause;
                 @Unpause.performed += instance.OnUnpause;
                 @Unpause.canceled += instance.OnUnpause;
+                @AnyKey.started += instance.OnAnyKey;
+                @AnyKey.performed += instance.OnAnyKey;
+                @AnyKey.canceled += instance.OnAnyKey;
             }
         }
     }
@@ -1436,5 +1509,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnTrackedDeviceOrientation(InputAction.CallbackContext context);
         void OnBack(InputAction.CallbackContext context);
         void OnUnpause(InputAction.CallbackContext context);
+        void OnAnyKey(InputAction.CallbackContext context);
     }
 }
