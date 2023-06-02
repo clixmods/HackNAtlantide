@@ -22,21 +22,6 @@ public class LoaderScene : LoaderBehaviour
         }
         LoaderEnd?.Invoke();
     }
-
-    // private void LoadScene()
-    // {
-    //     StartCoroutine(LoadSceneAsync(sceneToLoad));
-    // }
-    // IEnumerator LoadSceneAsync(int sceneId)
-    // {
-    //     AsyncOperation operation = SceneManager.LoadSceneAsync(sceneId);
-    //   
-    //     while(!operation.isDone)
-    //     {
-    //         yield return null;
-    //     }
-    // }
-
     public void SetSceneIndexToLoad(int value)
     {
         sceneToLoad = value;

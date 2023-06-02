@@ -35,7 +35,11 @@ public class ImageAlphaTransition : LoadingWorkerBehaviour
     IEnumerator LerpColor( Color colorTarget, float timeTransition, StateTransition stateTransition)
     {
         WorkIsDone = false;
-        yield return new WaitForSecondsRealtime(1);
+        if (_stateTransition == StateTransition.IsDisabling)
+        {
+            yield return new WaitForSecondsRealtime(1f);
+        }
+       
         _stateTransition = stateTransition;
         float timeElapsed = 0;
         // Assign our new value.
