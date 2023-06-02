@@ -6,7 +6,7 @@ using UnityEngine.Events;
 
 public class LoadingStateBehaviour : GameStateBehaviour<LoadingState>
 {
-    public UnityEvent OnDisableState;
+    //public UnityEvent OnDisableState;
     private Action _action;
     private IEnumerator _coroutine;
     
@@ -88,6 +88,6 @@ public class LoadingStateBehaviour : GameStateBehaviour<LoadingState>
     protected override void OnPostUnRegisterRemoveState()
     {
         base.OnPostUnRegisterRemoveState();
-        OnDisableState?.Invoke();
+        
     }
 }

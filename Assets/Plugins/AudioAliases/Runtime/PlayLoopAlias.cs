@@ -9,10 +9,11 @@ public class PlayLoopAlias : MonoBehaviour
 {
     [SerializeField] private AliasLoop aliasToPlay;
     private AudioPlayer _audioPlayer;
+    [SerializeField] private bool gameObjectDependant = true;
 
     private void OnValidate()
     {
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
             if (aliasToPlay != null)
             {
                 gameObject.name = $"Play Loop : {aliasToPlay.name}";
@@ -20,9 +21,18 @@ public class PlayLoopAlias : MonoBehaviour
         #endif
     }
 
+    private void Awake()
+    {
+        if (!gameObjectDependant)
+        {
+            PlayAlias();
+        }
+    }
+
     private void OnEnable()
     {
-        PlayAlias();
+        if(gameObjectDependant)
+            PlayAlias();
     }
 
     private void OnDestroy()
@@ -32,7 +42,8 @@ public class PlayLoopAlias : MonoBehaviour
 
     private void OnDisable()
     {
-        StopAlias();
+        if(gameObjectDependant)
+            StopAlias();
     }
 
     public void PlayAlias()

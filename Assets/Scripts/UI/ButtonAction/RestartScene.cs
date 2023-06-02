@@ -1,13 +1,15 @@
 using System.Collections;
+using Loading;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
-public class RestartScene : MonoBehaviour
+public class RestartScene : LoaderBehaviour
 {
     [SerializeField] private ScriptableEvent _restartEvent;
     [SerializeField] DataPersistentHandler _dataPersistentHandler;
 
+    private int _sceneID;
     //Loading
     public UnityEvent LoadingStart;
     public UnityEvent LoadingStop;
@@ -17,21 +19,14 @@ public class RestartScene : MonoBehaviour
         _restartEvent.LaunchEvent();
         gameObject.SetActive(true);
         LoadingStart?.Invoke();
-        StartCoroutine(LoadSceneAsync(SceneManager.GetActiveScene().buildIndex));
+        _sceneID = SceneManager.GetActiveScene().buildIndex;
+        //StartCoroutine();
     }
 
-    IEnumerator LoadSceneAsync(int sceneId)
-    {
-        AsyncOperation operation = SceneManager.LoadSceneAsync(sceneId);
-
-        while (!operation.isDone)
-        {
-            yield return null;
-        }
-
-        yield return new WaitForSeconds(2);
-        LoadingStop?.Invoke();
-    }
+    // IEnumerator LoadSceneAsync()
+    // {
+    //    
+    // }
     public void SceneRestart()
     {
         StartCoroutine(RestartSceneCoroutine(3f));
@@ -40,7 +35,25 @@ public class RestartScene : MonoBehaviour
     {
         yield return new WaitForSecondsRealtime(time);
         _dataPersistentHandler.LoadAll();
-        LoadScene();
+        StartLoader();
         
+    }
+
+    protected override void LoaderAction()
+    {
+        LoadScene();
+    }
+
+    protected override IEnumerator LoaderRoutine()
+    {
+        AsyncOperation operation = SceneManager.LoadSceneAsync(_sceneID);
+
+        while (!operation.isDone)
+        {
+            yield return null;
+        }
+
+        yield return new WaitForSeconds(2);
+        LoadingStop?.Invoke();
     }
 }

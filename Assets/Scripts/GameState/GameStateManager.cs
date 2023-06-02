@@ -9,6 +9,8 @@ using UnityEngine.Events;
 public class RuntimeGameState : GameState
 {
     public override int Priority => GameStateUtility.RunTimePriority;
+    public override IGameStateCallBack GameStateBehaviourInstance { get; set; }
+
     public override void ApplyOverride(GameStateOverride stateOverride)
     {
         stateOverride.timeScale = 1f;
@@ -18,6 +20,7 @@ public class RuntimeGameState : GameState
 public class PauseGameState : GameState
 {
     public override int Priority => GameStateUtility.PausePriority;
+    public override IGameStateCallBack GameStateBehaviourInstance { get; set; }
 
     public override void ApplyOverride(GameStateOverride stateOverride)
     {
@@ -37,6 +40,7 @@ public class PauseGameState : GameState
 public class CinematiqueState : GameState
 {
     public override int Priority => GameStateUtility.CinematiquePriority;
+    public override IGameStateCallBack GameStateBehaviourInstance { get; set; }
 
     public override void ApplyOverride(GameStateOverride stateOverride)
     {
@@ -53,6 +57,7 @@ public class CinematiqueState : GameState
 public class LoadingState : GameState
 {
     public override int Priority => GameStateUtility.LoadingPriority;
+    public override IGameStateCallBack GameStateBehaviourInstance { get; set; }
 
     public override void ApplyOverride(GameStateOverride stateOverride)
     {
@@ -69,6 +74,7 @@ public class LoadingState : GameState
 public class MainMenuState : GameState
 {
     public override int Priority => GameStateUtility.MainMenuPriority;
+    public override IGameStateCallBack GameStateBehaviourInstance { get; set; }
 
     public override void ApplyOverride(GameStateOverride stateOverride)
     {
@@ -82,6 +88,7 @@ public class MainMenuState : GameState
 public class CombatState : GameState
 {
     public override int Priority => GameStateUtility.combatPriority;
+    public override IGameStateCallBack GameStateBehaviourInstance { get; set; }
 
     public override void ApplyOverride(GameStateOverride stateOverride)
     {
@@ -91,6 +98,8 @@ public class CombatState : GameState
 public class TutoState : GameState
 {
     public override int Priority => GameStateUtility.combatPriority;
+    public override IGameStateCallBack GameStateBehaviourInstance { get; set; }
+
 
     public override void ApplyOverride(GameStateOverride stateOverride)
     {
@@ -106,6 +115,7 @@ public class TutoState : GameState
 public class DeadState : GameState
 {
     public override int Priority => GameStateUtility.DeadPriority;
+    public override IGameStateCallBack GameStateBehaviourInstance { get; set; }
 
     public override void ApplyOverride(GameStateOverride stateOverride)
     {
@@ -163,13 +173,14 @@ public class GameStateOverride
     }
 }
 [Serializable]
-public abstract class GameState : IComparable<GameState>
+public abstract class GameState : IComparable<GameState> 
 {
     #region Global
     /// <summary>
     /// Minimum is the heighest priority
     /// </summary>
     public abstract int Priority { get; }
+    public abstract IGameStateCallBack GameStateBehaviourInstance { get; set; }
     public GameState()
     {
 
@@ -336,7 +347,8 @@ public class GameStateManager : MonoBehaviour
         {
             currentGameStates[i].ApplyOverride(gameStateOverride);
         }
-
+       
+        
         //Final Apply.
         gameStateOverride.Apply();
 
@@ -346,10 +358,16 @@ public class GameStateManager : MonoBehaviour
             callbacks[i].OnApplyGameStateOverride(gameStateOverride);
         }
 
-        if (callbacks.Count > 0   )
+        // if (callbacks.Count > 0   )
+        // {
+        //     //_lastCallBackCalled = callbacks[^1];
+        //     callbacks[^1].OnApplyCallback();
+        // }
+        // 0 is first
+        if (currentGameStates.Count > 0 && _lastCallBackCalled != currentGameStates[0].GameStateBehaviourInstance)
         {
-            //_lastCallBackCalled = callbacks[^1];
-            callbacks[^1].OnApplyCallback();
+            _lastCallBackCalled = currentGameStates[0].GameStateBehaviourInstance;
+            currentGameStates[0].GameStateBehaviourInstance.OnApplyCallback();
         }
     }
     IEnumerator RunTimeState()
