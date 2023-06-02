@@ -84,7 +84,7 @@ public class PlayerCombat : MonoBehaviour,ICombat
 
     private void AttackColliderOnOnCollideWithIDamageable(object sender, EventArgs eventArgs)
     {
-        if (eventArgs is AttackDamageableEventArgs mDamageableEventArgs && canAttack)
+        if (eventArgs is AttackDamageableEventArgs mDamageableEventArgs && canGiveDamage)
         {
             mDamageableEventArgs.idamageable.DoDamage(_damage, _attackCollider.gameObject.transform.position);
         }
@@ -156,13 +156,13 @@ public class PlayerCombat : MonoBehaviour,ICombat
 
     public void SetDamageActive(int value)
     {
-        canAttack = value == 1;
-        _attackCollider.enabled = canAttack;
+        canGiveDamage = value == 1;
+        _attackCollider.enabled = canGiveDamage;
 
-        _trailSwordDistortion.emitting = canAttack;
+        _trailSwordDistortion.emitting = canGiveDamage;
     }
 
     #endregion
     
-    public bool canAttack { get; set; }
+    public bool canGiveDamage { get; set; }
 }

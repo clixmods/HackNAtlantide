@@ -1,4 +1,4 @@
 public interface ICombat
 {
-    public bool canAttack { get; set; }
+    public bool canGiveDamage { get; set; }
 }

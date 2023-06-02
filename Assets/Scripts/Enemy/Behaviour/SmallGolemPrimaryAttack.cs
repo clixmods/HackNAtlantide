@@ -5,10 +5,6 @@ using UnityEngine;
 public class SmallGolemPrimaryAttack : EnemyAttackBehaviour
 {
     int AttackAnimID = Animator.StringToHash("Attaque_1_Golem");
-    public override void Awake()
-    {
-        base.Awake();
-    }
     public override void Attack()
     {
         StartCoroutine(AttackBehaviour());

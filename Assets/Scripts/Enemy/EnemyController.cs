@@ -36,13 +36,13 @@ public class EnemyController : MonoBehaviour, ICombat
 
     #region Properties
 
-    public bool canAttack
+    public bool canGiveDamage
     {
         get { return _canAttack; }
         set
         {
             _canAttack = value;
-            _isAttacking = canAttack;
+            _isAttacking = canGiveDamage;
             if (_isAttacking)
             {
                 _attackEvent?.Invoke();
@@ -72,7 +72,7 @@ public class EnemyController : MonoBehaviour, ICombat
 
     private void AttackColliderOnOnCollideWithIDamageable(object sender, EventArgs eventArgs)
     {
-        if( eventArgs is AttackDamageableEventArgs mDamageableEventArgs && canAttack)
+        if( eventArgs is AttackDamageableEventArgs mDamageableEventArgs && canGiveDamage)
         {
             mDamageableEventArgs.idamageable.DoDamage(damage);
         }
@@ -158,8 +158,8 @@ public class EnemyController : MonoBehaviour, ICombat
 
     public void SetDamageActive(int value)
     {
-        canAttack = value == 1;
-        _attackCollider.enabled = canAttack; 
+        canGiveDamage = value == 1;
+        _attackCollider.enabled = canGiveDamage; 
        
     }
     #endregion

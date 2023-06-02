@@ -120,13 +120,12 @@ public class PlayerHealth : Character
     IEnumerator Hit()
     {
         _postProcessWeightTransition.SetWeightVolume(1,0.1f);
-        float timescale = GameStateManager.Instance.GameStateOverride.timeScale;
         _isInvincible = true;
         Time.timeScale = 0.2f;
         yield return new WaitForSecondsRealtime(0.15f);
         if(!GameStateManager.Instance.pauseStateObject.activeSelf)
         {
-            Time.timeScale = timescale;
+            Time.timeScale = GameStateManager.Instance.GameStateOverride.timeScale;
         }
         _postProcessWeightTransition.SetWeightVolume(0,0.1f);
         yield return new WaitForSecondsRealtime(0.15f);

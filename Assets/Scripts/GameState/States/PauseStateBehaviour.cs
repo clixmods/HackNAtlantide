@@ -9,7 +9,7 @@ public class PauseStateBehaviour : GameStateBehaviour<PauseGameState>
     protected override void OnPreRegisterApplyState()
     { 
         RegisterInputs();
-        timeScaleBeforePause = Time.timeScale;
+        timeScaleBeforePause = GameStateManager.Instance.GameStateOverride.timeScale;
     }
     protected override void OnPostUnRegisterRemoveState()
     {

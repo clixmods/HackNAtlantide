@@ -27,7 +27,6 @@ public class PauseGameState : GameState
         stateOverride.isPaused = true;
         stateOverride.timeScale = 0f;
 
-        stateOverride.allInputActive = false;
         stateOverride.inputPauseActive = false;
         stateOverride.inputInteractActive = false;
         stateOverride.inputMovementActive = false;
@@ -46,7 +45,6 @@ public class CinematiqueState : GameState
     {
         stateOverride.isPaused = false;
         stateOverride.timeScale = 1f;
-        stateOverride.allInputActive = false;
         stateOverride.inputPauseActive = false;
         stateOverride.inputInteractActive = false;
         stateOverride.inputMovementActive = false;
@@ -63,7 +61,6 @@ public class LoadingState : GameState
     {
         stateOverride.isPaused = false;
         stateOverride.timeScale = 1f;
-        stateOverride.allInputActive = false;
         stateOverride.inputPauseActive = false;
         stateOverride.inputInteractActive = false;
         stateOverride.inputMovementActive = false;
@@ -80,7 +77,6 @@ public class MainMenuState : GameState
     {
         stateOverride.isPaused = false;
         stateOverride.timeScale = 1f;
-        stateOverride.allInputActive = false;
         stateOverride.inputPauseActive = false;
         stateOverride.inputUIActive = true;
     }
@@ -121,7 +117,6 @@ public class DeadState : GameState
     {
         stateOverride.isPaused = false;
         stateOverride.timeScale = 0.3f;
-        stateOverride.allInputActive = false;
         stateOverride.inputInteractActive = false;
         stateOverride.inputMovementActive = false;
         stateOverride.inputCombatActive = false;
@@ -147,7 +142,6 @@ public class GameStateOverride
     public bool inputDashActive = true;
     public bool inputInteractActive = true;
     public bool inputPauseActive = true;
-    public bool allInputActive = true;
     public bool inputUIActive = false;
     
     public void Reset()
@@ -163,7 +157,6 @@ public class GameStateOverride
     public void Apply()
     {
         Time.timeScale = timeScale;
-        InputManager.Instance.ActiveAllInputs(allInputActive);
         InputManager.Instance.ActiveInputCombat(inputCombatActive);
         InputManager.Instance.ActiveInputDash(inputDashActive);
         InputManager.Instance.ActiveInputInteract(inputInteractActive);

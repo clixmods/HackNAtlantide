@@ -5,10 +5,6 @@ using UnityEngine;
 public class SmallGolemSecondaryAttack : EnemyAttackBehaviour
 {
     int AttackAnimID = Animator.StringToHash("Attaque_2_Golem");
-    public override void Awake()
-    {
-        base.Awake();
-    }
     public override void Attack()
     {
         StartCoroutine(AttackBehaviour());
@@ -22,7 +18,7 @@ public class SmallGolemSecondaryAttack : EnemyAttackBehaviour
     IEnumerator AttackBehaviour()
     {
         OnAttackStarted();
-        float time = CoolDown/2f;
+        float time = CoolDown;
         while(time > 0)
         {
             if(FacePlayer)

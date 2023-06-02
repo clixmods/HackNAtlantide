@@ -33,7 +33,7 @@ public abstract class EnemyAttackBehaviour : MonoBehaviour, ICombat
         OnAttack?.Invoke();
     }
     private bool _canAttack;
-    public bool canAttack
+    public bool canGiveDamage
     {
         get { return _canAttack; }
         set
@@ -67,7 +67,6 @@ public abstract class EnemyAttackBehaviour : MonoBehaviour, ICombat
 
     public void OnAttackStarted()
     {
-
         if (_attackColliderRight != null)
         {
             _attackColliderRight.OnCollideWithIDamageable += AttackColliderOnOnCollideWithIDamageable;
@@ -79,7 +78,6 @@ public abstract class EnemyAttackBehaviour : MonoBehaviour, ICombat
     }
     public void OnAttackFinished()
     {
-
         if (_attackColliderRight != null)
         {
             _attackColliderRight.OnCollideWithIDamageable -= AttackColliderOnOnCollideWithIDamageable;
@@ -92,8 +90,10 @@ public abstract class EnemyAttackBehaviour : MonoBehaviour, ICombat
 
     private void AttackColliderOnOnCollideWithIDamageable(object sender, EventArgs eventArgs)
     {
-        if (eventArgs is AttackDamageableEventArgs mDamageableEventArgs && canAttack)
+        Debug.Log(canGiveDamage);
+        if (eventArgs is AttackDamageableEventArgs mDamageableEventArgs && canGiveDamage)
         {
+            Debug.Log(damage);
             mDamageableEventArgs.idamageable.DoDamage(damage);
         }
     }
@@ -112,12 +112,12 @@ public abstract class EnemyAttackBehaviour : MonoBehaviour, ICombat
     #region Animation Event Methods
     public void SetDamageActive(int value)
     {
-        canAttack = (value == 1|| value == 2);
+        canGiveDamage = (value == 1|| value == 2);
         if(_attackColliderLeft != null)
             _attackColliderLeft.enabled = value == 2;
 
         if(_attackColliderRight != null)
-            _attackColliderRight.enabled = canAttack;
+            _attackColliderRight.enabled = canGiveDamage;
     }
     #endregion
 }
