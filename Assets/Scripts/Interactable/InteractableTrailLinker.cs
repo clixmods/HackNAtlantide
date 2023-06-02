@@ -15,7 +15,6 @@ public class InteractableTrailLinker : MonoBehaviour
         interactableTransform = transform2;
         speedMultiplier = speed;
     }
-    
     public void SetInteractable(IInteractable interactable)
     {
         this.interactableTransform = interactable.transform;
@@ -29,6 +28,12 @@ public class InteractableTrailLinker : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // prevention
+        if (interactableTransform == null)
+        {
+            Unselect();
+            return;
+        }
         transform.position = Vector3.Lerp(startTransform.position, interactableTransform.position, ( ( Mathf.Cos(Time.time*speedMultiplier)) + 1f) /2f  );
     }
 }

@@ -12,6 +12,8 @@ using Random = UnityEngine.Random;
 public class AttackLevitationInteractable : Interactable
 {
     private Rigidbody _rigidBody;
+    private MeshRenderer _meshRenderer;
+    private BoxCollider _boxCollider;
     /// <summary>
     /// The object has been interacted ? True when the object start to attack a target
     /// </summary>
@@ -26,13 +28,11 @@ public class AttackLevitationInteractable : Interactable
     /// Initial rotation of the object in the Awake event
     /// </summary>
     private Quaternion _initialRotation;
-    /// <summary>
-    /// Charge progression to be projected to the target : 0 = no charged, 1 = charged
-    /// </summary>
-    private float _chargePercentage = 0;
+    
     private bool _isCharging;
     private bool _isAttacking;
-    private Transform transformDestination;
+    private Transform _transformDestination;
+    
     [Header("Settings")]
     [SerializeField] private float timeToBeCharged = 0.75f;
     [SerializeField] private float projectionSpeedMultiplier = 50f;
@@ -45,33 +45,46 @@ public class AttackLevitationInteractable : Interactable
 
     public UnityEvent LaunchAttack;
     
-    //Explosiopn
-    SphereCollider _colliderExplosion;
-    [SerializeField] float _speedExplosion;
-    [SerializeField] float _maxRadius;
-    bool explosion;
+    //Explosion
+    private SphereCollider _colliderExplosion;
+    [SerializeField] private float _speedExplosion;
+    [SerializeField] private float _maxRadius;
+    private bool _explosion;
 
     private int _layerBase;
     [SerializeField] float _timeToDestroyIfNoHit = 3f;
 
+
+    // Mesh destroy
+    private Rigidbody[] _rigidbodiesFromMeshDestroy;
+    
     #region Monobehaviour
     private void Awake()
     {
+        // Interactable Object setup
+        _meshRenderer = GetComponent<MeshRenderer>();
+        _boxCollider = GetComponent<BoxCollider>();
+        _rigidBody = GetComponent<Rigidbody>();
         _layerBase = gameObject.layer;
+        // Initial transform value
         _initialPosition = transform.position;
         _initialRotation = transform.rotation;
         _inputHelper = GetComponent<InputHelper>();
-        _rigidBody = GetComponent<Rigidbody>();
         _hasInteract = false;
+        // Register Events
         Focus.OnFocusSwitch += SetDestination;
         Focus.OnFocusDisable += RemoveTarget;
+        //Attack collider setup
         _attackCollider = GetComponent<IAttackCollider>();
         _attackCollider.OnCollideWithIDamageable += AttackColliderOnOnCollideWithIDamageable;
 
         _colliderExplosion = GetComponent<SphereCollider>();
         _colliderExplosion.radius = 0.1f;
         _colliderExplosion.isTrigger = true;
-
+        if (_meshDestroy != null)
+        {
+            _rigidbodiesFromMeshDestroy = _meshDestroy.GetComponentsInChildren<Rigidbody>();
+        }
     }
     private void OnDestroy()
     {
@@ -95,18 +108,19 @@ public class AttackLevitationInteractable : Interactable
         {
             _inputHelper.enabled = false;
             Vector3 direction;
-            if (transformDestination == null)
+            if (_transformDestination == null)
             {
-                direction = transform.forward.normalized ;
+                _isAttacking = false;
+                _attackCollider.enabled = false;
+                _attackCollider.gameObject.layer = _layerBase;
+                ResetInteract();
+                return;
             }
-            else
-            {
-                direction = (transformDestination.position - _rigidBody.worldCenterOfMass).normalized ;
-            }
-            transform.LookAt(transformDestination);
+            direction = (_transformDestination.position - _rigidBody.worldCenterOfMass).normalized ;
+            transform.LookAt(_transformDestination);
             _rigidBody.velocity = direction * projectionSpeedMultiplier ;
         }
-        else if(_hasInteract)
+        else if(_hasInteract )
         {
             if (_playerStamina.Value > _playerStamina.MaxStamina - 1)
             {
@@ -114,6 +128,7 @@ public class AttackLevitationInteractable : Interactable
             }
             transform.position = _playerDetectionScriptableObject.PlayerPosition + Vector3.up * 4;
         }
+      
     }
     
     #endregion
@@ -128,13 +143,16 @@ public class AttackLevitationInteractable : Interactable
     }
     private void SetDestination(IFocusable target = null)
     {
+        if (_isAttacking)
+            return; 
+        
         if (Focus.FocusIsEnable)
         {
-            transformDestination = target.focusableTransform;
+            _transformDestination = target.focusableTransform;
         }
         else
         {
-            transformDestination = null;
+            _transformDestination = null;
         }
 
     }
@@ -146,14 +164,14 @@ public class AttackLevitationInteractable : Interactable
             _meshDestroy.transform.position = transform.position;
             _meshDestroy.transform.rotation = transform.rotation;
             _meshDestroy.SetActive(true);
-            Rigidbody[] childrb = _meshDestroy.GetComponentsInChildren<Rigidbody>();
-            foreach (Rigidbody rb in childrb)
+           
+            foreach (Rigidbody rb in _rigidbodiesFromMeshDestroy)
             {
                 rb.AddForce(Random.onUnitSphere * 5f, ForceMode.Impulse);
             }
         }
-        Destroy(GetComponent<MeshRenderer>());
-        Destroy(GetComponent<BoxCollider>());
+        Destroy(_meshRenderer);
+        Destroy(_boxCollider);
 
         _rigidBody.isKinematic = true;
         StartCoroutine(Explosion());
@@ -161,8 +179,17 @@ public class AttackLevitationInteractable : Interactable
 
     private void RemoveTarget()
     {
-        transformDestination = null;
+        StartCoroutine(RemoveTargetAfterSeconds(1));
+        
     }
+
+    private IEnumerator RemoveTargetAfterSeconds(float value)
+    {
+        yield return new WaitForSeconds(value);
+        if(!Focus.FocusIsEnable)
+            _transformDestination = null;
+    }
+
     IEnumerator ChargeObject()
     {
         _isCharging = true;
@@ -191,15 +218,12 @@ public class AttackLevitationInteractable : Interactable
         _uiChargeInputHelper.SetFillValue(1);
         _inputHelper.enabled = false;
         _hasInteract = true;
-       
-        
         _rigidBody.useGravity = false;
-        
         _isCharging = false;
     }
     IEnumerator Explosion()
     {
-        explosion = true;
+        _explosion = true;
         while (_colliderExplosion.radius < _maxRadius)
         {
             _colliderExplosion.radius += Time.deltaTime * _speedExplosion;
@@ -211,7 +235,7 @@ public class AttackLevitationInteractable : Interactable
     IEnumerator WaitForDestroy()
     {
         yield return new WaitForSeconds(_timeToDestroyIfNoHit);
-        if(!explosion)
+        if(!_explosion && _isAttacking)
             DestroyInteractable();
     }
     #region IInteractable
@@ -241,23 +265,22 @@ public class AttackLevitationInteractable : Interactable
         if (_hasInteract && !_isAttacking)
         {
             // Check if the transform destination is null, to cancel the attack
-            if (transformDestination == null)
+            if (_transformDestination == null)
             {
                 _attackCollider.enabled = false;
                 _attackCollider.gameObject.layer = _layerBase;
                 ResetInteract();
                 return;
             }
-            // A target is defined so start the attack
-            Focus.OnFocusSwitch -= SetDestination;
-            Focus.OnFocusNoTarget -= RemoveTarget;
+            // // A target is defined so start the attack
+            // Focus.OnFocusSwitch -= SetDestination;
+            // Focus.OnFocusNoTarget -= RemoveTarget;
             _isAttacking = true;
             LaunchAttack?.Invoke();
             _attackCollider.enabled = true;
             _inputHelper.enabled = false;
 
             StartCoroutine(WaitForDestroy());
-
             return;
         }
 
@@ -275,18 +298,20 @@ public class AttackLevitationInteractable : Interactable
         _uiChargeInputHelper.SetFillValue(1);
         _isCharging = false;
         StopCoroutine(ChargeObject());
+        StopCoroutine(WaitForDestroy());
         _hasInteract = false;
         // Renable gravity
         _rigidBody.useGravity = true;
-
+        _rigidBody.velocity = Vector3.zero;
         LaunchOnResetInteract();
     }
-
-    #endregion
-
     public override void ResetTransform()
     {
         transform.position = _initialPosition;
         transform.rotation = _initialRotation;
     }
+
+    #endregion
+
+   
 }

@@ -64,12 +64,6 @@ public class PlayerInteractDetection : MonoBehaviour
  
     void InteractInput(bool value)
     {
-        // if (_currentInteractable == null)
-        // {
-        //     DetectInteract();
-        //     ClosestInteractable();
-        // }
-        
         if(value)
         {
             // A Interactable is currently used so we dont need to use an another one

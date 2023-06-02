@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
+[SelectionBase]
 public class Character : MonoBehaviour,  IDamageable
 {
     [SerializeField] private float _maxHealth;
@@ -121,5 +122,16 @@ public class Character : MonoBehaviour,  IDamageable
     {
         IsInvulnerable = value;
     }
+
+   #if UNITY_EDITOR
+    private void OnDestroy()
+    {
+        if (!_isDead)
+        {
+            Dead();
+            
+        }
+    }
+    #endif
 }
 

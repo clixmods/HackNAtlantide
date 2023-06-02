@@ -98,7 +98,7 @@ public class Focusable : MonoBehaviour, IFocusable
         IFocusable.Focusables.Remove(this);
     }
     #if UNITY_EDITOR
-    private void OnDrawGizmos()
+    private void OnDrawGizmosSelected()
     {
         if (targeter == null) return;
         
