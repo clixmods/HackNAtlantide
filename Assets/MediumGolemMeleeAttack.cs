@@ -1,3 +1,5 @@
+using Attack;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -19,6 +21,7 @@ public class MediumGolemMeleeAttack : EnemyAttackBehaviour
     }
     IEnumerator AttackBehaviour()
     {
+        OnAttackStarted();
         float time = CoolDown / 2f;
         while (time > 0)
         {
@@ -29,8 +32,8 @@ public class MediumGolemMeleeAttack : EnemyAttackBehaviour
             time -= Time.deltaTime;
             yield return null;
         }
+        OnAttackFinished();
     }
-
     public override bool CanAttack()
     {
         return _enemyBehaviour.DistanceWithPlayer > MinDistanceToAttack && _enemyBehaviour.DistanceWithPlayer < MaxDistanceToAttack;

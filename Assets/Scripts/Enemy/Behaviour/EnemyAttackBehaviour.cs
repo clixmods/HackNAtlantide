@@ -41,7 +41,6 @@ public abstract class EnemyAttackBehaviour : MonoBehaviour, ICombat
             _canAttack = value;
             if (_canAttack)
             {
-                Debug.Log("attackevent");
                 OnAttack?.Invoke();
             };
 
@@ -49,8 +48,9 @@ public abstract class EnemyAttackBehaviour : MonoBehaviour, ICombat
     }
 
     [SerializeField] private AttackCollider _attackColliderRight;
+    public AttackCollider AttackColliderRight { get { return _attackColliderRight; } set { _attackColliderRight = value; } }
     [SerializeField] private AttackCollider _attackColliderLeft;
-
+    public AttackCollider AttackColliderLeft { get { return _attackColliderLeft; } set { _attackColliderLeft = value; } }
     //Components
 
     protected EnemyBehaviour _enemyBehaviour;
@@ -58,10 +58,15 @@ public abstract class EnemyAttackBehaviour : MonoBehaviour, ICombat
     #endregion
 
     #region MonoBehaviour
-    private void Awake()
+    public virtual void Awake()
     {
         _enemyBehaviour = GetComponent<EnemyBehaviour>();
         _currentPriority = _minPriority;
+    }
+
+    public void OnAttackStarted()
+    {
+
         if (_attackColliderRight != null)
         {
             _attackColliderRight.OnCollideWithIDamageable += AttackColliderOnOnCollideWithIDamageable;
@@ -71,12 +76,24 @@ public abstract class EnemyAttackBehaviour : MonoBehaviour, ICombat
             _attackColliderLeft.OnCollideWithIDamageable += AttackColliderOnOnCollideWithIDamageable;
         }
     }
+    public void OnAttackFinished()
+    {
+
+        if (_attackColliderRight != null)
+        {
+            _attackColliderRight.OnCollideWithIDamageable -= AttackColliderOnOnCollideWithIDamageable;
+        }
+        if (_attackColliderLeft != null)
+        {
+            _attackColliderLeft.OnCollideWithIDamageable -= AttackColliderOnOnCollideWithIDamageable;
+        }
+    }
 
     private void AttackColliderOnOnCollideWithIDamageable(object sender, EventArgs eventArgs)
     {
         if (eventArgs is AttackDamageableEventArgs mDamageableEventArgs && canAttack)
         {
-            mDamageableEventArgs.idamageable.DoDamage(damage/(_enemyBehaviour.DistanceWithPlayer*4f));
+            mDamageableEventArgs.idamageable.DoDamage(damage);
         }
     }
     #endregion
@@ -95,8 +112,11 @@ public abstract class EnemyAttackBehaviour : MonoBehaviour, ICombat
     public void SetDamageActive(int value)
     {
         canAttack = (value == 1|| value == 2);
-        _attackColliderRight.enabled = canAttack;
-        _attackColliderLeft.enabled = value == 2;
+        if(_attackColliderLeft != null)
+            _attackColliderLeft.enabled = value == 2;
+
+        if(_attackColliderRight != null)
+            _attackColliderRight.enabled = canAttack;
     }
     #endregion
 }

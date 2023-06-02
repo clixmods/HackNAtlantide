@@ -100,6 +100,7 @@ public class MediumGolemJumpAttack : EnemyAttackBehaviour
 
     IEnumerator ExplosionAttack()
     {
+        OnAttackStarted();
         Instantiate(groundCrackDecal,transform.position+Vector3.up*2,Quaternion.identity);
         _attackColliderExplosion.enabled = true;
         OnExplosionStart?.Invoke();
@@ -118,13 +119,14 @@ public class MediumGolemJumpAttack : EnemyAttackBehaviour
         ExplosionFx.transform.localScale = Vector3.zero;
 
         _attackColliderExplosion.enabled = false;
+        OnAttackFinished();
     }
 
     private void AttackColliderOnOnCollideWithIDamageableExplosion(object sender, EventArgs eventArgs)
     {
         if (eventArgs is AttackDamageableEventArgs mDamageableEventArgs)
         {
-            mDamageableEventArgs.idamageable.DoDamage(damageOnExplosion);
+            mDamageableEventArgs.idamageable.DoDamage(Mathf.Lerp(damageOnExplosion, 0,Mathf.Clamp((_enemyBehaviour.DistanceWithPlayer / explosionRadius),0,1)));
         }
     }
     void CalculatePath()

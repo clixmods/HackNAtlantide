@@ -95,6 +95,7 @@ public class PlayerHealth : Character
     {
         if(_movementState.MovementState != MovementState.dashing && !_isInvincible)
         {
+            Debug.Log("dodamage : " + damage);
             base.DoDamage(damage,  attackLocation);
             StartCoroutine(Hit());
         }

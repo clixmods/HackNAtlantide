@@ -5,6 +5,11 @@ using UnityEngine;
 public class SmallGolemSecondaryAttack : EnemyAttackBehaviour
 {
     int AttackAnimID = Animator.StringToHash("Attaque_2_Golem");
+    public override void Awake()
+    {
+        base.Awake();
+        OnAttackStarted();
+    }
     public override void Attack()
     {
         StartCoroutine(AttackBehaviour());
@@ -17,6 +22,7 @@ public class SmallGolemSecondaryAttack : EnemyAttackBehaviour
     }
     IEnumerator AttackBehaviour()
     {
+        //OnAttackStarted();
         float time = CoolDown/2f;
         while(time > 0)
         {
@@ -27,6 +33,7 @@ public class SmallGolemSecondaryAttack : EnemyAttackBehaviour
             time -= Time.deltaTime;
             yield return null;
         }
+        //OnAttackFinished();
     }
 
     public override bool CanAttack()
