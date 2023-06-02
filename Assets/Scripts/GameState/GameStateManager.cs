@@ -57,7 +57,7 @@ public class MainMenuState : GameState
     public override void ApplyOverride(GameStateOverride stateOverride)
     {
         stateOverride.isPaused = false;
-        stateOverride.timeScale = 0f;
+        stateOverride.timeScale = 1f;
         stateOverride.allInputActive = false;
         stateOverride.inputPauseActive = false;
         stateOverride.inputUIActive = true;

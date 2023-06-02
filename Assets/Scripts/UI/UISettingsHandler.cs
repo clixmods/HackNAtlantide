@@ -15,13 +15,7 @@ public class UISettingsHandler : MonoBehaviour
     // Start is called before the first frame update
     void OnEnable()
     {
-        LoadSettingsValues();
-
-        _generalVolumeSlider.onValueChanged.AddListener(GeneralSlider);
-        _volumeSFXSlider.onValueChanged.AddListener(SFXSlider);
-        _volumeMusicSlider.onValueChanged.AddListener(MusicSlider);
-        _rumblerDropDown.onValueChanged.AddListener(RumblerDropDown);
-        _windowModeDropDown.onValueChanged.AddListener(WindowModeDropDown);
+        StartCoroutine(WaitForEndOfFrameToLoad());
     }
     private void OnDisable()
     {
@@ -31,7 +25,19 @@ public class UISettingsHandler : MonoBehaviour
         _rumblerDropDown.onValueChanged.RemoveListener(RumblerDropDown);
         _windowModeDropDown.onValueChanged.RemoveListener(WindowModeDropDown);
 
-        SaveSettings();
+        //SaveSettings();
+    }
+    IEnumerator WaitForEndOfFrameToLoad()
+    {
+        yield return new WaitForEndOfFrame();
+
+        LoadSettingsValues();
+
+        _generalVolumeSlider.onValueChanged.AddListener(GeneralSlider);
+        _volumeSFXSlider.onValueChanged.AddListener(SFXSlider);
+        _volumeMusicSlider.onValueChanged.AddListener(MusicSlider);
+        _rumblerDropDown.onValueChanged.AddListener(RumblerDropDown);
+        _windowModeDropDown.onValueChanged.AddListener(WindowModeDropDown);
     }
 
     private void Start()

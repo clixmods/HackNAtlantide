@@ -194,7 +194,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 6946853799524076448}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: EmissiveMaterialHandler, Assembly-CSharp
         m_MethodName: ActiveEmissive
         m_Mode: 1
@@ -657,32 +657,3 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 6138752326806655533, guid: 471991b0e5ac40943bf80fc63c250fc0, type: 3}
---- !u!23 &2442001555128898249 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 6239453899270568674, guid: 4080db640108ff748aab5cc6132f92c8,
-    type: 3}
-  m_PrefabInstance: {fileID: 8607862380482422827}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &4729000743779202924 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3951218340971552583, guid: 4080db640108ff748aab5cc6132f92c8,
-    type: 3}
-  m_PrefabInstance: {fileID: 8607862380482422827}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &6946853799524076448
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4729000743779202924}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b86b17c408ffaa4b8217cda196f5863, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  meshRenderer: {fileID: 2442001555128898249}
-  emissiveColor: {r: 0, g: 0, b: 0, a: 0}
-  _initialColor: []
-  timeToActiveEmissive: 1
-  timeToResetEmissive: 0.5
