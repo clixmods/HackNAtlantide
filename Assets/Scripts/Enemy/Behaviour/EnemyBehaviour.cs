@@ -42,13 +42,15 @@ public class EnemyBehaviour : MonoBehaviour
     EnemyAttackBehaviour _currentAttack;
     [SerializeField] private float _rotationSpeed;
     private float _distanceWithPlayer = 1000000;
-    public float DistanceWithPlayer { get { return _distanceWithPlayer; } }
+    public float DistanceWithPlayer { get {return _distanceWithPlayer; } }
     bool _movecoroutineIsPlayed = false;
     public bool MovecoroutineIsPlayed { get { return _movecoroutineIsPlayed; } }
     Rigidbody _rigidBody;
+    [SerializeField] bool _calculateDistanceByNavMeshPath = true;
     #endregion
 
     #region MonoBehaviour
+   
     private void Awake()
     {
         _agent = GetComponent<NavMeshAgent>();
@@ -60,9 +62,7 @@ public class EnemyBehaviour : MonoBehaviour
     {
         if(_isAwake && Agent.enabled)
         {
-            NavMeshPath pathToPlayer = new NavMeshPath();
-            _agent.CalculatePath(PlayerInstanceScriptableObject.Player.transform.position, pathToPlayer);
-            _distanceWithPlayer = GetPathLength(pathToPlayer);
+            _distanceWithPlayer = GetPathLength();
         }
         else
         {
@@ -183,22 +183,32 @@ public class EnemyBehaviour : MonoBehaviour
         _isAwake = true;
         StartCoroutine(MoveToPlayer());
     }
-    public float GetPathLength(NavMeshPath path)
+    public float GetPathLength()
     {
-        float lng = 0.0f;
-
-        if ((path.status ==NavMeshPathStatus.PathComplete))
+        if(_calculateDistanceByNavMeshPath)
         {
-            for (int i = 1; i < path.corners.Length; ++i)
+            NavMeshPath pathToPlayer = new NavMeshPath();
+            _agent.CalculatePath(PlayerInstanceScriptableObject.Player.transform.position, pathToPlayer);
+            float lng = 0.0f;
+
+            if ((pathToPlayer.status == NavMeshPathStatus.PathComplete))
             {
-                lng += Vector3.Distance(path.corners[i - 1], path.corners[i]);
+                for (int i = 1; i < pathToPlayer.corners.Length; ++i)
+                {
+                    lng += Vector3.Distance(pathToPlayer.corners[i - 1], pathToPlayer.corners[i]);
+                }
             }
+            else
+            {
+                lng = float.MaxValue;
+            }
+
+            return lng;
         }
         else
         {
-            lng = float.MaxValue;
+            return Vector3.Distance(PlayerInstanceScriptableObject.Player.transform.position, transform.position);
         }
-
-        return lng;
+        
     }
 }

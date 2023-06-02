@@ -44,10 +44,8 @@ public class EnemyWakeUpBehaviour : MonoBehaviour
         {
             if(_enemyBehaviour.Agent.enabled)
             {
-                NavMeshPath pathToPlayer = new NavMeshPath();
-                _enemyBehaviour.Agent.CalculatePath(PlayerInstanceScriptableObject.Player.transform.position, pathToPlayer);
                 //attends que le joueur soit à une distance minimale et qu'il ne soit pas réveiller
-                if (_wakeUpByDistance && _enemyBehaviour.GetPathLength(pathToPlayer) < _distanceToWakeUp && !_isAwake)
+                if (_wakeUpByDistance && _enemyBehaviour.GetPathLength() < _distanceToWakeUp && !_isAwake)
                 {
                     WakeUp();
                 }

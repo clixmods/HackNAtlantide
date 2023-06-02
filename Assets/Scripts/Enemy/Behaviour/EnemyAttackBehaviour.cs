@@ -76,7 +76,7 @@ public abstract class EnemyAttackBehaviour : MonoBehaviour, ICombat
     {
         if (eventArgs is AttackDamageableEventArgs mDamageableEventArgs && canAttack)
         {
-            mDamageableEventArgs.idamageable.DoDamage(damage);
+            mDamageableEventArgs.idamageable.DoDamage(damage/(_enemyBehaviour.DistanceWithPlayer*4f));
         }
     }
     #endregion

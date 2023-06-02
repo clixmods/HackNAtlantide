@@ -5,13 +5,13 @@ using UnityEngine;
 
 public class MediumGolemMeleeAttack : EnemyAttackBehaviour
 {
-    int AttackAnimID = Animator.StringToHash("Attaque_1_Golem");
+    int AttackAnimID = Animator.StringToHash("Attack_Golem_M");
     public override void Attack()
     {
         StartCoroutine(AttackBehaviour());
         LaunchAttackEvent();
         Priority += CoolDown;
-        if (!_enemyBehaviour.Animator.GetCurrentAnimatorStateInfo(0).IsName("Attaque_1_Golem"))
+        if (!_enemyBehaviour.Animator.GetCurrentAnimatorStateInfo(0).IsName("Attack_Golem_M"))
         {
             _enemyBehaviour.Animator.CrossFadeInFixedTime(AttackAnimID, 0f);
         }

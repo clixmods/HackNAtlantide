@@ -5,8 +5,7 @@ using UnityEngine;
 public class MediumGolemBehaviour : EnemyBehaviour
 {
     int MoveAnimID = Animator.StringToHash("Walk_Golem");
-    int IdleAnimID = Animator.StringToHash("Idle_Golem");
-    int AwakeAnimID = Animator.StringToHash("WakeUp_Golem");
+    int AwakeAnimID = Animator.StringToHash("Wake_Up_Golem_M");
     Rigidbody _rigidbody;
     private void Start()
     {
@@ -28,9 +27,14 @@ public class MediumGolemBehaviour : EnemyBehaviour
     public override IEnumerator WakeUpCoroutine()
     {
         Animator.CrossFadeInFixedTime(AwakeAnimID, 0f);
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(3f);
         IsAwake = true;
         StartCoroutine(MoveToPlayer());
-        Animator.CrossFadeInFixedTime(MoveAnimID, 0f);
+        //Animator.CrossFadeInFixedTime(MoveAnimID, 0f);
+    }
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = (DistanceWithPlayer > 25 && DistanceWithPlayer < 35) ? Color.blue : Color.yellow;
+        Debug.DrawLine(transform.position, PlayerInstanceScriptableObject.Player.transform.position);
     }
 }

@@ -5,13 +5,14 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.Events;
 
 public class MediumGolemJumpAttack : EnemyAttackBehaviour
 {
-    int JumpAnimID = Animator.StringToHash("Jump_Golem");
-    int MidAirAnimID = Animator.StringToHash("MidAir_Golem");
-    int AttaqueAnimID = Animator.StringToHash("Attaque_2_Golem");
+    int JumpAnimID = Animator.StringToHash("Jump_Golem_M");
+    //int MidAirAnimID = Animator.StringToHash("MidAir_Golem");
+    int AttaqueAnimID = Animator.StringToHash("Landing_Golem_M");
     [SerializeField] float damageOnExplosion = 1f;
 
     [SerializeField] float _jumpForce;
@@ -77,13 +78,13 @@ public class MediumGolemJumpAttack : EnemyAttackBehaviour
 
             //Anim
             //Joue le mid air animation a partir de 20% du saut
-            if(!_enemyBehaviour.Animator.GetCurrentAnimatorStateInfo(0).IsName("Jump_Golem") && interpolationPosition > 0.2f)
+            /*if(!_enemyBehaviour.Animator.GetCurrentAnimatorStateInfo(0).IsName("Jump_Golem") && interpolationPosition > 0.2f)
             {
                 _enemyBehaviour.Animator.CrossFadeInFixedTime(MidAirAnimID, 0f);
-            }
+            }*/
 
             //Joue l'attack animation a partir de 60% du saut
-            if (!_enemyBehaviour.Animator.GetCurrentAnimatorStateInfo(0).IsName("Attaque_2_Golem") && interpolationPosition > 0.6f)
+            if (!_enemyBehaviour.Animator.GetCurrentAnimatorStateInfo(0).IsName("Landing_Golem_M") && interpolationPosition > 0.6f)
             {
                 _enemyBehaviour.Animator.CrossFadeInFixedTime(AttaqueAnimID, 0f);
             }
@@ -133,11 +134,13 @@ public class MediumGolemJumpAttack : EnemyAttackBehaviour
         endPoint.position = PlayerInstanceScriptableObject.Player.transform.position;
         highPoint1.position = transform.position + (endPoint.position - transform.position) / 4f + Vector3.up * 10f;
         highPoint2.position = transform.position + 3 * (endPoint.position - transform.position) / 4f + Vector3.up * 10f;
+        
     }
 
     public override bool CanAttack()
     {
         return _enemyBehaviour.DistanceWithPlayer > MinDistanceToAttack 
-            && _enemyBehaviour.DistanceWithPlayer < MaxDistanceToAttack ;
+            && _enemyBehaviour.DistanceWithPlayer < MaxDistanceToAttack 
+            && NavMesh.SamplePosition(PlayerInstanceScriptableObject.Player.transform.position, out NavMeshHit hit,1f,1);
     }
 }

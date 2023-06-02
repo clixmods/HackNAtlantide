@@ -123,7 +123,10 @@ public class PlayerHealth : Character
         _isInvincible = true;
         Time.timeScale = 0.2f;
         yield return new WaitForSecondsRealtime(0.15f);
-        Time.timeScale = timescale;
+        if(!GameStateManager.Instance.pauseStateObject.activeSelf)
+        {
+            Time.timeScale = timescale;
+        }
         _postProcessWeightTransition.SetWeightVolume(0,0.1f);
         yield return new WaitForSecondsRealtime(0.15f);
         _isInvincible = false;
