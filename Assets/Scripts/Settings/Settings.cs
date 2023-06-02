@@ -1,8 +1,10 @@
 using _2DGame.Scripts.Save;
+using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public enum RumblerIntensity
 {
@@ -16,6 +18,7 @@ public enum RumblerIntensity
 public class Settings : MonoBehaviourSaveable
 {
     public static Settings Instance;
+    [SerializeField] AudioMixer _audioMixer;
 
     #region Audio
     [SerializeField] private float _volumeMusic;
@@ -28,11 +31,20 @@ public class Settings : MonoBehaviourSaveable
     public Action<float> OnVolumeMusicChanged;
 
     [SerializeField] private float _volumeSFX;
+
+    private string VolumeSFXID = "VolumeSFX";
     public float VolumeSFX 
     { 
         get { return _volumeSFX; } 
-        set { _volumeSFX = Mathf.Clamp(value, 0, 1); 
-            OnVolumeSFXChanged?.Invoke(_volumeSFX); } 
+        set 
+        { 
+            _volumeSFX = Mathf.Clamp(value, 0, 1);
+            if(_audioMixer.GetFloat(VolumeSFXID, out float volume))
+            {
+                _audioMixer.SetFloat(VolumeSFXID, _volumeSFX);
+            }
+            OnVolumeSFXChanged?.Invoke(_volumeSFX); 
+        } 
     }
     public Action<float> OnVolumeSFXChanged;
 
