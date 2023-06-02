@@ -157,6 +157,10 @@ public class GameStateOverride
     public void Apply()
     {
         Time.timeScale = timeScale;
+        if(InputManager.Instance == null)
+        {
+            return;
+        }
         InputManager.Instance.ActiveInputCombat(inputCombatActive);
         InputManager.Instance.ActiveInputDash(inputDashActive);
         InputManager.Instance.ActiveInputInteract(inputInteractActive);
@@ -164,6 +168,11 @@ public class GameStateOverride
         InputManager.Instance.ActiveInputPause(inputPauseActive);
         InputManager.Instance.SwitchInputActionMap(!inputUIActive);
     }
+    /*IEnumerator ApplyCoroutine()
+    {
+        yield return new WaitForEndOfFrame();
+        Apply();
+    }*/
 }
 [Serializable]
 public abstract class GameState : IComparable<GameState> 

@@ -2,7 +2,7 @@
 using UnityEngine;
 
 [SelectionBase]
-public class Character : MonoBehaviour,  IDamageable
+public class Character : MonoBehaviour, IDamageable
 {
     [SerializeField] private float _maxHealth;
 
@@ -11,10 +11,10 @@ public class Character : MonoBehaviour,  IDamageable
 
     [Header("Feedback")]
     [SerializeField] RumblerDataConstant _attackRumble;
-    
+
     private float _health;
 
-    [Header("Settings")] 
+    [Header("Settings")]
     [SerializeField] private bool isInvulnerable = false;
 
     private bool _isDead;
@@ -22,12 +22,12 @@ public class Character : MonoBehaviour,  IDamageable
     #region Events
     public event EventHandler OnDamage;
     public event EventHandler OnDeath;
-    
+
     public event IDamageable.EventHealth OnChangeHealth;
     public Action<bool> OnInvulnerable;
     #endregion
 
-    public virtual float maxHealth 
+    public virtual float maxHealth
     {
         get
         {
@@ -37,7 +37,7 @@ public class Character : MonoBehaviour,  IDamageable
         {
             _maxHealth = value;
             OnChangeHealth?.Invoke(health, value);
-           
+
         }
     }
     public virtual float health
@@ -49,8 +49,8 @@ public class Character : MonoBehaviour,  IDamageable
         protected set
         {
             _health = value;
-            OnChangeHealth?.Invoke(value,maxHealth);
-            
+            OnChangeHealth?.Invoke(value, maxHealth);
+
         }
     }
     void Awake()
@@ -63,7 +63,7 @@ public class Character : MonoBehaviour,  IDamageable
         health = maxHealth;
     }
 
-    public virtual void DoDamage(float damage , Vector3 attackLocation)
+    public virtual void DoDamage(float damage, Vector3 attackLocation)
     {
         if (isInvulnerable)
         {
@@ -87,9 +87,9 @@ public class Character : MonoBehaviour,  IDamageable
 
             );
         }
-        
-        
-        if(health <= 0f)
+
+
+        if (health <= 0f)
         {
             Dead();
         }
@@ -111,7 +111,7 @@ public class Character : MonoBehaviour,  IDamageable
     public virtual void AddHealth(float amount)
     {
         health += amount;
-        OnChangeHealth?.Invoke(health,maxHealth);
+        OnChangeHealth?.Invoke(health, maxHealth);
         if (health > maxHealth)
         {
             health = maxHealth;
@@ -122,16 +122,5 @@ public class Character : MonoBehaviour,  IDamageable
     {
         IsInvulnerable = value;
     }
-
-   #if UNITY_EDITOR
-    private void OnDestroy()
-    {
-        if (!_isDead)
-        {
-            Dead();
-            
-        }
-    }
-    #endif
 }
 

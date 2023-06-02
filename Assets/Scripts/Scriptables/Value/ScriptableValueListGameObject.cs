@@ -5,36 +5,27 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Data/Value/ListGameObject")]
 public class ScriptableValueListGameObject : ScriptableValue<List<GameObject>>
 {
-    public override List<GameObject> Value { get => base.Value; set => base.Value = value; }
+    public override List<GameObject> Value { get { return base.Value; } set => base.Value = value; }
 
     public void AddUnique(GameObject gameObject)
     {
-        /*bool isInList = false;
-        for(int i = 0; i < Value.Count; i++)
-        {
-            if (Value[i] != gameObject)
-            {
-                isInList = true;
-            }
-        }
-        if(!isInList)
-        {
-            Value.Add(gameObject);
-        }*/
+        //securité
+        if (base.Value == null) 
+        { base.Value = new(); }
+
         Value.Add(gameObject);
         ApplyGameStateCombat();
     }
     public void RemoveUnique(GameObject gameObject)
     {
-        /*for (int i = 0; i < Value.Count; i++)
+        //securité
+        if (base.Value == null)
+        { base.Value = new(); }
+
+        if (Value.Contains(gameObject))
         {
-            if (Value[i] == gameObject)
-            {
-                Value.RemoveAt(i);
-                return;
-            }
-        }*/
-        Value.Remove(gameObject);
+            Value.Remove(gameObject);
+        }
         ApplyGameStateCombat();
     }
     public void ResetList()
