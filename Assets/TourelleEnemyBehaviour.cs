@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class TourelleEnemyBehaviour : MonoBehaviour
 {
@@ -18,6 +19,12 @@ public class TourelleEnemyBehaviour : MonoBehaviour
     int ActivateID = Animator.StringToHash("Activate");
     int DeactivateID = Animator.StringToHash("Deactivate");
     int ShootID = Animator.StringToHash("Shoot");
+    public UnityEvent OnStartActivate;
+    public UnityEvent OnEndActivate;
+    public UnityEvent OnStartDeactivate;
+    public UnityEvent OnEndDeactivate;
+    public UnityEvent OnShoot;
+    public UnityEvent OnCharging;
 
     private void Awake()
     {
@@ -36,16 +43,20 @@ public class TourelleEnemyBehaviour : MonoBehaviour
 
     IEnumerator Activate()
     {
+        OnStartActivate?.Invoke();
         _animator.CrossFade(ActivateID, 0.1f);
         _isActivated = true;
         yield return new WaitForSeconds(1);
         StartCoroutine(AimPlayer());
+        OnEndActivate?.Invoke();
     }
     IEnumerator Desactivate()
     {
+        OnStartDeactivate?.Invoke();
         _animator.CrossFade(DeactivateID, 0.1f);
         yield return new WaitForSeconds(1);
         _isActivated = false;
+        OnEndDeactivate?.Invoke();
     }
     IEnumerator AimPlayer()
     {
@@ -61,6 +72,7 @@ public class TourelleEnemyBehaviour : MonoBehaviour
             {
                 _animator.CrossFade(ShootID, 0.01f);
                 hasPlayedShootAnim = true;
+                OnCharging?.Invoke();
             }
             shootTime += Time.deltaTime;
             if(shootTime > _shootDelay)
@@ -83,7 +95,7 @@ public class TourelleEnemyBehaviour : MonoBehaviour
     }
     void Shoot()
     {
-        Debug.Log("Shoot");
+        OnShoot?.Invoke();
         GameObject bullet = Instantiate(_bulletPrefab, _bulletSpawn.position, Quaternion.identity);
         Vector3 playerpos = PlayerInstanceScriptableObject.Player.transform.position;
         bullet.GetComponent<BulletBehaviour>().Direction = (transform.forward * Vector3.Distance(playerpos, transform.position) - (_bulletSpawn.position.y-playerpos.y)*Vector3.up).normalized;
