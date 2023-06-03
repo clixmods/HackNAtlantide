@@ -9,7 +9,7 @@ public class LoaderScene : LoaderBehaviour
 
     protected override void LoaderAction()
     {
-       Debug.Log("Scene Load !");
+//       Debug.Log("Scene Load !");
     }
 
     protected override IEnumerator LoaderRoutine()

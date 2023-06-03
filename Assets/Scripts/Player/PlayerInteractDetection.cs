@@ -69,6 +69,8 @@ public class PlayerInteractDetection : MonoBehaviour
             // A Interactable is currently used so we dont need to use an another one
             if (_currentInteractable != null)
             {
+                // Try to fix bug : Object stay with the player infinitely
+                StopUseCurrentInteractable();
                 return;
             }
             // No interactableTransform used, so we need to check the closest and use it
@@ -83,14 +85,19 @@ public class PlayerInteractDetection : MonoBehaviour
         {
             if (_currentInteractable != null)
             {
-                _currentInteractable.CancelInteract();
-                AudioManager.StopLoopSound(ref _audioPlayer, StopLoopBehavior.Direct);
-                _currentInteractable = null;
-                InteractableDeselected?.Invoke();
+                StopUseCurrentInteractable();
             }
         }
     }
-    
+
+    private void StopUseCurrentInteractable()
+    {
+        _currentInteractable.CancelInteract();
+        AudioManager.StopLoopSound(ref _audioPlayer, StopLoopBehavior.Direct);
+        _currentInteractable = null;
+        InteractableDeselected?.Invoke();
+    }
+
     private void ReleaseInput(bool value)
     {
         if(value)

@@ -43,12 +43,10 @@ public class LoadingStateBehaviour : GameStateBehaviour<LoadingState>
     {
         base.OnPostRegisterApplyState();
         StartCoroutine(LoadingCoroutine());
-        Debug.Log("Yo");
     }
 
     IEnumerator LoadingCoroutine()
     {
-        //LoadingStart?.Invoke();
         bool workerAreDone = false;
         while (!workerAreDone)
         {
@@ -65,7 +63,7 @@ public class LoadingStateBehaviour : GameStateBehaviour<LoadingState>
         }
 
         Time.timeScale = 0;
-        //
+        
         if (_action == null && _coroutine == null)
         {
             LoaderEnd();
@@ -76,12 +74,10 @@ public class LoadingStateBehaviour : GameStateBehaviour<LoadingState>
         {
             _action?.Invoke();
         }
-
         if (_coroutine != null)
         {
             StartCoroutine(_coroutine);
         }
-        
         yield return null;
     }
 
