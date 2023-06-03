@@ -157,7 +157,7 @@ public class AttackLevitationInteractable : Interactable
 
     }
 
-    private void DestroyInteractable()
+    public void DestroyInteractable()
     {
         if (_meshDestroy != null)
         {

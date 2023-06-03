@@ -53,7 +53,7 @@ public class Character : MonoBehaviour, IDamageable
 
         }
     }
-    void Awake()
+    public virtual void Awake()
     {
         InitHealth();
     }
@@ -96,7 +96,10 @@ public class Character : MonoBehaviour, IDamageable
     }
     void AttackFeedback()
     {
-        Rumbler.instance.RumbleConstant(_attackRumble);
+        if(_attackRumble!=null)
+        {
+            Rumbler.instance.RumbleConstant(_attackRumble);
+        }
     }
     public virtual void Dead()
     {

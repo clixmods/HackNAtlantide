@@ -10930,6 +10930,39 @@ MonoBehaviour:
   _speedExplosion: 5
   _maxRadius: 1
   _timeToDestroyIfNoHit: 1.5
+--- !u!114 &2562567832463957367
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8792061954932892415}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc4d8c32b46fe9d4c90338afcae86e2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxHealth: 0.01
+  _attackRumble: {fileID: 0}
+  isInvulnerable: 0
+  OnDead:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1679769486289871359}
+        m_TargetAssemblyTypeName: AttackLevitationInteractable, Assembly-CSharp
+        m_MethodName: DestroyInteractable
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _respawnTimeAfterDeadByAttack: 3
+  potInteractablePrefab: {fileID: 3065957743833887657}
+  _meshDestroy: {fileID: 5417445413406898535}
 --- !u!114 &2634381260045581433
 MonoBehaviour:
   m_ObjectHideFlags: 0
