@@ -1,8 +1,8 @@
-﻿using System;
-using Cinemachine;
-using Unity.VisualScripting;
+﻿using Cinemachine;
 using UnityEngine;
-
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
     [RequireComponent(typeof(TriggerBox))]
     public class CinemachineCameraVirtualTransition : MonoBehaviour
     {
@@ -14,11 +14,9 @@ using UnityEngine;
         [SerializeField] private bool disableCameraInAwake = true;
         [SerializeField] private bool disableCameraOnExit;
         [SerializeField] private bool followPlayer;
-        public void Init(CinemachineVirtualCamera cinemachineVirtualCamera)
-        {
-            _cinemachineVirtualCamera = cinemachineVirtualCamera;
-           
-        }
+
+        #region Monobehaviour
+
         private void Awake()
         {
             if (disableCameraInAwake)
@@ -48,7 +46,20 @@ using UnityEngine;
                 ActiveCamera();
             }
         }
+#if UNITY_EDITOR
 
+        private void OnDrawGizmosSelected()
+        {
+            Handles.DrawLine(transform.position, _cinemachineVirtualCamera.transform.position);
+        }
+#endif
+
+        #endregion
+
+        public void Init(CinemachineVirtualCamera cinemachineVirtualCamera)
+        {
+            _cinemachineVirtualCamera = cinemachineVirtualCamera;
+        }
         public void TriggerEnter()
         {
             if (_cinemachineVirtualCamera.gameObject.activeSelf)
