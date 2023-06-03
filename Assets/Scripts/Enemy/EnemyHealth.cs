@@ -21,4 +21,12 @@ public class EnemyHealth : Character
         _allEnemyAwake.RemoveUnique(this.gameObject);
         Destroy(gameObject);
     }
+    public override void DoDamage(float damage, Vector3 attackLocation)
+    {
+        base.DoDamage(damage, attackLocation);
+        if(TryGetComponent<EnemyWakeUpBehaviour>(out EnemyWakeUpBehaviour wakeUpBehaviour))
+        {
+            wakeUpBehaviour.WakeUp();
+        }
+    }
 }
