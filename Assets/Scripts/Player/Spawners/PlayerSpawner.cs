@@ -60,7 +60,7 @@ public class PlayerSpawner : MonoBehaviour
             SavePlayerPosition();
         }
     }
-
+    [ContextMenu("Save Player Position")]
     public void SavePlayerPosition()
     {
         playerPosition.Value = _playerMovement.transform.position;
