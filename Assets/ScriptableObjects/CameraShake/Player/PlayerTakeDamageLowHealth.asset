@@ -10,10 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cb577ca9f21d7a0469fc6de3ec260b7b, type: 3}
-  m_Name: PlayerDashAttackHit
+  m_Name: PlayerTakeDamageLowHealth
   m_EditorClassIdentifier: 
-  duration: 0.2
-  magnitude: 1
-  priority: 30
+  duration: 0
+  magnitude: 0
+  priority: 100
   additive: 1
-  shakeType: 1
+  shakeType: 0
+  defaultVelocity: {x: 0, y: 0, z: 0}

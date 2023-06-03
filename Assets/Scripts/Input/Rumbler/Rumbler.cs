@@ -54,11 +54,37 @@ public class Rumbler : MonoBehaviour
         }
         
     }
-    private void ApplyValuesConstant(RumblerDataConstant data,float intensity)
+    public void RumbleConstant(float duration, float low, float high)
+    {
+
+        switch (Settings.Instance.RumblerIntensity)
+        {
+            case (RumblerIntensity.none):
+                break;
+            case (RumblerIntensity.low):
+                ApplyValuesConstant(duration, low, high, 0.1f);
+                break;
+            case (RumblerIntensity.mid):
+                ApplyValuesConstant(duration, low, high, 1f);
+                break;
+            case (RumblerIntensity.high):
+                ApplyValuesConstant(duration, low, high, 5f);
+                break;
+        }
+
+    }
+    private void ApplyValuesConstant(float duration, float low, float high, float intensity)
     {
         activeRumbePattern = RumblePattern.Constant;
-        lowA = data.low *intensity;
-        highA = data.high*intensity;
+        lowA = low *intensity;
+        highA = high*intensity;
+        rumbleDurration = Time.unscaledTime + duration;
+    }
+    private void ApplyValuesConstant(RumblerDataConstant data, float intensity)
+    {
+        activeRumbePattern = RumblePattern.Constant;
+        lowA = data.low * intensity;
+        highA = data.high * intensity;
         rumbleDurration = Time.unscaledTime + data.duration;
     }
 
@@ -80,6 +106,24 @@ public class Rumbler : MonoBehaviour
         }
         
     }
+    public void RumblePulse( float duration, float burstTime, float low, float high)
+    {
+        switch (Settings.Instance.RumblerIntensity)
+        {
+            case (RumblerIntensity.none):
+                break;
+            case (RumblerIntensity.low):
+                ApplyValuesPulse(duration, burstTime, low, high, 0.1f);
+                break;
+            case (RumblerIntensity.mid):
+                ApplyValuesPulse(duration, burstTime, low, high, 1f);
+                break;
+            case (RumblerIntensity.high):
+                ApplyValuesPulse(duration, burstTime, low, high, 5f);
+                break;
+        }
+
+    }
     private void ApplyValuesPulse(RumblerDataPulse data, float intensity)
     {
         activeRumbePattern = RumblePattern.Pulse;
@@ -88,6 +132,18 @@ public class Rumbler : MonoBehaviour
         rumbleStep = data.burstTime;
         pulseDurration = Time.unscaledTime + data.burstTime;
         rumbleDurration = Time.unscaledTime + data.duration;
+        isMotorActive = true;
+        var g = GetGamepad();
+        g?.SetMotorSpeeds(lowA, highA);
+    }
+    private void ApplyValuesPulse(float duration, float burstTime, float low, float high, float intensity)
+    {
+        activeRumbePattern = RumblePattern.Pulse;
+        lowA = low * intensity;
+        highA = high * intensity;
+        rumbleStep = burstTime;
+        pulseDurration = Time.unscaledTime + burstTime;
+        rumbleDurration = Time.unscaledTime + duration;
         isMotorActive = true;
         var g = GetGamepad();
         g?.SetMotorSpeeds(lowA, highA);

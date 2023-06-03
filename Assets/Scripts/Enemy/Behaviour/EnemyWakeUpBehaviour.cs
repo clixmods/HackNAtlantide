@@ -79,11 +79,15 @@ public class EnemyWakeUpBehaviour : MonoBehaviour
     //appele le wakeup de l'ennemie behaviour et met a jour le bool isAwake
     public void WakeUp()
     {
-        _isAwake = true;
-        _enemyBehaviour.WakeUp();
-        OnAwake?.Invoke();
-        _allEnemyAwake.AddUnique(this.gameObject);
-        _focusable.IsTargetable = true;
+        if(!_isAwake)
+        {
+            _isAwake = true;
+            _enemyBehaviour.WakeUp();
+            OnAwake?.Invoke();
+            _allEnemyAwake.AddUnique(this.gameObject);
+            _focusable.IsTargetable = !GetComponent<Character>().IsInvulnerable;
+        }
+        
     }
 
     public void ReturnToStartPos()

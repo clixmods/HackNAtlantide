@@ -22,7 +22,7 @@ public class CameraShakeManager : MonoBehaviour
         instance = this;
         DontDestroyOnLoad(this);
     }
-    public void Shake(ShakeType shakeType, float duration, float magnitude, bool additive, float priority)
+    public void Shake(ShakeType shakeType, float duration, float magnitude, bool additive, float priority, Vector3 defaultVelocity)
     {
         if(currentpriority < priority)
         {
@@ -38,19 +38,19 @@ public class CameraShakeManager : MonoBehaviour
         switch (shakeType)
         {
             case ShakeType.ExplosionLong:
-                ShakeBySource(impulseSourceExplosionLong, duration, magnitude);
+                ShakeBySource(impulseSourceExplosionLong, duration, magnitude, defaultVelocity);
                 break;
             case ShakeType.ExplosionShort:
-                ShakeBySource(impulseSourceExplosionShort, duration, magnitude);
+                ShakeBySource(impulseSourceExplosionShort, duration, magnitude, defaultVelocity);
                 break;
             case ShakeType.Recoil:
-                ShakeBySource(impulseSourceRecoil, duration, magnitude);
+                ShakeBySource(impulseSourceRecoil, duration, magnitude, defaultVelocity);
                 break;
             case ShakeType.Bump:
-                ShakeBySource(impulseSourceBump, duration, magnitude);
+                ShakeBySource(impulseSourceBump, duration, magnitude, defaultVelocity);
                 break;
             case ShakeType.Rumble:
-                ShakeBySource(impulseSourceRumble, duration, magnitude);
+                ShakeBySource(impulseSourceRumble, duration, magnitude, defaultVelocity);
                 break;
         }
     }
@@ -60,8 +60,9 @@ public class CameraShakeManager : MonoBehaviour
         currentpriority = float.MaxValue;
     }
 
-    void ShakeBySource(CinemachineImpulseSource cinemachineImpulseSource, float duration, float magnitude)
+    void ShakeBySource(CinemachineImpulseSource cinemachineImpulseSource, float duration, float magnitude, Vector3 defaultVel)
     {
+        cinemachineImpulseSource.m_DefaultVelocity = defaultVel;
         cinemachineImpulseSource.m_ImpulseDefinition.m_ImpulseDuration = duration;
         cinemachineImpulseSource.GenerateImpulse(magnitude);
     }

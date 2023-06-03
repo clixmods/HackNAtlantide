@@ -9850,6 +9850,12 @@ MonoBehaviour:
   _staminaSO: {fileID: 11400000, guid: 7a3b5b3b905bbfe4fb4ea9ada55960e1, type: 2}
   _useStaminaFX: {fileID: 6079305323894866099}
   _failUseStaminaFX: {fileID: 1857588721046862930}
+  OnUseStamina:
+    m_PersistentCalls:
+      m_Calls: []
+  OnFailUseStamina:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &6041089416096145865
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9953,6 +9959,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 11400000, guid: f6bc493a037a1374080cd6fe6e699814, type: 2}
+        m_TargetAssemblyTypeName: RumblerDataConstant, Assembly-CSharp
+        m_MethodName: Rumble
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnDeath:
     m_PersistentCalls:
       m_Calls:
@@ -10019,6 +10037,30 @@ MonoBehaviour:
       - m_Target: {fileID: 11400000, guid: c2e5e668f1e73e24cab5e66f6a1ae09a, type: 2}
         m_TargetAssemblyTypeName: AudioAliase.Alias, AudioAliase
         m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 11400000, guid: 972dddce0ef259b48bebdb2802484a60, type: 2}
+        m_TargetAssemblyTypeName: CameraShakeScriptableObject, Assembly-CSharp
+        m_MethodName: Shake
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 11400000, guid: 95ed3f44b78022b458d06b8b3ef23290, type: 2}
+        m_TargetAssemblyTypeName: RumblerDataConstant, Assembly-CSharp
+        m_MethodName: Rumble
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

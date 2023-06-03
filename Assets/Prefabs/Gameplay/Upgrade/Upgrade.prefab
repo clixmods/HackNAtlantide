@@ -5162,6 +5162,30 @@ MonoBehaviour:
   EventOnTriggerEnter:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 11400000, guid: 7368ba06a7477a942b281a13774a908f, type: 2}
+        m_TargetAssemblyTypeName: ScriptableValueFloat, Assembly-CSharp
+        m_MethodName: IncrementMaxValue
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0.5
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 11400000, guid: 7368ba06a7477a942b281a13774a908f, type: 2}
+        m_TargetAssemblyTypeName: ScriptableValueFloat, Assembly-CSharp
+        m_MethodName: IncrementValue
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0.5
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 5838579562406146168}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
@@ -5173,6 +5197,30 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 11400000, guid: b6127fecfc67fef42927332a8876e58e, type: 2}
+        m_TargetAssemblyTypeName: AudioAliase.Alias, AudioAliase
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 11400000, guid: 4c3ffdcd55930ff40a73a47cec0852af, type: 2}
+        m_TargetAssemblyTypeName: RumblerDataPulse, Assembly-CSharp
+        m_MethodName: Rumble
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
         m_CallState: 2
   triggerStayCooldown: 1
   EventOnTriggerStay:

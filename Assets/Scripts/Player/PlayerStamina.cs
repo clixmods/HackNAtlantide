@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.Events;
+
 public class PlayerStamina : MonoBehaviour
 {
     [SerializeField] PlayerStaminaScriptableObject _staminaSO;
@@ -6,6 +8,8 @@ public class PlayerStamina : MonoBehaviour
     [SerializeField] ParticleSystem _failUseStaminaFX;
 
     public PlayerStaminaScriptableObject StaminaData => _staminaSO;
+    public UnityEvent OnUseStamina;
+    public UnityEvent OnFailUseStamina;
 
     private void OnEnable()
     {
@@ -41,10 +45,12 @@ public class PlayerStamina : MonoBehaviour
 
         //feedBack
         _useStaminaFX.Play();
+        OnUseStamina?.Invoke();
     }
     
     void FailStamina()
     {
         _failUseStaminaFX.Play();
+        OnFailUseStamina?.Invoke();
     }
 }

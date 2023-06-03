@@ -12,6 +12,7 @@ namespace AudioAliase
     {
         [Header("Alias Click")] [SerializeField]
         private Alias aliasOnClick;
+        
 
         [Header("Alias Navigation")] [SerializeField]
         private Alias aliasOnMove;
