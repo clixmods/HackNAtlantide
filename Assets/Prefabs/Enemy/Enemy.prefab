@@ -1153,12 +1153,36 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 7007661758496668703}
+        m_TargetAssemblyTypeName: EmissiveMaterialHandler, Assembly-CSharp
+        m_MethodName: ActiveEmissive
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnSleep:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 11400000, guid: 2c840606ef38e3d4daeb7aaf080bc8ad, type: 2}
         m_TargetAssemblyTypeName: AudioAliase.Alias, AudioAliase
         m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 7007661758496668703}
+        m_TargetAssemblyTypeName: EmissiveMaterialHandler, Assembly-CSharp
+        m_MethodName: ResetEmissive
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2292,3 +2316,15 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 7378593395098648404}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7007661758496668703 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 515152691763970891, guid: e3e47316f53734d4b97fdd17f181ea47,
+    type: 3}
+  m_PrefabInstance: {fileID: 7378593395098648404}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e4bc1dc766dccf4a94a1c7d2cd5d44f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

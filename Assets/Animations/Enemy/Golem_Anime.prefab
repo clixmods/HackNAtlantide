@@ -5093,13 +5093,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5b86aa4926329d4386be4f9e91c7444, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnHitEvent:
+    m_PersistentCalls:
+      m_Calls: []
   sendEventOnEnter: 1
   sendEventOnStay: 0
   sendEventOnExit: 0
   interactWithLayers:
     serializedVersion: 2
     m_Bits: 64
-  _hitVfx: {fileID: 0}
 --- !u!1 &4424305478345460028
 GameObject:
   m_ObjectHideFlags: 0
@@ -10270,13 +10272,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5b86aa4926329d4386be4f9e91c7444, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnHitEvent:
+    m_PersistentCalls:
+      m_Calls: []
   sendEventOnEnter: 1
   sendEventOnStay: 0
   sendEventOnExit: 0
   interactWithLayers:
     serializedVersion: 2
     m_Bits: 64
-  _hitVfx: {fileID: 0}
 --- !u!65 &8085074631316033424
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10300,6 +10304,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8734798027939718203}
   - component: {fileID: 5100257951129331073}
+  - component: {fileID: 515152691763970891}
   m_Layer: 0
   m_Name: golem
   m_TagString: Untagged
@@ -10388,3 +10393,20 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.0060423017, y: -0.024643987, z: 0.00435324}
     m_Extent: {x: 1.3808067, y: 0.7825295, z: 0.31769526}
   m_DirtyAABB: 0
+--- !u!114 &515152691763970891
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8893619558594475024}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e4bc1dc766dccf4a94a1c7d2cd5d44f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meshRenderer: {fileID: 5100257951129331073}
+  emissiveColor: {r: 8.47419, g: 8.47419, b: 8.47419, a: 1}
+  _initialColor: []
+  timeToActiveEmissive: 1
+  timeToResetEmissive: 0.5

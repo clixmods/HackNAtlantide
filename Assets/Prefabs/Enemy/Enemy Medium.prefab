@@ -15212,6 +15212,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 238391171050929222}
+        m_TargetAssemblyTypeName: EmissiveMaterialHandler, Assembly-CSharp
+        m_MethodName: ActiveEmissive
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnSleep:
     m_PersistentCalls:
       m_Calls:
@@ -15230,6 +15242,18 @@ MonoBehaviour:
       - m_Target: {fileID: 7913659655228939601}
         m_TargetAssemblyTypeName: AlwaysVisibleLayer, Assembly-CSharp
         m_MethodName: BackToInitialLayer
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 238391171050929222}
+        m_TargetAssemblyTypeName: EmissiveMaterialHandler, Assembly-CSharp
+        m_MethodName: ResetEmissive
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -21577,6 +21601,29 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 7398042389130117829}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &7548969993875042089 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1038207728367119852, guid: bd9fe2da75f935e4bac0b4d5e773cd40,
+    type: 3}
+  m_PrefabInstance: {fileID: 7398042389130117829}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &238391171050929222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7548969993875042089}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e4bc1dc766dccf4a94a1c7d2cd5d44f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meshRenderer: {fileID: 6899247694624450876}
+  emissiveColor: {r: 11.313708, g: 11.313708, b: 11.313708, a: 1}
+  _initialColor: []
+  timeToActiveEmissive: 1
+  timeToResetEmissive: 0.5
 --- !u!1 &7668022176253951892 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: bd9fe2da75f935e4bac0b4d5e773cd40,
