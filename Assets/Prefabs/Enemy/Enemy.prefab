@@ -1178,6 +1178,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 563201480285359654}
+        m_TargetAssemblyTypeName: AlwaysVisibleLayer, Assembly-CSharp
+        m_MethodName: SetLayerToAlwaysVisible
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnSleep:
     m_PersistentCalls:
       m_Calls:
@@ -1196,6 +1208,18 @@ MonoBehaviour:
       - m_Target: {fileID: 7007661758496668703}
         m_TargetAssemblyTypeName: EmissiveMaterialHandler, Assembly-CSharp
         m_MethodName: ResetEmissive
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 563201480285359654}
+        m_TargetAssemblyTypeName: AlwaysVisibleLayer, Assembly-CSharp
+        m_MethodName: BackToInitialLayer
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2279,7 +2303,7 @@ PrefabInstance:
     - target: {fileID: 8893619558594475024, guid: e3e47316f53734d4b97fdd17f181ea47,
         type: 3}
       propertyPath: m_Layer
-      value: 17
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e3e47316f53734d4b97fdd17f181ea47, type: 3}
@@ -2289,6 +2313,18 @@ ParticleSystem:
     type: 3}
   m_PrefabInstance: {fileID: 7378593395098648404}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &563201480285359654 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7041065044628992370, guid: e3e47316f53734d4b97fdd17f181ea47,
+    type: 3}
+  m_PrefabInstance: {fileID: 7378593395098648404}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5b216402c55e26468d3152eeaef5e02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &2169866490069815679 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8681512412803198507, guid: e3e47316f53734d4b97fdd17f181ea47,
