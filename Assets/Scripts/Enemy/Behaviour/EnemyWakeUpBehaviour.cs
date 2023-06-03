@@ -8,6 +8,7 @@ public class EnemyWakeUpBehaviour : MonoBehaviour
 {
     [SerializeField] private bool _wakeUpByDistance = true;
     [SerializeField] float _distanceToWakeUp;
+    [SerializeField] bool _distanceByNavMesh = true;
     [SerializeField] float _distanceToSleep;
     [SerializeField] private bool _goBackToStartPosToSleep = true;
     public UnityEvent OnAwake;
@@ -42,16 +43,24 @@ public class EnemyWakeUpBehaviour : MonoBehaviour
         }
         else
         {
-            if(_enemyBehaviour.Agent.enabled)
+            //attends que le joueur soit à une distance minimale et qu'il ne soit pas réveiller
+            if (_wakeUpByDistance)
             {
-                //attends que le joueur soit à une distance minimale et qu'il ne soit pas réveiller
-                if (_wakeUpByDistance && _enemyBehaviour.GetPathLength() < _distanceToWakeUp && !_isAwake)
+                float distance = Vector3.Distance(transform.position, PlayerInstanceScriptableObject.Player.transform.position);
+                if (_distanceByNavMesh)
+                {
+                    if (distance < _distanceToWakeUp * 2)
+                    {
+                        distance = _enemyBehaviour.GetPathLength();
+                    }
+                }
+                else
+                {
+                    distance = Vector3.Distance(transform.position, PlayerInstanceScriptableObject.Player.transform.position);
+                }
+                if (distance < _distanceToWakeUp && !_isAwake)
                 {
                     WakeUp();
-                }
-                if (Vector3.Distance(_startPos, transform.position) < 0.3f && _goBackToStartPosToSleep)
-                {
-                    Sleep();
                 }
             }
         }

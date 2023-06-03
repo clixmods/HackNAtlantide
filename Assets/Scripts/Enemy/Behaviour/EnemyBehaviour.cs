@@ -93,7 +93,7 @@ public class EnemyBehaviour : MonoBehaviour
     {
         _movecoroutineIsPlayed = true;
         _canMove = true;
-        while (_canMove && _isAwake && !_returnToStartPos &&_agent.enabled)
+        while (_canMove && _isAwake && !_returnToStartPos && _agent.enabled)
         {
             Move(PlayerInstanceScriptableObject.Player.transform.position);
             yield return null;
