@@ -91,6 +91,10 @@ public class PlayerMovement : MonoBehaviour
     public bool fly;
 
     public UnityEvent OnTeleport;
+
+    public UnityEvent OnDash;
+
+    public UnityEvent OnDashCancel;
     // Start is called before the first frame update
     void Awake()
     {
@@ -282,6 +286,7 @@ public class PlayerMovement : MonoBehaviour
 
             //FeedBack
             DashFeedBack(true);
+            OnDash?.Invoke();
             
             _dashEvent.LaunchEvent();
         }
@@ -345,6 +350,7 @@ public class PlayerMovement : MonoBehaviour
         _transformLock = _transformLockTempForDash;
         _isDashing = false;
         Physics.IgnoreLayerCollision(this.gameObject.layer, 16, false);
+        OnDashCancel?.Invoke();
         DashFeedBack(false);
     }
     public void SetTransformLock()

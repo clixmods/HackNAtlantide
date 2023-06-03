@@ -237,6 +237,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1011610197675847192}
   - component: {fileID: 7408307698024756369}
+  - component: {fileID: 7881848639857076296}
   m_Layer: 17
   m_Name: torse_low
   m_TagString: Untagged
@@ -334,6 +335,23 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.44050545, y: -0.15041535, z: -0.00021716952}
     m_Extent: {x: 0.72023684, y: 0.5584944, z: 0.7446711}
   m_DirtyAABB: 0
+--- !u!114 &7881848639857076296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1112367662337002195}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e4bc1dc766dccf4a94a1c7d2cd5d44f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meshRenderer: {fileID: 7408307698024756369}
+  emissiveColor: {r: 29.508846, g: 29.508846, b: 29.508846, a: 1}
+  _initialColor: []
+  timeToActiveEmissive: 1
+  timeToResetEmissive: 0.5
 --- !u!1 &1118802438012897619
 GameObject:
   m_ObjectHideFlags: 0
@@ -1025,13 +1043,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5b86aa4926329d4386be4f9e91c7444, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnHitEvent:
+    m_PersistentCalls:
+      m_Calls: []
   sendEventOnEnter: 1
   sendEventOnStay: 0
   sendEventOnExit: 0
   interactWithLayers:
     serializedVersion: 2
     m_Bits: 2048
-  _hitVfx: {fileID: 0}
 --- !u!1 &7190152867788724349
 GameObject:
   m_ObjectHideFlags: 0
