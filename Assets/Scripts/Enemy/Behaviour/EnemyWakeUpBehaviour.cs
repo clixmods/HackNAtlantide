@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -43,7 +44,7 @@ public class EnemyWakeUpBehaviour : MonoBehaviour
         }
         else
         {
-            //attends que le joueur soit à une distance minimale et qu'il ne soit pas réveiller
+            //attends que le joueur soit ï¿½ une distance minimale et qu'il ne soit pas rï¿½veiller
             if (_wakeUpByDistance)
             {
                 float distance = Vector3.Distance(transform.position, PlayerInstanceScriptableObject.Player.transform.position);
@@ -59,6 +60,8 @@ public class EnemyWakeUpBehaviour : MonoBehaviour
                     distance = Vector3.Distance(transform.position, PlayerInstanceScriptableObject.Player.transform.position);
                 }
                 if (distance < _distanceToWakeUp && !_isAwake)
+                //attends que le joueur soit ï¿½ une distance minimale et qu'il ne soit pas rï¿½veiller
+                if (_wakeUpByDistance && _enemyBehaviour.GetPathLength() < _distanceToWakeUp && !_isAwake)
                 {
                     WakeUp();
                 }
@@ -88,5 +91,10 @@ public class EnemyWakeUpBehaviour : MonoBehaviour
         _isAwake = false;
         OnSleep?.Invoke();
         _allEnemyAwake.RemoveUnique(this.gameObject);
+    }
+    // on switch scene, we need to remove the enemy of the list
+    private void OnDestroy()
+    {
+        _allEnemyAwake.RemoveUnique(gameObject);
     }
 }

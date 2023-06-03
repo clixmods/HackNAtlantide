@@ -6,25 +6,27 @@ using UnityEngine;
 public class ScriptableValueListGameObject : ScriptableValue<List<GameObject>>
 {
     public override List<GameObject> Value { get { return base.Value; } set => base.Value = value; }
-
+    public int Count => Value.Count;
     public void AddUnique(GameObject gameObject)
     {
-        //securité
+        //securitï¿½
         if (base.Value == null) 
         { base.Value = new(); }
 
         Value.Add(gameObject);
+        OnValueChanged?.Invoke(Value);
         ApplyGameStateCombat();
     }
     public void RemoveUnique(GameObject gameObject)
     {
-        //securité
+        //securitï¿½
         if (base.Value == null)
         { base.Value = new(); }
 
         if (Value.Contains(gameObject))
         {
             Value.Remove(gameObject);
+            OnValueChanged?.Invoke(Value);
         }
         ApplyGameStateCombat();
     }
@@ -32,10 +34,12 @@ public class ScriptableValueListGameObject : ScriptableValue<List<GameObject>>
     {
         Debug.Log("reset");
         Value.RemoveRange(0, Value.Count);
+        OnValueChanged?.Invoke(Value);
     }
     //TODO A changer de place ou renommmer la classe ?
     void ApplyGameStateCombat()
     {
-        GameStateManager.Instance.combatStateObject.SetActive(Value.Count > 0);
+        if(GameStateManager.Instance != null && GameStateManager.Instance.combatStateObject != null)
+            GameStateManager.Instance.combatStateObject.SetActive(Value != null && Value.Count > 0);
     }
 }

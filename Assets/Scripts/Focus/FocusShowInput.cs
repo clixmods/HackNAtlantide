@@ -10,63 +10,66 @@ public class FocusShowInput : MonoBehaviour
     [SerializeField] private InputInfoScriptableObject inputEnableFocus;
     [SerializeField] private InputInfoScriptableObject inputDisableFocus;
     [SerializeField] private InputInfoScriptableObject inputSwitchFocus;
+    [SerializeField] private ScriptableValueListGameObject valueListGameObject;
     void Awake()
     {
         _focus = GetComponent<Focus>();
+        
+    }
+    private void OnValueChanged(List<GameObject> obj)
+    {
+        if (!Focus.FocusIsEnable)
+        {
+            if ( obj.Count > 0)
+            {
+                inputEnableFocus.ShowInputInfo();
+            }
+            else 
+            {
+                inputEnableFocus.RemoveInputInfo();
+            }
+        }
     }
 
     private void OnEnable()
     {
-        Focus.OnFocusSwitch += FocusOnOnFocusSwitch;
-        Focus.OnFocusEnable += FocusOnOnFocusEnable;
-        Focus.OnFocusDisable += FocusOnOnFocusDisable;
-        Focus.OnFocusNoTarget += FocusOnOnFocusNoTarget;
+        Focus.OnFocusSwitch += FocusSwitch;
+        Focus.OnFocusEnable += FocusEnable;
+        Focus.OnFocusDisable += FocusDisable;
+        Focus.OnFocusNoTarget += OnFocusNoTarget;
+        valueListGameObject.OnValueChanged += OnValueChanged;
     }
     private void OnDisable()
     {
-        Focus.OnFocusSwitch -= FocusOnOnFocusSwitch;
-        Focus.OnFocusEnable -= FocusOnOnFocusEnable;
-        Focus.OnFocusDisable -= FocusOnOnFocusDisable;
-        Focus.OnFocusNoTarget -= FocusOnOnFocusNoTarget;
+        Focus.OnFocusSwitch -= FocusSwitch;
+        Focus.OnFocusEnable -= FocusEnable;
+        Focus.OnFocusDisable -= FocusDisable;
+        Focus.OnFocusNoTarget -= OnFocusNoTarget;
+        valueListGameObject.OnValueChanged -= OnValueChanged;
     }
-
-
-    private void Update()
-    {
-        if (!Focus.FocusIsEnable && _focus.FocusablesAvailable.Count > 0)
-        {
-            inputEnableFocus.ShowInputInfo();
-        }
-        else if (!Focus.FocusIsEnable && _focus.FocusablesAvailable.Count <= 0)
-        {
-            inputEnableFocus.RemoveInputInfo();
-        }
-    }
-
-    private void FocusOnOnFocusNoTarget()
+    private void OnFocusNoTarget()
     {
         inputEnableFocus.RemoveInputInfo();
         inputDisableFocus.RemoveInputInfo();
         inputSwitchFocus.RemoveInputInfo();
+        OnValueChanged(valueListGameObject.Value);
     }
 
-    private void FocusOnOnFocusDisable()
+    private void FocusDisable()
     {
         inputSwitchFocus.RemoveInputInfo();
-        if (_focus.FocusablesAvailable.Count > 0)
+        inputDisableFocus.RemoveInputInfo();
+        if ( valueListGameObject.Count > 0)
         {
             inputEnableFocus.ShowInputInfo();
-            inputDisableFocus.RemoveInputInfo();
         }
-        else
+        else 
         {
             inputEnableFocus.RemoveInputInfo();
-            inputDisableFocus.RemoveInputInfo();
         }
-            
     }
 
-    private void FocusOnOnFocusEnable()
+    private void FocusEnable()
     {
         inputEnableFocus.RemoveInputInfo();
         inputDisableFocus.ShowInputInfo();
@@ -76,19 +79,13 @@ public class FocusShowInput : MonoBehaviour
         }
     }
 
-    private void FocusOnOnFocusSwitch(IFocusable target)
+    private void FocusSwitch(IFocusable target)
     {
-        if (!Focus.FocusIsEnable && _focus.FocusablesAvailable.Count <= 0)
+        if (!Focus.FocusIsEnable)
         {
-            inputEnableFocus.RemoveInputInfo();
-            inputDisableFocus.RemoveInputInfo();
             inputSwitchFocus.RemoveInputInfo();
         }
-        if (!Focus.FocusIsEnable && _focus.FocusablesAvailable.Count > 0)
-        {
-            inputEnableFocus.ShowInputInfo();
-        }
-
+        
         if (Focus.FocusIsEnable)
         {
             if (_focus.FocusablesAvailable.Count > 1)
