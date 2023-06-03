@@ -68,7 +68,6 @@ public class EnemyWakeUpBehaviour : MonoBehaviour
             }
         }
     }
-
     //appele le wakeup de l'ennemie behaviour et met a jour le bool isAwake
     public void WakeUp()
     {

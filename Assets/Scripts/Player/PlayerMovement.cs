@@ -304,6 +304,9 @@ public class PlayerMovement : MonoBehaviour
             _canDashAttack = false;
             _transformLockTempForDash = _transformLock;
             _transformLock = null;
+            //ignore ennemie collision
+            Physics.IgnoreLayerCollision(6, 11);
+            //ignore bushCollision
             Physics.IgnoreLayerCollision(this.gameObject.layer, 16);
             StartCoroutine(CancelDashAttack());
 
@@ -349,6 +352,7 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(0.2f);
         _transformLock = _transformLockTempForDash;
         _isDashing = false;
+
         Physics.IgnoreLayerCollision(this.gameObject.layer, 16, false);
         OnDashCancel?.Invoke();
         DashFeedBack(false);
@@ -363,6 +367,9 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(0.2f);
         _transformLock = _transformLockTempForDash;
         _isDashingAttack = false;
+
+        //ignore ennemie collision
+        Physics.IgnoreLayerCollision(6, 11, false);
         Physics.IgnoreLayerCollision(this.gameObject.layer, 16, false);
         DashAttackFeedBack(false);
     }
