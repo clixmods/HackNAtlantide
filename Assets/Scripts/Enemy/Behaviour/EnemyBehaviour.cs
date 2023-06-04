@@ -47,6 +47,8 @@ public class EnemyBehaviour : MonoBehaviour
     public bool MovecoroutineIsPlayed { get { return _movecoroutineIsPlayed; } }
     Rigidbody _rigidBody;
     [SerializeField] bool _calculateDistanceByNavMeshPath = true;
+    [SerializeField] ScriptableEventBool _canEnemyTargetPlayer;
+    private bool canTargetPlayer;
     #endregion
 
     #region MonoBehaviour
@@ -56,6 +58,21 @@ public class EnemyBehaviour : MonoBehaviour
         _agent = GetComponent<NavMeshAgent>();
         _animator = GetComponent<Animator>();
         _rigidBody = GetComponent<Rigidbody>();
+        canTargetPlayer = true;
+    }
+    private void OnEnable()
+    {
+        _canEnemyTargetPlayer.OnEvent += CanTargetPlayer;
+    }
+    private void OnDisable()
+    {
+        _canEnemyTargetPlayer.OnEvent -= CanTargetPlayer;
+    }
+    void CanTargetPlayer(bool value)
+    {
+        canTargetPlayer = value;
+        if (!value)
+            Agent.SetDestination(transform.position);
     }
     #endregion
     private void Update()
@@ -77,7 +94,7 @@ public class EnemyBehaviour : MonoBehaviour
     }
     public virtual void Move(Vector3 target)
     {
-        if(_agent.enabled)
+        if(_agent.enabled && canTargetPlayer)
         {
             if (_isAwake && _canMove)
             {
@@ -93,7 +110,7 @@ public class EnemyBehaviour : MonoBehaviour
     {
         _movecoroutineIsPlayed = true;
         _canMove = true;
-        while (_canMove && _isAwake && !_returnToStartPos && _agent.enabled)
+        while (_canMove && _isAwake && !_returnToStartPos && _agent.enabled && canTargetPlayer)
         {
             Move(PlayerInstanceScriptableObject.Player.transform.position);
             yield return null;
@@ -122,7 +139,7 @@ public class EnemyBehaviour : MonoBehaviour
             //Selectione l'attaque disponible la plus prioritaire
             for (int i = 0; i < _ennemyAttacks.Count; i++)
             {
-                if (_ennemyAttacks[i].CanAttack())
+                if (_ennemyAttacks[i].CanAttack() && canTargetPlayer)
                 {
                     _ennemyAttacks[i].Attack();
                     _currentAttack = _ennemyAttacks[i];

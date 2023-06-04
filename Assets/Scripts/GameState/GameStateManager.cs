@@ -15,6 +15,7 @@ public class RuntimeGameState : GameState
     {
         stateOverride.timeScale = 1f;
         stateOverride.inputUIActive = false;
+        stateOverride.canEnemyTargetPlayer = true;
     }
 }
 public class PauseGameState : GameState
@@ -50,6 +51,7 @@ public class CinematiqueState : GameState
         stateOverride.inputMovementActive = false;
         stateOverride.inputCombatActive = false;
         stateOverride.inputDashActive = false;
+        stateOverride.canEnemyTargetPlayer = false;
     }
 }
 public class LoadingState : GameState
@@ -66,6 +68,7 @@ public class LoadingState : GameState
         stateOverride.inputMovementActive = false;
         stateOverride.inputCombatActive = false;
         stateOverride.inputDashActive = false;
+        stateOverride.canEnemyTargetPlayer = false;
     }
 }
 public class MainMenuState : GameState
@@ -88,7 +91,7 @@ public class CombatState : GameState
 
     public override void ApplyOverride(GameStateOverride stateOverride)
     {
-
+        stateOverride.canEnemyTargetPlayer = true;
     }
 }
 public class TutoState : GameState
@@ -106,6 +109,7 @@ public class TutoState : GameState
         stateOverride.inputCombatActive = false;
         stateOverride.inputDashActive = false;
 
+        stateOverride.canEnemyTargetPlayer = true;
     }
 }
 public class DeadState : GameState
@@ -122,7 +126,7 @@ public class DeadState : GameState
         stateOverride.inputCombatActive = false;
         stateOverride.inputDashActive = false;
         stateOverride.inputPauseActive = false;
-
+        stateOverride.canEnemyTargetPlayer = false;
 
     }
 }
@@ -143,6 +147,7 @@ public class GameStateOverride
     public bool inputInteractActive = true;
     public bool inputPauseActive = true;
     public bool inputUIActive = false;
+    public bool canEnemyTargetPlayer = true;
     
     public void Reset()
     {
@@ -167,6 +172,7 @@ public class GameStateOverride
         InputManager.Instance.ActiveInputMovement(inputMovementActive);
         InputManager.Instance.ActiveInputPause(inputPauseActive);
         InputManager.Instance.SwitchInputActionMap(!inputUIActive);
+        GameStateManager.Instance._canEnemyAttackPlayer.LaunchEvent(canEnemyTargetPlayer);
     }
     /*IEnumerator ApplyCoroutine()
     {
@@ -251,6 +257,7 @@ public class GameStateManager : MonoBehaviour
     [SerializeField] ScriptableEvent restartEvent;
 
     private IGameStateCallBack _lastCallBackCalled;
+    public ScriptableEventBool _canEnemyAttackPlayer;
     //------------------------
     private void Awake()
     {

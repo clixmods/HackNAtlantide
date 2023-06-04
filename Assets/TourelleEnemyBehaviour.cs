@@ -33,7 +33,7 @@ public class TourelleEnemyBehaviour : MonoBehaviour
     private void Update()
     {
         _distanceWithPlayerSqr = (PlayerInstanceScriptableObject.Player.transform.position - transform.position).sqrMagnitude;
-        _inRange = _distanceWithPlayerSqr < _rangeOfDetection * _rangeOfDetection;
+        _inRange = _distanceWithPlayerSqr < _rangeOfDetection * _rangeOfDetection && Mathf.Abs(PlayerInstanceScriptableObject.Player.transform.position.y - transform.position.y) <5;
 
         if (_inRange && !_isActivated)
         {
