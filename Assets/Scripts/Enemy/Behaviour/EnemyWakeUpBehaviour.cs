@@ -92,9 +92,19 @@ public class EnemyWakeUpBehaviour : MonoBehaviour
 
     public void ReturnToStartPos()
     {
-        _goBackToStartPosToSleep = true;
-        _enemyBehaviour.StopCoroutine(_enemyBehaviour.MoveToPlayer());
-        _enemyBehaviour.Move(_startPos);
+        if(Vector3.Distance(transform.position, _startPos) > 0.5f)
+        {
+            _goBackToStartPosToSleep = true;
+            _enemyBehaviour.StopCoroutine(_enemyBehaviour.MoveToPlayer());
+            _enemyBehaviour.Move(_startPos);
+        }
+        else
+        {
+            if(_goBackToStartPosToSleep)
+            {
+                Sleep();
+            }
+        }
     }
 
     public void Sleep()

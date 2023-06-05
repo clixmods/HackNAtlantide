@@ -11,6 +11,12 @@ public class PlayerHealth : Character
     public UnityEvent HealthGain;
     public UnityEvent HealthGainFull;
     public UnityEvent MaxHealthIncrease;
+    private bool invincibleFromState = false;
+    public void InvincibleEvent(bool value)
+    {
+        invincibleFromState = value;
+    }
+    [SerializeField] ScriptableEventBool invincibleEvent;
     
     public override float health
     {
@@ -50,10 +56,12 @@ public class PlayerHealth : Character
     private void OnEnable()
     {
         healthValue.OnMaxValueChanged += OnMaxValueChanged;
+        invincibleEvent.OnEvent += InvincibleEvent;
     }
     private void OnDisable()
     {
         healthValue.OnMaxValueChanged -= OnMaxValueChanged;
+        invincibleEvent.OnEvent -= InvincibleEvent;
     }
     private void OnMaxValueChanged(float maxValue)
     {
@@ -93,7 +101,7 @@ public class PlayerHealth : Character
     }
     public override void DoDamage(float damage , Vector3 attackLocation)
     {
-        if(_movementState.MovementState != MovementState.dashing && !_isInvincible)
+        if(_movementState.MovementState != MovementState.dashing && !_isInvincible && !invincibleFromState)
         {
             Debug.Log("dodamage : " + damage);
             base.DoDamage(damage,  attackLocation);

@@ -16,6 +16,7 @@ public class RuntimeGameState : GameState
         stateOverride.timeScale = 1f;
         stateOverride.inputUIActive = false;
         stateOverride.canEnemyTargetPlayer = true;
+        stateOverride.playerInvincible = false;
     }
 }
 public class PauseGameState : GameState
@@ -52,6 +53,8 @@ public class CinematiqueState : GameState
         stateOverride.inputCombatActive = false;
         stateOverride.inputDashActive = false;
         stateOverride.canEnemyTargetPlayer = false;
+
+        stateOverride.playerInvincible = true;
     }
 }
 public class LoadingState : GameState
@@ -148,6 +151,7 @@ public class GameStateOverride
     public bool inputPauseActive = true;
     public bool inputUIActive = false;
     public bool canEnemyTargetPlayer = true;
+    public bool playerInvincible = false;
     
     public void Reset()
     {
@@ -173,6 +177,7 @@ public class GameStateOverride
         InputManager.Instance.ActiveInputPause(inputPauseActive);
         InputManager.Instance.SwitchInputActionMap(!inputUIActive);
         GameStateManager.Instance._canEnemyAttackPlayer.LaunchEvent(canEnemyTargetPlayer);
+        GameStateManager.Instance._invinciblePlayerEvent.LaunchEvent(playerInvincible);
     }
     /*IEnumerator ApplyCoroutine()
     {
@@ -258,6 +263,7 @@ public class GameStateManager : MonoBehaviour
 
     private IGameStateCallBack _lastCallBackCalled;
     public ScriptableEventBool _canEnemyAttackPlayer;
+    public ScriptableEventBool _invinciblePlayerEvent;
     //------------------------
     private void Awake()
     {

@@ -53,7 +53,6 @@ public class EmissiveMaterialHandler : MonoBehaviour
     {
         for (int i = 0; i < _propBlocks.Length; i++)
         {
-            Debug.Log(_propBlocks[i].GetVector(EmissionColorID));
             StartCoroutine(LerpColor(_propBlocks[i] , i , emissiveColor , timeToActiveEmissive, StateTransition.IsEnabling )); 
         } 
     }
