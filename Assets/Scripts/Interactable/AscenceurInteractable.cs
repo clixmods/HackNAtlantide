@@ -48,13 +48,12 @@ public class AscenceurInteractable : Interactable
             if (transform.position.y > _startPos.position.y)
             {
                 transform.position += Vector3.down * _speedDown * Time.deltaTime;
-                _collider.enabled = false;
-            }
-            else
-            {
-                _collider.enabled = true;
             }
         }
+    }
+    private void FixedUpdate()
+    {
+        _collider.enabled = PlayerInstanceScriptableObject.Player.transform.position.y > transform.position.y;
     }
     public override void CancelInteract()
     {
@@ -65,7 +64,7 @@ public class AscenceurInteractable : Interactable
 
     public override bool Interact()
     {
-        _collider.enabled = true;
+        //_collider.enabled = true;
         _isInteract = true;
         _playerStamina.CanRechargeStamina = false;
         LaunchOnInteract();
