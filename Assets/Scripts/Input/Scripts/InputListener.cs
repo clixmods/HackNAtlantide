@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using JetBrains.Annotations;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -12,6 +13,7 @@ public class InputListener : MonoBehaviour
     [SerializeField] private bool alwaysListen = true;
     public UnityEvent InputValueTrue;
     public UnityEvent InputValueFalse;
+    public UnityEvent onDisable;
     [SerializeField] bool listenInputWithDelay = false;
 
     private void Awake()
@@ -48,6 +50,7 @@ public class InputListener : MonoBehaviour
         if (!alwaysListen)
         {
             inputToListen.OnValueChanged -= ListenerBehaviour;
+            onDisable?.Invoke();
         }
     }
     private void ListenerBehaviour(bool value)
