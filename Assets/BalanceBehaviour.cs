@@ -8,6 +8,19 @@ public class BalanceBehaviour : MonoBehaviour
 {
     public float rightWeight;
     public float leftWeight;
+    [SerializeField] float leftRotation;
+    [SerializeField] float rightRotation;
+    [SerializeField] float rotationSpeed;
+    float acceleration;
+    float currentRotation;
+    float startRotationY;
+
+    float xRotation;
+    private void Start()
+    {
+        xRotation = transform.rotation.eulerAngles.x - 360;
+        startRotationY = transform.rotation.eulerAngles.y;
+    }
 
     private void Update()
     {
@@ -15,19 +28,23 @@ public class BalanceBehaviour : MonoBehaviour
         {
             BalanceLeft();
         }
-        else
+        else if( leftWeight < rightWeight)
         {
             BalanceRight();
         }
-        
     }
 
-    void BalanceLeft()
-    {
-        //QuaternionSlerp... point a to point b
-    }
+
     void BalanceRight()
     {
-        //QuaternionSlerp... point a to point b
+        xRotation -= Time.deltaTime * rotationSpeed;
+        xRotation = Mathf.Clamp(xRotation, rightRotation, leftRotation);
+        transform.rotation = Quaternion.Euler(xRotation, startRotationY, 0);
+    }
+    void BalanceLeft()
+    {
+        xRotation += Time.deltaTime * rotationSpeed;
+        xRotation = Mathf.Clamp(xRotation, rightRotation, leftRotation);
+        transform.rotation = Quaternion.Euler(xRotation, startRotationY, 0);
     }
 }
