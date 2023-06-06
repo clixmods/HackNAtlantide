@@ -10,14 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: acfaebaa19219ea448a0f03582848d39, type: 3}
-  m_Name: middle_golem_footstep
+  m_Name: middle_golem_attack_jump_jumping
   m_EditorClassIdentifier: 
-  aliasName: middle_golem_footstep
+  aliasName: middle_golem_attack
   description: 
   Tag: 
   MixerGroup: {fileID: -5283781399218446997, guid: 5da2c8dde8bb9094f8aaeafbe0aca20b,
     type: 2}
-  audio: []
+  audio:
+  - {fileID: 8300000, guid: 403f4d48f1904574eac61c72b6dcc20a, type: 3}
   soundType: 0
   randomizeClips: 0
   Secondary: {fileID: 0}
@@ -37,7 +38,7 @@ MonoBehaviour:
   minPitch: 1
   maxPitch: 1.01
   stereoPan: 0
-  spatialBlend: 0
+  spatialBlend: 0.287
   reverbZoneMix: 1
   dopplerLevel: 1
   Spread: 1
@@ -59,4 +60,4 @@ MonoBehaviour:
   audioPlayers: []
   UseSurfaceDetection: 0
   surfacesAlias: []
-  guid: 878749922
+  guid: -1431346341
