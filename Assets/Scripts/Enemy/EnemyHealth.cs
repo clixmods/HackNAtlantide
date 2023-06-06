@@ -7,10 +7,8 @@ using UnityEngine.AI;
 
 public class EnemyHealth : Character
 {
-    // [SerializeField] EnemyController _enemyController;
-    // [SerializeField] ParticleSystem _particleDead;
-    // [SerializeField] DeathEnemyEffect _deathEnemyEffect;
     [SerializeField] ScriptableValueListGameObject _allEnemyAwake;
+    [SerializeField] private bool destroyOnDeath = true;
     public override void Dead()
     {
         base.Dead();
@@ -19,7 +17,10 @@ public class EnemyHealth : Character
         //   _particleDead.Play();
         // _deathEnemyEffect.DeadEffect();
         _allEnemyAwake.RemoveUnique(this.gameObject);
-        Destroy(gameObject);
+        if(destroyOnDeath)
+            Destroy(gameObject);
+        
+        
     }
     public override void DoDamage(float damage, Vector3 attackLocation)
     {

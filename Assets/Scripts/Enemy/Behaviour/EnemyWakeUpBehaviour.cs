@@ -12,6 +12,7 @@ public class EnemyWakeUpBehaviour : MonoBehaviour
     [SerializeField] bool _distanceByNavMesh = true;
     [SerializeField] float _distanceToSleep;
     [SerializeField] private bool _goBackToStartPosToSleep = true;
+    [SerializeField] private bool _wakeUpAtStart;
     public UnityEvent OnAwake;
     public UnityEvent OnSleep;
     private bool _isAwake;
@@ -25,9 +26,18 @@ public class EnemyWakeUpBehaviour : MonoBehaviour
         _startPos = transform.position;
         _enemyBehaviour = GetComponent<EnemyBehaviour>();
     }
+
+    private void Start()
+    {
+        if (_wakeUpAtStart)
+        {
+            WakeUp();
+        }
+    }
+
     private void Update()
     {
-        if(_isAwake && !_enemyBehaviour.IsAttacking)
+        if(_isAwake && _enemyBehaviour != null &&  !_enemyBehaviour.IsAttacking)
         {
             _enemyBehaviour.ReturnToStartPos = _enemyBehaviour.DistanceWithPlayer > _distanceToSleep;
             if (_enemyBehaviour.ReturnToStartPos)

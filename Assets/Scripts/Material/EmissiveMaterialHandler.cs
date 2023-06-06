@@ -37,17 +37,19 @@ public class EmissiveMaterialHandler : MonoBehaviour
             _propBlocks[i] = new MaterialPropertyBlock();
         }
         _initialColor = new Color[_propBlocks.Length];
-       
-    }
-
-    private void Start()
-    {
+        
         for (int i = 0; i < _propBlocks.Length; i++)
         {
             // Assign our new value.
             _initialColor[i] = meshRenderer.sharedMaterials[i].GetVector(EmissionColorID);
         }
+       
     }
+    //
+    // private void Awake()
+    // {
+    //     
+    // }
     [ContextMenu("Active Component Emissive")]
     public void ActiveEmissive()
     {

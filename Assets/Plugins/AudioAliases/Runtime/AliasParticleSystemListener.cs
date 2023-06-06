@@ -52,7 +52,6 @@ public class AliasParticleSystemListener : MonoBehaviour
                     transform.PlaySoundAtPosition(alias);
                     _aliasIsPlayed = true;
                 }
-                
             }
             else
             {

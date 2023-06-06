@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class TowerShield : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class TowerShield : MonoBehaviour
     private GameObject[] fxTrailGameObjects;
     [SerializeField] private GameObject fxTrail;
     [SerializeField] private Transform pivotStartTrail;
+
+    public UnityEvent OnStart;
     private void Start()
     {
         _idamageable = GetComponent<IDamageable>();
@@ -35,6 +38,7 @@ public class TowerShield : MonoBehaviour
             component.SetTransformsLink(pivotStartTrail, charactersToProtect[i].transform);
         }
         _idamageable.OnDeath += TowerDisable;
+        OnStart?.Invoke();
     }
 
     private void TowerDisable(object sender, EventArgs e)

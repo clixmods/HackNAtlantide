@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8298441024830497527}
   - component: {fileID: 2304553614691838821}
   - component: {fileID: 5882732765536325505}
+  - component: {fileID: 2413376386700795566}
   m_Layer: 0
   m_Name: PillarInv_low
   m_TagString: Untagged
@@ -83,6 +84,23 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &2413376386700795566
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 542052908008350136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e4bc1dc766dccf4a94a1c7d2cd5d44f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meshRenderer: {fileID: 5882732765536325505}
+  emissiveColor: {r: 0, g: 10.293256, b: 11.313708, a: 1}
+  _initialColor: []
+  timeToActiveEmissive: 3
+  timeToResetEmissive: 2
 --- !u!1 &6280383732657845988
 GameObject:
   m_ObjectHideFlags: 0
@@ -127,6 +145,7 @@ GameObject:
   - component: {fileID: 6900051474580988058}
   - component: {fileID: 8670679675029851302}
   - component: {fileID: 9069009796825818651}
+  - component: {fileID: 1328916702409708882}
   m_Layer: 0
   m_Name: crystal_low
   m_TagString: Untagged
@@ -199,3 +218,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &1328916702409708882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6799717561727915401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e4bc1dc766dccf4a94a1c7d2cd5d44f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meshRenderer: {fileID: 9069009796825818651}
+  emissiveColor: {r: 0, g: 10.293256, b: 11.313708, a: 1}
+  _initialColor: []
+  timeToActiveEmissive: 3
+  timeToResetEmissive: 2
