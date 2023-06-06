@@ -12,6 +12,7 @@ public class CameraShakeManager : MonoBehaviour
     [SerializeField] CinemachineImpulseSource impulseSourceBump;
     [SerializeField] CinemachineImpulseSource impulseSourceRumble;
     [SerializeField] CinemachineImpulseSource impulseSourceRecoil;
+    [SerializeField] SettingsScriptableObject _settingsData;
     float currentpriority = float.MaxValue;
     private void Awake()
     {
@@ -24,7 +25,7 @@ public class CameraShakeManager : MonoBehaviour
     }
     public void Shake(ShakeType shakeType, float duration, float magnitude, bool additive, float priority, Vector3 defaultVelocity)
     {
-        if(currentpriority < priority)
+        if(!_settingsData.UseCameraShake || currentpriority < priority)
         {
             return;
         }

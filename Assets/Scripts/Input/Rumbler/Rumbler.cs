@@ -24,6 +24,7 @@ public class Rumbler : MonoBehaviour
     private float highStep;
     private float rumbleStep;
     private bool isMotorActive = false;
+    [SerializeField] SettingsScriptableObject _settingsData;
     private void Start()
     {
         if (instance != null)
@@ -38,7 +39,7 @@ public class Rumbler : MonoBehaviour
     public void RumbleConstant(RumblerDataConstant rumblerDataConstant)
     {
         
-        switch(Settings.Instance.RumblerIntensity)
+        switch(_settingsData.RumblerIntensity)
         {
             case (RumblerIntensity.none):
                 break;
@@ -57,7 +58,7 @@ public class Rumbler : MonoBehaviour
     public void RumbleConstant(float duration, float low, float high)
     {
 
-        switch (Settings.Instance.RumblerIntensity)
+        switch (_settingsData.RumblerIntensity)
         {
             case (RumblerIntensity.none):
                 break;
@@ -90,7 +91,7 @@ public class Rumbler : MonoBehaviour
 
     public void RumblePulse(RumblerDataPulse rumblerDataPulse)
     {
-        switch (Settings.Instance.RumblerIntensity)
+        switch (_settingsData.RumblerIntensity)
         {
             case (RumblerIntensity.none):
                 break;
@@ -108,7 +109,7 @@ public class Rumbler : MonoBehaviour
     }
     public void RumblePulse( float duration, float burstTime, float low, float high)
     {
-        switch (Settings.Instance.RumblerIntensity)
+        switch (_settingsData.RumblerIntensity)
         {
             case (RumblerIntensity.none):
                 break;
