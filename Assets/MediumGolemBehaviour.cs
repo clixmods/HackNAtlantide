@@ -29,6 +29,7 @@ public class MediumGolemBehaviour : EnemyBehaviour
         Animator.CrossFadeInFixedTime(AwakeAnimID, 0f);
         yield return new WaitForSeconds(3f);
         onAwake?.Invoke();
+        _focusable.IsTargetable = !GetComponent<Character>().IsInvulnerable;
         IsAwake = true;
         StartCoroutine(MoveToPlayer());
         //Animator.CrossFadeInFixedTime(MoveAnimID, 0f);
