@@ -213,7 +213,7 @@ public class AttackLevitationInteractable : Interactable
             _uiChargeInputHelper.SetFillValue(t);
             transform.position = Vector3.Lerp(startPosition, destinationPosition, t);
             timeElapsed += Time.deltaTime;
-            _playerStamina.UseStamina((Time.deltaTime / timeToBeCharged) * useStaminaAmount );
+            _playerStamina.UseStamina((Time.deltaTime / timeToBeCharged) * useStaminaAmount);
             yield return null;
         }
         _uiChargeInputHelper.SetFillValue(1);
