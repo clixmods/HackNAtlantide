@@ -68,11 +68,12 @@ namespace UI.UITransformFollower
                 Vector3 position = _transformToFollow.position.GetPositionInWorldToScreenPoint();
                 if(_transformToFollow.position.IsOutOfCameraVision() )
                 {
-                    transform.position = new Vector3(-10000,0,-100);
+                    transform.position = new Vector3(-10000,0,0);
                 }
                 else
                 {
-                    transform.position = position + _offset;
+                    var positionInCanvas = new Vector3(position.x, position.y, 0);
+                    transform.position = positionInCanvas + _offset;
                 }
             }
     }
