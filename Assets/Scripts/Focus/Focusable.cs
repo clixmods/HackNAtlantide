@@ -17,7 +17,6 @@ public class Focusable : MonoBehaviour, IFocusable
     [SerializeField] private bool checkHeight;
     [SerializeField] private float heightTolerance = 10f;
     [SerializeField] GameObject _decalTarget;
-
     public bool CanBeFocusable
     {
    

@@ -90,10 +90,8 @@ public abstract class EnemyAttackBehaviour : MonoBehaviour, ICombat
 
     private void AttackColliderOnOnCollideWithIDamageable(object sender, EventArgs eventArgs)
     {
-        Debug.Log(canGiveDamage);
         if (eventArgs is AttackDamageableEventArgs mDamageableEventArgs && canGiveDamage)
         {
-            Debug.Log(damage);
             mDamageableEventArgs.idamageable.DoDamage(damage);
         }
     }

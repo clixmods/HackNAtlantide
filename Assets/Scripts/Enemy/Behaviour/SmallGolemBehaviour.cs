@@ -24,6 +24,8 @@ public class SmallGolemBehaviour : EnemyBehaviour
         Animator.CrossFadeInFixedTime(AwakeAnimID, 0f);
         yield return new WaitForSeconds(1f);
         IsAwake = true;
+        onAwake?.Invoke();
+        _focusable.IsTargetable = !GetComponent<Character>().IsInvulnerable;
         StartCoroutine(MoveToPlayer());
         Animator.CrossFadeInFixedTime(MoveAnimID, 0f);
     }

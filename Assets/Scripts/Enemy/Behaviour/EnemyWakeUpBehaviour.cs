@@ -20,18 +20,10 @@ public class EnemyWakeUpBehaviour : MonoBehaviour
     EnemyBehaviour _enemyBehaviour;
     [SerializeField] ScriptableValueListGameObject _allEnemyAwake;
 
-    [SerializeField] bool _onlyFocusWhenAwake = true;
-    [SerializeField] Focusable _focusable;
-
     private void Awake()
     {
         _startPos = transform.position;
         _enemyBehaviour = GetComponent<EnemyBehaviour>();
-        _focusable = GetComponent<Focusable>();
-        if (_onlyFocusWhenAwake)
-        {
-            _focusable.IsTargetable = false;
-        }
     }
     private void Update()
     {
@@ -85,7 +77,6 @@ public class EnemyWakeUpBehaviour : MonoBehaviour
             _enemyBehaviour.WakeUp();
             OnAwake?.Invoke();
             _allEnemyAwake.AddUnique(this.gameObject);
-            _focusable.IsTargetable = !GetComponent<Character>().IsInvulnerable;
         }
         
     }

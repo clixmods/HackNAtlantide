@@ -14861,12 +14861,12 @@ GameObject:
   - component: {fileID: 6377393696202663881}
   - component: {fileID: 2251515660098559642}
   - component: {fileID: 4946743525479470109}
-  - component: {fileID: 4941157224044765246}
   - component: {fileID: -2725072561125504969}
   - component: {fileID: -1569191948511382141}
   - component: {fileID: 5533182843198823011}
   - component: {fileID: 5552746890893481800}
   - component: {fileID: 9160518458684676332}
+  - component: {fileID: 4941157224044765246}
   - component: {fileID: 825352634235196092}
   - component: {fileID: 8694408749849937452}
   - component: {fileID: 32884065677585590}
@@ -14972,7 +14972,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxHealth: 5
   _attackRumble: {fileID: 11400000, guid: e6931a1188abaf943a45d0af0863cfbc, type: 2}
-  isInvulnerable: 0
+  isInvulnerable: 1
   _allEnemyAwake: {fileID: 11400000, guid: 2163a8b50e7f04c4b927a1597d16eff1, type: 2}
 --- !u!114 &6377393696202663881
 MonoBehaviour:
@@ -15020,26 +15020,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 2
---- !u!114 &4941157224044765246
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6444109697107675426}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75cba42aa9fb495c86c5a9e6b45b2454, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targeter: {fileID: 0}
-  pivot: {fileID: 3688723002234596659}
-  useDistance: 1
-  maxDistanceWithTargeter: 40
-  isTargetable: 1
-  checkHeight: 0
-  heightTolerance: 3.5
-  _decalTarget: {fileID: 3304832629125480183}
 --- !u!65 &-2725072561125504969
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -15182,6 +15162,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   meshRenderer: {fileID: 0}
+--- !u!114 &4941157224044765246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6444109697107675426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75cba42aa9fb495c86c5a9e6b45b2454, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targeter: {fileID: 0}
+  pivot: {fileID: 3688723002234596659}
+  useDistance: 1
+  maxDistanceWithTargeter: 40
+  isTargetable: 0
+  checkHeight: 0
+  heightTolerance: 3.5
+  _decalTarget: {fileID: 3304832629125480183}
+  _enemyHealth: {fileID: 460704731309419892}
 --- !u!114 &825352634235196092
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15238,6 +15239,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 4941157224044765246}
+        m_TargetAssemblyTypeName: Focusable, Assembly-CSharp
+        m_MethodName: set_IsTargetable
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   OnSleep:
     m_PersistentCalls:
       m_Calls:
@@ -15277,9 +15290,32 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 460704731309419892}
+        m_TargetAssemblyTypeName: Character, Assembly-CSharp
+        m_MethodName: SetInvulnerability
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 4941157224044765246}
+        m_TargetAssemblyTypeName: Focusable, Assembly-CSharp
+        m_MethodName: set_IsTargetable
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   _allEnemyAwake: {fileID: 11400000, guid: 2163a8b50e7f04c4b927a1597d16eff1, type: 2}
   _onlyFocusWhenAwake: 1
-  _focusable: {fileID: 0}
 --- !u!114 &8694408749849937452
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15299,6 +15335,21 @@ MonoBehaviour:
   _calculateDistanceByNavMeshPath: 0
   _canEnemyTargetPlayer: {fileID: 11400000, guid: 23761ca6ca1044a4e8eb58fd6cd4acd0,
     type: 2}
+  onAwake:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 460704731309419892}
+        m_TargetAssemblyTypeName: Character, Assembly-CSharp
+        m_MethodName: SetInvulnerability
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &32884065677585590
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20378,16 +20429,51 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8566622300162604400, guid: bd6cff2ab46759a46b7fce57e1d414cd,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 904e52e14e7ad584ea3c5571e7931f8b, type: 2}
+    - target: {fileID: -7522983954901194132, guid: bd6cff2ab46759a46b7fce57e1d414cd,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 904e52e14e7ad584ea3c5571e7931f8b, type: 2}
+    - target: {fileID: -7247232461995108921, guid: bd6cff2ab46759a46b7fce57e1d414cd,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 904e52e14e7ad584ea3c5571e7931f8b, type: 2}
     - target: {fileID: -7179711504046967133, guid: bd6cff2ab46759a46b7fce57e1d414cd,
         type: 3}
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: -6696510574542972157, guid: bd6cff2ab46759a46b7fce57e1d414cd,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 904e52e14e7ad584ea3c5571e7931f8b, type: 2}
+    - target: {fileID: -6551465583631621474, guid: bd6cff2ab46759a46b7fce57e1d414cd,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 904e52e14e7ad584ea3c5571e7931f8b, type: 2}
     - target: {fileID: -6527828640475295487, guid: bd6cff2ab46759a46b7fce57e1d414cd,
         type: 3}
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: -5702476428034665579, guid: bd6cff2ab46759a46b7fce57e1d414cd,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 904e52e14e7ad584ea3c5571e7931f8b, type: 2}
+    - target: {fileID: -4333505325170687762, guid: bd6cff2ab46759a46b7fce57e1d414cd,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 904e52e14e7ad584ea3c5571e7931f8b, type: 2}
     - target: {fileID: -3642385663002645201, guid: bd6cff2ab46759a46b7fce57e1d414cd,
         type: 3}
       propertyPath: m_Layer
@@ -20398,6 +20484,16 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: -1796557138667809890, guid: bd6cff2ab46759a46b7fce57e1d414cd,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 904e52e14e7ad584ea3c5571e7931f8b, type: 2}
+    - target: {fileID: -842610075584371086, guid: bd6cff2ab46759a46b7fce57e1d414cd,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 904e52e14e7ad584ea3c5571e7931f8b, type: 2}
     - target: {fileID: -702825261186019258, guid: bd6cff2ab46759a46b7fce57e1d414cd,
         type: 3}
       propertyPath: m_Layer
@@ -20443,6 +20539,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 3475619906847737654, guid: bd6cff2ab46759a46b7fce57e1d414cd,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 904e52e14e7ad584ea3c5571e7931f8b, type: 2}
     - target: {fileID: 3492398569880250209, guid: bd6cff2ab46759a46b7fce57e1d414cd,
         type: 3}
       propertyPath: m_Layer
@@ -20453,11 +20554,31 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 6077853859105055735, guid: bd6cff2ab46759a46b7fce57e1d414cd,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 904e52e14e7ad584ea3c5571e7931f8b, type: 2}
     - target: {fileID: 6788152192358977342, guid: bd6cff2ab46759a46b7fce57e1d414cd,
         type: 3}
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 7636110706145526225, guid: bd6cff2ab46759a46b7fce57e1d414cd,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 904e52e14e7ad584ea3c5571e7931f8b, type: 2}
+    - target: {fileID: 8288180867435543432, guid: bd6cff2ab46759a46b7fce57e1d414cd,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 904e52e14e7ad584ea3c5571e7931f8b, type: 2}
+    - target: {fileID: 8633747144998144434, guid: bd6cff2ab46759a46b7fce57e1d414cd,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 904e52e14e7ad584ea3c5571e7931f8b, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bd6cff2ab46759a46b7fce57e1d414cd, type: 3}
 --- !u!4 &21866775230737285 stripped
@@ -21650,7 +21771,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   meshRenderer: {fileID: 6899247694624450876}
-  emissiveColor: {r: 11.313708, g: 11.313708, b: 11.313708, a: 1}
+  emissiveColor: {r: 0, g: 5.772549, b: 5.992157, a: 1}
   _initialColor: []
   timeToActiveEmissive: 1
   timeToResetEmissive: 0.5

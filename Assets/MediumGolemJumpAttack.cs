@@ -84,7 +84,7 @@ public class MediumGolemJumpAttack : EnemyAttackBehaviour
             yield return null;
         }
         _enemyBehaviour.Agent.enabled = true;
-        attackLandingShake.ShakeByDistance(_enemyBehaviour.DistanceWithPlayer/5f);
+        attackLandingShake.ShakeByDistance(_enemyBehaviour.DistanceWithPlayer/10f);
 
         //launchExplosion
         StartCoroutine(ExplosionAttack());

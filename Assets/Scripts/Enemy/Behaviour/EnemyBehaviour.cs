@@ -5,6 +5,8 @@ using Unity.VisualScripting;
 using Unity.VisualScripting.Antlr3.Runtime.Collections;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Events;
+using UnityEngine.UIElements;
 
 public enum EnemyState
 {
@@ -49,12 +51,23 @@ public class EnemyBehaviour : MonoBehaviour
     [SerializeField] bool _calculateDistanceByNavMeshPath = true;
     [SerializeField] ScriptableEventBool _canEnemyTargetPlayer;
     private bool canTargetPlayer;
+    public UnityEvent onAwake;
+
+    [SerializeField] protected Focusable _focusable;
+    [SerializeField] protected bool _onlyFocusWhenAwake = true;
+
     #endregion
 
     #region MonoBehaviour
-   
+
     private void Awake()
     {
+
+        _focusable = GetComponent<Focusable>();
+        if (_onlyFocusWhenAwake)
+        {
+            _focusable.IsTargetable = false;
+        }
         _agent = GetComponent<NavMeshAgent>();
         _animator = GetComponent<Animator>();
         _rigidBody = GetComponent<Rigidbody>();
@@ -198,6 +211,8 @@ public class EnemyBehaviour : MonoBehaviour
     {
         yield return new WaitForSeconds(2f);
         _isAwake = true;
+        onAwake?.Invoke();
+        _focusable.IsTargetable = !GetComponent<Character>().IsInvulnerable;
         StartCoroutine(MoveToPlayer());
     }
     public float GetPathLength()
