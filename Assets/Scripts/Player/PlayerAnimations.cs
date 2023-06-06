@@ -49,6 +49,11 @@ public class PlayerAnimations : MonoBehaviour
         }
     }
 
+    public void LevitationAnimation()
+    {
+        _animator.CrossFade("Levitation",.1f);
+    }
+
     public void SetTriggerIdle()
     {
         _animator.CrossFade("Idle",0.01f);
