@@ -50,10 +50,9 @@ public class CinematiqueState : GameState
         stateOverride.inputPauseActive = false;
         stateOverride.inputInteractActive = false;
         stateOverride.inputMovementActive = false;
-        stateOverride.inputCombatActive = false;
-        stateOverride.inputDashActive = false;
+        stateOverride.inputCombatActive = true;
+        stateOverride.inputDashActive = true;
         stateOverride.canEnemyTargetPlayer = false;
-
         stateOverride.playerInvincible = true;
     }
 }

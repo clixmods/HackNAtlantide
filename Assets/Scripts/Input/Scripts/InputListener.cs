@@ -13,6 +13,7 @@ public class InputListener : MonoBehaviour
     [SerializeField] private bool alwaysListen = true;
     public UnityEvent InputValueTrue;
     public UnityEvent InputValueFalse;
+    public UnityEvent InputValueChanged;
     public UnityEvent onDisable;
     [SerializeField] bool listenInputWithDelay = false;
 

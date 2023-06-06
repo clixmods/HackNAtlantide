@@ -114,6 +114,8 @@ GameObject:
   - component: {fileID: 3819221583605541116}
   - component: {fileID: 3819221583605541115}
   - component: {fileID: 3819221583605541117}
+  - component: {fileID: 3847886303672597940}
+  - component: {fileID: 482479716668596873}
   m_Layer: 0
   m_Name: 'Camera Virtual : Area4 Point of Interest'
   m_TagString: Untagged
@@ -172,7 +174,19 @@ MonoBehaviour:
     m_InheritPosition: 0
     m_OnCameraLive:
       m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 11400000, guid: a5efa30ca642646419f55fe8141bbcca, type: 2}
+          m_TargetAssemblyTypeName: InputInfoScriptableObject, Assembly-CSharp
+          m_MethodName: ShowInputInfo
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
   m_LegacyBlendHint: 0
   m_ComponentOwner: {fileID: 3819221584829341080}
 --- !u!114 &3819221583605541117
@@ -189,7 +203,97 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CameraDisable:
     m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: a5efa30ca642646419f55fe8141bbcca, type: 2}
+        m_TargetAssemblyTypeName: InputInfoScriptableObject, Assembly-CSharp
+        m_MethodName: RemoveInputInfo
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &3847886303672597940
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3819221583605541114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ff66007dfe4bec47900ec5c25eca62a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputToListen: {fileID: 11400000, guid: 00c3e5ffe0c793e4c958d60c5524337f, type: 2}
+  alwaysListen: 0
+  InputValueTrue:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3819221583605541117}
+        m_TargetAssemblyTypeName: CameraPointOfInterestBehaviour, Assembly-CSharp
+        m_MethodName: Disable
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  InputValueFalse:
+    m_PersistentCalls:
       m_Calls: []
+  InputValueChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  onDisable:
+    m_PersistentCalls:
+      m_Calls: []
+  listenInputWithDelay: 0
+--- !u!114 &482479716668596873
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3819221583605541114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ff66007dfe4bec47900ec5c25eca62a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputToListen: {fileID: 11400000, guid: 4bd4a32db9dece64598ee56d8821fda5, type: 2}
+  alwaysListen: 0
+  InputValueTrue:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3819221583605541117}
+        m_TargetAssemblyTypeName: CameraPointOfInterestBehaviour, Assembly-CSharp
+        m_MethodName: Disable
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  InputValueFalse:
+    m_PersistentCalls:
+      m_Calls: []
+  InputValueChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  onDisable:
+    m_PersistentCalls:
+      m_Calls: []
+  listenInputWithDelay: 0
 --- !u!1 &3819221584510840927
 GameObject:
   m_ObjectHideFlags: 0
@@ -271,6 +375,8 @@ GameObject:
   - component: {fileID: 3819221584822711064}
   - component: {fileID: 3819221584822711066}
   - component: {fileID: 3819221584822711065}
+  - component: {fileID: 3062170586922374528}
+  - component: {fileID: 6328013418752758619}
   m_Layer: 0
   m_Name: 'Camera Virtual : Final Zone Point of Interest'
   m_TagString: Untagged
@@ -329,7 +435,19 @@ MonoBehaviour:
     m_InheritPosition: 0
     m_OnCameraLive:
       m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 11400000, guid: a5efa30ca642646419f55fe8141bbcca, type: 2}
+          m_TargetAssemblyTypeName: InputInfoScriptableObject, Assembly-CSharp
+          m_MethodName: ShowInputInfo
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
   m_LegacyBlendHint: 0
   m_ComponentOwner: {fileID: 3819221584510840912}
 --- !u!114 &3819221584822711065
@@ -346,7 +464,97 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CameraDisable:
     m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: a5efa30ca642646419f55fe8141bbcca, type: 2}
+        m_TargetAssemblyTypeName: InputInfoScriptableObject, Assembly-CSharp
+        m_MethodName: RemoveInputInfo
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &3062170586922374528
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3819221584822711271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ff66007dfe4bec47900ec5c25eca62a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputToListen: {fileID: 11400000, guid: 00c3e5ffe0c793e4c958d60c5524337f, type: 2}
+  alwaysListen: 0
+  InputValueTrue:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3819221584822711065}
+        m_TargetAssemblyTypeName: CameraPointOfInterestBehaviour, Assembly-CSharp
+        m_MethodName: Disable
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  InputValueFalse:
+    m_PersistentCalls:
       m_Calls: []
+  InputValueChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  onDisable:
+    m_PersistentCalls:
+      m_Calls: []
+  listenInputWithDelay: 0
+--- !u!114 &6328013418752758619
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3819221584822711271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ff66007dfe4bec47900ec5c25eca62a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputToListen: {fileID: 11400000, guid: 4bd4a32db9dece64598ee56d8821fda5, type: 2}
+  alwaysListen: 0
+  InputValueTrue:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3819221584822711065}
+        m_TargetAssemblyTypeName: CameraPointOfInterestBehaviour, Assembly-CSharp
+        m_MethodName: Disable
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  InputValueFalse:
+    m_PersistentCalls:
+      m_Calls: []
+  InputValueChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  onDisable:
+    m_PersistentCalls:
+      m_Calls: []
+  listenInputWithDelay: 0
 --- !u!1 &3819221584829340775
 GameObject:
   m_ObjectHideFlags: 0
@@ -559,6 +767,8 @@ GameObject:
   - component: {fileID: 2162171458793744960}
   - component: {fileID: 5187852349767744034}
   - component: {fileID: 6132789777210022534}
+  - component: {fileID: 4416189556784086081}
+  - component: {fileID: 4677096911612446946}
   m_Layer: 0
   m_Name: 'Camera Virtual : Pre  Final Zone Point of Interest'
   m_TagString: Untagged
@@ -617,7 +827,31 @@ MonoBehaviour:
     m_InheritPosition: 0
     m_OnCameraLive:
       m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 11400000, guid: a5efa30ca642646419f55fe8141bbcca, type: 2}
+          m_TargetAssemblyTypeName: InputInfoScriptableObject, Assembly-CSharp
+          m_MethodName: ShowInputInfo
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 0}
+          m_TargetAssemblyTypeName: 
+          m_MethodName: 
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: 
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
   m_LegacyBlendHint: 0
   m_ComponentOwner: {fileID: 6772689243783383528}
 --- !u!114 &6132789777210022534
@@ -634,7 +868,97 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CameraDisable:
     m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: a5efa30ca642646419f55fe8141bbcca, type: 2}
+        m_TargetAssemblyTypeName: InputInfoScriptableObject, Assembly-CSharp
+        m_MethodName: RemoveInputInfo
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &4416189556784086081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5169572305550588952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ff66007dfe4bec47900ec5c25eca62a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputToListen: {fileID: 11400000, guid: 00c3e5ffe0c793e4c958d60c5524337f, type: 2}
+  alwaysListen: 0
+  InputValueTrue:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6132789777210022534}
+        m_TargetAssemblyTypeName: CameraPointOfInterestBehaviour, Assembly-CSharp
+        m_MethodName: Disable
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  InputValueFalse:
+    m_PersistentCalls:
       m_Calls: []
+  InputValueChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  onDisable:
+    m_PersistentCalls:
+      m_Calls: []
+  listenInputWithDelay: 0
+--- !u!114 &4677096911612446946
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5169572305550588952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ff66007dfe4bec47900ec5c25eca62a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputToListen: {fileID: 11400000, guid: 4bd4a32db9dece64598ee56d8821fda5, type: 2}
+  alwaysListen: 0
+  InputValueTrue:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6132789777210022534}
+        m_TargetAssemblyTypeName: CameraPointOfInterestBehaviour, Assembly-CSharp
+        m_MethodName: Disable
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  InputValueFalse:
+    m_PersistentCalls:
+      m_Calls: []
+  InputValueChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  onDisable:
+    m_PersistentCalls:
+      m_Calls: []
+  listenInputWithDelay: 0
 --- !u!1 &6785864350914531803
 GameObject:
   m_ObjectHideFlags: 0

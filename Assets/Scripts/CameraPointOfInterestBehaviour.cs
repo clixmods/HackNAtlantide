@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+
 public class CameraPointOfInterestBehaviour : MonoBehaviour
 {
     public UnityEvent CameraDisable;
@@ -23,8 +24,15 @@ public class CameraPointOfInterestBehaviour : MonoBehaviour
     {
         GameStateManager.Instance.cinematicStateObject.SetActive(true);
         yield return new WaitForSeconds(secondToShow);
+        Disable();
+    }
+
+    public void Disable()
+    {
+        StopAllCoroutines();
         gameObject.SetActive(false);
         GameStateManager.Instance.cinematicStateObject.SetActive(false);
         CameraDisable?.Invoke();
+        
     }
 }
