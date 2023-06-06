@@ -48,7 +48,7 @@ public class EmissiveMaterialHandler : MonoBehaviour
             _initialColor[i] = meshRenderer.sharedMaterials[i].GetVector(EmissionColorID);
         }
     }
-
+    [ContextMenu("Active Component Emissive")]
     public void ActiveEmissive()
     {
         for (int i = 0; i < _propBlocks.Length; i++)
@@ -56,7 +56,7 @@ public class EmissiveMaterialHandler : MonoBehaviour
             StartCoroutine(LerpColor(_propBlocks[i] , i , emissiveColor , timeToActiveEmissive, StateTransition.IsEnabling )); 
         } 
     }
-
+    [ContextMenu("Reset Component Emissive")]
     public void ResetEmissive()
     {
         for (int i = 0; i < _propBlocks.Length; i++)
