@@ -11,26 +11,22 @@ public class BalanceTrigger : MonoBehaviour
     
     private void OnTriggerEnter(Collider other)
     {
-        // il TryGetComponent le rb de la platform et pas du pot
         if (other.TryGetComponent(out Rigidbody rb) && !rbList.Contains(rb))
         {
             rbList.Add(other.gameObject.GetComponent<Rigidbody>());
             if (isRight)
             {
                 balanceBehaviour.rightWeight += rb.mass;
-                Debug.Log(rb.mass);
             }
             else
             {
                 balanceBehaviour.leftWeight += rb.mass;
-                Debug.Log(rb.mass);
             }
         }
     }
     
     private void OnTriggerExit(Collider other)
     {
-        // il TryGetComponent le rb de la platform et pas du pot
         if (other.TryGetComponent(out Rigidbody rb) && rbList.Contains(rb))
         {
             rbList.Remove(other.gameObject.GetComponent<Rigidbody>());

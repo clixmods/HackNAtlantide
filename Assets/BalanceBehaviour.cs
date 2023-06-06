@@ -14,11 +14,13 @@ public class BalanceBehaviour : MonoBehaviour
     float acceleration;
     float currentRotation;
     float startRotationY;
+    Rigidbody _rigidbody;
 
     float xRotation;
     private void Start()
     {
-        xRotation = transform.rotation.eulerAngles.x - 360;
+        _rigidbody = GetComponent<Rigidbody>();
+        xRotation = _rigidbody.rotation.eulerAngles.x - 360;
         startRotationY = transform.rotation.eulerAngles.y;
     }
 
@@ -28,7 +30,7 @@ public class BalanceBehaviour : MonoBehaviour
         {
             BalanceLeft();
         }
-        else if( leftWeight < rightWeight)
+        else
         {
             BalanceRight();
         }
@@ -39,12 +41,12 @@ public class BalanceBehaviour : MonoBehaviour
     {
         xRotation -= Time.deltaTime * rotationSpeed;
         xRotation = Mathf.Clamp(xRotation, rightRotation, leftRotation);
-        transform.rotation = Quaternion.Euler(xRotation, startRotationY, 0);
+        _rigidbody.rotation = Quaternion.Euler(xRotation, startRotationY, 0);
     }
     void BalanceLeft()
     {
         xRotation += Time.deltaTime * rotationSpeed;
         xRotation = Mathf.Clamp(xRotation, rightRotation, leftRotation);
-        transform.rotation = Quaternion.Euler(xRotation, startRotationY, 0);
+        _rigidbody.rotation = Quaternion.Euler(xRotation, startRotationY, 0);
     }
 }
