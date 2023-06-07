@@ -43,6 +43,7 @@ public class AttackLevitationInteractable : Interactable
     private InputHelper _inputHelper;
     private UIChargeInputHelper _uiChargeInputHelper;
 
+    public UnityEvent IsCharged;
     public UnityEvent LaunchAttack;
     
     //Explosion
@@ -217,6 +218,7 @@ public class AttackLevitationInteractable : Interactable
         }
         _uiChargeInputHelper.SetFillValue(1);
         _inputHelper.enabled = false;
+        IsCharged?.Invoke();
         _hasInteract = true;
         _rigidBody.useGravity = false;
         _isCharging = false;
