@@ -5,8 +5,10 @@ using UnityEngine;
 public class DeathEnemyEffect : MonoBehaviour
 {
     [SerializeField] GameObject _meshDestroy;
+    [SerializeField] GameObject _particuleDead;
     public void DeadEffect()
     {
+            _particuleDead.transform.parent = null;
             _meshDestroy.transform.parent = null;
             _meshDestroy.transform.position = transform.position;
             _meshDestroy.transform.rotation = transform.rotation;
