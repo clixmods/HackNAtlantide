@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using UnityEngine;
 using UnityEngine.Events;
-
+using UnityEngine.InputSystem;
 
 public class RuntimeGameState : GameState
 {
@@ -17,6 +17,7 @@ public class RuntimeGameState : GameState
         stateOverride.inputUIActive = false;
         stateOverride.canEnemyTargetPlayer = true;
         stateOverride.playerInvincible = false;
+        stateOverride.showCursor = false;
     }
 }
 public class PauseGameState : GameState
@@ -36,6 +37,7 @@ public class PauseGameState : GameState
         stateOverride.inputDashActive = false;
 
         stateOverride.inputUIActive = true;
+        stateOverride.showCursor = true;
     }
 }
 public class CinematiqueState : GameState
@@ -71,6 +73,7 @@ public class LoadingState : GameState
         stateOverride.inputCombatActive = false;
         stateOverride.inputDashActive = false;
         stateOverride.canEnemyTargetPlayer = false;
+        stateOverride.showCursor = true;
     }
 }
 public class MainMenuState : GameState
@@ -84,6 +87,7 @@ public class MainMenuState : GameState
         stateOverride.timeScale = 1f;
         stateOverride.inputPauseActive = false;
         stateOverride.inputUIActive = true;
+        stateOverride.showCursor = true;
     }
 }
 public class CombatState : GameState
@@ -151,6 +155,7 @@ public class GameStateOverride
     public bool inputUIActive = false;
     public bool canEnemyTargetPlayer = true;
     public bool playerInvincible = false;
+    public bool showCursor = true;
     
     public void Reset()
     {
@@ -177,6 +182,7 @@ public class GameStateOverride
         InputManager.Instance.SwitchInputActionMap(!inputUIActive);
         GameStateManager.Instance._canEnemyAttackPlayer.LaunchEvent(canEnemyTargetPlayer);
         GameStateManager.Instance._invinciblePlayerEvent.LaunchEvent(playerInvincible);
+        Cursor.visible = showCursor;
     }
     /*IEnumerator ApplyCoroutine()
     {

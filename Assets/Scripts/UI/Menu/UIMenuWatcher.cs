@@ -23,10 +23,4 @@ public class UIMenuWatcher : MonoBehaviour
     {
         OnOpenMenu?.Invoke();
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

@@ -54,7 +54,6 @@ public class UIMenu : MonoBehaviour
     private GameObject _previousMenu;
     private double TOLERANCE = 0.05f;
 
-    [SerializeField] private bool showCursor = true;
     [SerializeField] private bool StayOpenOnAwake = true;
     [SerializeField] private MenuType _menuType = MenuType.Active;
     public bool IsOpen { get; private set; }
@@ -129,15 +128,6 @@ public class UIMenu : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        if (showCursor)
-        {
-            Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.None;
-        }
-    }
-
     public void OpenCloseMenu()
     {
         if (IsOpen)
@@ -191,11 +181,6 @@ public class UIMenu : MonoBehaviour
         // Open the menu
         gameObject.SetActive(true);
         IsOpen = true;
-        if (showCursor)
-        {
-            Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.None;
-        }
     }
     public virtual void CloseMenu(bool openPreviousMenu = false)
     {
@@ -239,11 +224,6 @@ public class UIMenu : MonoBehaviour
         IsOpen = false;
         gameObject.SetActive(false);
         ActiveMenu = null;
-        if (showCursor)
-        {
-            Cursor.visible = false;
-            Cursor.lockState = CursorLockMode.Confined;
-        }
         EventOnCloseMenu?.Invoke();
         EventMenuClosed?.Invoke();
     }
