@@ -118,7 +118,7 @@ public class SettingsScriptableObject : ScriptableObjectSaveable
         set
         {
             _maxRefreshRate = value;
-            if(!_lockFPS)
+            if(_lockFPS)
             {
                 Application.targetFrameRate = _maxRefreshRate;
             }
@@ -136,7 +136,7 @@ public class SettingsScriptableObject : ScriptableObjectSaveable
         set
         {
             _lockFPS = value;
-            if (!_lockFPS)
+            if (_lockFPS)
             {
                 Application.targetFrameRate = _maxRefreshRate;
             }
@@ -164,13 +164,13 @@ public class SettingsScriptableObject : ScriptableObjectSaveable
         set
         {
             _useVsync = value;
-            if (!_useVsync)
+            if (_useVsync)
             {
-                QualitySettings.vSyncCount = 0;
+                QualitySettings.vSyncCount = 1;
             }
             else
             {
-                QualitySettings.vSyncCount = 1;
+                QualitySettings.vSyncCount = 0;
             }
         }
     }
@@ -193,7 +193,7 @@ public class SettingsScriptableObject : ScriptableObjectSaveable
 
     public override void OnReset()
     {
-        _volumeMusic = 1;
+        /*_volumeMusic = 1;
         _volumeSFX = 1;
         _volumeGeneral = 1;
         _rumblerIntensity = RumblerIntensity.mid;
@@ -203,7 +203,7 @@ public class SettingsScriptableObject : ScriptableObjectSaveable
         _screenResolution = Screen.currentResolution;
         _lockFPS = true;
         _useVsync = true;
-        _showFPS = false;
+        _showFPS = false;*/
     }
 
     public override void OnSave(out SaveData saveData)

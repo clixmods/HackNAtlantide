@@ -18,6 +18,7 @@ public class UISettingsHandler : MonoBehaviour
     [SerializeField] Toggle _lockFpsToggle;
     [SerializeField] Toggle _showFpsToggle;
     [SerializeField] Slider _maxFpsSlider;
+    [SerializeField] GameObject _maxFpsParent;
     [SerializeField] TextMeshProUGUI _maxFpsText;
 
     [SerializeField] SettingsScriptableObject _settingsData;
@@ -99,6 +100,7 @@ public class UISettingsHandler : MonoBehaviour
         _lockFpsToggle.isOn = _settingsData.LockFps;
         _showFpsToggle.isOn = _settingsData.ShowFps;
         _maxFpsSlider.value = _settingsData.MaxRefreshRate;
+        _maxFpsParent.SetActive(_settingsData.LockFps);
     }
     void GeneralSlider(float value)
     {
@@ -151,7 +153,7 @@ public class UISettingsHandler : MonoBehaviour
     public void LockFps(bool value)
     {
         _settingsData.LockFps = value;
-        _maxFpsSlider.enabled = value;
+        _maxFpsParent.SetActive(_settingsData.LockFps);
     }
     public void ShowFps(bool value)
     {
