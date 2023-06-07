@@ -32,7 +32,7 @@ public class ScriptableValueListener<T> : MonoBehaviour
         _scriptableEvent.OnValueChanged -= LaunchScriptableValueEvent;
     }
 
-    private void LaunchScriptableValueEvent(T value)
+    protected virtual void LaunchScriptableValueEvent(T value)
     {
         LaunchEvent?.Invoke(value);
     }
