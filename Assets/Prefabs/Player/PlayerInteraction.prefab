@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c5015885fd9d914ea92ab2442b52631, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 0}
   _interact: {fileID: 11400000, guid: 67380d3709d97c74e85b3aafe21013ad, type: 2}
   _release: {fileID: 11400000, guid: 6c5561a6fc10f3a4dbad7f9d3bc6f99a, type: 2}
   _releaseInfo: {fileID: 11400000, guid: e13b4a771e5fe2b47b7da2004871bf12, type: 2}
@@ -77,6 +78,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: PlayerAnimations, Assembly-CSharp
+        m_MethodName: LevitationAnimationSetTrue
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   InteractableDeselected:
     m_PersistentCalls:
       m_Calls:
@@ -95,6 +108,18 @@ MonoBehaviour:
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: EmissiveMaterialHandler, Assembly-CSharp
         m_MethodName: ResetEmissive
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: PlayerAnimations, Assembly-CSharp
+        m_MethodName: LevitationAnimationSetFalse
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

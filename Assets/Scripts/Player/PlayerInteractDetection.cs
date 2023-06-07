@@ -9,6 +9,7 @@ using static UnityEngine.Rendering.DebugUI;
 
 public class PlayerInteractDetection : MonoBehaviour
 {
+    [SerializeField] private Animator animator;
     [SerializeField] InputButtonScriptableObject _interact;
     [SerializeField] InputButtonScriptableObject _release;
     [SerializeField] private InputInfoScriptableObject _releaseInfo;

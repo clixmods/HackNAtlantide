@@ -49,9 +49,13 @@ public class PlayerAnimations : MonoBehaviour
         }
     }
 
-    public void LevitationAnimation()
+    public void LevitationAnimationSetTrue()
     {
-        _animator.CrossFade("Levitation",.1f);
+        _animator.CrossFade("Lévitation_Chara_Sword_Begin",.1f);
+    }
+    public void LevitationAnimationSetFalse()
+    {
+        _animator.CrossFade("Lévitation_Chara_Sword_End",.1f);
     }
 
     public void SetTriggerIdle()
