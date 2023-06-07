@@ -7,6 +7,26 @@ public abstract class Interactable : MonoBehaviour, IInteractable
 {
     public UnityEvent OnInteract;
     public UnityEvent OnResetInteract;
+    public UnityEvent OnBecameClosestObject;
+    public UnityEvent OnBecameNotClosestObject;
+    bool _isClosetstInteractable;
+    public bool IsClosestInteractable 
+    { 
+        get { return _isClosetstInteractable; } 
+        set 
+        { 
+            _isClosetstInteractable = value; 
+            if (_isClosetstInteractable) 
+            { 
+                OnBecameClosestObject?.Invoke();
+            } 
+            else
+            {
+                OnBecameNotClosestObject?.Invoke();
+            }
+        } 
+    }
+
     public void LaunchOnInteract()
     { OnInteract?.Invoke(); }
     public void LaunchOnResetInteract()

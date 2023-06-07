@@ -16,6 +16,7 @@ public class PlayerInteractDetection : MonoBehaviour
     List<IInteractable> interactable = new List<IInteractable>();
     public List<IInteractable> Interactable { get { DetectInteract(); return interactable; } }
     IInteractable closestObject;
+    IInteractable currentClosestObject;
     public Action<List<IInteractable>> onInteractableListValueChanged;
     private float maxDistanceInteraction => _playerDetectionScriptableObject.MaxDistance;
     [SerializeField] PlayerDetectionScriptableObject _playerDetectionScriptableObject;
@@ -163,7 +164,12 @@ public class PlayerInteractDetection : MonoBehaviour
                 inputHelper.enabled = true;
             }
         }
-        
+        if(currentClosestObject != null && currentClosestObject != closestObject)
+        {
+            currentClosestObject.IsClosestInteractable = false;
+            currentClosestObject = closestObject;
+            closestObject.IsClosestInteractable = true;
+        }
         return closestObject;
     }
     
