@@ -128,6 +128,7 @@ public class PlayerInteractDetection : MonoBehaviour
                 if (closestObject != interactObject && interactObject != _currentInteractable && interactObject.transform.TryGetComponent<InputHelper>(out var inputHelper))
                 {
                     inputHelper.enabled = false;
+                    interactObject.IsClosestInteractable = false;
                 }
             }
         }
@@ -137,6 +138,7 @@ public class PlayerInteractDetection : MonoBehaviour
             if (!interactable.Contains(closestObject))
             {
                 closestObjectInputHelpernputHelper.enabled = false;
+                closestObject.IsClosestInteractable = false;
             }
         }
         
@@ -162,13 +164,8 @@ public class PlayerInteractDetection : MonoBehaviour
             if ( closestObject != null && closestObject.transform.TryGetComponent<InputHelper>(out var inputHelper) )
             {
                 inputHelper.enabled = true;
+                closestObject.IsClosestInteractable = true;
             }
-        }
-        if(currentClosestObject != null && currentClosestObject != closestObject)
-        {
-            currentClosestObject.IsClosestInteractable = false;
-            currentClosestObject = closestObject;
-            closestObject.IsClosestInteractable = true;
         }
         return closestObject;
     }

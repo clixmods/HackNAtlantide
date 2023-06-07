@@ -23,6 +23,7 @@ public abstract class Interactable : MonoBehaviour, IInteractable
             else
             {
                 OnBecameNotClosestObject?.Invoke();
+                Debug.Log("notClosestObject");
             }
         } 
     }

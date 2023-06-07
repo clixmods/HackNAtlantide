@@ -43,6 +43,10 @@ public class MaterialFloatInterpolation : MonoBehaviour
     }
 
     [ContextMenu("activeEmissive")]
+    public void ActiveEmissive()
+    {
+        ActiveEmissive(50);
+    }
     public void ActiveEmissive(float value)
     {
         for (int i = 0; i < _propBlocks.Length; i++)
@@ -56,6 +60,7 @@ public class MaterialFloatInterpolation : MonoBehaviour
     {
         for (int i = 0; i < _propBlocks.Length; i++)
         {
+            StopAllCoroutines();
             StartCoroutine(LerpColor(_propBlocks[i], i,0, timeToResetEmissive, StateTransition.IsDisabling));
         }
     }
