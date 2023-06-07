@@ -34,12 +34,12 @@ public class PlayerInteractDetection : MonoBehaviour
     void OnEnable()
     {
         _interact.OnValueChanged += InteractInput;
-        _release.OnValueChanged += ReleaseInput;
+        //_release.OnValueChanged += ReleaseInput;
     }
     private void OnDisable()
     {
         _interact.OnValueChanged -= InteractInput;
-        _release.OnValueChanged -= ReleaseInput;
+        //_release.OnValueChanged -= ReleaseInput;
     }
     private void Awake()
     {
@@ -57,7 +57,7 @@ public class PlayerInteractDetection : MonoBehaviour
         _playerDetectionScriptableObject.PlayerPosition = transform.position;
         if (_currentInteractable != null )
         {
-            _releaseInfo.ShowInputInfo();
+           // _releaseInfo.ShowInputInfo();
             
         }
     }
@@ -107,7 +107,7 @@ public class PlayerInteractDetection : MonoBehaviour
             // A Interactable is currently used so we dont need to use an another one
             if (_currentInteractable != null)
             {
-                _releaseInfo.RemoveInputInfo();
+               // _releaseInfo.RemoveInputInfo();
                 _currentInteractable.ResetInteract();
                 _currentInteractable = null;
                 InteractableDeselected?.Invoke();
@@ -166,7 +166,7 @@ public class PlayerInteractDetection : MonoBehaviour
 
         if (_currentInteractable == null)
         {
-            _releaseInfo.RemoveInputInfo();
+           // _releaseInfo.RemoveInputInfo();
             if ( closestObject != null )
             {
                 if(closestObject.transform.TryGetComponent<InputHelper>(out var inputHelper))
