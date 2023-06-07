@@ -125,19 +125,25 @@ public class PlayerInteractDetection : MonoBehaviour
             if (cols[i].gameObject.TryGetComponent<IInteractable>(out var interactObject))
             {
                 interactable.Add(interactObject);
-                if (closestObject != interactObject && interactObject != _currentInteractable && interactObject.transform.TryGetComponent<InputHelper>(out var inputHelper))
+                if (closestObject != interactObject && interactObject != _currentInteractable)
                 {
-                    inputHelper.enabled = false;
+                    if(interactObject.transform.TryGetComponent<InputHelper>(out var inputHelper))
+                    {
+                        inputHelper.enabled = false;
+                    }
                     interactObject.IsClosestInteractable = false;
                 }
             }
         }
         // If the previous ClosestObject is not in the list of interactableTransform, we need to disable the input helper
-        if ( closestObject != null && closestObject.transform.TryGetComponent<InputHelper>(out var closestObjectInputHelpernputHelper) )
+        if ( closestObject != null)
         {
             if (!interactable.Contains(closestObject))
             {
-                closestObjectInputHelpernputHelper.enabled = false;
+                if(closestObject.transform.TryGetComponent<InputHelper>(out var closestObjectInputHelpernputHelper))
+                {
+                    closestObjectInputHelpernputHelper.enabled = false;
+                }
                 closestObject.IsClosestInteractable = false;
             }
         }
@@ -161,9 +167,12 @@ public class PlayerInteractDetection : MonoBehaviour
         if (_currentInteractable == null)
         {
             _releaseInfo.RemoveInputInfo();
-            if ( closestObject != null && closestObject.transform.TryGetComponent<InputHelper>(out var inputHelper) )
+            if ( closestObject != null )
             {
-                inputHelper.enabled = true;
+                if(closestObject.transform.TryGetComponent<InputHelper>(out var inputHelper))
+                {
+                    inputHelper.enabled = true;
+                }
                 closestObject.IsClosestInteractable = true;
             }
         }
