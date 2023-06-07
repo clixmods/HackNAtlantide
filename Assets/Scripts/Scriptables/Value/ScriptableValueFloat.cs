@@ -18,11 +18,8 @@ public class ScriptableValueFloat : ScriptableValue<float>
         get => _maxValue;
         set
         {
-            if (_maxValue < value)
-            {
-                OnMaxValueChanged?.Invoke(value);
-            }
             _maxValue = value;
+            OnMaxValueChanged?.Invoke(value);
         }
     }
 
