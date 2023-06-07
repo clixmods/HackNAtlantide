@@ -5,27 +5,12 @@ using UnityEngine;
 [SelectionBase]
 public class Bush : MonoBehaviour
 {
-    BoxCollider BoxCollider;
-    private void Start()
+    [SerializeField] ParticleSystem _particleBush;
+    private void OnTriggerEnter(Collider collision)
     {
-        BoxCollider = GetComponent<BoxCollider>();
-    }
-    private void OnCollisionStay(Collision collision)
-    {
-        if(collision.gameObject.TryGetComponent<PlayerMovement>(out PlayerMovement playerMovement))
+        if(collision.gameObject.layer == 14)
         {
-            if(playerMovement.IsDashing)
-            {
-               BoxCollider.isTrigger = true;
-            }
-            
-        }
-    }
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.TryGetComponent<PlayerMovement>(out PlayerMovement playerMovement))
-        {
-            BoxCollider.isTrigger = false;
+            _particleBush.Play();
         }
     }
 }
