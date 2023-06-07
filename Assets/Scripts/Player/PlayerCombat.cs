@@ -32,7 +32,7 @@ public class PlayerCombat : MonoBehaviour,ICombat
     [SerializeField] private ScriptableEvent _dashAttackEvent;
     
     public bool IsDashingAttack => _animator.GetBool("dashAttack");
-
+    public bool DamageableWasAttackedAtThisFrame { get; private set; }
     private void OnEnable()
     {
         _inputAttack.OnValueChanged += Attack;
@@ -82,11 +82,18 @@ public class PlayerCombat : MonoBehaviour,ICombat
         }
     }
 
+    private void LateUpdate()
+    {
+        DamageableWasAttackedAtThisFrame = false;
+    }
+
     private void AttackColliderOnOnCollideWithIDamageable(object sender, EventArgs eventArgs)
     {
         if (eventArgs is AttackDamageableEventArgs mDamageableEventArgs && canGiveDamage)
         {
+            DamageableWasAttackedAtThisFrame = true;
             mDamageableEventArgs.idamageable.DoDamage(_damage, _attackCollider.gameObject.transform.position);
+            
         }
     }
     
@@ -108,6 +115,7 @@ public class PlayerCombat : MonoBehaviour,ICombat
 
     public void ResetNoOfClicks()
     {
+      
         noOfClicks = 0;
     }
 
