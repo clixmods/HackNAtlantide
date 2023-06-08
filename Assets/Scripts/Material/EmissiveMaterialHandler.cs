@@ -45,11 +45,7 @@ public class EmissiveMaterialHandler : MonoBehaviour
         }
        
     }
-    //
-    // private void Awake()
-    // {
-    //     
-    // }
+  
     [ContextMenu("Active Component Emissive")]
     public void ActiveEmissive()
     {
@@ -92,5 +88,10 @@ public class EmissiveMaterialHandler : MonoBehaviour
             yield return null;
         }
         _stateTransition = StateTransition.Idle;
+    }
+
+    public void SetEmissiveColorTarget(Color color)
+    {
+        emissiveColor = color;
     }
 }
