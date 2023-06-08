@@ -19,7 +19,6 @@ public class PauseStateBehaviour : GameStateBehaviour<PauseGameState>
 
     protected override void OnApplyGameStateOverrideImplement(GameStateOverride stateOverride)
     {
-        Debug.Log("Update => " + stateOverride.isPaused);
     }
 
     public void RegisterInputs()

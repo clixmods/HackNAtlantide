@@ -550,6 +550,7 @@ GameObject:
   - component: {fileID: 5947598796426845155}
   - component: {fileID: 2182707137954003242}
   - component: {fileID: 8683603694024863501}
+  - component: {fileID: 3822543337384872360}
   m_Layer: 0
   m_Name: PlayerMesh
   m_TagString: Untagged
@@ -643,7 +644,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4085063885494343856}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eaae99f2c6ebc0e40bda4e12dff66923, type: 3}
   m_Name: 
@@ -685,6 +686,23 @@ MonoBehaviour:
     type: 3}
   FXAttack3: {fileID: 5342146489486247270, guid: 240cc24d1da072446944f604c8fd5ede,
     type: 3}
+--- !u!114 &3822543337384872360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4085063885494343856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d02530a948c2bcc4f89f23e0cf5c5419, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerComboAttacks:
+  - {fileID: 11400000, guid: d3243174eedcf7d40b5a35758b0af90c, type: 2}
+  - {fileID: 11400000, guid: 40c4eff8c7947d44ea5f989782b1ae30, type: 2}
+  attackInput: {fileID: 11400000, guid: fdbbc2eed1d30cb48b96b3abfe6f859e, type: 2}
+  animator: {fileID: 0}
 --- !u!1 &4267403824807156169
 GameObject:
   m_ObjectHideFlags: 0
