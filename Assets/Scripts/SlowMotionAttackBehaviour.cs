@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 public class SlowMotionAttackBehaviour : MonoBehaviour
 {
-    [SerializeField] private PlayerCombat playerCombat;
+    [SerializeField] private PlayerAttackManager playerAttackManager;
     [SerializeField] private ScriptableValueListGameObject scriptableValueListGameObject;
     [SerializeField] private float temporaryTimeScale = 0.2f;
     [SerializeField] private float duration = 1f;
@@ -29,7 +29,7 @@ public class SlowMotionAttackBehaviour : MonoBehaviour
             }
             _isSlowAttack = false;
         }
-        else if( obj.Count == 0 && playerCombat.canGiveDamage && playerCombat.DamageableWasAttackedAtThisFrame )
+        else if( obj.Count == 0 && playerAttackManager.canGiveDamage && playerAttackManager.DamageableWasAttackedAtThisFrame )
         {
             SetTimeScaleTemporary();
         }

@@ -30,6 +30,7 @@ public class AttackCollider : MonoBehaviour , IAttackCollider
     private void OnDisable()
     {
         _damageableHitted = new List<IDamageable>();
+        Debug.Log("disable");
     }
 
     private void OnHit(IDamageable damageable)
