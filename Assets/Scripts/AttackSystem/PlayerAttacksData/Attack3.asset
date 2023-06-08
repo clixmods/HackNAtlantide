@@ -9,8 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 301320a9a20ea464b982685e65a48d59, type: 3}
-  m_Name: Attack1
+  m_Script: {fileID: 11500000, guid: 5fa6e4ec48f0e96418ffdfe837253b85, type: 3}
+  m_Name: Attack3
   m_EditorClassIdentifier: 
-  animatorOV: {fileID: 22100000, guid: f2ba8ee56b1ecbd4fa39aa78c4ef2eb9, type: 2}
-  damage: 1
+  damage: 2
+  animName: Attack 3
+  attackDuration: 0.75
+  canRegisterInput: 1
+  timeToAllowCutAnim: 10
+  timeToAccelerate: 0.3
+  acceleration: 2
+  speed: 1

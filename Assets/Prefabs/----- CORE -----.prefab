@@ -346,6 +346,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5265682498006661748}
     m_Modifications:
+    - target: {fileID: 1424862115167445039, guid: 120c1c1b3fb8db64f84b9754b96145c4,
+        type: 3}
+      propertyPath: playerCombat
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 2176775217575482146, guid: 120c1c1b3fb8db64f84b9754b96145c4,
         type: 3}
       propertyPath: m_Name
@@ -406,6 +411,28 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3167754798604563864, guid: 120c1c1b3fb8db64f84b9754b96145c4,
+        type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 1370878367389054952}
+    - target: {fileID: 3167754798604563864, guid: 120c1c1b3fb8db64f84b9754b96145c4,
+        type: 3}
+      propertyPath: playerComboAttacks.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3167754798604563864, guid: 120c1c1b3fb8db64f84b9754b96145c4,
+        type: 3}
+      propertyPath: playerComboAttacks.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: e64c13bf55d605541b77632f4551413e,
+        type: 2}
+    - target: {fileID: 3167754798604563864, guid: 120c1c1b3fb8db64f84b9754b96145c4,
+        type: 3}
+      propertyPath: playerComboAttacks.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: 40c4eff8c7947d44ea5f989782b1ae30,
+        type: 2}
     - target: {fileID: 5508002721528129491, guid: 120c1c1b3fb8db64f84b9754b96145c4,
         type: 3}
       propertyPath: _dashAttackEvent
@@ -415,10 +442,20 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 6222297412654333480, guid: 120c1c1b3fb8db64f84b9754b96145c4, type: 3}
     - {fileID: 4220518268304965951, guid: 120c1c1b3fb8db64f84b9754b96145c4, type: 3}
+    - {fileID: 6721082114773678312, guid: 120c1c1b3fb8db64f84b9754b96145c4, type: 3}
+    - {fileID: 7035255300899179701, guid: 120c1c1b3fb8db64f84b9754b96145c4, type: 3}
+    - {fileID: 1381868577718048068, guid: 120c1c1b3fb8db64f84b9754b96145c4, type: 3}
+    - {fileID: 5508002721528129491, guid: 120c1c1b3fb8db64f84b9754b96145c4, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 120c1c1b3fb8db64f84b9754b96145c4, type: 3}
 --- !u!4 &214863531046329631 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2176775217575482332, guid: 120c1c1b3fb8db64f84b9754b96145c4,
+    type: 3}
+  m_PrefabInstance: {fileID: 2075645650342907587}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1370878367389054952 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 1137293202596559147, guid: 120c1c1b3fb8db64f84b9754b96145c4,
     type: 3}
   m_PrefabInstance: {fileID: 2075645650342907587}
   m_PrefabAsset: {fileID: 0}
