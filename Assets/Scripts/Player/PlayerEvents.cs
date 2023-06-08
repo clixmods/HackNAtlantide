@@ -33,11 +33,11 @@ public class PlayerEvents : MonoBehaviour
     public UnityEvent OnDamage, OnDeath, OnAttackHit , OnDashAttackHit, OnInteract;
     private IDamageable _damageable;
     private IAttackCollider _attackCollider;
-    private PlayerCombat _playerCombat;
+    private PlayerAttackManager _playerAttackManager;
 
     private void Awake()
     {
-        _playerCombat = GetComponentInChildren<PlayerCombat>();
+        _playerAttackManager = GetComponentInChildren<PlayerAttackManager>();
         _damageable = GetComponentInChildren<IDamageable>(); 
         _damageable .OnDamage += OnOnDamage;
         _damageable.OnDeath += OnOnDeath;
@@ -62,7 +62,7 @@ public class PlayerEvents : MonoBehaviour
 
     private void OnOnCollideWithIDamageable(object sender, EventArgs e)
     {
-        if (_playerCombat.IsDashingAttack)
+        if (_playerAttackManager.IsInDashAttack)
         {
             OnDashAttackHit?.Invoke();
         }

@@ -8,67 +8,107 @@ using UnityEngine.Serialization;
 
 public class PlayerAttackManager : MonoBehaviour
 {
+    #region Variables
     [SerializeField] private List<AttackScriptableObject> playerComboAttacks;
+    [SerializeField] private AttackScriptableObject dashAttackData;
     private int _currentComboIndex;
-    [SerializeField] private InputScriptableObject<bool> attackInput;
+    [SerializeField] private InputButtonScriptableObject attackInput;
+    [SerializeField] private InputButtonScriptableObject dashAttackInput;
     private bool _inputAttack;
+    private bool _inputDashAttack;
     private float _timerCurrentAttack;
     private bool _isInCombo;
+    private bool _isInDashAttack;
+    public bool IsInDashAttack { get { return _isInDashAttack; } }
     [SerializeField] private Animator animator;
-    private IAttackCollider _attackCollider;
+    private PlayerMovement _playerMovement;
+    private AttackCollider _attackCollider;
     public bool DamageableWasAttackedAtThisFrame { get; private set; }
     private float _waitTimeBetweencombo = 0f;
+    private bool _registerInputWhenNotAllowed;
+    float currentDamage = 2;
+    [SerializeField] private ScriptableEvent _dashAttackEvent;
+    #endregion
     private void OnEnable()
     {
         attackInput.OnValueChanged += InputAttack;
+        dashAttackInput.OnValueChanged += InputDashAttack;
+        _dashAttackEvent.OnEvent += DashAttackAnim;
+        _attackCollider.OnCollideWithIDamageable += AttackColliderOnOnCollideWithIDamageable;
+
     }
 
     private void OnDisable()
     {
         attackInput.OnValueChanged -= InputAttack;
+        dashAttackInput.OnValueChanged -= InputDashAttack;
+        _dashAttackEvent.OnEvent -= DashAttackAnim;
+        _attackCollider.OnCollideWithIDamageable -= AttackColliderOnOnCollideWithIDamageable;
     }
 
     private void Update()
     {
         _waitTimeBetweencombo -= Time.deltaTime;
+        if(_registerInputWhenNotAllowed && _waitTimeBetweencombo<0)
+        {
+            InputAttack(true);
+        }
     }
 
     void InputAttack(bool value)
     {
         _inputAttack = value;
-        if (value && !_isInCombo && _waitTimeBetweencombo < 0f)
+        if (value && !_isInCombo && _waitTimeBetweencombo < 0f && !_isInDashAttack)
         {
             StopAllCoroutines();
-            StartCoroutine(CurrentAttackUpdate(playerComboAttacks[0],false));
+            StartCoroutine(CurrentAttackUpdate(playerComboAttacks[0]));
+            _registerInputWhenNotAllowed = false;
+        }
+        if(value && _waitTimeBetweencombo > 0 && !_isInDashAttack)
+        {
+            _registerInputWhenNotAllowed = true;
+        }
+    }
+    void InputDashAttack(bool value)
+    {
+        _inputDashAttack = value;
+        if(value && !_isInDashAttack && !_isInCombo)
+        {
+            _playerMovement.DashOfDashAttack(true);
         }
     }
     private void Awake()
     {
         _currentComboIndex = 0;
         animator.GetComponent<Animator>();
-        
-        _attackCollider = GetComponentInChildren<IAttackCollider>();
-        _attackCollider.OnCollideWithIDamageable += AttackColliderOnOnCollideWithIDamageable;
+        _playerMovement = GetComponentInParent<PlayerMovement>();
+        _attackCollider = GetComponentInChildren<AttackCollider>();
+
     }
     private void LateUpdate()
     {
         DamageableWasAttackedAtThisFrame = false;
     }
-    // ReSharper disable Unity.PerformanceAnalysis
-    IEnumerator CurrentAttackUpdate(AttackScriptableObject attack, bool fromCombo)
+    #region attackCombo
+    IEnumerator CurrentAttackUpdate(AttackScriptableObject attack)
     {
+        canGiveDamage = true;
+        _attackCollider.enabled = true;
+        currentDamage = attack.Damage;
         _isInCombo = true;
         bool _hasPressedInputAttack = false;
         _inputAttack = false;
         _timerCurrentAttack = 0;
+        
             
         animator.CrossFade(attack.AnimName, 0f);
         //tant qu'il est dans l'attaque et que sa durée n'est pas fini
         while (!IsAttackFinished(attack))
         {
+            _timerCurrentAttack += Time.deltaTime;
+
             //attend la fin de l'attaque et check si il appuie sur l'input attack
-            _timerCurrentAttack += Time.deltaTime; //* attack.Speed;
-            if (_inputAttack && !_hasPressedInputAttack && attack.CanRegisterInput)
+            if (_inputAttack && !_hasPressedInputAttack && attack.CanAccelerate)
             {
                 _hasPressedInputAttack = true;
                 _currentComboIndex++;
@@ -79,40 +119,45 @@ public class PlayerAttackManager : MonoBehaviour
             {
                 AccelerateAnimationAttack(attack);
             }
-            //check si il peut cut l'attack
-            if (_hasPressedInputAttack && CanCut(attack))
-            {
-                CutAnimationAttack();
-            }
             
             yield return null;
         }
-        Debug.Log("finAttack");
+
+
+        //Attack Fini
         _isInCombo = false;
-        
+        //currentDamage = 0;
+        _attackCollider.enabled = false;
+
+        //resetAnimatorSpeed
+        animator.speed = 1;
+
+       
+        canGiveDamage = false;
+
         //si il a essayer d'attaquer pendant l'attaque precedente, il lance le prochain.
         if (_hasPressedInputAttack && _currentComboIndex % playerComboAttacks.Count != 0 )
         {
-            StartCoroutine(CurrentAttackUpdate(playerComboAttacks[_currentComboIndex % playerComboAttacks.Count], true));
+            StartCoroutine(CurrentAttackUpdate(playerComboAttacks[_currentComboIndex % playerComboAttacks.Count]));
         }
         else
         {
            animator.CrossFade("Idle", 0.25f);
-           //StartCoroutine(ResetComboIndex(0.5f));
-           _currentComboIndex = 0;
-           _waitTimeBetweencombo = 0.25f;
+            switch(attack.Index)
+            {
+                case 2:
+                    //_waitTimeBetweencombo = 0.1f;
+                    break;
+                case 3:
+                    _waitTimeBetweencombo = 0.2f;
+                    break;
+
+            }
+            _currentComboIndex = 0;
+            
         }
-
-        Debug.Log(animator.speed);
-        //resetAnimatorSpeed
-        animator.speed = 1;
     }
 
-    IEnumerator ResetComboIndex(float time)
-    {
-        yield return new WaitForSeconds(time);
-        _currentComboIndex = 0;
-    }
     private bool IsAttackFinished(AttackScriptableObject attack)
     {
         return _timerCurrentAttack > animator.GetCurrentAnimatorStateInfo(0).length;
@@ -121,38 +166,51 @@ public class PlayerAttackManager : MonoBehaviour
     {
         return _timerCurrentAttack > attack.TimeToAccelerate;
     }
-    private bool CanCut(AttackScriptableObject attack)
-    {
-        return _timerCurrentAttack > attack.TimeToAllowCutAnim;
-    }
 
     private void AccelerateAnimationAttack(AttackScriptableObject attack)
     {
         //accelerateAnimator
         animator.speed = attack.Acceleration;
     }
-    private void CutAnimationAttack()
+    #endregion
+
+    #region dashAttack
+    IEnumerator DashAttack(AttackScriptableObject dashAttack)
     {
-        _timerCurrentAttack = 100;
+        canGiveDamage = true;
+        _attackCollider.enabled = true;
+        _isInDashAttack = true;
+        currentDamage = dashAttack.Damage;
+        animator.CrossFade(dashAttack.AnimName, 0f);
+
+        yield return new WaitForSeconds(0.5f);
+
+        animator.CrossFade("Idle", 0f);
+        _isInDashAttack = false;
+        currentDamage = 0;
+        _attackCollider.enabled = false;
+        canGiveDamage = false;
     }
-    
+    void DashAttackAnim()
+    {
+        StartCoroutine(DashAttack(dashAttackData));
+    }
+    #endregion
+
     #region Animation Event Methods
     private void AttackColliderOnOnCollideWithIDamageable(object sender, EventArgs eventArgs)
     {
         if (eventArgs is AttackDamageableEventArgs mDamageableEventArgs && canGiveDamage)
         {
             DamageableWasAttackedAtThisFrame = true;
-            mDamageableEventArgs.idamageable.DoDamage(playerComboAttacks[_currentComboIndex].Damage, _attackCollider.gameObject.transform.position);
-            
+            mDamageableEventArgs.idamageable.DoDamage(currentDamage, _attackCollider.gameObject.transform.position);
         }
     }
     
     public void SetDamageActive(int value)
     {
-        canGiveDamage = value == 1;
-        _attackCollider.enabled = canGiveDamage;
-
-        //_trailSwordDistortion.emitting = canGiveDamage;
+        //canGiveDamage = value == 1;
+        //_attackCollider.enabled = canGiveDamage;
     }
 
     #endregion
