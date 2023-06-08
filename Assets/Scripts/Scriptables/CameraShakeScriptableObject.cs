@@ -32,12 +32,16 @@ public class CameraShakeScriptableObject : ScriptableObject
     [SerializeField] Vector3 defaultVelocity = Vector3.one;
     public Vector3 DefaultVelocity { get { return defaultVelocity; } }
 
+    [SerializeField] bool _randomVelocity;
+
     public void Shake()
     {
-        CameraShakeManager.instance.Shake(shakeType, duration, magnitude, additive, priority, defaultVelocity);
+        Vector3 velocity = _randomVelocity ? Random.onUnitSphere : defaultVelocity;
+        CameraShakeManager.instance.Shake(shakeType, duration, magnitude, additive, priority, velocity);
     }
     public void ShakeByDistance(float distance)
     {
-        CameraShakeManager.instance.Shake(shakeType, duration, magnitude/(1+distance), additive, priority, defaultVelocity);
+        Vector3 velocity = _randomVelocity ? Random.onUnitSphere : defaultVelocity;
+        CameraShakeManager.instance.Shake(shakeType, duration, magnitude/(1+distance), additive, priority, velocity);
     }
 }
