@@ -31,7 +31,7 @@ public abstract class Trigger : MonoBehaviour
      private float _currentCooldown = 0;
      #region MonoBehaviour
 
-     private void Awake()
+     protected virtual void Awake()
      {
           SetupCollider();
           GetMeshComponents();
