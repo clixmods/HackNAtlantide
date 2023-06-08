@@ -8,29 +8,23 @@ using UnityEngine.Serialization;
 public class BallInteractable : Interactable
 {
     private Rigidbody _rigidbody; 
-    [SerializeField] private InputVectorScriptableObject inputVectorScriptableObject;
     [SerializeField] private float forceMultiplier;
     private bool _isInteract;
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
-        inputVectorScriptableObject.OnValueChanged += InputVectorScriptableObjectOnOnValueChanged;
+    }
+    private void FixedUpdate()
+    {
+        MoveBall();
     }
 
-    private void InputVectorScriptableObjectOnOnValueChanged(Vector2 value)
+    private void MoveBall()
     {
         if (_isInteract)
         {
-            var _camera = CameraUtility.Camera;
-            Vector3 direction = new Vector3();
-            Vector3 forceVector = new Vector3();
-           
-            // Generate forceDirection by the camera view
-            forceVector = _camera.transform.TransformDirection( value);
-            forceVector.y = 0;
-            direction.x = forceVector.x * forceMultiplier ;
-            direction.z = forceVector.z * forceMultiplier ;
-            _rigidbody.velocity = direction;
+            Vector3 forceVector = (PlayerInstanceScriptableObject.Player.transform.position - transform.position);
+            _rigidbody.AddForce(forceVector*forceMultiplier);
         }
            
     }
