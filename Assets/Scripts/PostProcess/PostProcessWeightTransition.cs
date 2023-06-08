@@ -11,6 +11,18 @@ public class PostProcessWeightTransition : MonoBehaviour
     private float _weightPrevious;
     private float _timeElapsed;
     [SerializeField] private float timeTransition = 3;
+    [Header("Temporary Settings")]
+    [SerializeField] private bool isTemporary;
+    [SerializeField] private float duration = 2f;
+    [Header("Flick Settings")]
+    [SerializeField] private bool flickering = false;
+    [Range(0,1f)]
+    [SerializeField] private float minWeight = 0;
+    [Range(0,1f)]
+    [SerializeField] private float maxWeight = 1;
+    private bool _isActive = false;
+    [SerializeField] private float speedMultiplier = 1f;
+
     //[SerializeField] private bool ignoreTimescale = true;
     void Awake()
     {
@@ -44,10 +56,30 @@ public class PostProcessWeightTransition : MonoBehaviour
             yield return null;
         }
 
+        if (_weightTarget > 0)
+        {
+            _isActive = true;
+            if(isTemporary)
+                StartCoroutine(ActiveInXSeconds());
+        }
+        else
+        {
+            _isActive = false;
+        }
         _volume.weight = _weightTarget;
         _isTransitioning = false;
     }
 
-    
+    private IEnumerator ActiveInXSeconds()
+    {
+        yield return new WaitForEndOfFrame();
+        yield return new WaitForSecondsRealtime(duration);
+        SetWeightVolume(0);
+    }
 
+    private void Update()
+    {
+        if(_isActive && flickering)
+            _volume.weight = Mathf.Lerp(minWeight, maxWeight, (Mathf.Sin(Time.time*speedMultiplier) + 1f)/2f );
+    }
 }
