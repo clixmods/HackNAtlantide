@@ -212,9 +212,9 @@ public class PlayerAttackManager : MonoBehaviour
         currentDamage = dashAttack.Damage;
         animator.CrossFade(dashAttack.AnimName, 0f);
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.4f);
 
-        animator.CrossFade("Idle", 0f);
+        animator.CrossFade("Default", 0f);
         _isInDashAttack = false;
         currentDamage = 0;
         _attackCollider.enabled = false;
