@@ -1,14 +1,30 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Serialization;
-
-public class MeshTransparentWatcher : MonoBehaviour
+[RequireComponent(typeof(MeshCollider))]
+public class MeshTransparent : MonoBehaviour
 {
     Material[] _baseMaterials;
-    private Material _materialTransparent;
-    public bool IsHide;
+    [SerializeField] private Material materialTransparent;
+    private List<MeshTransparent> _meshTransparentWatchers = new List<MeshTransparent>();
+
+    private bool _isHide;
+    public bool IsHide
+    {
+        get
+        {
+            return _isHide;
+        }
+        set
+        {
+            foreach (var t in _meshTransparentWatchers)
+            {
+                t.IsHide = value;
+            }
+
+            _isHide = value;
+        }
+    }
     private MeshRenderer _meshRenderer;
     private bool _isInit;
     private static readonly int BaseColor = Shader.PropertyToID("_BaseColor");
@@ -18,6 +34,22 @@ public class MeshTransparentWatcher : MonoBehaviour
     private void Awake()
     {
         _meshRenderer = transform.GetComponent<MeshRenderer>();
+       
+        foreach (Transform child in transform)
+        {
+            if (child.TryGetComponent<MeshRenderer>(out var meshrenderer))
+            {
+                var component = child.gameObject.AddComponent<MeshTransparent>();
+                component.materialTransparent = materialTransparent;
+                _meshTransparentWatchers.Add(component);
+            }
+                
+        }
+    }
+
+    private void Start()
+    {
+        Init(materialTransparent);
     }
 
     public void Init(Material materialTransparentToApply) 
@@ -25,12 +57,12 @@ public class MeshTransparentWatcher : MonoBehaviour
         _baseMaterials = _meshRenderer.sharedMaterials;             
         _isInit = true;
         transform.gameObject.layer = 9;
-        _materialTransparent = new Material(materialTransparentToApply);
+        materialTransparent = new Material(materialTransparent);
     }
     private void FixedUpdate()
     {
         if(!_isInit) return;
-        Color _color = _materialTransparent.GetColor(BaseColor); 
+        Color _color = materialTransparent.GetColor(BaseColor); 
         if(IsHide)
         {
             if(_color.a > 0.23f)
@@ -42,12 +74,12 @@ public class MeshTransparentWatcher : MonoBehaviour
             {
                 _color.a = 0.23f;
             }
-            _materialTransparent.SetColor(BaseColor, _color);
+            materialTransparent.SetColor(BaseColor, _color);
 
 
             Material[] materialsToChange = _meshRenderer.sharedMaterials;
             for(int i = 0 ; i < materialsToChange.Length ; i++)
-                materialsToChange[i] = _materialTransparent;
+                materialsToChange[i] = materialTransparent;
                 
             _meshRenderer.sharedMaterials = materialsToChange;
         }
@@ -62,7 +94,7 @@ public class MeshTransparentWatcher : MonoBehaviour
                 _meshRenderer.sharedMaterials = _baseMaterials;
                 _color.a = 1;
             }
-            _materialTransparent.SetColor(BaseColor, _color);
+            materialTransparent.SetColor(BaseColor, _color);
            
         }
     }

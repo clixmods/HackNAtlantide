@@ -18,7 +18,7 @@ public class ApplyTransparentBehaviorToChild : MonoBehaviour
             // Pour l'enfant itérer, on get tout ces MeshFilter
             Vector3 ogPostion = transform.position;
             MeshFilter[] meshFilters = childTransform.GetComponentsInChildren<MeshFilter>();
-            MeshTransparentWatcher meshTransparentWatcher;
+            MeshTransparent meshTransparent;
             foreach (MeshFilter meshFilter in meshFilters)
             {
                 // Verifie si le gameobject est activé
@@ -44,12 +44,12 @@ public class ApplyTransparentBehaviorToChild : MonoBehaviour
             if(meshFilters.Length == 1)
             {
                 Debug.Log($"GameObject {meshFilters[0].mesh.name} have one mesh filter", meshFilters[0].gameObject);
-                meshTransparentWatcher = meshFilters[0].transform.gameObject.AddComponent<MeshTransparentWatcher>();
+                meshTransparent = meshFilters[0].transform.gameObject.AddComponent<MeshTransparent>();
                 meshFilters[0].transform.gameObject.AddComponent<MeshCollider>();
-                meshTransparentWatcher.Init(mtlTransparent);
+                meshTransparent.Init(mtlTransparent);
                 continue;
             }
-            meshTransparentWatcher = childTransform.gameObject.AddComponent<MeshTransparentWatcher>();
+            meshTransparent = childTransform.gameObject.AddComponent<MeshTransparent>();
             CombineInstance[] combine;
             combine = new CombineInstance[meshFilters.Length];
             int ii = 0;
@@ -85,7 +85,7 @@ public class ApplyTransparentBehaviorToChild : MonoBehaviour
             childTransform.position = ogPostion;
             childTransform.rotation = new Quaternion(0,0,0,0);
             childTransform.localScale = Vector3.one;
-            meshTransparentWatcher.Init(mtlTransparent);
+            meshTransparent.Init(mtlTransparent);
 
             int childs = childTransform.childCount;
             for (int iii = childs - 1; iii >= 0; iii--)
@@ -115,7 +115,7 @@ public class ApplyTransparentBehaviorToChild : MonoBehaviour
     /// <summary> La transform en param correspond au mesh toucher /// </summary>
     public void ChangeMaterialOnChild(Transform child)
     {
-        if(child.TryGetComponent<MeshTransparentWatcher>(out MeshTransparentWatcher oof))
+        if(child.TryGetComponent<MeshTransparent>(out MeshTransparent oof))
         {
             oof.IsHide = true;
             return;
@@ -131,65 +131,7 @@ public class ApplyTransparentBehaviorToChild : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void FixedUpdate()
-    {
-       // MouseToWorldPosition();
-        GameObjectToWorldPosition(PlayerInstanceScriptableObject.Player);
-    }
-
-    /// <summary> Retourne la position de la souris dans le monde 3D </summary> 
-    private Vector3 MouseToWorldPosition()
-    {
-        Vector3 Hitpoint = Vector3.zero;
-        // On trace un rayon avec la mousePosition de la souris
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition); 
-        RaycastHit[] RayHits = Physics.RaycastAll(ray) ;
-            foreach(RaycastHit hit in RayHits)
-            {
-                Transform objectTouched = hit.collider.transform;            
-                if(objectTouched.TryGetComponent<MeshTransparentWatcher>(out MeshTransparentWatcher oof))
-                {
-                    oof.IsHide = true;        
-                }
-                Hitpoint = new Vector3(hit.point.x, hit.point.y, hit.point.z);
-                #if UNITY_EDITOR
-                if (Hitpoint != null)
-                    Debug.DrawLine(Camera.main.transform.position, Hitpoint, Color.blue, 0.5f);
-                #endif
-            }
-
-        return Hitpoint;
-    }
-
-    /// <summary> Retourne la position de la souris dans le monde 3D </summary> 
-    private Vector3 GameObjectToWorldPosition(GameObject objectTarget)
-    {
-        Ray ray;
-        Vector3 Hitpoint = Vector3.zero;
-
-        Vector3 cameraPosition = CameraUtility.Camera.transform.position;
-        Vector3 rayDirection = objectTarget.transform.position - cameraPosition;
-        // On trace un rayon avec la mousePosition de la souris
-        ray = Camera.main.ViewportPointToRay(objectTarget.transform.position); 
-        if (Physics.Raycast(cameraPosition,  rayDirection ,  out RaycastHit RayHit, Mathf.Infinity))
-        {
-            Transform objectTouched = RayHit.collider.transform; // L'object toucher par le raycast
-            // On verifie que le parent de l'objet n'est pas le transform de cette class
-            // Si il a un autre parent, ca veut dire qu'on a toucher un mesh d'un prefab
-            // Il faut donc tout selectionner pour eviter davoir des mesh transparent bizarre
-            if(objectTouched.TryGetComponent<MeshTransparentWatcher>(out var meshTransparentWatcher))
-            {
-                meshTransparentWatcher.IsHide = true;        
-            }
-            Hitpoint = new Vector3(RayHit.point.x, RayHit.point.y, RayHit.point.z);
-            #if UNITY_EDITOR
-                Debug.DrawLine(cameraPosition, RayHit.collider.transform.position, Color.blue, 0.5f);
-            #endif
-        }
-
-        return Hitpoint;
-    }
+    
 
     
 }
