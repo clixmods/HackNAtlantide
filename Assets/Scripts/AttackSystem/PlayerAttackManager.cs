@@ -165,7 +165,7 @@ public class PlayerAttackManager : MonoBehaviour
         }
         else
         {
-           animator.CrossFade("Default", 0.25f);
+           animator.CrossFade("Default", 0.5f);
             switch(attack.Index)
             {
                 case 1:
