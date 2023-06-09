@@ -38,12 +38,22 @@ public class MeshTransparent : MonoBehaviour
         {
             foreach (Transform child in transform)
             {
+				
                 if (child.TryGetComponent<MeshRenderer>(out var meshrenderer))
                 {
                     var component = child.gameObject.AddComponent<MeshTransparent>();
                     component.materialTransparent = materialTransparent;
                     _meshTransparentWatchers.Add(component);
                 }
+				var childmeshRenderes = child.GetComponentsInChildren<MeshRenderer>();
+				foreach (MeshRenderer childrd in childmeshRenderes)
+				{
+				
+						var component = childrd.gameObject.AddComponent<MeshTransparent>();
+						component.materialTransparent = materialTransparent;
+						_meshTransparentWatchers.Add(component);
+					
+				}
                 
             }
         }
