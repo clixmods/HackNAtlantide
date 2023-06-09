@@ -165,7 +165,7 @@ public class PlayerAttackManager : MonoBehaviour
         }
         else
         {
-           animator.CrossFade("Idle", 0.25f);
+           animator.CrossFade("Default", 0.25f);
             switch(attack.Index)
             {
                 case 1:
@@ -189,7 +189,7 @@ public class PlayerAttackManager : MonoBehaviour
 
     private bool IsAttackFinished(AttackScriptableObject attack)
     {
-        return _timerCurrentAttack > animator.GetCurrentAnimatorStateInfo(0).length;
+        return _timerCurrentAttack > animator.GetCurrentAnimatorStateInfo(1).length;
     }
     private bool CanAccelerate(AttackScriptableObject attack)
     {
