@@ -95,6 +95,7 @@ Transform:
   - {fileID: 6347891721324397949}
   - {fileID: 2896055823430006778}
   - {fileID: 225475598151939167}
+  - {fileID: 491992615785930923}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -729,6 +730,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 2302957747875404019}
+        m_TargetAssemblyTypeName: PostProcessWeightTransition, Assembly-CSharp
+        m_MethodName: SetWeightVolume
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 1
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   LowHealthExit:
     m_PersistentCalls:
       m_Calls:
@@ -898,6 +911,75 @@ Transform:
   m_Father: {fileID: 2176775217575482332}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3985343976004017544
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 491992615785930923}
+  - component: {fileID: 2976663301913229628}
+  - component: {fileID: 2302957747875404019}
+  m_Layer: 0
+  m_Name: Global Volume Hit LowHealth
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &491992615785930923
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3985343976004017544}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 98.73948, y: -123.52546, z: 154.46092}
+  m_LocalScale: {x: 2.173913, y: 2.173913, z: 2.173913}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2176775217575482332}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2976663301913229628
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3985343976004017544}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IsGlobal: 1
+  priority: 1000
+  blendDistance: 0
+  weight: 0
+  sharedProfile: {fileID: 11400000, guid: 140f547c55975ce4c810558ba416574a, type: 2}
+--- !u!114 &2302957747875404019
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3985343976004017544}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 147e4dae20030574bba3a30e8095aedd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeTransition: 0.2
+  isTemporary: 1
+  duration: 0.75
+  flickering: 0
+  minWeight: 0.92
+  maxWeight: 1
+  speedMultiplier: 4.28
 --- !u!1 &5002644008113436870
 GameObject:
   m_ObjectHideFlags: 0
