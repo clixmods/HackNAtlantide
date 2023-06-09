@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1349,6 +1349,16 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2078053948108838901, guid: b77b45d696911824da7f8bf5a53304ad,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2078053948108838901, guid: b77b45d696911824da7f8bf5a53304ad,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2090314492687961116, guid: b77b45d696911824da7f8bf5a53304ad,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -1843,6 +1853,16 @@ PrefabInstance:
         type: 3}
       propertyPath: field of view
       value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 5699426729354751754, guid: b77b45d696911824da7f8bf5a53304ad,
+        type: 3}
+      propertyPath: _maxHealth
+      value: 9999
+      objectReference: {fileID: 0}
+    - target: {fileID: 5699426729354751754, guid: b77b45d696911824da7f8bf5a53304ad,
+        type: 3}
+      propertyPath: isInvulnerable
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6388728433991128114, guid: b77b45d696911824da7f8bf5a53304ad,
         type: 3}
@@ -2593,22 +2613,22 @@ PrefabInstance:
     - target: {fileID: 8009162455875411170, guid: 78319478e84414c42825d11fc6497dea,
         type: 3}
       propertyPath: m_DefaultVelocity.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8009162455875411170, guid: 78319478e84414c42825d11fc6497dea,
         type: 3}
       propertyPath: m_DefaultVelocity.y
-      value: 1
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 8009162455875411170, guid: 78319478e84414c42825d11fc6497dea,
         type: 3}
       propertyPath: m_DefaultVelocity.z
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8009162455875411170, guid: 78319478e84414c42825d11fc6497dea,
         type: 3}
       propertyPath: m_ImpulseDefinition.m_ImpulseDuration
-      value: 3
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 8009162456426800545, guid: 78319478e84414c42825d11fc6497dea,
         type: 3}

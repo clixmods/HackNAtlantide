@@ -52,6 +52,11 @@ public class TriggerBoxFog : TriggerBox
     protected override void TriggerEnter(Collider other)
     {
         base.TriggerEnter( other);
+        ApplyFog();
+    }
+
+    public void ApplyFog()
+    {
         OnVolumeActive?.Invoke();
         StartCoroutine(Lerp());
         RenderSettings.fog =  fogSetting.fog;

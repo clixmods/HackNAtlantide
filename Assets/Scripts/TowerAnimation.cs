@@ -8,16 +8,15 @@ public class TowerAnimation : MonoBehaviour
 {
     private Animation _animation;
     [SerializeField] private AnimationClip animationTowerA;
-    [SerializeField] private AnimationClip animationTowerB;
     public UnityEvent OnAnimationStart;
     public UnityEvent OnAnimationStop;
     private void Awake()
     {
         _animation = GetComponent<Animation>();
-        _animation.AddClip(animationTowerA,"AnimationTowerA");
-        _animation.AddClip(animationTowerB,"AnimationTowerB");
+        _animation.AddClip(animationTowerA,animationTowerA.name);
+        _animation.clip = animationTowerA;
     }
-    public void PlayAnimationTowerA()
+    public void PlayAnimation()
     {
         this.enabled = true;
         OnAnimationStart?.Invoke();
@@ -32,13 +31,5 @@ public class TowerAnimation : MonoBehaviour
             OnAnimationStop?.Invoke();
             this.enabled = false;
         }
-    }
-
-    public void PlayAnimationTowerB()
-    {
-        this.enabled = true;
-        OnAnimationStart?.Invoke();
-        _animation.clip = animationTowerB;
-        _animation.Play();
     }
 }

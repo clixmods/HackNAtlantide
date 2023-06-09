@@ -43,6 +43,15 @@ public class MediumGolemJumpAttack : EnemyAttackBehaviour
         Priority += CoolDown;
         _enemyBehaviour.Agent.enabled = false;
     }
+
+    public void GoToNewPositionWithJump(Transform destinationTransform)
+    {
+        CalculatePathTo(destinationTransform.position);
+        StartCoroutine(AttackBehaviour());
+        LaunchAttackEvent();
+        Priority += CoolDown;
+        _enemyBehaviour.Agent.enabled = false;
+    }
     private void Start()
     {
 
@@ -134,6 +143,15 @@ public class MediumGolemJumpAttack : EnemyAttackBehaviour
         highPoint1.position = transform.position + (endPoint.position - transform.position) / 4f + Vector3.up * 10f;
         highPoint2.position = transform.position + 3 * (endPoint.position - transform.position) / 4f + Vector3.up * 10f;
         
+    }
+
+    private void CalculatePathTo(Vector3 position)
+    {
+        startPosition.parent = null;
+        startPosition.position = transform.position;
+        endPoint.position = position + new Vector3(Random.value,0,Random.value)*2;
+        highPoint1.position = transform.position + (endPoint.position - transform.position) / 4f + Vector3.up * 10f;
+        highPoint2.position = transform.position + 3 * (endPoint.position - transform.position) / 4f + Vector3.up * 10f;
     }
 
     public override bool CanAttack()

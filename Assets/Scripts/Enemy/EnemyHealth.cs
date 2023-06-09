@@ -8,7 +8,14 @@ using UnityEngine.AI;
 public class EnemyHealth : Character
 {
     [SerializeField] ScriptableValueListGameObject _allEnemyAwake;
+    [SerializeField] private bool wakeUpOnDamage = true;
     [SerializeField] private bool destroyOnDeath = true;
+
+    public void SetWakeUpOnDamage(bool value)
+    {
+        wakeUpOnDamage = value;
+    }
+    
     public override void Dead()
     {
         base.Dead();
@@ -25,7 +32,7 @@ public class EnemyHealth : Character
     public override void DoDamage(float damage, Vector3 attackLocation)
     {
         base.DoDamage(damage, attackLocation);
-        if(TryGetComponent<EnemyWakeUpBehaviour>(out EnemyWakeUpBehaviour wakeUpBehaviour))
+        if(wakeUpOnDamage && TryGetComponent<EnemyWakeUpBehaviour>(out EnemyWakeUpBehaviour wakeUpBehaviour))
         {
             wakeUpBehaviour.WakeUp();
         }
