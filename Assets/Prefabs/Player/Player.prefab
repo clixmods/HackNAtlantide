@@ -1336,6 +1336,7 @@ MonoBehaviour:
   playerAttackManager: {fileID: 3167754798604563864}
   scriptableValueListGameObject: {fileID: 11400000, guid: 2163a8b50e7f04c4b927a1597d16eff1,
     type: 2}
+  _checkEnemyAwake: 1
   temporaryTimeScale: 0.2
   duration: 0.75
 --- !u!1 &6966603813407211510
@@ -2340,11 +2341,16 @@ PrefabInstance:
     - target: {fileID: 7450028906285957753, guid: 99d19c5c84645f7409300b87b05b63e4,
         type: 3}
       propertyPath: OnHitEvent.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7450028906285957753, guid: 99d19c5c84645f7409300b87b05b63e4,
         type: 3}
       propertyPath: OnHitEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7450028906285957753, guid: 99d19c5c84645f7409300b87b05b63e4,
+        type: 3}
+      propertyPath: OnHitEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7450028906285957753, guid: 99d19c5c84645f7409300b87b05b63e4,
@@ -2354,7 +2360,17 @@ PrefabInstance:
       objectReference: {fileID: 7106916208506672059}
     - target: {fileID: 7450028906285957753, guid: 99d19c5c84645f7409300b87b05b63e4,
         type: 3}
+      propertyPath: OnHitEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 6809520808482100329}
+    - target: {fileID: 7450028906285957753, guid: 99d19c5c84645f7409300b87b05b63e4,
+        type: 3}
       propertyPath: OnHitEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7450028906285957753, guid: 99d19c5c84645f7409300b87b05b63e4,
+        type: 3}
+      propertyPath: OnHitEvent.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7450028906285957753, guid: 99d19c5c84645f7409300b87b05b63e4,
@@ -2364,12 +2380,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7450028906285957753, guid: 99d19c5c84645f7409300b87b05b63e4,
         type: 3}
+      propertyPath: OnHitEvent.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: SetTimeScaleTemporary
+      objectReference: {fileID: 0}
+    - target: {fileID: 7450028906285957753, guid: 99d19c5c84645f7409300b87b05b63e4,
+        type: 3}
       propertyPath: OnHitEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: UnityEngine.ParticleSystem, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 7450028906285957753, guid: 99d19c5c84645f7409300b87b05b63e4,
         type: 3}
+      propertyPath: OnHitEvent.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: SlowMotionAttackBehaviour, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7450028906285957753, guid: 99d19c5c84645f7409300b87b05b63e4,
+        type: 3}
       propertyPath: OnHitEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 7450028906285957753, guid: 99d19c5c84645f7409300b87b05b63e4,
+        type: 3}
+      propertyPath: OnHitEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 8683603694024863501, guid: 99d19c5c84645f7409300b87b05b63e4,
@@ -2462,6 +2493,29 @@ SkinnedMeshRenderer:
     type: 3}
   m_PrefabInstance: {fileID: 2232174480602545200}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &9074596098637794817 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7139674149054722609, guid: 99d19c5c84645f7409300b87b05b63e4,
+    type: 3}
+  m_PrefabInstance: {fileID: 2232174480602545200}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6809520808482100329
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9074596098637794817}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acb262e4b31749eab2350b2c18b3666a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerAttackManager: {fileID: 3167754798604563864}
+  scriptableValueListGameObject: {fileID: 0}
+  _checkEnemyAwake: 0
+  temporaryTimeScale: 0.3
+  duration: 0.1
 --- !u!1001 &4422670455476130722
 PrefabInstance:
   m_ObjectHideFlags: 0
