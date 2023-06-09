@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -15,7 +16,18 @@ public class DataPersistentHandler : ScriptableObject
     // TODO : Resource.LoadAll is a better way, need to remove the list in the future to improve the system
     [Tooltip("Contains all scriptableObject compatible with DataPersistentSystem, required to be referenced here.")]
     public List<ScriptableObject> scriptableObjectSaveables;
+    public static void AddSaveAssetToHandler(ScriptableObject saveAsset)
+    {
 #if UNITY_EDITOR
+        var assetsGUID = AssetDatabase.FindAssets("DataPersistentHandler");
+        var dataPersistentAsset = AssetDatabase.LoadAssetAtPath<DataPersistentHandler>(AssetDatabase.GUIDToAssetPath(assetsGUID[0]));
+        if(!dataPersistentAsset.scriptableObjectSaveables.Contains(saveAsset))
+            dataPersistentAsset.scriptableObjectSaveables.Add(saveAsset);
+#endif
+    }
+#if UNITY_EDITOR
+
+   
     private void OnValidate()
     {
         ScriptableObject[] scriptableObjects = GetAssets<ScriptableObject>();
@@ -46,6 +58,20 @@ public class DataPersistentHandler : ScriptableObject
         return a;
     }
 #endif
+
+    private void Awake()
+    {
+        for (int i = 0; i < scriptableObjectSaveables.Count; i++)
+        {
+            if (scriptableObjectSaveables[i] == null)
+            {
+                scriptableObjectSaveables.RemoveAt(i);
+                Awake();
+                break;
+            }
+                
+        }
+    }
 
     [ContextMenu("Save")]
     public void SaveAll()
