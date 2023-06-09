@@ -282,7 +282,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void Dash(bool value)
     {
-        if (value && _canDash && _playerStamina.CanUseStamina(1)&& _moveDirection.sqrMagnitude > 0.1f)
+        if (value && _canDash && _playerStamina.CanUseStamina(1)&& _moveDirection.sqrMagnitude > 0.1f && !_isAttacking)
         {
             _dashDirection = _moveDirection;
             _playerStamina.UseStamina(1);
@@ -343,11 +343,7 @@ public class PlayerMovement : MonoBehaviour
     IEnumerator CancelDash()
     {
         yield return new WaitForSeconds(_dashTime);
-
         _speed = _moveSpeed;
-        
-        
-        
 
         StartCoroutine(ReloadDash());
 
@@ -373,11 +369,13 @@ public class PlayerMovement : MonoBehaviour
     {
         yield return new WaitForSeconds(0.2f);
         _transformLock = _transformLockTempForDash;
-        _isDashing = false;
-
         Physics.IgnoreLayerCollision(this.gameObject.layer, 16, false);
         OnDashCancel?.Invoke();
         DashFeedBack(false);
+        yield return new WaitForSeconds(0.3f);
+        _isDashing = false;
+
+        
     }
     IEnumerator CancelAttack(float time)
     {
