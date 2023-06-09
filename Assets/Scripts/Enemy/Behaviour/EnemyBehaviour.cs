@@ -1,8 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.IO.LowLevel.Unsafe;
-using Unity.VisualScripting;
-using Unity.VisualScripting.Antlr3.Runtime.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Events;
@@ -146,7 +144,7 @@ public class EnemyBehaviour : MonoBehaviour
     {
         while(!_isAttacking)
         {
-            //trie Chaque Attack de l'ennemie par priorité
+            //trie Chaque Attack de l'ennemie par prioritï¿½
             _ennemyAttacks = SortAttacksByPriority();
 
             //Selectione l'attaque disponible la plus prioritaire
@@ -170,7 +168,7 @@ public class EnemyBehaviour : MonoBehaviour
         {
             _agent.SetDestination(transform.position);
         }
-        //attends le coolDown de l'attaque qui est joué pour commencer a rechercher une nouvelle attaque
+        //attends le coolDown de l'attaque qui est jouï¿½ pour commencer a rechercher une nouvelle attaque
         yield return new WaitForSeconds(_currentAttack.CoolDown);
         _currentAttack.StartCoroutine(_currentAttack.RechargePriority());
 
@@ -187,7 +185,7 @@ public class EnemyBehaviour : MonoBehaviour
     }
 
     //A Tester
-    //trie la liste d'attaque par priorité croissante
+    //trie la liste d'attaque par prioritï¿½ croissante
     private List<EnemyAttackBehaviour> SortAttacksByPriority()
     {
         //initialize une liste temporaire
