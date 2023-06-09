@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -54,6 +55,14 @@ public abstract class Trigger : MonoBehaviour
           }
      }
 
+     private void Update()
+     {
+          if(!CanDoStay)
+          {
+               _currentCooldown -= Time.deltaTime;
+          }
+     }
+
      #endregion
      #region Methods
 
@@ -107,10 +116,6 @@ public abstract class Trigger : MonoBehaviour
                          gameObject.SetActive(false);
                     }
                }
-          }
-          else
-          {
-               _currentCooldown -= Time.deltaTime;
           }
      }
      private void OnTriggerExit(Collider other)
