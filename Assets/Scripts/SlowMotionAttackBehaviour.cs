@@ -6,17 +6,24 @@ public class SlowMotionAttackBehaviour : MonoBehaviour
 {
     [SerializeField] private PlayerAttackManager playerAttackManager;
     [SerializeField] private ScriptableValueListGameObject scriptableValueListGameObject;
+    [SerializeField] private bool _checkEnemyAwake = true;
     [SerializeField] private float temporaryTimeScale = 0.2f;
     [SerializeField] private float duration = 1f;
     private bool _isSlowAttack;
     private void OnEnable()
     {
-        scriptableValueListGameObject.OnValueChanged += OnValueChanged;
+        if(_checkEnemyAwake)
+        {
+            scriptableValueListGameObject.OnValueChanged += OnValueChanged;
+        }
     }
 
     private void OnDisable()
     {
-        scriptableValueListGameObject.OnValueChanged -= OnValueChanged;
+        if (_checkEnemyAwake)
+        {
+            scriptableValueListGameObject.OnValueChanged -= OnValueChanged;
+        }
     }
 
     private void OnValueChanged(List<GameObject> obj)

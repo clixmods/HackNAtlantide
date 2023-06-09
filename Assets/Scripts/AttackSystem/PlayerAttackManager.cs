@@ -25,6 +25,7 @@ public class PlayerAttackManager : MonoBehaviour
     private AttackCollider _attackCollider;
     public bool DamageableWasAttackedAtThisFrame { get; private set; }
     private float _waitTimeBetweencombo = 0f;
+    private float _timeToResetCombo;
     private bool _registerInputWhenNotAllowed;
     float currentDamage = 2;
     [SerializeField] private ScriptableEvent _dashAttackEvent;
@@ -48,10 +49,15 @@ public class PlayerAttackManager : MonoBehaviour
 
     private void Update()
     {
+        _timeToResetCombo -= Time.deltaTime;
         _waitTimeBetweencombo -= Time.deltaTime;
         if(_registerInputWhenNotAllowed && _waitTimeBetweencombo<0)
         {
             InputAttack(true);
+        }
+        if(_timeToResetCombo < 0 && !_isInCombo)
+        {
+            _currentComboIndex = 0;
         }
     }
 
@@ -61,7 +67,7 @@ public class PlayerAttackManager : MonoBehaviour
         if (value && !_isInCombo && _waitTimeBetweencombo < 0f && !_isInDashAttack)
         {
             StopAllCoroutines();
-            StartCoroutine(CurrentAttackUpdate(playerComboAttacks[0]));
+            StartCoroutine(CurrentAttackUpdate(playerComboAttacks[_currentComboIndex]));
             _registerInputWhenNotAllowed = false;
         }
         if(value && _waitTimeBetweencombo > 0 && !_isInDashAttack)
@@ -145,15 +151,21 @@ public class PlayerAttackManager : MonoBehaviour
            animator.CrossFade("Idle", 0.25f);
             switch(attack.Index)
             {
+                case 1:
+                    _timeToResetCombo = 0.2f;
+                    _currentComboIndex = 1;
+                        break;
                 case 2:
+                    _timeToResetCombo = 0.1f;
+                    _currentComboIndex = 2;
                     //_waitTimeBetweencombo = 0.1f;
                     break;
                 case 3:
                     _waitTimeBetweencombo = 0.2f;
+                    _timeToResetCombo = 0;
                     break;
 
             }
-            _currentComboIndex = 0;
             
         }
     }
