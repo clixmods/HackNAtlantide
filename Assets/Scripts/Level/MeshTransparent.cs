@@ -1,13 +1,12 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-[RequireComponent(typeof(MeshCollider))]
 public class MeshTransparent : MonoBehaviour
 {
     Material[] _baseMaterials;
     [SerializeField] private Material materialTransparent;
     private List<MeshTransparent> _meshTransparentWatchers = new List<MeshTransparent>();
-
+    [SerializeField] private bool createMeshTransparentInChild = false; 
     private bool _isHide;
     public bool IsHide
     {
@@ -34,17 +33,21 @@ public class MeshTransparent : MonoBehaviour
     private void Awake()
     {
         _meshRenderer = transform.GetComponent<MeshRenderer>();
-       
-        foreach (Transform child in transform)
+
+        if (createMeshTransparentInChild)
         {
-            if (child.TryGetComponent<MeshRenderer>(out var meshrenderer))
+            foreach (Transform child in transform)
             {
-                var component = child.gameObject.AddComponent<MeshTransparent>();
-                component.materialTransparent = materialTransparent;
-                _meshTransparentWatchers.Add(component);
-            }
+                if (child.TryGetComponent<MeshRenderer>(out var meshrenderer))
+                {
+                    var component = child.gameObject.AddComponent<MeshTransparent>();
+                    component.materialTransparent = materialTransparent;
+                    _meshTransparentWatchers.Add(component);
+                }
                 
+            }
         }
+        
     }
 
     private void Start()
@@ -59,8 +62,9 @@ public class MeshTransparent : MonoBehaviour
         transform.gameObject.layer = 9;
         materialTransparent = new Material(materialTransparent);
     }
-    private void FixedUpdate()
+    private void Update()
     {
+        
         if(!_isInit) return;
         Color _color = materialTransparent.GetColor(BaseColor); 
         if(IsHide)

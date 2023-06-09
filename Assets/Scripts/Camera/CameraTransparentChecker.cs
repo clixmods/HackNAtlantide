@@ -40,9 +40,11 @@
         Vector3 Hitpoint = Vector3.zero;
         Vector3 cameraPosition = CameraUtility.Camera.transform.position;
         Vector3 rayDirection = objectTarget.transform.position - cameraPosition;
+        var RayHits = Physics.RaycastAll(cameraPosition, rayDirection, Vector3.Distance(cameraPosition, objectTarget.transform.position));
         // On trace un rayon avec la mousePosition de la souris
-        if (Physics.Raycast(cameraPosition,  rayDirection ,  out RaycastHit RayHit, Mathf.Infinity))
+        foreach(RaycastHit RayHit in RayHits)
         {
+        
             Transform objectTouched = RayHit.collider.transform; // L'object toucher par le raycast
             // On verifie que le parent de l'objet n'est pas le transform de cette class
             // Si il a un autre parent, ca veut dire qu'on a toucher un mesh d'un prefab
@@ -53,7 +55,7 @@
             }
             Hitpoint = new Vector3(RayHit.point.x, RayHit.point.y, RayHit.point.z);
             #if UNITY_EDITOR
-                Debug.DrawLine(cameraPosition, RayHit.collider.transform.position, Color.blue, 0.5f);
+            Debug.DrawRay(cameraPosition,rayDirection,Color.blue, 0.5f);
             #endif
         }
 
