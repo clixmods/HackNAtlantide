@@ -29,6 +29,7 @@ public class PlayerAttackManager : MonoBehaviour
     private bool _registerInputWhenNotAllowed;
     float currentDamage = 2;
     [SerializeField] private ScriptableEvent _dashAttackEvent;
+    [SerializeField] private PlayerMovementStateScriptableObject playerMovementState;
     #endregion
     private void OnEnable()
     {
@@ -64,16 +65,20 @@ public class PlayerAttackManager : MonoBehaviour
     void InputAttack(bool value)
     {
         _inputAttack = value;
-        if (value && !_isInCombo && _waitTimeBetweencombo < 0f && !_isInDashAttack)
+        if(playerMovementState.MovementState != MovementState.dashing && playerMovementState.MovementState != MovementState.dashingAttack)
         {
-            StopAllCoroutines();
-            StartCoroutine(CurrentAttackUpdate(playerComboAttacks[_currentComboIndex]));
-            _registerInputWhenNotAllowed = false;
+            if (value && !_isInCombo && _waitTimeBetweencombo < 0f && !_isInDashAttack)
+            {
+                StopAllCoroutines();
+                StartCoroutine(CurrentAttackUpdate(playerComboAttacks[_currentComboIndex]));
+                _registerInputWhenNotAllowed = false;
+            }
+            if (value && _waitTimeBetweencombo > 0 && !_isInDashAttack)
+            {
+                _registerInputWhenNotAllowed = true;
+            }
         }
-        if(value && _waitTimeBetweencombo > 0 && !_isInDashAttack)
-        {
-            _registerInputWhenNotAllowed = true;
-        }
+        
     }
     void InputDashAttack(bool value)
     {
@@ -108,10 +113,10 @@ public class PlayerAttackManager : MonoBehaviour
         switch(attack.Index)
         {
             case 1:
-                _playerMovement.Attack(true, 0.2f, 2f);
+                _playerMovement.Attack(true, 0.3f, 2f);
                 break;
             case 2:
-                _playerMovement.Attack(true, 0.2f, 2f);
+                _playerMovement.Attack(true, 0.3f, 2f);
                 break;
             case 3:
                 _playerMovement.Attack(true, 0.3f, 5f);

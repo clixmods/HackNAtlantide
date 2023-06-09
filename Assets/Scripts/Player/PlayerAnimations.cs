@@ -70,7 +70,7 @@ public class PlayerAnimations : MonoBehaviour
 
     public void Dash()
     {
-        StartCoroutine(DashCoroutine());
+        _animator.CrossFade("Roulade_Chara_Sword", 0.01f);
     }
     
     IEnumerator IdleCoroutine()
@@ -80,13 +80,6 @@ public class PlayerAnimations : MonoBehaviour
         yield break;
     }
 
-    IEnumerator DashCoroutine()
-    {
-        _animator.SetBool("dash", true);
-
-        yield return new WaitForSeconds(.5f);
-        _animator.SetBool("dash", false);
-    }
     public void DashFinish()
     {
         Debug.Log("dashfinish");
