@@ -94,7 +94,14 @@ public class PlayerInteractDetection : MonoBehaviour
 
     private void StopUseCurrentInteractable()
     {
-        _currentInteractable.CancelInteract();
+        try
+        {
+            _currentInteractable.CancelInteract();
+        }
+        catch (Exception e)
+        {
+            // ignored
+        }
         AudioManager.StopLoopSound(ref _audioPlayer, StopLoopBehavior.Direct);
         _currentInteractable = null;
         InteractableDeselected?.Invoke();
@@ -136,18 +143,24 @@ public class PlayerInteractDetection : MonoBehaviour
             }
         }
         // If the previous ClosestObject is not in the list of interactableTransform, we need to disable the input helper
-        if ( closestObject != null)
+        try
         {
-            if (!interactable.Contains(closestObject))
+            if ( closestObject != null)
             {
-                if(closestObject.transform.TryGetComponent<InputHelper>(out var closestObjectInputHelpernputHelper))
+                if (!interactable.Contains(closestObject))
                 {
-                    closestObjectInputHelpernputHelper.enabled = false;
+                    if(closestObject.transform.TryGetComponent<InputHelper>(out var closestObjectInputHelpernputHelper))
+                    {
+                        closestObjectInputHelpernputHelper.enabled = false;
+                    }
+                    closestObject.IsClosestInteractable = false;
                 }
-                closestObject.IsClosestInteractable = false;
             }
         }
-        
+        catch (Exception e)
+        {
+            closestObject = null;
+        }
     }
     public IInteractable ClosestInteractable()
     {

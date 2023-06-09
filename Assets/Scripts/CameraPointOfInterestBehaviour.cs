@@ -35,4 +35,5 @@ public class CameraPointOfInterestBehaviour : MonoBehaviour
         CameraDisable?.Invoke();
         
     }
+    
 }
