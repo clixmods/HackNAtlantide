@@ -25,6 +25,7 @@ public class EnemyWakeUpBehaviour : MonoBehaviour
     {
         _startPos = transform.position;
         _enemyBehaviour = GetComponent<EnemyBehaviour>();
+        _enemyBehaviour.Agent.enabled = true;
     }
 
     private void Start()
