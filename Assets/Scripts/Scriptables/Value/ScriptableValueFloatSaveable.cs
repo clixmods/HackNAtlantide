@@ -1,10 +1,19 @@
 using System;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Data/Value/float saveable")]
 
 public class ScriptableValueFloatSaveable : ScriptableValueFloat , ISave
 {
+#if UNITY_EDITOR
+    private void OnValidate()
+    {
+        DataPersistentHandler.AddSaveAssetToHandler(this);
+    }
+#endif
     #region Save and Load
     class FloatSaveData : SaveData
     {

@@ -1,10 +1,15 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 using UnityEngine;
 [CreateAssetMenu(menuName = "Data/Value/bool Saveable")]
 public class ScriptableValueBoolSaveable : ScriptableValueBool , ISave
 {
+    private void OnValidate()
+    {
+        DataPersistentHandler.AddSaveAssetToHandler(this);
+    }
+
     #region Save and Load
     class BoolSaveData : SaveData
     {
