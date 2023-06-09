@@ -1,10 +1,8 @@
 ﻿using System;
 using AudioAliase;
-using Unity.VisualScripting;
 using UnityEngine;
 
-namespace Loading
-{
+
     public class AddWorkerAudioPlayerHandler : MonoBehaviour
     {
         
@@ -16,9 +14,8 @@ namespace Loading
                 if (audioPlayers[i].TryGetComponent<AudioPlayerLoadingWorker>(out var audioPlayerLoadingWorker))
                     continue;    
             
-                audioPlayers[i].AddComponent<AudioPlayerLoadingWorker>();
+                audioPlayers[i].gameObject.AddComponent<AudioPlayerLoadingWorker>();
             }
             
         }
     }
-}
