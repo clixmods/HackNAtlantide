@@ -105,6 +105,18 @@ public class PlayerAttackManager : MonoBehaviour
         bool _hasPressedInputAttack = false;
         _inputAttack = false;
         _timerCurrentAttack = 0;
+        switch(attack.Index)
+        {
+            case 1:
+                _playerMovement.Attack(true, 0.2f, 2f);
+                break;
+            case 2:
+                _playerMovement.Attack(true, 0.2f, 2f);
+                break;
+            case 3:
+                _playerMovement.Attack(true, 0.3f, 5f);
+                break;
+        }
         
             
         animator.CrossFade(attack.AnimName, 0f);

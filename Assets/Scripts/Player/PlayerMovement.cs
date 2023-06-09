@@ -33,6 +33,7 @@ public class PlayerMovement : MonoBehaviour
     private float _speed;
     private Vector3 _smoothMoveVelocity;
     private Vector3 _dashDirection;
+    private Vector3 _attackDirection;
     public Vector3 MoveAmount { get { return _moveAmount; } }
     private Vector3 _moveAmount;
     [SerializeField] private float _smoothTimeAcceleration;
@@ -67,6 +68,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] PlayerStaminaScriptableObject _playerStamina;
     private bool _canDashAttack;
     private bool _isDashingAttack;
+    private bool _isAttacking;
     public bool IsDashingAttack { get { return _isDashingAttack; } }
     
     //Collision Detection
@@ -175,6 +177,14 @@ public class PlayerMovement : MonoBehaviour
             _moveAmount = Vector3.SmoothDamp(_moveAmount, targetmoveAmount, ref _smoothMoveVelocity, _smoothTimeAccelerationDash);
 
             _playerMovementState.MovementState = MovementState.dashingAttack;
+        }
+        else if(_isAttacking)
+        {
+            targetmoveAmount = _attackDirection * (_speed * Time.fixedDeltaTime);
+            //calculated direction based of his movedirection of the precedent frame
+            _moveAmount = Vector3.SmoothDamp(_moveAmount, targetmoveAmount, ref _smoothMoveVelocity, _smoothTimeAccelerationDash);
+
+            _playerMovementState.MovementState = MovementState.attacking;
         }
         else
         {
@@ -317,6 +327,18 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    public void Attack(bool value, float timeToLock, float playerSpeed)
+    {
+        if (value)
+        {
+            _attackDirection = transform.forward;
+            _speed = playerSpeed;
+            _transformLockTempForDash = _transformLock;
+            _transformLock = null;
+            _isAttacking = true;
+            StartCoroutine(CancelAttack(timeToLock));
+        }
+    }
     //sets the speeds value to dash
     IEnumerator CancelDash()
     {
@@ -356,6 +378,13 @@ public class PlayerMovement : MonoBehaviour
         Physics.IgnoreLayerCollision(this.gameObject.layer, 16, false);
         OnDashCancel?.Invoke();
         DashFeedBack(false);
+    }
+    IEnumerator CancelAttack(float time)
+    {
+        yield return new WaitForSeconds(time);
+        _transformLock = _transformLockTempForDash;
+        _isAttacking = false;
+        _speed = _moveSpeed;
     }
     public void SetTransformLock()
     {
