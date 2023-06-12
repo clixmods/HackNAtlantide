@@ -236,6 +236,46 @@ PrefabInstance:
       propertyPath: charactersToProtect.Array.data[7]
       value: 
       objectReference: {fileID: 8047492624339091319}
+    - target: {fileID: 6416517122908173490, guid: 350fb884a338f0d4ba4b578f19a19c02,
+        type: 3}
+      propertyPath: OnStart.m_PersistentCalls.m_Calls.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6416517122908173490, guid: 350fb884a338f0d4ba4b578f19a19c02,
+        type: 3}
+      propertyPath: OnStart.m_PersistentCalls.m_Calls.Array.data[4].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6416517122908173490, guid: 350fb884a338f0d4ba4b578f19a19c02,
+        type: 3}
+      propertyPath: OnStart.m_PersistentCalls.m_Calls.Array.data[4].m_Target
+      value: 
+      objectReference: {fileID: 7623098166449988848}
+    - target: {fileID: 6416517122908173490, guid: 350fb884a338f0d4ba4b578f19a19c02,
+        type: 3}
+      propertyPath: OnStart.m_PersistentCalls.m_Calls.Array.data[4].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6416517122908173490, guid: 350fb884a338f0d4ba4b578f19a19c02,
+        type: 3}
+      propertyPath: OnStart.m_PersistentCalls.m_Calls.Array.data[4].m_MethodName
+      value: EnableWakeUpBehaviourInWatchedEnemies
+      objectReference: {fileID: 0}
+    - target: {fileID: 6416517122908173490, guid: 350fb884a338f0d4ba4b578f19a19c02,
+        type: 3}
+      propertyPath: OnStart.m_PersistentCalls.m_Calls.Array.data[4].m_TargetAssemblyTypeName
+      value: EnemiesWatcher, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6416517122908173490, guid: 350fb884a338f0d4ba4b578f19a19c02,
+        type: 3}
+      propertyPath: OnStart.m_PersistentCalls.m_Calls.Array.data[4].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6416517122908173490, guid: 350fb884a338f0d4ba4b578f19a19c02,
+        type: 3}
+      propertyPath: OnStart.m_PersistentCalls.m_Calls.Array.data[4].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 350fb884a338f0d4ba4b578f19a19c02, type: 3}
 --- !u!4 &7623098165836501637 stripped
@@ -271,6 +311,16 @@ PrefabInstance:
     - target: {fileID: 460704731309419892, guid: b53c20b6f237f3242924df59e45f0d1f,
         type: 3}
       propertyPath: isInvulnerable
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: _wakeUpAtStart
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
@@ -383,6 +433,16 @@ PrefabInstance:
     - target: {fileID: 460704731309419892, guid: b53c20b6f237f3242924df59e45f0d1f,
         type: 3}
       propertyPath: isInvulnerable
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: _wakeUpAtStart
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
@@ -504,6 +564,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
         type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: _wakeUpAtStart
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
       propertyPath: _distanceToSleep
       value: 15000
       objectReference: {fileID: 0}
@@ -621,6 +691,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
         type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: _wakeUpAtStart
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
       propertyPath: _distanceToSleep
       value: 15000
       objectReference: {fileID: 0}
@@ -733,6 +813,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
         type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: _wakeUpAtStart
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
       propertyPath: _distanceToSleep
       value: 15000
       objectReference: {fileID: 0}
@@ -841,6 +931,16 @@ PrefabInstance:
     - target: {fileID: 460704731309419892, guid: b53c20b6f237f3242924df59e45f0d1f,
         type: 3}
       propertyPath: isInvulnerable
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: _wakeUpAtStart
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
