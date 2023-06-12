@@ -163,15 +163,6 @@ public class EnemyController : MonoBehaviour, ICombat
        
     }
     #endregion
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.red;
-        var position = transform.position;
-        Gizmos.DrawWireSphere(position, lookRadius);
-
-        Gizmos.color = Color.magenta;
-        Gizmos.DrawWireSphere(position, attackRadius);
-    }
 
     
 }
