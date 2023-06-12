@@ -26,7 +26,7 @@ public class Focus : MonoBehaviour
     private Transform _camFocusTransform;
     private FocusCinemachineTargetGroup _cinemachineTargetGroup;
     private int _currentTargetIndex;
-    private GameObject _noFocusVirtualCamera;
+    private CinemachineVirtualCamera _noFocusVirtualCamera;
     private IFocusable _lastCachedTarget;
     private bool _isTransitioning;
     private bool _inputFocusIsPressed;
@@ -101,13 +101,14 @@ public class Focus : MonoBehaviour
     {
         DisableFocus();
     }
-    private void FixedUpdate()
+    private void LateUpdate()
     {
         if (FocusIsEnable && _noFocusVirtualCamera != null && !_isTransitioning)
         {
-           // Debug.Log("Camera Move");
-            _camFocusTransform.position = _noFocusVirtualCamera.transform.position;
-            _camFocusTransform.rotation = _noFocusVirtualCamera.transform.rotation;
+            // Debug.Log("Camera Move");
+            
+            _camFocusTransform.position = _noFocusVirtualCamera.State.FinalPosition;
+            _camFocusTransform.rotation = _noFocusVirtualCamera.State.FinalOrientation;
         }
     }
 
@@ -128,35 +129,35 @@ public class Focus : MonoBehaviour
         if (FocusIsEnable)
         {
             // If a new camera transition is triggered, go lerp the focus camera to the new camera
-            if (newCameraVirtual.gameObject != _noFocusVirtualCamera)
+            if (newCameraVirtual != _noFocusVirtualCamera)
             {
                 // we need to cache the camera transition
-                _noFocusVirtualCamera = newCameraVirtual.gameObject;
+                _noFocusVirtualCamera = newCameraVirtual;
                 StartCoroutine(LerpCameraPositionTo(newCameraVirtual));
             }
         }
         // we need to cache the camera transition
-        _noFocusVirtualCamera = newCameraVirtual.gameObject;
+        _noFocusVirtualCamera = newCameraVirtual;
     }
     IEnumerator LerpCameraPositionTo(CinemachineVirtualCamera newCameraVirtual)
     {
         _isTransitioning = true;
         float timeElapsed = 0;
-        Vector3 cameraPosition = _camFocusTransform.position;
-        Quaternion cameraRotation = _camFocusTransform.rotation;
+        Vector3 cameraPosition = cameraVirtualFocus.State.FinalPosition;
+        Quaternion cameraRotation = cameraVirtualFocus.State.FinalOrientation;
         float timeTransition = 2;
         while (timeElapsed < timeTransition)
         {
             timeElapsed += Time.deltaTime;
-            if (newCameraVirtual.gameObject != _noFocusVirtualCamera)
+            if (newCameraVirtual != _noFocusVirtualCamera)
             {
                 _isTransitioning = false;
                 yield break;
             }
                 
             var t = timeElapsed / timeTransition;
-            _camFocusTransform.position = Vector3.Lerp(cameraPosition,newCameraVirtual.transform.position , t);
-            _camFocusTransform.rotation = Quaternion.Lerp(cameraRotation, newCameraVirtual.transform.rotation, t);
+            _camFocusTransform.position = Vector3.Lerp(cameraPosition,newCameraVirtual.State.FinalPosition , t);
+            _camFocusTransform.rotation = Quaternion.Lerp(cameraRotation, newCameraVirtual.State.FinalOrientation, t);
             yield return null;
         }
 
