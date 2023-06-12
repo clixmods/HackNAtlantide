@@ -69,12 +69,22 @@ PrefabInstance:
     - target: {fileID: 6247656628101972032, guid: cda17fa97f49abc49885291024a072af,
         type: 3}
       propertyPath: EventOnTriggerEnter.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 6
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6247656628101972032, guid: cda17fa97f49abc49885291024a072af,
         type: 3}
       propertyPath: EventOnTriggerEnter.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6247656628101972032, guid: cda17fa97f49abc49885291024a072af,
+        type: 3}
+      propertyPath: EventOnTriggerEnter.m_PersistentCalls.m_Calls.Array.data[3].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6247656628101972032, guid: cda17fa97f49abc49885291024a072af,
+        type: 3}
+      propertyPath: EventOnTriggerEnter.m_PersistentCalls.m_Calls.Array.data[4].m_Mode
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6247656628101972032, guid: cda17fa97f49abc49885291024a072af,
         type: 3}
@@ -86,24 +96,24 @@ PrefabInstance:
         type: 3}
       propertyPath: EventOnTriggerEnter.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 2701704431218419366}
-    - target: {fileID: 6247656628101972032, guid: cda17fa97f49abc49885291024a072af,
-        type: 3}
-      propertyPath: EventOnTriggerEnter.m_PersistentCalls.m_Calls.Array.data[2].m_Target
-      value: 
       objectReference: {fileID: 11400000, guid: 666d418fb9dca4144b0ea8026fc346e2,
         type: 2}
     - target: {fileID: 6247656628101972032, guid: cda17fa97f49abc49885291024a072af,
         type: 3}
-      propertyPath: EventOnTriggerEnter.m_PersistentCalls.m_Calls.Array.data[3].m_Target
+      propertyPath: EventOnTriggerEnter.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
       objectReference: {fileID: 11400000, guid: 72d1b215dcc78214e81dc86c5e9fc035,
         type: 2}
     - target: {fileID: 6247656628101972032, guid: cda17fa97f49abc49885291024a072af,
         type: 3}
+      propertyPath: EventOnTriggerEnter.m_PersistentCalls.m_Calls.Array.data[3].m_Target
+      value: 
+      objectReference: {fileID: 242330552914965399}
+    - target: {fileID: 6247656628101972032, guid: cda17fa97f49abc49885291024a072af,
+        type: 3}
       propertyPath: EventOnTriggerEnter.m_PersistentCalls.m_Calls.Array.data[4].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 242330552914965399}
     - target: {fileID: 6247656628101972032, guid: cda17fa97f49abc49885291024a072af,
         type: 3}
       propertyPath: EventOnTriggerEnter.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
@@ -122,22 +132,22 @@ PrefabInstance:
     - target: {fileID: 6247656628101972032, guid: cda17fa97f49abc49885291024a072af,
         type: 3}
       propertyPath: EventOnTriggerEnter.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: SetActive
-      objectReference: {fileID: 0}
-    - target: {fileID: 6247656628101972032, guid: cda17fa97f49abc49885291024a072af,
-        type: 3}
-      propertyPath: EventOnTriggerEnter.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
       value: Play
       objectReference: {fileID: 0}
     - target: {fileID: 6247656628101972032, guid: cda17fa97f49abc49885291024a072af,
         type: 3}
-      propertyPath: EventOnTriggerEnter.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
+      propertyPath: EventOnTriggerEnter.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
       value: Rumble
       objectReference: {fileID: 0}
     - target: {fileID: 6247656628101972032, guid: cda17fa97f49abc49885291024a072af,
         type: 3}
+      propertyPath: EventOnTriggerEnter.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
+      value: SetTrigger
+      objectReference: {fileID: 0}
+    - target: {fileID: 6247656628101972032, guid: cda17fa97f49abc49885291024a072af,
+        type: 3}
       propertyPath: EventOnTriggerEnter.m_PersistentCalls.m_Calls.Array.data[4].m_MethodName
-      value: 
+      value: SetTrigger
       objectReference: {fileID: 0}
     - target: {fileID: 6247656628101972032, guid: cda17fa97f49abc49885291024a072af,
         type: 3}
@@ -147,22 +157,32 @@ PrefabInstance:
     - target: {fileID: 6247656628101972032, guid: cda17fa97f49abc49885291024a072af,
         type: 3}
       propertyPath: EventOnTriggerEnter.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: UnityEngine.GameObject, UnityEngine
+      value: AudioAliase.Alias, AudioAliase
       objectReference: {fileID: 0}
     - target: {fileID: 6247656628101972032, guid: cda17fa97f49abc49885291024a072af,
         type: 3}
       propertyPath: EventOnTriggerEnter.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
-      value: AudioAliase.Alias, AudioAliase
-      objectReference: {fileID: 0}
-    - target: {fileID: 6247656628101972032, guid: cda17fa97f49abc49885291024a072af,
-        type: 3}
-      propertyPath: EventOnTriggerEnter.m_PersistentCalls.m_Calls.Array.data[3].m_TargetAssemblyTypeName
       value: RumblerDataPulse, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 6247656628101972032, guid: cda17fa97f49abc49885291024a072af,
         type: 3}
+      propertyPath: EventOnTriggerEnter.m_PersistentCalls.m_Calls.Array.data[3].m_TargetAssemblyTypeName
+      value: UnityEngine.Animator, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 6247656628101972032, guid: cda17fa97f49abc49885291024a072af,
+        type: 3}
       propertyPath: EventOnTriggerEnter.m_PersistentCalls.m_Calls.Array.data[4].m_TargetAssemblyTypeName
-      value: AudioAliase.Alias, AudioAliase
+      value: UnityEngine.Animator, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 6247656628101972032, guid: cda17fa97f49abc49885291024a072af,
+        type: 3}
+      propertyPath: EventOnTriggerEnter.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6247656628101972032, guid: cda17fa97f49abc49885291024a072af,
+        type: 3}
+      propertyPath: EventOnTriggerEnter.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_BoolArgument
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6247656628101972032, guid: cda17fa97f49abc49885291024a072af,
         type: 3}
@@ -178,6 +198,21 @@ PrefabInstance:
         type: 3}
       propertyPath: EventOnTriggerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_FloatArgument
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6247656628101972032, guid: cda17fa97f49abc49885291024a072af,
+        type: 3}
+      propertyPath: EventOnTriggerEnter.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_FloatArgument
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6247656628101972032, guid: cda17fa97f49abc49885291024a072af,
+        type: 3}
+      propertyPath: EventOnTriggerEnter.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_StringArgument
+      value: Open
+      objectReference: {fileID: 0}
+    - target: {fileID: 6247656628101972032, guid: cda17fa97f49abc49885291024a072af,
+        type: 3}
+      propertyPath: EventOnTriggerEnter.m_PersistentCalls.m_Calls.Array.data[4].m_Arguments.m_StringArgument
+      value: Open
       objectReference: {fileID: 0}
     - target: {fileID: 6247656628101972032, guid: cda17fa97f49abc49885291024a072af,
         type: 3}
@@ -202,13 +237,13 @@ PrefabInstance:
     - target: {fileID: 6247656628101972032, guid: cda17fa97f49abc49885291024a072af,
         type: 3}
       propertyPath: EventOnTriggerEnter.m_PersistentCalls.m_Calls.Array.data[4].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: 
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cda17fa97f49abc49885291024a072af, type: 3}
---- !u!1 &2701704431218419366 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5838579562406146168, guid: cda17fa97f49abc49885291024a072af,
+--- !u!95 &242330552914965399 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 8585060090681615689, guid: cda17fa97f49abc49885291024a072af,
     type: 3}
   m_PrefabInstance: {fileID: 8392648053014501086}
   m_PrefabAsset: {fileID: 0}

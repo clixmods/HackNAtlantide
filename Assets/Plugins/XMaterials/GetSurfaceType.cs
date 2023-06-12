@@ -11,9 +11,9 @@ public class GetSurfaceType : MonoBehaviour
     {
         RaycastHit hit;
         int layer_mask = LayerMask.GetMask("Default");
-        if (Physics.Raycast(transform.position+transform.up, -transform.up, out hit, 2,layer_mask, QueryTriggerInteraction.Collide))
+        if (Physics.Raycast(transform.position+transform.up, -transform.up, out hit, 2,layer_mask, QueryTriggerInteraction.Collide) && hit.collider.gameObject.TryGetComponent<MeshRenderer>(out MeshRenderer mesh))
         {
-            var material = hit.collider.gameObject.GetComponent<MeshRenderer>().sharedMaterials[0];
+            var material = mesh.sharedMaterials[0];
             return XMaterialsData.GetSurfaceType(material);
         }
 
