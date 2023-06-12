@@ -333,8 +333,6 @@ public class PlayerMovement : MonoBehaviour
         {
             _attackDirection = transform.forward;
             _speed = playerSpeed;
-            _transformLockTempForDash = _transformLock;
-            _transformLock = null;
             _isAttacking = true;
             StartCoroutine(CancelAttack(timeToLock));
         }
@@ -380,7 +378,6 @@ public class PlayerMovement : MonoBehaviour
     IEnumerator CancelAttack(float time)
     {
         yield return new WaitForSeconds(time);
-        _transformLock = _transformLockTempForDash;
         _isAttacking = false;
         _speed = _moveSpeed;
     }
