@@ -25,12 +25,28 @@ public class LoadingStateBehaviour : GameStateBehaviour<LoadingState>
 
     private void LoaderEnd()
     {
+        StartCoroutine(LoadingEndCoroutine());
+    }
+    IEnumerator LoadingEndCoroutine()
+    {
+        bool workerAreDone = false;
+        while (!workerAreDone)
+        {
+            workerAreDone = true;
+            for (int i = 0; i < LoadingWorkerBehaviour.LoadingWorkerBehaviours.Count; i++)
+            {
+                var worker = LoadingWorkerBehaviour.LoadingWorkerBehaviours[i];
+                if (!worker.WorkIsDone)
+                {
+                    workerAreDone = false;
+                }
+            }
+            yield return null;
+        }
         _action = null;
         _coroutine = null;
         gameObject.SetActive(false);
-        
     }
-
     private void LoaderStart(LoaderBehaviour arg1, Action arg2, IEnumerator arg3)
     {
         _action = arg2;

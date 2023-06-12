@@ -299,6 +299,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3358075031431027612, guid: ad82f62c7f2ebfb4fa81c86a35492089,
+        type: 3}
+      propertyPath: m_Animation
+      value: 
+      objectReference: {fileID: 7400000, guid: be16f184dc75a244691f09ee46f6f69e, type: 2}
+    - target: {fileID: 3358075031431027612, guid: ad82f62c7f2ebfb4fa81c86a35492089,
+        type: 3}
+      propertyPath: m_Animations.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3358075031431027612, guid: ad82f62c7f2ebfb4fa81c86a35492089,
+        type: 3}
+      propertyPath: m_Animations.Array.data[0]
+      value: 
+      objectReference: {fileID: 7400000, guid: be16f184dc75a244691f09ee46f6f69e, type: 2}
+    - target: {fileID: 3358075031431027612, guid: ad82f62c7f2ebfb4fa81c86a35492089,
+        type: 3}
+      propertyPath: m_Animations.Array.data[1]
+      value: 
+      objectReference: {fileID: 7400000, guid: be16f184dc75a244691f09ee46f6f69e, type: 2}
     - target: {fileID: 3621326289529563786, guid: ad82f62c7f2ebfb4fa81c86a35492089,
         type: 3}
       propertyPath: m_IsActive
@@ -389,6 +409,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 609d98d9d16675d4c8429f194929a6c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnMaxIncrease:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8721743832953527429}
+        m_TargetAssemblyTypeName: UnityEngine.Animation, UnityEngine
+        m_MethodName: CrossFade
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: ANIM_slider_health_increase
+          m_BoolArgument: 0
+        m_CallState: 2
   _staminaSO: {fileID: 11400000, guid: 7a3b5b3b905bbfe4fb4ea9ada55960e1, type: 2}
   maskFlik: {fileID: 4849555470391698331}
 --- !u!114 &4849555470391698331 stripped
@@ -491,6 +526,26 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3562703775124249050, guid: ad82f62c7f2ebfb4fa81c86a35492089,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3562703775124249050, guid: ad82f62c7f2ebfb4fa81c86a35492089,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3562703775124249050, guid: ad82f62c7f2ebfb4fa81c86a35492089,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3562703775124249050, guid: ad82f62c7f2ebfb4fa81c86a35492089,
+        type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3621326289529563786, guid: ad82f62c7f2ebfb4fa81c86a35492089,
         type: 3}
       propertyPath: m_IsActive
@@ -529,6 +584,11 @@ PrefabInstance:
     - target: {fileID: 5339505575890944136, guid: ad82f62c7f2ebfb4fa81c86a35492089,
         type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7658021297173541584, guid: ad82f62c7f2ebfb4fa81c86a35492089,
+        type: 3}
+      propertyPath: m_Color.a
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7716799928153698290, guid: ad82f62c7f2ebfb4fa81c86a35492089,
@@ -576,10 +636,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fba51fa703b2db439fc0476c247223a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnMaxIncrease:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8721743832953527429}
+        m_TargetAssemblyTypeName: UnityEngine.Animation, UnityEngine
+        m_MethodName: CrossFade
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: ANIM_slider_health_increase
+          m_BoolArgument: 0
+        m_CallState: 2
   healthValue: {fileID: 11400000, guid: 7368ba06a7477a942b281a13774a908f, type: 2}
 --- !u!224 &4974006236236028134 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1338876326744236031, guid: ad82f62c7f2ebfb4fa81c86a35492089,
+    type: 3}
+  m_PrefabInstance: {fileID: 6310559840194791193}
+  m_PrefabAsset: {fileID: 0}
+--- !u!111 &8721743832953527429 stripped
+Animation:
+  m_CorrespondingSourceObject: {fileID: 3358075031431027612, guid: ad82f62c7f2ebfb4fa81c86a35492089,
     type: 3}
   m_PrefabInstance: {fileID: 6310559840194791193}
   m_PrefabAsset: {fileID: 0}

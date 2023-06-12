@@ -1,23 +1,22 @@
 using UnityEngine;
 using UnityEngine.Events;
-
-public class TowerAnimation : MonoBehaviour
+public class AnimationHandler : MonoBehaviour
 {
     private Animation _animation;
-    [SerializeField] private AnimationClip animationTowerA;
+    [SerializeField] private AnimationClip animationToPlay;
     public UnityEvent OnAnimationStart;
     public UnityEvent OnAnimationStop;
     private void Awake()
     {
         _animation = GetComponent<Animation>();
-        _animation.AddClip(animationTowerA,animationTowerA.name);
-        _animation.clip = animationTowerA;
+        _animation.AddClip(animationToPlay,animationToPlay.name);
+        _animation.clip = animationToPlay;
     }
     public void PlayAnimation()
     {
         this.enabled = true;
         OnAnimationStart?.Invoke();
-        _animation.clip = animationTowerA;
+        _animation.clip = animationToPlay;
         _animation.Play();
     }
 

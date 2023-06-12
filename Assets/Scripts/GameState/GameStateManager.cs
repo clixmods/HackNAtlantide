@@ -254,6 +254,8 @@ public class GameStateManager : MonoBehaviour
     [SerializeField] private GameStateOverride gameStateOverride = new GameStateOverride();
     public GameStateOverride GameStateOverride { get { return gameStateOverride; } }
 
+    public static GameState ActiveGameState => Instance.currentGameStates[0];
+
     private bool isApplicationQuit = false;
 
     public GameObject tutoStateObject;
