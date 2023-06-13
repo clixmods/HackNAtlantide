@@ -2,6 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+
 public class SlowMotionAttackBehaviour : MonoBehaviour
 {
     [SerializeField] private PlayerAttackManager playerAttackManager;
@@ -9,6 +11,8 @@ public class SlowMotionAttackBehaviour : MonoBehaviour
     [SerializeField] private bool _checkEnemyAwake = true;
     [SerializeField] private float temporaryTimeScale = 0.2f;
     [SerializeField] private float duration = 1f;
+    public UnityEvent OnStartSlowMotion;
+    
     private bool _isSlowAttack;
     private void OnEnable()
     {
@@ -36,7 +40,7 @@ public class SlowMotionAttackBehaviour : MonoBehaviour
             }
             _isSlowAttack = false;
         }
-        else if( obj.Count == 0 && playerAttackManager.canGiveDamage && playerAttackManager.DamageableWasAttackedAtThisFrame )
+        else if( obj.Count <= 0 && playerAttackManager.canGiveDamage && playerAttackManager.DamageableWasAttackedAtThisFrame )
         {
             SetTimeScaleTemporary();
         }
@@ -44,6 +48,7 @@ public class SlowMotionAttackBehaviour : MonoBehaviour
 
     public void SetTimeScaleTemporary()
     {
+        OnStartSlowMotion?.Invoke();
         StartCoroutine(TimescaleCoroutine(temporaryTimeScale,duration));
     }
     IEnumerator TimescaleCoroutine(float value = 1, float duration = 0.2f)
