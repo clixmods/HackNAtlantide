@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using static UnityEngine.Rendering.DebugUI;
 
 public class MaterialFloatInterpolation : MonoBehaviour
@@ -15,11 +16,10 @@ public class MaterialFloatInterpolation : MonoBehaviour
     private MaterialPropertyBlock[] _propBlocks;
     [SerializeField] private Renderer meshRenderer;
 
-    [ColorUsage(true, true)]
-    [SerializeField] private Color emissiveColor;
-
     [SerializeField] private float timeToActiveEmissive = 1f;
     [SerializeField] private float timeToResetEmissive = 0.5f;
+    [SerializeField] private float activeValue = 1;
+    public UnityEvent OnResetFinished;
     private int EmissionColorID;
     private StateTransition _stateTransition = StateTransition.Idle;
 
@@ -37,6 +37,7 @@ public class MaterialFloatInterpolation : MonoBehaviour
         for (int i = 0; i < _propBlocks.Length; i++)
         {
             _propBlocks[i] = new MaterialPropertyBlock();
+            _propBlocks[i].SetFloat(floatName,meshRenderer.sharedMaterials[i].GetFloat(floatName));
         }
 
     }
@@ -44,7 +45,7 @@ public class MaterialFloatInterpolation : MonoBehaviour
     [ContextMenu("activeEmissive")]
     public void ActiveEmissive()
     {
-        ActiveEmissive(50);
+        ActiveEmissive(10);
     }
     public void ActiveEmissive(float value)
     {
@@ -60,7 +61,7 @@ public class MaterialFloatInterpolation : MonoBehaviour
         for (int i = 0; i < _propBlocks.Length; i++)
         {
             StopAllCoroutines();
-            StartCoroutine(LerpColor(_propBlocks[i], i,0, timeToResetEmissive, StateTransition.IsDisabling));
+            StartCoroutine(LerpColor(_propBlocks[i], i, 0, timeToResetEmissive, StateTransition.IsDisabling));
         }
     }
 
@@ -70,7 +71,7 @@ public class MaterialFloatInterpolation : MonoBehaviour
         float timeElapsed = 0;
         meshRenderer.GetPropertyBlock(materialPropertyBlock, index);
         // Assign our new value.
-        float initialValue = materialPropertyBlock.GetFloat(EmissionColorID);
+        float initialValue = stateTransition == StateTransition.IsDisabling ? activeValue : materialPropertyBlock.GetFloat(EmissionColorID);
 
         while (timeElapsed < timeTransition)
         {
@@ -88,6 +89,7 @@ public class MaterialFloatInterpolation : MonoBehaviour
             meshRenderer.SetPropertyBlock(materialPropertyBlock, index);
             yield return null;
         }
+        if (_stateTransition == StateTransition.IsDisabling) { OnResetFinished?.Invoke(); }
         _stateTransition = StateTransition.Idle;
     }
 

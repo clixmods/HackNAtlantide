@@ -11208,9 +11208,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   floatName: _Amount
   meshRenderer: {fileID: 0}
-  emissiveColor: {r: 0, g: 0, b: 0, a: 0}
   timeToActiveEmissive: 1
   timeToResetEmissive: 0.5
+  activeValue: 2
+  OnResetFinished:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &7632521978960315300
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11225,6 +11228,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   floatName: _EmissiveAmountBaseTexture
   meshRenderer: {fileID: 0}
-  emissiveColor: {r: 0, g: 1015.9686, b: 1024, a: 1}
   timeToActiveEmissive: 0.5
   timeToResetEmissive: 0.5
+  activeValue: 100
+  OnResetFinished:
+    m_PersistentCalls:
+      m_Calls: []
