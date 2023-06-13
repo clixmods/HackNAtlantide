@@ -5,44 +5,46 @@ using UnityEngine.Events;
 [RequireComponent(typeof(IDamageable))]
 public class DamageableLowHealthListener : MonoBehaviour
 {
-   private IDamageable _damageable;
-   private bool _isLowHealth;
-   public UnityEvent LowHealthEnter;
-   public UnityEvent LowHealthExit;
+    private IDamageable _damageable;
+    private bool _isLowHealth;
+    public UnityEvent LowHealthEnter;
+    public UnityEvent LowHealthExit;
 
-   #region MonoBehaviour
-   private void Awake()
-   {
-      _damageable = GetComponent<IDamageable>();
-      
-   }
-   private void OnEnable()
-   {
-      _damageable.OnChangeHealth += DamageableOnChangeHealth;
-   }
+    #region MonoBehaviour
 
-   private void OnDisable()
-   {
-      _damageable.OnChangeHealth -= DamageableOnChangeHealth;
-   }
+    private void Awake()
+    {
+        _damageable = GetComponent<IDamageable>();
+        DamageableOnChangeHealth(_damageable.health, _damageable.maxHealth);
+    }
 
-   #endregion
-   private void DamageableOnChangeHealth(float health, float maxHealth)
-   {
-         if (Math.Abs(health - maxHealth) < 0.1f)
-            return;
-       //  float health = _damageable.health;
-         if (health > 1 && _isLowHealth)
-         {
+    private void OnEnable()
+    {
+        _damageable.OnChangeHealth += DamageableOnChangeHealth;
+    }
+
+    private void OnDisable()
+    {
+        _damageable.OnChangeHealth -= DamageableOnChangeHealth;
+    }
+
+    #endregion
+
+    private void DamageableOnChangeHealth(float health, float maxHealth)
+    {
+        
+        if (maxHealth - health < 0.1f || (health > 1 && _isLowHealth))
+        {
             _isLowHealth = false;
             LowHealthExit?.Invoke();
             return;
-         }
-         if (health <= 1 && !_isLowHealth)
-         {
+        }
+
+        if (health <= 1 && !_isLowHealth)
+        {
             _isLowHealth = true;
             LowHealthEnter?.Invoke();
             return;
-         }
-   }
+        }
+    }
 }

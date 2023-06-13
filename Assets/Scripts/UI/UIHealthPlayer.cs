@@ -15,8 +15,6 @@ public class UIHealthPlayer : UISlider
         _slider = GetComponent<Slider>();
         _rectTransform = transform.GetComponent<RectTransform>();
         _striLength = _rectTransform.rect.width;
-        
-       
         StartCoroutine(WaitToDoAnimation());
     }
 
@@ -50,8 +48,13 @@ public class UIHealthPlayer : UISlider
         {
             t += Time.deltaTime;
             _rectTransform.sizeDelta = Vector2.Lerp(start,target , t);
+            
             yield return null;
         }
+        
+        _rectTransform.sizeDelta = new Vector2 (_striLength * healthValue.MaxValue, _rectTransform.sizeDelta.y);
+        _slider.value = healthValue.Value01; // Need to update the slider value to keep correct information on screen
+        
     }
 
   

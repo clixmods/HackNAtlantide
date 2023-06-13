@@ -11,6 +11,7 @@ public class PlayerHealth : Character
     public UnityEvent HealthGain;
     public UnityEvent HealthGainFull;
     public UnityEvent MaxHealthIncrease;
+    public event IDamageable.EventHealth OnChangeHealth;
     private bool invincibleFromState = false;
     public void InvincibleEvent(bool value)
     {
@@ -37,9 +38,7 @@ public class PlayerHealth : Character
         {
             
             base.maxHealth = value;
-            healthValue.MaxValue = value; 
-            
-            
+            healthValue.MaxValue = value;
         }
     } 
     
@@ -66,6 +65,7 @@ public class PlayerHealth : Character
     private void OnMaxValueChanged(float maxValue)
     {
         MaxHealthIncrease?.Invoke();
+        OnChangeHealth?.Invoke(healthValue.Value, maxValue);
     }
 
     protected override void InitHealth()

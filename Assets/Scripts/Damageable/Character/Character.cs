@@ -37,7 +37,6 @@ public class Character : MonoBehaviour, IDamageable
         {
             _maxHealth = value;
             OnChangeHealth?.Invoke(health, value);
-
         }
     }
     public virtual float health
