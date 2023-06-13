@@ -188,17 +188,17 @@ public class SettingsScriptableObject : ScriptableObjectSaveable
     public override void OnLoad(string data)
     {
         SettingsSaveData settingsSaveData = JsonUtility.FromJson<SettingsSaveData>(data);
-        _volumeMusic = settingsSaveData.volumeMusic;
-        _volumeSFX = settingsSaveData.volumeSFX;
-        _volumeGeneral = settingsSaveData.volumeGeneral;
-        _rumblerIntensity = settingsSaveData.rumblerIntensity;
-        _windowMode = settingsSaveData.windowMode;
-        _useCameraShake = settingsSaveData.useCameraShake;
-        _maxRefreshRate = settingsSaveData.maxRefreshRate;
-        _screenResolution = settingsSaveData.screenResolution;
-        _lockFPS = settingsSaveData.lockFps;
-        _useVsync = settingsSaveData.useVsync;
-        _showFPS = settingsSaveData.showFps;
+        VolumeMusic = settingsSaveData.volumeMusic;
+        VolumeSFX = settingsSaveData.volumeSFX;
+        VolumeGeneral = settingsSaveData.volumeGeneral;
+        RumblerIntensity = settingsSaveData.rumblerIntensity;
+        WindowMode = settingsSaveData.windowMode;
+        UseCameraShake = settingsSaveData.useCameraShake;
+        MaxRefreshRate = settingsSaveData.maxRefreshRate;
+        ScreenResolution = settingsSaveData.screenResolution;
+        LockFps = settingsSaveData.lockFps;
+        UseVSYnc = settingsSaveData.useVsync;
+        ShowFps = settingsSaveData.showFps;
     }
 
     public override void OnReset()
