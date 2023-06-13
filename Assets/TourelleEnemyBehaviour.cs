@@ -25,11 +25,6 @@ public class TourelleEnemyBehaviour : MonoBehaviour
     public UnityEvent OnEndDeactivate;
     public UnityEvent OnShoot;
     public UnityEvent OnCharging;
-
-    private void Awake()
-    {
-        _animator = GetComponent<Animator>();
-    }
     private void Update()
     {
         _distanceWithPlayerSqr = (PlayerInstanceScriptableObject.Player.transform.position - transform.position).sqrMagnitude;
