@@ -121,11 +121,11 @@ public class AttackLevitationInteractable : Interactable
             transform.LookAt(_transformDestination);
             _rigidBody.velocity = direction * projectionSpeedMultiplier ;
         }
-        else if(_hasInteract )
+        else if(_hasInteract)
         {
-            if (_playerStamina.Value > _playerStamina.MaxStamina - 1)
+            if (_playerStamina.Value > _playerStamina.MaxStamina - useStaminaAmount)
             {
-                _playerStamina.UseStamina(_playerStamina.SpeedToRecharge*Time.deltaTime);
+                _playerStamina.Value = _playerStamina.MaxStamina - useStaminaAmount;
             }
             transform.position = _playerDetectionScriptableObject.PlayerPosition + Vector3.up * 4;
         }
@@ -193,6 +193,7 @@ public class AttackLevitationInteractable : Interactable
 
     IEnumerator ChargeObject()
     {
+        float valueStaminaBeforeCharge = _playerStamina.Value;
         _isCharging = true;
         float timeElapsed = 0;
         Vector3 startPosition = transform.position  ;
@@ -208,14 +209,15 @@ public class AttackLevitationInteractable : Interactable
                 yield break;
             }
             _inputHelper.enabled = true;
-            _playerStamina.UseStamina(_playerStamina.SpeedToRecharge*Time.deltaTime);
+            //_playerStamina.UseStamina(_playerStamina.SpeedToRecharge*Time.deltaTime);
             var t = timeElapsed / timeToBeCharged;
             _uiChargeInputHelper.SetFillValue(t);
             transform.position = Vector3.Lerp(startPosition, destinationPosition, t);
-            timeElapsed += Time.deltaTime;
             _playerStamina.UseStamina((Time.deltaTime / timeToBeCharged) * useStaminaAmount);
+            timeElapsed += Time.deltaTime;
             yield return null;
         }
+        _playerStamina.Value = valueStaminaBeforeCharge - useStaminaAmount;
         _uiChargeInputHelper.SetFillValue(1);
         _inputHelper.enabled = false;
         IsCharged?.Invoke();

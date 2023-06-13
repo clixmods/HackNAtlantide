@@ -48,6 +48,7 @@ public class PlayerStamina : MonoBehaviour
         OnUseStamina?.Invoke();
     }
     
+    
     void FailStamina()
     {
         _failUseStaminaFX.Play();
