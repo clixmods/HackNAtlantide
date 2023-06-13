@@ -30,7 +30,33 @@ public class FocusCinemachineTargetGroup : CinemachineTargetGroup
         _FollowerPositionInterpolation = 0;
         //this.enabled = true;
     }
-    private void Update()
+    
+    void FixedUpdate()
+    {
+        if (m_UpdateMethod == UpdateMethod.FixedUpdate)
+        {
+            DoUpdate();CustomUpdate();
+        }
+    }
+
+    void Update()
+    {
+        if (!Application.isPlaying || m_UpdateMethod == UpdateMethod.Update)
+        {
+            DoUpdate();CustomUpdate();
+        }
+    }
+
+    void LateUpdate()
+    {
+        if (m_UpdateMethod == UpdateMethod.LateUpdate)
+        {
+            DoUpdate();
+            CustomUpdate();
+        }
+    }
+
+    private void CustomUpdate()
     {
         if ((Application.isPlaying))
         {
@@ -51,6 +77,7 @@ public class FocusCinemachineTargetGroup : CinemachineTargetGroup
                     //this.enabled = false;
                 }
             }
+           
         }
        
     }

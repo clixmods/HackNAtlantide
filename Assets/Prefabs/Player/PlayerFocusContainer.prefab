@@ -168,7 +168,7 @@ MonoBehaviour:
   m_LockStageInInspector: 
   m_StreamingVersion: 20170927
   m_Priority: 100
-  m_StandbyUpdate: 2
+  m_StandbyUpdate: 1
   m_LookAt: {fileID: 7517530421395233793}
   m_Follow: {fileID: 0}
   m_Lens:
@@ -254,7 +254,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_PositionMode: 0
   m_RotationMode: 0
-  m_UpdateMethod: 2
+  m_UpdateMethod: 1
   m_Targets:
   - target: {fileID: 0}
     weight: 1
@@ -397,6 +397,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeTransition: 0.5
+  isTemporary: 0
+  duration: 2
+  flickering: 0
+  minWeight: 0
+  maxWeight: 1
+  speedMultiplier: 1
 --- !u!114 &3974756496563648459
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -441,4 +447,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  InputValueChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  onDisable:
+    m_PersistentCalls:
+      m_Calls: []
   listenInputWithDelay: 0

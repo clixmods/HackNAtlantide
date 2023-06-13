@@ -101,7 +101,7 @@ public class Focus : MonoBehaviour
     {
         DisableFocus();
     }
-    private void LateUpdate()
+    private void FixedUpdate()
     {
         if (FocusIsEnable && _noFocusVirtualCamera != null && !_isTransitioning)
         {
@@ -148,6 +148,7 @@ public class Focus : MonoBehaviour
         float timeTransition = 2;
         while (timeElapsed < timeTransition)
         {
+            
             timeElapsed += Time.deltaTime;
             if (newCameraVirtual != _noFocusVirtualCamera)
             {
@@ -158,7 +159,7 @@ public class Focus : MonoBehaviour
             var t = timeElapsed / timeTransition;
             _camFocusTransform.position = Vector3.Lerp(cameraPosition,newCameraVirtual.State.FinalPosition , t);
             _camFocusTransform.rotation = Quaternion.Lerp(cameraRotation, newCameraVirtual.State.FinalOrientation, t);
-            yield return null;
+            yield return new WaitForFixedUpdate();
         }
 
         _isTransitioning = false;
