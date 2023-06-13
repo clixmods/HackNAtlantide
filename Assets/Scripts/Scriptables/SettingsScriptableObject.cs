@@ -13,12 +13,17 @@ public class SettingsScriptableObject : ScriptableObjectSaveable
 
     #region Audio
     [SerializeField] private float _volumeMusic;
+    private string VolumeMusicID = "VolumeMusic";
     public float VolumeMusic
     {
         get { return _volumeMusic; }
         set
         {
-            _volumeMusic = Mathf.Clamp(value, 0, 1);
+            _volumeMusic = Mathf.Clamp(value, -80, 0);
+            if (_audioMixer.GetFloat(VolumeMusicID, out float volume))
+            {
+                _audioMixer.SetFloat(VolumeMusicID, _volumeMusic);
+            }
             OnVolumeMusicChanged?.Invoke(_volumeMusic);
         }
     }
@@ -32,7 +37,7 @@ public class SettingsScriptableObject : ScriptableObjectSaveable
         get { return _volumeSFX; }
         set
         {
-            _volumeSFX = Mathf.Clamp(value, 0, 1);
+            _volumeSFX = Mathf.Clamp(value, -80, 0);
             if (_audioMixer.GetFloat(VolumeSFXID, out float volume))
             {
                 _audioMixer.SetFloat(VolumeSFXID, _volumeSFX);
@@ -42,13 +47,18 @@ public class SettingsScriptableObject : ScriptableObjectSaveable
     }
     public Action<float> OnVolumeSFXChanged;
 
+    private string VolumeGeneralID = "VolumeMaster";
     [SerializeField] private float _volumeGeneral;
     public float VolumeGeneral
     {
         get { return _volumeGeneral; }
         set
         {
-            _volumeGeneral = Mathf.Clamp(value, 0, 1);
+            _volumeGeneral = Mathf.Clamp(value, -80, 0);
+            if (_audioMixer.GetFloat(VolumeGeneralID, out float volume))
+            {
+                _audioMixer.SetFloat(VolumeGeneralID, _volumeGeneral);
+            }
             OnVolumeGeneralChanged?.Invoke(_volumeGeneral);
         }
     }
@@ -199,9 +209,9 @@ public class SettingsScriptableObject : ScriptableObjectSaveable
         _rumblerIntensity = RumblerIntensity.mid;
         _windowMode = FullScreenMode.ExclusiveFullScreen;
         _useCameraShake = true;
-        _maxRefreshRate = 144;
+        _maxRefreshRate = 144;*/
         _screenResolution = Screen.currentResolution;
-        _lockFPS = true;
+        /*_lockFPS = true;
         _useVsync = true;
         _showFPS = false;*/
     }
