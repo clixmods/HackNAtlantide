@@ -9,6 +9,7 @@ public class UIHealthPlayer : UISlider
 {
     [SerializeField] private ScriptableValueFloat healthValue;
     private bool lerpUpdateCoroutine ;
+    [SerializeField] private LagFill lagfill;
    
     private void Awake()
     {
@@ -42,19 +43,19 @@ public class UIHealthPlayer : UISlider
     {
         Vector2 start = _rectTransform.sizeDelta;
         Vector2 target = new Vector2 (_striLength * healthValue.MaxValue, _rectTransform.sizeDelta.y);
-    
+        
         float t = 0;
         while (t < 1)
         {
             t += Time.deltaTime;
             _rectTransform.sizeDelta = Vector2.Lerp(start,target , t);
-            
+            lagfill.SetLagFillToTargetDirectly();
             yield return null;
         }
         
         _rectTransform.sizeDelta = new Vector2 (_striLength * healthValue.MaxValue, _rectTransform.sizeDelta.y);
         _slider.value = healthValue.Value01; // Need to update the slider value to keep correct information on screen
-        
+        lagfill.SetLagFillToTargetDirectly();
     }
 
   

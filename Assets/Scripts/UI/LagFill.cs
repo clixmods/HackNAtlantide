@@ -27,12 +27,14 @@ public class LagFill : MonoBehaviour
    void OnValueChanged(float value)
    {
       this.enabled = true;
+      
       _currentDelayLag = delayToStartLag;
       t = 0;
    }
 
    private void Update()
    {
+      
       if (_currentDelayLag > 0)
       {
          _currentDelayLag -= Time.deltaTime;
@@ -43,5 +45,10 @@ public class LagFill : MonoBehaviour
          float interpo = t / interpolationDuration; 
          fillLagRectTransform.anchorMax = Vector2.Lerp(fillLagRectTransform.anchorMax, _slider.fillRect.anchorMax, interpo );
       }
+   }
+
+   public void SetLagFillToTargetDirectly()
+   {
+      fillLagRectTransform.anchorMax = _slider.fillRect.anchorMax;
    }
 }

@@ -6,7 +6,7 @@ public class UIStamina : UISlider
 {
     [SerializeField] PlayerStaminaScriptableObject _staminaSO;
     [SerializeField] private Image maskFlik;
-
+    
     private bool lerpUpdateCoroutine;
     // Calcul stamina length
    
@@ -60,7 +60,7 @@ public class UIStamina : UISlider
     {
         
        // _rectTransform.sizeDelta = new Vector2 (_striLength * _staminaSO.MaxStamina, _rectTransform.sizeDelta.y);
-        _slider.value = value/_staminaSO.MaxStamina;
+       _slider.value = value/_staminaSO.MaxStamina;
     }
     public override IEnumerator UpdateCoroutine()
     {

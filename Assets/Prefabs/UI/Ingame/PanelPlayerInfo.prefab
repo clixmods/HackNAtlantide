@@ -299,6 +299,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1503790769863582905, guid: ad82f62c7f2ebfb4fa81c86a35492089,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: ed246f30dbecf144ab33ffb57b584378,
+        type: 3}
+    - target: {fileID: 3138663662263092683, guid: ad82f62c7f2ebfb4fa81c86a35492089,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3358075031431027612, guid: ad82f62c7f2ebfb4fa81c86a35492089,
         type: 3}
       propertyPath: m_Animation
@@ -369,6 +380,16 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: 0.023406982
       objectReference: {fileID: 0}
+    - target: {fileID: 7132965970242701232, guid: ad82f62c7f2ebfb4fa81c86a35492089,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7474136538521288755, guid: ad82f62c7f2ebfb4fa81c86a35492089,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7716799928153698290, guid: ad82f62c7f2ebfb4fa81c86a35492089,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -388,6 +409,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Slider Stamina
+      objectReference: {fileID: 0}
+    - target: {fileID: 9049821233773853151, guid: ad82f62c7f2ebfb4fa81c86a35492089,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ad82f62c7f2ebfb4fa81c86a35492089, type: 3}
@@ -624,6 +650,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ad82f62c7f2ebfb4fa81c86a35492089, type: 3}
+--- !u!114 &3470845021718857514 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7474136538521288755, guid: ad82f62c7f2ebfb4fa81c86a35492089,
+    type: 3}
+  m_PrefabInstance: {fileID: 6310559840194791193}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4270807501839689168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6ce73dda32895e4895774ef1eef50fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4270807501839689168 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7842852136325112521, guid: ad82f62c7f2ebfb4fa81c86a35492089,
@@ -658,6 +696,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   healthValue: {fileID: 11400000, guid: 7368ba06a7477a942b281a13774a908f, type: 2}
+  lagfill: {fileID: 3470845021718857514}
 --- !u!224 &4974006236236028134 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1338876326744236031, guid: ad82f62c7f2ebfb4fa81c86a35492089,
