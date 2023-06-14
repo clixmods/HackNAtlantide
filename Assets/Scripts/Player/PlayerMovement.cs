@@ -472,8 +472,8 @@ public class PlayerMovement : MonoBehaviour
     }
     public void FocusSwitch(IFocusable focusable)
     {
-        
         _transformLock = focusable.focusableTransform;
+        _transformLockTempForDash = focusable.focusableTransform;
     }
     public void FocusUnLock()
     {
