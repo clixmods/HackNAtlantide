@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using Attack;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.Events;
 using Random = UnityEngine.Random;
 
@@ -59,6 +60,9 @@ public class AttackLevitationInteractable : Interactable
     // Mesh destroy
     private Rigidbody[] _rigidbodiesFromMeshDestroy;
     
+    // Reset cached
+    private Vector3 positionOnInteract;
+    
     #region Monobehaviour
     private void Awake()
     {
@@ -86,6 +90,7 @@ public class AttackLevitationInteractable : Interactable
         {
             _rigidbodiesFromMeshDestroy = _meshDestroy.GetComponentsInChildren<Rigidbody>();
         }
+        positionOnInteract = transform.position;
     }
     private void OnDestroy()
     {
@@ -245,6 +250,7 @@ public class AttackLevitationInteractable : Interactable
     #region IInteractable
     public override bool Interact()
     {
+        positionOnInteract = transform.position;
         if (_isAttacking)
         {
             return false;
@@ -311,8 +317,18 @@ public class AttackLevitationInteractable : Interactable
     }
     public override void ResetTransform()
     {
-        transform.position = _initialPosition;
-        transform.rotation = _initialRotation;
+        NavMeshHit hit;
+        if (NavMesh.SamplePosition(positionOnInteract, out hit, Mathf.Infinity, NavMesh.AllAreas))
+        {
+            transform.position = hit.position;
+            transform.rotation = _initialRotation;
+        }
+        else
+        {
+            transform.position = _initialPosition;
+            transform.rotation = _initialRotation;
+        }
+        
     }
 
     #endregion
