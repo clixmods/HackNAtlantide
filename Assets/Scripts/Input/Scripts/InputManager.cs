@@ -19,6 +19,7 @@ public class InputManager : MonoBehaviour
     [SerializeField] private InputButtonScriptableObject _pause;
 
     [SerializeField] private InputButtonScriptableObject _openCheatMenu;
+    [SerializeField] private InputButtonScriptableObject _anyKeyInGame;
 
     [Header("UI")]
 
@@ -164,6 +165,7 @@ public class InputManager : MonoBehaviour
         _input.InGame.Pause.performed += ctx => _pause.ChangeValue(true);
 
         _input.InGame.CheatMenu.performed += ctx => _openCheatMenu.ChangeValue(true);
+        _input.InGame.AnyKey.performed += ctx => _anyKeyInGame.ChangeValue(true);
 
 
     }
@@ -195,7 +197,7 @@ public class InputManager : MonoBehaviour
         _input.InGame.Pause.performed -= ctx =>  _pause.ChangeValue(true);
 
         _input.InGame.CheatMenu.performed -= ctx => _openCheatMenu.ChangeValue(true);
-
+        _input.InGame.AnyKey.performed -= ctx => _anyKeyInGame.ChangeValue(true);
         _input.Disable();
     }
     private void Update()

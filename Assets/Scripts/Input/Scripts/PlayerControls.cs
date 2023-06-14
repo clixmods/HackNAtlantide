@@ -116,6 +116,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""AnyKey"",
+                    ""type"": ""Button"",
+                    ""id"": ""7bd26fa0-bfa3-4661-a4e9-cd3d93c5950b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -391,6 +400,94 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""CheatMenu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c0a3a347-1192-40ae-a534-daad3f1adf16"",
+                    ""path"": ""<Keyboard>/anyKey"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AnyKey"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5b1ad84d-8981-4218-b288-af614be6629c"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AnyKey"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6168edfc-9502-4bcb-bb94-0f29e610bf46"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AnyKey"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1f31d90c-f66f-45a6-8e07-d30b5c9b9a3e"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AnyKey"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""81e884b0-de40-429f-b01b-37c6a038b0eb"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AnyKey"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""16573ae8-121a-436d-b205-9913ec5d830f"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AnyKey"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d12844be-5fa9-4a0d-af29-1adfa7c45f28"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AnyKey"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""aef474ff-049b-49d8-ba71-b33660f3948c"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AnyKey"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1074,6 +1171,39 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""action"": ""AnyKey"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""cf036d5f-5ffa-4f11-8114-8343190a1d26"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AnyKey"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""16cc7868-b2da-4973-abaa-9fedf8ad950e"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AnyKey"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""96c7c46b-f841-4b0c-92fc-33df31b942b7"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AnyKey"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -1120,6 +1250,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_InGame_Pause = m_InGame.FindAction("Pause", throwIfNotFound: true);
         m_InGame_Book = m_InGame.FindAction("Book", throwIfNotFound: true);
         m_InGame_CheatMenu = m_InGame.FindAction("CheatMenu", throwIfNotFound: true);
+        m_InGame_AnyKey = m_InGame.FindAction("AnyKey", throwIfNotFound: true);
         // binding
         m_binding = asset.FindActionMap("binding", throwIfNotFound: true);
         m_binding_Newaction = m_binding.FindAction("New action", throwIfNotFound: true);
@@ -1207,6 +1338,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_InGame_Pause;
     private readonly InputAction m_InGame_Book;
     private readonly InputAction m_InGame_CheatMenu;
+    private readonly InputAction m_InGame_AnyKey;
     public struct InGameActions
     {
         private @PlayerControls m_Wrapper;
@@ -1221,6 +1353,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @Pause => m_Wrapper.m_InGame_Pause;
         public InputAction @Book => m_Wrapper.m_InGame_Book;
         public InputAction @CheatMenu => m_Wrapper.m_InGame_CheatMenu;
+        public InputAction @AnyKey => m_Wrapper.m_InGame_AnyKey;
         public InputActionMap Get() { return m_Wrapper.m_InGame; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1260,6 +1393,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @CheatMenu.started -= m_Wrapper.m_InGameActionsCallbackInterface.OnCheatMenu;
                 @CheatMenu.performed -= m_Wrapper.m_InGameActionsCallbackInterface.OnCheatMenu;
                 @CheatMenu.canceled -= m_Wrapper.m_InGameActionsCallbackInterface.OnCheatMenu;
+                @AnyKey.started -= m_Wrapper.m_InGameActionsCallbackInterface.OnAnyKey;
+                @AnyKey.performed -= m_Wrapper.m_InGameActionsCallbackInterface.OnAnyKey;
+                @AnyKey.canceled -= m_Wrapper.m_InGameActionsCallbackInterface.OnAnyKey;
             }
             m_Wrapper.m_InGameActionsCallbackInterface = instance;
             if (instance != null)
@@ -1294,6 +1430,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @CheatMenu.started += instance.OnCheatMenu;
                 @CheatMenu.performed += instance.OnCheatMenu;
                 @CheatMenu.canceled += instance.OnCheatMenu;
+                @AnyKey.started += instance.OnAnyKey;
+                @AnyKey.performed += instance.OnAnyKey;
+                @AnyKey.canceled += instance.OnAnyKey;
             }
         }
     }
@@ -1490,6 +1629,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnPause(InputAction.CallbackContext context);
         void OnBook(InputAction.CallbackContext context);
         void OnCheatMenu(InputAction.CallbackContext context);
+        void OnAnyKey(InputAction.CallbackContext context);
     }
     public interface IBindingActions
     {

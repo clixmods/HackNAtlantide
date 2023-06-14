@@ -113,13 +113,13 @@ public class PlayerAttackManager : MonoBehaviour
         switch(attack.Index)
         {
             case 1:
-                _playerMovement.Attack(true, 0.3f, 2f);
+                _playerMovement.Attack(true, 0.15f, 2f);
                 break;
             case 2:
                 _playerMovement.Attack(true, 0.3f, 2f);
                 break;
             case 3:
-                _playerMovement.Attack(true, 0.3f, 5f);
+                _playerMovement.Attack(true, 0.5f, 5f);
                 break;
         }
         
