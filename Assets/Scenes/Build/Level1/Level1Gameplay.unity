@@ -8182,8 +8182,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1431442560461809967, guid: 35182bafc89f6cf488f4445bf843a630,
         type: 3}
+      propertyPath: EventOnTriggerEnter.m_PersistentCalls.m_Calls.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1431442560461809967, guid: 35182bafc89f6cf488f4445bf843a630,
+        type: 3}
       propertyPath: EventOnTriggerInput.m_PersistentCalls.m_Calls.Array.size
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1431442560461809967, guid: 35182bafc89f6cf488f4445bf843a630,
+        type: 3}
+      propertyPath: EventOnTriggerEnter.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1431442560461809967, guid: 35182bafc89f6cf488f4445bf843a630,
         type: 3}
@@ -8195,6 +8205,11 @@ PrefabInstance:
       propertyPath: EventOnTriggerInput.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 1431442560461809967, guid: 35182bafc89f6cf488f4445bf843a630,
+        type: 3}
+      propertyPath: EventOnTriggerEnter.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      value: 
+      objectReference: {fileID: 192001940}
     - target: {fileID: 1431442560461809967, guid: 35182bafc89f6cf488f4445bf843a630,
         type: 3}
       propertyPath: EventOnTriggerInput.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -8215,6 +8230,16 @@ PrefabInstance:
         type: 2}
     - target: {fileID: 1431442560461809967, guid: 35182bafc89f6cf488f4445bf843a630,
         type: 3}
+      propertyPath: EventOnTriggerEnter.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1431442560461809967, guid: 35182bafc89f6cf488f4445bf843a630,
+        type: 3}
+      propertyPath: EventOnTriggerEnter.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: SetActive
+      objectReference: {fileID: 0}
+    - target: {fileID: 1431442560461809967, guid: 35182bafc89f6cf488f4445bf843a630,
+        type: 3}
       propertyPath: EventOnTriggerInput.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: RemoveInputInfo
       objectReference: {fileID: 0}
@@ -8227,6 +8252,11 @@ PrefabInstance:
         type: 3}
       propertyPath: EventOnTriggerInput.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
       value: SaveAll
+      objectReference: {fileID: 0}
+    - target: {fileID: 1431442560461809967, guid: 35182bafc89f6cf488f4445bf843a630,
+        type: 3}
+      propertyPath: EventOnTriggerEnter.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
+      value: UnityEngine.GameObject, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 1431442560461809967, guid: 35182bafc89f6cf488f4445bf843a630,
         type: 3}
@@ -8245,6 +8275,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1431442560461809967, guid: 35182bafc89f6cf488f4445bf843a630,
         type: 3}
+      propertyPath: EventOnTriggerEnter.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1431442560461809967, guid: 35182bafc89f6cf488f4445bf843a630,
+        type: 3}
       propertyPath: EventOnTriggerInput.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
       value: 0
       objectReference: {fileID: 0}
@@ -8257,6 +8292,11 @@ PrefabInstance:
         type: 3}
       propertyPath: EventOnTriggerInput.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_BoolArgument
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1431442560461809967, guid: 35182bafc89f6cf488f4445bf843a630,
+        type: 3}
+      propertyPath: EventOnTriggerEnter.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 1431442560461809967, guid: 35182bafc89f6cf488f4445bf843a630,
         type: 3}
@@ -61276,7 +61316,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh1897820
+  m_Name: pb_Mesh3593934
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
