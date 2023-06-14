@@ -7,22 +7,22 @@ namespace AudioAliase
     {
         public static AudioPlayer _audioPlayerAnnouncer;
 
-        public static bool PlayAnnouncer(int aliaseName)
-        {
-            if (_audioPlayerAnnouncer == null)
-            {
-                AudioManager.GetAudioPlayer(out var audioPlayer);
-                _audioPlayerAnnouncer = audioPlayer;
-                _audioPlayerAnnouncer.IsReserved = true;
-            }
-
-            if (_audioPlayerAnnouncer.Source.isPlaying)
-            {
-                return false;
-            }
-
-            return AudioManager.PlaySoundAtPosition(aliaseName, _audioPlayerAnnouncer) != null;
-        }
+        // public static bool PlayAnnouncer(int aliaseName)
+        // {
+        //     if (_audioPlayerAnnouncer == null)
+        //     {
+        //         AudioManager.GetAudioPlayer(out var audioPlayer);
+        //         _audioPlayerAnnouncer = audioPlayer;
+        //         _audioPlayerAnnouncer.IsReserved = true;
+        //     }
+        //
+        //     if (_audioPlayerAnnouncer.Source.isPlaying)
+        //     {
+        //         return false;
+        //     }
+        //
+        //     return AudioManager.PlaySoundAtPosition(aliaseName, _audioPlayerAnnouncer) != null;
+        // }
 
     }
 }

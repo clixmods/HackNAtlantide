@@ -84,7 +84,7 @@ namespace AudioAliase
         }
         [SerializeField] private List<AudioPlayer> _audioSource;
         public const string AliasNameNull = "None";
-        [SerializeField] private int audioSourcePoolSize = 128; // 32 is a good start
+        [SerializeField] private int audioSourcePoolSize = 512; // 32 is a good start
         private static Vector3 positionDefault = Vector3.zero;
         [Header("Debug")]
         private bool _isPaused;
@@ -246,7 +246,7 @@ namespace AudioAliase
         }
         public static Alias PlaySoundAtPosition(Alias aliaseName, Vector3 position = default)
         {
-            if(aliaseName != null && GetAudioPlayer(out AudioPlayer audioPlayer))
+            if( aliaseName != null && aliaseName.IsPlayable() && GetAudioPlayer(out AudioPlayer audioPlayer))
             {
                 audioPlayer.Setup(aliaseName, position);
 
@@ -260,20 +260,20 @@ namespace AudioAliase
 
             return null;
         }
-        public static Alias PlaySoundAtPosition(int aliaseName, AudioPlayer audioPlayer ,Vector3 position = default)
-        {
-            if(GetAlias(aliaseName, out Alias clip))
-            {
-                audioPlayer.Setup(clip , position);
-                if (clip.isPlaceholder)
-                {
-                    if(ShowDebugText) Debug.LogWarning("Un son placeholder a été jouer, il faut le changer , nom de l'aliase " + aliaseName);
-                }
-                PlaySoundAtPosition(clip.Secondary, position);
-                return clip;
-            }
-            return null;
-        }
+        // public static Alias PlaySoundAtPosition(int aliaseName, AudioPlayer audioPlayer ,Vector3 position = default)
+        // {
+        //     if(GetAlias(aliaseName, out Alias clip))
+        //     {
+        //         audioPlayer.Setup(clip , position);
+        //         if (clip.isPlaceholder)
+        //         {
+        //             if(ShowDebugText) Debug.LogWarning("Un son placeholder a été jouer, il faut le changer , nom de l'aliase " + aliaseName);
+        //         }
+        //         PlaySoundAtPosition(clip.Secondary, position);
+        //         return clip;
+        //     }
+        //     return null;
+        // }
         /// <summary>
         /// Play a loop sound on a desired transform. The audioplayer can move with the transform
         /// </summary>

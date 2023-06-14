@@ -15,13 +15,13 @@ MonoBehaviour:
   aliasName: middle_golem_ondeath
   description: 
   Tag: 
-  MixerGroup: {fileID: -5283781399218446997, guid: 5da2c8dde8bb9094f8aaeafbe0aca20b,
+  MixerGroup: {fileID: 2217067117907757068, guid: 5da2c8dde8bb9094f8aaeafbe0aca20b,
     type: 2}
   audio:
-  - {fileID: 8300000, guid: 07371b11261ab03498063ae9ebddef25, type: 3}
+  - {fileID: 8300000, guid: 927844b1725abaf4ca2fb100e598a2f5, type: 3}
   soundType: 0
   randomizeClips: 0
-  Secondary: {fileID: 0}
+  Secondary: {fileID: 11400000, guid: 9e019bbae92a0d34fa77d8766bd4fa26, type: 2}
   bypassEffects: 0
   bypassListenerEffects: 0
   bypassReverbZones: 0
@@ -38,7 +38,7 @@ MonoBehaviour:
   minPitch: 1
   maxPitch: 1.01
   stereoPan: 0
-  spatialBlend: 0
+  spatialBlend: 1
   reverbZoneMix: 1
   dopplerLevel: 1
   Spread: 1
@@ -57,8 +57,7 @@ MonoBehaviour:
   customDuration: 0
   isInit: 0
   isPlaceholder: 1
-  audioPlayers:
-  - {fileID: 0}
+  audioPlayers: []
   UseSurfaceDetection: 0
   surfacesAlias: []
   guid: -499723598

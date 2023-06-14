@@ -38,7 +38,7 @@ MonoBehaviour:
   minPitch: 1
   maxPitch: 1.01
   stereoPan: 0
-  spatialBlend: 0.911
+  spatialBlend: 1
   reverbZoneMix: 1
   dopplerLevel: 1
   Spread: 1
@@ -75,7 +75,10 @@ MonoBehaviour:
   customDuration: 0
   isInit: 0
   isPlaceholder: 1
-  audioPlayers: []
+  audioPlayers:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   UseSurfaceDetection: 0
   surfacesAlias: []
   guid: -411445872

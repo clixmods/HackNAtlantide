@@ -2333,7 +2333,7 @@ PrefabInstance:
     - target: {fileID: 7450028906285957753, guid: 99d19c5c84645f7409300b87b05b63e4,
         type: 3}
       propertyPath: OnHitEvent.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7450028906285957753, guid: 99d19c5c84645f7409300b87b05b63e4,
         type: 3}
@@ -2343,6 +2343,11 @@ PrefabInstance:
     - target: {fileID: 7450028906285957753, guid: 99d19c5c84645f7409300b87b05b63e4,
         type: 3}
       propertyPath: OnHitEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7450028906285957753, guid: 99d19c5c84645f7409300b87b05b63e4,
+        type: 3}
+      propertyPath: OnHitEvent.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7450028906285957753, guid: 99d19c5c84645f7409300b87b05b63e4,
@@ -2357,12 +2362,23 @@ PrefabInstance:
       objectReference: {fileID: 6809520808482100329}
     - target: {fileID: 7450028906285957753, guid: 99d19c5c84645f7409300b87b05b63e4,
         type: 3}
+      propertyPath: OnHitEvent.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      value: 
+      objectReference: {fileID: 11400000, guid: 863f5be46d874af4c96983975525035f,
+        type: 2}
+    - target: {fileID: 7450028906285957753, guid: 99d19c5c84645f7409300b87b05b63e4,
+        type: 3}
       propertyPath: OnHitEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7450028906285957753, guid: 99d19c5c84645f7409300b87b05b63e4,
         type: 3}
       propertyPath: OnHitEvent.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7450028906285957753, guid: 99d19c5c84645f7409300b87b05b63e4,
+        type: 3}
+      propertyPath: OnHitEvent.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7450028906285957753, guid: 99d19c5c84645f7409300b87b05b63e4,
@@ -2377,6 +2393,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7450028906285957753, guid: 99d19c5c84645f7409300b87b05b63e4,
         type: 3}
+      propertyPath: OnHitEvent.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: Play
+      objectReference: {fileID: 0}
+    - target: {fileID: 7450028906285957753, guid: 99d19c5c84645f7409300b87b05b63e4,
+        type: 3}
       propertyPath: OnHitEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: UnityEngine.ParticleSystem, UnityEngine
       objectReference: {fileID: 0}
@@ -2387,12 +2408,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7450028906285957753, guid: 99d19c5c84645f7409300b87b05b63e4,
         type: 3}
+      propertyPath: OnHitEvent.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
+      value: AudioAliase.Alias, AudioAliase
+      objectReference: {fileID: 0}
+    - target: {fileID: 7450028906285957753, guid: 99d19c5c84645f7409300b87b05b63e4,
+        type: 3}
       propertyPath: OnHitEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 7450028906285957753, guid: 99d19c5c84645f7409300b87b05b63e4,
         type: 3}
       propertyPath: OnHitEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 7450028906285957753, guid: 99d19c5c84645f7409300b87b05b63e4,
+        type: 3}
+      propertyPath: OnHitEvent.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 8683603694024863501, guid: 99d19c5c84645f7409300b87b05b63e4,

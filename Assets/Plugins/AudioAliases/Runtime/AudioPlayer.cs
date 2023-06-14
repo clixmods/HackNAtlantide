@@ -224,6 +224,11 @@ namespace AudioAliase
         }
         private void Play(Alias aliasToPlay)
         {
+            // if (aliasToPlay.IsPlayable())
+            // {
+            //     Debug.Log($"Alias {aliasToPlay.name} limit hit!",gameObject);
+            //     return;
+            // }
             // If a start aliase is available, we need to play it before the base aliase
             if (_state == CurrentlyPlaying.Start && aliasToPlay.startAliase != null && aliasToPlay.startAliase.HasAudioClip)
             {
@@ -241,11 +246,11 @@ namespace AudioAliase
             Source.Play();
         }
 
-        private void Play(int onStartAliasToPlay)
-        {
-            AudioManager.GetAlias(onStartAliasToPlay, out var aliase);
-            Play(aliase);
-        }
+        // private void Play(int onStartAliasToPlay)
+        // {
+        //     AudioManager.GetAlias(onStartAliasToPlay, out var aliase);
+        //     Play(aliase);
+        // }
 
         public void Setup(Alias aliasToPlay, Vector3 position)
         {
