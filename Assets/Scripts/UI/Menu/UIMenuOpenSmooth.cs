@@ -10,13 +10,33 @@ public class UIMenuOpenSmooth : MonoBehaviour
     private CanvasGroup _canvasGroup;
     private float _currentDelay;
     private float _currentStartTheOpenDelay;
+    private UIMenu _uiMenu;
     [SerializeField] private float startTheOpenInSeconds = 0;
     [SerializeField] private float openDelay;
     [SerializeField] private float closeDelay;
     private void Awake()
     {
         _canvasGroup = GetComponent<CanvasGroup>();
+        _uiMenu = GetComponent<UIMenu>();
+        _uiMenu.EventOnCloseMenu.AddListener(Stop);
+        _uiMenu.EventOnOpenMenu.AddListener(EnableIt);
     }
+
+    void Stop()
+    {
+        enabled = false;
+    }
+
+    void EnableIt()
+    {
+        enabled = true;
+    }
+    private void OnDestroy()
+    {
+        _uiMenu.EventOnCloseMenu.RemoveListener(Stop);
+        _uiMenu.EventOnOpenMenu.RemoveListener(EnableIt);
+    }
+
     private void OnDisable()
     {
         ResetValues();

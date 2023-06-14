@@ -2473,7 +2473,8 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1174803846839267251, guid: b77b45d696911824da7f8bf5a53304ad, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: b77b45d696911824da7f8bf5a53304ad, type: 3}
 --- !u!1001 &469473922
 PrefabInstance:
@@ -2821,12 +2822,12 @@ PrefabInstance:
     - target: {fileID: 8009162455243094157, guid: 78319478e84414c42825d11fc6497dea,
         type: 3}
       propertyPath: m_DefaultVelocity.y
-      value: -0.48
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 8009162455243094157, guid: 78319478e84414c42825d11fc6497dea,
         type: 3}
       propertyPath: m_ImpulseDefinition.m_ImpulseDuration
-      value: 0.5
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 8009162455875411170, guid: 78319478e84414c42825d11fc6497dea,
         type: 3}
@@ -2846,12 +2847,12 @@ PrefabInstance:
     - target: {fileID: 8009162455875411170, guid: 78319478e84414c42825d11fc6497dea,
         type: 3}
       propertyPath: m_ImpulseDefinition.m_ImpulseDuration
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8009162456426800545, guid: 78319478e84414c42825d11fc6497dea,
         type: 3}
       propertyPath: m_DefaultVelocity.x
-      value: -1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8009162456426800545, guid: 78319478e84414c42825d11fc6497dea,
         type: 3}
@@ -2871,12 +2872,12 @@ PrefabInstance:
     - target: {fileID: 8009162456786929530, guid: 78319478e84414c42825d11fc6497dea,
         type: 3}
       propertyPath: m_DefaultVelocity.x
-      value: -1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8009162456786929530, guid: 78319478e84414c42825d11fc6497dea,
         type: 3}
       propertyPath: m_DefaultVelocity.y
-      value: 1
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 8009162456786929530, guid: 78319478e84414c42825d11fc6497dea,
         type: 3}
@@ -2886,7 +2887,7 @@ PrefabInstance:
     - target: {fileID: 8009162456786929530, guid: 78319478e84414c42825d11fc6497dea,
         type: 3}
       propertyPath: m_ImpulseDefinition.m_ImpulseDuration
-      value: 0.3
+      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 78319478e84414c42825d11fc6497dea, type: 3}
@@ -8227,6 +8228,95 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 35
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!1 &1901739190 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7632241788837136079, guid: b77b45d696911824da7f8bf5a53304ad,
+    type: 3}
+  m_PrefabInstance: {fileID: 454064750}
+  m_PrefabAsset: {fileID: 0}
+--- !u!225 &1901739195
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1901739190}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
+--- !u!114 &1901739196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1901739190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4514a862a3f40664ca7b80a83a92bdfd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  StateActive:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1901739195}
+        m_TargetAssemblyTypeName: UnityEngine.CanvasGroup, UnityEngine
+        m_MethodName: set_alpha
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  StateDesactive:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1901739195}
+        m_TargetAssemblyTypeName: UnityEngine.CanvasGroup, UnityEngine
+        m_MethodName: set_alpha
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 1
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1901739197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1901739190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f6b678f0e70c584d88ed3bcc46007a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scriptableScriptableEvent: {fileID: 11400000, guid: b2bbc58ab515aa9479d9150fd0fd66b9,
+    type: 2}
+  LaunchEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1901739195}
+        m_TargetAssemblyTypeName: UnityEngine.CanvasGroup, UnityEngine
+        m_MethodName: set_alpha
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &1933525224
 PrefabInstance:
   m_ObjectHideFlags: 0

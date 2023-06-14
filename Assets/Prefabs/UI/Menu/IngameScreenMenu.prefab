@@ -187,8 +187,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42d97d75935932b4c9a5614519d3adbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startTheOpenInSeconds: 2
-  openDelay: 3
+  startTheOpenInSeconds: 0
+  openDelay: 1.5
   closeDelay: 0.5
 --- !u!114 &5955506824905409156
 MonoBehaviour:
@@ -947,7 +947,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fba51fa703b2db439fc0476c247223a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnMaxIncrease:
+    m_PersistentCalls:
+      m_Calls: []
   healthValue: {fileID: 11400000, guid: 7368ba06a7477a942b281a13774a908f, type: 2}
+  lagfill: {fileID: 0}
 --- !u!1001 &3098656041086411703
 PrefabInstance:
   m_ObjectHideFlags: 0

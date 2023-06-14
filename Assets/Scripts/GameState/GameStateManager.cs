@@ -255,6 +255,7 @@ public class GameStateManager : MonoBehaviour
     public GameStateOverride GameStateOverride { get { return gameStateOverride; } }
 
     public static GameState ActiveGameState => Instance.currentGameStates[0];
+    public static Action<GameState> OnStateChanged;
 
     private bool isApplicationQuit = false;
 
@@ -390,6 +391,7 @@ public class GameStateManager : MonoBehaviour
         {
             _lastCallBackCalled = currentGameStates[0].GameStateBehaviourInstance;
             currentGameStates[0].GameStateBehaviourInstance.OnApplyCallback();
+            OnStateChanged?.Invoke(currentGameStates[0]);
         }
     }
     IEnumerator RunTimeState()
