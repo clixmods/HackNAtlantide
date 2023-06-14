@@ -8198,6 +8198,11 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: 8049511068494314481, guid: 515f064a2b3c95142924209e2ad1b59f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8822516270843247035, guid: 515f064a2b3c95142924209e2ad1b59f,
         type: 3}
       propertyPath: m_Name
@@ -8335,26 +8340,6 @@ Transform:
   m_Father: {fileID: 1306575578}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: -5.355, y: 180.577, z: 94.102}
---- !u!1 &1660125396 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6840402040401047728, guid: 3fc4efc68cb13614298fada535a67f00,
-    type: 3}
-  m_PrefabInstance: {fileID: 1949597799}
-  m_PrefabAsset: {fileID: 0}
---- !u!64 &1660125400
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1660125396}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 3734929315905521219, guid: aa94587460f83c14ca48b2bb883e00d0, type: 3}
 --- !u!1 &1674955922 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6114512754922996220, guid: 6e89c88e5e0a93f438facd12ab41fda8,
@@ -10443,6 +10428,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.x
       value: -54.09
       objectReference: {fileID: 0}
+    - target: {fileID: 6171670665373313546, guid: 3fc4efc68cb13614298fada535a67f00,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -17.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6220005402365561568, guid: 3fc4efc68cb13614298fada535a67f00,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -10521,7 +10511,7 @@ PrefabInstance:
     - target: {fileID: 6840402040401047728, guid: 3fc4efc68cb13614298fada535a67f00,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6893555057482198744, guid: 3fc4efc68cb13614298fada535a67f00,
         type: 3}
