@@ -110,15 +110,23 @@ public class QTEHandler : MonoBehaviour
         //_postProcessWeightTransition.SetWeightVolume(1f);
         if(stopTimeScale)
         {
-            DOTween.To(() => Time.timeScale, x => Time.timeScale = x, 0, 0.2f).SetUpdate(true);
+            DOTween.To(() => Time.timeScale, x => Time.timeScale = x, 0.2f, 0.2f).SetUpdate(true);
         }
         
 
         ActiveInputType(inputType, true);
-        
 
+        float timeToFreeze = 2;
         while (!CutSceneFinish(inputType))
         {
+            if(stopTimeScale)
+            {
+                timeToFreeze -= Time.unscaledDeltaTime;
+                if (timeToFreeze < 0)
+                {
+                    Time.timeScale = 0;
+                }
+            }
             yield return null;
         }
         ActiveInputType(inputType, false);

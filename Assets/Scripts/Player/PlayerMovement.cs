@@ -97,6 +97,9 @@ public class PlayerMovement : MonoBehaviour
     public UnityEvent OnDash;
 
     public UnityEvent OnDashCancel;
+    public UnityEvent OnDashAttack;
+
+    public UnityEvent OnDashAttackCancel;
     // Start is called before the first frame update
     void Awake()
     {
@@ -324,7 +327,7 @@ public class PlayerMovement : MonoBehaviour
 
             //FeedBack
             DashAttackFeedBack(true);
-
+            OnDashAttack?.Invoke();
             _dashAttackEvent.LaunchEvent();
         }
     }
@@ -400,6 +403,7 @@ public class PlayerMovement : MonoBehaviour
         Physics.IgnoreLayerCollision(6, 11, false);
         Physics.IgnoreLayerCollision(this.gameObject.layer, 16, false);
         DashAttackFeedBack(false);
+        OnDashAttackCancel?.Invoke();
     }
 
     //allows player to dash again

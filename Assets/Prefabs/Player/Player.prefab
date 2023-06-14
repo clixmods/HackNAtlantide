@@ -200,6 +200,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 4705922567512292593}
+        m_TargetAssemblyTypeName: MaterialIntModifier, Assembly-CSharp
+        m_MethodName: SetInt
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnDashCancel:
     m_PersistentCalls:
       m_Calls:
@@ -207,6 +219,48 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: EmissiveMaterialHandler, Assembly-CSharp
         m_MethodName: ResetEmissive
         m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 4705922567512292593}
+        m_TargetAssemblyTypeName: MaterialIntModifier, Assembly-CSharp
+        m_MethodName: SetInt
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnDashAttack:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4705922567512292593}
+        m_TargetAssemblyTypeName: MaterialIntModifier, Assembly-CSharp
+        m_MethodName: SetInt
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnDashAttackCancel:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4705922567512292593}
+        m_TargetAssemblyTypeName: MaterialIntModifier, Assembly-CSharp
+        m_MethodName: SetInt
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2383,6 +2437,26 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2232174480602545200}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1267106490925922019 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1112367662337002195, guid: 99d19c5c84645f7409300b87b05b63e4,
+    type: 3}
+  m_PrefabInstance: {fileID: 2232174480602545200}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4705922567512292593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1267106490925922019}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83daa60e12c3e7d49a166c71ee085740, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meshRenderer: {fileID: 8662073844750551201}
+  _intName: _IsInvulnerable
 --- !u!114 &3167754798604563864 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3822543337384872360, guid: 99d19c5c84645f7409300b87b05b63e4,
@@ -2419,7 +2493,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 2232174480602545200}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1267106490925922019}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8e4bc1dc766dccf4a94a1c7d2cd5d44f, type: 3}
