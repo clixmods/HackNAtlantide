@@ -109,20 +109,17 @@ namespace AudioAliase
         }
         private void Awake()
         {
-            if (_instance != null)
+            if (_instance == null)
             {
-                Destroy(gameObject);
+                DontDestroyOnLoad(gameObject);
+                _audioManagerData = (AudioManagerData) Resources.Load("AudioManager Data") ;
+                InitAudioSources();
             }
             else
             {
-                Instance = this;
-                DontDestroyOnLoad(gameObject);
-
+                Destroy(gameObject);
             }
-            
-            
-            _audioManagerData = (AudioManagerData) Resources.Load("AudioManager Data") ;
-            InitAudioSources();
+          
         }
         // Update is called once per frame
         private void Update()
@@ -216,10 +213,9 @@ namespace AudioAliase
         }
         public static void PauseAllAudio()
         {
-            if (Instance == null) return;
+            if (Instance == null || Instance._audioSource == null) return;
             foreach (AudioPlayer aS in Instance._audioSource)
             {
-                
                 if (aS.Source != null && aS.Source.isPlaying)
                 {
                     aS.Source.Pause();
@@ -228,6 +224,7 @@ namespace AudioAliase
         }
         public static void UnPauseAllAudio()
         {
+            if (Instance == null || Instance._audioSource == null) return;
             foreach (AudioPlayer aS in Instance._audioSource)
             {
                 if (aS.Source != null)

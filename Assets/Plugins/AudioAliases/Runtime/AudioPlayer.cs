@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
@@ -89,6 +90,18 @@ namespace AudioAliase
         private void Awake()
         {
             Source = transform.GetComponent<AudioSource>();
+            SceneManager.activeSceneChanged += SceneManagerOnactiveSceneChanged;
+        }
+
+        private void OnDestroy()
+        {
+            SceneManager.activeSceneChanged -= SceneManagerOnactiveSceneChanged;
+        }
+
+        private void SceneManagerOnactiveSceneChanged(Scene arg0, Scene arg1)
+        {
+            gameObject.SetActive(false);
+            Reset();
         }
 
         private void Start()

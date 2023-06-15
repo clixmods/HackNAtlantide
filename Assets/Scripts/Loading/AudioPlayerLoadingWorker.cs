@@ -29,23 +29,29 @@ public class AudioPlayerLoadingWorker : LoadingWorkerBehaviour
 
     private void Start()
     {
-        LoaderBehaviour.LoaderStart +=LoaderStart;
+        LoaderBehaviour.LoaderStart += LoaderStart;
+        LoaderBehaviour.LoaderEnd += LoaderEnd;
+    }
+
+    private void LoaderEnd()
+    {
+        WorkIsDone = false;
     }
 
     private void LoaderStart(LoaderBehaviour arg1, Action arg2, IEnumerator arg3)
     {
         _audioPlayer.StopSound(StopLoopBehavior.Direct);
-        
+        WorkIsDone = true;
     }
 
     private void AudioDisable()
     {
-        WorkIsDone = true;
+        //WorkIsDone = true;
     }
 
     private void AudioEnable()
     {
-        WorkIsDone = false;
+       // WorkIsDone = false;
     }
 
     protected override void OnDestroy()
@@ -53,6 +59,8 @@ public class AudioPlayerLoadingWorker : LoadingWorkerBehaviour
         base.OnDestroy();
         _audioPlayer.OnAudioEnable -= AudioEnable;
         _audioPlayer.OnAudioDisable -= AudioDisable;
+        LoaderBehaviour.LoaderStart -= LoaderStart;
+        LoaderBehaviour.LoaderEnd -= LoaderEnd;
         
     }
 }

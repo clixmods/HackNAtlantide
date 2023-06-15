@@ -67,6 +67,11 @@ public class MeshTransparent : MonoBehaviour
 
     public void Init(Material materialTransparentToApply) 
     {
+        if (_meshRenderer == null)
+        {
+            enabled = false;
+            return;
+        }
         _baseMaterials = _meshRenderer.sharedMaterials;             
         _isInit = true;
         transform.gameObject.layer = 9;
