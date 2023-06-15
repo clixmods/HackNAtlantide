@@ -4919,6 +4919,7 @@ Transform:
   m_Children:
   - {fileID: 8162912212817557573}
   - {fileID: 3271192853521334820}
+  - {fileID: 5189705801130440494}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -9963,6 +9964,87 @@ Transform:
   m_Father: {fileID: 8162912212817557573}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &2500995908770301953
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 3065957743833887637}
+    m_Modifications:
+    - target: {fileID: 6567079440508079393, guid: 1adea634787bb974e9c97f0a2e93056f,
+        type: 3}
+      propertyPath: m_Name
+      value: ExplosionPot
+      objectReference: {fileID: 0}
+    - target: {fileID: 7687885808943791919, guid: 1adea634787bb974e9c97f0a2e93056f,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7687885808943791919, guid: 1adea634787bb974e9c97f0a2e93056f,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7687885808943791919, guid: 1adea634787bb974e9c97f0a2e93056f,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7687885808943791919, guid: 1adea634787bb974e9c97f0a2e93056f,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7687885808943791919, guid: 1adea634787bb974e9c97f0a2e93056f,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7687885808943791919, guid: 1adea634787bb974e9c97f0a2e93056f,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7687885808943791919, guid: 1adea634787bb974e9c97f0a2e93056f,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7687885808943791919, guid: 1adea634787bb974e9c97f0a2e93056f,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7687885808943791919, guid: 1adea634787bb974e9c97f0a2e93056f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7687885808943791919, guid: 1adea634787bb974e9c97f0a2e93056f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7687885808943791919, guid: 1adea634787bb974e9c97f0a2e93056f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1adea634787bb974e9c97f0a2e93056f, type: 3}
+--- !u!4 &5189705801130440494 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7687885808943791919, guid: 1adea634787bb974e9c97f0a2e93056f,
+    type: 3}
+  m_PrefabInstance: {fileID: 2500995908770301953}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8761649112039081248 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6567079440508079393, guid: 1adea634787bb974e9c97f0a2e93056f,
+    type: 3}
+  m_PrefabInstance: {fileID: 2500995908770301953}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3093733168450299343
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10691,19 +10773,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!135 &4603751781235725252
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8792061954932892415}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &8611957874930130160
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10963,7 +11032,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   _timeToDestroyIfNoHit: 1.5
-  explosionObject: {fileID: 0}
+  explosionObject: {fileID: 8761649112039081248}
 --- !u!114 &2562567832463957367
 MonoBehaviour:
   m_ObjectHideFlags: 0
