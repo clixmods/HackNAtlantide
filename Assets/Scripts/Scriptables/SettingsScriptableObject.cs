@@ -104,7 +104,25 @@ public class SettingsScriptableObject : ScriptableObjectSaveable
         set
         {
             _screenResolution = value;
-            Screen.SetResolution(1920, 1080, _windowMode == FullScreenMode.ExclusiveFullScreen);
+            switch (_screenResolution.width)
+            {
+                case 720:
+                    Screen.SetResolution(720, 480, _windowMode == FullScreenMode.ExclusiveFullScreen);
+                    break;
+                case 1280:
+                    Screen.SetResolution(1280, 720, _windowMode == FullScreenMode.ExclusiveFullScreen);
+                    break;
+                case 1920:
+                    Screen.SetResolution(1920, 1080, _windowMode == FullScreenMode.ExclusiveFullScreen);
+                    break;
+                case 3840:
+                    Screen.SetResolution(3840, 2160, _windowMode == FullScreenMode.ExclusiveFullScreen);
+                    break;
+                default:
+                    Screen.SetResolution(1920, 1080, _windowMode == FullScreenMode.ExclusiveFullScreen);
+                    break;
+            }
+            
             OnScreenResolutionValueChanged?.Invoke(_screenResolution);
         }
     }

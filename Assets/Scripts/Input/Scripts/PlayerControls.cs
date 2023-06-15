@@ -641,6 +641,24 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SettingsRight"",
+                    ""type"": ""Button"",
+                    ""id"": ""b090fda2-95b8-4df6-b0fa-9fe571a668da"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Settingsleft"",
+                    ""type"": ""Button"",
+                    ""id"": ""d6de8aab-f876-4f8d-84ac-7f58fcf7c265"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -1204,6 +1222,28 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""action"": ""AnyKey"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""94a7036f-c037-4828-bad5-a40a06d77233"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""SettingsRight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ff9bf77a-910e-4d36-b5fd-cc62d820713e"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Settingsleft"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -1269,6 +1309,8 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_UI_Back = m_UI.FindAction("Back", throwIfNotFound: true);
         m_UI_Unpause = m_UI.FindAction("Unpause", throwIfNotFound: true);
         m_UI_AnyKey = m_UI.FindAction("AnyKey", throwIfNotFound: true);
+        m_UI_SettingsRight = m_UI.FindAction("SettingsRight", throwIfNotFound: true);
+        m_UI_Settingsleft = m_UI.FindAction("Settingsleft", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1487,6 +1529,8 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_UI_Back;
     private readonly InputAction m_UI_Unpause;
     private readonly InputAction m_UI_AnyKey;
+    private readonly InputAction m_UI_SettingsRight;
+    private readonly InputAction m_UI_Settingsleft;
     public struct UIActions
     {
         private @PlayerControls m_Wrapper;
@@ -1504,6 +1548,8 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @Back => m_Wrapper.m_UI_Back;
         public InputAction @Unpause => m_Wrapper.m_UI_Unpause;
         public InputAction @AnyKey => m_Wrapper.m_UI_AnyKey;
+        public InputAction @SettingsRight => m_Wrapper.m_UI_SettingsRight;
+        public InputAction @Settingsleft => m_Wrapper.m_UI_Settingsleft;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1552,6 +1598,12 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @AnyKey.started -= m_Wrapper.m_UIActionsCallbackInterface.OnAnyKey;
                 @AnyKey.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnAnyKey;
                 @AnyKey.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnAnyKey;
+                @SettingsRight.started -= m_Wrapper.m_UIActionsCallbackInterface.OnSettingsRight;
+                @SettingsRight.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnSettingsRight;
+                @SettingsRight.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnSettingsRight;
+                @Settingsleft.started -= m_Wrapper.m_UIActionsCallbackInterface.OnSettingsleft;
+                @Settingsleft.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnSettingsleft;
+                @Settingsleft.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnSettingsleft;
             }
             m_Wrapper.m_UIActionsCallbackInterface = instance;
             if (instance != null)
@@ -1595,6 +1647,12 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @AnyKey.started += instance.OnAnyKey;
                 @AnyKey.performed += instance.OnAnyKey;
                 @AnyKey.canceled += instance.OnAnyKey;
+                @SettingsRight.started += instance.OnSettingsRight;
+                @SettingsRight.performed += instance.OnSettingsRight;
+                @SettingsRight.canceled += instance.OnSettingsRight;
+                @Settingsleft.started += instance.OnSettingsleft;
+                @Settingsleft.performed += instance.OnSettingsleft;
+                @Settingsleft.canceled += instance.OnSettingsleft;
             }
         }
     }
@@ -1650,5 +1708,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnBack(InputAction.CallbackContext context);
         void OnUnpause(InputAction.CallbackContext context);
         void OnAnyKey(InputAction.CallbackContext context);
+        void OnSettingsRight(InputAction.CallbackContext context);
+        void OnSettingsleft(InputAction.CallbackContext context);
     }
 }
