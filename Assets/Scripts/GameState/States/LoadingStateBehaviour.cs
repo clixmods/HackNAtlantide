@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using AudioAliase;
 using Loading;
 using UnityEngine;
 using UnityEngine.Events;
@@ -79,7 +80,7 @@ public class LoadingStateBehaviour : GameStateBehaviour<LoadingState>
         }
 
         Time.timeScale = 0;
-        
+        AudioManager.PauseAllAudio();
         if (_action == null && _coroutine == null)
         {
             LoaderEnd();

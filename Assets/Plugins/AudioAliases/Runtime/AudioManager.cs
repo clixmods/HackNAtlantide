@@ -216,9 +216,11 @@ namespace AudioAliase
         }
         public static void PauseAllAudio()
         {
+            if (Instance == null) return;
             foreach (AudioPlayer aS in Instance._audioSource)
             {
-                if (aS.Source.isPlaying)
+                
+                if (aS.Source != null && aS.Source.isPlaying)
                 {
                     aS.Source.Pause();
                 }
