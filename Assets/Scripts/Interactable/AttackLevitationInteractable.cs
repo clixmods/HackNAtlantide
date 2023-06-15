@@ -9,7 +9,6 @@ using Random = UnityEngine.Random;
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(InputHelper))]
 [RequireComponent(typeof(IAttackCollider))]
-[RequireComponent(typeof(SphereCollider))]
 public class AttackLevitationInteractable : Interactable
 {
     private Rigidbody _rigidBody;
@@ -47,11 +46,6 @@ public class AttackLevitationInteractable : Interactable
     public UnityEvent IsCharged;
     public UnityEvent LaunchAttack;
     
-    //Explosion
-    private SphereCollider _colliderExplosion;
-    [SerializeField] private float _speedExplosion;
-    [SerializeField] private float _maxRadius;
-    private bool _explosion;
 
     private int _layerBase;
     [SerializeField] float _timeToDestroyIfNoHit = 3f;
@@ -62,8 +56,10 @@ public class AttackLevitationInteractable : Interactable
     
     // Reset cached
     private Vector3 positionOnInteract;
+    [SerializeField] GameObject explosionObject;
     
     #region Monobehaviour
+
     private void Awake()
     {
         // Interactable Object setup
@@ -83,9 +79,7 @@ public class AttackLevitationInteractable : Interactable
         _attackCollider = GetComponent<IAttackCollider>();
         _attackCollider.OnCollideWithIDamageable += AttackColliderOnOnCollideWithIDamageable;
 
-        _colliderExplosion = GetComponent<SphereCollider>();
-        _colliderExplosion.radius = 0.1f;
-        _colliderExplosion.isTrigger = true;
+        
         if (_meshDestroy != null)
         {
             _rigidbodiesFromMeshDestroy = _meshDestroy.GetComponentsInChildren<Rigidbody>();
@@ -143,6 +137,7 @@ public class AttackLevitationInteractable : Interactable
     {
         if (e is AttackDamageableEventArgs mDamageableEventArgs)
         {
+            Debug.Log(mDamageableEventArgs.idamageable);
             mDamageableEventArgs.idamageable.DoDamage(damageAmount, transform.position);
             DestroyInteractable();
         }
@@ -180,13 +175,17 @@ public class AttackLevitationInteractable : Interactable
         Destroy(_boxCollider);
 
         _rigidBody.isKinematic = true;
-        StartCoroutine(Explosion());
+
+
+        //EnableExplosionObject
+        explosionObject.SetActive(true);
+        explosionObject.transform.parent = null;
+        explosionObject.transform.position = transform.position;
     }
 
     private void RemoveTarget()
     {
         StartCoroutine(RemoveTargetAfterSeconds(1));
-        
     }
 
     private IEnumerator RemoveTargetAfterSeconds(float value)
@@ -230,21 +229,10 @@ public class AttackLevitationInteractable : Interactable
         _rigidBody.useGravity = false;
         _isCharging = false;
     }
-    IEnumerator Explosion()
-    {
-        _explosion = true;
-        while (_colliderExplosion.radius < _maxRadius)
-        {
-            _colliderExplosion.radius += Time.deltaTime * _speedExplosion;
-            yield return null;
-        }
-        _colliderExplosion.enabled = false;
-        Destroy(gameObject);
-    }
     IEnumerator WaitForDestroy()
     {
         yield return new WaitForSeconds(_timeToDestroyIfNoHit);
-        if(!_explosion && _isAttacking)
+        if(_isAttacking)
             DestroyInteractable();
     }
     #region IInteractable
@@ -332,6 +320,4 @@ public class AttackLevitationInteractable : Interactable
     }
 
     #endregion
-
-   
 }

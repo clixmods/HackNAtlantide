@@ -14974,6 +14974,7 @@ MonoBehaviour:
   _attackRumble: {fileID: 11400000, guid: e6931a1188abaf943a45d0af0863cfbc, type: 2}
   isInvulnerable: 1
   _allEnemyAwake: {fileID: 11400000, guid: 2163a8b50e7f04c4b927a1597d16eff1, type: 2}
+  wakeUpOnDamage: 1
   destroyOnDeath: 1
 --- !u!114 &6377393696202663881
 MonoBehaviour:
@@ -15240,18 +15241,6 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 4941157224044765246}
-        m_TargetAssemblyTypeName: Focusable, Assembly-CSharp
-        m_MethodName: set_IsTargetable
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
         m_CallState: 2
   OnSleep:
     m_PersistentCalls:

@@ -6,9 +6,15 @@ using UnityEngine;
 
 public class Settings : MonoBehaviour
 {
+    public static Settings instance;
     [SerializeField] SettingsScriptableObject _settingsData;
     public void Start()
     {
+        if (instance != null)
+        {
+            Destroy(instance.gameObject);
+        }
+        instance = this;
         DontDestroyOnLoad(this);
         Load();
     }
