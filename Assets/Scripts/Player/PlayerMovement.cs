@@ -306,6 +306,35 @@ public class PlayerMovement : MonoBehaviour
             _dashEvent.LaunchEvent();
         }
     }
+    //sets the speeds value to dash
+    IEnumerator CancelDash()
+    {
+        yield return new WaitForSeconds(_dashTime);
+        _transformLock = _transformLockTempForDash;
+        _speed = _moveSpeed;
+        StartCoroutine(ReloadDash());
+        StartCoroutine(CancelDashFeedback());
+    }
+    IEnumerator CancelDashFeedback()
+    {
+        yield return new WaitForSeconds(0.2f);
+        //ignore ennemie collision
+        Physics.IgnoreLayerCollision(6, 11, false);
+        Physics.IgnoreLayerCollision(this.gameObject.layer, 16, false);
+        OnDashCancel?.Invoke();
+        DashFeedBack(false);
+        _isDashing = false;
+    }
+    public void Attack(bool value, float timeToLock, float playerSpeed)
+    {
+        if (value)
+        {
+            _attackDirection = transform.forward;
+            _speed = playerSpeed;
+            _isAttacking = true;
+            StartCoroutine(CancelAttack(timeToLock));
+        }
+    }
     
     public void DashOfDashAttack(bool value)
     {
@@ -331,28 +360,6 @@ public class PlayerMovement : MonoBehaviour
             _dashAttackEvent.LaunchEvent();
         }
     }
-
-    public void Attack(bool value, float timeToLock, float playerSpeed)
-    {
-        if (value)
-        {
-            _attackDirection = transform.forward;
-            _speed = playerSpeed;
-            _isAttacking = true;
-            StartCoroutine(CancelAttack(timeToLock));
-        }
-    }
-    //sets the speeds value to dash
-    IEnumerator CancelDash()
-    {
-        yield return new WaitForSeconds(_dashTime);
-        _speed = _moveSpeed;
-
-        StartCoroutine(ReloadDash());
-
-        StartCoroutine(CancelDashFeedback());
-    }
-    
     //sets the speeds value to dash attack
     IEnumerator CancelDashAttack()
     {
@@ -366,21 +373,6 @@ public class PlayerMovement : MonoBehaviour
         StartCoroutine(ReloadDashAttack());
 
         StartCoroutine(CancelDashAttackFeedback());
-    }
-    
-    IEnumerator CancelDashFeedback()
-    {
-        yield return new WaitForSeconds(0.2f);
-        _transformLock = _transformLockTempForDash;
-        //ignore ennemie collision
-        Physics.IgnoreLayerCollision(6, 11, false);
-        Physics.IgnoreLayerCollision(this.gameObject.layer, 16, false);
-        OnDashCancel?.Invoke();
-        DashFeedBack(false);
-        yield return new WaitForSeconds(0.3f);
-        _isDashing = false;
-
-        
     }
     IEnumerator CancelAttack(float time)
     {

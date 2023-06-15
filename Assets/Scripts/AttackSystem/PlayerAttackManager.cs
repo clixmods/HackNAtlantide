@@ -83,8 +83,18 @@ public class PlayerAttackManager : MonoBehaviour
     void InputDashAttack(bool value)
     {
         _inputDashAttack = value;
-        if(value && !_isInDashAttack && !_isInCombo)
+        if(value && !_isInDashAttack)
         {
+            StopAllCoroutines();
+            //Attack Fini
+            _isInCombo = false;
+            //currentDamage = 0;
+            _attackCollider.enabled = false;
+            //resetAnimatorSpeed
+            animator.speed = 1;
+            canGiveDamage = false;
+            animator.CrossFade("Default", 0f);
+
             _playerMovement.DashOfDashAttack(true);
         }
     }
