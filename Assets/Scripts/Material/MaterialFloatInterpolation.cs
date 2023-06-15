@@ -32,6 +32,11 @@ public class MaterialFloatInterpolation : MonoBehaviour
         {
             meshRenderer = GetComponentInChildren<Renderer>();
         }
+        
+        if(meshRenderer == null)
+        { 
+            enabled = false;
+        }
 
         _propBlocks = new MaterialPropertyBlock[meshRenderer.sharedMaterials.Length];
         for (int i = 0; i < _propBlocks.Length; i++)
@@ -67,6 +72,10 @@ public class MaterialFloatInterpolation : MonoBehaviour
 
     IEnumerator LerpColor(MaterialPropertyBlock materialPropertyBlock, int index, float floatTarget, float timeTransition, StateTransition stateTransition)
     {
+        if (meshRenderer == null)
+        {
+            yield break;
+        }
         _stateTransition = stateTransition;
         float timeElapsed = 0;
         meshRenderer.GetPropertyBlock(materialPropertyBlock, index);
@@ -81,6 +90,10 @@ public class MaterialFloatInterpolation : MonoBehaviour
             }
             timeElapsed += Time.deltaTime;
             var t = timeElapsed / timeTransition;
+            if (meshRenderer == null)
+            {
+                yield break;
+            }
             // Get the current value of the material properties in the renderer.
             meshRenderer.GetPropertyBlock(materialPropertyBlock, index);
             // Assign our new value.

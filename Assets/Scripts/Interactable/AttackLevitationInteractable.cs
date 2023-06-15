@@ -178,9 +178,13 @@ public class AttackLevitationInteractable : Interactable
 
 
         //EnableExplosionObject
-        explosionObject.SetActive(true);
-        explosionObject.transform.parent = null;
-        explosionObject.transform.position = transform.position;
+        if (explosionObject != null)
+        {
+            explosionObject.SetActive(true);
+            explosionObject.transform.parent = null;
+            explosionObject.transform.position = transform.position;
+        }
+        
     }
 
     private void RemoveTarget()
