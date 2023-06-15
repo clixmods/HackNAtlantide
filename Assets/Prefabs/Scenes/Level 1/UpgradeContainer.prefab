@@ -251,7 +251,7 @@ PrefabInstance:
     - target: {fileID: 2507535679134602910, guid: 05c8df525f47b73469bc75d705b4c73d,
         type: 3}
       propertyPath: EventOnTriggerEnter.m_PersistentCalls.m_Calls.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2507535679134602910, guid: 05c8df525f47b73469bc75d705b4c73d,
         type: 3}
@@ -261,6 +261,11 @@ PrefabInstance:
     - target: {fileID: 2507535679134602910, guid: 05c8df525f47b73469bc75d705b4c73d,
         type: 3}
       propertyPath: EventOnTriggerEnter.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2507535679134602910, guid: 05c8df525f47b73469bc75d705b4c73d,
+        type: 3}
+      propertyPath: EventOnTriggerEnter.m_PersistentCalls.m_Calls.Array.data[3].m_Mode
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2507535679134602910, guid: 05c8df525f47b73469bc75d705b4c73d,
@@ -272,6 +277,12 @@ PrefabInstance:
     - target: {fileID: 2507535679134602910, guid: 05c8df525f47b73469bc75d705b4c73d,
         type: 3}
       propertyPath: EventOnTriggerEnter.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      value: 
+      objectReference: {fileID: 11400000, guid: 2a8894600e41b1b4da912bb02b84e087,
+        type: 2}
+    - target: {fileID: 2507535679134602910, guid: 05c8df525f47b73469bc75d705b4c73d,
+        type: 3}
+      propertyPath: EventOnTriggerEnter.m_PersistentCalls.m_Calls.Array.data[3].m_Target
       value: 
       objectReference: {fileID: 5655551448915781060}
     - target: {fileID: 2507535679134602910, guid: 05c8df525f47b73469bc75d705b4c73d,
@@ -287,6 +298,11 @@ PrefabInstance:
     - target: {fileID: 2507535679134602910, guid: 05c8df525f47b73469bc75d705b4c73d,
         type: 3}
       propertyPath: EventOnTriggerEnter.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: SaveAll
+      objectReference: {fileID: 0}
+    - target: {fileID: 2507535679134602910, guid: 05c8df525f47b73469bc75d705b4c73d,
+        type: 3}
+      propertyPath: EventOnTriggerEnter.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
       value: SetActive
       objectReference: {fileID: 0}
     - target: {fileID: 2507535679134602910, guid: 05c8df525f47b73469bc75d705b4c73d,
@@ -297,6 +313,11 @@ PrefabInstance:
     - target: {fileID: 2507535679134602910, guid: 05c8df525f47b73469bc75d705b4c73d,
         type: 3}
       propertyPath: EventOnTriggerEnter.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
+      value: DataPersistentHandler, DataPersistent
+      objectReference: {fileID: 0}
+    - target: {fileID: 2507535679134602910, guid: 05c8df525f47b73469bc75d705b4c73d,
+        type: 3}
+      propertyPath: EventOnTriggerEnter.m_PersistentCalls.m_Calls.Array.data[3].m_TargetAssemblyTypeName
       value: UnityEngine.GameObject, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 2507535679134602910, guid: 05c8df525f47b73469bc75d705b4c73d,
@@ -306,12 +327,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2507535679134602910, guid: 05c8df525f47b73469bc75d705b4c73d,
         type: 3}
+      propertyPath: EventOnTriggerEnter.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_StringArgument
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2507535679134602910, guid: 05c8df525f47b73469bc75d705b4c73d,
+        type: 3}
       propertyPath: EventOnTriggerEnter.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 2507535679134602910, guid: 05c8df525f47b73469bc75d705b4c73d,
         type: 3}
       propertyPath: EventOnTriggerEnter.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 2507535679134602910, guid: 05c8df525f47b73469bc75d705b4c73d,
+        type: 3}
+      propertyPath: EventOnTriggerEnter.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 2701704431218419366, guid: 05c8df525f47b73469bc75d705b4c73d,
@@ -617,6 +648,83 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: UpgradeHealth_001
+      objectReference: {fileID: 0}
+    - target: {fileID: 3954942342058905184, guid: 72f0a3381e1fdaf48a2d0f9653c5c48f,
+        type: 3}
+      propertyPath: EventOnTriggerEnter.m_PersistentCalls.m_Calls.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3954942342058905184, guid: 72f0a3381e1fdaf48a2d0f9653c5c48f,
+        type: 3}
+      propertyPath: EventOnTriggerEnter.m_PersistentCalls.m_Calls.Array.data[4].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3954942342058905184, guid: 72f0a3381e1fdaf48a2d0f9653c5c48f,
+        type: 3}
+      propertyPath: EventOnTriggerEnter.m_PersistentCalls.m_Calls.Array.data[5].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3954942342058905184, guid: 72f0a3381e1fdaf48a2d0f9653c5c48f,
+        type: 3}
+      propertyPath: EventOnTriggerEnter.m_PersistentCalls.m_Calls.Array.data[4].m_Target
+      value: 
+      objectReference: {fileID: 11400000, guid: 8585b36b6c0dcca478e86a1b71379d20,
+        type: 2}
+    - target: {fileID: 3954942342058905184, guid: 72f0a3381e1fdaf48a2d0f9653c5c48f,
+        type: 3}
+      propertyPath: EventOnTriggerEnter.m_PersistentCalls.m_Calls.Array.data[5].m_Target
+      value: 
+      objectReference: {fileID: 11400000, guid: 2a8894600e41b1b4da912bb02b84e087,
+        type: 2}
+    - target: {fileID: 3954942342058905184, guid: 72f0a3381e1fdaf48a2d0f9653c5c48f,
+        type: 3}
+      propertyPath: EventOnTriggerEnter.m_PersistentCalls.m_Calls.Array.data[4].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3954942342058905184, guid: 72f0a3381e1fdaf48a2d0f9653c5c48f,
+        type: 3}
+      propertyPath: EventOnTriggerEnter.m_PersistentCalls.m_Calls.Array.data[5].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3954942342058905184, guid: 72f0a3381e1fdaf48a2d0f9653c5c48f,
+        type: 3}
+      propertyPath: EventOnTriggerEnter.m_PersistentCalls.m_Calls.Array.data[4].m_MethodName
+      value: set_Value
+      objectReference: {fileID: 0}
+    - target: {fileID: 3954942342058905184, guid: 72f0a3381e1fdaf48a2d0f9653c5c48f,
+        type: 3}
+      propertyPath: EventOnTriggerEnter.m_PersistentCalls.m_Calls.Array.data[5].m_MethodName
+      value: SaveAll
+      objectReference: {fileID: 0}
+    - target: {fileID: 3954942342058905184, guid: 72f0a3381e1fdaf48a2d0f9653c5c48f,
+        type: 3}
+      propertyPath: EventOnTriggerEnter.m_PersistentCalls.m_Calls.Array.data[4].m_TargetAssemblyTypeName
+      value: ScriptableValue`1[[System.Boolean, mscorlib
+      objectReference: {fileID: 0}
+    - target: {fileID: 3954942342058905184, guid: 72f0a3381e1fdaf48a2d0f9653c5c48f,
+        type: 3}
+      propertyPath: EventOnTriggerEnter.m_PersistentCalls.m_Calls.Array.data[5].m_TargetAssemblyTypeName
+      value: DataPersistentHandler, DataPersistent
+      objectReference: {fileID: 0}
+    - target: {fileID: 3954942342058905184, guid: 72f0a3381e1fdaf48a2d0f9653c5c48f,
+        type: 3}
+      propertyPath: EventOnTriggerEnter.m_PersistentCalls.m_Calls.Array.data[4].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3954942342058905184, guid: 72f0a3381e1fdaf48a2d0f9653c5c48f,
+        type: 3}
+      propertyPath: EventOnTriggerEnter.m_PersistentCalls.m_Calls.Array.data[5].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3954942342058905184, guid: 72f0a3381e1fdaf48a2d0f9653c5c48f,
+        type: 3}
+      propertyPath: EventOnTriggerEnter.m_PersistentCalls.m_Calls.Array.data[4].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3954942342058905184, guid: 72f0a3381e1fdaf48a2d0f9653c5c48f,
+        type: 3}
+      propertyPath: EventOnTriggerEnter.m_PersistentCalls.m_Calls.Array.data[5].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 6950671923862838449, guid: 72f0a3381e1fdaf48a2d0f9653c5c48f,
         type: 3}
