@@ -212,8 +212,8 @@ public class SettingsScriptableObject : ScriptableObjectSaveable
         _maxRefreshRate = 144;
         _screenResolution = Screen.currentResolution;
         _lockFPS = true;
-        _useVsync = true;
-        _showFPS = false;*/
+        _useVsync = true;*/
+        _showFPS = false;
     }
 
     public override void OnSave(out SaveData saveData)
