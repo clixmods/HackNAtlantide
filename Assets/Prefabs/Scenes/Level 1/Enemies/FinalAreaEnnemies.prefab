@@ -112,6 +112,7 @@ GameObject:
   m_Component:
   - component: {fileID: 930647933760418343}
   - component: {fileID: 930647933760418342}
+  - component: {fileID: 7512303664939509425}
   m_Layer: 0
   m_Name: FinalAreaEnnemies
   m_TagString: Untagged
@@ -222,6 +223,41 @@ MonoBehaviour:
         m_CallState: 2
   GetChildEnnemies: 0
   DisableWakeUpBehaviourInStart: 1
+--- !u!114 &7512303664939509425
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 930647933760418340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8ea523908ae59a488cdb2bf6675f98a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _charactersToWatch:
+  - {fileID: 6189739254438280293}
+  - {fileID: 6189739254947240266}
+  - {fileID: 6189739254963990378}
+  - {fileID: 6189739255022928796}
+  - {fileID: 6189739255166487381}
+  NoCharactersToWatch:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 875635795820205923}
+        m_TargetAssemblyTypeName: Character, Assembly-CSharp
+        m_MethodName: SetInvulnerability
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  GetChildEnnemies: 0
+  DisableWakeUpBehaviourInStart: 0
 --- !u!1 &930647933902091018
 GameObject:
   m_ObjectHideFlags: 0
@@ -306,6 +342,46 @@ PrefabInstance:
         type: 3}
       propertyPath: _distanceToWakeUp
       value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: 19912de6ff73f484d8abe3fbf824982b,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: 19912de6ff73f484d8abe3fbf824982b,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.data[3].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: 19912de6ff73f484d8abe3fbf824982b,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.data[3].m_Target
+      value: 
+      objectReference: {fileID: 875635795820205923}
+    - target: {fileID: 825352634235196092, guid: 19912de6ff73f484d8abe3fbf824982b,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.data[3].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: 19912de6ff73f484d8abe3fbf824982b,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
+      value: SetInvulnerability
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: 19912de6ff73f484d8abe3fbf824982b,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.data[3].m_TargetAssemblyTypeName
+      value: Character, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: 19912de6ff73f484d8abe3fbf824982b,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: 19912de6ff73f484d8abe3fbf824982b,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 5919351741948662680, guid: 19912de6ff73f484d8abe3fbf824982b,
         type: 3}
