@@ -21,7 +21,7 @@ public class PlayLoopAlias : MonoBehaviour
         #endif
     }
 
-    private void Awake()
+    private void Start()
     {
         if (!gameObjectDependant)
         {

@@ -14,6 +14,12 @@ public class AliasParticleSystemListener : MonoBehaviour
     private void Awake()
     {
         _particleSystem = GetComponent<ParticleSystem>();
+        if (alias == null)
+        {
+            enabled = false;
+            Debug.LogWarning("Alias missing ", gameObject);
+        }
+           
     }
 
     private void OnDisable()
@@ -45,7 +51,7 @@ public class AliasParticleSystemListener : MonoBehaviour
         }
         else
         {
-            if ( _particleSystem.isPlaying)
+            if ( _particleSystem.isPlaying || _particleSystem.isEmitting)
             {
                 if (!_aliasIsPlayed)
                 {
