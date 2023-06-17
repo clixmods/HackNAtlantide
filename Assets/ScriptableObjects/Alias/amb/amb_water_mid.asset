@@ -15,7 +15,8 @@ MonoBehaviour:
   aliasName: 
   description: 
   Tag: 
-  MixerGroup: {fileID: 24300002, guid: 5da2c8dde8bb9094f8aaeafbe0aca20b, type: 2}
+  MixerGroup: {fileID: 2441066951814982274, guid: 5da2c8dde8bb9094f8aaeafbe0aca20b,
+    type: 2}
   audio:
   - {fileID: 8300000, guid: 6ae9a7d5b524ae74cbdefcbbc7b6290e, type: 3}
   - {fileID: 8300000, guid: e145e8e051f51ce40a8b69ec2762a0d4, type: 3}
@@ -26,19 +27,19 @@ MonoBehaviour:
   bypassListenerEffects: 0
   bypassReverbZones: 0
   priority: 0
-  minVolume: 0.8
-  maxVolume: 0.8
+  minVolume: 0.7625
+  maxVolume: 0.84375
   limitCount: 0
   isLooping: 1
   startAliase: {fileID: 0}
   endAliase: {fileID: 0}
   UseDelayLoop: 0
   minDelayLoop: 0
-  maxDelayLoop: 0
-  minPitch: 1
-  maxPitch: 1.01
+  maxDelayLoop: 3
+  minPitch: 0.96500003
+  maxPitch: 1.40625
   stereoPan: 0
-  spatialBlend: 0
+  spatialBlend: 1
   reverbZoneMix: 1
   dopplerLevel: 1
   Spread: 1
@@ -69,13 +70,23 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  OpenFadeInSeconds: 0
-  CloseFadeInSeconds: 0
+  OpenFadeInSeconds: 0.24
+  CloseFadeInSeconds: 0.66
   Text: 
   customDuration: 0
   isInit: 0
   isPlaceholder: 1
-  audioPlayers: []
+  audioPlayers:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   UseSurfaceDetection: 0
   surfacesAlias: []
   guid: 138760478
