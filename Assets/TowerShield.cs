@@ -11,6 +11,7 @@ public class TowerShield : MonoBehaviour
     private GameObject[] fxTrailGameObjects;
     [SerializeField] private GameObject fxTrail;
     [SerializeField] private Transform pivotStartTrail;
+    [SerializeField] private bool disableInvulnerabilityOnTowerDeath = true;
 
     public UnityEvent OnStart;
     private void Start()
@@ -46,13 +47,17 @@ public class TowerShield : MonoBehaviour
         for (int i = 0; i < charactersToProtect.Count; i++)
         {
             Destroy(fxTrailGameObjects[i]);
-            Character character = charactersToProtect[i];
-            if (character != null)
+            if (disableInvulnerabilityOnTowerDeath)
             {
-                character.SetInvulnerability(false);
+                Character character = charactersToProtect[i];
+                if (character != null)
+                {
+                    character.SetInvulnerability(false);
+                }
+                //let the ennemie be focusable
+                charactersToProtect[i].GetComponent<Focusable>().IsTargetable = true;
             }
-            //let the ennemie be focusable
-            charactersToProtect[i].GetComponent<Focusable>().IsTargetable = true;
+           
         }
     }
 }

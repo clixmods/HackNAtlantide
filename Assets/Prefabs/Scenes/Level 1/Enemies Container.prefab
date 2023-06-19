@@ -86,6 +86,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4511272183314837000}
+  - component: {fileID: 7659511971403364662}
   m_Layer: 0
   m_Name: Enemies Sleep
   m_TagString: Untagged
@@ -124,6 +125,40 @@ Transform:
   m_Father: {fileID: 5632995868055393979}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7659511971403364662
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6692873747893351060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8ea523908ae59a488cdb2bf6675f98a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _charactersToWatch:
+  - {fileID: 5208601426756995112}
+  - {fileID: 438078340057425294}
+  - {fileID: 2891327800676243368}
+  - {fileID: 8824051185313685210}
+  - {fileID: 3611914559056097438}
+  - {fileID: 5551850607364603457}
+  - {fileID: 6266032835916741992}
+  - {fileID: 9033074172736239559}
+  - {fileID: 3803619795539754307}
+  - {fileID: 1294006898716048543}
+  - {fileID: 7288305927854033888}
+  - {fileID: 7682334753235206603}
+  - {fileID: 1540266269798853255}
+  - {fileID: 8882933675585172773}
+  - {fileID: 3081011529436762598}
+  - {fileID: 5294354259520959536}
+  NoCharactersToWatch:
+    m_PersistentCalls:
+      m_Calls: []
+  GetChildEnnemies: 0
+  DisableWakeUpBehaviourInStart: 0
 --- !u!1001 &31698296433035514
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -131,6 +166,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4511272183314837000}
     m_Modifications:
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: _wakeUpAtStart
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
         type: 3}
       propertyPath: _distanceToSleep
@@ -155,6 +200,41 @@ PrefabInstance:
         type: 3}
       propertyPath: _goBackToStartPosToSleep
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.data[4].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.data[4].m_Target
+      value: 
+      objectReference: {fileID: 7659511971403364662}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.data[4].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.data[4].m_MethodName
+      value: EnableWakeUpBehaviourInWatchedEnemies
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.data[4].m_TargetAssemblyTypeName
+      value: EnemiesWatcher, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.data[4].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 5919351741948662680, guid: b53c20b6f237f3242924df59e45f0d1f,
         type: 3}
@@ -228,6 +308,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b53c20b6f237f3242924df59e45f0d1f, type: 3}
+--- !u!114 &438078340057425294 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 460704731309419892, guid: b53c20b6f237f3242924df59e45f0d1f,
+    type: 3}
+  m_PrefabInstance: {fileID: 31698296433035514}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 448570f2dca1f494abcca596f07f1bbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &5932751862713342818 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5919351741948662680, guid: b53c20b6f237f3242924df59e45f0d1f,
@@ -318,6 +410,16 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
         type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: _wakeUpAtStart
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
       propertyPath: _distanceToSleep
       value: 9999
       objectReference: {fileID: 0}
@@ -340,6 +442,41 @@ PrefabInstance:
         type: 3}
       propertyPath: _goBackToStartPosToSleep
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.data[4].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.data[4].m_Target
+      value: 
+      objectReference: {fileID: 7659511971403364662}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.data[4].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.data[4].m_MethodName
+      value: EnableWakeUpBehaviourInWatchedEnemies
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.data[4].m_TargetAssemblyTypeName
+      value: EnemiesWatcher, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.data[4].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 5919351741948662680, guid: b53c20b6f237f3242924df59e45f0d1f,
         type: 3}
@@ -413,6 +550,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b53c20b6f237f3242924df59e45f0d1f, type: 3}
+--- !u!114 &1540266269798853255 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 460704731309419892, guid: b53c20b6f237f3242924df59e45f0d1f,
+    type: 3}
+  m_PrefabInstance: {fileID: 1370467035022772211}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 448570f2dca1f494abcca596f07f1bbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &4693071378576495723 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5919351741948662680, guid: b53c20b6f237f3242924df59e45f0d1f,
@@ -426,6 +575,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4511272183314837000}
     m_Modifications:
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: _wakeUpAtStart
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
         type: 3}
       propertyPath: _distanceToSleep
@@ -450,6 +609,41 @@ PrefabInstance:
         type: 3}
       propertyPath: _goBackToStartPosToSleep
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.data[4].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.data[4].m_Target
+      value: 
+      objectReference: {fileID: 7659511971403364662}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.data[4].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.data[4].m_MethodName
+      value: EnableWakeUpBehaviourInWatchedEnemies
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.data[4].m_TargetAssemblyTypeName
+      value: EnemiesWatcher, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.data[4].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 5919351741948662680, guid: b53c20b6f237f3242924df59e45f0d1f,
         type: 3}
@@ -523,6 +717,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b53c20b6f237f3242924df59e45f0d1f, type: 3}
+--- !u!114 &1294006898716048543 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 460704731309419892, guid: b53c20b6f237f3242924df59e45f0d1f,
+    type: 3}
+  m_PrefabInstance: {fileID: 1698416608912200171}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 448570f2dca1f494abcca596f07f1bbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &5022709733608735347 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5919351741948662680, guid: b53c20b6f237f3242924df59e45f0d1f,
@@ -838,6 +1044,16 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
         type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: _wakeUpAtStart
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
       propertyPath: _distanceToSleep
       value: 9999
       objectReference: {fileID: 0}
@@ -860,6 +1076,41 @@ PrefabInstance:
         type: 3}
       propertyPath: _goBackToStartPosToSleep
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.data[4].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.data[4].m_Target
+      value: 
+      objectReference: {fileID: 7659511971403364662}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.data[4].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.data[4].m_MethodName
+      value: EnableWakeUpBehaviourInWatchedEnemies
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.data[4].m_TargetAssemblyTypeName
+      value: EnemiesWatcher, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.data[4].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 5919351741948662680, guid: b53c20b6f237f3242924df59e45f0d1f,
         type: 3}
@@ -933,6 +1184,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b53c20b6f237f3242924df59e45f0d1f, type: 3}
+--- !u!114 &3081011529436762598 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 460704731309419892, guid: b53c20b6f237f3242924df59e45f0d1f,
+    type: 3}
+  m_PrefabInstance: {fileID: 3217033767008615570}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 448570f2dca1f494abcca596f07f1bbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &9115549694876757770 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5919351741948662680, guid: b53c20b6f237f3242924df59e45f0d1f,
@@ -946,6 +1209,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4511272183314837000}
     m_Modifications:
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: _wakeUpAtStart
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
         type: 3}
       propertyPath: _distanceToSleep
@@ -970,6 +1243,41 @@ PrefabInstance:
         type: 3}
       propertyPath: _goBackToStartPosToSleep
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.data[4].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.data[4].m_Target
+      value: 
+      objectReference: {fileID: 7659511971403364662}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.data[4].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.data[4].m_MethodName
+      value: EnableWakeUpBehaviourInWatchedEnemies
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.data[4].m_TargetAssemblyTypeName
+      value: EnemiesWatcher, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.data[4].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 5919351741948662680, guid: b53c20b6f237f3242924df59e45f0d1f,
         type: 3}
@@ -1043,6 +1351,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b53c20b6f237f3242924df59e45f0d1f, type: 3}
+--- !u!114 &2891327800676243368 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 460704731309419892, guid: b53c20b6f237f3242924df59e45f0d1f,
+    type: 3}
+  m_PrefabInstance: {fileID: 3334018133476178652}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 448570f2dca1f494abcca596f07f1bbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &8962458889387665732 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5919351741948662680, guid: b53c20b6f237f3242924df59e45f0d1f,
@@ -1056,6 +1376,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4511272183314837000}
     m_Modifications:
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: _wakeUpAtStart
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
         type: 3}
       propertyPath: _distanceToSleep
@@ -1080,6 +1410,41 @@ PrefabInstance:
         type: 3}
       propertyPath: _goBackToStartPosToSleep
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.data[4].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.data[4].m_Target
+      value: 
+      objectReference: {fileID: 7659511971403364662}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.data[4].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.data[4].m_MethodName
+      value: EnableWakeUpBehaviourInWatchedEnemies
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.data[4].m_TargetAssemblyTypeName
+      value: EnemiesWatcher, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.data[4].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 5919351741948662680, guid: b53c20b6f237f3242924df59e45f0d1f,
         type: 3}
@@ -1153,6 +1518,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b53c20b6f237f3242924df59e45f0d1f, type: 3}
+--- !u!114 &3803619795539754307 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 460704731309419892, guid: b53c20b6f237f3242924df59e45f0d1f,
+    type: 3}
+  m_PrefabInstance: {fileID: 3651834967861776439}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 448570f2dca1f494abcca596f07f1bbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &6955861859911123887 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5919351741948662680, guid: b53c20b6f237f3242924df59e45f0d1f,
@@ -1260,6 +1637,16 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
         type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: _wakeUpAtStart
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
       propertyPath: _distanceToSleep
       value: 9999
       objectReference: {fileID: 0}
@@ -1282,6 +1669,41 @@ PrefabInstance:
         type: 3}
       propertyPath: _goBackToStartPosToSleep
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.data[4].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.data[4].m_Target
+      value: 
+      objectReference: {fileID: 7659511971403364662}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.data[4].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.data[4].m_MethodName
+      value: EnableWakeUpBehaviourInWatchedEnemies
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.data[4].m_TargetAssemblyTypeName
+      value: EnemiesWatcher, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.data[4].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 5919351741948662680, guid: b53c20b6f237f3242924df59e45f0d1f,
         type: 3}
@@ -1355,6 +1777,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b53c20b6f237f3242924df59e45f0d1f, type: 3}
+--- !u!114 &3611914559056097438 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 460704731309419892, guid: b53c20b6f237f3242924df59e45f0d1f,
+    type: 3}
+  m_PrefabInstance: {fileID: 3766374489933454826}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 448570f2dca1f494abcca596f07f1bbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &7377206976366972530 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5919351741948662680, guid: b53c20b6f237f3242924df59e45f0d1f,
@@ -1445,6 +1879,16 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
         type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: _wakeUpAtStart
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
       propertyPath: _distanceToSleep
       value: 9999
       objectReference: {fileID: 0}
@@ -1467,6 +1911,41 @@ PrefabInstance:
         type: 3}
       propertyPath: _goBackToStartPosToSleep
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.data[4].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.data[4].m_Target
+      value: 
+      objectReference: {fileID: 7659511971403364662}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.data[4].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.data[4].m_MethodName
+      value: EnableWakeUpBehaviourInWatchedEnemies
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.data[4].m_TargetAssemblyTypeName
+      value: EnemiesWatcher, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.data[4].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 5919351741948662680, guid: b53c20b6f237f3242924df59e45f0d1f,
         type: 3}
@@ -1546,6 +2025,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 5433841668791653173}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &5551850607364603457 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 460704731309419892, guid: b53c20b6f237f3242924df59e45f0d1f,
+    type: 3}
+  m_PrefabInstance: {fileID: 5433841668791653173}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 448570f2dca1f494abcca596f07f1bbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &5632995867462391557
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1630,6 +2121,16 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
         type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: _wakeUpAtStart
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
       propertyPath: _distanceToSleep
       value: 9999
       objectReference: {fileID: 0}
@@ -1652,6 +2153,41 @@ PrefabInstance:
         type: 3}
       propertyPath: _goBackToStartPosToSleep
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.data[4].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.data[4].m_Target
+      value: 
+      objectReference: {fileID: 7659511971403364662}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.data[4].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.data[4].m_MethodName
+      value: EnableWakeUpBehaviourInWatchedEnemies
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.data[4].m_TargetAssemblyTypeName
+      value: EnemiesWatcher, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.data[4].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 5919351741948662680, guid: b53c20b6f237f3242924df59e45f0d1f,
         type: 3}
@@ -1731,6 +2267,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 5632995867817125212}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &5208601426756995112 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 460704731309419892, guid: b53c20b6f237f3242924df59e45f0d1f,
+    type: 3}
+  m_PrefabInstance: {fileID: 5632995867817125212}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 448570f2dca1f494abcca596f07f1bbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &5632995868557687304
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2040,6 +2588,16 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
         type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: _wakeUpAtStart
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
       propertyPath: _distanceToSleep
       value: 9999
       objectReference: {fileID: 0}
@@ -2062,6 +2620,41 @@ PrefabInstance:
         type: 3}
       propertyPath: _goBackToStartPosToSleep
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.data[4].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.data[4].m_Target
+      value: 
+      objectReference: {fileID: 7659511971403364662}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.data[4].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.data[4].m_MethodName
+      value: EnableWakeUpBehaviourInWatchedEnemies
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.data[4].m_TargetAssemblyTypeName
+      value: EnemiesWatcher, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.data[4].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 5919351741948662680, guid: b53c20b6f237f3242924df59e45f0d1f,
         type: 3}
@@ -2141,6 +2734,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 5700875048149621060}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &5294354259520959536 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 460704731309419892, guid: b53c20b6f237f3242924df59e45f0d1f,
+    type: 3}
+  m_PrefabInstance: {fileID: 5700875048149621060}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 448570f2dca1f494abcca596f07f1bbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &5805609589249019932
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2148,6 +2753,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4511272183314837000}
     m_Modifications:
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: _wakeUpAtStart
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
         type: 3}
       propertyPath: _distanceToSleep
@@ -2172,6 +2787,41 @@ PrefabInstance:
         type: 3}
       propertyPath: _goBackToStartPosToSleep
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.data[4].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.data[4].m_Target
+      value: 
+      objectReference: {fileID: 7659511971403364662}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.data[4].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.data[4].m_MethodName
+      value: EnableWakeUpBehaviourInWatchedEnemies
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.data[4].m_TargetAssemblyTypeName
+      value: EnemiesWatcher, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.data[4].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 5919351741948662680, guid: b53c20b6f237f3242924df59e45f0d1f,
         type: 3}
@@ -2251,6 +2901,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 5805609589249019932}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &6266032835916741992 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 460704731309419892, guid: b53c20b6f237f3242924df59e45f0d1f,
+    type: 3}
+  m_PrefabInstance: {fileID: 5805609589249019932}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 448570f2dca1f494abcca596f07f1bbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &7152141871535826580
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2258,6 +2920,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4511272183314837000}
     m_Modifications:
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: _wakeUpAtStart
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
         type: 3}
       propertyPath: _distanceToSleep
@@ -2282,6 +2954,41 @@ PrefabInstance:
         type: 3}
       propertyPath: _goBackToStartPosToSleep
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.data[4].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.data[4].m_Target
+      value: 
+      objectReference: {fileID: 7659511971403364662}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.data[4].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.data[4].m_MethodName
+      value: EnableWakeUpBehaviourInWatchedEnemies
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.data[4].m_TargetAssemblyTypeName
+      value: EnemiesWatcher, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.data[4].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 5919351741948662680, guid: b53c20b6f237f3242924df59e45f0d1f,
         type: 3}
@@ -2361,6 +3068,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 7152141871535826580}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7288305927854033888 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 460704731309419892, guid: b53c20b6f237f3242924df59e45f0d1f,
+    type: 3}
+  m_PrefabInstance: {fileID: 7152141871535826580}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 448570f2dca1f494abcca596f07f1bbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &7372288249081192496
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2445,6 +3164,16 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
         type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: _wakeUpAtStart
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
       propertyPath: _distanceToSleep
       value: 9999
       objectReference: {fileID: 0}
@@ -2467,6 +3196,41 @@ PrefabInstance:
         type: 3}
       propertyPath: _goBackToStartPosToSleep
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.data[4].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.data[4].m_Target
+      value: 
+      objectReference: {fileID: 7659511971403364662}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.data[4].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.data[4].m_MethodName
+      value: EnableWakeUpBehaviourInWatchedEnemies
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.data[4].m_TargetAssemblyTypeName
+      value: EnemiesWatcher, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.data[4].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 5919351741948662680, guid: b53c20b6f237f3242924df59e45f0d1f,
         type: 3}
@@ -2546,6 +3310,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 7852556200476617919}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7682334753235206603 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 460704731309419892, guid: b53c20b6f237f3242924df59e45f0d1f,
+    type: 3}
+  m_PrefabInstance: {fileID: 7852556200476617919}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 448570f2dca1f494abcca596f07f1bbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &8880867133667990195
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2553,6 +3329,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4511272183314837000}
     m_Modifications:
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: _wakeUpAtStart
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
         type: 3}
       propertyPath: _distanceToSleep
@@ -2577,6 +3363,41 @@ PrefabInstance:
         type: 3}
       propertyPath: _goBackToStartPosToSleep
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.data[4].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.data[4].m_Target
+      value: 
+      objectReference: {fileID: 7659511971403364662}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.data[4].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.data[4].m_MethodName
+      value: EnableWakeUpBehaviourInWatchedEnemies
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.data[4].m_TargetAssemblyTypeName
+      value: EnemiesWatcher, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.data[4].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 5919351741948662680, guid: b53c20b6f237f3242924df59e45f0d1f,
         type: 3}
@@ -2656,6 +3477,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 8880867133667990195}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &9033074172736239559 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 460704731309419892, guid: b53c20b6f237f3242924df59e45f0d1f,
+    type: 3}
+  m_PrefabInstance: {fileID: 8880867133667990195}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 448570f2dca1f494abcca596f07f1bbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &8940088699538289582
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2663,6 +3496,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4511272183314837000}
     m_Modifications:
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: _wakeUpAtStart
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
         type: 3}
       propertyPath: _distanceToSleep
@@ -2687,6 +3530,41 @@ PrefabInstance:
         type: 3}
       propertyPath: _goBackToStartPosToSleep
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.data[4].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.data[4].m_Target
+      value: 
+      objectReference: {fileID: 7659511971403364662}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.data[4].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.data[4].m_MethodName
+      value: EnableWakeUpBehaviourInWatchedEnemies
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.data[4].m_TargetAssemblyTypeName
+      value: EnemiesWatcher, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.data[4].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 5919351741948662680, guid: b53c20b6f237f3242924df59e45f0d1f,
         type: 3}
@@ -2766,6 +3644,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 8940088699538289582}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8824051185313685210 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 460704731309419892, guid: b53c20b6f237f3242924df59e45f0d1f,
+    type: 3}
+  m_PrefabInstance: {fileID: 8940088699538289582}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 448570f2dca1f494abcca596f07f1bbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &9016845949268514897
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2773,6 +3663,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4511272183314837000}
     m_Modifications:
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: _wakeUpAtStart
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
         type: 3}
       propertyPath: _distanceToSleep
@@ -2797,6 +3697,41 @@ PrefabInstance:
         type: 3}
       propertyPath: _goBackToStartPosToSleep
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.data[4].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.data[4].m_Target
+      value: 
+      objectReference: {fileID: 7659511971403364662}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.data[4].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.data[4].m_MethodName
+      value: EnableWakeUpBehaviourInWatchedEnemies
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.data[4].m_TargetAssemblyTypeName
+      value: EnemiesWatcher, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: b53c20b6f237f3242924df59e45f0d1f,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.data[4].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 5919351741948662680, guid: b53c20b6f237f3242924df59e45f0d1f,
         type: 3}
@@ -2876,3 +3811,15 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 9016845949268514897}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8882933675585172773 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 460704731309419892, guid: b53c20b6f237f3242924df59e45f0d1f,
+    type: 3}
+  m_PrefabInstance: {fileID: 9016845949268514897}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 448570f2dca1f494abcca596f07f1bbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

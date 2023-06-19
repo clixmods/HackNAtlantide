@@ -11,7 +11,7 @@ public class AliasParticleSystemListener : MonoBehaviour
     private bool _aliasIsPlayed;
     private AudioPlayer _audioPlayer;
 
-    private void Awake()
+    private void Start()
     {
         _particleSystem = GetComponent<ParticleSystem>();
         if (alias == null)
@@ -24,7 +24,7 @@ public class AliasParticleSystemListener : MonoBehaviour
 
     private void OnDisable()
     {
-        if (alias.isLooping)
+        if (alias != null && alias.isLooping)
         {
             AudioManager.StopLoopSound(ref _audioPlayer, StopLoopBehavior.Direct);
         }
