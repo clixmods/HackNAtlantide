@@ -13,7 +13,7 @@ public class BigGolemRunAttack : EnemyAttackBehaviour
     int ChargingAnimID = Animator.StringToHash("Ray_Attack_Big_Golem");
     int AttackRunAnimID = Animator.StringToHash("Run_Big_Golem");
     int AttackRunCloseToPlayerAnimID = Animator.StringToHash("Transition_Run_To_Charge_Big_Golem");
-    int IdleAnimID = Animator.StringToHash("Idle_Big_Golem");
+    int WalkAnimID = Animator.StringToHash("Walk_Big_Golem");
 
 
     [SerializeField] float chargeDistance = 10;
@@ -45,7 +45,7 @@ public class BigGolemRunAttack : EnemyAttackBehaviour
 
         //LaunchAttackEvent();
         Priority += CoolDown;
-        _enemyBehaviour.Animator.CrossFadeInFixedTime(MovingBackAnimID, 0f);
+        _enemyBehaviour.Animator.CrossFadeInFixedTime(MovingBackAnimID, 0.2f);
 
     }
     public IEnumerator MoveToChargePosition()
@@ -71,7 +71,7 @@ public class BigGolemRunAttack : EnemyAttackBehaviour
     {
         _enemyBehaviour.Agent.enabled = false;
         OnStartChargingAttack?.Invoke();
-        _enemyBehaviour.Animator.CrossFadeInFixedTime(ChargingAnimID, 0f);
+        _enemyBehaviour.Animator.CrossFadeInFixedTime(ChargingAnimID, 0.1f);
         float timeToCharge = chargeTime;
 
         while(timeToCharge > 0)
@@ -98,7 +98,7 @@ public class BigGolemRunAttack : EnemyAttackBehaviour
         _enemyBehaviour.Agent.speed = AttackMovementSpeed;
         
         //animation AttackRun
-        _enemyBehaviour.Animator.CrossFadeInFixedTime(AttackRunAnimID, 0f);
+        _enemyBehaviour.Animator.CrossFadeInFixedTime(AttackRunAnimID, 0.1f);
 
         //calculates direction to attack
         Vector3 directionToPlayer = -(transform.position - PlayerInstanceScriptableObject.Player.transform.position);
@@ -130,7 +130,7 @@ public class BigGolemRunAttack : EnemyAttackBehaviour
         //arrived at end position so set variables back to default
         _rigidBody.velocity = Vector3.zero;
         _enemyBehaviour.Agent.speed = initialSpeed;
-        _enemyBehaviour.Animator.CrossFadeInFixedTime(IdleAnimID, 1f);
+        _enemyBehaviour.Animator.CrossFadeInFixedTime(WalkAnimID, 1f);
 
         OnAttackFinished();
         _enemyBehaviour.IsAttacking = false;

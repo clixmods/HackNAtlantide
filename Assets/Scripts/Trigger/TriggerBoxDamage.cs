@@ -6,12 +6,13 @@ using UnityEngine;
 
 public class TriggerBoxDamage : TriggerBox
 {
+    [SerializeField] float damagePerSeconds;
     protected override void TriggerStay(Collider other)
     {
         base.TriggerStay(other);
         if (other.TryGetComponent<IDamageable>(out var damageable))
         {
-            damageable.DoDamage(1);
+            damageable.DoDamage(damagePerSeconds*Time.deltaTime);
         }
     }
 #if UNITY_EDITOR

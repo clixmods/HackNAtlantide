@@ -5,7 +5,6 @@ using UnityEngine;
 public class BigGolemBehaviour : EnemyBehaviour
 {
     int MoveAnimID = Animator.StringToHash("Walk_Big_Golem");
-    int IdleAnimID = Animator.StringToHash("Idle_Big_Golem");
     int AwakeAnimID = Animator.StringToHash("Wake_Up_Big_Golem");
     int walkSpeedId = Animator.StringToHash("walkSpeed");
     public override void Move(Vector3 target)
@@ -78,6 +77,19 @@ public class BigGolemBehaviour : EnemyBehaviour
         {
             StartCoroutine(MoveToPlayer());
         }
+    }
+    public override IEnumerator MoveToPlayer()
+    {
+        _movecoroutineIsPlayed = true;
+        _canMove = true;
+        while (_canMove && _isAwake && !_returnToStartPos && Agent.enabled && canTargetPlayer)
+        {
+            Move(PlayerInstanceScriptableObject.Player.transform.position);
+            FaceTarget(PlayerInstanceScriptableObject.Player.transform.position);
+            yield return null;
+        }
+        _movecoroutineIsPlayed = false;
+
     }
 
 }
