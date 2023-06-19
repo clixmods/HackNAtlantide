@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 // TODO : Use coroutine
 [RequireComponent(typeof(CanvasGroup))]
@@ -14,6 +15,10 @@ public class UIMenuOpenSmooth : MonoBehaviour
     [SerializeField] private float startTheOpenInSeconds = 0;
     [SerializeField] private float openDelay;
     [SerializeField] private float closeDelay;
+    [SerializeField] private bool SmoothOnOpenCloseMenu = true;
+    public UnityEvent SmoothStart;
+    public UnityEvent SmoothDone;
+   
     private void Awake()
     {
         _canvasGroup = GetComponent<CanvasGroup>();
@@ -39,12 +44,20 @@ public class UIMenuOpenSmooth : MonoBehaviour
 
     private void OnDisable()
     {
-        ResetValues();
+        if (SmoothOnOpenCloseMenu)
+        {
+            ResetValues();
+        }
     }
 
     private void OnEnable()
     {
-        ResetValues();
+        SmoothStart?.Invoke();
+        if (SmoothOnOpenCloseMenu)
+        {
+            ResetValues();
+        }
+        
     }
 
     private void ResetValues()
@@ -57,22 +70,35 @@ public class UIMenuOpenSmooth : MonoBehaviour
 
     private void Update()
     {
-        if (_canvasGroup.alpha < 1 && !_canvasGroup.interactable )
+        if (SmoothOnOpenCloseMenu)
         {
-            if (_currentStartTheOpenDelay >= startTheOpenInSeconds)
+            if (_canvasGroup.alpha < 1 && !_canvasGroup.interactable )
             {
-                _currentDelay += Time.unscaledDeltaTime;
-                float value = _currentDelay / openDelay;
-                _canvasGroup.alpha = value;
+                if (_currentStartTheOpenDelay >= startTheOpenInSeconds)
+                {
+                    _currentDelay += Time.unscaledDeltaTime;
+                    float value = _currentDelay / openDelay;
+                    _canvasGroup.alpha = value;
+                }
+                else
+                {
+                    _currentStartTheOpenDelay += Time.unscaledDeltaTime;
+                }
             }
             else
             {
-                _currentStartTheOpenDelay += Time.unscaledDeltaTime;
+                if (!_canvasGroup.interactable)
+                {
+                    SmoothDone?.Invoke();
+                    _canvasGroup.interactable   = true;
+                }
+             
             }
         }
-        else
-        {
-            _canvasGroup.interactable = true;
-        }
+    }
+
+    public void SetSmoothOnOpenCloseMenu(bool value)
+    {
+        SmoothOnOpenCloseMenu = value;
     }
 }

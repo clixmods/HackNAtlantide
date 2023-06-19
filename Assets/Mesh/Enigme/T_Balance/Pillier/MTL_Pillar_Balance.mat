@@ -12,6 +12,8 @@ Material:
   m_ValidKeywords:
   - _METALLICSPECGLOSSMAP
   - _NORMALMAP
+  - _OCCLUSIONMAP
+  - _PARALLAXMAP
   m_InvalidKeywords: []
   m_LightmapFlags: 6
   m_EnableInstancingVariants: 0
@@ -24,11 +26,11 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BaseMap:
-        m_Texture: {fileID: 2800000, guid: a746f3f7a4279894fa11cdbc792e024e, type: 3}
+        m_Texture: {fileID: 2800000, guid: cbf6763583b54414f84b666ea0307475, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
-        m_Texture: {fileID: 2800000, guid: 6914aa249aba88b4b906532e326e83a8, type: 3}
+        m_Texture: {fileID: 2800000, guid: c14be4954c7449a40ae2df31c640e2a0, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
@@ -44,23 +46,23 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EmissionMap:
-        m_Texture: {fileID: 2800000, guid: bda152cca5660e1408a3727a533cabef, type: 3}
+        m_Texture: {fileID: 2800000, guid: b31e15ef88d48bd479cbe08faedcd48e, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: a746f3f7a4279894fa11cdbc792e024e, type: 3}
+        m_Texture: {fileID: 2800000, guid: cbf6763583b54414f84b666ea0307475, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
-        m_Texture: {fileID: 2800000, guid: 26db0c4cc891ab24f926964bfaeca4f5, type: 3}
+        m_Texture: {fileID: 2800000, guid: b955c43d88002f94b8c9a333c42a7451, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: c56312fe39ea9c943873b01b3db194c9, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ParallaxMap:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: cdb0f8fbcce532b4aa5931f8ab112299, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SpecGlossMap:

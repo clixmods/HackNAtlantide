@@ -98,7 +98,7 @@ public class Focusable : MonoBehaviour, IFocusable
     }
     #if UNITY_EDITOR
     private void OnDrawGizmosSelected()
-    {
+    {/*
         if (targeter == null) return;
         
             Color colorLine = Color.red;
@@ -110,7 +110,7 @@ public class Focusable : MonoBehaviour, IFocusable
             GUIStyle style = new GUIStyle();
             style.normal.textColor = colorLine; 
         
-            Handles.Label(transform.position , GetHeightWithTargeter().ToString() , style );
+            Handles.Label(transform.position , GetHeightWithTargeter().ToString() , style );*/
     }
     #endif
 

@@ -285,6 +285,7 @@ public class AttackLevitationInteractable : Interactable
             StartCoroutine(WaitForDestroy());
             return;
         }
+        StopAllCoroutines();
 
         ResetInteract();
     }

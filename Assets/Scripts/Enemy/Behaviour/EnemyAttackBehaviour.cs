@@ -86,6 +86,7 @@ public abstract class EnemyAttackBehaviour : MonoBehaviour, ICombat
         {
             _attackColliderLeft.OnCollideWithIDamageable -= AttackColliderOnOnCollideWithIDamageable;
         }
+        //_enemyBehaviour.IsAttacking = false;
     }
 
     private void AttackColliderOnOnCollideWithIDamageable(object sender, EventArgs eventArgs)

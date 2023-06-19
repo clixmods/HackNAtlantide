@@ -65,6 +65,7 @@ public class MediumGolemJumpAttack : EnemyAttackBehaviour
     
     IEnumerator AttackBehaviour()
     {
+        OnAttackStarted();
         // joue le jump anim et attend le bon moment pour sauter
         _enemyBehaviour.Animator.CrossFadeInFixedTime(JumpAnimID, 0f);
         yield return new WaitForSeconds(jumpAnimTime);
@@ -94,6 +95,7 @@ public class MediumGolemJumpAttack : EnemyAttackBehaviour
         }
         _enemyBehaviour.Agent.enabled = true;
         attackLandingShake.ShakeByDistance(_enemyBehaviour.DistanceWithPlayer/10f);
+        OnAttackFinished();
 
         //launchExplosion
         StartCoroutine(ExplosionAttack());
