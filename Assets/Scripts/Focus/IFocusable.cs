@@ -8,6 +8,8 @@ public interface IFocusable
     public Transform transform { get; }
     public Transform focusableTransform { get; }
     public bool CanBeFocusable { get; }
+    public void OnNearest();
+    public void OnNoNearest();
     public void OnFocus();
     public void OnUnfocus();
     event EventHandler OnTargeted;
