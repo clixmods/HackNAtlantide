@@ -17,6 +17,7 @@ public class Focusable : MonoBehaviour, IFocusable
     [SerializeField] private bool checkHeight;
     [SerializeField] private float heightTolerance = 10f;
     [SerializeField] GameObject _decalTarget;
+    [SerializeField] private GameObject decalPotentialTarget;
     public bool CanBeFocusable
     {
    
@@ -115,6 +116,17 @@ public class Focusable : MonoBehaviour, IFocusable
     #endif
 
     #endregion
+
+    public void OnNearest()
+    {
+        decalPotentialTarget.SetActive(true);
+    }
+    public void OnNoNearest()
+    {
+        decalPotentialTarget.SetActive(false);
+    }
+    
+
     public void OnFocus()
     {
         OnTargeted?.Invoke(this, null);
