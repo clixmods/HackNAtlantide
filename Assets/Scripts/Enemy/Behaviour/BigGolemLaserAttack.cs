@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class BigGolemLaserAttack : EnemyAttackBehaviour
 {
@@ -13,6 +14,10 @@ public class BigGolemLaserAttack : EnemyAttackBehaviour
     [SerializeField] GameObject laserMesh;
     bool hasToUpdate = false;
     Quaternion currentRotation;
+    public UnityEvent OnLaserStart;
+    public UnityEvent OnLaserEnd;
+    public UnityEvent OnLaserRunning;
+    
 
     public override void Attack()
     {
@@ -22,12 +27,12 @@ public class BigGolemLaserAttack : EnemyAttackBehaviour
     }
     IEnumerator AttackBehaviour()
     {
+        OnLaserStart?.Invoke();
         OnAttackStarted();
         _enemyBehaviour.Animator.CrossFade(ChargeAnimID, 0f);
         yield return new WaitForEndOfFrame();
         while(_enemyBehaviour.Animator.GetCurrentAnimatorStateInfo(0).IsName("Ray_Attack_Big_Golem"))
         {
-            Debug.Log("inRayAttackAnim");
             yield return null;
         }
         animMesh.SetActive(false);
@@ -35,6 +40,7 @@ public class BigGolemLaserAttack : EnemyAttackBehaviour
         float time = attackDuration;
         while (time > 0)
         {
+            OnLaserRunning?.Invoke();
             //_enemyBehaviour.FaceTarget(PlayerInstanceScriptableObject.Player.transform.position);
             //RotateHead
             Vector3 playerPos = PlayerInstanceScriptableObject.Player.transform.position + Vector3.up * 0.3f;
@@ -47,6 +53,7 @@ public class BigGolemLaserAttack : EnemyAttackBehaviour
         laserMesh.SetActive(false);
         OnAttackFinished();
         _enemyBehaviour.IsAttacking = false;
+        OnLaserEnd?.Invoke();
         //_enemyBehaviour.Animator.CrossFade(WalkAnimID, 0.2f);
     }
     public override bool CanAttack()
