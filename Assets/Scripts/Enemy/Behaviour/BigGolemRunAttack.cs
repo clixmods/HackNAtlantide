@@ -9,10 +9,11 @@ using UnityEngine.UI;
 
 public class BigGolemRunAttack : EnemyAttackBehaviour
 {
-    int MovingBackAnimID = Animator.StringToHash("");
-    int ChargingAnimID = Animator.StringToHash("");
-    int AttackRunAnimID = Animator.StringToHash("");
-    int AttackRunCloseToPlayerAnimID = Animator.StringToHash("");
+    int MovingBackAnimID = Animator.StringToHash("Walk_Big_Golem");
+    int ChargingAnimID = Animator.StringToHash("Ray_Attack_Big_Golem");
+    int AttackRunAnimID = Animator.StringToHash("Run_Big_Golem");
+    int AttackRunCloseToPlayerAnimID = Animator.StringToHash("Transition_Run_To_Charge_Big_Golem");
+    int IdleAnimID = Animator.StringToHash("Idle_Big_Golem");
 
 
     [SerializeField] float chargeDistance = 10;
@@ -20,6 +21,7 @@ public class BigGolemRunAttack : EnemyAttackBehaviour
     [SerializeField] float chargeSpeed = 10;
     [SerializeField] float AttackMovementSpeed = 20;
     [SerializeField] float chargeTime = 1.5f;
+    float initialSpeed;
 
 
     public UnityEvent OnStartMovingBack;
@@ -43,29 +45,33 @@ public class BigGolemRunAttack : EnemyAttackBehaviour
 
         //LaunchAttackEvent();
         Priority += CoolDown;
-        if (!_enemyBehaviour.Animator.GetCurrentAnimatorStateInfo(0).IsName(""))
-        {
-            //_enemyBehaviour.Animator.CrossFadeInFixedTime(MovingBackAnimID, 0f);
-        }
+        _enemyBehaviour.Animator.CrossFadeInFixedTime(MovingBackAnimID, 0f);
 
     }
     public IEnumerator MoveToChargePosition()
     {
         OnStartMovingBack?.Invoke();
-        _enemyBehaviour.Agent.enabled = false;
-
-        while ((_enemyBehaviour.transform.position - chargePoint.position).sqrMagnitude > 1.5f)
+        initialSpeed = _enemyBehaviour.Agent.speed;
+        _enemyBehaviour.Agent.speed = chargeSpeed;
+        NavMeshHit destination;
+        NavMesh.SamplePosition(chargePoint.position, out destination, 20f, NavMesh.AllAreas);
+        while ((_enemyBehaviour.transform.position - destination.position).sqrMagnitude > 1.5f)
         {
-            transform.position += (chargePoint.position - transform.position).normalized * chargeSpeed * Time.deltaTime;
-            _enemyBehaviour.FaceTarget(chargePoint.position);
+            if(NavMesh.SamplePosition(chargePoint.position, out destination, 20f, NavMesh.AllAreas))
+            {
+                _enemyBehaviour.Agent.SetDestination(destination.position);
+                _enemyBehaviour.FaceTarget(destination.position);
+                Debug.Log("move to charge point");
+            }
             yield return null;
         }
         StartCoroutine(Charge());
     }
     public IEnumerator Charge()
-    { 
+    {
+        _enemyBehaviour.Agent.enabled = false;
         OnStartChargingAttack?.Invoke();
-        //_enemyBehaviour.Animator.CrossFadeInFixedTime(ChargingAnimID, 0.2f);
+        _enemyBehaviour.Animator.CrossFadeInFixedTime(ChargingAnimID, 0f);
         float timeToCharge = chargeTime;
 
         while(timeToCharge > 0)
@@ -82,40 +88,54 @@ public class BigGolemRunAttack : EnemyAttackBehaviour
     }
     IEnumerator AttackBehaviour()
     {
+        //Setup collider
         _attackColliderAttackRun.enabled = true;
         _attackColliderAttackRun.OnCollideWithIDamageable += AttackColliderOnOnCollideWithIDamageable;
         OnAttackStarted();
-        _enemyBehaviour.Agent.isStopped = false;
-        float initialSpeed = _enemyBehaviour.Agent.speed;
-        
-        
-        //_enemyBehaviour.Animator.CrossFadeInFixedTime(AttackRunAnimID, 0.2f);
 
+        //setup agent
+        _enemyBehaviour.Agent.isStopped = false;
+        _enemyBehaviour.Agent.speed = AttackMovementSpeed;
+        
+        //animation AttackRun
+        _enemyBehaviour.Animator.CrossFadeInFixedTime(AttackRunAnimID, 0f);
+
+        //calculates direction to attack
         Vector3 directionToPlayer = -(transform.position - PlayerInstanceScriptableObject.Player.transform.position);
         directionToPlayer = new Vector3(directionToPlayer.x, transform.position.y, directionToPlayer.z);
 
-        Vector3 directionToMove = directionToPlayer + directionToPlayer.normalized * 10f;
+        Vector3 directionToMove = directionToPlayer + directionToPlayer.normalized * 5f;
         Vector3 PointToStop = transform.position + directionToMove;
         if(NavMesh.SamplePosition(PointToStop, out NavMeshHit hitPoint, 10f, 1))
         {
             PointToStop = hitPoint.position;
         }
 
+        //Run in the direction until at finish point
         while ((transform.position - PointToStop).sqrMagnitude > 5f)
         {
-            transform.position += directionToMove.normalized * AttackMovementSpeed * Time.deltaTime;
+            //move to direction
+            //transform.position += directionToMove.normalized * AttackMovementSpeed * Time.deltaTime;
+            _enemyBehaviour.Agent.SetDestination(PointToStop);
 
-            if((transform.position - PlayerInstanceScriptableObject.Player.transform.position).sqrMagnitude < attackBlockDistance*attackBlockDistance)
+            if(!_enemyBehaviour.Animator.GetCurrentAnimatorStateInfo(0).IsName("Transition_Run_To_Charge_Big_Golem") 
+                && !_enemyBehaviour.Animator.GetCurrentAnimatorStateInfo(0).IsName("Charge_Attack_Big_Golem")
+                && (transform.position - PlayerInstanceScriptableObject.Player.transform.position).sqrMagnitude < attackBlockDistance * attackBlockDistance)
             {
-                //_enemyBehaviour.Animator.CrossFadeInFixedTime(AttackRunCloseToPlayerAnimID, 0.2f);
+                _enemyBehaviour.Animator.CrossFadeInFixedTime(AttackRunCloseToPlayerAnimID, 0f);
             }
             yield return null;
             
         }
+        //arrived at end position so set variables back to default
         _rigidBody.velocity = Vector3.zero;
         _enemyBehaviour.Agent.speed = initialSpeed;
+        _enemyBehaviour.Animator.CrossFadeInFixedTime(IdleAnimID, 1f);
+
         OnAttackFinished();
+        _enemyBehaviour.IsAttacking = false;
         yield return null;
+
         _attackColliderAttackRun.OnCollideWithIDamageable -= AttackColliderOnOnCollideWithIDamageable;
         _attackColliderAttackRun.enabled = false;
     }
@@ -124,7 +144,7 @@ public class BigGolemRunAttack : EnemyAttackBehaviour
     {
         Vector3 desiredPosition = PlayerInstanceScriptableObject.Player.transform.position + (transform.position - PlayerInstanceScriptableObject.Player.transform.position).normalized * chargeDistance;
         desiredPosition = new Vector3(desiredPosition.x, transform.position.y, desiredPosition.z);
-        bool canMoveBack = NavMesh.SamplePosition(desiredPosition, out chargePoint, 3f, 1);
+        bool canMoveBack = NavMesh.SamplePosition(desiredPosition, out chargePoint, 10f, NavMesh.AllAreas);
         return _enemyBehaviour.DistanceWithPlayer > MinDistanceToAttack && _enemyBehaviour.DistanceWithPlayer < MaxDistanceToAttack && canMoveBack;
     }
     private void AttackColliderOnOnCollideWithIDamageable(object sender, EventArgs eventArgs)
@@ -136,14 +156,6 @@ public class BigGolemRunAttack : EnemyAttackBehaviour
     }
     private void OnDrawGizmosSelected()
     {
-        if(chargePoint.position != null)
-        {
-            Gizmos.color = Color.red;
-            Gizmos.DrawSphere(chargePoint.position, 1f);
-            Gizmos.color = Color.yellow;
-            Vector3 desiredPosition = PlayerInstanceScriptableObject.Player.transform.position + (transform.position - PlayerInstanceScriptableObject.Player.transform.position).normalized * chargeDistance;
-            desiredPosition = new Vector3(desiredPosition.x, transform.position.y, desiredPosition.z);
-            Gizmos.DrawLine(transform.position, desiredPosition);
-        }
+        Gizmos.DrawSphere(chargePoint.position, 1f);
     }
 }

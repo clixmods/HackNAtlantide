@@ -1,17 +1,17 @@
 using Attack;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Events;
-using UnityEngine.UIElements;
 using Random = UnityEngine.Random;
 
-public class MediumGolemJumpAttack : EnemyAttackBehaviour
+public class BigGolemJumpAttack : EnemyAttackBehaviour
 {
-    int JumpAnimID = Animator.StringToHash("Jump_Golem_M");
+    int JumpAnimID = Animator.StringToHash("Jump_Big_Golem");
     //int MidAirAnimID = Animator.StringToHash("MidAir_Golem");
-    int AttaqueAnimID = Animator.StringToHash("Landing_Golem_M");
+    int AttaqueAnimID = Animator.StringToHash("Fall_Big_Golem");
     [SerializeField] float damageOnExplosion = 1f;
 
     [SerializeField] float _jumpForce;
@@ -62,7 +62,7 @@ public class MediumGolemJumpAttack : EnemyAttackBehaviour
         //listenToEventExplosionDamage
 
     }
-    
+
     IEnumerator AttackBehaviour()
     {
         OnAttackStarted();
@@ -79,14 +79,14 @@ public class MediumGolemJumpAttack : EnemyAttackBehaviour
                 _enemyBehaviour.FaceTarget(PlayerInstanceScriptableObject.Player.transform.position);
             }
             timeToJump += Time.deltaTime;
-            if(timeToJump > 2f)
+            if (timeToJump > 2f)
                 timeToJump = 2f;
 
             float interpolationPosition = timeToJump / jumpTime;
             transform.position = bezierCurve.GetPointBezierCurve(interpolationPosition);
 
             //Joue l'attack animation a partir de 60% du saut
-            if (!_enemyBehaviour.Animator.GetCurrentAnimatorStateInfo(0).IsName("Landing_Golem_M") && interpolationPosition > 0.6f)
+            if (!_enemyBehaviour.Animator.GetCurrentAnimatorStateInfo(0).IsName("Landing_Big_Golem") && interpolationPosition > 0.6f)
             {
                 _enemyBehaviour.Animator.CrossFadeInFixedTime(AttaqueAnimID, 0f);
             }
@@ -94,7 +94,7 @@ public class MediumGolemJumpAttack : EnemyAttackBehaviour
             yield return null;
         }
         _enemyBehaviour.Agent.enabled = true;
-        attackLandingShake.ShakeByDistance(_enemyBehaviour.DistanceWithPlayer/10f);
+        attackLandingShake.ShakeByDistance(_enemyBehaviour.DistanceWithPlayer / 10f);
         OnAttackFinished();
 
         //launchExplosion
@@ -106,15 +106,15 @@ public class MediumGolemJumpAttack : EnemyAttackBehaviour
         _attackColliderExplosion.enabled = true;
         _attackColliderExplosion.OnCollideWithIDamageable += AttackColliderOnOnCollideWithIDamageableExplosion;
 
-        Instantiate(groundCrackDecal,transform.position+Vector3.up*2,Quaternion.identity);
+        Instantiate(groundCrackDecal, transform.position + Vector3.up * 2, Quaternion.identity);
 
 
         OnExplosionStart?.Invoke();
 
         ExplosionFx.Play();
-        
-        float time=0f;
-        while(time < explosionTime)
+
+        float time = 0f;
+        while (time < explosionTime)
         {
             time += Time.deltaTime;
             explosionCollider.radius = Mathf.Lerp(0, explosionRadius, time / explosionTime);
@@ -126,6 +126,7 @@ public class MediumGolemJumpAttack : EnemyAttackBehaviour
 
         _attackColliderExplosion.OnCollideWithIDamageable -= AttackColliderOnOnCollideWithIDamageableExplosion;
         _attackColliderExplosion.enabled = false;
+        _enemyBehaviour.IsAttacking = false;
     }
 
     private void AttackColliderOnOnCollideWithIDamageableExplosion(object sender, EventArgs eventArgs)
@@ -141,25 +142,25 @@ public class MediumGolemJumpAttack : EnemyAttackBehaviour
     {
         startPosition.parent = null;
         startPosition.position = transform.position;
-        endPoint.position = PlayerInstanceScriptableObject.Player.transform.position + new Vector3(Random.value,0,Random.value)*2;
+        endPoint.position = PlayerInstanceScriptableObject.Player.transform.position + new Vector3(Random.value, 0, Random.value) * 2;
         highPoint1.position = transform.position + (endPoint.position - transform.position) / 4f + Vector3.up * 10f;
         highPoint2.position = transform.position + 3 * (endPoint.position - transform.position) / 4f + Vector3.up * 10f;
-        
+
     }
 
     private void CalculatePathTo(Vector3 position)
     {
         startPosition.parent = null;
         startPosition.position = transform.position;
-        endPoint.position = position + new Vector3(Random.value,0,Random.value)*2;
+        endPoint.position = position + new Vector3(Random.value, 0, Random.value) * 2;
         highPoint1.position = transform.position + (endPoint.position - transform.position) / 4f + Vector3.up * 10f;
         highPoint2.position = transform.position + 3 * (endPoint.position - transform.position) / 4f + Vector3.up * 10f;
     }
 
     public override bool CanAttack()
     {
-        return _enemyBehaviour.DistanceWithPlayer > MinDistanceToAttack 
-            && _enemyBehaviour.DistanceWithPlayer < MaxDistanceToAttack 
-            && NavMesh.SamplePosition(PlayerInstanceScriptableObject.Player.transform.position, out NavMeshHit hit,1f,1);
+        return _enemyBehaviour.DistanceWithPlayer > MinDistanceToAttack
+            && _enemyBehaviour.DistanceWithPlayer < MaxDistanceToAttack
+            && NavMesh.SamplePosition(PlayerInstanceScriptableObject.Player.transform.position, out NavMeshHit hit, 1f, 1);
     }
 }

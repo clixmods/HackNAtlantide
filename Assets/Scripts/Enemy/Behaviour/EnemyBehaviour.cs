@@ -23,11 +23,11 @@ public class EnemyBehaviour : MonoBehaviour
     bool _isAwake;
     public bool IsAwake { get { return _isAwake; } set { _isAwake = value; } }
     bool _isAttacking;
-    public bool IsAttacking { get { return _isAttacking; } }
-    bool _canMove;
+    public bool IsAttacking { get { return _isAttacking; } set { _isAttacking = value; } }
+    protected bool _canMove;
     bool _returnToStartPos;
     public bool ReturnToStartPos { get { return _returnToStartPos; } set { _returnToStartPos = value; } }
-    EnemyState _state = EnemyState.Sleeping;
+    protected EnemyState _state = EnemyState.Sleeping;
 
     //RequiredComponents
     private NavMeshAgent _agent;
@@ -39,16 +39,18 @@ public class EnemyBehaviour : MonoBehaviour
     //Attack data
     [SerializeField] List<EnemyAttackBehaviour> _allEnnemyAttacks;
     private List<EnemyAttackBehaviour> _ennemyAttacks;
+    public List<EnemyAttackBehaviour> EnnemyAttacks { get { return _ennemyAttacks; } set { _ennemyAttacks = value; } }
     EnemyAttackBehaviour _currentAttack;
+    public EnemyAttackBehaviour CurrentAttack { get { return _currentAttack; } set { _currentAttack = value; } }
     [SerializeField] private float _rotationSpeed;
     private float _distanceWithPlayer = 1000000;
     public float DistanceWithPlayer { get {return _distanceWithPlayer; } }
-    bool _movecoroutineIsPlayed = false;
+    protected bool _movecoroutineIsPlayed = false;
     public bool MovecoroutineIsPlayed { get { return _movecoroutineIsPlayed; } }
     Rigidbody _rigidBody;
     [SerializeField] bool _calculateDistanceByNavMeshPath = true;
     [SerializeField] ScriptableEventBool _canEnemyTargetPlayer;
-    private bool canTargetPlayer;
+    private protected bool canTargetPlayer;
     public UnityEvent onAwake;
 
     [SerializeField] protected Focusable _focusable;
@@ -86,7 +88,7 @@ public class EnemyBehaviour : MonoBehaviour
             Agent.SetDestination(transform.position);
     }
     #endregion
-    private void Update()
+    public virtual void Update()
     {
         if(_isAwake && Agent.enabled)
         {
@@ -140,7 +142,7 @@ public class EnemyBehaviour : MonoBehaviour
     
 
     //A Tester
-    public IEnumerator Attack()
+    public virtual IEnumerator Attack()
     {
         while(!_isAttacking)
         {
@@ -169,10 +171,13 @@ public class EnemyBehaviour : MonoBehaviour
             _agent.SetDestination(transform.position);
         }
         //attends le coolDown de l'attaque qui est jou� pour commencer a rechercher une nouvelle attaque
+        /*while (_isAttacking)
+        {
+            yield return null;
+        }*/
         yield return new WaitForSeconds(_currentAttack.CoolDown);
-        _currentAttack.StartCoroutine(_currentAttack.RechargePriority());
-
         _isAttacking = false;
+        _currentAttack.StartCoroutine(_currentAttack.RechargePriority());
         _agent.updateRotation = true;
         _currentAttack = null;
 
@@ -186,7 +191,7 @@ public class EnemyBehaviour : MonoBehaviour
 
     //A Tester
     //trie la liste d'attaque par priorit� croissante
-    private List<EnemyAttackBehaviour> SortAttacksByPriority()
+    public List<EnemyAttackBehaviour> SortAttacksByPriority()
     {
         //initialize une liste temporaire
         List<EnemyAttackBehaviour> allEnemyAttacksInOrder = _allEnnemyAttacks;

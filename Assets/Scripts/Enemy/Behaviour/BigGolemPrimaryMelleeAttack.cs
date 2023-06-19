@@ -1,23 +1,41 @@
+using Cinemachine.Utility;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class BigGolemPrimaryMelleeAttack : EnemyAttackBehaviour
 {
-    int AttackAnimID = Animator.StringToHash("Attaque_1_Golem");
+
+    int walkAnimID = Animator.StringToHash("Walk_Big_Golem");
+    int AttackAnimID = Animator.StringToHash("Attack1_Big_Golem");
+    [SerializeField] float attackDistance;
     public override void Attack()
     {
         StartCoroutine(AttackBehaviour());
         LaunchAttackEvent();
         Priority += CoolDown;
-        if (!_enemyBehaviour.Animator.GetCurrentAnimatorStateInfo(0).IsName("Attaque_1_Golem"))
-        {
-            _enemyBehaviour.Animator.CrossFadeInFixedTime(AttackAnimID, 0f);
-        }
 
     }
     IEnumerator AttackBehaviour()
     {
+        if (!_enemyBehaviour.Animator.GetCurrentAnimatorStateInfo(0).IsName("Walk_Big_Golem"))
+        {
+            _enemyBehaviour.Animator.CrossFadeInFixedTime(walkAnimID, 0f);
+        }
+        Vector3 destination = PlayerInstanceScriptableObject.Player.transform.position + (transform.position - PlayerInstanceScriptableObject.Player.transform.position).normalized * attackDistance;
+        //Run in the direction until at finish point
+        while ((transform.position - destination).ProjectOntoPlane(Vector3.up).sqrMagnitude > 1f)
+        {
+            destination = PlayerInstanceScriptableObject.Player.transform.position + (transform.position - PlayerInstanceScriptableObject.Player.transform.position).normalized * attackDistance;
+            _enemyBehaviour.Agent.SetDestination(destination);
+            _enemyBehaviour.FaceTarget(destination);
+            yield return null;
+        }
+        if (!_enemyBehaviour.Animator.GetCurrentAnimatorStateInfo(0).IsName("Attack1_Big_Golem"))
+        {
+            _enemyBehaviour.Animator.CrossFadeInFixedTime(AttackAnimID, 0f);
+        }
         OnAttackStarted();
         float time = CoolDown;
         while (time > 0)
@@ -30,6 +48,7 @@ public class BigGolemPrimaryMelleeAttack : EnemyAttackBehaviour
             yield return null;
         }
         OnAttackFinished();
+        _enemyBehaviour.IsAttacking = false;
     }
 
     public override bool CanAttack()
