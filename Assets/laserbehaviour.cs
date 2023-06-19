@@ -51,20 +51,7 @@ public class laserbehaviour : MonoBehaviour
             float targetScaleY = (originPosition.position - hit.point).magnitude / 2f;
             transform.localScale = new Vector3(0.04f, Mathf.Lerp(0, targetScaleY, timer / timeToBeFullSize), 0.04f);
             transform.position = originPosition.position + transform.up * transform.localScale.y;
-
-            
-
-
-
             transform.parent = parent;
-            
-
-
-            //positionsLine.Add(hit.point);
-            //if(hit.collider.gameObject.layer != 6)
-            /*burntLine.positionCount += 1;
-            
-            burntLine.SetPositions(positionsLine.ToArray());*/
         }
         
     }

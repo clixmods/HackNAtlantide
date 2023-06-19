@@ -11,7 +11,7 @@ public class BigGolemJumpAttack : EnemyAttackBehaviour
 {
     int JumpAnimID = Animator.StringToHash("Jump_Big_Golem");
     //int MidAirAnimID = Animator.StringToHash("MidAir_Golem");
-    int AttaqueAnimID = Animator.StringToHash("Fall_Big_Golem");
+    int AttaqueAnimID = Animator.StringToHash("Landing_Big_Golem");
     [SerializeField] float damageOnExplosion = 1f;
 
     [SerializeField] float _jumpForce;
@@ -33,7 +33,8 @@ public class BigGolemJumpAttack : EnemyAttackBehaviour
     [SerializeField] ParticleSystem ExplosionFx;
     SphereCollider explosionCollider;
     [SerializeField] GameObject groundCrackDecal;
-    [SerializeField] CameraShakeScriptableObject attackLandingShake;
+    public UnityEvent OnJump;
+    public UnityEvent OnLanding;
 
     public override void Attack()
     {
@@ -67,9 +68,10 @@ public class BigGolemJumpAttack : EnemyAttackBehaviour
     {
         OnAttackStarted();
         // joue le jump anim et attend le bon moment pour sauter
+        
         _enemyBehaviour.Animator.CrossFadeInFixedTime(JumpAnimID, 0f);
         yield return new WaitForSeconds(jumpAnimTime);
-
+        OnJump?.Invoke();
         //se deplace sur la courbe bezier et joue les anims qui faut
         float timeToJump = 0f;
         while (timeToJump < jumpTime)
@@ -86,7 +88,7 @@ public class BigGolemJumpAttack : EnemyAttackBehaviour
             transform.position = bezierCurve.GetPointBezierCurve(interpolationPosition);
 
             //Joue l'attack animation a partir de 60% du saut
-            if (!_enemyBehaviour.Animator.GetCurrentAnimatorStateInfo(0).IsName("Landing_Big_Golem") && interpolationPosition > 0.6f)
+            if (!_enemyBehaviour.Animator.GetCurrentAnimatorStateInfo(0).IsName("Landing_Big_Golem") && interpolationPosition > 0.8f)
             {
                 _enemyBehaviour.Animator.CrossFadeInFixedTime(AttaqueAnimID, 0f);
             }
@@ -94,8 +96,8 @@ public class BigGolemJumpAttack : EnemyAttackBehaviour
             yield return null;
         }
         _enemyBehaviour.Agent.enabled = true;
-        attackLandingShake.ShakeByDistance(_enemyBehaviour.DistanceWithPlayer / 10f);
         OnAttackFinished();
+        OnLanding?.Invoke();
         _enemyBehaviour.IsAttacking = false;
         //launchExplosion
         StartCoroutine(ExplosionAttack());

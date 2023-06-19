@@ -20,7 +20,8 @@ public class BigGolemLaserAttack : EnemyAttackBehaviour
     
 
     public override void Attack()
-    {
+    { 
+        head.transform.rotation = Quaternion.identity;
         StartCoroutine(AttackBehaviour());
         LaunchAttackEvent();
         Priority += CoolDown;
@@ -54,7 +55,7 @@ public class BigGolemLaserAttack : EnemyAttackBehaviour
         OnAttackFinished();
         _enemyBehaviour.IsAttacking = false;
         OnLaserEnd?.Invoke();
-        //_enemyBehaviour.Animator.CrossFade(WalkAnimID, 0.2f);
+        _enemyBehaviour.Animator.CrossFade(WalkAnimID, 0.2f);
     }
     public override bool CanAttack()
     {
