@@ -178,7 +178,7 @@ public class AttackLevitationInteractable : Interactable
 
 
         //EnableExplosionObject
-        if (explosionObject != null)
+        if (_isAttacking && explosionObject != null)
         {
             explosionObject.SetActive(true);
             explosionObject.transform.parent = null;
