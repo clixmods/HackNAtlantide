@@ -205,8 +205,72 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events: []
-      transformMask: []
-      maskType: 3
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Bassin
+        weight: 1
+      - path: Bassin/Crystal
+        weight: 1
+      - path: Bassin/Cuisse_L
+        weight: 1
+      - path: Bassin/Cuisse_L/Tibias_L
+        weight: 1
+      - path: Bassin/Cuisse_L/Tibias_L/Pied_L
+        weight: 1
+      - path: Bassin/Cuisse_L/Tibias_L/Pied_L/Pied_L
+        weight: 1
+      - path: Bassin/Cuisse_R
+        weight: 1
+      - path: Bassin/Cuisse_R/Tibias_R
+        weight: 1
+      - path: Bassin/Cuisse_R/Tibias_R/Pied_R
+        weight: 1
+      - path: Bassin/Cuisse_R/Tibias_R/Pied_R/Orteils_R
+        weight: 1
+      - path: Bassin/Torse
+        weight: 1
+      - path: Bassin/Torse/Centre_pivot_epaule
+        weight: 1
+      - path: Bassin/Torse/Centre_pivot_epaule/Epaule_L
+        weight: 1
+      - path: Bassin/Torse/Centre_pivot_epaule/Epaule_R
+        weight: 1
+      - path: Bassin/Torse/Tete
+        weight: 1
+      - path: Centre_Pivot_Main
+        weight: 1
+      - path: Centre_Pivot_Main/Main_L
+        weight: 1
+      - path: Centre_Pivot_Main/Main_L/Doigt1
+        weight: 1
+      - path: Centre_Pivot_Main/Main_L/Doigt2
+        weight: 1
+      - path: Centre_Pivot_Main/Main_L/Doigt3
+        weight: 1
+      - path: Centre_Pivot_Main/Main_L/Pouce_L
+        weight: 1
+      - path: Centre_Pivot_Main/Main_R
+        weight: 1
+      - path: Centre_Pivot_Main/Main_R/Doigt1_R
+        weight: 1
+      - path: Centre_Pivot_Main/Main_R/Doigt2_R
+        weight: 1
+      - path: Centre_Pivot_Main/Main_R/Doigt3_R
+        weight: 1
+      - path: Centre_Pivot_Main/Main_R/Pouce_R
+        weight: 1
+      - path: Circle001
+        weight: 1
+      - path: Circle001/Circle003
+        weight: 1
+      - path: Circle002
+        weight: 1
+      - path: Circle002/Circle004
+        weight: 1
+      - path: Paume_R001
+        weight: 1
+      maskType: 0
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
@@ -221,7 +285,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -231,12 +295,76 @@ ModelImporter:
       keepOriginalPositionXZ: 0
       heightFromFeet: 0
       mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      bodyMask: 01000000010000000000000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Bassin
+        weight: 1
+      - path: Bassin/Crystal
+        weight: 1
+      - path: Bassin/Cuisse_L
+        weight: 1
+      - path: Bassin/Cuisse_L/Tibias_L
+        weight: 1
+      - path: Bassin/Cuisse_L/Tibias_L/Pied_L
+        weight: 1
+      - path: Bassin/Cuisse_L/Tibias_L/Pied_L/Pied_L
+        weight: 1
+      - path: Bassin/Cuisse_R
+        weight: 1
+      - path: Bassin/Cuisse_R/Tibias_R
+        weight: 1
+      - path: Bassin/Cuisse_R/Tibias_R/Pied_R
+        weight: 1
+      - path: Bassin/Cuisse_R/Tibias_R/Pied_R/Orteils_R
+        weight: 1
+      - path: Bassin/Torse
+        weight: 1
+      - path: Bassin/Torse/Centre_pivot_epaule
+        weight: 1
+      - path: Bassin/Torse/Centre_pivot_epaule/Epaule_L
+        weight: 1
+      - path: Bassin/Torse/Centre_pivot_epaule/Epaule_R
+        weight: 1
+      - path: Bassin/Torse/Tete
+        weight: 1
+      - path: Centre_Pivot_Main
+        weight: 1
+      - path: Centre_Pivot_Main/Main_L
+        weight: 1
+      - path: Centre_Pivot_Main/Main_L/Doigt1
+        weight: 1
+      - path: Centre_Pivot_Main/Main_L/Doigt2
+        weight: 1
+      - path: Centre_Pivot_Main/Main_L/Doigt3
+        weight: 1
+      - path: Centre_Pivot_Main/Main_L/Pouce_L
+        weight: 1
+      - path: Centre_Pivot_Main/Main_R
+        weight: 1
+      - path: Centre_Pivot_Main/Main_R/Doigt1_R
+        weight: 1
+      - path: Centre_Pivot_Main/Main_R/Doigt2_R
+        weight: 1
+      - path: Centre_Pivot_Main/Main_R/Doigt3_R
+        weight: 1
+      - path: Centre_Pivot_Main/Main_R/Pouce_R
+        weight: 1
+      - path: Circle001
+        weight: 1
+      - path: Circle001/Circle003
+        weight: 1
+      - path: Circle002
+        weight: 1
+      - path: Circle002/Circle004
+        weight: 1
+      - path: Paume_R001
+        weight: 1
+      maskType: 1
+      maskSource: {fileID: 31900000, guid: 221c9a0634dde1e459b2048d377da64b, type: 2}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
       name: Run_Big_Golem

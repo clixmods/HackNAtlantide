@@ -96,7 +96,7 @@ public class BigGolemJumpAttack : EnemyAttackBehaviour
         _enemyBehaviour.Agent.enabled = true;
         attackLandingShake.ShakeByDistance(_enemyBehaviour.DistanceWithPlayer / 10f);
         OnAttackFinished();
-
+        _enemyBehaviour.IsAttacking = false;
         //launchExplosion
         StartCoroutine(ExplosionAttack());
     }
@@ -126,7 +126,7 @@ public class BigGolemJumpAttack : EnemyAttackBehaviour
 
         _attackColliderExplosion.OnCollideWithIDamageable -= AttackColliderOnOnCollideWithIDamageableExplosion;
         _attackColliderExplosion.enabled = false;
-        _enemyBehaviour.IsAttacking = false;
+        
     }
 
     private void AttackColliderOnOnCollideWithIDamageableExplosion(object sender, EventArgs eventArgs)

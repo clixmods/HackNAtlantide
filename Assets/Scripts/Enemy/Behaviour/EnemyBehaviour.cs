@@ -20,12 +20,12 @@ public class EnemyBehaviour : MonoBehaviour
 {
     #region properties
     //states
-    bool _isAwake;
+    protected bool _isAwake;
     public bool IsAwake { get { return _isAwake; } set { _isAwake = value; } }
     bool _isAttacking;
     public bool IsAttacking { get { return _isAttacking; } set { _isAttacking = value; } }
     protected bool _canMove;
-    bool _returnToStartPos;
+    protected bool _returnToStartPos;
     public bool ReturnToStartPos { get { return _returnToStartPos; } set { _returnToStartPos = value; } }
     protected EnemyState _state = EnemyState.Sleeping;
 
@@ -100,10 +100,9 @@ public class EnemyBehaviour : MonoBehaviour
         }
         if(_isAwake)
         {
-            Animator.SetFloat("Walk_Speed", _agent.velocity.magnitude / _agent.speed);
-            
+            float walkSpeed = Mathf.Lerp(0, 1, _agent.velocity.magnitude / 15);
+            Animator.SetFloat("Walk_Speed", walkSpeed);
         }
-        //_rigidBody.isKinematic = _distanceWithPlayer > 2.5f;
     }
     public virtual void Move(Vector3 target)
     {
@@ -119,7 +118,7 @@ public class EnemyBehaviour : MonoBehaviour
             }
         }
     }
-    public IEnumerator MoveToPlayer()
+    public virtual IEnumerator MoveToPlayer()
     {
         _movecoroutineIsPlayed = true;
         _canMove = true;
