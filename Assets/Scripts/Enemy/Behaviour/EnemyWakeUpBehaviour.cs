@@ -18,6 +18,7 @@ public class EnemyWakeUpBehaviour : MonoBehaviour
     public UnityEvent OnSleep;
     private bool _isAwake;
     private Vector3 _startPos;
+    [SerializeField] string sleepAnim;
     
     EnemyBehaviour _enemyBehaviour;
     [SerializeField] ScriptableValueListGameObject _allEnemyAwake;
@@ -113,6 +114,8 @@ public class EnemyWakeUpBehaviour : MonoBehaviour
     {
         _goBackToStartPosToSleep = false;
         _isAwake = false;
+        _enemyBehaviour.IsAwake = false;
+        _enemyBehaviour.Animator.CrossFade(sleepAnim, 0.2f);
         OnSleep?.Invoke();
         _allEnemyAwake.RemoveUnique(this.gameObject);
     }
