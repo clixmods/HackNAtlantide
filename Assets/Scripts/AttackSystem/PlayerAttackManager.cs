@@ -224,7 +224,7 @@ public class PlayerAttackManager : MonoBehaviour
 
         yield return new WaitForSeconds(0.4f);
 
-        animator.CrossFade("Default", 0f);
+        animator.CrossFade("Default", 0.75f);
         _isInDashAttack = false;
         currentDamage = 0;
         _attackCollider.enabled = false;
