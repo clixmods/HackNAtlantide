@@ -10,6 +10,8 @@ public class laserbehaviour : MonoBehaviour
     [SerializeField] Transform parent;
     [SerializeField] GameObject burntLine;
     GameObject currentHitObject;
+    float timeToBeFullSize = 0.3f;
+    float timer;
 
     private void Awake()
     {
@@ -20,6 +22,8 @@ public class laserbehaviour : MonoBehaviour
     {
         /*positionsLine = new();
         burntLine.positionCount = 0;*/
+        transform.localScale = Vector3.zero;
+        timer = 0;
     }
     // Update is called once per frame
     void FixedUpdate()
@@ -27,18 +31,28 @@ public class laserbehaviour : MonoBehaviour
         RaycastHit hit;
         if(Physics.Raycast(originPosition.position,transform.up,out hit, 100f, RaycastDetectable, QueryTriggerInteraction.Ignore))
         {
+            if(timer<timeToBeFullSize)
+            {
+                timer += Time.deltaTime;
+            }
+            else
+            {
+                //Effect
+                if (hit.collider.gameObject != currentHitObject && hit.collider.gameObject.layer != 6)
+                {
+                    currentHitObject = hit.collider.gameObject;
+                    burntLine = Instantiate(burntLine, hit.point, Quaternion.identity);
+                }
+                particuleLaser.transform.position = hit.point;
+                particuleLaser.transform.up = hit.normal;
+                burntLine.transform.position = hit.point;
+            }
             transform.parent = null;
-            transform.localScale = new Vector3(transform.localScale.x, (originPosition.position - hit.point).magnitude/2f, transform.localScale.z);
+            float targetScaleY = (originPosition.position - hit.point).magnitude / 2f;
+            transform.localScale = new Vector3(0.04f, Mathf.Lerp(0, targetScaleY, timer / timeToBeFullSize), 0.04f);
             transform.position = originPosition.position + transform.up * transform.localScale.y;
 
-            //Effect
-            if (hit.collider.gameObject != currentHitObject && hit.collider.gameObject.layer!=6)
-            {
-                currentHitObject = hit.collider.gameObject;
-                burntLine = Instantiate(burntLine, hit.point, Quaternion.identity);
-            }
-            particuleLaser.transform.position = hit.point;
-            burntLine.transform.position = hit.point;
+            
 
 
 
