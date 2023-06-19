@@ -15441,6 +15441,7 @@ MonoBehaviour:
   checkHeight: 1
   heightTolerance: 3.5
   _decalTarget: {fileID: 676980851180216722}
+  decalPotentialTarget: {fileID: 676980851180216722}
 --- !u!65 &9121646642443917138
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -15706,10 +15707,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1.5
-  _minPriority: 20
+  _minPriority: 15
   _coolDown: 1.5
   _minDistanceToAttack: 0
-  _maxDistanceToAttack: 10
+  _maxDistanceToAttack: 7
   _facePlayer: 1
   _attackColliderRight: {fileID: 0}
   _attackColliderLeft: {fileID: 2150867985764183992}
@@ -15726,11 +15727,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb78e68cab59cec41aec9bbe96768042, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1.5
-  _minPriority: 20
+  damage: 3
+  _minPriority: 15
   _coolDown: 1.5
   _minDistanceToAttack: 0
-  _maxDistanceToAttack: 10
+  _maxDistanceToAttack: 7
   _facePlayer: 1
   _attackColliderRight: {fileID: 895464414637417173}
   _attackColliderLeft: {fileID: 0}
@@ -15750,9 +15751,9 @@ MonoBehaviour:
   _allEnnemyAttacks:
   - {fileID: 6600221772677466004}
   - {fileID: 6600221772677465994}
+  - {fileID: 6373098346947572209}
   - {fileID: 6600221772677466005}
   - {fileID: 1842718855900819812}
-  - {fileID: 6373098346947572209}
   _rotationSpeed: 10
   _calculateDistanceByNavMeshPath: 1
   _canEnemyTargetPlayer: {fileID: 11400000, guid: 23761ca6ca1044a4e8eb58fd6cd4acd0,
@@ -15775,8 +15776,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 2.5
-  _minPriority: 20
-  _coolDown: 1
+  _minPriority: 15
+  _coolDown: 5
   _minDistanceToAttack: 0
   _maxDistanceToAttack: 30
   _facePlayer: 1
@@ -15833,9 +15834,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 3
-  _minPriority: 20
-  _coolDown: 5
-  _minDistanceToAttack: 5
+  _minPriority: 15
+  _coolDown: 3
+  _minDistanceToAttack: 3
   _maxDistanceToAttack: 40
   _facePlayer: 1
   _attackColliderRight: {fileID: 0}
@@ -15857,7 +15858,60 @@ MonoBehaviour:
   ExplosionFx: {fileID: 5642218113626295776}
   groundCrackDecal: {fileID: 1542103408150096367, guid: 34d8fd5d7088d8a4ebf93f2d843fd750,
     type: 3}
-  attackLandingShake: {fileID: 11400000, guid: 681fb5f98c9e98a46a99bb61a4ed37d0, type: 2}
+  OnJump:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 1a824329d14a0d04ca5e6ffd9acc7b3c, type: 2}
+        m_TargetAssemblyTypeName: CameraShakeScriptableObject, Assembly-CSharp
+        m_MethodName: Shake
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 11400000, guid: 8e8fc20142c548846adba3ff171dceb6, type: 2}
+        m_TargetAssemblyTypeName: RumblerDataConstant, Assembly-CSharp
+        m_MethodName: Rumble
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnLanding:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: ee199d4d2d1949945b7dfce5f6c2e947, type: 2}
+        m_TargetAssemblyTypeName: CameraShakeScriptableObject, Assembly-CSharp
+        m_MethodName: Shake
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 11400000, guid: 8c4fd150706917044b169a97af326685, type: 2}
+        m_TargetAssemblyTypeName: RumblerDataConstant, Assembly-CSharp
+        m_MethodName: Rumble
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &4107908253629067268
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15889,15 +15943,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 2
-  _minPriority: 20
-  _coolDown: 2
-  _minDistanceToAttack: 5
+  _minPriority: 15
+  _coolDown: 7
+  _minDistanceToAttack: 0
   _maxDistanceToAttack: 25
   _facePlayer: 1
   _attackColliderRight: {fileID: 0}
   _attackColliderLeft: {fileID: 0}
-  followSpeed: 0.5
-  attackDuration: 10
+  followSpeed: 2
+  attackDuration: 5
   head: {fileID: 565789146972015889}
   animMesh: {fileID: 2632860678489789309}
   laserMesh: {fileID: 1537984514347450037}

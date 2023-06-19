@@ -9,6 +9,8 @@ public class BigGolemSecondaryMeleeAttack : EnemyAttackBehaviour
     int walkAnimID = Animator.StringToHash("Walk_Big_Golem");
     int AttackAnimID = Animator.StringToHash("Attack2_Big_Golem");
     [SerializeField] float attackDistance;
+    bool isattack;
+    
     public override void Attack()
     {
         StartCoroutine(AttackBehaviour());
@@ -26,9 +28,10 @@ public class BigGolemSecondaryMeleeAttack : EnemyAttackBehaviour
         //Run in the direction until at finish point
         while ((transform.position - destination).ProjectOntoPlane(Vector3.up).sqrMagnitude > 1f)
         {
+            isattack = true;
             destination = PlayerInstanceScriptableObject.Player.transform.position + (transform.position - PlayerInstanceScriptableObject.Player.transform.position).normalized * attackDistance;
             _enemyBehaviour.Agent.SetDestination(destination);
-            _enemyBehaviour.FaceTarget(destination);
+            _enemyBehaviour.FaceTarget(PlayerInstanceScriptableObject.Player.transform.position);
             yield return null;
         }
         _enemyBehaviour.Agent.enabled = false;
@@ -51,10 +54,18 @@ public class BigGolemSecondaryMeleeAttack : EnemyAttackBehaviour
         OnAttackFinished();
         _enemyBehaviour.Agent.enabled = true;
         _enemyBehaviour.IsAttacking = false;
+        isattack = false;
     }
 
     public override bool CanAttack()
     {
         return _enemyBehaviour.DistanceWithPlayer > MinDistanceToAttack && _enemyBehaviour.DistanceWithPlayer < MaxDistanceToAttack;
+    }
+    private void OnDrawGizmosSelected()
+    {
+        if(isattack)
+        {
+            Gizmos.DrawSphere(PlayerInstanceScriptableObject.Player.transform.position + (transform.position - PlayerInstanceScriptableObject.Player.transform.position).normalized * attackDistance, 1);
+        }
     }
 }
