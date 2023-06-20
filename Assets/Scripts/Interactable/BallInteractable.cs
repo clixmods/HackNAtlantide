@@ -25,6 +25,7 @@ public class BallInteractable : Interactable
         {
             Vector3 forceVector = (PlayerInstanceScriptableObject.Player.transform.position - transform.position);
             _rigidbody.AddForce(forceVector*forceMultiplier);
+            _rigidbody.AddTorque(Vector3.Cross(Vector3.up, _rigidbody.velocity)*10f,ForceMode.Force);
         }
            
     }
