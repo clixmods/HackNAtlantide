@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rotationSpeed: 2
-  _rangeOfDetection: 17
+  _rangeOfDetection: 20
   _shootDelay: 1
   _bulletPrefab: {fileID: 5570679088800640210, guid: 95221279b9c302342a7e1ca6b0216197,
     type: 3}
@@ -65,6 +65,18 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: MaterialFloatInterpolation, Assembly-CSharp
+        m_MethodName: ActiveEmissive
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 100
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
@@ -89,6 +101,18 @@ MonoBehaviour:
       - m_Target: {fileID: 11400000, guid: b087947f088e49a4982691c16b7685e4, type: 2}
         m_TargetAssemblyTypeName: AudioAliase.Alias, AudioAliase
         m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: MaterialFloatInterpolation, Assembly-CSharp
+        m_MethodName: ResetEmissive
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
