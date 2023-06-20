@@ -15332,7 +15332,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 1.5
-  m_Speed: 6
+  m_Speed: 10
   m_Acceleration: 100
   avoidancePriority: 50
   m_AngularSpeed: 100
@@ -15585,7 +15585,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c60b37fcbfb1b646ad9eec083a6f657, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _wakeUpByDistance: 1
+  _wakeUpByDistance: 0
   _distanceToWakeUp: 50
   _distanceByNavMesh: 0
   _distanceToSleep: 1000
@@ -15718,7 +15718,31 @@ MonoBehaviour:
   attackDistance: 4
   OnAttackDone:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: c521dcfcc9488b04a8d8c1b5069c34b3, type: 2}
+        m_TargetAssemblyTypeName: CameraShakeScriptableObject, Assembly-CSharp
+        m_MethodName: Shake
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 11400000, guid: 46e298322e958ec4dab5c43c064ee7ce, type: 2}
+        m_TargetAssemblyTypeName: RumblerDataConstant, Assembly-CSharp
+        m_MethodName: Rumble
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &6600221772677465994
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15742,7 +15766,31 @@ MonoBehaviour:
   attackDistance: 4
   OnAttackDone:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 78c12e0635b7a0846aead306958d755e, type: 2}
+        m_TargetAssemblyTypeName: CameraShakeScriptableObject, Assembly-CSharp
+        m_MethodName: Shake
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 11400000, guid: 7f375239b05de1344bc2ec4f2f961020, type: 2}
+        m_TargetAssemblyTypeName: RumblerDataConstant, Assembly-CSharp
+        m_MethodName: Rumble
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &6600221772677465995
 MonoBehaviour:
   m_ObjectHideFlags: 0
