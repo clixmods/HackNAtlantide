@@ -86,8 +86,6 @@ public class InputManager : MonoBehaviour
     {
         _attack.IsActive = value;
         _dashAttack.IsActive = value;
-        _focus.IsActive = value;
-        _switchFocus.IsActive = value;
     }
     public void SwitchInputActionMap(bool inputGame)
     {

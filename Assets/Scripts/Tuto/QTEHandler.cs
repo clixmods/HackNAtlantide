@@ -160,10 +160,6 @@ public class QTEHandler : MonoBehaviour
                 _dashAttack.IsActive = active;
                 break;
 
-            case InputType.Focus:
-                _focus.IsActive = true;
-                break;
-
             case InputType.Move:
                 _move.IsActive = active;
                 break;
@@ -187,7 +183,6 @@ public class QTEHandler : MonoBehaviour
         _attack.IsActive = active;
         _dash.IsActive = active;
         _dashAttack.IsActive = active;
-        _focus.IsActive = active;
     }
     bool CutSceneFinish(InputType inputType)
     {
