@@ -336,6 +336,10 @@ public class PlayerMovement : MonoBehaviour
     {
         if (value && _canDashAttack && _playerStamina.CanUseStamina(1f)&& _moveDirection.sqrMagnitude > 0.1f)
         {
+            //ignore ennemie collision
+            Physics.IgnoreLayerCollision(6, 11);
+            //ignore bushCollision
+            Physics.IgnoreLayerCollision(this.gameObject.layer, 16);
             _dashDirection = _moveDirection;
             _dashAttackEvent.LaunchEvent();
             _playerStamina.UseStamina(1f);
@@ -344,10 +348,7 @@ public class PlayerMovement : MonoBehaviour
             _canDashAttack = false;
             _transformLockTempForDash = _transformLock;
             _transformLock = null;
-            //ignore ennemie collision
-            Physics.IgnoreLayerCollision(6, 11);
-            //ignore bushCollision
-            Physics.IgnoreLayerCollision(this.gameObject.layer, 16);
+            
             StartCoroutine(CancelDashAttack());
 
             //FeedBack
@@ -383,7 +384,7 @@ public class PlayerMovement : MonoBehaviour
 
     IEnumerator CancelDashAttackFeedback()
     {
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.3f);
         _transformLock = _transformLockTempForDash;
         _isDashingAttack = false;
 
