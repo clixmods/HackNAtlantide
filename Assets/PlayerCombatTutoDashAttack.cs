@@ -2,13 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerCombatTuto : MonoBehaviour
+public class PlayerCombatTutoDashAttack : MonoBehaviour
 {
     private QTEHandler _qTEHandler;
     private Focus _focus;
-
-    bool _hasDoneAttackQte = false;
-    bool _hasDoneDashQte = false;
+    bool _hasDoneDashAttackQte = false;
     bool _hasDoneFocusQte = false;
 
     bool _isInCutScene;
@@ -33,18 +31,11 @@ public class PlayerCombatTuto : MonoBehaviour
     {
         switch (inputType)
         {
-            case InputType.Interact:
+            case InputType.DashAttack:
+                _hasDoneDashAttackQte = true;
                 StartCoroutine(WaitForNewQTE());
                 break;
-            case InputType.Attack:
-                _hasDoneAttackQte = true;
-                _qTEHandler.CancelMove();
-                StartCoroutine(WaitForNewQTE());
-                break;
-            case InputType.Dash:
-                StartCoroutine(WaitForNewQTE());
-                _hasDoneDashQte = true;
-                break;
+
             case InputType.Focus:
                 StartCoroutine(WaitForNewQTE());
                 _hasDoneFocusQte = true;
@@ -54,34 +45,30 @@ public class PlayerCombatTuto : MonoBehaviour
 
     bool HasFinishedTuto()
     {
-        return _hasDoneAttackQte && _hasDoneDashQte && _hasDoneFocusQte;
+        return _hasDoneDashAttackQte && _hasDoneFocusQte;
     }
-    
+
     IEnumerator WaitForNewQTE()
     {
         _isInCutScene = true;
-        if(_hasDoneAttackQte)
-        {
-            yield return new WaitForSeconds(0.3f);
-        }
+        yield return new WaitForSeconds(0.3f);
         _isInCutScene = false;
     }
     private void Update()
     {
-        if(_hasDoneAttackQte && _hasDoneDashQte)
+        if (_hasDoneDashAttackQte)
         {
             _qTEHandler.ActiveAllInput(true);
             Destroy(this);
         }
-        if(_focus!=null && _focus.CurrentTarget != null && !_isInCutScene)
+        if (_focus != null && _focus.CurrentTarget != null && !_isInCutScene)
         {
             try
             {
                 if (_focus.CurrentTarget.transform.TryGetComponent<EnemyAttackBehaviour>(out EnemyAttackBehaviour enemy) && !_listenToEventAttack)
                 {
-                   
+
                     enemy.GetComponent<Animator>().speed = 0.8f;
-                    enemy.OnAttack += DashQTE;
                     _listenToEventAttack = true;
                 }
             }
@@ -89,43 +76,22 @@ public class PlayerCombatTuto : MonoBehaviour
             {
                 Debug.LogWarning("target is null");
             }
-            
+
             //Focus
             if (!_hasDoneFocusQte)
             {
                 _qTEHandler.LaunchCutScene(InputType.Focus);
                 _isInCutScene = true;
-                /*_qTEHandler.ActiveInputType(InputType.Move, false);
-                _qTEHandler.MovePlayerToEnemy(_focus.CurrentTarget.transform.position);*/
             }
-
-            //Attack
-            if (!_hasDoneAttackQte)
+            //DashAttack
+            if (!_hasDoneDashAttackQte)
             {
-                if ((_focus.CurrentTarget.transform.position - transform.position).magnitude <3.5f)
+                if ((_focus.CurrentTarget.transform.position - transform.position).magnitude < 3.5f && (_focus.CurrentTarget.transform.position - transform.position).magnitude > 2f)
                 {
-                    _qTEHandler.CancelMove();
-                    _qTEHandler.LaunchCutScene(InputType.Attack);
+                    _qTEHandler.LaunchCutScene(InputType.DashAttack);
                     _isInCutScene = true;
                 }
             }
         }
-        void DashQTE()
-        {
-            //Dash
-            if (!_isInCutScene)
-            {
-                if (_hasDoneAttackQte && !_hasDoneDashQte)
-                {
-                    if ((_focus.CurrentTarget.transform.position - transform.position).magnitude < 5f)
-                    {
-                        _qTEHandler.LaunchCutScene(InputType.Dash);
-                        _qTEHandler.ActiveInputType(InputType.Move, true);
-                        _isInCutScene = true;
-                    }
-                }
-            }
-        }
-
     }
 }
