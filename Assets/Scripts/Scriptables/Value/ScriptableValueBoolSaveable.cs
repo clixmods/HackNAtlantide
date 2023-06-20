@@ -33,6 +33,12 @@ public class ScriptableValueBoolSaveable : ScriptableValueBool , ISave
         Value = false;
     }
 
+    [ContextMenu("Save")]
+    void Save()
+    {
+        DataPersistentHandler.Save(this, this.name);
+    }
+
     #endregion
      
 }
