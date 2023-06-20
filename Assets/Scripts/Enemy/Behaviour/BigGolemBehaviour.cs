@@ -21,6 +21,7 @@ public class BigGolemBehaviour : EnemyBehaviour
     {
         base.Update();
         Animator.SetFloat(walkSpeedId, Agent.velocity.magnitude / 10f);
+        Debug.Log("distance with player : " + DistanceWithPlayer);
     }
     public override IEnumerator WakeUpCoroutine()
     {
