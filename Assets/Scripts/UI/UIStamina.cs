@@ -8,6 +8,8 @@ public class UIStamina : UISlider
     [SerializeField] private Image maskFlik;
     
     private bool lerpUpdateCoroutine;
+
+    private bool _isLerping = false;
     // Calcul stamina length
    
     private void Awake()
@@ -64,6 +66,7 @@ public class UIStamina : UISlider
     }
     public override IEnumerator UpdateCoroutine()
     {
+        _isLerping = true;
         Vector2 start = _rectTransform.sizeDelta;
         Vector2 target = new Vector2 (_striLength * _staminaSO.MaxStamina, _rectTransform.sizeDelta.y);
 
@@ -74,5 +77,7 @@ public class UIStamina : UISlider
             _rectTransform.sizeDelta = Vector2.Lerp(start,target , t);
             yield return null;
         }
+
+        _isLerping = false;
     }
 }

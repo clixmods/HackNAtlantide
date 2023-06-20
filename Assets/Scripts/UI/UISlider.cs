@@ -11,7 +11,6 @@ public abstract class UISlider : MonoBehaviour
     public UnityEvent OnMaxIncrease;
     public void UpdateStri()
     {
-        
         StartCoroutine(UpdateCoroutine());
     }
     public abstract IEnumerator UpdateCoroutine();

@@ -49,19 +49,19 @@ public class UIHealthPlayer : UISlider
         {
             t += Time.deltaTime;
             _rectTransform.sizeDelta = Vector2.Lerp(start,target , t);
-            lagfill.SetLagFillToTargetDirectly();
+            //lagfill.SetLagFillToTargetDirectly();
             yield return null;
         }
         
         _rectTransform.sizeDelta = new Vector2 (_striLength * healthValue.MaxValue, _rectTransform.sizeDelta.y);
         _slider.value = healthValue.Value01; // Need to update the slider value to keep correct information on screen
-        lagfill.SetLagFillToTargetDirectly();
+        //lagfill.SetLagFillToTargetDirectly();
     }
 
   
     private void OnValueChanged(float currentValue)
     {
-        _rectTransform.sizeDelta = new Vector2 (_striLength * healthValue.MaxValue, _rectTransform.sizeDelta.y);
+      //  _rectTransform.sizeDelta = new Vector2 (_striLength * healthValue.MaxValue, _rectTransform.sizeDelta.y);
         _slider.value = healthValue.Value01;
     }
 
