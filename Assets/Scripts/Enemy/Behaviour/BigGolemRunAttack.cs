@@ -33,6 +33,8 @@ public class BigGolemRunAttack : EnemyAttackBehaviour
     Rigidbody _rigidBody;
 
     private NavMeshHit chargePoint;
+    private Vector3 _pointToStop;
+
     private void OnEnable()
     {
         _rigidBody = GetComponent<Rigidbody>();
@@ -102,21 +104,21 @@ public class BigGolemRunAttack : EnemyAttackBehaviour
 
         //calculates direction to attack
         Vector3 directionToPlayer = -(transform.position - PlayerInstanceScriptableObject.Player.transform.position);
-        directionToPlayer = new Vector3(directionToPlayer.x, transform.position.y, directionToPlayer.z);
+        directionToPlayer = new Vector3(directionToPlayer.x, 0, directionToPlayer.z);
 
         Vector3 directionToMove = directionToPlayer + directionToPlayer.normalized * 5f;
-        Vector3 PointToStop = transform.position + directionToMove;
-        if(NavMesh.SamplePosition(PointToStop, out NavMeshHit hitPoint, 10f, 1))
+        _pointToStop = transform.position + directionToMove;
+        if(NavMesh.SamplePosition(_pointToStop, out NavMeshHit hitPoint, 50f, NavMesh.AllAreas))
         {
-            PointToStop = hitPoint.position;
+            _pointToStop = hitPoint.position;
         }
 
         //Run in the direction until at finish point
-        while ((transform.position - PointToStop).sqrMagnitude > 5f)
+        while ((transform.position - _pointToStop).sqrMagnitude > 5f)
         {
             //move to direction
             //transform.position += directionToMove.normalized * AttackMovementSpeed * Time.deltaTime;
-            _enemyBehaviour.Agent.SetDestination(PointToStop);
+            _enemyBehaviour.Agent.SetDestination(_pointToStop);
 
             if(!_enemyBehaviour.Animator.GetCurrentAnimatorStateInfo(0).IsName("Transition_Run_To_Charge_Big_Golem") 
                 && !_enemyBehaviour.Animator.GetCurrentAnimatorStateInfo(0).IsName("Charge_Attack_Big_Golem")
@@ -157,5 +159,7 @@ public class BigGolemRunAttack : EnemyAttackBehaviour
     private void OnDrawGizmosSelected()
     {
         Gizmos.DrawSphere(chargePoint.position, 1f);
+        Gizmos.color = Color.red;
+        Gizmos.DrawSphere(_pointToStop, 1f);
     }
 }
