@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Events;
 
 public class BigGolemSecondaryMeleeAttack : EnemyAttackBehaviour
 {
@@ -10,7 +11,7 @@ public class BigGolemSecondaryMeleeAttack : EnemyAttackBehaviour
     int AttackAnimID = Animator.StringToHash("Attack2_Big_Golem");
     [SerializeField] float attackDistance;
     bool isattack;
-    
+    public UnityEvent OnAttackDone;
     public override void Attack()
     {
         StartCoroutine(AttackBehaviour());
@@ -67,5 +68,9 @@ public class BigGolemSecondaryMeleeAttack : EnemyAttackBehaviour
         {
             Gizmos.DrawSphere(PlayerInstanceScriptableObject.Player.transform.position + (transform.position - PlayerInstanceScriptableObject.Player.transform.position).normalized * attackDistance, 1);
         }
+    }
+    public void AttackDone()
+    {
+        OnAttackDone?.Invoke();
     }
 }

@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class BigGolemBehaviour : EnemyBehaviour
 {
     int MoveAnimID = Animator.StringToHash("Walk_Big_Golem");
     int AwakeAnimID = Animator.StringToHash("Wake_Up_Big_Golem");
     int walkSpeedId = Animator.StringToHash("walkSpeed");
+    public UnityEvent OnWalk;
     public override void Move(Vector3 target)
     {
         base.Move(target);
@@ -90,6 +92,13 @@ public class BigGolemBehaviour : EnemyBehaviour
         }
         _movecoroutineIsPlayed = false;
 
+    }
+    public void OnWalkFeedback()
+    {
+        if(Agent.velocity.magnitude / 10f > 0.1f)
+        {
+            OnWalk?.Invoke();
+        }
     }
 
 }
