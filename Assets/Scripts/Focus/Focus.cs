@@ -269,12 +269,12 @@ public class Focus : MonoBehaviour
 
         Vector3 inputDirection = inputValue.x * camRightOnPlane + inputValue.y * camForwardOnPlane;
 
-        Vector3 playerPos = PlayerInstanceScriptableObject.Player.transform.position;
+        Vector3 currentTargetPos = CurrentTarget.transform.position;
         int index = 0;
         float closestdot = -2;
         for (int i = 0; i < _FocusableAvailable.Count; i++)
         {
-            float dot = Vector3.Dot(inputDirection, (_FocusableAvailable[i].transform.position - playerPos).normalized);
+            float dot = Vector3.Dot(inputDirection, (_FocusableAvailable[i].transform.position - currentTargetPos).normalized);
 
             if (dot > closestdot)
             {
