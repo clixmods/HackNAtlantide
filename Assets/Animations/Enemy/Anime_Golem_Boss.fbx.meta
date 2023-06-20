@@ -56,7 +56,23 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0
+        functionName: OnWalkFeedback
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 880288ea023c41e4bb65a9c68422f61c,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.51182103
+        functionName: OnWalkFeedback
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 880288ea023c41e4bb65a9c68422f61c,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
@@ -131,6 +147,14 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
+      - time: 0.62683696
+        functionName: AttackDone
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 44ec8557313f9ff43a8796804cd01818,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
@@ -170,6 +194,14 @@ ModelImporter:
         messageOptions: 0
       - time: 0.7563074
         functionName: SetDamageActive
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: eb78e68cab59cec41aec9bbe96768042,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.719489
+        functionName: AttackDone
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: eb78e68cab59cec41aec9bbe96768042,
           type: 3}

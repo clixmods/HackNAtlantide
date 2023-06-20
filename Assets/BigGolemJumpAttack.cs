@@ -144,7 +144,7 @@ public class BigGolemJumpAttack : EnemyAttackBehaviour
     {
         startPosition.parent = null;
         startPosition.position = transform.position;
-        endPoint.position = PlayerInstanceScriptableObject.Player.transform.position + new Vector3(Random.value, 0, Random.value) * 2;
+        endPoint.position = PlayerInstanceScriptableObject.Player.transform.position;
         highPoint1.position = transform.position + (endPoint.position - transform.position) / 4f + Vector3.up * 10f;
         highPoint2.position = transform.position + 3 * (endPoint.position - transform.position) / 4f + Vector3.up * 10f;
 
@@ -154,7 +154,7 @@ public class BigGolemJumpAttack : EnemyAttackBehaviour
     {
         startPosition.parent = null;
         startPosition.position = transform.position;
-        endPoint.position = position + new Vector3(Random.value, 0, Random.value) * 2;
+        endPoint.position = position;
         highPoint1.position = transform.position + (endPoint.position - transform.position) / 4f + Vector3.up * 10f;
         highPoint2.position = transform.position + 3 * (endPoint.position - transform.position) / 4f + Vector3.up * 10f;
     }

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Events;
 
 public class BigGolemPrimaryMelleeAttack : EnemyAttackBehaviour
 {
@@ -10,6 +11,7 @@ public class BigGolemPrimaryMelleeAttack : EnemyAttackBehaviour
     int walkAnimID = Animator.StringToHash("Walk_Big_Golem");
     int AttackAnimID = Animator.StringToHash("Attack1_Big_Golem");
     [SerializeField] float attackDistance;
+    public UnityEvent OnAttackDone;
     public override void Attack()
     {
         StartCoroutine(AttackBehaviour());
@@ -54,5 +56,9 @@ public class BigGolemPrimaryMelleeAttack : EnemyAttackBehaviour
     public override bool CanAttack()
     {
         return _enemyBehaviour.DistanceWithPlayer > MinDistanceToAttack && _enemyBehaviour.DistanceWithPlayer < MaxDistanceToAttack;
+    }
+    public void AttackDone()
+    {
+        OnAttackDone?.Invoke();
     }
 }
