@@ -34,6 +34,7 @@ public class PauseGameState : GameState
         stateOverride.inputInteractActive = false;
         stateOverride.inputMovementActive = false;
         stateOverride.inputCombatActive = false;
+        stateOverride.inputFocusActive = false;
         stateOverride.inputDashActive = false;
 
         stateOverride.inputUIActive = true;
@@ -50,9 +51,9 @@ public class CinematiqueState : GameState
         stateOverride.isPaused = false;
         stateOverride.timeScale = 1f;
         stateOverride.inputPauseActive = false;
-        stateOverride.inputInteractActive = false;
         stateOverride.inputMovementActive = false;
         stateOverride.inputCombatActive = false;
+        stateOverride.inputFocusActive = false;
         stateOverride.inputDashActive = true;
         stateOverride.canEnemyTargetPlayer = false;
         stateOverride.playerInvincible = true;
@@ -71,6 +72,7 @@ public class LoadingState : GameState
         stateOverride.inputInteractActive = false;
         stateOverride.inputMovementActive = false;
         stateOverride.inputCombatActive = false;
+        stateOverride.inputFocusActive = false;
         stateOverride.inputDashActive = false;
         stateOverride.canEnemyTargetPlayer = false;
         stateOverride.showCursor = true;
@@ -131,6 +133,7 @@ public class DeadState : GameState
         stateOverride.inputMovementActive = false;
         stateOverride.inputCombatActive = false;
         stateOverride.inputDashActive = false;
+        stateOverride.inputFocusActive = false;
         stateOverride.inputPauseActive = false;
         stateOverride.canEnemyTargetPlayer = false;
 
@@ -152,6 +155,7 @@ public class GameStateOverride
     public bool inputDashActive = true;
     public bool inputInteractActive = true;
     public bool inputPauseActive = true;
+    public bool inputFocusActive = true;
     public bool inputUIActive = false;
     public bool canEnemyTargetPlayer = true;
     public bool playerInvincible = false;
@@ -164,6 +168,7 @@ public class GameStateOverride
         inputMovementActive = true;
         inputCombatActive = true;
         inputDashActive = true;
+        inputFocusActive = true;
         inputInteractActive = true;
         inputPauseActive = true;
     }
@@ -179,6 +184,7 @@ public class GameStateOverride
         InputManager.Instance.ActiveInputInteract(inputInteractActive);
         InputManager.Instance.ActiveInputMovement(inputMovementActive);
         InputManager.Instance.ActiveInputPause(inputPauseActive);
+        InputManager.Instance.ActiveInputFocus(inputFocusActive);
         InputManager.Instance.SwitchInputActionMap(!inputUIActive);
         GameStateManager.Instance._canEnemyAttackPlayer.LaunchEvent(canEnemyTargetPlayer);
         GameStateManager.Instance._invinciblePlayerEvent.LaunchEvent(playerInvincible);

@@ -11,6 +11,22 @@ public class SmallGolemBehaviour : EnemyBehaviour
     {
         StartCoroutine(Attack());
     }
+    public override void Update()
+    {
+        if (_isAwake && Agent.enabled)
+        {
+            _distanceWithPlayer = GetPathLength();
+        }
+        else
+        {
+            _distanceWithPlayer = float.MaxValue;
+        }
+        if (_isAwake)
+        {
+            float walkSpeed = Mathf.Lerp(0, 1, Agent.velocity.magnitude / 3);
+            Animator.SetFloat("Walk_Speed", walkSpeed);
+        }
+    }
     public override void Move(Vector3 target)
     {
         base.Move(target);

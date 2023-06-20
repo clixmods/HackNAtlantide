@@ -43,7 +43,7 @@ public class EnemyBehaviour : MonoBehaviour
     EnemyAttackBehaviour _currentAttack;
     public EnemyAttackBehaviour CurrentAttack { get { return _currentAttack; } set { _currentAttack = value; } }
     [SerializeField] private float _rotationSpeed;
-    private float _distanceWithPlayer = 1000000;
+    private protected float _distanceWithPlayer = 1000000;
     public float DistanceWithPlayer { get {return _distanceWithPlayer; } }
     protected bool _movecoroutineIsPlayed = false;
     public bool MovecoroutineIsPlayed { get { return _movecoroutineIsPlayed; } }
@@ -100,7 +100,7 @@ public class EnemyBehaviour : MonoBehaviour
         }
         if(_isAwake)
         {
-            float walkSpeed = Mathf.Lerp(0, 1, _agent.velocity.magnitude / 15);
+            float walkSpeed = Mathf.Lerp(0, 1, _agent.velocity.magnitude / 3);
             Animator.SetFloat("Walk_Speed", walkSpeed);
         }
     }

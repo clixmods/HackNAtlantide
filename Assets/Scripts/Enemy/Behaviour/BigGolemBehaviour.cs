@@ -7,7 +7,7 @@ public class BigGolemBehaviour : EnemyBehaviour
 {
     int MoveAnimID = Animator.StringToHash("Walk_Big_Golem");
     int AwakeAnimID = Animator.StringToHash("Wake_Up_Big_Golem");
-    int walkSpeedId = Animator.StringToHash("walkSpeed");
+    int walkSpeedId = Animator.StringToHash("Walk_Speed");
     public UnityEvent OnWalk;
     public override void Move(Vector3 target)
     {
