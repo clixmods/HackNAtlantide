@@ -106,9 +106,9 @@ public abstract class Trigger : MonoBehaviour
      {
           if (CanDoStay)
           {
-               _currentCooldown = triggerStayCooldown;
                if (IsInteractable(other.gameObject))
                {
+                    _currentCooldown = triggerStayCooldown;
                     EventOnTriggerStay?.Invoke();
                     TriggerStay(other);
                     if (disableAfterOnTriggerStay)

@@ -20,8 +20,8 @@ public class BigGolemLaserAttack : EnemyAttackBehaviour
     
 
     public override void Attack()
-    { 
-        head.transform.rotation = Quaternion.identity;
+    {
+        head.transform.rotation = Quaternion.Slerp(head.transform.rotation, Quaternion.LookRotation(PlayerInstanceScriptableObject.Player.transform.position + Vector3.up * 0.3f - head.transform.position, Vector3.up), followSpeed * Time.deltaTime);
         StartCoroutine(AttackBehaviour());
         LaunchAttackEvent();
         Priority += CoolDown;
