@@ -39,13 +39,13 @@ public class BalanceBehaviour : MonoBehaviour
 
     void BalanceRight()
     {
-        xRotation -= Time.deltaTime * rotationSpeed;
+        xRotation -= Time.deltaTime * (rotationSpeed * Mathf.Pow((rightWeight / (leftWeight + rightWeight)),2));
         xRotation = Mathf.Clamp(xRotation, rightRotation, leftRotation);
         _rigidbody.rotation = Quaternion.Euler(xRotation, startRotationY, 0);
     }
     void BalanceLeft()
     {
-        xRotation += Time.deltaTime * rotationSpeed;
+        xRotation += Time.deltaTime * (rotationSpeed * Mathf.Pow((leftWeight / (leftWeight + rightWeight)), 2));
         xRotation = Mathf.Clamp(xRotation, rightRotation, leftRotation);
         _rigidbody.rotation = Quaternion.Euler(xRotation, startRotationY, 0);
     }
