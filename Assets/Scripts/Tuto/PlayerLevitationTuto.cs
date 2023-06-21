@@ -15,21 +15,21 @@ public class PlayerLevitationTuto : MonoBehaviour
     [SerializeField] PlayerInteractDetection interactDetection;
     void CutSceneSuccess(InputType inputType)
     {
-        switch (inputType)
-        {
-            /*case InputType.Interact:
-                StartCoroutine(WaitForNewQTE());
-                this.enabled = false;*/
-                //break;
-            case InputType.Focus:
-                _hasDoneFocusQte = true;
-                _qTEHandler.enabled = false;
-                this.enabled = false;
-                
-                break;
-            default:
-                break;
-        }
+        // switch (inputType)
+        // {
+        //     /*case InputType.Interact:
+        //         StartCoroutine(WaitForNewQTE());
+        //         this.enabled = false;*/
+        //         //break;
+        //     case InputType.Focus:
+        //         _hasDoneFocusQte = true;
+        //         _qTEHandler.enabled = false;
+        //         this.enabled = false;
+        //         
+        //         break;
+        //     default:
+        //         break;
+        // }
     }
     IEnumerator WaitForNewQTE()
     {
@@ -58,7 +58,7 @@ public class PlayerLevitationTuto : MonoBehaviour
         {
             if (_focus != null && _focus.CurrentTarget != null && !_isInCutScene)
             {
-                _qTEHandler.LaunchCutScene(InputType.Focus, false);
+                //_qTEHandler.LaunchCutScene(InputType.Focus, false);
                 _isInCutScene = true;
             }
         }

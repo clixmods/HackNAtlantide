@@ -30,6 +30,10 @@ public class PostProcessWeightTransition : MonoBehaviour
     }
     public void SetWeightVolume(float value)
     {
+        if (_volume == null)
+        {
+            _volume = GetComponent<Volume>();
+        }
         if(Math.Abs(value - _volume.weight) < 0.05f) 
             return;
         //StopCoroutine(WeightTransition());
