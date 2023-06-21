@@ -27,7 +27,7 @@ public class UIChargeInputHelper : UIInputHelper
             {
                 if (_inputActionReference.action.bindings[i].groups == bindingGroup)
                 {
-                    _imageInput.sprite = inputActionIcons.dictionaryInputsIcons[_inputActionReference.action.bindings[i].path];
+                    _imageInput.sprite = inputActionIcons.dictionaryInputsIcons[_inputActionReference.action.bindings[i].path].icon;
                     imageInputBackground.sprite = _imageInput.sprite;
                     break;
                 }

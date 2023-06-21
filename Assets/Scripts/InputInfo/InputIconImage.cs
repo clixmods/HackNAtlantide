@@ -13,6 +13,9 @@ public class InputIconImage : MonoBehaviour
      public InputActionReference _inputActionReference;
     private Image _image;
     [SerializeField] protected InputActionIcons inputActionIcons;
+    [SerializeField] private bool SwitchIcons = false;
+    [SerializeField] private float switchIconsDelay = 1;
+    int currentIndex = 0;
     private static string _bindingGroup;
     public static string bindingGroup => _bindingGroup;
     private void Awake()
@@ -21,6 +24,85 @@ public class InputIconImage : MonoBehaviour
         _image = GetComponent<Image>();
         _bindingGroup ??= _playerControls.controlSchemes[0].bindingGroup;
         InputSystem.onAnyButtonPress.Call(OnButtonPressed);
+    }
+
+    private void Start()
+    {
+        if(SwitchIcons)
+            StartCoroutine(SwitchIcon());
+        
+        if ( !SwitchIcons && _inputActionReference != null)
+        {
+            for (int i = 0; i < _inputActionReference.action.bindings.Count; i++)
+            {
+                if (_inputActionReference.action.bindings[i].groups == bindingGroup)
+                {
+                    _image.sprite = inputActionIcons.dictionaryInputsIcons[_inputActionReference.action.bindings[i].path].icon;
+                    break;
+                }
+            }
+        }
+    }
+
+    IEnumerator SwitchIcon()
+    {
+        for (int i = 0; i < _inputActionReference.action.bindings.Count; i++)
+        {
+            if (_inputActionReference.action.bindings[i].groups == bindingGroup)
+            {
+                var additionnalIcons = inputActionIcons.dictionaryInputsIcons[_inputActionReference.action.bindings[i].path].additionnalIcons;
+                if (additionnalIcons == null || additionnalIcons.Length == 0)
+                {
+                    continue;
+                }
+                _image.sprite = additionnalIcons[currentIndex];
+                if (additionnalIcons.Length-1 > currentIndex) 
+                {
+                    currentIndex++;
+                        
+                }
+                else
+                {
+                    currentIndex = 0;
+                }
+
+                break;
+            }
+                
+                
+        }
+        while (true)
+        {
+            yield return new WaitForSecondsRealtime(switchIconsDelay);
+            for (int i = 0; i < _inputActionReference.action.bindings.Count; i++)
+            {
+                if (_inputActionReference.action.bindings[i].groups == bindingGroup)
+                {
+                    var additionnalIcons = inputActionIcons.dictionaryInputsIcons[_inputActionReference.action.bindings[i].path].additionnalIcons;
+                    if (additionnalIcons == null || additionnalIcons.Length == 0)
+                    {
+                        continue;
+                    }
+                    _image.sprite = additionnalIcons[currentIndex];
+                    if (additionnalIcons.Length-1 > currentIndex) 
+                    {
+                        currentIndex++;
+                        
+                    }
+                    else
+                    {
+                        currentIndex = 0;
+                    }
+
+                    break;
+                }
+                
+                
+            }
+            
+        }
+
+        yield return null;
     }
     private void OnButtonPressed(InputControl button)
     {
@@ -38,13 +120,13 @@ public class InputIconImage : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (_inputActionReference != null)
+        if ( !SwitchIcons && _inputActionReference != null)
         {
             for (int i = 0; i < _inputActionReference.action.bindings.Count; i++)
             {
                 if (_inputActionReference.action.bindings[i].groups == bindingGroup)
                 {
-                    _image.sprite = inputActionIcons.dictionaryInputsIcons[_inputActionReference.action.bindings[i].path];
+                    _image.sprite = inputActionIcons.dictionaryInputsIcons[_inputActionReference.action.bindings[i].path].icon;
                     break;
                 }
             }

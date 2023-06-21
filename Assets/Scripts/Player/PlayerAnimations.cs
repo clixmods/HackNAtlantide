@@ -29,7 +29,7 @@ public class PlayerAnimations : MonoBehaviour
 
     private void Update()
     {
-        _animator.SetFloat(Blend, Mathf.Clamp(_playerMovement.MoveAmount.magnitude / 0.06f, 0, 1));
+        _animator.SetFloat(Blend, (int)Mathf.Clamp((_playerMovement.MoveAmount.magnitude / 0.06f ) * 100, 0, 100));
 
         if (_playerMovement.MoveAmount.magnitude / 0.06f <= 0.1f)
         {
@@ -82,6 +82,6 @@ public class PlayerAnimations : MonoBehaviour
     public void DashFinish()
     {
         Debug.Log("dashfinish");
-        GetComponentInParent<PlayerMovement>().SetTransformLock();
+        _playerMovement.SetTransformLock();
     }
 }
