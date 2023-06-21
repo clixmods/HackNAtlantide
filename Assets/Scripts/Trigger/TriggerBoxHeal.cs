@@ -26,7 +26,7 @@ public class TriggerBoxHeal : TriggerBox
                     healLimit--;
                 }
             }
-            else
+            if( healLimit <= 0 )
             {
                 NoHealAvailable?.Invoke();
                 gameObject.SetActive(false);
