@@ -99,7 +99,7 @@ public class UIInputHelper : MonoBehaviour
             {
                 if (_inputActionReference.action.bindings[i].groups == bindingGroup)
                 {
-                    _imageInput.sprite = inputActionIcons.dictionaryInputsIcons[_inputActionReference.action.bindings[i].path];
+                    _imageInput.sprite = inputActionIcons.dictionaryInputsIcons[_inputActionReference.action.bindings[i].path].icon;
                     break;
                 }
             }

@@ -62,7 +62,8 @@ public class QTEHandler : MonoBehaviour
     }
     private void OnDisable()
     {
-        _postProcessWeightTransition.SetWeightVolume(0f);
+        if(_postProcessWeightTransition != null)
+            _postProcessWeightTransition.SetWeightVolume(0f);
     }
     void DisableInputsInfo()
     {
