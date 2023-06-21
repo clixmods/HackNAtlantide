@@ -9,16 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: acfaebaa19219ea448a0f03582848d39, type: 3}
-  m_Name: golem_bell
+  m_Script: {fileID: 11500000, guid: d2a9cdb8d4d481743994835d593310ce, type: 3}
+  m_Name: big_golem_laser_start
   m_EditorClassIdentifier: 
   aliasName: 
   description: 
   Tag: 
-  MixerGroup: {fileID: -5283781399218446997, guid: 5da2c8dde8bb9094f8aaeafbe0aca20b,
-    type: 2}
-  audio:
-  - {fileID: 8300000, guid: 582e9add43af15e4d973a72025aa6897, type: 3}
+  MixerGroup: {fileID: 0}
+  audio: []
   soundType: 0
   randomizeClips: 0
   Secondary: {fileID: 0}
@@ -26,8 +24,8 @@ MonoBehaviour:
   bypassListenerEffects: 0
   bypassReverbZones: 0
   priority: 0
-  minVolume: 0.49123776
-  maxVolume: 0.55591434
+  minVolume: 0.8
+  maxVolume: 0.8
   limitCount: 0
   isLooping: 0
   startAliase: {fileID: 0}
@@ -35,12 +33,12 @@ MonoBehaviour:
   UseDelayLoop: 0
   minDelayLoop: 0
   maxDelayLoop: 0
-  minPitch: 0.33615392
-  maxPitch: 1.0846153
+  minPitch: 1
+  maxPitch: 1.01
   stereoPan: 0
-  spatialBlend: 1
-  reverbZoneMix: 1.1
-  dopplerLevel: 1.12
+  spatialBlend: 0.588
+  reverbZoneMix: 1
+  dopplerLevel: 1
   Spread: 1
   MinDistance: 1
   MaxDistance: 500
@@ -70,7 +68,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   OpenFadeInSeconds: 0
-  CloseFadeInSeconds: 0.85
+  CloseFadeInSeconds: 0
   Text: 
   customDuration: 0
   isInit: 0
@@ -78,4 +76,4 @@ MonoBehaviour:
   audioPlayers: []
   UseSurfaceDetection: 0
   surfacesAlias: []
-  guid: 36210071
+  guid: 313715689

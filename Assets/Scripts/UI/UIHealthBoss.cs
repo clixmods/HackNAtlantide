@@ -17,18 +17,18 @@ public class UIHealthBoss : MonoBehaviour
         _rectTransform = transform.GetComponent<RectTransform>();
         _striLength = _rectTransform.rect.width;
         healthValue.OnChangeHealth += OnValueChanged;
-        _rectTransform.sizeDelta = new Vector2 (_striLength * healthValue.maxHealth, _rectTransform.sizeDelta.y);
+        //_rectTransform.sizeDelta = new Vector2 (_striLength * healthValue.maxHealth, _rectTransform.sizeDelta.y);
         _slider.value = healthValue.health / healthValue.maxHealth;
     }
     private void MaxValueChanged(float currentMaxValue)
     {
-        _rectTransform.sizeDelta = new Vector2 (_striLength * healthValue.maxHealth, _rectTransform.sizeDelta.y);
+        //_rectTransform.sizeDelta = new Vector2 (_striLength * healthValue.maxHealth, _rectTransform.sizeDelta.y);
         _slider.value = healthValue.health / healthValue.maxHealth;;
     }
 
     private void OnValueChanged(float health, float maxHealth)
     {
-        _rectTransform.sizeDelta = new Vector2 (_striLength * healthValue.maxHealth, _rectTransform.sizeDelta.y);
+        //_rectTransform.sizeDelta = new Vector2 (_striLength * healthValue.maxHealth, _rectTransform.sizeDelta.y);
         _slider.value = healthValue.health / healthValue.maxHealth;;
     }
 

@@ -160,6 +160,8 @@ MonoBehaviour:
   _inputActionReference: {fileID: -5880781274983214493, guid: 35121f045d536cb48ba26fe77e11382b,
     type: 3}
   inputActionIcons: {fileID: 11400000, guid: c81ec5bcdf170404d82a7606781768ea, type: 2}
+  SwitchIcons: 0
+  switchIconsDelay: 1
 --- !u!1 &3362502596227382046
 GameObject:
   m_ObjectHideFlags: 0
@@ -587,6 +589,8 @@ MonoBehaviour:
   _inputActionReference: {fileID: -5982346473785056625, guid: 35121f045d536cb48ba26fe77e11382b,
     type: 3}
   inputActionIcons: {fileID: 11400000, guid: c81ec5bcdf170404d82a7606781768ea, type: 2}
+  SwitchIcons: 0
+  switchIconsDelay: 1
 --- !u!1 &8099974239609131941
 GameObject:
   m_ObjectHideFlags: 0
@@ -763,7 +767,7 @@ PrefabInstance:
     - target: {fileID: 1338876326744236031, guid: ad82f62c7f2ebfb4fa81c86a35492089,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 25
+      value: 902.15
       objectReference: {fileID: 0}
     - target: {fileID: 1338876326744236031, guid: ad82f62c7f2ebfb4fa81c86a35492089,
         type: 3}
@@ -875,10 +879,45 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: -0.08721924
       objectReference: {fileID: 0}
+    - target: {fileID: 2992764086307883733, guid: ad82f62c7f2ebfb4fa81c86a35492089,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3138663662263092683, guid: ad82f62c7f2ebfb4fa81c86a35492089,
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3358075031431027612, guid: ad82f62c7f2ebfb4fa81c86a35492089,
+        type: 3}
+      propertyPath: m_Animation
+      value: 
+      objectReference: {fileID: 7400000, guid: 9df6c7377cc883e4dbd1b66febb6fb1a, type: 2}
+    - target: {fileID: 3358075031431027612, guid: ad82f62c7f2ebfb4fa81c86a35492089,
+        type: 3}
+      propertyPath: m_PlayAutomatically
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3358075031431027612, guid: ad82f62c7f2ebfb4fa81c86a35492089,
+        type: 3}
+      propertyPath: m_Animations.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3358075031431027612, guid: ad82f62c7f2ebfb4fa81c86a35492089,
+        type: 3}
+      propertyPath: m_Animations.Array.data[0]
+      value: 
+      objectReference: {fileID: 7400000, guid: 9df6c7377cc883e4dbd1b66febb6fb1a, type: 2}
+    - target: {fileID: 3358075031431027612, guid: ad82f62c7f2ebfb4fa81c86a35492089,
+        type: 3}
+      propertyPath: m_Animations.Array.data[1]
+      value: 
+      objectReference: {fileID: 7400000, guid: 9df6c7377cc883e4dbd1b66febb6fb1a, type: 2}
+    - target: {fileID: 3562703775124249050, guid: ad82f62c7f2ebfb4fa81c86a35492089,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3621326289529563786, guid: ad82f62c7f2ebfb4fa81c86a35492089,
         type: 3}
