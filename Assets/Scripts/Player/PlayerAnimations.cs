@@ -59,7 +59,7 @@ public class PlayerAnimations : MonoBehaviour
 
     public void SetTriggerIdle()
     {
-        _animator.CrossFade("Idle",0.01f);
+        _animator.CrossFade("Idle2",0.01f);
     }
     
     public void ResetTriggerIdle()
