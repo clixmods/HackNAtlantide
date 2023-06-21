@@ -2033,9 +2033,29 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5609095028498597545, guid: b78a89a74de18b74bb8d570626c38e11,
         type: 3}
+      propertyPath: lengthInSec
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5609095028498597545, guid: b78a89a74de18b74bb8d570626c38e11,
+        type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5609095028498597545, guid: b78a89a74de18b74bb8d570626c38e11,
+        type: 3}
+      propertyPath: InitialModule.startSpeed.scalar
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5609095028498597545, guid: b78a89a74de18b74bb8d570626c38e11,
+        type: 3}
       propertyPath: ShapeModule.m_SkinnedMeshRenderer
       value: 
       objectReference: {fileID: 7302734754534765840}
+    - target: {fileID: 5609095028498597545, guid: b78a89a74de18b74bb8d570626c38e11,
+        type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.atime0
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b78a89a74de18b74bb8d570626c38e11, type: 3}
 --- !u!4 &4463577000906600243 stripped
@@ -2839,7 +2859,7 @@ PrefabInstance:
     - target: {fileID: 2015897784752304465, guid: 3cb8f36e3dba0714fb7c619847e33e57,
         type: 3}
       propertyPath: lengthInSec
-      value: 0.2
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 2015897784752304465, guid: 3cb8f36e3dba0714fb7c619847e33e57,
         type: 3}
@@ -2859,7 +2879,7 @@ PrefabInstance:
     - target: {fileID: 2015897784752304465, guid: 3cb8f36e3dba0714fb7c619847e33e57,
         type: 3}
       propertyPath: InitialModule.startSize.scalar
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2015897784752304465, guid: 3cb8f36e3dba0714fb7c619847e33e57,
         type: 3}
@@ -2936,12 +2956,27 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6573304536143908872, guid: 3cb8f36e3dba0714fb7c619847e33e57,
+        type: 3}
+      propertyPath: m_Time
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6626211452871153061, guid: 3cb8f36e3dba0714fb7c619847e33e57,
         type: 3}
       propertyPath: m_Name
       value: FXDash
       objectReference: {fileID: 0}
     - target: {fileID: 6626211452871153061, guid: 3cb8f36e3dba0714fb7c619847e33e57,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6968582448984785927, guid: 3cb8f36e3dba0714fb7c619847e33e57,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8312118818286395478, guid: 3cb8f36e3dba0714fb7c619847e33e57,
         type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -3467,6 +3502,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Shader_Trail
+      objectReference: {fileID: 0}
+    - target: {fileID: 3438782569204836914, guid: 68799d9b9f5de6b46ab54b0a36fe06ac,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3438782569204836915, guid: 68799d9b9f5de6b46ab54b0a36fe06ac,
         type: 3}
