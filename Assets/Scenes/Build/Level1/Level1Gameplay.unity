@@ -26185,6 +26185,18 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!114 &910863566 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2094651949237244071, guid: 682295332aa65dd48b946f20c5ffa4ee,
+    type: 3}
+  m_PrefabInstance: {fileID: 5632995867709640200}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c60b37fcbfb1b646ad9eec083a6f657, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!43 &918665565
 Mesh:
   m_ObjectHideFlags: 0
@@ -70189,9 +70201,44 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8663058332325320651, guid: bc44dd5e6add77349a6c9bfe10474cea,
         type: 3}
+      propertyPath: EventOnTriggerEnter.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8663058332325320651, guid: bc44dd5e6add77349a6c9bfe10474cea,
+        type: 3}
+      propertyPath: EventOnTriggerEnter.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8663058332325320651, guid: bc44dd5e6add77349a6c9bfe10474cea,
+        type: 3}
       propertyPath: EventOnTriggerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 3819221583631624345}
+    - target: {fileID: 8663058332325320651, guid: bc44dd5e6add77349a6c9bfe10474cea,
+        type: 3}
+      propertyPath: EventOnTriggerEnter.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 910863566}
+    - target: {fileID: 8663058332325320651, guid: bc44dd5e6add77349a6c9bfe10474cea,
+        type: 3}
+      propertyPath: EventOnTriggerEnter.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8663058332325320651, guid: bc44dd5e6add77349a6c9bfe10474cea,
+        type: 3}
+      propertyPath: EventOnTriggerEnter.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: WakeUp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8663058332325320651, guid: bc44dd5e6add77349a6c9bfe10474cea,
+        type: 3}
+      propertyPath: EventOnTriggerEnter.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: EnemyWakeUpBehaviour, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8663058332325320651, guid: bc44dd5e6add77349a6c9bfe10474cea,
+        type: 3}
+      propertyPath: EventOnTriggerEnter.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 8663058332642107190, guid: bc44dd5e6add77349a6c9bfe10474cea,
         type: 3}
       propertyPath: EventOnTriggerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Target
