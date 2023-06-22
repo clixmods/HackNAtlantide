@@ -5,11 +5,11 @@ using UnityEngine.Serialization;
 
 public class DamageableMaterialReaction : MonoBehaviour
     {
-        private IDamageable idamageable;
-        private MaterialPropertyBlock[] _propBlocks;
-        [FormerlySerializedAs("_meshRenderer")] [SerializeField] private Renderer meshRenderer;
+        protected IDamageable idamageable;
+        protected MaterialPropertyBlock[] _propBlocks;
+        [FormerlySerializedAs("_meshRenderer")] [SerializeField] protected Renderer meshRenderer;
         private static readonly int Amount = Shader.PropertyToID("_Flick");
-        private void Awake()
+        protected virtual void Awake()
         {
             idamageable = GetComponentInChildren<IDamageable>();
             idamageable.OnDamage += IdamageableOnOnDamage;
@@ -25,7 +25,7 @@ public class DamageableMaterialReaction : MonoBehaviour
             }
             SetFloat(false);
         }
-        private void IdamageableOnOnDamage(object sender, EventArgs e)
+        protected void IdamageableOnOnDamage(object sender, EventArgs e)
         {
             StartCoroutine(Flick());
         }
@@ -35,7 +35,7 @@ public class DamageableMaterialReaction : MonoBehaviour
             yield return new WaitForSeconds(0.5f);
             SetFloat(false);
         }
-        private void SetFloat(bool boolean)
+        protected void SetFloat(bool boolean)
         {
             for (int i = 0; i < _propBlocks.Length; i++)
             {

@@ -35,6 +35,7 @@ public class BigGolemJumpAttack : EnemyAttackBehaviour
     [SerializeField] GameObject groundCrackDecal;
     public UnityEvent OnJump;
     public UnityEvent OnLanding;
+    private bool _isJumping;
 
     public override void Attack()
     {
@@ -76,6 +77,7 @@ public class BigGolemJumpAttack : EnemyAttackBehaviour
         float timeToJump = 0f;
         while (timeToJump < jumpTime)
         {
+            _isJumping = true;
             if (FacePlayer)
             {
                 _enemyBehaviour.FaceTarget(PlayerInstanceScriptableObject.Player.transform.position);
@@ -95,12 +97,29 @@ public class BigGolemJumpAttack : EnemyAttackBehaviour
 
             yield return null;
         }
+
+        _isJumping = false;
         _enemyBehaviour.Agent.enabled = true;
         OnAttackFinished();
         OnLanding?.Invoke();
         _enemyBehaviour.IsAttacking = false;
         //launchExplosion
         StartCoroutine(ExplosionAttack());
+    }
+
+    public override void CancelAttack()
+    {
+        base.CancelAttack();
+        if (_isJumping)
+        {
+            StopCoroutine(AttackBehaviour());
+            _enemyBehaviour.Agent.enabled = true;
+            OnAttackFinished();
+            OnLanding?.Invoke();
+            _enemyBehaviour.IsAttacking = false;
+            //launchExplosion
+            StartCoroutine(ExplosionAttack());
+        }
     }
 
     IEnumerator ExplosionAttack()

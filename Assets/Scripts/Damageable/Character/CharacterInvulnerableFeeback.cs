@@ -6,7 +6,7 @@ using UnityEngine.Serialization;
 
 public class CharacterInvulnerableFeeback : MonoBehaviour
 {
-    private Character character;
+    [SerializeField] private Character character;
     private MaterialPropertyBlock[] _propBlocks;
     [FormerlySerializedAs("_meshRenderer")][SerializeField] private Renderer meshRenderer;
     private static readonly int propertyInvulnerableID = Shader.PropertyToID("_IsInvulnerable");

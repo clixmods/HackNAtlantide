@@ -61,9 +61,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 3493728482705286519}
-        m_TargetAssemblyTypeName: EnemyHealth, Assembly-CSharp
-        m_MethodName: SetWakeUpOnDamage
+      - m_Target: {fileID: 5276041767585911021}
+        m_TargetAssemblyTypeName: BigGolemBehaviour, Assembly-CSharp
+        m_MethodName: CanAttack
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -85,42 +85,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 870223429274279185}
-        m_TargetAssemblyTypeName: EnemiesWatcher, Assembly-CSharp
-        m_MethodName: EnableWakeUpBehaviourInWatchedEnemies
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 5276041767585911021}
-        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
-        m_MethodName: set_enabled
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 3493728482705286519}
-        m_TargetAssemblyTypeName: Character, Assembly-CSharp
-        m_MethodName: SetInvulnerability
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
       - m_Target: {fileID: 8253536091585456189}
         m_TargetAssemblyTypeName: Focusable, Assembly-CSharp
         m_MethodName: set_IsTargetable
@@ -132,6 +96,18 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 7756834847748768656}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!1 &2671904099980928564
 GameObject:
@@ -232,18 +208,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 5276041767585911021}
-        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
-        m_MethodName: set_enabled
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
       - m_Target: {fileID: 11400000, guid: 7156ec14c1693ed4187ee51a0891c637, type: 2}
         m_TargetAssemblyTypeName: ScriptableValue`1[[System.Boolean, mscorlib
         m_MethodName: set_Value
@@ -271,6 +235,18 @@ MonoBehaviour:
       - m_Target: {fileID: 8253536091585456189}
         m_TargetAssemblyTypeName: Focusable, Assembly-CSharp
         m_MethodName: set_IsTargetable
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 5276041767585911021}
+        m_TargetAssemblyTypeName: BigGolemBehaviour, Assembly-CSharp
+        m_MethodName: CanAttack
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -416,9 +392,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 3493728482705286519}
-        m_TargetAssemblyTypeName: EnemyHealth, Assembly-CSharp
-        m_MethodName: SetWakeUpOnDamage
+      - m_Target: {fileID: 5276041767585911021}
+        m_TargetAssemblyTypeName: BigGolemBehaviour, Assembly-CSharp
+        m_MethodName: CanAttack
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -451,30 +427,6 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 5276041767585911021}
-        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
-        m_MethodName: set_enabled
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 3493728482705286519}
-        m_TargetAssemblyTypeName: Character, Assembly-CSharp
-        m_MethodName: SetInvulnerability
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
         m_CallState: 2
       - m_Target: {fileID: 8457764965749528841}
         m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
@@ -729,18 +681,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 5276041767585911021}
-        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
-        m_MethodName: set_enabled
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
       - m_Target: {fileID: 11400000, guid: dbda38dd83b8833448f4689039262d31, type: 2}
         m_TargetAssemblyTypeName: ScriptableValue`1[[System.Boolean, mscorlib
         m_MethodName: set_Value
@@ -768,6 +708,18 @@ MonoBehaviour:
       - m_Target: {fileID: 8253536091585456189}
         m_TargetAssemblyTypeName: Focusable, Assembly-CSharp
         m_MethodName: set_IsTargetable
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 5276041767585911021}
+        m_TargetAssemblyTypeName: BigGolemBehaviour, Assembly-CSharp
+        m_MethodName: CanAttack
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1532,6 +1484,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3444194208606834137, guid: 8db3eb11ecf45744b8e5e30c37de9972,
         type: 3}
+      propertyPath: _canReturnSleep
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3444194208606834137, guid: 8db3eb11ecf45744b8e5e30c37de9972,
+        type: 3}
       propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.size
       value: 4
       objectReference: {fileID: 0}
@@ -2126,6 +2083,18 @@ MonoBehaviour:
           m_TargetAssemblyTypeName: ScriptableEvent, Assembly-CSharp
           m_MethodName: LaunchEvent
           m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 3493728482705286519}
+          m_TargetAssemblyTypeName: Character, Assembly-CSharp
+          m_MethodName: SetInvulnerability
+          m_Mode: 6
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -4051,6 +4020,46 @@ PrefabInstance:
       propertyPath: _goBackToStartPosToSleep
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: 19912de6ff73f484d8abe3fbf824982b,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: 19912de6ff73f484d8abe3fbf824982b,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.data[3].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: 19912de6ff73f484d8abe3fbf824982b,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.data[3].m_Target
+      value: 
+      objectReference: {fileID: 7756834848071410841}
+    - target: {fileID: 825352634235196092, guid: 19912de6ff73f484d8abe3fbf824982b,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.data[3].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: 19912de6ff73f484d8abe3fbf824982b,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
+      value: set_enabled
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: 19912de6ff73f484d8abe3fbf824982b,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.data[3].m_TargetAssemblyTypeName
+      value: UnityEngine.Behaviour, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: 19912de6ff73f484d8abe3fbf824982b,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: 19912de6ff73f484d8abe3fbf824982b,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 881729545437228380, guid: 19912de6ff73f484d8abe3fbf824982b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4559,6 +4568,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 448570f2dca1f494abcca596f07f1bbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7756834847748768656 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 825352634235196092, guid: 19912de6ff73f484d8abe3fbf824982b,
+    type: 3}
+  m_PrefabInstance: {fileID: 6976618892477747500}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c60b37fcbfb1b646ad9eec083a6f657, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &6976618892516006851
@@ -5669,6 +5690,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 448570f2dca1f494abcca596f07f1bbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7756834847899293067 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 825352634235196092, guid: 19912de6ff73f484d8abe3fbf824982b,
+    type: 3}
+  m_PrefabInstance: {fileID: 6976618892561811255}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c60b37fcbfb1b646ad9eec083a6f657, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &6976618892691207452
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5710,6 +5743,46 @@ PrefabInstance:
         type: 3}
       propertyPath: _goBackToStartPosToSleep
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: 19912de6ff73f484d8abe3fbf824982b,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: 19912de6ff73f484d8abe3fbf824982b,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.data[3].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: 19912de6ff73f484d8abe3fbf824982b,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.data[3].m_Target
+      value: 
+      objectReference: {fileID: 7756834847899293067}
+    - target: {fileID: 825352634235196092, guid: 19912de6ff73f484d8abe3fbf824982b,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.data[3].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: 19912de6ff73f484d8abe3fbf824982b,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
+      value: set_enabled
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: 19912de6ff73f484d8abe3fbf824982b,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.data[3].m_TargetAssemblyTypeName
+      value: UnityEngine.Behaviour, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: 19912de6ff73f484d8abe3fbf824982b,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: 19912de6ff73f484d8abe3fbf824982b,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 881729545437228380, guid: 19912de6ff73f484d8abe3fbf824982b,
         type: 3}
@@ -6221,6 +6294,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 448570f2dca1f494abcca596f07f1bbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7756834847492335520 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 825352634235196092, guid: 19912de6ff73f484d8abe3fbf824982b,
+    type: 3}
+  m_PrefabInstance: {fileID: 6976618892691207452}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c60b37fcbfb1b646ad9eec083a6f657, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &6976618893337916965
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6262,6 +6347,46 @@ PrefabInstance:
         type: 3}
       propertyPath: _goBackToStartPosToSleep
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: 19912de6ff73f484d8abe3fbf824982b,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: 19912de6ff73f484d8abe3fbf824982b,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.data[3].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: 19912de6ff73f484d8abe3fbf824982b,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.data[3].m_Target
+      value: 
+      objectReference: {fileID: 7756834847492335520}
+    - target: {fileID: 825352634235196092, guid: 19912de6ff73f484d8abe3fbf824982b,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.data[3].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: 19912de6ff73f484d8abe3fbf824982b,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
+      value: set_enabled
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: 19912de6ff73f484d8abe3fbf824982b,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.data[3].m_TargetAssemblyTypeName
+      value: UnityEngine.Behaviour, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: 19912de6ff73f484d8abe3fbf824982b,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 825352634235196092, guid: 19912de6ff73f484d8abe3fbf824982b,
+        type: 3}
+      propertyPath: OnAwake.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 881729545437228380, guid: 19912de6ff73f484d8abe3fbf824982b,
         type: 3}
@@ -6771,6 +6896,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 448570f2dca1f494abcca596f07f1bbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7756834848071410841 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 825352634235196092, guid: 19912de6ff73f484d8abe3fbf824982b,
+    type: 3}
+  m_PrefabInstance: {fileID: 6976618893337916965}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c60b37fcbfb1b646ad9eec083a6f657, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &7096357834426261903
