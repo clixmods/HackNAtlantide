@@ -10,6 +10,8 @@ public class OpenCreditsUI : MonoBehaviour
     public UnityEvent TitleOpened;
     public void OpenCredit()
     {
+        GameStateManager.Instance.cinematicStateObject.SetActive(true);
+        GameStateManager.Instance.mainMenuStateObject.SetActive(true);
         creditsGameObject.SetActive(true);
     }
 
@@ -17,6 +19,7 @@ public class OpenCreditsUI : MonoBehaviour
     {
         titleGameObject.SetActive(true);
         TitleOpened?.Invoke();
+        GameStateManager.Instance.cinematicStateObject.SetActive(false);
         GameStateManager.Instance.mainMenuStateObject.SetActive(true);
     }
 }
