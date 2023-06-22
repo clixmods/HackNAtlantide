@@ -24,6 +24,30 @@ public class ExplosionPotInteractable : MonoBehaviour
         if (eventArgs is AttackDamageableEventArgs mDamageableEventArgs)
         {
             float damage = Mathf.Lerp(damageMax, 0, Mathf.Clamp(((transform.position - mDamageableEventArgs.idamageable.transform.position).magnitude / radiusMax), 0, 1));
+            if (damage < 3 && damage > 2.4f) 
+            {
+                damage = 2.5f;
+            }
+            else if (damage <= 2.4f && damage > 1.9f)
+            {
+                damage = 2f;
+            }
+            else if (damage <= 1.9f && damage > 1.4f)
+            {
+                damage = 1.5f;
+            }
+            else if (damage <= 1.4f && damage > 0.9f)
+            {
+                damage = 1f;
+            }
+            else if (damage <= 0.9f && damage > 0.4f)
+            {
+                damage = 0.5f;
+            }
+            else
+            {
+                return;
+            }
             //ZEBI
             mDamageableEventArgs.idamageable.DoDamage(damage);
         }

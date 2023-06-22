@@ -60,9 +60,6 @@ public class BigGolemJumpAttack : EnemyAttackBehaviour
         explosionCollider = explosionObject.GetComponent<SphereCollider>();
         explosionCollider.radius = 0f;
         ExplosionFx.transform.localScale = Vector3.zero;
-
-        //listenToEventExplosionDamage
-
     }
 
     IEnumerator AttackBehaviour()

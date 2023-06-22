@@ -138,7 +138,7 @@ public class AttackLevitationInteractable : Interactable
         if (e is AttackDamageableEventArgs mDamageableEventArgs)
         {
             Debug.Log(mDamageableEventArgs.idamageable);
-            mDamageableEventArgs.idamageable.DoDamage(damageAmount, transform.position);
+            mDamageableEventArgs.idamageable.DoDamage(0, transform.position);
             DestroyInteractable();
         }
     }
