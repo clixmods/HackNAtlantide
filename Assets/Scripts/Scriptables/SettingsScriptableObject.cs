@@ -203,16 +203,16 @@ public class SettingsScriptableObject : ScriptableObjectSaveable
 
     public override void OnReset()
     {
-        /*_volumeMusic = 1;
+        _volumeMusic = 1;
         _volumeSFX = 1;
         _volumeGeneral = 1;
         _rumblerIntensity = RumblerIntensity.mid;
-        _windowMode = FullScreenMode.ExclusiveFullScreen;
+        //_windowMode = FullScreenMode.ExclusiveFullScreen;
         _useCameraShake = true;
         _maxRefreshRate = 144;
         _screenResolution = Screen.currentResolution;
         _lockFPS = true;
-        _useVsync = true;*/
+        _useVsync = true;
         _showFPS = false;
     }
 
