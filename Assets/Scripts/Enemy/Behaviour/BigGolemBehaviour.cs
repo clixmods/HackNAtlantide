@@ -9,6 +9,11 @@ public class BigGolemBehaviour : EnemyBehaviour
     int AwakeAnimID = Animator.StringToHash("Wake_Up_Big_Golem");
     int walkSpeedId = Animator.StringToHash("Walk_Speed");
     public UnityEvent OnWalk;
+    private bool canBossAttack = true;
+    public void CanAttack(bool value)
+    {
+        canBossAttack = value;
+    }
     public override void Move(Vector3 target)
     {
         base.Move(target);
@@ -36,49 +41,54 @@ public class BigGolemBehaviour : EnemyBehaviour
     }
     public override IEnumerator Attack()
     {
-        while (!IsAttacking)
+        if (canBossAttack)
         {
-            //trie Chaque Attack de l'ennemie par priorit?
-            EnnemyAttacks = SortAttacksByPriority();
-
-            //Selectione l'attaque disponible la plus prioritaire
-            for (int i = 0; i < EnnemyAttacks.Count; i++)
+            while (!IsAttacking)
             {
-                if (EnnemyAttacks[i].CanAttack() && canTargetPlayer)
+                //trie Chaque Attack de l'ennemie par priorit?
+                EnnemyAttacks = SortAttacksByPriority();
+
+                //Selectione l'attaque disponible la plus prioritaire
+                for (int i = 0; i < EnnemyAttacks.Count; i++)
                 {
-                    EnnemyAttacks[i].Attack();
-                    CurrentAttack = EnnemyAttacks[i];
-                    IsAttacking = true;
-                    _state = EnemyState.Attacking;
-                    Agent.updateRotation = false;
-                    break;
+                    if (EnnemyAttacks[i].CanAttack() && canTargetPlayer)
+                    {
+                        EnnemyAttacks[i].Attack();
+                        CurrentAttack = EnnemyAttacks[i];
+                        IsAttacking = true;
+                        _state = EnemyState.Attacking;
+                        Agent.updateRotation = false;
+                        break;
+                    }
                 }
+
+                yield return null;
             }
+            _canMove = false;
+            if (Agent.enabled)
+            {
+                Agent.SetDestination(transform.position);
+            }
+            //attends le coolDown de l'attaque qui est jou? pour commencer a rechercher une nouvelle attaque
+            while (IsAttacking)
+            {
+                Debug.Log("IsAttacking");
+                yield return null;
+            }
+            Agent.enabled = false;
+            yield return new WaitForSeconds(CurrentAttack.CoolDown);
+            Agent.enabled = true;
+            CurrentAttack.StartCoroutine(CurrentAttack.RechargePriority());
+            Debug.Log("attackFinished");
+            Agent.updateRotation = true;
+            CurrentAttack = null;
 
-            yield return null;
-        }
-        _canMove = false;
-        if (Agent.enabled)
-        {
-            Agent.SetDestination(transform.position);
-        }
-        //attends le coolDown de l'attaque qui est jou? pour commencer a rechercher une nouvelle attaque
-        yield return new WaitForSeconds(CurrentAttack.CoolDown);
-        while (IsAttacking)
-        {
-            Debug.Log("IsAttacking");
-            yield return null;
-        }
-        CurrentAttack.StartCoroutine(CurrentAttack.RechargePriority());
-        Debug.Log("attackFinished");
-        Agent.updateRotation = true;
-        CurrentAttack = null;
-
-        //recommence a attaquer
-        StartCoroutine(Attack());
-        if (!_movecoroutineIsPlayed)
-        {
-            StartCoroutine(MoveToPlayer());
+            //recommence a attaquer
+            StartCoroutine(Attack());
+            if (!_movecoroutineIsPlayed)
+            {
+                StartCoroutine(MoveToPlayer());
+            }
         }
     }
     public override IEnumerator MoveToPlayer()
