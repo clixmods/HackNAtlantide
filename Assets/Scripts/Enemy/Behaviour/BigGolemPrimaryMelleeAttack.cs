@@ -51,6 +51,7 @@ public class BigGolemPrimaryMelleeAttack : EnemyAttackBehaviour
         }
         OnAttackFinished();
         _enemyBehaviour.IsAttacking = false;
+        _enemyBehaviour.Animator.CrossFadeInFixedTime(walkAnimID, 0.2f);
     }
 
     public override bool CanAttack()
@@ -60,5 +61,13 @@ public class BigGolemPrimaryMelleeAttack : EnemyAttackBehaviour
     public void AttackDone()
     {
         OnAttackDone?.Invoke();
+    }
+    public override void CancelAttack()
+    {
+        StopCoroutine(AttackBehaviour());
+        OnAttackFinished();
+        _enemyBehaviour.IsAttacking = false;
+        _enemyBehaviour.Animator.CrossFadeInFixedTime(walkAnimID, 0.2f);
+
     }
 }

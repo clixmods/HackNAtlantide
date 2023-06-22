@@ -108,6 +108,10 @@ public abstract class EnemyAttackBehaviour : MonoBehaviour, ICombat
         }
         _currentPriority = _minPriority;
     }
+    public virtual void CancelAttack()
+    {
+        
+    }
     #region Animation Event Methods
     public void SetDamageActive(int value)
     {

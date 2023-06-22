@@ -162,4 +162,18 @@ public class BigGolemRunAttack : EnemyAttackBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawSphere(_pointToStop, 1f);
     }
+    public override void CancelAttack()
+    {
+        StopAllCoroutines();
+        //arrived at end position so set variables back to default
+        _rigidBody.velocity = Vector3.zero;
+        _enemyBehaviour.Agent.speed = initialSpeed;
+        _enemyBehaviour.Animator.CrossFadeInFixedTime(WalkAnimID, 1f);
+
+        OnAttackFinished();
+        _enemyBehaviour.IsAttacking = false;
+
+        _attackColliderAttackRun.OnCollideWithIDamageable -= AttackColliderOnOnCollideWithIDamageable;
+        _attackColliderAttackRun.enabled = false;
+    }
 }

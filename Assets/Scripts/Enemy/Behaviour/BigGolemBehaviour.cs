@@ -13,6 +13,10 @@ public class BigGolemBehaviour : EnemyBehaviour
     public void CanAttack(bool value)
     {
         canBossAttack = value;
+        if(value)
+        {
+            StartCoroutine(Attack());
+        }
     }
     public override void Move(Vector3 target)
     {

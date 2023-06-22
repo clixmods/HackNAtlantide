@@ -61,4 +61,15 @@ public class BigGolemLaserAttack : EnemyAttackBehaviour
     {
         return _enemyBehaviour.DistanceWithPlayer > MinDistanceToAttack && _enemyBehaviour.DistanceWithPlayer < MaxDistanceToAttack;
     }
+    public override void CancelAttack()
+    {
+        StopCoroutine(AttackBehaviour());
+        animMesh.SetActive(true);
+        laserMesh.SetActive(false);
+        OnAttackFinished();
+        _enemyBehaviour.IsAttacking = false;
+        OnLaserEnd?.Invoke();
+        _enemyBehaviour.Animator.CrossFade(WalkAnimID, 0.2f);
+
+    }
 }
