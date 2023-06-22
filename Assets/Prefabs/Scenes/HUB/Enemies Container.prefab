@@ -256,6 +256,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 11400000, guid: c00c1dd7c8214e44d84abe6d08e6443d, type: 2}
+        m_TargetAssemblyTypeName: ScriptableEvent, Assembly-CSharp
+        m_MethodName: LaunchEvent
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   GetChildEnnemies: 0
   DisableWakeUpBehaviourInStart: 1
 --- !u!1 &4914499385495132363
@@ -721,6 +733,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: BigGolemBehaviour, Assembly-CSharp
         m_MethodName: CanAttack
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 11400000, guid: e371a83eb38ecb94c8d812ade9a8d723, type: 2}
+        m_TargetAssemblyTypeName: ScriptableEvent, Assembly-CSharp
+        m_MethodName: LaunchEvent
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1864,12 +1888,17 @@ PrefabInstance:
     - target: {fileID: 7526027082146809094, guid: 8db3eb11ecf45744b8e5e30c37de9972,
         type: 3}
       propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.size
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7526027082146809094, guid: 8db3eb11ecf45744b8e5e30c37de9972,
         type: 3}
       propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[4].m_Mode
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7526027082146809094, guid: 8db3eb11ecf45744b8e5e30c37de9972,
+        type: 3}
+      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[5].m_Mode
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7526027082146809094, guid: 8db3eb11ecf45744b8e5e30c37de9972,
         type: 3}
@@ -1879,7 +1908,18 @@ PrefabInstance:
         type: 2}
     - target: {fileID: 7526027082146809094, guid: 8db3eb11ecf45744b8e5e30c37de9972,
         type: 3}
+      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[5].m_Target
+      value: 
+      objectReference: {fileID: 11400000, guid: 02893ddd8620eac4baea467be48ee052,
+        type: 2}
+    - target: {fileID: 7526027082146809094, guid: 8db3eb11ecf45744b8e5e30c37de9972,
+        type: 3}
       propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[4].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7526027082146809094, guid: 8db3eb11ecf45744b8e5e30c37de9972,
+        type: 3}
+      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[5].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7526027082146809094, guid: 8db3eb11ecf45744b8e5e30c37de9972,
@@ -1889,8 +1929,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7526027082146809094, guid: 8db3eb11ecf45744b8e5e30c37de9972,
         type: 3}
+      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[5].m_MethodName
+      value: LaunchEvent
+      objectReference: {fileID: 0}
+    - target: {fileID: 7526027082146809094, guid: 8db3eb11ecf45744b8e5e30c37de9972,
+        type: 3}
       propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[4].m_TargetAssemblyTypeName
       value: ScriptableValue`1[[System.Boolean, mscorlib
+      objectReference: {fileID: 0}
+    - target: {fileID: 7526027082146809094, guid: 8db3eb11ecf45744b8e5e30c37de9972,
+        type: 3}
+      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[5].m_TargetAssemblyTypeName
+      value: ScriptableEvent, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 7526027082146809094, guid: 8db3eb11ecf45744b8e5e30c37de9972,
         type: 3}
@@ -1899,7 +1949,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7526027082146809094, guid: 8db3eb11ecf45744b8e5e30c37de9972,
         type: 3}
+      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[5].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7526027082146809094, guid: 8db3eb11ecf45744b8e5e30c37de9972,
+        type: 3}
       propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[4].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 7526027082146809094, guid: 8db3eb11ecf45744b8e5e30c37de9972,
+        type: 3}
+      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[5].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 8547201760933104893, guid: 8db3eb11ecf45744b8e5e30c37de9972,
@@ -2059,7 +2119,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - healthPercentageToLaunchEvent: 46.4
+  - healthPercentageToLaunchEvent: 36.6
     OnHealthPercentage:
       m_PersistentCalls:
         m_Calls:
@@ -2067,34 +2127,6 @@ MonoBehaviour:
           m_TargetAssemblyTypeName: ScriptableEvent, Assembly-CSharp
           m_MethodName: LaunchEvent
           m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - healthPercentageToLaunchEvent: 12.3
-    OnHealthPercentage:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 11400000, guid: 660b3745c85147043b555fc8142b3efe, type: 2}
-          m_TargetAssemblyTypeName: ScriptableEvent, Assembly-CSharp
-          m_MethodName: LaunchEvent
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 3493728482705286519}
-          m_TargetAssemblyTypeName: Character, Assembly-CSharp
-          m_MethodName: SetInvulnerability
-          m_Mode: 6
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
