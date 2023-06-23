@@ -27,6 +27,7 @@ public class BigGolemSecondaryMeleeAttack : EnemyAttackBehaviour
         }
         Vector3 destination = PlayerInstanceScriptableObject.Player.transform.position + (transform.position - PlayerInstanceScriptableObject.Player.transform.position).normalized * attackDistance;
         //Run in the direction until at finish point
+        _enemyBehaviour.Agent.speed *= 3f;
         while ((transform.position - destination).ProjectOntoPlane(Vector3.up).sqrMagnitude > 1f)
         {
             isattack = true;
@@ -53,6 +54,7 @@ public class BigGolemSecondaryMeleeAttack : EnemyAttackBehaviour
             yield return null;
         }
         OnAttackFinished();
+        _enemyBehaviour.Agent.speed /= 3f;
         _enemyBehaviour.Agent.enabled = true;
         _enemyBehaviour.IsAttacking = false;
         isattack = false;
@@ -77,6 +79,7 @@ public class BigGolemSecondaryMeleeAttack : EnemyAttackBehaviour
     {
         StopCoroutine(AttackBehaviour());
         OnAttackFinished();
+        _enemyBehaviour.Agent.speed /= 3f;
         _enemyBehaviour.IsAttacking = false;
         _enemyBehaviour.Animator.CrossFadeInFixedTime(walkAnimID, 0.2f);
     }
