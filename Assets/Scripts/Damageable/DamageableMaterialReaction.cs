@@ -27,7 +27,10 @@ public class DamageableMaterialReaction : MonoBehaviour
         }
         protected void IdamageableOnOnDamage(object sender, EventArgs e)
         {
-            StartCoroutine(Flick());
+            if (enabled && gameObject.activeSelf)
+            {
+                StartCoroutine(Flick());
+            }
         }
         IEnumerator Flick()
         {
