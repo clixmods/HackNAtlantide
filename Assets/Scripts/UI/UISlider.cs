@@ -9,7 +9,7 @@ public abstract class UISlider : MonoBehaviour
     protected RectTransform _rectTransform;
     protected float _striLength;
     public UnityEvent OnMaxIncrease;
-    public void UpdateStri()
+    public virtual void UpdateStri()
     {
         StartCoroutine(UpdateCoroutine());
     }
