@@ -1297,6 +1297,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7319932720052699487}
   - component: {fileID: 8816473814406365566}
+  - component: {fileID: 5638166572563470340}
   m_Layer: 0
   m_Name: Global Volume
   m_TagString: Untagged
@@ -1334,8 +1335,27 @@ MonoBehaviour:
   m_IsGlobal: 1
   priority: 127.95
   blendDistance: 0
-  weight: 1
+  weight: 0
   sharedProfile: {fileID: 11400000, guid: 28b0c261f35af22429ec617eaf144bca, type: 2}
+--- !u!114 &5638166572563470340
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 637428530278178821}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 147e4dae20030574bba3a30e8095aedd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeTransition: 3
+  isTemporary: 0
+  duration: 2
+  flickering: 0
+  minWeight: 0
+  maxWeight: 1
+  speedMultiplier: 1
 --- !u!1 &665456346455693154
 GameObject:
   m_ObjectHideFlags: 0
@@ -23448,7 +23468,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EventOnOpenMenu:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5638166572563470340}
+        m_TargetAssemblyTypeName: PostProcessWeightTransition, Assembly-CSharp
+        m_MethodName: SetWeightVolume
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 1
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   EventOnCloseMenu:
     m_PersistentCalls:
       m_Calls:
@@ -23456,6 +23488,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: UISettingsHandler, Assembly-CSharp
         m_MethodName: Save
         m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 5638166572563470340}
+        m_TargetAssemblyTypeName: PostProcessWeightTransition, Assembly-CSharp
+        m_MethodName: SetWeightVolume
+        m_Mode: 4
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
