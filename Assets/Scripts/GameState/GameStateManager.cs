@@ -67,7 +67,7 @@ public class LoadingState : GameState
     public override void ApplyOverride(GameStateOverride stateOverride)
     {
         stateOverride.isPaused = false;
-        stateOverride.timeScale = 1f;
+        stateOverride.timeScale = 0;
         stateOverride.inputPauseActive = false;
         stateOverride.inputInteractActive = false;
         stateOverride.inputMovementActive = false;

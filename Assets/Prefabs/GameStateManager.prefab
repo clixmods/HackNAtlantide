@@ -61,6 +61,7 @@ MonoBehaviour:
     inputDashActive: 1
     inputInteractActive: 1
     inputPauseActive: 1
+    inputFocusActive: 1
     inputUIActive: 0
     canEnemyTargetPlayer: 1
     playerInvincible: 0
@@ -607,6 +608,18 @@ MonoBehaviour:
   ApplyGameStateOverride:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 8433734963490487122}
+        m_TargetAssemblyTypeName: PostProcessWeightTransition, Assembly-CSharp
+        m_MethodName: SetWeightVolume
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 1
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
       - m_Target: {fileID: 2058695773639064036}
         m_TargetAssemblyTypeName: ImageAlphaTransition, Assembly-CSharp
         m_MethodName: ActiveBlackScreen
@@ -657,6 +670,18 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 5
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 8433734963490487122}
+        m_TargetAssemblyTypeName: PostProcessWeightTransition, Assembly-CSharp
+        m_MethodName: SetWeightVolume
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
@@ -781,3 +806,15 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 5940432220951201876}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8433734963490487122 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2844589285979501318, guid: 9c063d115480ec24c85a0aca455bf80d,
+    type: 3}
+  m_PrefabInstance: {fileID: 5940432220951201876}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 147e4dae20030574bba3a30e8095aedd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
