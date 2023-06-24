@@ -106,11 +106,29 @@ public class BigGolemRunAttack : EnemyAttackBehaviour
         Vector3 directionToPlayer = -(transform.position - PlayerInstanceScriptableObject.Player.transform.position);
         directionToPlayer = new Vector3(directionToPlayer.x, 0, directionToPlayer.z);
 
-        Vector3 directionToMove = directionToPlayer + directionToPlayer.normalized * 5f;
+        Vector3 directionToMove = directionToPlayer + directionToPlayer.normalized * 15f;
         _pointToStop = transform.position + directionToMove;
         if(NavMesh.SamplePosition(_pointToStop, out NavMeshHit hitPoint, 50f, NavMesh.AllAreas))
         {
             _pointToStop = hitPoint.position;
+        }
+        else
+        {
+            directionToMove = directionToPlayer + directionToPlayer.normalized * 5f;
+            _pointToStop = transform.position + directionToMove;
+            if (NavMesh.SamplePosition(_pointToStop, out NavMeshHit hitPoint2, 50f, NavMesh.AllAreas))
+            {
+                _pointToStop = hitPoint2.position;
+            }
+            else
+            {
+                directionToMove = directionToPlayer;
+                _pointToStop = transform.position + directionToMove;
+                if (NavMesh.SamplePosition(_pointToStop, out NavMeshHit hitPoint3, 50f, NavMesh.AllAreas))
+                {
+                    _pointToStop = hitPoint3.position;
+                }
+            }
         }
 
         //Run in the direction until at finish point

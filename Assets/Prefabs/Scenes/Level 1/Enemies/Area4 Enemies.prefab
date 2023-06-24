@@ -239,31 +239,46 @@ PrefabInstance:
     - target: {fileID: 6416517122908173490, guid: 350fb884a338f0d4ba4b578f19a19c02,
         type: 3}
       propertyPath: OnStart.m_PersistentCalls.m_Calls.Array.size
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6416517122908173490, guid: 350fb884a338f0d4ba4b578f19a19c02,
         type: 3}
       propertyPath: OnStart.m_PersistentCalls.m_Calls.Array.data[4].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6416517122908173490, guid: 350fb884a338f0d4ba4b578f19a19c02,
+        type: 3}
+      propertyPath: OnStart.m_PersistentCalls.m_Calls.Array.data[5].m_Mode
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6416517122908173490, guid: 350fb884a338f0d4ba4b578f19a19c02,
         type: 3}
-      propertyPath: OnStart.m_PersistentCalls.m_Calls.Array.data[4].m_Target
+      propertyPath: OnStart.m_PersistentCalls.m_Calls.Array.data[5].m_Target
       value: 
       objectReference: {fileID: 7623098166449988848}
     - target: {fileID: 6416517122908173490, guid: 350fb884a338f0d4ba4b578f19a19c02,
         type: 3}
-      propertyPath: OnStart.m_PersistentCalls.m_Calls.Array.data[4].m_CallState
+      propertyPath: OnStart.m_PersistentCalls.m_Calls.Array.data[5].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6416517122908173490, guid: 350fb884a338f0d4ba4b578f19a19c02,
         type: 3}
       propertyPath: OnStart.m_PersistentCalls.m_Calls.Array.data[4].m_MethodName
+      value: set_IsTargetable
+      objectReference: {fileID: 0}
+    - target: {fileID: 6416517122908173490, guid: 350fb884a338f0d4ba4b578f19a19c02,
+        type: 3}
+      propertyPath: OnStart.m_PersistentCalls.m_Calls.Array.data[5].m_MethodName
       value: EnableWakeUpBehaviourInWatchedEnemies
       objectReference: {fileID: 0}
     - target: {fileID: 6416517122908173490, guid: 350fb884a338f0d4ba4b578f19a19c02,
         type: 3}
       propertyPath: OnStart.m_PersistentCalls.m_Calls.Array.data[4].m_TargetAssemblyTypeName
+      value: Focusable, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6416517122908173490, guid: 350fb884a338f0d4ba4b578f19a19c02,
+        type: 3}
+      propertyPath: OnStart.m_PersistentCalls.m_Calls.Array.data[5].m_TargetAssemblyTypeName
       value: EnemiesWatcher, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 6416517122908173490, guid: 350fb884a338f0d4ba4b578f19a19c02,
@@ -273,7 +288,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6416517122908173490, guid: 350fb884a338f0d4ba4b578f19a19c02,
         type: 3}
+      propertyPath: OnStart.m_PersistentCalls.m_Calls.Array.data[5].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6416517122908173490, guid: 350fb884a338f0d4ba4b578f19a19c02,
+        type: 3}
       propertyPath: OnStart.m_PersistentCalls.m_Calls.Array.data[4].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 6416517122908173490, guid: 350fb884a338f0d4ba4b578f19a19c02,
+        type: 3}
+      propertyPath: OnStart.m_PersistentCalls.m_Calls.Array.data[5].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []

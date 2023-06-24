@@ -13,8 +13,12 @@ public class BigGolemBehaviour : EnemyBehaviour
     public void CanAttack(bool value)
     {
         canBossAttack = value;
-        if(value)
+        if(value && !IsAttacking)
         {
+            if(CurrentAttack !=null)
+            {
+                CurrentAttack.CancelAttack();
+            }
             StartCoroutine(Attack());
         }
     }
@@ -30,7 +34,6 @@ public class BigGolemBehaviour : EnemyBehaviour
     {
         base.Update();
         Animator.SetFloat(walkSpeedId, Agent.velocity.magnitude / 10f);
-        Debug.Log("distance with player : " + DistanceWithPlayer);
     }
     public override IEnumerator WakeUpCoroutine()
     {

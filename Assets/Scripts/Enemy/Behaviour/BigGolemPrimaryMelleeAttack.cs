@@ -27,8 +27,12 @@ public class BigGolemPrimaryMelleeAttack : EnemyAttackBehaviour
         }
         Vector3 destination = PlayerInstanceScriptableObject.Player.transform.position + (transform.position - PlayerInstanceScriptableObject.Player.transform.position).normalized * attackDistance;
         //Run in the direction until at finish point
-        while ((transform.position - destination).ProjectOntoPlane(Vector3.up).sqrMagnitude > 1f)
+        _enemyBehaviour.Agent.speed *= 3f;
+        float timeMaxToPosition = 1.5f;
+        while ((transform.position - destination).ProjectOntoPlane(Vector3.up).sqrMagnitude > 2f && timeMaxToPosition > 0f)
         {
+            timeMaxToPosition -= Time.deltaTime;
+            Debug.Log(timeMaxToPosition);
             destination = PlayerInstanceScriptableObject.Player.transform.position + (transform.position - PlayerInstanceScriptableObject.Player.transform.position).normalized * attackDistance;
             _enemyBehaviour.Agent.SetDestination(destination);
             _enemyBehaviour.FaceTarget(destination);
@@ -50,6 +54,7 @@ public class BigGolemPrimaryMelleeAttack : EnemyAttackBehaviour
             yield return null;
         }
         OnAttackFinished();
+        _enemyBehaviour.Agent.speed /= 3f;
         _enemyBehaviour.IsAttacking = false;
         _enemyBehaviour.Animator.CrossFadeInFixedTime(walkAnimID, 0.2f);
     }
@@ -66,6 +71,7 @@ public class BigGolemPrimaryMelleeAttack : EnemyAttackBehaviour
     {
         StopCoroutine(AttackBehaviour());
         OnAttackFinished();
+        _enemyBehaviour.Agent.speed /= 3f;
         _enemyBehaviour.IsAttacking = false;
         _enemyBehaviour.Animator.CrossFadeInFixedTime(walkAnimID, 0.2f);
 

@@ -48,7 +48,10 @@ public class UIStamina : UISlider
 
     private void MaxValueChanged(float obj)
     {
-        OnMaxIncrease?.Invoke();
+        if (lerpUpdateCoroutine)
+        {
+            OnMaxIncrease?.Invoke();
+        }
     }
 
     private void OnDisable()
@@ -57,7 +60,20 @@ public class UIStamina : UISlider
         _staminaSO.OnValueChanged -= ChangeValue;
         _staminaSO.OnMaxValueChanged -= MaxValueChanged;
     }
-
+    
+    public override void UpdateStri()
+    {
+        if (lerpUpdateCoroutine)
+        {
+            StartCoroutine(UpdateCoroutine());
+        }
+        else
+        {
+            Vector2 start = _rectTransform.sizeDelta;
+            Vector2 target = new Vector2 (_striLength * _staminaSO.MaxStamina, _rectTransform.sizeDelta.y);
+            _rectTransform.sizeDelta = Vector2.Lerp(start,target , 1);
+        }
+    }
     void ChangeValue(float value)
     {
         
@@ -66,9 +82,11 @@ public class UIStamina : UISlider
     }
     public override IEnumerator UpdateCoroutine()
     {
-        _isLerping = true;
         Vector2 start = _rectTransform.sizeDelta;
         Vector2 target = new Vector2 (_striLength * _staminaSO.MaxStamina, _rectTransform.sizeDelta.y);
+       
+        _isLerping = true;
+       
 
         float t = 0;
         while (t < 1)

@@ -5129,8 +5129,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5716771945591679156}
   - component: {fileID: 4152413442648155061}
-  - component: {fileID: 7989064784933676543}
-  - component: {fileID: 3037275179362159444}
   - component: {fileID: 9017728369017744264}
   m_Layer: 9
   m_Name: Box Trigger Damage
@@ -5167,56 +5165,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!33 &7989064784933676543
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3347342485713736564}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &3037275179362159444
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3347342485713736564}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 8d90f23e37047944897aa4697f8c1b64, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &9017728369017744264
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15047,7 +14995,7 @@ ParticleSystem:
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 1
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
@@ -15976,7 +15924,7 @@ ParticleSystem:
       countCurve:
         serializedVersion: 2
         minMaxState: 0
-        scalar: 100
+        scalar: 200
         minScalar: 30
         maxCurve:
           serializedVersion: 2
@@ -20694,7 +20642,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44ec8557313f9ff43a8796804cd01818, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1.5
+  damage: 2.5
   _minPriority: 15
   _coolDown: 1
   _minDistanceToAttack: 0
@@ -20754,7 +20702,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb78e68cab59cec41aec9bbe96768042, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 3
+  damage: 2.5
   _minPriority: 15
   _coolDown: 1
   _minDistanceToAttack: 0
@@ -20868,7 +20816,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcfbe330ffbb0a742951372eee165eac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 2.5
+  damage: 3
   _minPriority: 15
   _coolDown: 1
   _minDistanceToAttack: 0
@@ -20950,7 +20898,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f379f228d35f2544f9a82f45b499be87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 3
+  damage: 4
   _minPriority: 15
   _coolDown: 2.5
   _minDistanceToAttack: 3
