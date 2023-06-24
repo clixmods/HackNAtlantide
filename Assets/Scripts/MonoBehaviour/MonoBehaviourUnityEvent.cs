@@ -1,7 +1,10 @@
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 public class MonoBehaviourUnityEvent : MonoBehaviour
 {
+   public UnityEvent EventEnable;
+   public UnityEvent EventDisable;
    public UnityEvent EventAwake;
    public UnityEvent EventUpdate;
    public UnityEvent EventDestroy;
@@ -19,5 +22,15 @@ public class MonoBehaviourUnityEvent : MonoBehaviour
    private void OnDestroy()
    {
       EventDestroy?.Invoke();
+   }
+
+   private void OnEnable()
+   {
+      EventEnable?.Invoke();
+   }
+
+   private void OnDisable()
+   {
+      EventDisable?.Invoke();
    }
 }

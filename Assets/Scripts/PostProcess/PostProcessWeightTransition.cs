@@ -48,6 +48,11 @@ public class PostProcessWeightTransition : MonoBehaviour
         timeTransition = timeToTransit;
         SetWeightVolume(value);
     }
+
+    public void SetWeightVolumeDirect(float value)
+    {
+        _volume.weight = value;
+    }
     IEnumerator WeightTransition()
     {
         _isTransitioning = true;

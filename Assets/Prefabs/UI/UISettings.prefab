@@ -1625,8 +1625,8 @@ MonoBehaviour:
   canBeOpenedAnywhere: 0
   reopenPreviousMenuOnClose: 0
   EraseActiveMenu: 0
-  StayOpenOnAwake: 0
-  _menuType: 0
+  StayOpenOnAwake: 1
+  _menuType: 1
 --- !u!1 &722608371260591425
 GameObject:
   m_ObjectHideFlags: 0
@@ -4665,8 +4665,8 @@ MonoBehaviour:
   canBeOpenedAnywhere: 0
   reopenPreviousMenuOnClose: 0
   EraseActiveMenu: 0
-  StayOpenOnAwake: 0
-  _menuType: 0
+  StayOpenOnAwake: 1
+  _menuType: 1
 --- !u!1 &1707533971570925925
 GameObject:
   m_ObjectHideFlags: 0
@@ -7317,6 +7317,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 3567722227602501385}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
       - m_Target: {fileID: 8498487119368411950}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
@@ -7352,18 +7364,6 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 3567722227602501385}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
         m_CallState: 2
 --- !u!1 &2626294094784424419
 GameObject:
@@ -11438,8 +11438,8 @@ MonoBehaviour:
   canBeOpenedAnywhere: 0
   reopenPreviousMenuOnClose: 0
   EraseActiveMenu: 0
-  StayOpenOnAwake: 0
-  _menuType: 0
+  StayOpenOnAwake: 1
+  _menuType: 1
 --- !u!1 &3577780405685716314
 GameObject:
   m_ObjectHideFlags: 0
@@ -11797,6 +11797,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 1694213451021362887}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
       - m_Target: {fileID: 8498487119368411950}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
@@ -11820,18 +11832,6 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1694213451021362887}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
         m_CallState: 2
       - m_Target: {fileID: 3567722227602501385}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
@@ -15002,18 +15002,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8498487119368411950}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 706840574025161394}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
@@ -15025,6 +15013,18 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 8498487119368411950}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1694213451021362887}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
@@ -23355,6 +23355,7 @@ GameObject:
   - component: {fileID: 8448906632180076797}
   - component: {fileID: 8247303259451706577}
   - component: {fileID: 3456514487187401505}
+  - component: {fileID: 7079592816890224144}
   m_Layer: 5
   m_Name: UISettings
   m_TagString: Untagged
@@ -23468,10 +23469,83 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EventOnOpenMenu:
     m_PersistentCalls:
+      m_Calls: []
+  EventOnCloseMenu:
+    m_PersistentCalls:
+      m_Calls: []
+  _firstSelectedGameObject: {fileID: 3044159645083610798}
+  closeMenuOnReleaseButton: 0
+  canBeOpenedAnywhere: 0
+  reopenPreviousMenuOnClose: 0
+  EraseActiveMenu: 0
+  StayOpenOnAwake: 0
+  _menuType: 0
+--- !u!114 &7079592816890224144
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8448906632180076771}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a227f632f730ff4b8c745e34655fa44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EventEnable:
+    m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 8498487119368411950}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 706840574025161394}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1694213451021362887}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 3567722227602501385}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 5638166572563470340}
         m_TargetAssemblyTypeName: PostProcessWeightTransition, Assembly-CSharp
-        m_MethodName: SetWeightVolume
+        m_MethodName: SetWeightVolumeDirect
         m_Mode: 4
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -23481,9 +23555,69 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  EventOnCloseMenu:
+  EventDisable:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 8498487119368411950}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 706840574025161394}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1694213451021362887}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 3567722227602501385}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 5638166572563470340}
+        m_TargetAssemblyTypeName: PostProcessWeightTransition, Assembly-CSharp
+        m_MethodName: SetWeightVolumeDirect
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 8247303259451706577}
         m_TargetAssemblyTypeName: UISettingsHandler, Assembly-CSharp
         m_MethodName: Save
@@ -23496,25 +23630,15 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 5638166572563470340}
-        m_TargetAssemblyTypeName: PostProcessWeightTransition, Assembly-CSharp
-        m_MethodName: SetWeightVolume
-        m_Mode: 4
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  _firstSelectedGameObject: {fileID: 3044159645083610798}
-  closeMenuOnReleaseButton: 0
-  canBeOpenedAnywhere: 0
-  reopenPreviousMenuOnClose: 0
-  EraseActiveMenu: 0
-  StayOpenOnAwake: 0
-  _menuType: 0
+  EventAwake:
+    m_PersistentCalls:
+      m_Calls: []
+  EventUpdate:
+    m_PersistentCalls:
+      m_Calls: []
+  EventDestroy:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &8448906632378042172
 GameObject:
   m_ObjectHideFlags: 0
@@ -23970,8 +24094,8 @@ MonoBehaviour:
   canBeOpenedAnywhere: 0
   reopenPreviousMenuOnClose: 0
   EraseActiveMenu: 0
-  StayOpenOnAwake: 0
-  _menuType: 0
+  StayOpenOnAwake: 1
+  _menuType: 1
 --- !u!1 &8595339728057344635
 GameObject:
   m_ObjectHideFlags: 0
