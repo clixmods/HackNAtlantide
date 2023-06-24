@@ -6,7 +6,14 @@
         [SerializeField] private Character _character;
         protected override void Awake()
         {
-            _character.OnDamage += IdamageableOnOnDamage;
+            if(_character == null)
+                _character = GetComponent<Character>();
+
+            if (_character != null)
+            {
+                _character.OnDamage += IdamageableOnOnDamage;
+            }
+
             // Setup Material property block
             if (meshRenderer == null)
             {

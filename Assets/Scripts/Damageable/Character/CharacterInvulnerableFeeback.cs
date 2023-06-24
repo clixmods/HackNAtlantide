@@ -12,8 +12,9 @@ public class CharacterInvulnerableFeeback : MonoBehaviour
     private static readonly int propertyInvulnerableID = Shader.PropertyToID("_IsInvulnerable");
     private void Awake()
     {
-
-        character = GetComponent<Character>();
+        if(character == null)
+            character = GetComponent<Character>();
+        
         if(character != null)
         {
             character.OnInvulnerable += InvulnerableFeeback;
