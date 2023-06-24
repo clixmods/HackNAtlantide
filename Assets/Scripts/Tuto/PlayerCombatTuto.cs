@@ -31,6 +31,7 @@ public class PlayerCombatTuto : MonoBehaviour
 
     void CutSceneSuccess(InputType inputType)
     {
+        
         switch (inputType)
         {
             case InputType.Interact:
