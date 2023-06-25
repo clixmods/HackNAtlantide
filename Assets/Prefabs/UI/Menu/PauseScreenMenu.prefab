@@ -1755,6 +1755,7 @@ GameObject:
   - component: {fileID: 5846141385900249935}
   - component: {fileID: 120876723651050253}
   - component: {fileID: 728134122695017198}
+  - component: {fileID: 6600426845211991549}
   m_Layer: 5
   m_Name: PauseScreenMenu
   m_TagString: Untagged
@@ -1861,6 +1862,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 11400000, guid: 9f7d7974f5a84004ebfd94b2b68e97ef, type: 2}
+        m_TargetAssemblyTypeName: AudioAliase.Alias, AudioAliase
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   EventOnCloseMenu:
     m_PersistentCalls:
       m_Calls:
@@ -1922,3 +1935,42 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   listenInputWithDelay: 0
+--- !u!114 &6600426845211991549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9218140092206326705}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a227f632f730ff4b8c745e34655fa44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EventEnable:
+    m_PersistentCalls:
+      m_Calls: []
+  EventDisable:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 2ed677ac97e64b84b8793a220c2050bb, type: 2}
+        m_TargetAssemblyTypeName: AudioAliase.Alias, AudioAliase
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  EventAwake:
+    m_PersistentCalls:
+      m_Calls: []
+  EventUpdate:
+    m_PersistentCalls:
+      m_Calls: []
+  EventDestroy:
+    m_PersistentCalls:
+      m_Calls: []

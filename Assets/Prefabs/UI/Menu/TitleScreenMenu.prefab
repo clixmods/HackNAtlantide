@@ -2042,6 +2042,7 @@ GameObject:
   - component: {fileID: 4870286294504944088}
   - component: {fileID: 4870286294504944091}
   - component: {fileID: 4870286294504944090}
+  - component: {fileID: 1738531345420913449}
   m_Layer: 5
   m_Name: TitleScreenMenu
   m_TagString: Untagged
@@ -2156,6 +2157,57 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1738531345420913449
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4870286294504944092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a227f632f730ff4b8c745e34655fa44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EventEnable:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 8883ef6493b7a8e4ca498cea0b55a372, type: 2}
+        m_TargetAssemblyTypeName: AudioAliase.Alias, AudioAliase
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  EventDisable:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 0a214c29d5bcd2a4e8c6afeeace52356, type: 2}
+        m_TargetAssemblyTypeName: AudioAliase.Alias, AudioAliase
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  EventAwake:
+    m_PersistentCalls:
+      m_Calls: []
+  EventUpdate:
+    m_PersistentCalls:
+      m_Calls: []
+  EventDestroy:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &4870286294955414252
 GameObject:
   m_ObjectHideFlags: 0
