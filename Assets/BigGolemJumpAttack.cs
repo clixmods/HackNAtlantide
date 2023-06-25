@@ -61,7 +61,7 @@ public class BigGolemJumpAttack : EnemyAttackBehaviour
         explosionCollider.radius = 0f;
         ExplosionFx.transform.localScale = Vector3.zero;
     }
-
+    
     IEnumerator AttackBehaviour()
     {
         OnAttackStarted();
