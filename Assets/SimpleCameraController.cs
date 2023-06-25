@@ -16,7 +16,7 @@ namespace UnityTemplateProjects
             public float x;
             public float y;
             public float z;
-
+            float currentYvelocity;
             public void SetFromTransform(Transform t)
             {
                 pitch = t.eulerAngles.x;
@@ -47,13 +47,12 @@ namespace UnityTemplateProjects
                 z = Mathf.Lerp(z, target.z, positionLerpPct);
             }
 
-            public void UpdateTransform(Transform t)
+            public void UpdateTransform(Transform t, float verticalSpeed)
             {
                 t.eulerAngles = new Vector3(pitch, yaw, roll);
-                t.position = new Vector3(x, y, z);
+                t.position = new Vector3(x, t.position.y + verticalSpeed, z);
             }
         }
-
         const float k_MouseSensitivityMultiplier = 0.01f;
 
         CameraState m_TargetCameraState = new CameraState();
@@ -79,13 +78,18 @@ namespace UnityTemplateProjects
         [Tooltip("Whether or not to invert our Y axis for mouse input to rotation.")]
         public bool invertY = false;
 
+        public float moveUpSpeed;
+        public float lerpUpSpeed;
+
 #if ENABLE_INPUT_SYSTEM
         InputAction movementAction;
         InputAction verticalMovementAction;
+        InputAction moveUp;
+        InputAction moveDown;
         InputAction lookAction;
         InputAction boostFactorAction;
         bool        mouseRightButtonPressed;
-
+        float verticalAcceleration;
         void Start()
         {
             var map = new InputActionMap("Simple Camera Controller");
@@ -93,10 +97,13 @@ namespace UnityTemplateProjects
             lookAction = map.AddAction("look", binding: "<Mouse>/delta");
             movementAction = map.AddAction("move", binding: "<Gamepad>/leftStick");
             verticalMovementAction = map.AddAction("Vertical Movement");
+            moveUp = map.AddAction("MoveUp");
+            moveDown = map.AddAction("MoveDown");
+
             boostFactorAction = map.AddAction("Boost Factor", binding: "<Mouse>/scroll");
 
             lookAction.AddBinding("<Gamepad>/rightStick").WithProcessor("scaleVector2(x=15, y=15)");
-            movementAction.AddCompositeBinding("Dpad")
+            /*movementAction.AddCompositeBinding("Dpad")
                 .With("Up", "<Keyboard>/w")
                 .With("Up", "<Keyboard>/upArrow")
                 .With("Down", "<Keyboard>/s")
@@ -105,14 +112,15 @@ namespace UnityTemplateProjects
                 .With("Left", "<Keyboard>/leftArrow")
                 .With("Right", "<Keyboard>/d")
                 .With("Right", "<Keyboard>/rightArrow");
-            verticalMovementAction.AddCompositeBinding("Dpad")
+            
                 .With("Up", "<Keyboard>/pageUp")
                 .With("Down", "<Keyboard>/pageDown")
                 .With("Up", "<Keyboard>/e")
                 .With("Down", "<Keyboard>/q")
-                .With("Up", "<Gamepad>/rightshoulder")
-                .With("Down", "<Gamepad>/leftshoulder");
+                */
             boostFactorAction.AddBinding("<Gamepad>/Dpad").WithProcessor("scaleVector2(x=1, y=4)");
+            verticalMovementAction.AddCompositeBinding("Dpad").With("Up", "<Gamepad>/rightshoulder")
+                .With("Down", "<Gamepad>/leftshoulder"); ;
 
             movementAction.Enable();
             lookAction.Enable();
@@ -135,7 +143,6 @@ namespace UnityTemplateProjects
             var moveDelta = movementAction.ReadValue<Vector2>();
             direction.x = moveDelta.x;
             direction.z = moveDelta.y;
-            direction.y = verticalMovementAction.ReadValue<Vector2>().y;
 #else
             if (Input.GetKey(KeyCode.W))
             {
@@ -165,17 +172,8 @@ namespace UnityTemplateProjects
             return direction;
         }
 
-        void Update()
+        void LateUpdate()
         {
-            // Exit Sample
-
-            if (IsEscapePressed())
-            {
-                Application.Quit();
-#if UNITY_EDITOR
-                UnityEditor.EditorApplication.isPlaying = false;
-#endif
-            }
 
             // Hide and lock cursor when right mouse button pressed
             if (IsRightMouseButtonDown())
@@ -224,7 +222,8 @@ namespace UnityTemplateProjects
             var rotationLerpPct = 1f - Mathf.Exp((Mathf.Log(1f - 0.99f) / rotationLerpTime) * Time.deltaTime);
             m_InterpolatingCameraState.LerpTowards(m_TargetCameraState, positionLerpPct, rotationLerpPct);
 
-            m_InterpolatingCameraState.UpdateTransform(transform);
+            verticalAcceleration = Mathf.SmoothStep(verticalAcceleration, moveUpSpeed * verticalMovementAction.ReadValue<Vector2>().y, Time.deltaTime * lerpUpSpeed);
+            m_InterpolatingCameraState.UpdateTransform(transform, verticalAcceleration);
         }
 
         float GetBoostFactor()
