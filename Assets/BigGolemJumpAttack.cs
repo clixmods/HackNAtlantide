@@ -36,20 +36,26 @@ public class BigGolemJumpAttack : EnemyAttackBehaviour
     public UnityEvent OnJump;
     public UnityEvent OnLanding;
     private bool _isJumping;
+    bool canJump = true;
 
     public override void Attack()
     {
-        CalculatePath();
-        StartCoroutine(AttackBehaviour());
-        LaunchAttackEvent();
-        Priority += CoolDown;
-        _enemyBehaviour.Agent.enabled = false;
+        if(canJump)
+        {
+            CalculatePath();
+            StartCoroutine(AttackBehaviour());
+            LaunchAttackEvent();
+            Priority += CoolDown;
+            _enemyBehaviour.Agent.enabled = false;
+        }
     }
 
     public void GoToNewPositionWithJump(Transform destinationTransform)
     {
+
         CalculatePathTo(destinationTransform.position);
         StartCoroutine(AttackBehaviour());
+        canJump = false;
         LaunchAttackEvent();
         Priority += CoolDown;
         _enemyBehaviour.Agent.enabled = false;
@@ -144,6 +150,7 @@ public class BigGolemJumpAttack : EnemyAttackBehaviour
 
         _attackColliderExplosion.OnCollideWithIDamageable -= AttackColliderOnOnCollideWithIDamageableExplosion;
         _attackColliderExplosion.enabled = false;
+        canJump = true;
         
     }
 
