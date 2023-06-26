@@ -22,6 +22,7 @@ public class BulletBehaviour : MonoBehaviour
     private void Update()
     {
         transform.position += direction*_speed*Time.deltaTime;
+	transform.forward = direction;
     }
     private void AttackColliderOnOnCollideWithIDamageable(object sender, EventArgs eventArgs)
     {
