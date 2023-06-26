@@ -218,8 +218,8 @@ public class SettingsScriptableObject : ScriptableObjectSaveable
         _windowMode = FullScreenMode.ExclusiveFullScreen;
         _useCameraShake = true;
         _maxRefreshRate = 144;
-        _screenWidth = Screen.currentResolution.width;
-        _screenHeight = Screen.currentResolution.height;
+        _screenWidth = 1920;
+        _screenHeight = 1080;
         _lockFPS = true;
         _useVsync = true;
         _showFPS = false;
@@ -248,18 +248,18 @@ public class SettingsScriptableObject : ScriptableObjectSaveable
 
 public class SettingsSaveData : SaveData
 {
-    public float volumeMusic;
-    public float volumeSFX;
-    public float volumeGeneral;
-    public RumblerIntensity rumblerIntensity;
+    public float volumeMusic = 1;
+    public float volumeSFX = 1;
+    public float volumeGeneral = 1;
+    public RumblerIntensity rumblerIntensity = RumblerIntensity.mid;
     public FullScreenMode windowMode;
-    public bool useCameraShake;
-    public int screenWidth;
-    public int screenHeight;
-    public int maxRefreshRate;
-    public bool lockFps;
-    public bool useVsync;
-    public bool showFps;
+    public bool useCameraShake = true;
+    public int screenWidth = 1920;
+    public int screenHeight = 1080;
+    public int maxRefreshRate = 144;
+    public bool lockFps = false;
+    public bool useVsync = true;
+    public bool showFps = false;
 }
 public enum RumblerIntensity
 {
