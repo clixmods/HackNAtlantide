@@ -75,26 +75,32 @@ public class QTEHandler : MonoBehaviour
     }
     public void MoveInput(Vector2 input)
     {
+        if (!_isInCutScene) return;
         _moveInput = input;
     }
     public void InteractInput(bool value)
     {
+        if (!_isInCutScene) return;
         _hasInteract = value;
     }
     public void AttackInput(bool value)
     {
+        if (!_isInCutScene) return;
         _hasAttack = value;
     }
     public void DashInput(bool value)
     {
+        if (!_isInCutScene) return;
         _hasDash = value && _moveInput.magnitude > 0.5f;
     }
     public void DashAttackInput(bool value)
     {
+        if (!_isInCutScene) return;
         _hasDashAttack = value;
     }
     public void FocusInput(bool value)
     {
+        if (!_isInCutScene) return;
         _hasFocus = value;
     }
     public void LaunchCutScene(InputType inputType, bool stopTimeScale = true)

@@ -20,7 +20,7 @@ public class AnimationHandler : MonoBehaviour
         _animation.Play();
     }
 
-    private void Update()
+    private void LateUpdate()
     {
         if (!_animation.isPlaying)
         {

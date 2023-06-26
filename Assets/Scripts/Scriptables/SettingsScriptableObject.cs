@@ -97,19 +97,26 @@ public class SettingsScriptableObject : ScriptableObjectSaveable
 
 
     //Resolution
-    [SerializeField] private Resolution _screenResolution;
-    public Resolution ScreenResolution
+    [SerializeField] private int _screenWidth;
+    [SerializeField] private int _screenHeight;
+    public int ScreenWidth
     {
-        get { return _screenResolution; }
+        get { return _screenWidth; }
         set
         {
-            _screenResolution = value;
-            Screen.SetResolution(1920, 1080, _windowMode == FullScreenMode.ExclusiveFullScreen);
-            OnScreenResolutionValueChanged?.Invoke(_screenResolution);
+            _screenWidth = value;
+            Screen.SetResolution(_screenWidth, _screenHeight, _windowMode == FullScreenMode.ExclusiveFullScreen);
         }
     }
-
-    public Action<Resolution> OnScreenResolutionValueChanged;
+    public int ScreenHeight
+    {
+        get { return _screenHeight; }
+        set
+        {
+            _screenHeight = value;
+            Screen.SetResolution(_screenWidth, _screenHeight, _windowMode == FullScreenMode.ExclusiveFullScreen);
+        }
+    }
 
     //Camera Shake
     [SerializeField] private bool _useCameraShake = true;
@@ -193,9 +200,10 @@ public class SettingsScriptableObject : ScriptableObjectSaveable
         VolumeGeneral = settingsSaveData.volumeGeneral;
         RumblerIntensity = settingsSaveData.rumblerIntensity;
         WindowMode = settingsSaveData.windowMode;
+        ScreenWidth = settingsSaveData.screenWidth;
+        ScreenHeight = settingsSaveData.screenHeight;
         UseCameraShake = settingsSaveData.useCameraShake;
         MaxRefreshRate = settingsSaveData.maxRefreshRate;
-        ScreenResolution = new();
         LockFps = settingsSaveData.lockFps;
         UseVSYnc = settingsSaveData.useVsync;
         ShowFps = settingsSaveData.showFps;
@@ -203,14 +211,16 @@ public class SettingsScriptableObject : ScriptableObjectSaveable
 
     public override void OnReset()
     {
+        return;
         _volumeMusic = 1;
         _volumeSFX = 1;
         _volumeGeneral = 1;
         _rumblerIntensity = RumblerIntensity.mid;
-        //_windowMode = FullScreenMode.ExclusiveFullScreen;
+        _windowMode = FullScreenMode.ExclusiveFullScreen;
         _useCameraShake = true;
         _maxRefreshRate = 144;
-        _screenResolution = Screen.currentResolution;
+        _screenWidth = 1920;
+        _screenHeight = 1080;
         _lockFPS = true;
         _useVsync = true;
         _showFPS = false;
@@ -227,28 +237,34 @@ public class SettingsScriptableObject : ScriptableObjectSaveable
         settingsSaveData.windowMode = _windowMode;
         settingsSaveData.useCameraShake = _useCameraShake;
         settingsSaveData.maxRefreshRate = _maxRefreshRate;
-        settingsSaveData.screenResolution = _screenResolution;
+        settingsSaveData.screenWidth = _screenWidth;
+        settingsSaveData.screenHeight = _screenHeight;
         settingsSaveData.lockFps = _lockFPS;
         settingsSaveData.useVsync = _useVsync;
         settingsSaveData.showFps = _showFPS;
         saveData = settingsSaveData;
     }
 
+    public void Awake()
+    {
+        DataPersistentHandler.Load(this, this.name);
+    }
 }
 
 public class SettingsSaveData : SaveData
 {
-    public float volumeMusic;
-    public float volumeSFX;
-    public float volumeGeneral;
-    public RumblerIntensity rumblerIntensity;
+    public float volumeMusic = 1;
+    public float volumeSFX = 1;
+    public float volumeGeneral = 1;
+    public RumblerIntensity rumblerIntensity = RumblerIntensity.mid;
     public FullScreenMode windowMode;
-    public bool useCameraShake;
-    public Resolution screenResolution;
-    public int maxRefreshRate;
-    public bool lockFps;
-    public bool useVsync;
-    public bool showFps;
+    public bool useCameraShake = true;
+    public int screenWidth = 1920;
+    public int screenHeight = 1080;
+    public int maxRefreshRate = 144;
+    public bool lockFps = false;
+    public bool useVsync = true;
+    public bool showFps = false;
 }
 public enum RumblerIntensity
 {

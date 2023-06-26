@@ -75,11 +75,10 @@ public class UISettingsHandler : MonoBehaviour
         _windowModeDropDown.value = (int)_settingsData.WindowMode;
         _cameraShakeToggle.isOn = _settingsData.UseCameraShake;
 
-        switch(_settingsData.ScreenResolution.width)
+        switch(_settingsData.ScreenWidth)
         {
             case 720:
-
-                _screenResolutionDropDown.value =0;
+                _screenResolutionDropDown.value = 0;
                 break;
             case 1280:
                 _screenResolutionDropDown.value = 1;
@@ -91,7 +90,7 @@ public class UISettingsHandler : MonoBehaviour
                 _screenResolutionDropDown.value = 3;
                 break;
                 default:
-                _screenResolutionDropDown.value = 2;
+                //_screenResolutionDropDown.value = 2;
                 break;
         }
 
@@ -123,27 +122,33 @@ public class UISettingsHandler : MonoBehaviour
     }
     void ScreenResolutionDropDown(int value)
     {
-        Resolution resolution = new();
+        int width = 1920;
+        int height = 1080;
         switch(value)
         {
             case 0:
-                resolution.width = 720;
-                resolution.height = 480;
+                width = 720;
+                height = 480;
             break;
             case 1:
-                resolution.width = 1280;
-                resolution.height = 720;
+                width = 1280;
+                height = 720;
                 break;
             case 2:
-                resolution.width = 1920;
-                resolution.height = 1080;
+                width = 1920;
+                height = 1080;
                 break;
             case 3:
-                resolution.width = 3840;
-                resolution.height = 2160;
+                width = 3840;
+                height = 2160;
+                break;
+            default:
+                width = 1920;
+                height = 1080;
                 break;
         }
-        _settingsData.ScreenResolution = resolution;
+        _settingsData.ScreenWidth = width;
+        _settingsData.ScreenHeight = height;
     }
     public void UseVsync(bool value)
     {

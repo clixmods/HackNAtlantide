@@ -53,7 +53,10 @@ namespace Damageable
                 }
                 else
                 {
-                    _enemyBehaviour.CurrentAttack.CancelAttack();
+                    if (_enemyBehaviour.CurrentAttack != null)
+                    {
+                        _enemyBehaviour.CurrentAttack.CancelAttack();
+                    }
                     eventToLaunch.OnHealthPercentage?.Invoke();
                     yield break;
                 }
