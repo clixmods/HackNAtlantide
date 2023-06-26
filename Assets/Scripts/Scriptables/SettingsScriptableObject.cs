@@ -211,6 +211,7 @@ public class SettingsScriptableObject : ScriptableObjectSaveable
 
     public override void OnReset()
     {
+        return;
         _volumeMusic = 1;
         _volumeSFX = 1;
         _volumeGeneral = 1;
@@ -244,6 +245,10 @@ public class SettingsScriptableObject : ScriptableObjectSaveable
         saveData = settingsSaveData;
     }
 
+    public void Awake()
+    {
+        DataPersistentHandler.Load(this, this.name);
+    }
 }
 
 public class SettingsSaveData : SaveData
