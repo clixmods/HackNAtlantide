@@ -37,6 +37,7 @@ public class BigGolemJumpAttack : EnemyAttackBehaviour
     public UnityEvent OnLanding;
     private bool _isJumping;
     bool canJump = true;
+    bool isActive = true;
 
     public override void Attack()
     {
@@ -52,13 +53,16 @@ public class BigGolemJumpAttack : EnemyAttackBehaviour
 
     public void GoToNewPositionWithJump(Transform destinationTransform)
     {
-
         CalculatePathTo(destinationTransform.position);
-        StartCoroutine(AttackBehaviour());
+        StartCoroutine(MoveToPosition());
         canJump = false;
         LaunchAttackEvent();
         Priority += CoolDown;
         _enemyBehaviour.Agent.enabled = false;
+    }
+    public void CanJumpAttack( bool value)
+    {
+        isActive = value;
     }
     private void Start()
     {
@@ -67,12 +71,11 @@ public class BigGolemJumpAttack : EnemyAttackBehaviour
         explosionCollider.radius = 0f;
         ExplosionFx.transform.localScale = Vector3.zero;
     }
-    
-    IEnumerator AttackBehaviour()
+    IEnumerator MoveToPosition()
     {
         OnAttackStarted();
         // joue le jump anim et attend le bon moment pour sauter
-        
+
         _enemyBehaviour.Animator.CrossFadeInFixedTime(JumpAnimID, 0f);
         yield return new WaitForSeconds(jumpAnimTime);
         OnJump?.Invoke();
@@ -109,10 +112,52 @@ public class BigGolemJumpAttack : EnemyAttackBehaviour
         //launchExplosion
         StartCoroutine(ExplosionAttack());
     }
+    IEnumerator AttackBehaviour()
+    {
+        if(isActive)
+        {
+            OnAttackStarted();
+            // joue le jump anim et attend le bon moment pour sauter
+
+            _enemyBehaviour.Animator.CrossFadeInFixedTime(JumpAnimID, 0f);
+            yield return new WaitForSeconds(jumpAnimTime);
+            OnJump?.Invoke();
+            //se deplace sur la courbe bezier et joue les anims qui faut
+            float timeToJump = 0f;
+            while (timeToJump < jumpTime)
+            {
+                _isJumping = true;
+                if (FacePlayer)
+                {
+                    _enemyBehaviour.FaceTarget(PlayerInstanceScriptableObject.Player.transform.position);
+                }
+                timeToJump += Time.deltaTime;
+                if (timeToJump > 2f)
+                    timeToJump = 2f;
+
+                float interpolationPosition = timeToJump / jumpTime;
+                transform.position = bezierCurve.GetPointBezierCurve(interpolationPosition);
+
+                //Joue l'attack animation a partir de 60% du saut
+                if (!_enemyBehaviour.Animator.GetCurrentAnimatorStateInfo(0).IsName("Landing_Big_Golem") && interpolationPosition > 0.8f)
+                {
+                    _enemyBehaviour.Animator.CrossFadeInFixedTime(AttaqueAnimID, 0f);
+                }
+
+                yield return null;
+            }
+        }
+        _isJumping = false;
+        _enemyBehaviour.Agent.enabled = true;
+        OnAttackFinished();
+        OnLanding?.Invoke();
+        _enemyBehaviour.IsAttacking = false;
+        //launchExplosion
+        StartCoroutine(ExplosionAttack());
+    }
 
     public override void CancelAttack()
     {
-        base.CancelAttack();
         if (_isJumping)
         {
             StopCoroutine(AttackBehaviour());

@@ -11,9 +11,9 @@ public abstract class EnemyAttackBehaviour : MonoBehaviour, ICombat
     [SerializeField] float damage;
     public float Damage { get { return damage; } }
 
-    [SerializeField] private float _minPriority;
+    [SerializeField] private protected float _minPriority;
     public float MinPriority { get { return _minPriority; } }
-    private float _currentPriority;
+    private protected float _currentPriority;
     public float Priority { get { return _currentPriority; } set { _currentPriority = value; } }
 
     [SerializeField] private float _coolDown;
@@ -99,7 +99,7 @@ public abstract class EnemyAttackBehaviour : MonoBehaviour, ICombat
     #endregion
     public abstract bool CanAttack();
     public abstract void Attack();
-    public IEnumerator RechargePriority()
+    public virtual IEnumerator RechargePriority()
     {
         while (_currentPriority > _minPriority)
         {

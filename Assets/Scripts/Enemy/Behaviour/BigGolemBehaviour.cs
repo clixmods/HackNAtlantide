@@ -15,11 +15,17 @@ public class BigGolemBehaviour : EnemyBehaviour
         canBossAttack = value;
         if(value && !IsAttacking)
         {
-            if(CurrentAttack !=null)
+            if(CurrentAttack != null)
             {
                 CurrentAttack.CancelAttack();
+                
             }
+            StopCoroutine(Attack());
             StartCoroutine(Attack());
+        }
+        if(!value)
+        {
+            CurrentAttack.CancelAttack();
         }
     }
     public override void Move(Vector3 target)
@@ -62,6 +68,7 @@ public class BigGolemBehaviour : EnemyBehaviour
                     {
                         EnnemyAttacks[i].Attack();
                         CurrentAttack = EnnemyAttacks[i];
+                        CurrentAttack.Priority += 10;
                         IsAttacking = true;
                         _state = EnemyState.Attacking;
                         Agent.updateRotation = false;
