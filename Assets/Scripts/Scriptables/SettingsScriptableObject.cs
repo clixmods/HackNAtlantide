@@ -102,9 +102,9 @@ public class SettingsScriptableObject : ScriptableObjectSaveable
     {
         get { return _screenResolution; }
         set
-        {
+        { 
             _screenResolution = value;
-            Screen.SetResolution(1920, 1080, _windowMode == FullScreenMode.ExclusiveFullScreen);
+            Screen.SetResolution(_screenResolution.width, _screenResolution.height, _windowMode == FullScreenMode.ExclusiveFullScreen);
             OnScreenResolutionValueChanged?.Invoke(_screenResolution);
         }
     }
@@ -207,7 +207,7 @@ public class SettingsScriptableObject : ScriptableObjectSaveable
         _volumeSFX = 1;
         _volumeGeneral = 1;
         _rumblerIntensity = RumblerIntensity.mid;
-        //_windowMode = FullScreenMode.ExclusiveFullScreen;
+        _windowMode = FullScreenMode.ExclusiveFullScreen;
         _useCameraShake = true;
         _maxRefreshRate = 144;
         _screenResolution = Screen.currentResolution;
