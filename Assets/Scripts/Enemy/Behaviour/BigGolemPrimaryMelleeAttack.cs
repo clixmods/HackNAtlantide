@@ -76,13 +76,4 @@ public class BigGolemPrimaryMelleeAttack : EnemyAttackBehaviour
         _enemyBehaviour.Animator.CrossFadeInFixedTime(walkAnimID, 0.2f);
 
     }
-    public override IEnumerator RechargePriority()
-    {
-        while (_currentPriority > _minPriority)
-        {
-            _currentPriority -= Time.deltaTime / 3f;
-            yield return null;
-        }
-        _currentPriority = _minPriority;
-    }
 }
