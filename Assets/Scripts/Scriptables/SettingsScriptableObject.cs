@@ -97,19 +97,26 @@ public class SettingsScriptableObject : ScriptableObjectSaveable
 
 
     //Resolution
-    [SerializeField] private Resolution _screenResolution;
-    public Resolution ScreenResolution
+    [SerializeField] private int _screenWidth;
+    [SerializeField] private int _screenHeight;
+    public int ScreenWidth
     {
-        get { return _screenResolution; }
+        get { return _screenWidth; }
         set
         {
-            _screenResolution = value;
-            Screen.SetResolution(_screenResolution.width, _screenResolution.height, _windowMode == FullScreenMode.ExclusiveFullScreen);
-            OnScreenResolutionValueChanged?.Invoke(_screenResolution);
+            _screenWidth = value;
+            Screen.SetResolution(_screenWidth, _screenHeight, _windowMode == FullScreenMode.ExclusiveFullScreen);
         }
     }
-
-    public Action<Resolution> OnScreenResolutionValueChanged;
+    public int ScreenHeight
+    {
+        get { return _screenHeight; }
+        set
+        {
+            _screenHeight = value;
+            Screen.SetResolution(_screenWidth, _screenHeight, _windowMode == FullScreenMode.ExclusiveFullScreen);
+        }
+    }
 
     //Camera Shake
     [SerializeField] private bool _useCameraShake = true;
@@ -193,9 +200,10 @@ public class SettingsScriptableObject : ScriptableObjectSaveable
         VolumeGeneral = settingsSaveData.volumeGeneral;
         RumblerIntensity = settingsSaveData.rumblerIntensity;
         WindowMode = settingsSaveData.windowMode;
+        ScreenWidth = settingsSaveData.screenWidth;
+        ScreenHeight = settingsSaveData.screenHeight;
         UseCameraShake = settingsSaveData.useCameraShake;
         MaxRefreshRate = settingsSaveData.maxRefreshRate;
-        ScreenResolution = new();
         LockFps = settingsSaveData.lockFps;
         UseVSYnc = settingsSaveData.useVsync;
         ShowFps = settingsSaveData.showFps;
@@ -207,10 +215,11 @@ public class SettingsScriptableObject : ScriptableObjectSaveable
         _volumeSFX = 1;
         _volumeGeneral = 1;
         _rumblerIntensity = RumblerIntensity.mid;
-        //_windowMode = FullScreenMode.ExclusiveFullScreen;
+        _windowMode = FullScreenMode.ExclusiveFullScreen;
         _useCameraShake = true;
         _maxRefreshRate = 144;
-        _screenResolution = Screen.currentResolution;
+        _screenWidth = Screen.currentResolution.width;
+        _screenHeight = Screen.currentResolution.height;
         _lockFPS = true;
         _useVsync = true;
         _showFPS = false;
@@ -227,7 +236,8 @@ public class SettingsScriptableObject : ScriptableObjectSaveable
         settingsSaveData.windowMode = _windowMode;
         settingsSaveData.useCameraShake = _useCameraShake;
         settingsSaveData.maxRefreshRate = _maxRefreshRate;
-        settingsSaveData.screenResolution = _screenResolution;
+        settingsSaveData.screenWidth = _screenWidth;
+        settingsSaveData.screenHeight = _screenHeight;
         settingsSaveData.lockFps = _lockFPS;
         settingsSaveData.useVsync = _useVsync;
         settingsSaveData.showFps = _showFPS;
@@ -244,7 +254,8 @@ public class SettingsSaveData : SaveData
     public RumblerIntensity rumblerIntensity;
     public FullScreenMode windowMode;
     public bool useCameraShake;
-    public Resolution screenResolution;
+    public int screenWidth;
+    public int screenHeight;
     public int maxRefreshRate;
     public bool lockFps;
     public bool useVsync;
