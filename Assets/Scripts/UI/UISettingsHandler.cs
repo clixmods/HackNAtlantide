@@ -78,8 +78,7 @@ public class UISettingsHandler : MonoBehaviour
         switch(_settingsData.ScreenResolution.width)
         {
             case 720:
-
-                _screenResolutionDropDown.value =0;
+                _screenResolutionDropDown.value = 0;
                 break;
             case 1280:
                 _screenResolutionDropDown.value = 1;
@@ -91,7 +90,7 @@ public class UISettingsHandler : MonoBehaviour
                 _screenResolutionDropDown.value = 3;
                 break;
                 default:
-                _screenResolutionDropDown.value = 2;
+                //_screenResolutionDropDown.value = 2;
                 break;
         }
 
