@@ -618,6 +618,12 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!223 &50861144 stripped
+Canvas:
+  m_CorrespondingSourceObject: {fileID: 7632241788837136082, guid: b77b45d696911824da7f8bf5a53304ad,
+    type: 3}
+  m_PrefabInstance: {fileID: 5385849558286305559}
+  m_PrefabAsset: {fileID: 0}
 --- !u!43 &54161202
 Mesh:
   m_ObjectHideFlags: 0
@@ -3979,6 +3985,12 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1 &340632921 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 302192014293744454, guid: b77b45d696911824da7f8bf5a53304ad,
+    type: 3}
+  m_PrefabInstance: {fileID: 5385849558286305559}
+  m_PrefabAsset: {fileID: 0}
 --- !u!43 &354171108
 Mesh:
   m_ObjectHideFlags: 0
@@ -6149,6 +6161,12 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!20 &567060632 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 5385849557459567704, guid: b77b45d696911824da7f8bf5a53304ad,
+    type: 3}
+  m_PrefabInstance: {fileID: 5385849558286305559}
+  m_PrefabAsset: {fileID: 0}
 --- !u!43 &575105348
 Mesh:
   m_ObjectHideFlags: 0
@@ -19988,6 +20006,12 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 5385849558286305559}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2121926885 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2960648900388042942, guid: b77b45d696911824da7f8bf5a53304ad,
+    type: 3}
+  m_PrefabInstance: {fileID: 5385849558286305559}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2135167041
 GameObject:
   m_ObjectHideFlags: 0
@@ -21158,6 +21182,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2109162804410215696, guid: b77b45d696911824da7f8bf5a53304ad,
+        type: 3}
+      propertyPath: m_TargetCamera
+      value: 
+      objectReference: {fileID: 567060632}
     - target: {fileID: 2191175475388474519, guid: b77b45d696911824da7f8bf5a53304ad,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -22277,6 +22306,127 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6994191370901425910, guid: b77b45d696911824da7f8bf5a53304ad,
+        type: 3}
+      propertyPath: OnVideoStop.m_PersistentCalls.m_Calls.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6994191370901425910, guid: b77b45d696911824da7f8bf5a53304ad,
+        type: 3}
+      propertyPath: OnVideoStart.m_PersistentCalls.m_Calls.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6994191370901425910, guid: b77b45d696911824da7f8bf5a53304ad,
+        type: 3}
+      propertyPath: OnVideoStop.m_PersistentCalls.m_Calls.Array.data[4].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6994191370901425910, guid: b77b45d696911824da7f8bf5a53304ad,
+        type: 3}
+      propertyPath: OnVideoStart.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6994191370901425910, guid: b77b45d696911824da7f8bf5a53304ad,
+        type: 3}
+      propertyPath: OnVideoStart.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6994191370901425910, guid: b77b45d696911824da7f8bf5a53304ad,
+        type: 3}
+      propertyPath: OnVideoStart.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6994191370901425910, guid: b77b45d696911824da7f8bf5a53304ad,
+        type: 3}
+      propertyPath: OnVideoStop.m_PersistentCalls.m_Calls.Array.data[4].m_Target
+      value: 
+      objectReference: {fileID: 6496816314655894192, guid: f91cf7359b4de2e40ba68d1cec4304bb,
+        type: 3}
+    - target: {fileID: 6994191370901425910, guid: b77b45d696911824da7f8bf5a53304ad,
+        type: 3}
+      propertyPath: OnVideoStart.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 50861144}
+    - target: {fileID: 6994191370901425910, guid: b77b45d696911824da7f8bf5a53304ad,
+        type: 3}
+      propertyPath: OnVideoStart.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 340632921}
+    - target: {fileID: 6994191370901425910, guid: b77b45d696911824da7f8bf5a53304ad,
+        type: 3}
+      propertyPath: OnVideoStart.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      value: 
+      objectReference: {fileID: 2121926885}
+    - target: {fileID: 6994191370901425910, guid: b77b45d696911824da7f8bf5a53304ad,
+        type: 3}
+      propertyPath: OnVideoStop.m_PersistentCalls.m_Calls.Array.data[4].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6994191370901425910, guid: b77b45d696911824da7f8bf5a53304ad,
+        type: 3}
+      propertyPath: OnVideoStart.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6994191370901425910, guid: b77b45d696911824da7f8bf5a53304ad,
+        type: 3}
+      propertyPath: OnVideoStop.m_PersistentCalls.m_Calls.Array.data[4].m_MethodName
+      value: SetActive
+      objectReference: {fileID: 0}
+    - target: {fileID: 6994191370901425910, guid: b77b45d696911824da7f8bf5a53304ad,
+        type: 3}
+      propertyPath: OnVideoStart.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: set_enabled
+      objectReference: {fileID: 0}
+    - target: {fileID: 6994191370901425910, guid: b77b45d696911824da7f8bf5a53304ad,
+        type: 3}
+      propertyPath: OnVideoStart.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: SetActive
+      objectReference: {fileID: 0}
+    - target: {fileID: 6994191370901425910, guid: b77b45d696911824da7f8bf5a53304ad,
+        type: 3}
+      propertyPath: OnVideoStart.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: SetActive
+      objectReference: {fileID: 0}
+    - target: {fileID: 6994191370901425910, guid: b77b45d696911824da7f8bf5a53304ad,
+        type: 3}
+      propertyPath: OnVideoStop.m_PersistentCalls.m_Calls.Array.data[4].m_TargetAssemblyTypeName
+      value: UnityEngine.GameObject, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 6994191370901425910, guid: b77b45d696911824da7f8bf5a53304ad,
+        type: 3}
+      propertyPath: OnVideoStart.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UnityEngine.Behaviour, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 6994191370901425910, guid: b77b45d696911824da7f8bf5a53304ad,
+        type: 3}
+      propertyPath: OnVideoStart.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
+      value: UnityEngine.GameObject, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 6994191370901425910, guid: b77b45d696911824da7f8bf5a53304ad,
+        type: 3}
+      propertyPath: OnVideoStop.m_PersistentCalls.m_Calls.Array.data[4].m_Arguments.m_BoolArgument
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6994191370901425910, guid: b77b45d696911824da7f8bf5a53304ad,
+        type: 3}
+      propertyPath: OnVideoStop.m_PersistentCalls.m_Calls.Array.data[4].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 6994191370901425910, guid: b77b45d696911824da7f8bf5a53304ad,
+        type: 3}
+      propertyPath: OnVideoStart.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 6994191370901425910, guid: b77b45d696911824da7f8bf5a53304ad,
+        type: 3}
+      propertyPath: OnVideoStart.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 6994191370901425910, guid: b77b45d696911824da7f8bf5a53304ad,
+        type: 3}
+      propertyPath: OnVideoStart.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 7353962232546598617, guid: b77b45d696911824da7f8bf5a53304ad,
         type: 3}
