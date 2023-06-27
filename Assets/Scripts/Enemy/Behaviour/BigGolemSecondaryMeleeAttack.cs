@@ -51,7 +51,7 @@ public class BigGolemSecondaryMeleeAttack : EnemyAttackBehaviour
         {
             if (FacePlayer)
             {
-                _enemyBehaviour.FaceTarget(PlayerInstanceScriptableObject.Player.transform.position);
+                //_enemyBehaviour.FaceTarget(PlayerInstanceScriptableObject.Player.transform.position);
             }
             time -= Time.deltaTime;
             yield return null;

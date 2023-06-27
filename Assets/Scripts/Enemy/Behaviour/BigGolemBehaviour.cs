@@ -76,7 +76,7 @@ public class BigGolemBehaviour : EnemyBehaviour
                     {
                         EnnemyAttacks[i].Attack();
                         CurrentAttack = EnnemyAttacks[i];
-                        CurrentAttack.Priority += 10;
+                        CurrentAttack.Priority += 30;
                         IsAttacking = true;
                         _state = EnemyState.Attacking;
                         Agent.updateRotation = false;
