@@ -8,6 +8,7 @@ using UnityEngine;
 public class ScriptableEvent : ScriptableObject
 { 
     public event Action OnEvent;
+    [ContextMenu("launchevent")]
     public void LaunchEvent()
     {
         OnEvent?.Invoke();

@@ -47,7 +47,7 @@ namespace Damageable
         {
             while (true)
             {
-                if (_enemyBehaviour.IsAttacking)
+                if (_enemyBehaviour.IsAttacking || !_enemyBehaviour.IsAwake || _enemyBehaviour.ReturnToStartPos)
                 {
                     yield return null;
                 }

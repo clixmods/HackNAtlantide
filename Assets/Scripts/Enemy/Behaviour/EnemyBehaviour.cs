@@ -158,6 +158,7 @@ public class EnemyBehaviour : MonoBehaviour
                     _isAttacking = true;
                     _state = EnemyState.Attacking;
                     _agent.updateRotation = false;
+                    _currentAttack.Priority *= 3f;
                     break;
                 }
             }

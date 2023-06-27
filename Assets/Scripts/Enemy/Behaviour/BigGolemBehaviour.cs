@@ -23,10 +23,11 @@ public class BigGolemBehaviour : EnemyBehaviour
             StopCoroutine(Attack());
             StartCoroutine(Attack());
         }
-        if (!value)
+        if (!value && CurrentAttack != null)
         {
             CurrentAttack.CancelAttack();
         }
+
     }
     public override void Move(Vector3 target)
     {

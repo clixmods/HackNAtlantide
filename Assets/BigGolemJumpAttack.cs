@@ -37,6 +37,8 @@ public class BigGolemJumpAttack : EnemyAttackBehaviour
     public UnityEvent OnLanding;
     private bool _isJumping;
     bool canJump = true;
+    public Transform endposWait;
+    public Transform spawnpos;
 
     public override void Attack()
     {
@@ -49,7 +51,16 @@ public class BigGolemJumpAttack : EnemyAttackBehaviour
             _enemyBehaviour.Agent.enabled = false;
         }
     }
-
+    [ContextMenu("gotospawn")]
+    public void GoToSpawn()
+    {
+        GoToNewPositionWithJump(spawnpos);
+    }
+    [ContextMenu("gotowait")]
+    public void GoToWait()
+    {
+        GoToNewPositionWithJump(endposWait);
+    }
     public void GoToNewPositionWithJump(Transform destinationTransform)
     {
 
@@ -80,6 +91,7 @@ public class BigGolemJumpAttack : EnemyAttackBehaviour
         float timeToJump = 0f;
         while (timeToJump < jumpTime)
         {
+            _enemyBehaviour.Agent.enabled = false;
             _isJumping = true;
             if (FacePlayer)
             {
@@ -99,15 +111,18 @@ public class BigGolemJumpAttack : EnemyAttackBehaviour
             }
 
             yield return null;
+            _enemyBehaviour.Agent.enabled = false;
         }
 
         _isJumping = false;
-        _enemyBehaviour.Agent.enabled = true;
         OnAttackFinished();
         OnLanding?.Invoke();
         _enemyBehaviour.IsAttacking = false;
         //launchExplosion
         StartCoroutine(ExplosionAttack());
+        yield return new WaitForSeconds(1f);
+
+        _enemyBehaviour.Agent.enabled = true;
     }
 
     public override void CancelAttack()
@@ -178,7 +193,7 @@ public class BigGolemJumpAttack : EnemyAttackBehaviour
         startPosition.parent = null;
         startPosition.position = transform.position;
         NavMesh.SamplePosition(position, out NavMeshHit hit, 50f, 1);
-        endPoint.position = hit.position+Vector3.up;
+        endPoint.position = hit.position + Vector3.up;
         highPoint1.position = transform.position + (endPoint.position - transform.position) / 4f + Vector3.up * 10f;
         highPoint2.position = transform.position + 3 * (endPoint.position - transform.position) / 4f + Vector3.up * 10f;
     }
