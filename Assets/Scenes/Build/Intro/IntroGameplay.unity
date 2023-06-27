@@ -20874,6 +20874,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a227f632f730ff4b8c745e34655fa44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  EventEnable:
+    m_PersistentCalls:
+      m_Calls: []
+  EventDisable:
+    m_PersistentCalls:
+      m_Calls: []
   EventAwake:
     m_PersistentCalls:
       m_Calls:
@@ -25099,31 +25105,40 @@ MonoBehaviour:
   m_GameObject: {fileID: 1720412225}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72ece51f2901e7445ab60da3685d6b5f, type: 3}
+  m_Script: {fileID: 11500000, guid: 0d42efb9105a2414fa58a353f895289a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ShowDebugText: 0
-  m_ShowCameraFrustum: 1
-  m_IgnoreTimeScale: 0
-  m_WorldUpOverride: {fileID: 0}
-  m_UpdateMethod: 2
-  m_BlendUpdateMethod: 1
-  m_DefaultBlend:
-    m_Style: 1
-    m_Time: 2
-    m_CustomCurve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-  m_CustomBlends: {fileID: 0}
-  m_CameraCutEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_CameraActivatedEvent:
-    m_PersistentCalls:
-      m_Calls: []
+  boost: 5
+  positionLerpTime: 1
+  mouseSensitivity: 60
+  mouseSensitivityCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.5
+      inSlope: 0
+      outSlope: 5
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 2.5
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  rotationLerpTime: 1
+  invertY: 1
+  moveUpSpeed: 0.2
+  lerpUpSpeed: 100
 --- !u!43 &1758464564
 Mesh:
   m_ObjectHideFlags: 0
