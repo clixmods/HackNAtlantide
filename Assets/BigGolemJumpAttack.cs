@@ -177,7 +177,8 @@ public class BigGolemJumpAttack : EnemyAttackBehaviour
     {
         startPosition.parent = null;
         startPosition.position = transform.position;
-        endPoint.position = position;
+        NavMesh.SamplePosition(position, out NavMeshHit hit, 50f, 1);
+        endPoint.position = hit.position+Vector3.up;
         highPoint1.position = transform.position + (endPoint.position - transform.position) / 4f + Vector3.up * 10f;
         highPoint2.position = transform.position + 3 * (endPoint.position - transform.position) / 4f + Vector3.up * 10f;
     }
@@ -186,7 +187,7 @@ public class BigGolemJumpAttack : EnemyAttackBehaviour
     {
         return _enemyBehaviour.DistanceWithPlayer > MinDistanceToAttack
             && _enemyBehaviour.DistanceWithPlayer < MaxDistanceToAttack
-            && NavMesh.SamplePosition(PlayerInstanceScriptableObject.Player.transform.position, out NavMeshHit hit, 1f, 1);
+            && NavMesh.SamplePosition(PlayerInstanceScriptableObject.Player.transform.position, out NavMeshHit hit, 10f, 1);
     }
     public override IEnumerator RechargePriority()
     {
