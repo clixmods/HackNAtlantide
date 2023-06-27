@@ -230,7 +230,7 @@ public class PlayerMovement : MonoBehaviour
             displacement = velocity.normalized * distance;
             if (hit.collider.TryGetComponent<Rigidbody>(out Rigidbody hitRB))
             {
-                hitRB.AddForceAtPosition(-hit.normal * 5000f, hit.point);
+                hitRB.AddForceAtPosition((-hit.normal+ transform.forward).normalized * 10000f, hit.point);
             }
         }
         _rigidbody.MovePosition(_rigidbody.position + displacement);

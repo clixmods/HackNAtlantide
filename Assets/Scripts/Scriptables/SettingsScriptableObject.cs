@@ -12,7 +12,7 @@ public class SettingsScriptableObject : ScriptableObjectSaveable
     [SerializeField] AudioMixer _audioMixer;
 
     #region Audio
-    [SerializeField] private float _volumeMusic;
+    [SerializeField] private float _volumeMusic = 1;
     private string VolumeMusicID = "VolumeMusic";
     public float VolumeMusic
     {
@@ -29,7 +29,7 @@ public class SettingsScriptableObject : ScriptableObjectSaveable
     }
     public Action<float> OnVolumeMusicChanged;
 
-    [SerializeField] private float _volumeSFX;
+    [SerializeField] private float _volumeSFX = 1;
 
     private string VolumeSFXID = "VolumeSFX";
     public float VolumeSFX
