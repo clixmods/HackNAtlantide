@@ -14,6 +14,8 @@ public class BulletBehaviour : MonoBehaviour
     public float Damage { get { return _damage; } set { _damage = value; } }
     [SerializeField] AttackCollider _attackCollider;
     public UnityEvent OnHit;
+    [SerializeField] GameObject particulehit;
+
 
     private void OnEnable()
     {
@@ -30,7 +32,13 @@ public class BulletBehaviour : MonoBehaviour
         {
             mDamageableEventArgs.idamageable.DoDamage(_damage);
             OnHit?.Invoke();
-            Destroy(gameObject);
+            Destroy();
         }
+    }
+    public void Destroy()
+    {
+        particulehit.transform.parent = null;
+        particulehit.SetActive(true);
+        Destroy(gameObject);
     }
 }
