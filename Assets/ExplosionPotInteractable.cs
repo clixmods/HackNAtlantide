@@ -48,7 +48,11 @@ public class ExplosionPotInteractable : MonoBehaviour
             {
                 return;
             }
-            //ZEBI
+            //ZEBI ~ MICHEL SA PASS
+            if (mDamageableEventArgs.idamageable is BossHealth)
+            {
+                damage += 2.5f;
+            }
             mDamageableEventArgs.idamageable.DoDamage(damage);
         }
     }
