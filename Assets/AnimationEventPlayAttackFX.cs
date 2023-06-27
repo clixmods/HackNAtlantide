@@ -7,6 +7,8 @@ public class AnimationEventPlayAttackFX : MonoBehaviour
     [SerializeField] private ParticleSystem FXAttack1;
     [SerializeField] private ParticleSystem FXAttack2;
     [SerializeField] private ParticleSystem FXAttack3;
+    [SerializeField] private ParticleSystem FXAttack4;
+
     public void PlayFX(int value)
     {
         switch(value)
@@ -14,19 +16,23 @@ public class AnimationEventPlayAttackFX : MonoBehaviour
             case 0 :
                 //FXAttack1.transform.rotation = transform.rotation;
                 FXAttack1.Play();
-            break;
+                break;
             case 1 :
                 //FXAttack2.transform.rotation = transform.rotation;
                 FXAttack2.Play();
-            break;
+                break;
             case 2 :
                 //FXAttack3.transform.rotation = transform.rotation;
                 FXAttack3.Play();
-            break;
+                break;
+            case 3 :
+                //FXAttack3.transform.rotation = transform.rotation;
+                FXAttack4.Play();
+                break;
             default :
                // FXAttack1.transform.rotation = transform.rotation;
                 FXAttack1.Play();
-            break;
+                break;
         }
     }
 }
