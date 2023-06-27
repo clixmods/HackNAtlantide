@@ -188,4 +188,13 @@ public class BigGolemJumpAttack : EnemyAttackBehaviour
             && _enemyBehaviour.DistanceWithPlayer < MaxDistanceToAttack
             && NavMesh.SamplePosition(PlayerInstanceScriptableObject.Player.transform.position, out NavMeshHit hit, 1f, 1);
     }
+    public override IEnumerator RechargePriority()
+    {
+        while (_currentPriority > _minPriority)
+        {
+            _currentPriority -= Time.deltaTime / 3f;
+            yield return null;
+        }
+        _currentPriority = _minPriority;
+    }
 }

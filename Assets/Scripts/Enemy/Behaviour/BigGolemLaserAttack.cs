@@ -72,4 +72,13 @@ public class BigGolemLaserAttack : EnemyAttackBehaviour
         _enemyBehaviour.Animator.CrossFade(WalkAnimID, 0.2f);
 
     }
+    public override IEnumerator RechargePriority()
+    {
+        while (_currentPriority > _minPriority)
+        {
+            _currentPriority -= Time.deltaTime / 3f;
+            yield return null;
+        }
+        _currentPriority = _minPriority;
+    }
 }
