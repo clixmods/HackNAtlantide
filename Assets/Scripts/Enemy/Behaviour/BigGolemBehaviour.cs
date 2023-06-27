@@ -13,7 +13,7 @@ public class BigGolemBehaviour : EnemyBehaviour
     public void CanAttack(bool value)
     {
         canBossAttack = value;
-        if (value && !IsAttacking)
+        if (value)
         {
             if (CurrentAttack != null)
             {
@@ -23,11 +23,15 @@ public class BigGolemBehaviour : EnemyBehaviour
             StopCoroutine(Attack());
             StartCoroutine(Attack());
         }
-        if (!value && CurrentAttack != null)
+        else
         {
             CurrentAttack.CancelAttack();
         }
-
+    }
+    [ContextMenu("cancelattack")]
+    public void CancelAttack()
+    {
+        CurrentAttack.CancelAttack();
     }
     public override void Move(Vector3 target)
     {
