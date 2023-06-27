@@ -134,6 +134,41 @@ AudioMixerEffectController:
   m_SendTarget: {fileID: 0}
   m_EnableWetMix: 0
   m_Bypass: 0
+--- !u!245 &-4531137267101949588
+AudioMixerSnapshotController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Snapshot Video Cinematic
+  m_AudioMixer: {fileID: 24100000}
+  m_SnapshotID: 5fa56d0ba25f3d342bbb4b1070f4a2d3
+  m_FloatValues:
+    7abd7470c87d71b449d1c5e7d0939a03: -80
+    f45e83e02ea3a69449e27129bedff833: 0.965
+    8ca9b151c983c3843873f579369aefcb: -80
+    538a763309fe2e343b0a57582577eb7b: -80
+    35f4a463a7cec5445ba61765068494dd: -80
+    8e6be4e4f75d29e49acfe70cec6fee6d: -80
+    eac2d17591b7f8b4d8afa9c38390b1de: -80
+    80ff32c64b14709408af353cce39e9a0: -80
+    d02285485c818b54e9f90c3cd5ef9d8c: -80
+    4c879d99ae098c346b63627d44273a9b: -80
+    3d05357acc1b6904fa2a404e1de2d65b: -80
+    d23efdea84319094bbd0227e3a96a273: 3059
+    fe18b4facb650dd41979f6572b068fd9: -80
+    6ac2ecfb372feaa44a0c10ef9f62123e: 1
+    d1a1b22c906a61e4582ad2906ac00286: -80
+    0b2ba6bc407ae274392b1ef26b341d39: -80
+    c922ff9dd47b986478dfa245829a173c: -80
+    370dbcdd0628af642b798c46197ce601: 0
+    608a45ee1aaaf61449554e8b846f66d5: 740
+    088ce88f4d208ce49b5eed03f328d03c: -80
+    be5d819fdac80a541bdcac5e6146257f: 0
+    7b29869f48853b24e9773f65cb4b10d3: 10
+  m_TransitionOverrides:
+    35f4a463a7cec5445ba61765068494dd: 6
+    0b2ba6bc407ae274392b1ef26b341d39: 6
 --- !u!243 &-3609346445890456333
 AudioMixerGroupController:
   m_ObjectHideFlags: 0
@@ -280,7 +315,7 @@ AudioMixerSnapshotController:
     c922ff9dd47b986478dfa245829a173c: -80
     370dbcdd0628af642b798c46197ce601: 0
     608a45ee1aaaf61449554e8b846f66d5: 740
-    088ce88f4d208ce49b5eed03f328d03c: -25.086687
+    088ce88f4d208ce49b5eed03f328d03c: -9.960263
     be5d819fdac80a541bdcac5e6146257f: 0
     7b29869f48853b24e9773f65cb4b10d3: 10
   m_TransitionOverrides:
@@ -349,6 +384,7 @@ AudioMixerController:
   - {fileID: 4481540729726439847}
   - {fileID: -6039451346197286114}
   - {fileID: -399808067475574978}
+  - {fileID: -4531137267101949588}
   m_StartSnapshot: {fileID: -556931271853859072}
   m_SuspendThreshold: -80
   m_EnableSuspend: 1

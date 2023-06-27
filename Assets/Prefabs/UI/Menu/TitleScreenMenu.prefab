@@ -2737,6 +2737,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98859f8f3ecdcac479e95d0898cfa295, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  settingsScriptableObject: {fileID: 11400000, guid: 7428faa3382ebc24b9403a03c2dcaff3,
+    type: 2}
   OnVideoStart:
     m_PersistentCalls:
       m_Calls:
@@ -2761,6 +2763,19 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: -4531137267101949588, guid: 5da2c8dde8bb9094f8aaeafbe0aca20b,
+          type: 2}
+        m_TargetAssemblyTypeName: UnityEngine.Audio.AudioMixerSnapshot, UnityEngine
+        m_MethodName: TransitionTo
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 1
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
