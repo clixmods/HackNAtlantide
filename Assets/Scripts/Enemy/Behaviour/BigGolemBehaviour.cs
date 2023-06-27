@@ -25,7 +25,10 @@ public class BigGolemBehaviour : EnemyBehaviour
         }
         else
         {
-            CurrentAttack.CancelAttack();
+            if (CurrentAttack != null)
+            {
+                CurrentAttack.CancelAttack();
+            }
         }
     }
     [ContextMenu("cancelattack")]
